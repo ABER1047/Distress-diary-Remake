@@ -13,6 +13,13 @@ global.movement_hspeed = 0;
 global.movement_vspeed = 0;
 
 
+//z축
+z = 0;
+
+//닉네임 (플레이어 구분용)
+nickname = -4;
+
+
 
 //카메라 타깃 설정
 global.camera_target = id;

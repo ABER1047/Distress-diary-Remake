@@ -82,7 +82,7 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_text_k_scale(xx+8,yy+32,"맵 생성 : F1\n맵 데이터 보기 : M\n맵 확대/축소 : 상하 방향키\n벽 히트박스 표시 : F2",64,-1,1,c_white,0,-1,normal_font,0.5,0.5,0);
+	draw_text_k_scale(xx+8,yy+32,"맵 생성 : F1\n맵 데이터 보기 : M\n맵 확대/축소 : 상하 방향키\n벽 히트박스 표시 : F2\n온라인 서버 생성 : F12\n온라인 서버 접속 : F11\n채팅창 : U",64,-1,1,c_white,0,-1,normal_font,0.5,0.5,0);
 	
 	//맵 드로우
 	if (keyboard_check_pressed(ord("M")))
@@ -247,14 +247,18 @@ if (global.show_map_data == 1)
 					
 					if (angle != -4)
 					{
-						draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,c_gray,global.show_map_data);
+						//현재 위치 표시 + 이동 가능한 방 표시
+						draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,(global.n_player_room_xx == ii && global.n_player_room_yy == i) ? c_red : c_gray,global.show_map_data);
 					}
+					
+
 					
 					if (global.room_connected_to_xx_sec[i][ii] != -4)
 					{
 						var tmp_str_2 = "("+string(global.room_connected_to_xx_sec[i][ii])+", "+string(global.room_connected_to_yy_sec[i][ii])+")";
 						draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,light_font,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
 					}
+					
 					//show_debug_message("drawing_map ("+string(tmp_xx)+", "+string(tmp_yy)+")   /   "+string(xx))
 				}
 				else

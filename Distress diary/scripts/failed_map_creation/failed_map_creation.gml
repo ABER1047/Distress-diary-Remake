@@ -7,4 +7,5 @@ function failed_map_creation()
 	global.n_room_width = -4;
 	global.n_room_height = -4;
 	instance_destroy(obj_wall_parents);
+	instance_destroy(obj_nextroom);
 }

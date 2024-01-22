@@ -19,6 +19,10 @@ function load_room(argument0,argument1)
 	//모든 벽 삭제
 	instance_destroy(obj_wall_parents);
 	
+	//모든 룸 이동 포탈 삭제
+	instance_destroy(obj_nextroom);
+	
+	
 	//위쪽 벽 드로워 생성
 	if (!instance_exists(obj_wall_upper_drawer))
 	{
@@ -57,4 +61,16 @@ function load_room(argument0,argument1)
 	tmp_ins.sprite_index = spr_wall_mask_right;
 	tmp_ins.image_xscale = tmp_scale;
 	tmp_ins.image_yscale = (global.n_room_height+2)*tmp_scale;
+	
+	
+	
+	//다음 방으로 이동하는 포탈 생성
+	var t_xx = [ global.n_room_width*0.5-1, 0, -global.n_room_width*0.5, 0 ];
+	var t_yy = [ 0, -global.n_room_height*0.5, 0, global.n_room_height*0.5 ];
+	
+	for(var i = 0; i < 4; i++)
+	{
+		var tmp_ins = instance_create_depth(tmp_xx+t_xx[i]*tmp_sprite_size,tmp_yy+t_yy[i]*tmp_sprite_size,0,obj_nextroom);
+		tmp_ins.tp_to = i;
+	}	
 }
