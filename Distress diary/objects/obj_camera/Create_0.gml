@@ -19,5 +19,7 @@ global.real_shake_y = 0
 global.camera_target_x = -4
 global.camera_target_y = -4
 
+global.camera_target = -4;
+
 global.n_camera_zoom = 0.7
 

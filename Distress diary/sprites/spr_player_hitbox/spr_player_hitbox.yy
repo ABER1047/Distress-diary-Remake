@@ -23,7 +23,7 @@
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"8377c5ea-2e69-4e0e-9103-063d3baea6a0","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
-  "origin": 9,
+  "origin": 4,
   "parent": {
     "name": "Sprite_player",
     "path": "folders/스프라이트/Sprite_player.yy",
@@ -60,7 +60,7 @@
     "visibleRange": null,
     "volume": 1.0,
     "xorigin": 24,
-    "yorigin": 12,
+    "yorigin": 24,
   },
   "swatchColours": null,
   "swfPrecision": 2.525,

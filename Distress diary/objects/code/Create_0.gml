@@ -34,10 +34,23 @@ global.max_root_length = 0;
 global.max_room_num = 0;
 global.n_room_num = 0;
 global.map_creation_falied = 0;
+outter_room_surf = surface_create(4000,3000);
 
+
+
+//현재 내 플레이어 위치 (룸)
+global.n_player_room_xx = 0;
+global.n_player_room_yy = 0;
+
+
+//현재 불러온 룸 정보
+global.n_room_width = 0;
+global.n_room_height = 0;
 
 
 
 //디버그 용
 global.show_map_data = -1;
 global.dev_mode = 1;
+global.show_wall_hitbox = -1;
+show_debug_log(global.dev_mode);

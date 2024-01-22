@@ -3,6 +3,14 @@
 v_x += (tv_x - v_x)*0.1;
 v_y += (tv_y - v_y)*0.1;
 
+
+if (instance_exists(global.camera_target))
+{
+	global.camera_target_x = global.camera_target.x;
+	global.camera_target_y = global.camera_target.y;
+}
+
+
 if (global.camera_target_x == -4)
 {
 	x += (room_width*0.5 - x)*0.15;
