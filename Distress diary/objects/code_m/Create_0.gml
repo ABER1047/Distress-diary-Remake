@@ -40,14 +40,10 @@ enum DATA
 	MUCH_DATA,
 	ADD_CLI,
 	REMOVE_CLI,
-	COMMAND
+	COMMAND,
+	INFO
 }
 
-enum COMM 
-{
-	INFO,
-	DMGED_INFO
-}
 
 
 info_buffer = buffer_create(2, buffer_grow, 1);
@@ -56,10 +52,13 @@ one_buffer = buffer_create(2, buffer_grow, 1);
 much_buffer = buffer_create(2, buffer_grow, 1);
 my_ID = 0;
 my_instance_id = 0;
+
+//클라이언트 object_id 저장용
 clients = ds_list_create();
 list_names = ds_list_create();
 list_vals = ds_list_create();
 list_types = ds_list_create();
+
 
 
 cli_num = 0;

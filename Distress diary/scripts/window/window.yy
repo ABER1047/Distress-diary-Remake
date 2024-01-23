@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Multiplayer",
-    "path": "folders/스크립트/Multiplayer.yy",
+    "name": "settings",
+    "path": "folders/스크립트/Multiplayer/settings.yy",
   },
 }
