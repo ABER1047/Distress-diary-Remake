@@ -62,7 +62,7 @@ if (activity == 1)
 			send_all(chat_buffer);
 			if (is_server) 
 			{
-				chat_up(chat_entering);
+				show_message_log(chat_entering);
 			}
 			chat_entering = "";
 			keyboard_string = "";

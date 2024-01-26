@@ -2,8 +2,13 @@
 // You can write your code in this editor
 
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
-if ((instance_exists(code_m) && code_m.server == -4) || global.nickname == nickname)
+if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id)
 {
+	if (global.camera_target != -4)
+	{
+		global.camera_target = id;
+	}
+	
 	//이동 관련
 	if (keyboard_check(ord("W")))
 	{
@@ -162,4 +167,10 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.nickname == nickn
 			}
 		}
 	}
+}
+else
+{
+	x += (tickrate_x - x)/global.tickrate;
+	y += (tickrate_y - y)/global.tickrate;
+	z += (tickrate_z - z)/global.tickrate;
 }

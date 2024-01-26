@@ -84,6 +84,9 @@ if (global.dev_mode == 1)
 {
 	draw_text_k_scale(xx+8,yy+32,"맵 생성 : F1\n맵 데이터 보기 : M\n맵 확대/축소 : 상하 방향키\n벽 히트박스 표시 : F2\n온라인 서버 생성 : F12\n온라인 서버 접속 : F11\n채팅창 : U",64,-1,1,c_white,0,-1,normal_font,0.5,0.5,0);
 	
+
+	draw_text_k_scale(xx+xx_w-8,yy+32,"닉네임 : "+string(global.nickname)+"\n내 플레이어 id : "+string(global.my_player_id)+"\nis_server : "+string(code_m.is_server)+"\nTickRate : "+string(global.tickrate),64,-1,1,c_white,0,1,normal_font,0.5,0.5,0);
+	
 	//맵 드로우
 	if (keyboard_check_pressed(ord("M")))
 	{
@@ -102,6 +105,25 @@ if (global.dev_mode == 1)
 	{
 		global.n_camera_zoom -= 0.1;
 		show_message_log("- 현재 카메라 줌 : "+string(global.n_camera_zoom));
+	}
+	
+	
+	//틱레이트 조정
+	if (keyboard_check_pressed(vk_right))
+	{
+		global.tickrate += 1;
+		send_GlobalVariableData("tickrate");
+		show_message_log("- 현재 틱 레이트 : "+string(global.tickrate));
+	}
+	else if (keyboard_check_pressed(vk_left))
+	{
+		global.tickrate -= 1;
+		if (global.tickrate < 1)
+		{
+			global.tickrate = 1;
+		}
+		send_GlobalVariableData("tickrate");
+		show_message_log("- 현재 틱 레이트 : "+string(global.tickrate));
 	}
 	
 	

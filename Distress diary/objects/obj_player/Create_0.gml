@@ -31,4 +31,13 @@ global.camera_target = id;
 
 
 //멀티플레이 용 버퍼
-command_buffer = buffer_create(512,buffer_grow,1);
+command_buffer = buffer_create(1024,buffer_grow,1);
+
+
+//이미지 정보 보내기 (멀티플레이)
+alarm[1] = 1;
+
+//멀티플레이용 틱레이트 포지션
+tickrate_x = x;
+tickrate_y = y;
+tickrate_z = z;
