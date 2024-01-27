@@ -21,6 +21,7 @@ function send_ImgData(argument0,argument1,argument2,argument3,argument4,argument
 	var args = [ argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11 ];
 	buffer_seek(command_buffer, buffer_seek_start, 0);
 	buffer_write(command_buffer, buffer_u8, global.DATA_IMG_DATA);
+	buffer_write(command_buffer, buffer_string, global.my_player_id); // my_player_id
 	buffer_write(command_buffer, buffer_string, floor(args[0])); // obj_id
 	buffer_write(command_buffer, buffer_string, object_get_name(args[1].object_index));
 	buffer_write(command_buffer, buffer_string, sprite_get_name(args[2]));

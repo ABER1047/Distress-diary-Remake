@@ -28,8 +28,8 @@
   "nineSlice": null,
   "origin": 4,
   "parent": {
-    "name": "Sprite_player",
-    "path": "folders/스프라이트/Sprite_player.yy",
+    "name": "player_template",
+    "path": "folders/스프라이트/Sprite_player/player_template.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

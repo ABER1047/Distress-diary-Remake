@@ -4,10 +4,10 @@
 var tmp_xx = [ 1, 0, -1, 0 ];
 var tmp_yy = [ 0, -1, 0, 1 ];
 
-var n_xx = global.n_player_room_xx;
-var n_yy = global.n_player_room_yy;
-var t_xx = global.n_player_room_xx+tmp_xx[tp_to];
-var t_yy = global.n_player_room_yy+tmp_yy[tp_to];
+var n_xx = global.n_player_room_xx[global.my_player_id];
+var n_yy = global.n_player_room_yy[global.my_player_id];
+var t_xx = global.n_player_room_xx[global.my_player_id]+tmp_xx[tp_to];
+var t_yy = global.n_player_room_yy[global.my_player_id]+tmp_yy[tp_to];
 
 var is_connected = 0;
 if (is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,t_yy))

@@ -6,14 +6,19 @@ image_yscale = 2;
 
 
 //방향 관련 변수
+my_n_dir = 0;
 global.n_dir = 2; //*90하면 바라보는 각도 값 나옴
-
+my_backpack = 0;
 
 //이동 관련 변수
 global.max_movement_hspeed = 12;
 global.max_movement_vspeed = 12;
 global.movement_hspeed = 0;
 global.movement_vspeed = 0;
+
+//이전에 있던 내 룸 포지션
+my_room_pos_xx = -4;
+my_room_pos_yy = -4;
 
 
 //z축

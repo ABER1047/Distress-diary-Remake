@@ -17,6 +17,9 @@
 
 function create_map(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
 {
+	global.n_player_room_xx = [ -4, -5, -6, -7, -8, -9 ];
+	global.n_player_room_yy = [ -4, -5, -6, -7, -8, -9 ];
+	
 	global.map_creation_falied = 0;
 	global.n_room_num = 0;
 	
@@ -35,8 +38,8 @@ function create_map(argument0,argument1,argument2,argument3,argument4,argument5,
 	global.map_start_pos_yy = (is_inside_array(argument3,argument1)) ? argument1 : irandom_range(0,argument3);
 	
 	//현재 내 플레이어 위치 (룸)
-	global.n_player_room_xx = global.map_start_pos_xx;
-	global.n_player_room_yy = global.map_start_pos_yy;
+	global.n_player_room_xx[global.my_player_id] = global.map_start_pos_xx;
+	global.n_player_room_yy[global.my_player_id] = global.map_start_pos_yy;
 	
 	//방의 최대 넓이 지정
 	global.max_room_width = argument5;

@@ -9,8 +9,8 @@
   "managed": true,
   "overriddenProperties": [],
   "parent": {
-    "name": "오브젝트",
-    "path": "folders/오브젝트.yy",
+    "name": "map_objects",
+    "path": "folders/오브젝트/map_objects.yy",
   },
   "parentObjectId": null,
   "persistent": false,

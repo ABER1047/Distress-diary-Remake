@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
-if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id)
+if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
 	if (global.camera_target != -4)
 	{
@@ -131,8 +131,8 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	var ins_place = instance_place(x,y,obj_nextroom);
 	if (instance_exists(ins_place) && ins_place.can_use_tp == 1)
 	{
-		var n_xx = global.n_player_room_xx;
-		var n_yy = global.n_player_room_yy;
+		var n_xx = global.n_player_room_xx[global.my_player_id];
+		var n_yy = global.n_player_room_yy[global.my_player_id];
 		var tmp_xx = [ 1, 0, -1, 0 ];
 		var tmp_yy = [ 0, -1, 0, 1 ];
 		var t_xx = n_xx+tmp_xx[ins_place.tp_to];
@@ -157,14 +157,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			//룸 연결됨 => 룸 이동함
 			if (is_connected == 1)
 			{
-				obj_player.x = room_width*0.5;
-				obj_player.y = room_height*0.5;
+				x = room_width*0.5;
+				y = room_height*0.5;
 			
 			
 				show_message_log("룸 이동 : ("+string(n_xx)+", "+string(n_yy)+") -> ("+string(t_xx)+", "+string(t_yy)+")");
 			
-				global.n_player_room_xx = t_xx;
-				global.n_player_room_yy = t_yy;
+				global.n_player_room_xx[global.my_player_id] = t_xx;
+				global.n_player_room_yy[global.my_player_id] = t_yy;
 			
 				load_room(t_xx,t_yy);
 			}
@@ -173,7 +173,9 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 }
 else
 {
-	x += (tickrate_x - x)/global.tickrate;
-	y += (tickrate_y - y)/global.tickrate;
-	z += (tickrate_z - z)/global.tickrate;
+	var tmp_tickrate = (abs(x - tickrate_x) < 256 && abs(y - tickrate_y) < 256 && abs(z - tickrate_z) < 256) ? global.tickrate : 1;
+
+	x += (tickrate_x - x)/tmp_tickrate;
+	y += (tickrate_y - y)/tmp_tickrate;
+	z += (tickrate_z - z)/tmp_tickrate;
 }

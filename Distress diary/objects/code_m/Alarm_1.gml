@@ -5,7 +5,7 @@ my_instance_id.nickname = global.nickname;
 my_instance_id.obj_id = 0;
 my_instance_id.soc = -4;
 
-if (is_server) 
+if (global.is_server) 
 {
 	ds_list_add(clients, -1);
 }

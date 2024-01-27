@@ -10,12 +10,13 @@ if (server == -4)
 		
 		if (server < 0) 
 		{
+			server = -4;
 			show_message_log("서버 생성 오류 발생!");
 		}
 		else 
 		{
 			alarm[1] = 1;
-			is_server = true;
+			global.is_server = true;
 			show_message_log("서버 생성 완료!");
 		}
 	}
@@ -26,11 +27,13 @@ if (server == -4)
 		
 		if (res < 0) 
 		{
+			server = -4;
 			show_message_log("서버 연결 오류 발생!");
 		}
 		else 
 		{
 			alarm[1] = 1;
+			global.is_server = false;
 			show_message_log("서버 접속 완료!");
 		}
 	}
@@ -38,10 +41,10 @@ if (server == -4)
 
 ////////////////////////////////////////////////////////////////////////////////////////////
 
-if (activity == 1)
+if (global.chat_activated == 1)
 {
-	chat_alpha += (1.2 - chat_alpha)*0.1;
-	if string_length(keyboard_string) > 30
+	chat_alpha += (1 - chat_alpha)*0.3;
+	if string_length(keyboard_string) > 64
 	{
 		keyboard_string = chat_entering;
 	}
@@ -54,22 +57,28 @@ if (activity == 1)
 	{
 		if (chat_entering != "")
 		{
+			var tmp_chat = string(global.nickname)+" : "+string(chat_entering);
 			buffer_seek(chat_buffer, buffer_seek_start, 0);
 	
 			buffer_write(chat_buffer, buffer_u8, DATA.CHAT);
-			buffer_write(chat_buffer, buffer_string, chat_entering);
+			buffer_write(chat_buffer, buffer_string, tmp_chat);
 	
 			send_all(chat_buffer);
-			if (is_server) 
+			if (global.is_server) 
 			{
-				show_message_log(chat_entering);
+				chat_up(tmp_chat);
+				if (!global.chat_activated)
+				{
+					show_message_log(tmp_chat);
+				}
 			}
 			chat_entering = "";
 			keyboard_string = "";
 		}
 		else
 		{
-			activity *= -1;
+			clean_message_log();
+			global.chat_activated *= -1;
 		}
 	}
 }
@@ -77,8 +86,8 @@ else
 {
 	if (keyboard_check_pressed(ord("U")) || keyboard_check_pressed(vk_enter))
 	{
-		activity *= -1;
+		global.chat_activated *= -1;
 		keyboard_string = "";
 	}
-	chat_alpha += (-0.2 - chat_alpha)*0.1
+	chat_alpha += (-0.01 - chat_alpha)*0.3;
 }

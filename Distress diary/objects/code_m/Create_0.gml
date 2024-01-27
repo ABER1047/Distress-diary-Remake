@@ -3,26 +3,13 @@
 window()
 server_ip = "61.82.143.119";
 server_port = 33136; 
-is_server = false;
+global.is_server = true;
 index = 0;
 server = -4;
 soc = -4;
 
-//랜덤 이름 생성기
-var _random_alphabet_fir = [ "a","e","i","o","u" ];
-var _random_alphabet_sec = [ "b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z" ];
-var tmp_str = choose(_random_alphabet_fir[irandom_range(0,array_length(_random_alphabet_fir)-1)],_random_alphabet_sec[irandom_range(0,array_length(_random_alphabet_sec)-1)]);
 
-var random_length = irandom_range(1,3);
-repeat(random_length)
-{
-	tmp_str = tmp_str+_random_alphabet_fir[irandom_range(0,array_length(_random_alphabet_fir)-1)]+_random_alphabet_sec[irandom_range(0,array_length(_random_alphabet_sec)-1)];
-}
 
-global.nickname = tmp_str;
-global.my_player_id = 0;
-global.object_id_ind = 0;
-global.tickrate = 5;
 network_set_config(network_config_connect_timeout,4000);
 
 
@@ -30,7 +17,7 @@ network_set_config(network_config_connect_timeout,4000);
 depth = -room_width*2
 chat_alpha = 0;
 chat_entering = "";
-activity = -1;
+global.chat_activated = -1;
 global.chat = array_create(10, "");
 
 
@@ -42,20 +29,29 @@ enum DATA
 	CHAT,
 	ADD_CLI,
 	REMOVE_CLI,
-	IMG_DATA,
-	GL_VAR_DATA
+	IMG_DATA, //image관련 모든 데이터 (spr_ind, img_ind, x, y, z...) 받아오기 용
+	GL_VAR_DATA, //global_variable값 받아오기 용
+	INS_VAR_DATA, //instance_variable값 받아오기 용
+	SET_PLAYER_ID, //처음 접속시 플레이어 아이디 적용 용
+	NEW_MAP_DATA, //새로운 맵 데이터 받아오기 용
+	MY_ROOM_POS
 }
 global.DATA_IMG_DATA = DATA.IMG_DATA;
 global.DATA_GL_VAR_DATA = DATA.GL_VAR_DATA;
+global.DATA_INS_VAR_DATA = DATA.INS_VAR_DATA;
+global.DATA_NEW_MAP_DATA = DATA.NEW_MAP_DATA;
+global.DATA_MY_ROOM_POS = DATA.MY_ROOM_POS;
 
+info_buffer = buffer_create(1024, buffer_grow, 1);
+dis_buffer = buffer_create(1024, buffer_grow, 1);
+one_buffer = buffer_create(1024, buffer_grow, 1);
+much_buffer = buffer_create(1024, buffer_grow, 1);
 
-info_buffer = buffer_create(2, buffer_grow, 1);
-dis_buffer = buffer_create(2, buffer_grow, 1);
-one_buffer = buffer_create(2, buffer_grow, 1);
-much_buffer = buffer_create(2, buffer_grow, 1);
-
-//전역 변수 설정용 버퍼
+//변수 전송용 버퍼
 global.variable_data_buffer = buffer_create(1024,buffer_grow,1);
+
+//맵 데이터 전송용 버퍼
+global.map_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //내 플레이어 실제 id값 (게임 엔진 내에서의 id값)
 my_instance_id = -4;

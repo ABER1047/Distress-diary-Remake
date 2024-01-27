@@ -2,7 +2,7 @@ function send_all(argument0)
 {
 	buffer = argument0;
 	
-	if (code_m.is_server == false) 
+	if (global.is_server == false) 
 	{
 		network_send_packet(code_m.server , buffer, buffer_get_size(buffer));
 	}

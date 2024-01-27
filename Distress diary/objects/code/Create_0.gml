@@ -4,14 +4,35 @@ randomize();
 depth = -102;
 
 
+//랜덤 이름 생성
+global.nickname = randomized_nickname();
+
+//내 플레이어 아이디
+global.my_player_id = 0;
+
+//obj_id 배정용 변수
+global.object_id_ind = 0;
+
+//플레이어 전용 obj_id_player_only 배정용 변수
+global.object_id_player_only = 0;
+
+//틱레이트
+global.tickrate = 5;
+
+//나 말고 다른 사람이 같은 룸에 있는 경우 체크
+global.is_anyone_same_room = 0;
+
 
 //플레이어 스킨
 global.player_skin_num = 3;
 global.player_skin = irandom_range(0,global.player_skin_num-1);
 
+//플레이어 착용중인 백팩
+global.backpack_num = 8; //백팩 장착 없음까지 포함해서 8종
+global.n_backpack = 0;
 
-
-
+//새로운 플레이어 오면 1로 변함
+global.new_player_joined = 0;
 
 
 
@@ -41,9 +62,9 @@ outter_room_surf = surface_create(4000,3000);
 
 
 
-//현재 내 플레이어 위치 (룸)
-global.n_player_room_xx = 0;
-global.n_player_room_yy = 0;
+//현재 모든 플레이어 위치 (룸) [인덱스는 플레이어 obj_id 값을 의미함]
+global.n_player_room_xx = [ -4, -4, -4, -4, -4, -4 ];
+global.n_player_room_yy = [ -4, -4, -4, -4, -4, -4 ];
 
 
 //현재 불러온 룸 정보

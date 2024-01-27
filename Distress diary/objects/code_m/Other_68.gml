@@ -11,18 +11,23 @@ if (type == network_type_connect)
 	//obj_id 할당용 변수
 	global.object_id_ind ++;
 	
+	//object_id_player_only 할당용 변수
+	global.object_id_player_only ++;
+
+	
 	buffer_seek(info_buffer, buffer_seek_start, 0);
 	buffer_write(info_buffer, buffer_u8, DATA.INIT_DATA);
-	buffer_write(info_buffer, buffer_u32, cli_max);
-	buffer_write(info_buffer, buffer_u32, global.object_id_ind);
+	buffer_write(info_buffer, buffer_string, cli_max);
+	buffer_write(info_buffer, buffer_string, global.object_id_ind);
+	buffer_write(info_buffer, buffer_string, global.object_id_player_only);
 	buffer_write(info_buffer, buffer_u8, socket);
 	
 	//처음 들어왔을 때
-	for(var i = 0; i < global.object_id_ind; i++) 
+	for(var i = 0; i < global.object_id_player_only; i++) 
 	{
 		with(obj_player)
 		{
-			if (global.object_id_ind == obj_id) 
+			if (global.object_id_player_only == obj_id_player_only) 
 			{
 				//soc는 각 플레이어 마다 부여되는 소켓임 (= 고유 id)
 				buffer_write(other.info_buffer, buffer_u8, soc);
@@ -70,28 +75,34 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 	switch(data) 
 	{
 		case DATA.INIT_DATA: //클라이언트측에서만 발생하는 이벤트 
-			if (is_server == false)
+			if (global.is_server == false)
 			{
 				//총 접속 인원 (자신 제외)
-				var tmp_player_num = buffer_read(buffer, buffer_u32);
+				var tmp_player_num = real(buffer_read(buffer, buffer_string));
+				
 				//받아온 서버의 global.object_id_ind 값
-				var tmp_object_id_ind = buffer_read(buffer, buffer_u32);
+				var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
+				
+				//받아온 서버의 global.object_id_ind_player_only 값
+				var tmp_object_id_ind_player_only = real(buffer_read(buffer, buffer_string));
 			
 				//받아온 서버의 소켓
 				var tmp_soc = buffer_read(buffer, buffer_u8);
 				network_set_timeout(tmp_soc, 3000, 3000);
 				obj_player.soc = tmp_soc;
 				obj_player.obj_id = tmp_object_id_ind;
+				obj_player.obj_id_player_only = tmp_object_id_ind_player_only;
 			
 				//code_m 오브젝트에도 obj_id 저장해둠
-				global.my_player_id = tmp_object_id_ind;
+				global.my_player_id = tmp_object_id_ind_player_only;
 				
-				
+
 				show_message_log("채팅방에 들어왔습니다.");
 				for(i = 1; i <= tmp_player_num; i++)
 				{
 					var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
 					obj.obj_id = tmp_object_id_ind-i; //고유 obj_id값 부여
+					obj.obj_id_player_only = tmp_object_id_ind_player_only-i; //고유 obj_id값 부여
 					
 					//각 플레이어마다 고유한 소켓을 가지고 있음 (= 고유 id)
 					obj.soc = buffer_read(buffer, buffer_u8);
@@ -99,40 +110,136 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				}
 			
 			
-				//서버 한테 접속했다고 데이터 발송
+				//서버 및 다른 클라이언트 한테 접속했다고 데이터 발송
 				buffer_seek(info_buffer, buffer_seek_start, 0);
 				buffer_write(info_buffer, buffer_u8, DATA.ADD_CLI);
-				buffer_write(info_buffer, buffer_u32, tmp_object_id_ind); //내가 배정받은 고유 obj_id를 서버로 전송
+				buffer_write(info_buffer, buffer_string, tmp_object_id_ind); //내가 배정받은 고유 obj_id를 서버로 전송
+				buffer_write(info_buffer, buffer_string, tmp_object_id_ind_player_only); //내가 배정받은 고유 obj_id_player_only를 서버로 전송
 				buffer_write(info_buffer, buffer_u8, soc); //내 소켓을 서버에 전송
 				buffer_write(info_buffer, buffer_string, global.nickname); //내 닉네임을 서버에 전송
 				send_all(info_buffer);
 			}
 		break;
 		
+		case DATA.ADD_CLI: //누군가가 중간에 접속했을때 서버, 클라이언트 모두 발생하는 이벤트
+			var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
+			var tmp_object_id_ind_player_only = real(buffer_read(buffer, buffer_string));
+			var tmp_soc = buffer_read(buffer, buffer_u8);
+			var tmp_nickname = buffer_read(buffer, buffer_string);
+			//들어온 자기 자신도 이벤트가 작동되기 때문에 그거 방지용
+			if (global.my_player_id != tmp_object_id_ind_player_only)
+			{
+				//서버쪽에 새로 접속한 클라이언트 플레이어 생성
+				var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
+				obj.obj_id = tmp_object_id_ind;
+				obj.obj_id_player_only = tmp_object_id_ind_player_only;
+				obj.soc = tmp_soc;
+				obj.nickname = tmp_nickname;
+
+				show_message_log("'"+string(tmp_nickname)+"'가 왔습니다.");
+				
+				//새로 접속한 사람한테 내 닉네임 전송해주기
+				with(obj_player)
+				{
+					if (global.my_player_id == obj_id_player_only)
+					{
+						send_InstanceVariableData(id,"nickname");
+					}
+				}
+			}
+			
+			
+			//서버한테만 새로운 플레이어 왔다고 해당 변수 1만큼 증가시켜줌
+			if (global.is_server)
+			{
+				global.new_player_joined++;
+			}
+				
+			//새로운 클라이언트가 왔으니, 각 플레이어들은 자신의 obj_id값을 새로운 클라이언트에게 보내줌
+			//일단 보류
+		break;
+
+		case DATA.REMOVE_CLI:
+			var tmp_soc = buffer_read(buffer, buffer_u8);
+			
+			with(obj_player) 
+			{
+				if (soc == socket) 
+				{
+					//나간 플레이어가 해당 플레이어인 경우
+					show_message_log("'"+string(nickname)+"'가 나갔습니다.");
+					instance_destroy();
+				}
+			}
+		break;
+		
 		case DATA.CHAT:
 			var str = buffer_read(buffer, buffer_string);
-			show_message_log(str);
+			chat_up(str);
+			if (!global.chat_activated)
+			{
+				show_message_log(str);
+			}
+			//show_message_log(str);
+		break;
+		
+		case DATA.INS_VAR_DATA:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				var tmp_obj_name = asset_get_index(buffer_read(buffer, buffer_string));
+				var tmp_name = buffer_read(buffer, buffer_string);
+				var tmp_val = buffer_read(buffer, buffer_string);
+				try
+				{
+					tmp_val = real(tmp_val);
+				} catch(e) {}
+				
+				
+				if (tmp_val != "")
+				{
+					var tmp_id_real = -4;
+					with(tmp_obj_name)
+					{
+						if (obj_id == tmp_obj_id)
+						{
+							tmp_id_real = id;
+						}
+					}
+				
+					variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
+				}
+			}
 		break;
 		
 		case DATA.GL_VAR_DATA:
-			var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
 			
 			//보낸 나 자신 제외
-			if (global.my_player_id != tmp_object_id_ind)
+			if (global.my_player_id != tmp_my_player_id)
 			{
 				var tmp_name = buffer_read(buffer, buffer_string);
 				var tmp_val = buffer_read(buffer, buffer_string);
+				try
+				{
+					tmp_val = real(tmp_val);
+				} catch(e) {}
+				
 				variable_global_set(string(tmp_name),tmp_val);
 			}
 		break;
 		
 		//특정 obj_id와 일치하는 오브젝트의 이미지 관련 모든 값을 적용
 		case DATA.IMG_DATA:
-			var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
 			
 			//보낸 나 자신 제외
-			if (global.my_player_id != tmp_object_id_ind)
+			if (global.my_player_id != tmp_my_player_id)
 			{
+				var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
 				var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
 				var tmp_spr_ind = asset_get_index(buffer_read(buffer, buffer_string));
 				var tmp_img_ind = buffer_read(buffer, buffer_string);
@@ -144,6 +251,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var tmp_angle = buffer_read(buffer, buffer_string);
 				var tmp_blend = buffer_read(buffer, buffer_string);
 				var tmp_alpha = buffer_read(buffer, buffer_string);
+				
 				with(tmp_obj_ind)
 				{
 					if (tmp_object_id_ind == obj_id)
@@ -174,46 +282,93 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			}
 		break;
 		
-		case DATA.ADD_CLI: //서버쪽에서만 발생하는 이벤트
-			if (is_server == true)
-			{
-				var tmp_object_id_ind = buffer_read(buffer, buffer_u32);
-				var tmp_soc = buffer_read(buffer, buffer_u8);
-				var tmp_nickname = buffer_read(buffer, buffer_string);
+		case DATA.NEW_MAP_DATA:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			var tmp_map_seed = real(buffer_read(buffer, buffer_string));
 			
-				//들어온 자기 자신도 이벤트가 작동되기 때문에 그거 방지용
-				if (tmp_soc != soc)
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id && global.is_map_exists != tmp_map_seed)
+			{
+				show_message_log("맵 시드 : "+string(global.is_map_exists));
+				global.map_creation_falied = 0;
+				
+				//여기에는 시드 값이 적용됨
+				global.is_map_exists = tmp_map_seed;
+				
+				global.n_player_room_xx = [ -4, -5, -6, -7, -8, -9 ];
+				global.n_player_room_yy = [ -4, -5, -6, -7, -8, -9 ];
+				
+				//최대 루트 길이
+				global.max_root_length = real(buffer_read(buffer, buffer_string));
+				
+				
+				//행 = height, 열 = width
+				global.map_width = real(buffer_read(buffer, buffer_string));
+				global.map_height = real(buffer_read(buffer, buffer_string));
+				
+				//스타트 지점
+				global.map_start_pos_xx = real(buffer_read(buffer, buffer_string));
+				global.map_start_pos_yy = real(buffer_read(buffer, buffer_string));
+				
+				//전체 룸 갯수
+				global.n_room_num = real(buffer_read(buffer, buffer_string));
+				
+				
+				
+				for(var i = 0; i < global.map_height; i++;)
 				{
-					//서버쪽에 새로 접속한 클라이언트 플레이어 생성
-					var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
-					obj.obj_id = tmp_object_id_ind;
-					obj.soc = tmp_soc;
-					obj.nickname = tmp_nickname;
-
-					show_message_log("'"+string(tmp_nickname)+"'가 왔습니다.");	
+					for(var ii = 0; ii < global.map_width; ii++;)
+					{
+						//map_arr = 0 일때 방이 없음 / 1일때 방 존재
+						global.map_arr[i][ii] = real(buffer_read(buffer, buffer_string));
+						
+						//각 방에 대한 방 넓이
+						global.map_room_width[i][ii] = real(buffer_read(buffer, buffer_string));
+						global.map_room_height[i][ii] = real(buffer_read(buffer, buffer_string));
+						
+						//방 A와 연결되있는 방 B의 위치 인덱스
+						global.room_connected_to_xx[i][ii] = real(buffer_read(buffer, buffer_string));
+						global.room_connected_to_yy[i][ii] = real(buffer_read(buffer, buffer_string));
+						
+						//방 A와 연결되있는 방 B의 위치 인덱스 (2번째 연결)
+						global.room_connected_to_xx_sec[i][ii] = real(buffer_read(buffer, buffer_string));
+						global.room_connected_to_yy_sec[i][ii] = real(buffer_read(buffer, buffer_string));
+					}
 				}
+				
+				
+				
+				//현재 내 플레이어 위치 (룸)
+				global.n_player_room_xx[global.my_player_id] = global.map_start_pos_xx;
+				global.n_player_room_yy[global.my_player_id] = global.map_start_pos_yy;
+				
+				
+				//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
+				load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
+		
+		
+		
+				
+				show_message_log("- 맵 로드 완료");
+				obj_player.x = room_width*0.5;
+				obj_player.y = room_height*0.5;
 			}
 		break;
 		
-		case DATA.REMOVE_CLI:
-			var tmp_soc = buffer_read(buffer, buffer_u8);
+		case DATA.MY_ROOM_POS:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
 			
-			var tmp_nickname = "";
-			with(obj_player) 
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
 			{
-				if (soc == socket) 
-				{
-					//나간 플레이어가 해당 플레이어인 경우
-					tmp_nickname = nickname;
-					instance_destroy();
-				}
+				global.n_player_room_xx[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
+				global.n_player_room_yy[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
 			}
-			show_message_log("'"+string(tmp_nickname)+"'가 나갔습니다.");
 		break;
 	}
 	
 	//클라이언트가 보낸거를 서버에서 받고 서버에서 다른 클라이언트한테 재전달
-	if (is_server) 
+	if (global.is_server) 
 	{
 		send_all(buffer);
 	}

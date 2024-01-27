@@ -82,16 +82,27 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_text_k_scale(xx+8,yy+32,"맵 생성 : F1\n맵 데이터 보기 : M\n맵 확대/축소 : 상하 방향키\n벽 히트박스 표시 : F2\n온라인 서버 생성 : F12\n온라인 서버 접속 : F11\n채팅창 : U",64,-1,1,c_white,0,-1,normal_font,0.5,0.5,0);
+	draw_text_k_scale(xx+8,yy+32,"맵 생성 : F1\n맵 데이터 보기 : M\n맵 확대/축소 : 상하 방향키\n벽 히트박스 표시 : F2\n온라인 서버 생성 : F12\n온라인 서버 접속 : F11\n채팅창 : U/Enter\n닉네임 변경 : Q\n스킨 변경 : R\n가방 변경 : T",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	
 
-	draw_text_k_scale(xx+xx_w-8,yy+32,"닉네임 : "+string(global.nickname)+"\n내 플레이어 id : "+string(global.my_player_id)+"\nis_server : "+string(code_m.is_server)+"\nTickRate : "+string(global.tickrate),64,-1,1,c_white,0,1,normal_font,0.5,0.5,0);
+	draw_text_k_scale(xx+xx_w-8,yy+32,"닉네임 : "+string(global.nickname)+"\n내 플레이어 id : "+string(global.my_player_id)+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
-	if (keyboard_check_pressed(ord("M")))
+	global.show_map_data = keyboard_check(ord("M"));
+	
+	//랜덤 닉네임
+	if (keyboard_check_pressed(ord("Q")))
 	{
-		global.show_map_data *= -1;
-		show_message_log("- 맵 표시 : "+string(global.show_map_data));
+		global.nickname = randomized_nickname();
+		show_message_log("- 변경된 닉네임 : "+string(global.nickname));
+		with(obj_player)
+		{
+			if (global.my_player_id == obj_id_player_only)
+			{
+				nickname = global.nickname;
+				send_InstanceVariableData(id,"nickname");
+			}
+		}
 	}
 	
 	
@@ -107,7 +118,7 @@ if (global.dev_mode == 1)
 		show_message_log("- 현재 카메라 줌 : "+string(global.n_camera_zoom));
 	}
 	
-	//카메라 줌
+	//스킨 변경
 	if (keyboard_check_pressed(ord("R")))
 	{
 		global.player_skin ++;
@@ -121,11 +132,26 @@ if (global.dev_mode == 1)
 		}
 		show_message_log("- 플레이어 스킨 변경 : "+string(sprite_get_name(obj_player.sprite_index)));
 	}
+	
+	//가방 변경
+	if (keyboard_check_pressed(ord("T")))
+	{
+		global.n_backpack ++;
+		if (global.n_backpack < 0)
+		{
+			global.n_backpack = global.backpack_num-1;
+		}
+		else if (global.n_backpack >= global.backpack_num)
+		{
+			global.n_backpack = 0;
+		}
+		show_message_log("- 가방 변경 : "+string(global.n_backpack));
+	}
 
 	
 	
 	//틱레이트 조정
-	if (keyboard_check_pressed(vk_right) || keyboard_check_pressed(vk_left))
+	if (global.is_server && (keyboard_check_pressed(vk_right) || keyboard_check_pressed(vk_left)))
 	{
 		if (keyboard_check_pressed(vk_right))
 		{
@@ -154,7 +180,7 @@ if (global.dev_mode == 1)
 	
 	
 	//맵 생성
-	if (keyboard_check_pressed(vk_f1))
+	if (global.is_server && keyboard_check_pressed(vk_f1))
 	{
 		clean_message_log();
 		var tmp_width = irandom_range(10,16);
@@ -176,21 +202,29 @@ if (global.dev_mode == 1)
 		
 		
 		//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
-		load_room(global.n_player_room_xx,global.n_player_room_yy);
+		load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
 		
 		
 		
 		//맵 생성 - 디버그용 메세지
 		if (global.map_creation_falied == 0)
 		{
-			global.is_map_exists = 1;
+			global.is_map_exists = random_get_seed();
+			
 			show_message_log("- 맵 생성 정보");
+			show_message_log("맵 시드 : "+string(global.is_map_exists));
 			show_message_log("맵 크기 (width x height) : "+string(tmp_width)+" x "+string(tmp_height));
 			show_message_log("루트 최대 길이 : "+string(tmp_max_root));
 			show_message_log("룸 최대 크기 (width x height) : "+string(tmp_room_max_width)+" x "+string(tmp_room_max_height));
 			show_message_log("룸 최소 크기 (width x height) : "+string(tmp_min_room_width)+" x "+string(tmp_min_room_height));
 			show_message_log("추가 방 연결 확률 : "+string(tmp_additional_room_cre_percentage)+"%");
 			show_message_log("방 갯수 : "+string(global.n_room_num)+"/"+string(tmp_total_room_num));
+			
+			
+			show_message_log("- 맵 로드/전송 완료");
+			obj_player.x = room_width*0.5;
+			obj_player.y = room_height*0.5;
+			send_NewMapData();
 		}
 		else
 		{
@@ -287,8 +321,17 @@ if (global.show_map_data == 1)
 					
 					if (angle != -4)
 					{
+						var is_someone_here = 0;
+						for(var k = 0; k < array_length(global.n_player_room_xx); k++)
+						{
+							if (global.n_player_room_xx[k] == ii && global.n_player_room_yy[k] == i)
+							{
+								is_someone_here = 1;
+							}
+						}
+						
 						//현재 위치 표시 + 이동 가능한 방 표시
-						draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,(global.n_player_room_xx == ii && global.n_player_room_yy == i) ? c_red : c_gray,global.show_map_data);
+						draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,(is_someone_here == 1) ? c_red : c_gray,global.show_map_data);
 					}
 					
 
@@ -296,7 +339,7 @@ if (global.show_map_data == 1)
 					if (global.room_connected_to_xx_sec[i][ii] != -4)
 					{
 						var tmp_str_2 = "("+string(global.room_connected_to_xx_sec[i][ii])+", "+string(global.room_connected_to_yy_sec[i][ii])+")";
-						draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,light_font,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
+						draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,font_light,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
 					}
 					
 					//show_debug_message("drawing_map ("+string(tmp_xx)+", "+string(tmp_yy)+")   /   "+string(xx))
