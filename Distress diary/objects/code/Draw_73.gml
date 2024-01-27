@@ -107,6 +107,22 @@ if (global.dev_mode == 1)
 		show_message_log("- 현재 카메라 줌 : "+string(global.n_camera_zoom));
 	}
 	
+	//카메라 줌
+	if (keyboard_check_pressed(ord("R")))
+	{
+		global.player_skin ++;
+		if (global.player_skin < 0)
+		{
+			global.player_skin = global.player_skin_num-1;
+		}
+		else if (global.player_skin >= global.player_skin_num)
+		{
+			global.player_skin = 0;
+		}
+		show_message_log("- 플레이어 스킨 변경 : "+string(sprite_get_name(sprite_index)));
+	}
+
+	
 	
 	//틱레이트 조정
 	if (keyboard_check_pressed(vk_right))

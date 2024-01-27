@@ -4,7 +4,9 @@ depth = -102;
 
 
 
-
+//플레이어 스킨
+global.player_skin_num = 3;
+global.player_skin = irandom_range(0,global.player_skin_num-1);
 
 
 

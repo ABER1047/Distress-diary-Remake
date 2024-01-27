@@ -13,7 +13,7 @@ var _random_alphabet_fir = [ "a","e","i","o","u" ];
 var _random_alphabet_sec = [ "b","c","d","f","g","h","j","k","l","m","n","p","q","r","s","t","v","w","x","y","z" ];
 var tmp_str = choose(_random_alphabet_fir[irandom_range(0,array_length(_random_alphabet_fir)-1)],_random_alphabet_sec[irandom_range(0,array_length(_random_alphabet_sec)-1)]);
 
-var random_length = irandom_range(2,4);
+var random_length = irandom_range(1,3);
 repeat(random_length)
 {
 	tmp_str = tmp_str+_random_alphabet_fir[irandom_range(0,array_length(_random_alphabet_fir)-1)]+_random_alphabet_sec[irandom_range(0,array_length(_random_alphabet_sec)-1)];

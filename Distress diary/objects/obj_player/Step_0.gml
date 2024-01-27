@@ -108,16 +108,19 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//바라보는 방향에 따른 스프라이트 설정
 	if (global.n_dir == 0 || global.n_dir == 2)
 	{
-		sprite_index = spr_original_bp0;
+		var tmp_skin_spr = [ spr_original_p0, spr_original_b0, spr_original_d0 ];
+		sprite_index = tmp_skin_spr[global.player_skin];
 		image_xscale = (global.n_dir == 0) ? -abs(image_xscale) : abs(image_xscale);
 	}
 	else if (global.n_dir == 1)
 	{
-		sprite_index = spr_original_bp0_1;
+		var tmp_skin_spr = [ spr_original_p1, spr_original_b1, spr_original_d1 ];
+		sprite_index = tmp_skin_spr[global.player_skin];
 	}
 	else
 	{
-		sprite_index = spr_original_bp0_2;
+		var tmp_skin_spr = [ spr_original_p2, spr_original_b2, spr_original_d2 ];
+		sprite_index = tmp_skin_spr[global.player_skin];
 	}
 
 

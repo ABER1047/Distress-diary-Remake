@@ -33,8 +33,8 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "spr_original_bp0",
-    "path": "sprites/spr_original_bp0/spr_original_bp0.yy",
+    "name": "spr_original_p0",
+    "path": "sprites/spr_original_p0/spr_original_p0.yy",
   },
   "spriteMaskId": {
     "name": "spr_player_hitbox",
