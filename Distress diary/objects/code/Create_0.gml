@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+randomize();
 depth = -102;
 
 
@@ -10,7 +11,7 @@ global.player_skin = irandom_range(0,global.player_skin_num-1);
 
 
 
-randomize();
+
 
 
 

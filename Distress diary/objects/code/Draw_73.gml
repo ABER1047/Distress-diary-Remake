@@ -119,21 +119,23 @@ if (global.dev_mode == 1)
 		{
 			global.player_skin = 0;
 		}
-		show_message_log("- 플레이어 스킨 변경 : "+string(sprite_get_name(sprite_index)));
+		show_message_log("- 플레이어 스킨 변경 : "+string(sprite_get_name(obj_player.sprite_index)));
 	}
 
 	
 	
 	//틱레이트 조정
-	if (keyboard_check_pressed(vk_right))
+	if (keyboard_check_pressed(vk_right) || keyboard_check_pressed(vk_left))
 	{
-		global.tickrate += 1;
-		send_GlobalVariableData("tickrate");
-		show_message_log("- 현재 틱 레이트 : "+string(global.tickrate));
-	}
-	else if (keyboard_check_pressed(vk_left))
-	{
-		global.tickrate -= 1;
+		if (keyboard_check_pressed(vk_right))
+		{
+			global.tickrate += 1;
+		}
+		else if (keyboard_check_pressed(vk_left))
+		{
+			global.tickrate -= 1;
+		}
+		
 		if (global.tickrate < 1)
 		{
 			global.tickrate = 1;
