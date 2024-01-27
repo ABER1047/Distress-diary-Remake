@@ -2,7 +2,7 @@
 
 #
 
-## Remaking Project Distress Diary
+## Project Distress Diary (Remaking)
 
 
 2022년에 개발중이던 오리지널 프로젝트는 아래에서 볼 수 있음
