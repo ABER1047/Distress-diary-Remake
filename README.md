@@ -22,7 +22,7 @@
 
 ##
 
-### 2024-01-27
+### 2024-01-26
 
 #### Online Multiplayer basic foundation code made (Tickrate, Player movement...)
 #### 온라인 플레이 기초 토대 코드 작성 (틱레이트, 플레이어 이동...)
