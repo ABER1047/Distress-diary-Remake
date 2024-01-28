@@ -7,8 +7,8 @@ if (instance_exists(parents_id))
 	if (tmp_n_camera_zoom != global.n_camera_zoom)
 	{
 		var slot_size = 160*global.n_camera_zoom; //1칸당 픽셀 사이즈
-		image_xscale = slot_size/sprite_width;
-		image_yscale = slot_size/sprite_height;
+		image_xscale = slot_size/sprite_get_width(sprite_index);
+		image_yscale = slot_size/sprite_get_height(sprite_index);
 		tmp_n_camera_zoom = global.n_camera_zoom;
 	}
 	
