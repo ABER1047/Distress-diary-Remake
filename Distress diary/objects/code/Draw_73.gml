@@ -82,10 +82,11 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_text_k_scale(xx+8,yy+32,"맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [R]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+8,yy+32,"맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [R]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]\n인벤토리 [Tab]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	
-
-	draw_text_k_scale(xx+xx_w-8,yy+32,"초대 코드 : "+string(global.invite_code)+"\n내 아이피 : "+string(keyboard_check(ord("I")) ? string(global.my_ip) : "아이피 보기[I]")+"\n\n닉네임 : "+string(global.nickname)+"\n내 플레이어 id : "+string(global.my_player_id)+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
+	var tmp_guide_txt1 = "온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]";
+	var tmp_guide_txt2 = "초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate);
+	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
 	global.show_map_data = keyboard_check(ord("M"));
@@ -103,6 +104,21 @@ if (global.dev_mode == 1)
 				send_InstanceVariableData(id,"nickname");
 			}
 		}
+	}
+	
+	
+	//인벤토리
+	if (keyboard_check_pressed(vk_tab))
+	{
+		if (!instance_exists(global.showing_inv))
+		{
+			global.showing_inv = show_inv_ui(400,320,4,6,"Inventory");
+		}
+		else
+		{
+			instance_destroy(global.showing_inv);
+		}
+		show_message_log("- 인벤토리 열기/닫기 : "+string(global.showing_inv));
 	}
 	
 	
