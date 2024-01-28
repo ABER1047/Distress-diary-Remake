@@ -13,7 +13,7 @@ if (instance_exists(parents_id))
 	}
 	
 	
-	if (mouse_check_button(mb_left))
+	if ((mouse_on == 1 || moving_now == 1) && mouse_check_button(mb_left))
 	{
 		moving_now = 1;
 	}
