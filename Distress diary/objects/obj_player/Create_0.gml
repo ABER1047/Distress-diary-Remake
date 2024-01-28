@@ -30,6 +30,10 @@ nickname = -4;
 
 
 
+//image_alpha값이랑 똑같은데 draw_sprite에서만 드로우 되지 않게 해주는 alpha값
+draw_alpha = 1;
+
+
 //카메라 타깃 설정
 global.camera_target = id;
 

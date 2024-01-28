@@ -1,12 +1,24 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+//초대 코드 생성
+if (global.my_ip != "")
+{
+	var tmp_rd_invite_code_seed = floor(current_minute/5)
+	if (global.invite_code_seed != tmp_rd_invite_code_seed)
+	{
+		global.invite_code = create_invite_code(global.my_ip);
+		global.invite_code_seed = tmp_rd_invite_code_seed;
+	}
+}
+
+
 if (server == -4)
 {
 	//서버 생성
 	if (keyboard_check_pressed(vk_f12)) 
 	{
-		server = network_create_server(network_socket_tcp, server_port, 5);
+		server = network_create_server(network_socket_tcp, server_port, 3);
 		
 		if (server < 0) 
 		{
@@ -22,13 +34,14 @@ if (server == -4)
 	}
 	else if (keyboard_check_pressed(vk_f11)) //서버 접속
 	{
+		server_ip = get_string_async("초대 코드를 입력해주세요","");
 		server = network_create_socket(network_socket_tcp);
 		var res = network_connect(server, server_ip, server_port);
 		
 		if (res < 0) 
 		{
 			server = -4;
-			show_message_log("서버 연결 오류 발생!");
+			show_message_log("해당 서버에 접속할 수 없습니다");
 		}
 		else 
 		{

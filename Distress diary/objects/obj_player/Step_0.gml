@@ -1,6 +1,19 @@
 /// @description 클라이언트 영향 받는 스텝 이벤트
 // You can write your code in this editor
 
+
+//나 말고 다른 사람이 같은 룸에 있는 경우 체크
+draw_alpha = 0;
+if (global.n_player_room_xx[global.my_player_id] == global.n_player_room_xx[obj_id_player_only] && global.n_player_room_yy[global.my_player_id] == global.n_player_room_yy[obj_id_player_only])
+{
+	draw_alpha = image_alpha;
+}
+
+
+
+
+
+
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
 if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
@@ -43,7 +56,13 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		global.movement_vspeed = 0;
 	}
 
+	//점프 관련
+	if (z == 0 && keyboard_check_pressed(vk_space))
+	{
+		zspeed = -8;
+	}
 
+	z_axis_gravity();
 
 
 

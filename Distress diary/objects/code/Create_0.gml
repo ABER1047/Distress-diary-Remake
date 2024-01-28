@@ -19,8 +19,6 @@ global.object_id_player_only = 0;
 //틱레이트
 global.tickrate = 5;
 
-//나 말고 다른 사람이 같은 룸에 있는 경우 체크
-global.is_anyone_same_room = 0;
 
 
 //플레이어 스킨

@@ -4,4 +4,5 @@ function add_z_axis()
 {
 	z = 0;
 	zspeed = 0;
+	zgravity = 0;
 }

@@ -1,12 +1,20 @@
 /// @description Insert description here
 // You can write your code in this editor
 window()
-server_ip = "61.82.143.119";
+server_ip = "";
 server_port = 33136; 
 global.is_server = true;
 index = 0;
 server = -4;
 soc = -4;
+
+
+//내 아이피
+global.my_ip = "";
+global.invite_code = "";
+global.invite_code_seed = -4; //랜덤 초대 코드 생성용 시드
+//아이피 받아오기 용
+send_request = http_ip_get("");
 
 
 
