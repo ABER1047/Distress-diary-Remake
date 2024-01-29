@@ -3,10 +3,13 @@
 
 
 //나 말고 다른 사람이 같은 룸에 있는 경우 체크
-draw_alpha = 0;
 if (global.n_player_room_xx[global.my_player_id] == global.n_player_room_xx[obj_id_player_only] && global.n_player_room_yy[global.my_player_id] == global.n_player_room_yy[obj_id_player_only])
 {
 	draw_alpha = image_alpha;
+}
+else
+{
+	draw_alpha = 0;
 }
 
 
@@ -20,6 +23,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	if (global.camera_target != -4)
 	{
 		global.camera_target = id;
+		global.my_player_ins_id = id;
 	}
 	
 	//이동 관련
@@ -187,6 +191,27 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			
 				load_room(t_xx,t_yy);
 			}
+		}
+	}
+	
+	
+	//다른 죽은 플레이어 루팅하기
+	var tmp_ins = instance_nearest_notme(x,y,obj_player);
+	if (tmp_ins != noone && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
+	{
+		var tmp_key = "F";
+		draw_interaction_key(tmp_ins,"F","루팅 하기");
+		if (!instance_exists(n_looting_player_ins) && keyboard_check_pressed(ord(tmp_key)))
+		{
+			n_looting_player_ins = show_inv_ui(900,500,string(tmp_ins.nickname)+"'s inventory",tmp_ins);
+			show_message_log("루팅 중...");
+		}
+	}
+	else
+	{
+		if (instance_exists(n_looting_player_ins))
+		{
+			instance_destroy(n_looting_player_ins);
 		}
 	}
 }

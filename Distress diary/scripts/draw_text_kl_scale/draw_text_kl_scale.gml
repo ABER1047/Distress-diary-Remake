@@ -27,6 +27,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 
 	////////////////////////////////////////////////////////////////
 
+	//draw_set_valign(fa_middle);
 	//위치지정
 	if (args[8] == -1)
 	{

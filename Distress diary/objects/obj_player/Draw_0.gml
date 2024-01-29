@@ -14,5 +14,21 @@ if (draw_alpha > 0)
 		draw_sprite_ext(tmp_spr,image_index,x,y-z,image_xscale,image_yscale,image_angle,image_blend,draw_alpha);
 	}
 
-	draw_text_kl_scale(x,y-192,string(nickname)+"\n\n\n\n\nsoc : "+string(soc)+"\nobj_id : "+string(obj_id),64,-1,image_alpha,c_white,0,0,font_normal,0.4,0.4,0);
+
+
+	//인터렉션 키 드로우 용
+	if (show_interaction_key > 0)
+	{
+		//인터렉션 이름 드로우
+		var txt_scale = 0.64*global.n_camera_zoom;
+		var tmp_yy = y-192;
+		draw_text_kl_scale(x-string_width(interaction_name_for_draw)*txt_scale*0.5,tmp_yy,string(interaction_name_for_draw),64,-1,image_alpha,c_white,0,-1,font_normal,txt_scale,txt_scale,0);
+	
+		//인터렉션 키 드로우
+		draw_sprite_ext(spr_key_ui,interaction_key_real_ind_for_draw,x-string_width(interaction_name_for_draw)*txt_scale,tmp_yy+64*global.n_camera_zoom,txt_scale*2.5,txt_scale*2.5,0,c_white,image_alpha);
+	}
+	else
+	{
+		draw_text_kl_scale(x,y-192,string(nickname)+"\n\n\n\n\nsoc : "+string(soc)+"\nobj_id : "+string(obj_id),64,-1,image_alpha,c_white,0,0,font_normal,0.4,0.4,0);
+	}
 }

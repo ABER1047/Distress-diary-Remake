@@ -23,9 +23,9 @@ function show_inv_ui(argument0,argument1,argument2,argument3)
 		{
 			for(var ii = 0; ii < tmp_owner.inv_width; ii++)
 			{
-				if (sprite_exists(inv_info_spr_ind[i][ii]))
+				if (sprite_exists(tmp_owner.inv_info_spr_ind[i][ii]))
 				{
-					create_inv_item(inv_info_spr_ind[i][ii],inv_info_img_ind[i][ii],inv_info_name[i][ii],inv_info_stack_num[i][ii],tmp_ins,ii,i);
+					create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_ins,ii,i);
 				}
 			}
 		}

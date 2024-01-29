@@ -25,6 +25,9 @@ global.object_id_player_only = 0;
 //틱레이트
 global.tickrate = 5;
 
+//내 플레이어 실제 인스턴스 아이디
+global.my_player_ins_id = -4;
+
 
 
 //플레이어 스킨
@@ -79,26 +82,4 @@ global.n_room_height = 0;
 
 
 //인벤토리 시스템
-inv_width = 4;
-inv_height = 6;
 global.showing_inv = -4;
-for(var i = 0; i < inv_height; i++)
-{
-	for(var ii = 0; ii < inv_width; ii++)
-	{
-		//inv_info_spr_ind가
-		//-4일때 = 비어있음
-		//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
-		inv_info_spr_ind[i][ii] = -4;//spr_ind값 보유
-		
-		
-		inv_info_img_ind[i][ii] = -4;//img_ind값 보유
-		inv_info_name[i][ii] = -4;//아이템의 이름 값 보유
-		inv_info_stack_num[i][ii] = -4;//아이템의 갯수 값 보유
-	}
-}
-
-inv_info_spr_ind[3][3] = spr_stackables;
-inv_info_img_ind[3][3] = 0;
-inv_info_name[3][3] = "Coin";
-inv_info_stack_num[3][3] = 1;

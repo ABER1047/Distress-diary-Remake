@@ -34,7 +34,7 @@ if (server == -4)
 	}
 	else if (keyboard_check_pressed(vk_f11)) //서버 접속
 	{
-		server_ip = get_string_async("초대 코드를 입력해주세요","");
+		server_ip = decode_invite_code(clipboard_get_text());
 		server = network_create_socket(network_socket_tcp);
 		var res = network_connect(server, server_ip, server_port);
 		

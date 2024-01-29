@@ -18,36 +18,41 @@ if (instance_exists(variable_owner))
 	var inv_width = variable_owner.inv_width;
 	var inv_height = variable_owner.inv_height;
 
+
 	//인벤토리 첫번째 칸 시작 위치
-	var startx = xx+x_pos;
-	var starty = yy+y_pos;
+	startx = xx+x_pos;
+	starty = yy+y_pos;
 
 	//인벤토리 마지막 칸 위치
-	var endx = startx+inv_width*slot_size;
-	var endy = starty+inv_height*slot_size;
+	endx = startx+inv_width*slot_size;
+	endy = starty+inv_height*slot_size;
 
 
 	//인벤토리 윈도우 젤 왼쪽 상단 시작 위치
-	var w_starty = starty-window_weight;
+	w_starty = starty-window_weight;
+	
+	//인벤토리 창의 정가운데 위치는 x, y값임 (어차피 드로우 할 때 x, y값 아에 안써서 그럼)
+	x = startx+(inv_width*slot_size*0.5);
+	y = starty+(inv_height*slot_size*0.5);
 	
 	
 	
 	
 	//창 위치 옮기기 기능
 	var is_mouse_on_XButton = is_inside_rectangle(mouse_x,mouse_y,endx-window_weight,w_starty,endx,starty);
-	if (is_dragging)
+	if (is_dragging_window)
 	{
 		if (relative_x_pos == -4)
 		{
-			//창 위치 옮기기 기능
-			if (is_inside_rectangle(mouse_x,mouse_y,startx,w_starty,endx-window_weight,starty))
+			//닫기 버튼
+			if (is_mouse_on_XButton)
+			{
+				instance_destroy();
+			}
+			else if (is_dragging_window) //창 위치 옮기기 기능
 			{
 				relative_x_pos = xx+x_pos-mouse_x;
 				relative_y_pos = yy+y_pos-mouse_y;
-			}
-			else if (is_mouse_on_XButton) //닫기 버튼
-			{
-				instance_destroy();
 			}
 		}
 		else

@@ -31,7 +31,13 @@ if (instance_exists(parents_id))
 			}
 			else
 			{
-				//해당 인벤토리의 변수들을 보유하고 있는 실제 인스턴스
+				//현재 내 마우스 위치랑 가장 가까운 인벤토리
+				var tmp_nearest_inv_ui = instance_nearest(mouse_x,mouse_y,obj_inv_ui);
+				
+				//가장 가까운 인벤토리의 변수들을 보유하고 있는 실제 인스턴스 (가장 가까운게 parents_id일 수도 있음)
+				var nearsest_inv_variable_owner_ins = tmp_nearest_inv_ui.variable_owner;
+				
+				//기존에 해당 아이템을 들고 있던 인벤토리 UI가 참조하고 있는 변수 원본 값을 가진 인스턴스 (ex. obj_player)
 				var variable_owner_ins = parents_id.variable_owner;
 		
 		
@@ -43,12 +49,12 @@ if (instance_exists(parents_id))
 					var origin_img = variable_owner_ins.inv_info_img_ind[y_pos][x_pos];
 					var origin_name = variable_owner_ins.inv_info_name[y_pos][x_pos];
 					var origin_stack_num = variable_owner_ins.inv_info_stack_num[y_pos][x_pos];
-					variable_owner_ins.inv_info_spr_ind[new_y_pos][new_x_pos] = origin_spr;
-					variable_owner_ins.inv_info_img_ind[new_y_pos][new_x_pos] = origin_img;
-					variable_owner_ins.inv_info_name[new_y_pos][new_x_pos] = origin_name;
-					variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num;
+					nearsest_inv_variable_owner_ins.inv_info_spr_ind[new_y_pos][new_x_pos] = origin_spr;
+					nearsest_inv_variable_owner_ins.inv_info_img_ind[new_y_pos][new_x_pos] = origin_img;
+					nearsest_inv_variable_owner_ins.inv_info_name[new_y_pos][new_x_pos] = origin_name;
+					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num;
 					
-					create_inv_item(origin_spr,origin_img,origin_name,origin_stack_num,parents_id,new_x_pos,new_y_pos);
+					create_inv_item(origin_spr,origin_img,origin_name,origin_stack_num,tmp_nearest_inv_ui,new_x_pos,new_y_pos);
 				}
 		
 				//기존에 있던 아이템은 삭제
