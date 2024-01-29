@@ -35,4 +35,16 @@
 |<img src = "imgs/multiplayer test.gif"></img>|
 
 
+##
+
+### 2024-01-30
+
+#### Multi-cell inventory system added
+#### 멀티셀 인벤토리 시스템 추가
+
+|Multi-cell inventory testing</br>멀티셀 인벤토리 테스트|
+|---|
+|<img src = "imgs/inventory_system.gif"></img>|
+
+
 </div>
