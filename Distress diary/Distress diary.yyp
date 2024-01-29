@@ -171,6 +171,7 @@
     {"id":{"name":"charging_gage_bar","path":"sprites/charging_gage_bar/charging_gage_bar.yy",},},
     {"id":{"name":"Sprite57","path":"sprites/Sprite57/Sprite57.yy",},},
     {"id":{"name":"spr_bow","path":"sprites/spr_bow/spr_bow.yy",},},
+    {"id":{"name":"spr_X","path":"sprites/spr_X/spr_X.yy",},},
     {"id":{"name":"randomized_nickname","path":"scripts/randomized_nickname/randomized_nickname.yy",},},
     {"id":{"name":"main","path":"rooms/main/main.yy",},},
   ],

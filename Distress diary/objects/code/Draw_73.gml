@@ -112,7 +112,7 @@ if (global.dev_mode == 1)
 	{
 		if (!instance_exists(global.showing_inv))
 		{
-			global.showing_inv = show_inv_ui(400,320,4,6,"Inventory");
+			global.showing_inv = show_inv_ui(400,320,"Inventory",6);
 		}
 		else
 		{

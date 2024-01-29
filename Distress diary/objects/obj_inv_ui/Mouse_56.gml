@@ -1,19 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
-
-
-
-//x_pos = 0;
-//y_pos = 0;
-//inv_width = 0;
-//inv_height = 0;
-
-
-
-
-//창 드래그 중인지 체크
 is_dragging = false;
 relative_x_pos = -4;
-relative_y_pos = -4;
+
