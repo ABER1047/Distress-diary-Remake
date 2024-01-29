@@ -5,7 +5,7 @@
 ## Project Distress Diary (Remaking)
 
 
-2022년에 개발중이던 오리지널 프로젝트는 아래에서 볼 수 있음
+2022년에 개발 중이던 오리지널 프로젝트는 아래에서 볼 수 있음
 
 <a href = "https://github.com/ABER1047/Distress_diary_multiplayer"> Original Project </a>
 
