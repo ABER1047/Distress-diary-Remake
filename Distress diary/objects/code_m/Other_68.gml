@@ -365,6 +365,28 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				global.n_player_room_yy[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
 			}
 		break;
+		
+		case DATA.INV_DATA:
+			var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+			var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
+			
+			with(tmp_obj_ind)
+			{
+				if (obj_id == tmp_obj_id)
+				{
+					for(var i = 0; i < tmp_height; i++)
+					{
+						for(var ii = 0; ii < tmp_width; ii++)
+						{
+							inv_info_spr_ind[i][ii] = real(buffer_read(buffer, buffer_string));//spr_ind값 보유
+							inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
+							inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+							inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+						}
+					}
+				}
+			}
+		break;
 	}
 	
 	//클라이언트가 보낸거를 서버에서 받고 서버에서 다른 클라이언트한테 재전달

@@ -42,13 +42,15 @@ enum DATA
 	INS_VAR_DATA, //instance_variable값 받아오기 용
 	SET_PLAYER_ID, //처음 접속시 플레이어 아이디 적용 용
 	NEW_MAP_DATA, //새로운 맵 데이터 받아오기 용
-	MY_ROOM_POS
+	MY_ROOM_POS, //인벤토리 데이터 전송용
+	INV_DATA
 }
 global.DATA_IMG_DATA = DATA.IMG_DATA;
 global.DATA_GL_VAR_DATA = DATA.GL_VAR_DATA;
 global.DATA_INS_VAR_DATA = DATA.INS_VAR_DATA;
 global.DATA_NEW_MAP_DATA = DATA.NEW_MAP_DATA;
 global.DATA_MY_ROOM_POS = DATA.MY_ROOM_POS;
+global.DATA_INV_DATA = DATA.INV_DATA;
 
 info_buffer = buffer_create(1024, buffer_grow, 1);
 dis_buffer = buffer_create(1024, buffer_grow, 1);
@@ -60,6 +62,9 @@ global.variable_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //맵 데이터 전송용 버퍼
 global.map_data_buffer = buffer_create(1024,buffer_grow,1);
+
+//인벤토리 데이터 전송용 버퍼
+global.inv_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //내 플레이어 실제 id값 (게임 엔진 내에서의 id값)
 my_instance_id = -4;

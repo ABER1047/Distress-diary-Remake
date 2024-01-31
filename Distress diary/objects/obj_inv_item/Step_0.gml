@@ -54,6 +54,11 @@ if (instance_exists(parents_id))
 					nearsest_inv_variable_owner_ins.inv_info_name[new_y_pos][new_x_pos] = origin_name;
 					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num;
 					
+					
+					//바뀐 데이터 전송
+					send_InventoryData(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index);
+					
+					//(아이템 재생성 부분)
 					create_inv_item(origin_spr,origin_img,origin_name,origin_stack_num,tmp_nearest_inv_ui,new_x_pos,new_y_pos);
 				}
 		
