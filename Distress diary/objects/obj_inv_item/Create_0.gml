@@ -6,7 +6,7 @@ image_speed = 0;
 
 
 //부모 인벤토리 인스턴스 아이디
-//parents_id = -4;
+//parents_id = -4;W
 
 //아이템 위치 (n칸)
 //x_pos = 0;

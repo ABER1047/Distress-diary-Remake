@@ -34,7 +34,8 @@ if (server == -4)
 	}
 	else if (keyboard_check_pressed(vk_f11)) //서버 접속
 	{
-		server_ip = decode_invite_code(clipboard_get_text());
+		var tmp_ip = decode_invite_code(clipboard_get_text());
+		server_ip = (tmp_ip == global.my_ip) ? "127.0.0.1" : tmp_ip;
 		server = network_create_socket(network_socket_tcp);
 		var res = network_connect(server, server_ip, server_port);
 		

@@ -55,15 +55,22 @@ if (instance_exists(parents_id))
 					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num;
 					
 					
-					//바뀐 데이터 전송
-					send_InventoryData(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index);
-					
 					//(아이템 재생성 부분)
 					create_inv_item(origin_spr,origin_img,origin_name,origin_stack_num,tmp_nearest_inv_ui,new_x_pos,new_y_pos);
 				}
 		
-				//기존에 있던 아이템은 삭제
+				//기존에 있던 아이템은 삭제(내부 변수 숫자값으로만)
 				variable_owner_ins.inv_info_spr_ind[y_pos][x_pos] = -4; //아이템 삭제는 inv_info_spr_ind값만 -4로 해주면 됨
+				
+				
+				//해당 인벤토리 내부에 있는 모든 아이템 정보 전송
+				if (variable_owner_ins != nearsest_inv_variable_owner_ins)
+				{
+					send_InventoryData(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index);
+				}
+				send_InventoryData(variable_owner_ins.obj_id,variable_owner_ins.object_index);
+
+				//기존에 있던 아이템은 삭제 (obj_inv_item 인스턴스)
 				instance_destroy();
 			}
 		}

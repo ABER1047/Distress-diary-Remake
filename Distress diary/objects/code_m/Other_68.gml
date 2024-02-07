@@ -374,14 +374,25 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			{
 				if (obj_id == tmp_obj_id)
 				{
-					for(var i = 0; i < tmp_height; i++)
+					for(var i = 0; i < inv_height; i++)
 					{
-						for(var ii = 0; ii < tmp_width; ii++)
+						for(var ii = 0; ii < inv_width; ii++)
 						{
-							inv_info_spr_ind[i][ii] = real(buffer_read(buffer, buffer_string));//spr_ind값 보유
+							inv_info_spr_ind[i][ii] = asset_get_index(buffer_read(buffer, buffer_string));//spr_ind값 보유
 							inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
 							inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
 							inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+						}
+					}
+					
+					//모든 인벤토리 UI들 리로드
+					show_message_log("인벤토리 리로드 - "+string(other.id));
+					with(obj_inv_ui)
+					{
+						if (object_index == obj_inv_ui)
+						{
+							instance_destroy();
+							show_inv_ui(x_pos,y_pos,inv_name,other.id);
 						}
 					}
 				}
