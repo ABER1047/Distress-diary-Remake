@@ -79,6 +79,11 @@ inv_info_img_ind[3][3] = 0;
 inv_info_name[3][3] = "Coin";
 inv_info_stack_num[3][3] = 1;
 
+inv_info_spr_ind[2][2] = spr_drink;
+inv_info_img_ind[2][2] = 0;
+inv_info_name[2][2] = "Coke";
+inv_info_stack_num[2][2] = -4;
+
 
 
 

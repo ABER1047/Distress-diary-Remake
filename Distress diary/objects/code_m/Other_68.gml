@@ -369,7 +369,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		case DATA.INV_DATA:
 			var tmp_obj_id = real(buffer_read(buffer, buffer_string));
 			var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
-			
+			show_message_log("인벤토리 리로드 - "+string(tmp_obj_id)+" / "+string(object_get_name(tmp_obj_ind)));
 			with(tmp_obj_ind)
 			{
 				if (obj_id == tmp_obj_id)
@@ -386,7 +386,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					}
 					
 					//모든 인벤토리 UI들 리로드
-					show_message_log("인벤토리 리로드 - "+string(other.id));
+					show_message_log("인벤토리 리로드 - "+string(id));
 					with(obj_inv_ui)
 					{
 						if (object_index == obj_inv_ui)
