@@ -367,32 +367,46 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		break;
 		
 		case DATA.INV_DATA:
-			var tmp_obj_id = real(buffer_read(buffer, buffer_string));
-			var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
-			show_message_log("인벤토리 리로드 - "+string(tmp_obj_id)+" / "+string(object_get_name(tmp_obj_ind)));
-			with(tmp_obj_ind)
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
 			{
-				if (obj_id == tmp_obj_id)
+				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
+				
+				with(tmp_obj_ind)
 				{
-					for(var i = 0; i < inv_height; i++)
+					var tmp_id = id;
+					var tmp_str = "";
+					if (obj_id == tmp_obj_id)
 					{
-						for(var ii = 0; ii < inv_width; ii++)
+						for(var i = 0; i < inv_height; i++)
 						{
-							inv_info_spr_ind[i][ii] = asset_get_index(buffer_read(buffer, buffer_string));//spr_ind값 보유
-							inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
-							inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-							inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+							for(var ii = 0; ii < inv_width; ii++)
+							{
+								var tmp_spr_name = asset_get_index(buffer_read(buffer, buffer_string));
+								inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? -4 : tmp_spr_name;//spr_ind값 보유
+								inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
+								inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+								inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+								inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
+								tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
+							}
+							tmp_str = string(tmp_str)+"\n"
 						}
-					}
 					
-					//모든 인벤토리 UI들 리로드
-					show_message_log("인벤토리 리로드 - "+string(id));
-					with(obj_inv_ui)
-					{
-						if (object_index == obj_inv_ui)
+						//모든 인벤토리 UI들 리로드
+						show_message_log("인벤토리 리로드 - "+string(object_get_name(tmp_obj_ind))+" / "+string(obj_id));
+						show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
+						
+						//인벤토리 ui정보 리로드
+						with(obj_inv_ui)
 						{
-							instance_destroy();
-							show_inv_ui(x_pos,y_pos,inv_name,other.id);
+							if (object_index == obj_inv_ui)
+							{
+								reload_inv = 1;
+							}
 						}
 					}
 				}

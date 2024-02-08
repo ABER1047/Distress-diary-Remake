@@ -44,7 +44,13 @@ if (instance_exists(parents_id))
 
 
 	//아이템 이름
-	draw_text_kl_scale(startx+8,starty-24*global.n_camera_zoom,string(item_name),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+	draw_text_kl_scale(startx+8*global.n_camera_zoom,starty-24*global.n_camera_zoom,string(item_name),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+	
+	//아이템 스택 갯수 표기
+	if (max_stack_num > 1)
+	{
+		draw_text_kl_scale(startx+(slot_size)-(8*global.n_camera_zoom),starty+(slot_size)-(64*global.n_camera_zoom),string(stack_num)+"/"+string(max_stack_num),64,-1,parents_id.image_alpha,c_white,0,1,font_normal,0.5*global.n_camera_zoom,0.5*global.n_camera_zoom,0);
+	}
 	
 	
 	//아이템 옮기기 때의 x,y좌표
@@ -55,10 +61,6 @@ if (instance_exists(parents_id))
 	}
 	else
 	{
-		//현재 내 마우스 위치랑 가장 가까운 인벤토리
-		var tmp_nearest_inv_ui = instance_nearest(mouse_x,mouse_y,obj_inv_ui);
-		
-		
 		//현재 내 마우스 위치랑 가장 가까운 인벤토리의 첫번째 칸 좌표
 		var nearest_inv_startx = xx+(tmp_nearest_inv_ui.x_pos);
 		var nearest_inv_starty = yy+(tmp_nearest_inv_ui.y_pos);
@@ -80,7 +82,16 @@ if (instance_exists(parents_id))
 			var tmp_x = nearest_inv_startx+(moving_item_x_pos*slot_size);
 			var tmp_y = nearest_inv_starty+(moving_item_y_pos*slot_size);
 			draw_set_alpha(tmp_nearest_inv_ui.image_alpha*0.15*(1+mouse_on));
-			draw_set_color(c_white);
+			var tmp_color = #E14141;
+			if (is_moveable_pos == 1)
+			{
+				tmp_color = c_white;
+			}
+			else if (is_moveable_pos == 2 || is_moveable_pos == 3)
+			{
+				tmp_color = #4CD40D;
+			}
+			draw_set_color(tmp_color);
 			draw_rectangle(tmp_x,tmp_y,tmp_x+slot_size,tmp_y+slot_size,false);
 			is_moving_item_outside = 0;
 		}

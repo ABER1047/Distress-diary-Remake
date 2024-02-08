@@ -83,3 +83,10 @@ global.n_room_height = 0;
 
 //인벤토리 시스템
 global.showing_inv = -4;
+
+//인벤토리 ui중 가장 낮은 depth를 가진 값을 저장하는 변수
+global.min_depth = -999;
+
+
+//인벤토리 아이템 옮기는 중
+global.is_moving_item_now = -4;

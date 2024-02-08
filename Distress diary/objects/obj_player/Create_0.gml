@@ -71,6 +71,7 @@ for(var i = 0; i < inv_height; i++)
 		inv_info_img_ind[i][ii] = -4;//img_ind값 보유
 		inv_info_name[i][ii] = -4;//아이템의 이름 값 보유
 		inv_info_stack_num[i][ii] = -4;//아이템의 갯수 값 보유
+		inv_info_max_stack_num[i][ii] = -4;//아이템의 최대 스택 갯수 값 보유
 	}
 }
 
@@ -78,11 +79,19 @@ inv_info_spr_ind[3][3] = spr_stackables;
 inv_info_img_ind[3][3] = 0;
 inv_info_name[3][3] = "Coin";
 inv_info_stack_num[3][3] = 1;
+inv_info_max_stack_num[3][3] = 99;
+
+inv_info_spr_ind[1][2] = spr_stackables;
+inv_info_img_ind[1][2] = 3;
+inv_info_name[1][2] = "KeyCard";
+inv_info_stack_num[1][2] = irandom_range(3,4);
+inv_info_max_stack_num[1][2] = 5;
 
 inv_info_spr_ind[2][2] = spr_drink;
 inv_info_img_ind[2][2] = 0;
 inv_info_name[2][2] = "Coke";
 inv_info_stack_num[2][2] = -4;
+
 
 
 

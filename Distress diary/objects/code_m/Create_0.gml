@@ -64,7 +64,7 @@ global.variable_data_buffer = buffer_create(1024,buffer_grow,1);
 global.map_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //인벤토리 데이터 전송용 버퍼
-global.inv_data_buffer = buffer_create(1024,buffer_grow,1);
+global.inv_data_buffer = buffer_create(2,buffer_grow,1);
 
 //내 플레이어 실제 id값 (게임 엔진 내에서의 id값)
 my_instance_id = -4;

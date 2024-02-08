@@ -204,7 +204,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		if (!instance_exists(n_looting_player_ins) && keyboard_check_pressed(ord(tmp_key)))
 		{
 			n_looting_player_ins = show_inv_ui(900,500,string(tmp_ins.nickname)+"'s inventory",tmp_ins);
-			show_message_log("루팅 중...");
+			show_message_log("루팅 중... / "+string(object_get_name(tmp_ins.object_index))+" / "+string(tmp_ins.obj_id));
 		}
 	}
 	else

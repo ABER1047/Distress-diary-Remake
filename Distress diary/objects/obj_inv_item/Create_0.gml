@@ -23,3 +23,6 @@ is_moving_item_outside = 0;
 
 
 tmp_n_camera_zoom = 0;
+
+//옮기려는 위치가 옮기기 가능한 자리인지 체크
+is_moveable_pos = -4;
