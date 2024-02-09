@@ -87,7 +87,7 @@ if (instance_exists(parents_id))
 			{
 				tmp_color = c_white;
 			}
-			else if (is_moveable_pos == 2 || is_moveable_pos == 3)
+			else if (is_moveable_pos >= 2 && is_moveable_pos <= 4)
 			{
 				tmp_color = #4CD40D;
 			}
