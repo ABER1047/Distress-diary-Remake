@@ -20,7 +20,7 @@ if (instance_exists(parents_id))
 	}
 	else
 	{
-		depth = parents_id.depth-7;
+		depth = global.min_depth-15;
 	}
 	
 	
@@ -45,8 +45,7 @@ if (instance_exists(parents_id))
 		new_y_pos = moving_item_y_pos;
 
 		
-		
-		if (is_moving_item_outside == 0) //옮기고 있는 아이템이 인벤토리 칸 안인 경우
+		if (moving_now == 1)
 		{
 			//아이템을 해당 포지션으로 옮기기 (= 기존 아이템은 삭제하고 해당 위치에 아이템 재생성)
 			origin_spr = variable_owner_ins.inv_info_spr_ind[y_pos][x_pos];
@@ -60,9 +59,11 @@ if (instance_exists(parents_id))
 			new_name = nearsest_inv_variable_owner_ins.inv_info_name[new_y_pos][new_x_pos];
 			new_stack_num = nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos];
 			new_max_stack_num = nearsest_inv_variable_owner_ins.inv_info_max_stack_num[new_y_pos][new_x_pos];
-					
-					
-
+		}
+		
+		
+		if (is_moving_item_outside == 0) //옮기고 있는 아이템이 인벤토리 칸 안인 경우
+		{
 			if (new_spr == -4) //자리 자체가 비어있음
 			{
 				if (origin_stack_num > 1 && keyboard_check(vk_shift))
@@ -124,7 +125,7 @@ if (instance_exists(parents_id))
 				}
 				else if (is_moveable_pos == 2) //겹치기 해서 옮기기 가능한 자리임을 나타냄 (최대 스택 갯수 미만)
 				{
-					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] += new_stack_num;
+					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num+new_stack_num;
 				}
 				else if (is_moveable_pos == 3) //겹치기 해서 옮기기 가능한 자리임을 나타냄 (최대 스택 갯수 초과)
 				{
