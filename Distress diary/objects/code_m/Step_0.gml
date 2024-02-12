@@ -73,12 +73,23 @@ if (global.chat_activated == 1)
 		{
 			var tmp_chat = string(global.nickname)+" : "+string(chat_entering);
 			buffer_seek(chat_buffer, buffer_seek_start, 0);
-	
 			buffer_write(chat_buffer, buffer_u8, DATA.CHAT);
 			buffer_write(chat_buffer, buffer_string, tmp_chat);
-	
 			send_all(chat_buffer);
-			if (global.is_server) 
+			
+			
+			//명령어 감지
+			var is_command = false;
+			if (global.dev_mode == 1)
+			{
+				if (string_pos("/kill",chat_entering))
+				{
+					(global.my_player_ins_id[global.my_player_id]).hp = 0;
+				}
+			}
+			
+			
+			if (is_command && global.is_server) 
 			{
 				chat_up(tmp_chat);
 				if (!global.chat_activated)

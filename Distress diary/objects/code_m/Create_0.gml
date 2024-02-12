@@ -6,7 +6,7 @@ server_port = 33136;
 global.is_server = true;
 index = 0;
 server = -4;
-soc = -4;
+soc = 0;
 
 
 //내 아이피

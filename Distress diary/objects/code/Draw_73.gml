@@ -112,13 +112,13 @@ if (global.dev_mode == 1)
 	{
 		if (!instance_exists(global.showing_inv))
 		{
-			global.showing_inv = show_inv_ui(400,320,"Inventory",global.my_player_ins_id);
+			global.showing_inv = show_inv_ui(400,320,"Inventory",global.my_player_ins_id[global.my_player_id]);
 		}
 		else
 		{
 			instance_destroy(global.showing_inv);
 		}
-		show_message_log("- 인벤토리 열기/닫기 : "+string(global.showing_inv));
+		show_message_log("- 인벤토리 열기/닫기 ["+string(global.showing_inv)+"]");
 	}
 	
 	
@@ -162,6 +162,7 @@ if (global.dev_mode == 1)
 			global.n_backpack = 0;
 		}
 		show_message_log("- 가방 변경 : "+string(global.n_backpack));
+		
 	}
 
 	

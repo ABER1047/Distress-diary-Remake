@@ -2,28 +2,12 @@
 // You can write your code in this editor
 
 
-//나 말고 다른 사람이 같은 룸에 있는 경우 체크
-if (global.n_player_room_xx[global.my_player_id] == global.n_player_room_xx[obj_id_player_only] && global.n_player_room_yy[global.my_player_id] == global.n_player_room_yy[obj_id_player_only])
-{
-	draw_alpha = image_alpha;
-}
-else
-{
-	draw_alpha = 0;
-}
-
-
-
-
-
-
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
 if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
 	if (global.camera_target != -4)
 	{
 		global.camera_target = id;
-		global.my_player_ins_id = id;
 	}
 	
 	//이동 관련
@@ -129,20 +113,28 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 
 
 	//바라보는 방향에 따른 스프라이트 설정
-	if (global.n_dir == 0 || global.n_dir == 2)
+	if (hp > 0)
 	{
-		var tmp_skin_spr = [ spr_original_p0, spr_original_b0, spr_original_d0 ];
-		sprite_index = tmp_skin_spr[global.player_skin];
-		image_xscale = (global.n_dir == 0) ? -abs(image_xscale) : abs(image_xscale);
-	}
-	else if (global.n_dir == 1)
-	{
-		var tmp_skin_spr = [ spr_original_p1, spr_original_b1, spr_original_d1 ];
-		sprite_index = tmp_skin_spr[global.player_skin];
+		if (global.n_dir == 0 || global.n_dir == 2)
+		{
+			var tmp_skin_spr = [ spr_original_p0, spr_original_b0, spr_original_d0 ];
+			sprite_index = tmp_skin_spr[global.player_skin];
+			image_xscale = (global.n_dir == 0) ? -abs(image_xscale) : abs(image_xscale);
+		}
+		else if (global.n_dir == 1)
+		{
+			var tmp_skin_spr = [ spr_original_p1, spr_original_b1, spr_original_d1 ];
+			sprite_index = tmp_skin_spr[global.player_skin];
+		}
+		else
+		{
+			var tmp_skin_spr = [ spr_original_p2, spr_original_b2, spr_original_d2 ];
+			sprite_index = tmp_skin_spr[global.player_skin];
+		}
 	}
 	else
 	{
-		var tmp_skin_spr = [ spr_original_p2, spr_original_b2, spr_original_d2 ];
+		var tmp_skin_spr = [ spr_original_p3, spr_original_b3, spr_original_d3 ];
 		sprite_index = tmp_skin_spr[global.player_skin];
 	}
 

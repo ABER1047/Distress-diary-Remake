@@ -3,7 +3,7 @@
 my_instance_id = obj_player.id;
 my_instance_id.nickname = global.nickname;
 my_instance_id.obj_id = 0;
-my_instance_id.soc = -4;
+my_instance_id.soc = 0;
 
 if (global.is_server) 
 {

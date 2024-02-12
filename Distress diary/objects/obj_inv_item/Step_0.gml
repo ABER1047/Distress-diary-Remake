@@ -45,7 +45,7 @@ if (instance_exists(parents_id))
 		new_y_pos = moving_item_y_pos;
 
 		
-		if (moving_now == 1)
+		if (moving_now == 1 && is_moving_item_outside == 0)
 		{
 			//아이템을 해당 포지션으로 옮기기 (= 기존 아이템은 삭제하고 해당 위치에 아이템 재생성)
 			origin_spr = variable_owner_ins.inv_info_spr_ind[y_pos][x_pos];

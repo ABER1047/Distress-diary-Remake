@@ -23,16 +23,14 @@ if (type == network_type_connect)
 	buffer_write(info_buffer, buffer_u8, socket);
 	
 	//처음 들어왔을 때
-	for(var i = 0; i < global.object_id_player_only; i++) 
+	for(var i = 1; i < global.object_id_player_only; i++) 
 	{
-		with(obj_player)
+		//soc는 각 플레이어 마다 부여되는 소켓임 (= 고유 id)
+		var tmp_p_ins_id = global.my_player_ins_id[i];
+		if (instance_exists(tmp_p_ins_id))
 		{
-			if (global.object_id_player_only == obj_id_player_only) 
-			{
-				//soc는 각 플레이어 마다 부여되는 소켓임 (= 고유 id)
-				buffer_write(other.info_buffer, buffer_u8, soc);
-				buffer_write(other.info_buffer, buffer_string, nickname);
-			}
+			buffer_write(other.info_buffer, buffer_u8, tmp_p_ins_id.soc);
+			buffer_write(other.info_buffer, buffer_string, tmp_p_ins_id.nickname);
 		}
 	}
 	
@@ -47,7 +45,7 @@ else if (type == network_type_disconnect) // 누군가 나갔을 때 발생하�
 	buffer_seek(dis_buffer, buffer_seek_start, 0);
 	buffer_write(dis_buffer, buffer_u8, DATA.REMOVE_CLI);
 	buffer_write(dis_buffer, buffer_u8, socket);
-	
+	show_message_log("tmp_soc : "+string(socket));
 	var tmp_nickname = "";
 	with(obj_player) 
 	{
@@ -74,7 +72,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 	
 	switch(data) 
 	{
-		case DATA.INIT_DATA: //클라이언트측에서만 발생하는 이벤트 
+		case DATA.INIT_DATA: //이제 막 접속한 클라이언트측에서만 발생하는 이벤트 
 			if (global.is_server == false)
 			{
 				//총 접속 인원 (자신 제외)
@@ -115,16 +113,15 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				buffer_write(info_buffer, buffer_u8, DATA.ADD_CLI);
 				buffer_write(info_buffer, buffer_string, tmp_object_id_ind); //내가 배정받은 고유 obj_id를 서버로 전송
 				buffer_write(info_buffer, buffer_string, tmp_object_id_ind_player_only); //내가 배정받은 고유 obj_id_player_only를 서버로 전송
-				buffer_write(info_buffer, buffer_u8, soc); //내 소켓을 서버에 전송
 				buffer_write(info_buffer, buffer_string, global.nickname); //내 닉네임을 서버에 전송
+				buffer_write(info_buffer, buffer_u8, tmp_soc); //내 소켓 전송
 				send_all(info_buffer);
 			}
 		break;
 		
-		case DATA.ADD_CLI: //누군가가 중간에 접속했을때 서버, 클라이언트 모두 발생하는 이벤트
+		case DATA.ADD_CLI: //누군가가 중간에 접속했을때 서버, 클라이언트 모두 발생하는 이벤트 (이제 막 접속한 클라이언트 제외)
 			var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
 			var tmp_object_id_ind_player_only = real(buffer_read(buffer, buffer_string));
-			var tmp_soc = buffer_read(buffer, buffer_u8);
 			var tmp_nickname = buffer_read(buffer, buffer_string);
 			//들어온 자기 자신도 이벤트가 작동되기 때문에 그거 방지용
 			if (global.my_player_id != tmp_object_id_ind_player_only)
@@ -133,19 +130,18 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
 				obj.obj_id = tmp_object_id_ind;
 				obj.obj_id_player_only = tmp_object_id_ind_player_only;
-				obj.soc = tmp_soc;
+				obj.soc = buffer_read(buffer, buffer_u8);
 				obj.nickname = tmp_nickname;
 
 				show_message_log("'"+string(tmp_nickname)+"'가 왔습니다.");
 				
+				
+				//플레이어 인스턴스 아이디 저장해두기 (최적화 용도로 사용)
+				get_all_players_ins_id();
+
+				
 				//새로 접속한 사람한테 내 닉네임 전송해주기
-				with(obj_player)
-				{
-					if (global.my_player_id == obj_id_player_only)
-					{
-						send_InstanceVariableData(id,"nickname");
-					}
-				}
+				send_InstanceVariableData(global.my_player_ins_id[global.my_player_id],"nickname");
 			}
 			
 			
@@ -161,10 +157,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 
 		case DATA.REMOVE_CLI:
 			var tmp_soc = buffer_read(buffer, buffer_u8);
-			
+			show_message_log("tmp_soc : "+string(tmp_soc));
 			with(obj_player) 
 			{
-				if (soc == socket) 
+				if (soc == tmp_soc) 
 				{
 					//나간 플레이어가 해당 플레이어인 경우
 					show_message_log("'"+string(nickname)+"'가 나갔습니다.");

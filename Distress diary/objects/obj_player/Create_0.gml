@@ -9,6 +9,7 @@ image_yscale = 2;
 my_n_dir = 0;
 global.n_dir = 2; //*90하면 바라보는 각도 값 나옴
 my_backpack = 0;
+b_my_backpack = -4;
 
 //이동 관련 변수
 global.max_movement_hspeed = 12;
@@ -56,8 +57,8 @@ tickrate_z = z;
 
 
 //인벤토리 시스템
-inv_width = 4;
-inv_height = 6;
+inv_width = 12;
+inv_height = 12;
 for(var i = 0; i < inv_height; i++)
 {
 	for(var ii = 0; ii < inv_width; ii++)
@@ -65,39 +66,21 @@ for(var i = 0; i < inv_height; i++)
 		//inv_info_spr_ind가
 		//-4일때 = 비어있음
 		//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
-		inv_info_spr_ind[i][ii] = -4;//spr_ind값 보유
-		
-		
-		inv_info_img_ind[i][ii] = -4;//img_ind값 보유
-		inv_info_name[i][ii] = -4;//아이템의 이름 값 보유
-		inv_info_stack_num[i][ii] = -4;//아이템의 갯수 값 보유
-		inv_info_max_stack_num[i][ii] = -4;//아이템의 최대 스택 갯수 값 보유
+		reset_inv_variable(ii,i);
 	}
 }
 
-inv_info_spr_ind[3][3] = spr_stackables;
-inv_info_img_ind[3][3] = 0;
-inv_info_name[3][3] = "Coin";
-inv_info_stack_num[3][3] = 1;
-inv_info_max_stack_num[3][3] = 99;
+set_inv_variable(0,0,spr_stackables,0,"Coin",1,99);
+set_inv_variable(1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5);
+set_inv_variable(2,0,spr_drink,0,"Coke",-4,-4);
 
-inv_info_spr_ind[1][2] = spr_stackables;
-inv_info_img_ind[1][2] = 3;
-inv_info_name[1][2] = "KeyCard";
-inv_info_stack_num[1][2] = irandom_range(3,4);
-inv_info_max_stack_num[1][2] = 5;
-
-inv_info_spr_ind[2][2] = spr_drink;
-inv_info_img_ind[2][2] = 0;
-inv_info_name[2][2] = "Coke";
-inv_info_stack_num[2][2] = -4;
 
 
 
 
 
 //체력
-hp = 0;
+hp = 100;
 
 
 
@@ -110,3 +93,5 @@ show_interaction_key = 0; // 0일때 드로우 안함
 
 //다른 사람 시체 루팅
 n_looting_player_ins = -4;
+
+

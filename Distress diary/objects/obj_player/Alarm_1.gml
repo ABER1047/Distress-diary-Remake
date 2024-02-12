@@ -3,9 +3,15 @@
 if (!variable_instance_exists(id,"soc"))
 {
 	obj_id = 0;
-	soc = -4;
+	soc = 0;
 	nickname = global.nickname;
 	obj_id_player_only = 0;
+	
+	//플레이어 실제 인스턴스 아이디
+	if (instance_number(obj_player) == 1)
+	{
+		get_all_players_ins_id();
+	}
 }
 
 

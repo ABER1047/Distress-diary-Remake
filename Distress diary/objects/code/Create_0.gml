@@ -16,6 +16,10 @@ global.nickname = randomized_nickname();
 //내 플레이어 아이디
 global.my_player_id = 0;
 
+//플레이어 실제 인스턴스 아이디
+global.my_player_ins_id = -4;
+
+
 //obj_id 배정용 변수
 global.object_id_ind = 0;
 
@@ -25,8 +29,6 @@ global.object_id_player_only = 0;
 //틱레이트
 global.tickrate = 5;
 
-//내 플레이어 실제 인스턴스 아이디
-global.my_player_ins_id = -4;
 
 
 
