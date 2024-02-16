@@ -4,8 +4,8 @@
 ///@param inv_height[i]
 function reset_inv_variable(argument0,argument1)
 {
-	var i = argument1;
-	var ii = argument0;
+	var i = argument0;
+	var ii = argument1;
 	
 	//inv_info_spr_ind가
 	//-4일때 = 비어있음

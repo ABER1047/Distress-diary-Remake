@@ -61,8 +61,8 @@ if (instance_exists(parents_id))
 	//아이템 옮기기 때의 x,y좌표
 	if (moving_now == 0)
 	{
-		x = startx+(slot_size*0.5);
-		y = starty+(slot_size*0.5);
+		x = startx+(slot_size*tmp_item_width*0.5);
+		y = starty+(slot_size*tmp_item_height*0.5);
 	}
 	else
 	{
@@ -80,14 +80,35 @@ if (instance_exists(parents_id))
 	
 		
 		
-		x = mouse_x;
-		y = mouse_y;
+		x = mouse_x-(slot_size*(tmp_item_width-1)*0.5);
+		y = mouse_y-(slot_size*(tmp_item_height-1)*0.5);
 		// 이동 중인 아이템 이미지 뒤의 배경 색 그리기
-		moving_item_x_pos = floor((x-nearest_inv_startx)/slot_size);
-		moving_item_y_pos = floor((y-nearest_inv_starty)/slot_size);
+		var tmp_moving_item_x_pos = (x-nearest_inv_startx)/slot_size;
+		moving_item_x_pos = (tmp_item_width%2 != 0) ? floor(tmp_moving_item_x_pos) : round(tmp_moving_item_x_pos-0.5);
+		var tmp_inv_width = nearsest_inv_variable_owner_ins.inv_width;
+		if (moving_item_x_pos >= tmp_inv_width)
+		{
+			moving_item_x_pos = tmp_inv_width-1;
+		}
+		else if (moving_item_x_pos < 0)
+		{
+			moving_item_x_pos = 0;
+		}
+		
+		var tmp_moving_item_y_pos = (y-nearest_inv_starty)/slot_size;
+		moving_item_y_pos = (tmp_item_height%2 != 0) ? floor(tmp_moving_item_y_pos) : round(tmp_moving_item_y_pos-0.5);
+		var tmp_inv_height = nearsest_inv_variable_owner_ins.inv_height;
+		if (moving_item_y_pos >= tmp_inv_height)
+		{
+			moving_item_y_pos = tmp_inv_height-1;
+		}
+		else if (moving_item_y_pos < 0)
+		{
+			moving_item_y_pos = 0;
+		}
 		
 		//만약 이동 중인 아이템이 인벤토리 내의 칸 안에 있는 경우
-		if (is_inside_rectangle(moving_item_x_pos,moving_item_y_pos,-1,-1,nearsest_inv_variable_owner_ins.inv_width,nearsest_inv_variable_owner_ins.inv_height))
+		if (is_inside_rectangle(tmp_moving_item_x_pos,tmp_moving_item_y_pos,-1,-1,tmp_inv_width,tmp_inv_height))
 		{
 			var tmp_x = nearest_inv_startx+(moving_item_x_pos*slot_size);
 			var tmp_y = nearest_inv_starty+(moving_item_y_pos*slot_size);
@@ -101,8 +122,11 @@ if (instance_exists(parents_id))
 			{
 				tmp_color = #4CD40D;
 			}
+			
+			var max_item_width = (moving_item_x_pos+tmp_item_width <= tmp_inv_width) ? tmp_item_width : tmp_inv_width-moving_item_x_pos;
+			var max_item_height = (moving_item_y_pos+tmp_item_height <= tmp_inv_height) ? tmp_item_height : tmp_inv_height-moving_item_y_pos;
 			draw_set_color(tmp_color);
-			draw_rectangle(tmp_x,tmp_y,tmp_x+slot_size*tmp_item_width,tmp_y+slot_size*tmp_item_height,false);
+			draw_rectangle(tmp_x,tmp_y,tmp_x+slot_size*max_item_width,tmp_y+slot_size*max_item_height,false);
 			is_moving_item_outside = 0;
 		}
 		else //인벤토리 내의 칸 밖에 있는 경우

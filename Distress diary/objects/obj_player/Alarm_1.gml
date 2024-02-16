@@ -6,6 +6,7 @@ if (!variable_instance_exists(id,"soc"))
 	soc = 0;
 	nickname = global.nickname;
 	obj_id_player_only = 0;
+	get_all_players_ins_id();
 }
 
 
