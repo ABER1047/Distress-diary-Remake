@@ -6,10 +6,12 @@ function get_all_players_ins_id()
 	{
 		with(obj_player)
 		{
-			if (object_index == obj_player && obj_id_player_only == i)
+			if (object_index == obj_player)
 			{
-				global.my_player_ins_id[i] = id;
+				global.my_player_ins_id[obj_id_player_only] = id;
 			}
 		}
 	}
+	
+	show_message_log("플레이어 정보 리로드");
 }

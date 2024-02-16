@@ -381,12 +381,16 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						{
 							for(var ii = 0; ii < inv_width; ii++)
 							{
-								var tmp_spr_name = asset_get_index(buffer_read(buffer, buffer_string));
-								inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? -4 : tmp_spr_name;//spr_ind값 보유
+								var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+								var tmp_spr_name = asset_get_index(tmp_spr_name_real);
+								inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
 								inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
 								inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
 								inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
 								inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
+								inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
+								inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
+								inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
 								tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 							}
 							tmp_str = string(tmp_str)+"\n"

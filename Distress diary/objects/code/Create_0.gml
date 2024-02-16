@@ -17,7 +17,7 @@ global.nickname = randomized_nickname();
 global.my_player_id = 0;
 
 //플레이어 실제 인스턴스 아이디
-global.my_player_ins_id = -4;
+global.my_player_ins_id = array_create(1,-4);
 
 
 //obj_id 배정용 변수

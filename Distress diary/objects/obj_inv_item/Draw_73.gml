@@ -11,6 +11,10 @@ if (instance_exists(parents_id))
 
 	var slot_size = 160*global.n_camera_zoom; //1칸당 픽셀 사이즈
 	
+	//아이템 회전 적용
+	var tmp_item_width = (item_rotated == 0) ? item_width : item_height;
+	var tmp_item_height = (item_rotated == 0) ? item_height : item_width;
+	
 	
 	//인벤토리 내에서의 칸
 	var real_startx = xx+(parents_id.x_pos);
@@ -25,11 +29,11 @@ if (instance_exists(parents_id))
 	// 아이템 이미지 뒤의 배경 색 그리기
 	draw_set_alpha(parents_id.image_alpha*0.15*(1+mouse_on));
 	draw_set_color(c_white);
-	draw_rectangle(startx,starty,startx+slot_size,starty+slot_size,false);
+	draw_rectangle(startx,starty,startx+slot_size*tmp_item_width,starty+slot_size*tmp_item_height,false);
 	
 	
 	//마우스가 아이템 위에 올라갔는지 체크
-	if (is_inside_rectangle(mouse_x,mouse_y,startx,starty,startx+slot_size,starty+slot_size))
+	if (is_inside_rectangle(mouse_x,mouse_y,startx,starty,startx+slot_size*tmp_item_width,starty+slot_size*tmp_item_height))
 	{
 		mouse_on = 1;
 	}
@@ -40,7 +44,8 @@ if (instance_exists(parents_id))
 	
 
 	// 아이템 이미지 그리기
-	draw_sprite_ext(sprite_index,image_index,startx+(slot_size*0.5),starty+(slot_size*0.5),image_xscale,image_yscale,image_angle,image_blend,parents_id.image_alpha);
+	var img_icon_scale = (image_xscale < image_yscale) ? image_xscale : image_yscale;
+	draw_sprite_ext(sprite_index,image_index,startx+(slot_size*tmp_item_width*0.5),starty+(slot_size*tmp_item_height*0.5),img_icon_scale,img_icon_scale,-90*item_rotated,image_blend,parents_id.image_alpha);
 
 
 	//아이템 이름
@@ -61,6 +66,11 @@ if (instance_exists(parents_id))
 	}
 	else
 	{
+		//아이템 회전 적용
+		var tmp_item_width = (moving_item_roration == 0) ? item_width : item_height;
+		var tmp_item_height = (moving_item_roration == 0) ? item_height : item_width;
+		
+		
 		//현재 내 마우스 위치랑 가장 가까운 인벤토리의 첫번째 칸 좌표
 		var nearest_inv_startx = xx+(tmp_nearest_inv_ui.x_pos);
 		var nearest_inv_starty = yy+(tmp_nearest_inv_ui.y_pos);
@@ -92,7 +102,7 @@ if (instance_exists(parents_id))
 				tmp_color = #4CD40D;
 			}
 			draw_set_color(tmp_color);
-			draw_rectangle(tmp_x,tmp_y,tmp_x+slot_size,tmp_y+slot_size,false);
+			draw_rectangle(tmp_x,tmp_y,tmp_x+slot_size*tmp_item_width,tmp_y+slot_size*tmp_item_height,false);
 			is_moving_item_outside = 0;
 		}
 		else //인벤토리 내의 칸 밖에 있는 경우
@@ -102,7 +112,8 @@ if (instance_exists(parents_id))
 		
 		
 		// 이동 중인 아이템 그리기
-		draw_sprite_ext(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,moving_now*0.7);
+		var img_icon_scale = (image_xscale < image_yscale) ? image_xscale : image_yscale;
+		draw_sprite_ext(sprite_index,image_index,x+slot_size*(tmp_item_width-1)*0.5,y+slot_size*(tmp_item_height-1)*0.5,img_icon_scale,img_icon_scale,-90*moving_item_roration,image_blend,moving_now*0.7);
 	}
 }
 

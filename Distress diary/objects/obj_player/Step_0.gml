@@ -5,6 +5,15 @@
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
 if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
+	//hp정보 보내기 (멀티플레이)
+	if (hp != b_hp)
+	{
+		send_InstanceVariableData(id,"hp");
+		b_hp = hp;
+	}
+	
+	
+	//카메라 위치 설정
 	if (global.camera_target != -4)
 	{
 		global.camera_target = id;

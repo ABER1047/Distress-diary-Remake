@@ -3,16 +3,6 @@
 
 if (instance_exists(parents_id))
 {
-	//이미지 스케일 조정
-	if (tmp_n_camera_zoom != global.n_camera_zoom)
-	{
-		var slot_size = 160*global.n_camera_zoom; //1칸당 픽셀 사이즈
-		image_xscale = slot_size/sprite_get_width(sprite_index);
-		image_yscale = slot_size/sprite_get_height(sprite_index);
-		tmp_n_camera_zoom = global.n_camera_zoom;
-	}
-	
-	
 	//뎁스 값 조정
 	if (moving_now == 0)
 	{
@@ -26,8 +16,24 @@ if (instance_exists(parents_id))
 	
 	if ((!instance_exists(global.is_moving_item_now) || global.is_moving_item_now == id) && (mouse_on == 1 || moving_now == 1) && mouse_check_button(mb_left))
 	{
-		moving_now = 1;
+		//아이템 옮기는 중
+		if (moving_now != 1)
+		{
+			moving_now = 1;
+		
+			//현재 옮기고 있는 아이템 rotated정보
+			moving_item_roration = item_rotated;
+		}
+		
+		//현재 옮기고 있는 아이템 ins_id
 		global.is_moving_item_now = id;
+		
+		//아이템 회전
+		if (keyboard_check_pressed(ord("R")))
+		{
+			moving_item_roration = (moving_item_roration == 0) ? 1 : 0;
+			show_message_log("아이템 회전 ["+string(moving_item_roration*90)+"]");
+		}
 		
 		
 		//기존에 해당 아이템을 들고 있던 인벤토리 UI가 참조하고 있는 변수 원본 값을 가진 인스턴스 (ex. obj_player)
@@ -48,23 +54,61 @@ if (instance_exists(parents_id))
 		if (moving_now == 1 && is_moving_item_outside == 0)
 		{
 			//아이템을 해당 포지션으로 옮기기 (= 기존 아이템은 삭제하고 해당 위치에 아이템 재생성)
-			origin_spr = variable_owner_ins.inv_info_spr_ind[y_pos][x_pos];
-			origin_img = variable_owner_ins.inv_info_img_ind[y_pos][x_pos];
-			origin_name = variable_owner_ins.inv_info_name[y_pos][x_pos];
-			origin_stack_num = variable_owner_ins.inv_info_stack_num[y_pos][x_pos];
-			origin_max_stack_num = variable_owner_ins.inv_info_max_stack_num[y_pos][x_pos];
+			var tmp_i = y_pos;
+			var tmp_ii = x_pos;
+			origin_spr = variable_owner_ins.inv_info_spr_ind[tmp_i][tmp_ii];
+			origin_img = variable_owner_ins.inv_info_img_ind[tmp_i][tmp_ii];
+			origin_name = variable_owner_ins.inv_info_name[tmp_i][tmp_ii];
+			origin_stack_num = variable_owner_ins.inv_info_stack_num[tmp_i][tmp_ii];
+			origin_max_stack_num = variable_owner_ins.inv_info_max_stack_num[tmp_i][tmp_ii];
+			origin_item_width = variable_owner_ins.inv_info_width[tmp_i][tmp_ii];
+			origin_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
+			origin_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
 					
-			new_spr = nearsest_inv_variable_owner_ins.inv_info_spr_ind[new_y_pos][new_x_pos];
-			new_img = nearsest_inv_variable_owner_ins.inv_info_img_ind[new_y_pos][new_x_pos];
-			new_name = nearsest_inv_variable_owner_ins.inv_info_name[new_y_pos][new_x_pos];
-			new_stack_num = nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos];
-			new_max_stack_num = nearsest_inv_variable_owner_ins.inv_info_max_stack_num[new_y_pos][new_x_pos];
+					
+			var tmp_i = new_y_pos;
+			var tmp_ii = new_x_pos;
+			new_spr = nearsest_inv_variable_owner_ins.inv_info_spr_ind[tmp_i][tmp_ii];
+			new_img = nearsest_inv_variable_owner_ins.inv_info_img_ind[tmp_i][tmp_ii];
+			new_name = nearsest_inv_variable_owner_ins.inv_info_name[tmp_i][tmp_ii];
+			new_stack_num = nearsest_inv_variable_owner_ins.inv_info_stack_num[tmp_i][tmp_ii];
+			new_max_stack_num = nearsest_inv_variable_owner_ins.inv_info_max_stack_num[tmp_i][tmp_ii];
+			new_item_width = variable_owner_ins.inv_info_width[tmp_i][tmp_ii];
+			new_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
+			new_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
 		}
 		
 		
 		if (is_moving_item_outside == 0) //옮기고 있는 아이템이 인벤토리 칸 안인 경우
 		{
-			if (new_spr == -4) //자리 자체가 비어있음
+			//자리 비어있는지 체크하는 알고리즘
+			var is_all_place_empty = true;
+			var tmp_item_width = (moving_item_roration == 0) ? item_width : item_height;
+			var tmp_item_height = (moving_item_roration == 0) ? item_height : item_width;
+			var tmp_inv_width = nearsest_inv_variable_owner_ins.inv_width;
+			var tmp_inv_height = nearsest_inv_variable_owner_ins.inv_height;
+			
+			//아이템이 인벤토리 칸 밖을 벗어났는지 아닌지 체크
+			if (is_inside_rectangle(tmp_ii,tmp_i,-1,-1,tmp_inv_width,tmp_inv_height) && ((tmp_item_width == 1 && tmp_item_height == 1) || is_inside_rectangle(tmp_ii+tmp_item_width-1,tmp_i+tmp_item_height-1,-1,-1,tmp_inv_width,tmp_inv_height)))
+			{
+				for(var i = 0; i < tmp_item_height; i++) //height
+				{
+					for(var ii = 0; ii < tmp_item_width; ii++) //width
+					{
+						if (nearsest_inv_variable_owner_ins.inv_info_spr_ind[tmp_i+i][tmp_ii+ii] != -4)
+						{
+							is_all_place_empty = false;
+						}
+					}
+				}
+			}
+			else
+			{
+				is_all_place_empty = false;
+			}
+			
+			
+			if (is_all_place_empty) //자리 비어있음
 			{
 				if (origin_stack_num > 1 && keyboard_check(vk_shift))
 				{
@@ -107,48 +151,55 @@ if (instance_exists(parents_id))
 	{
 		if (moving_now == 1)
 		{
+			//최적화 용 임시 변수
+			var tmp_i = new_y_pos;
+			var tmp_ii = new_x_pos;
+				
+			var tmp_k = y_pos;
+			var tmp_kk = x_pos;
+			
 			//옮기고 있는 아이템이 인벤토리 칸 밖인 경우
 			if (is_moving_item_outside == 0) //옮기고 있는 아이템이 인벤토리 칸 안인 경우
 			{
 				//아이템이 겹치기 가능한 아이템인 경우
 				if (is_moveable_pos == 1)
 				{
-					nearsest_inv_variable_owner_ins.inv_info_spr_ind[new_y_pos][new_x_pos] = origin_spr;
-					nearsest_inv_variable_owner_ins.inv_info_img_ind[new_y_pos][new_x_pos] = origin_img;
-					nearsest_inv_variable_owner_ins.inv_info_name[new_y_pos][new_x_pos] = origin_name;
-					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num;
-					nearsest_inv_variable_owner_ins.inv_info_max_stack_num[new_y_pos][new_x_pos] = origin_max_stack_num;
-					
-					
-					//(아이템 재생성 부분)
-					create_inv_item(origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,tmp_nearest_inv_ui,new_x_pos,new_y_pos);
+					//아이템 정보 배열에 저장
+					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_roration);
 				}
 				else if (is_moveable_pos == 2) //겹치기 해서 옮기기 가능한 자리임을 나타냄 (최대 스택 갯수 미만)
 				{
-					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = origin_stack_num+new_stack_num;
+					nearsest_inv_variable_owner_ins.inv_info_stack_num[tmp_i][tmp_ii] = origin_stack_num+new_stack_num;
 				}
 				else if (is_moveable_pos == 3) //겹치기 해서 옮기기 가능한 자리임을 나타냄 (최대 스택 갯수 초과)
 				{
-					variable_owner_ins.inv_info_stack_num[y_pos][x_pos] = (origin_stack_num+new_stack_num)-new_max_stack_num;
-					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = new_max_stack_num;
+					variable_owner_ins.inv_info_stack_num[tmp_k][tmp_kk] = (origin_stack_num+new_stack_num)-new_max_stack_num;
+					nearsest_inv_variable_owner_ins.inv_info_stack_num[tmp_i][tmp_ii] = new_max_stack_num;
 				}
 				else if (is_moveable_pos == 4) //아이템 반절 나누기
 				{
 					var tmp_half = floor(origin_stack_num/2);
-					variable_owner_ins.inv_info_stack_num[y_pos][x_pos] = origin_stack_num-tmp_half;
+					variable_owner_ins.inv_info_stack_num[tmp_k][tmp_kk] = origin_stack_num-tmp_half;
 					
-					nearsest_inv_variable_owner_ins.inv_info_spr_ind[new_y_pos][new_x_pos] = origin_spr;
-					nearsest_inv_variable_owner_ins.inv_info_img_ind[new_y_pos][new_x_pos] = origin_img;
-					nearsest_inv_variable_owner_ins.inv_info_name[new_y_pos][new_x_pos] = origin_name;
-					nearsest_inv_variable_owner_ins.inv_info_stack_num[new_y_pos][new_x_pos] = tmp_half;
-					nearsest_inv_variable_owner_ins.inv_info_max_stack_num[new_y_pos][new_x_pos] = origin_max_stack_num;
+					//새로운 자리에 아이템 정보 배열에 저장
+					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,tmp_half,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_roration);
 				}
 			}
 				
 			if ((is_moveable_pos > 0 && is_moveable_pos != 3 && is_moveable_pos != 4) || is_moving_item_outside != 0)
 			{
-				//기존에 있던 아이템은 삭제(내부 변수 숫자값으로만)
-				variable_owner_ins.inv_info_spr_ind[y_pos][x_pos] = -4; //아이템 삭제는 inv_info_spr_ind값만 -4로 해주면 됨
+				//회전 및 아이템 가로/세로 길이만큼 칸 차지하는 거 적용
+				var visual_width = (item_rotated == 0) ? item_width : item_height;
+				var visual_height = (item_rotated == 0) ? item_height : item_width;
+	
+				for(var k = 0; k < visual_height; k++)
+				{
+					for(var kk = 0; kk < visual_width; kk++)
+					{
+						//기존에 있던 아이템은 삭제(내부 변수 숫자값으로만)
+						variable_owner_ins.inv_info_spr_ind[tmp_k+k][tmp_kk+kk] = -4; //아이템 삭제는 inv_info_spr_ind값만 -4로 해주면 됨
+					}
+				}
 					
 				//기존에 있던 아이템은 삭제 (obj_inv_item 인스턴스)
 				instance_destroy();

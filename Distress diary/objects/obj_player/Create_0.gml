@@ -70,10 +70,12 @@ for(var i = 0; i < inv_height; i++)
 	}
 }
 
-set_inv_variable(0,0,spr_stackables,0,"Coin",1,99);
-set_inv_variable(1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5);
-set_inv_variable(2,0,spr_drink,0,"Coke",-4,-4);
+set_inv_variable(id,0,0,spr_stackables,0,"Coin",1,99,1,1,0);
+set_inv_variable(id,1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5,1,1,0);
+set_inv_variable(id,2,0,spr_drink,0,"Coke",-4,-4,1,1,0);
 
+set_inv_variable(id,0,1,spr_backpack,0,"Backpack",-4,-4,2,3,0);
+set_inv_variable(id,2,1,spr_comp,8,"GPU",-4,-4,2,1,1);
 
 
 
@@ -81,7 +83,7 @@ set_inv_variable(2,0,spr_drink,0,"Coke",-4,-4);
 
 //체력
 hp = 100;
-
+b_hp = -4;
 
 
 //인터렉션 키 드로우 용
@@ -93,5 +95,4 @@ show_interaction_key = 0; // 0일때 드로우 안함
 
 //다른 사람 시체 루팅
 n_looting_player_ins = -4;
-
 

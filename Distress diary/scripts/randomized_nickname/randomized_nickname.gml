@@ -44,8 +44,27 @@ function randomized_nickname()
 		}
 		else
 		{
-			var rd_ind = irandom_range(0,array_length(_random_alphabet_sec)-1);
-			var tmp_char = _random_alphabet_sec[rd_ind];
+			var rd_ind, tmp_char;
+				
+			while(true)
+			{
+				rd_ind = irandom_range(0,array_length(_random_alphabet_sec)-1);
+				tmp_char = _random_alphabet_sec[rd_ind];
+				if (i == random_length && tmp_char != "q" && tmp_char != "p" && tmp_char != "j" && tmp_char != "z" && tmp_char != "w")
+				{
+					break;
+				}
+				else if (i > 1 && i < random_length && tmp_char != "j" && tmp_char != "w" && tmp_char != "q" && tmp_char != "x" && tmp_char != "v")
+				{
+					break;
+				}
+				else if (i == 1)
+				{
+					break;
+				}
+			}
+				
+
 			tmp_str = (i == 1) ? string_upper(tmp_char) : tmp_str + tmp_char;
 			
 			if ((i == random_length && percentage_k((string_length(tmp_str) == 1) ? 100 : 50)) || i != random_length)
