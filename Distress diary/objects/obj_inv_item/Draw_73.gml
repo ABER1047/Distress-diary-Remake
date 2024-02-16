@@ -67,8 +67,8 @@ if (instance_exists(parents_id))
 	else
 	{
 		//아이템 회전 적용
-		var tmp_item_width = (moving_item_roration == 0) ? item_width : item_height;
-		var tmp_item_height = (moving_item_roration == 0) ? item_height : item_width;
+		var tmp_item_width = (moving_item_rotation == 0) ? item_width : item_height;
+		var tmp_item_height = (moving_item_rotation == 0) ? item_height : item_width;
 		
 		
 		//현재 내 마우스 위치랑 가장 가까운 인벤토리의 첫번째 칸 좌표
@@ -137,7 +137,7 @@ if (instance_exists(parents_id))
 		
 		// 이동 중인 아이템 그리기
 		var img_icon_scale = (image_xscale < image_yscale) ? image_xscale : image_yscale;
-		draw_sprite_ext(sprite_index,image_index,x+slot_size*(tmp_item_width-1)*0.5,y+slot_size*(tmp_item_height-1)*0.5,img_icon_scale,img_icon_scale,-90*moving_item_roration,image_blend,moving_now*0.7);
+		draw_sprite_ext(sprite_index,image_index,x+slot_size*(tmp_item_width-1)*0.5,y+slot_size*(tmp_item_height-1)*0.5,img_icon_scale,img_icon_scale,-90*moving_item_rotation,image_blend,moving_now*0.7);
 	}
 }
 

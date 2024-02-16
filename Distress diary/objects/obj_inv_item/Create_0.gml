@@ -20,7 +20,7 @@ moving_now = 0;
 moving_item_x_pos = 0;
 moving_item_y_pos = 0;
 is_moving_item_outside = 0;
-moving_item_roration = 0;
+moving_item_rotation = 0;
 
 
 tmp_n_camera_zoom = 0;
