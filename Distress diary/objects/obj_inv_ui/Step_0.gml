@@ -1,6 +1,4 @@
 /// @description Insert description here
-// You can write your code in this editor
-
 //인벤토리 정보 변수를 가지고 있는 인스턴스 
 var tmp_owner = variable_owner;
 
@@ -45,8 +43,5 @@ if (max_distance != -4 && instance_exists(tmp_my_p) && point_distance(tmp_owner.
 {
 	instance_destroy();
 }
-
-
-
 
 

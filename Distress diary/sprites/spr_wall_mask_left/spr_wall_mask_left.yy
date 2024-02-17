@@ -23,7 +23,7 @@
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"0467a612-2d2a-420c-b17a-7f59d5455ba8","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
-  "origin": 4,
+  "origin": 3,
   "parent": {
     "name": "Sprite_map",
     "path": "folders/스프라이트/Sprite_map.yy",
@@ -59,7 +59,7 @@
     ],
     "visibleRange": null,
     "volume": 1.0,
-    "xorigin": 24,
+    "xorigin": 0,
     "yorigin": 24,
   },
   "swatchColours": null,

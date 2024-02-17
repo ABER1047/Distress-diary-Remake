@@ -10,9 +10,25 @@ if (global.new_player_joined > 0)
 
 
 
-
-
-
+//5초동안 초당 평균 프레임 값 구하기
+if (global.dev_mode == 1)
+{
+	fps_timer ++;
+	if (fps_timer >= 0)
+	{
+		if (fps_timer == 1)
+		{
+			global.average_fps_per_sec = 0;
+		}
+		global.average_fps_per_sec += fps_real;
+	
+		if (fps_timer > 300)
+		{
+			fps_timer = 0;
+			global.average_fps_for_draw = global.average_fps_per_sec/300;
+		}
+	}
+}
 
 
 

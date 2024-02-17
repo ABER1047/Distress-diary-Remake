@@ -19,7 +19,6 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 
 	////////////////////////////////////////////////////////////////
 
-
 	//폰트설정
 	draw_set_font(args[9]);
 	//알파설정
@@ -52,7 +51,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 		{
 			//컬러설정
 			draw_set_color(c_black);
-			for(var i = 1; i <= 3; i += 1)
+			for(var i = 1; i <= 3; i += 1.5)
 			{
 				//i = args[10]
 				draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
@@ -73,7 +72,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 		{
 
 			draw_set_color(c_black);
-			for(var i = 1; i <= 3; i += 0.5)
+			for(var i = 1; i <= 3; i += 1)
 			{
 				//i = args[10]
 				draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
@@ -99,6 +98,4 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 
 
 	////////////////MADE BY KUNMAGUN///////////////////////
-
-
 }

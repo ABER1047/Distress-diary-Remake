@@ -13,5 +13,8 @@ if (is_dragging_window && instance_number(obj_inv_ui) > 1)
 	}
 }
 relative_x_pos = -4;
-is_dragging_window = false;
-
+if (is_dragging_window == true)
+{
+	is_dragging_window = false;
+	is_drag_droped = true;
+}

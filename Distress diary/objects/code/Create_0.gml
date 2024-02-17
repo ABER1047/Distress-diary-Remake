@@ -92,3 +92,9 @@ global.min_depth = -999;
 
 //인벤토리 아이템 옮기는 중
 global.is_moving_item_now = -4;
+
+
+//5초당 평균 프레임
+fps_timer = 0;
+global.average_fps_per_sec = 0;
+global.average_fps_for_draw = 0;

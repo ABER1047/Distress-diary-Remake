@@ -44,7 +44,14 @@
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"타임라인","folderPath":"folders/타임라인.yy",},
     {"resourceType":"GMFolder","resourceVersion":"1.0","name":"확장","folderPath":"folders/확장.yy",},
   ],
-  "IncludedFiles": [],
+  "IncludedFiles": [
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Arial.json","CopyToMask":-1,"filePath":"datafiles/Arial",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Arial.png","CopyToMask":-1,"filePath":"datafiles/Arial",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Cambria.json","CopyToMask":-1,"filePath":"datafiles/Cambria",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"Cambria.png","CopyToMask":-1,"filePath":"datafiles/Cambria",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"ComicSans.json","CopyToMask":-1,"filePath":"datafiles/ComicSans",},
+    {"resourceType":"GMIncludedFile","resourceVersion":"1.0","name":"ComicSans.png","CopyToMask":-1,"filePath":"datafiles/ComicSans",},
+  ],
   "isEcma": false,
   "LibraryEmitters": [],
   "MetaData": {
@@ -121,6 +128,7 @@
     {"id":{"name":"spr_tiles_walls","path":"sprites/spr_tiles_walls/spr_tiles_walls.yy",},},
     {"id":{"name":"window","path":"scripts/window/window.yy",},},
     {"id":{"name":"spr_original_bp4","path":"sprites/spr_original_bp4/spr_original_bp4.yy",},},
+    {"id":{"name":"spr_wall_mask_left_top","path":"sprites/spr_wall_mask_left_top/spr_wall_mask_left_top.yy",},},
     {"id":{"name":"spr_original_bp7","path":"sprites/spr_original_bp7/spr_original_bp7.yy",},},
     {"id":{"name":"spr_original_bp6","path":"sprites/spr_original_bp6/spr_original_bp6.yy",},},
     {"id":{"name":"font_normal","path":"fonts/font_normal/font_normal.yy",},},

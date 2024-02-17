@@ -85,8 +85,8 @@ if (global.dev_mode == 1)
 	draw_text_k_scale(xx+8,yy+32,"맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
-	var tmp_guide_txt1 = "온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]";
-	var tmp_guide_txt2 = "초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate);
+	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]";
+	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate);
 	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
@@ -105,6 +105,13 @@ if (global.dev_mode == 1)
 				send_InstanceVariableData(id,"nickname");
 			}
 		}
+	}
+	
+	
+	//디버그 창
+	if (keyboard_check_pressed(vk_f10))
+	{
+		show_debug_log(!is_debug_overlay_open());
 	}
 	
 	

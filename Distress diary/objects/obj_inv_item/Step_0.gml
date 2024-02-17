@@ -36,11 +36,14 @@ if (instance_exists(parents_id))
 		variable_owner_ins = parents_id.variable_owner;
 		
 		//현재 내 마우스 위치랑 가장 가까운 인벤토리
-		tmp_nearest_inv_ui = instance_nearest(mouse_x,mouse_y,obj_inv_ui);
+		tmp_nearest_inv_ui = instance_position(mouse_x,mouse_y,obj_inv_ui);
 		
 		//가장 가까운 인벤토리의 변수들을 보유하고 있는 실제 인스턴스 (가장 가까운게 parents_id일 수도 있음)
-		nearsest_inv_variable_owner_ins = tmp_nearest_inv_ui.variable_owner;
-		
+		nearsest_inv_variable_owner_ins = (instance_exists(tmp_nearest_inv_ui)) ? tmp_nearest_inv_ui.variable_owner : -4;
+		if (!instance_exists(nearsest_inv_variable_owner_ins))
+		{
+			is_moving_item_outside = 1;
+		}
 				
 		//새로 옮기려는 위치
 		new_x_pos = moving_item_x_pos;

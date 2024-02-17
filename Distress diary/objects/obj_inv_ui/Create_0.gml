@@ -17,6 +17,7 @@
 relative_x_pos = -4;
 relative_y_pos = -4;
 is_dragging_window = false;
+is_drag_droped = false;
 
 
 //인벤토리 첫번째 칸 시작 위치
@@ -39,3 +40,7 @@ y = -4;
 
 //해당 인벤토리 ui 리로드
 reload_inv = -4;
+
+
+//인벤토리 창끼리 겹치지 않도록 자동으로 창 좌표 고치기
+alarm[1] = 1;

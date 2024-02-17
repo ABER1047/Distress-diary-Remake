@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+
+
 //인벤토리 관련 변수를 가진 인스턴스 (= variable_owner) 가 존재하는 경우
 if (instance_exists(variable_owner))
 {
@@ -33,9 +35,11 @@ if (instance_exists(variable_owner))
 	
 	//인벤토리 창의 정가운데 위치는 x, y값임 (어차피 드로우 할 때 x, y값 아에 안써서 그럼)
 	x = startx+(inv_width*slot_size*0.5);
-	y = starty+(inv_height*slot_size*0.5);
+	y = w_starty+((window_weight+inv_height*slot_size)*0.5);
 	
 	
+	//창끼리 겹치지 못하도록 하는 히트박스 그리기
+	//draw_sprite_ext(spr_wall_mask_center,0,x,y,image_xscale,image_yscale,0,c_white,0.2);
 	
 	
 	//창 위치 옮기기 기능
@@ -57,9 +61,38 @@ if (instance_exists(variable_owner))
 		}
 		else
 		{
-			x_pos = mouse_x+relative_x_pos-xx;
-			y_pos = mouse_y+relative_y_pos-yy;
+			var tmp_target_xx = mouse_x+relative_x_pos-xx;
+			var tmp_target_yy = mouse_y+relative_y_pos-yy;
+			x_pos = tmp_target_xx;
+			y_pos = tmp_target_yy;
 		}
+	}
+	else if (is_drag_droped) //창 드래그 후 드롭한 순간에만 위치 값 적용시켜주기 (최적화 때문에)
+	{
+		//인벤토리 창이 화면 밖을 벗어나지 못하도록 설정
+		var tmp_cal_val1 = xx_w-(inv_width*slot_size)-outline_weight;
+		if (x_pos < outline_weight)
+		{
+			x_pos = outline_weight;
+		}
+		else if (x_pos > tmp_cal_val1)
+		{
+			x_pos = tmp_cal_val1;
+		}
+
+		var tmp_cal_val2 = window_weight+outline_weight;
+		var tmp_cal_val3 = yy_h-(inv_height*slot_size)-outline_weight;
+		if (y_pos < tmp_cal_val2)
+		{
+			y_pos = tmp_cal_val2;
+		}
+		else if (y_pos > tmp_cal_val3)
+		{
+			y_pos = tmp_cal_val3;
+		}
+		
+		is_drag_droped = false;
+		event_user(0);
 	}
 	
 
