@@ -47,4 +47,18 @@
 |<img src = "imgs/inventory_system.gif"></img>|
 
 
+
+##
+
+### 2024-02-16 ~ 2024-02-18
+
+#### New inventory system(Rotating/Stacking/Various size of items...etc) And lootable objects added
+
+#### 새로운 인벤토리 관련 시스템(아이템 회전/겹치기/여러 크기의 아이템 등등...) 및 루팅 가능한 오브젝트들 추가
+
+||
+|---|
+|<img src = "imgs/multicell stacking rotating.gif"></img>|
+
+
 </div>
