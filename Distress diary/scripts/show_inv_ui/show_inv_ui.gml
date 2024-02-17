@@ -6,8 +6,9 @@
 ///@param y
 ///@param inv_name
 ///@param variable_owner
+///@param max_distance
 
-function show_inv_ui(argument0,argument1,argument2,argument3)
+function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 {
 	//인벤토리 관련 변수를 가진 인스턴스 (= variable_owner) 가 존재하는 경우
 	var tmp_owner = argument3;
@@ -18,6 +19,7 @@ function show_inv_ui(argument0,argument1,argument2,argument3)
 		tmp_ins.y_pos = argument1;
 		tmp_ins.inv_name = argument2;
 		tmp_ins.variable_owner = tmp_owner;
+		tmp_ins.max_distance = argument4;
 		
 		for(var i = 0; i < tmp_owner.inv_height; i++)
 		{

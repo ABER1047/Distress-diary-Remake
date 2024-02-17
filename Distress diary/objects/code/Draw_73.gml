@@ -83,7 +83,7 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 if (global.dev_mode == 1)
 {
 	draw_text_k_scale(xx+8,yy+32,"맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
-	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	var tmp_guide_txt1 = "온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]";
 	var tmp_guide_txt2 = "초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate);
@@ -113,7 +113,7 @@ if (global.dev_mode == 1)
 	{
 		if (!instance_exists(global.showing_inv))
 		{
-			global.showing_inv = show_inv_ui(400,320,"Inventory",global.my_player_ins_id[global.my_player_id]);
+			global.showing_inv = show_inv_ui(400,320,"Inventory",global.my_player_ins_id[global.my_player_id],-4);
 		}
 		else
 		{
@@ -163,7 +163,24 @@ if (global.dev_mode == 1)
 			global.n_backpack = 0;
 		}
 		show_message_log("- 가방 변경 : "+string(global.n_backpack));
-		
+	}
+	
+	
+	
+	//랜덤 상자 생성
+	if (keyboard_check_pressed(ord("P")))
+	{
+		var tmp_ins = instance_nearest(mouse_x,mouse_y,obj_loots)
+		if (instance_exists(tmp_ins) && point_distance(tmp_ins.x,tmp_ins.y,mouse_x,mouse_y) < 128)
+		{
+			instance_destroy_multiplayer(tmp_ins);
+			show_message_log("- 오브젝트 삭제 [obj_id : "+string(tmp_ins)+"]");
+		}
+		else
+		{
+			var tmp_ins = create_loots(mouse_x,mouse_y,2*irandom_range(0,floor((sprite_get_number(spr_loots)-1)/2)),9,9,"Random chest - "+string(global.object_id_ind),global.object_id_ind,0);
+			show_message_log("- 랜덤 상자 생성 [obj_id : "+string(tmp_ins.obj_id)+"]");
+		}
 	}
 
 	

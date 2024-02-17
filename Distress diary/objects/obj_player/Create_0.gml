@@ -76,7 +76,7 @@ set_inv_variable(id,2,0,spr_drink,0,"Coke",-4,-4,1,1,0);
 
 set_inv_variable(id,0,1,spr_backpack,0,"Backpack",-4,-4,2,3,0);
 set_inv_variable(id,2,1,spr_comp,8,"GPU",-4,-4,2,1,1);
-set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,5,0);
+set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,2,0);
 
 
 
@@ -95,5 +95,9 @@ show_interaction_key = 0; // 0일때 드로우 안함
 
 
 //다른 사람 시체 루팅
-n_looting_player_ins = -4;
+n_looting_inv_id = -4;
 
+
+//다른사람이 내 인벤을 루팅중인지 체크
+is_opened = -4; //-4 = 안 열림, -3 = 다른사람이 열고 있음, ins ref (숫자) = 내 자신이 열고 있으며 열려있는 인벤토리 id값을 반환
+b_is_opened = -4;

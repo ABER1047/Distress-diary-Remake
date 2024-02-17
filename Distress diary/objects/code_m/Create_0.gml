@@ -42,8 +42,10 @@ enum DATA
 	INS_VAR_DATA, //instance_variable값 받아오기 용
 	SET_PLAYER_ID, //처음 접속시 플레이어 아이디 적용 용
 	NEW_MAP_DATA, //새로운 맵 데이터 받아오기 용
-	MY_ROOM_POS, //인벤토리 데이터 전송용
-	INV_DATA
+	MY_ROOM_POS, //각 플레이어의 위치 정보 받아오기 용
+	INV_DATA, //인벤토리 데이터 전송용
+	OBJECTS_DATA, //오브젝트 생성/삭제용
+	CHEST_DATA //상자 생성용 (삭제는 OBJECTS_DATA로 제어)
 }
 global.DATA_IMG_DATA = DATA.IMG_DATA;
 global.DATA_GL_VAR_DATA = DATA.GL_VAR_DATA;
@@ -51,6 +53,8 @@ global.DATA_INS_VAR_DATA = DATA.INS_VAR_DATA;
 global.DATA_NEW_MAP_DATA = DATA.NEW_MAP_DATA;
 global.DATA_MY_ROOM_POS = DATA.MY_ROOM_POS;
 global.DATA_INV_DATA = DATA.INV_DATA;
+global.DATA_OBJECTS_DATA = DATA.OBJECTS_DATA;
+global.DATA_CHEST_DATA = DATA.CHEST_DATA;
 
 info_buffer = buffer_create(1024, buffer_grow, 1);
 dis_buffer = buffer_create(1024, buffer_grow, 1);
@@ -62,6 +66,9 @@ global.variable_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //맵 데이터 전송용 버퍼
 global.map_data_buffer = buffer_create(1024,buffer_grow,1);
+
+//오브젝트 데이터 전송용 버퍼
+global.obj_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //인벤토리 데이터 전송용 버퍼
 global.inv_data_buffer = buffer_create(2,buffer_grow,1);

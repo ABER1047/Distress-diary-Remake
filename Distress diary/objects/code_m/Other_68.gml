@@ -8,9 +8,7 @@ if (type == network_type_connect)
 	var cli_max = ds_list_size(clients);
 	network_set_timeout(socket, 3000, 3000);
 	
-	//obj_id 할당용 변수
-	global.object_id_ind ++;
-	
+
 	//object_id_player_only 할당용 변수
 	global.object_id_player_only ++;
 
@@ -21,6 +19,11 @@ if (type == network_type_connect)
 	buffer_write(info_buffer, buffer_string, global.object_id_ind);
 	buffer_write(info_buffer, buffer_string, global.object_id_player_only);
 	buffer_write(info_buffer, buffer_u8, socket);
+	
+	
+	//obj_id 할당용 변수
+	global.object_id_ind ++;
+	
 	
 	//처음 들어왔을 때
 	for(var i = 1; i < global.object_id_player_only; i++) 
@@ -195,6 +198,12 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				} catch(e) {}
 				
 				
+				//디버그 메세지로 받아온 값 출력
+				show_debug_message(tmp_val);
+				
+				
+				
+				
 				if (tmp_val != "")
 				{
 					var tmp_id_real = -4;
@@ -204,6 +213,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						{
 							tmp_id_real = id;
 						}
+					}
+					
+					//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
+					if (tmp_name == "is_opened")
+					{
+						tmp_val = (tmp_val != -4) ? -3 : tmp_val; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
+						variable_instance_set(tmp_id_real,"b_is_opened",tmp_val);
 					}
 				
 					variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
@@ -410,6 +426,56 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						}
 					}
 				}
+			}
+		break;
+		
+		case DATA.OBJECTS_DATA:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				var tmp_obj_ind_name = buffer_read(buffer, buffer_string);
+				var tmp_obj_ind = asset_get_index(tmp_obj_ind_name);
+				var is_destroy = real(buffer_read(buffer, buffer_string));
+				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				
+				//is_destroy가 1인 경우 해당 obj_id에 부합하는 인스턴스 삭제
+				if (is_destroy == 1)
+				{
+					show_message_log("- 오브젝트 삭제 요청 ["+string(tmp_obj_ind_name)+", obj_id : "+string(tmp_obj_id)+"]");
+					with(tmp_obj_ind)
+					{
+						if (obj_id == tmp_obj_id)
+						{
+							show_message_log("- 오브젝트 삭제 [obj_id : "+string(obj_id)+"]");
+							instance_destroy();
+						}
+					}
+				}
+				else
+				{
+					//is_destroy가 0인 경우 새로운 오브젝트 생성 (= 특별한 기능이 없는 오브젝트 [ex. 벽...])
+				}
+			}
+		break;
+		
+		case DATA.CHEST_DATA:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				var tmp_xx = real(buffer_read(buffer, buffer_string));
+				var tmp_yy = real(buffer_read(buffer, buffer_string));
+				var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+				var tmp_inv_width = real(buffer_read(buffer, buffer_string));
+				var tmp_inv_height = real(buffer_read(buffer, buffer_string));
+				var tmp_inv_name = buffer_read(buffer, buffer_string);
+				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				
+				//상자 생성
+				create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_inv_name,tmp_obj_id,1);
 			}
 		break;
 	}

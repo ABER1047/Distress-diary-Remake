@@ -52,8 +52,8 @@
   "nineSlice": null,
   "origin": 9,
   "parent": {
-    "name": "Sprite_items",
-    "path": "folders/스프라이트/Sprite_items.yy",
+    "name": "Sprite_map",
+    "path": "folders/스프라이트/Sprite_map.yy",
   },
   "preMultiplyAlpha": false,
   "sequence": {

@@ -31,3 +31,10 @@ else
 	draw_alpha = 0;
 }
 
+//다른사람이 내 인벤을 루팅 중인 경우, 루팅 중이라고 정보 보내기
+if (is_opened != b_is_opened)
+{
+	send_InstanceVariableData(id,"is_opened");
+	b_is_opened = is_opened;
+}
+

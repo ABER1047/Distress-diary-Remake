@@ -21,7 +21,7 @@ global.my_player_ins_id = array_create(1,-4);
 
 
 //obj_id 배정용 변수
-global.object_id_ind = 0;
+global.object_id_ind = 1; //0번은 플레이어 나 자신
 
 //플레이어 전용 obj_id_player_only 배정용 변수
 global.object_id_player_only = 0;

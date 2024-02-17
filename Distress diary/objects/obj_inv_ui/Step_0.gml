@@ -1,7 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+//인벤토리 정보 변수를 가지고 있는 인스턴스 
+var tmp_owner = variable_owner;
 
 //인벤토리 ui정보 리로드
 if (reload_inv == 1)
@@ -17,8 +18,7 @@ if (reload_inv == 1)
 		}
 	}
 
-	var tmp_owner = variable_owner;
-	
+
 	for(var i = 0; i < tmp_owner.inv_height; i++)
 	{
 		for(var ii = 0; ii < tmp_owner.inv_width; ii++)
@@ -39,7 +39,12 @@ if (reload_inv == 1)
 
 
 
-
+//인벤토리 최대 거리 적용 (거리 벗어나면 자동으로 닫히는 기능)
+var tmp_my_p = global.my_player_ins_id[global.my_player_id]; //내 플레이어 인스턴스
+if (max_distance != -4 && instance_exists(tmp_my_p) && point_distance(tmp_owner.x,tmp_owner.y,tmp_my_p.x,tmp_my_p.y) > max_distance)
+{
+	instance_destroy();
+}
 
 
 

@@ -197,22 +197,34 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	//다른 죽은 플레이어 루팅하기
+	var is_lootable = "";
 	var tmp_ins = instance_nearest_notme(x,y,obj_player);
-	if (tmp_ins != noone && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
+	if (instance_exists(tmp_ins) && tmp_ins.is_opened == -4 && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
 	{
-		var tmp_key = "F";
-		draw_interaction_key(tmp_ins,"F","루팅 하기");
-		if (!instance_exists(n_looting_player_ins) && keyboard_check_pressed(ord(tmp_key)))
-		{
-			n_looting_player_ins = show_inv_ui(900,500,string(tmp_ins.nickname)+"'s inventory",tmp_ins);
-			show_message_log("루팅 중... / "+string(object_get_name(tmp_ins.object_index))+" / "+string(tmp_ins.obj_id));
-		}
+		is_lootable = string(tmp_ins.nickname)+"'s inventory";
 	}
 	else
 	{
-		if (instance_exists(n_looting_player_ins))
+		//상자 루팅하기
+		tmp_ins = instance_nearest_notme(x,y,obj_loots);
+		if (instance_exists(tmp_ins) && tmp_ins.is_opened == -4 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
 		{
-			instance_destroy(n_looting_player_ins);
+			is_lootable = string(tmp_ins.loots_name);
+		}
+	}
+
+	
+	
+	//아이템 루팅 중...
+	if (is_lootable != "")
+	{
+		var tmp_key = "F";
+		draw_interaction_key(tmp_ins,tmp_key,"루팅 하기");
+		if (!instance_exists(n_looting_inv_id) && keyboard_check_pressed(ord(tmp_key)))
+		{
+			n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
+			tmp_ins.is_opened = n_looting_inv_id;
+			show_message_log("루팅 중... / "+string(object_get_name(tmp_ins.object_index))+" / "+string(tmp_ins.obj_id));
 		}
 	}
 }
