@@ -50,7 +50,7 @@
 
 ##
 
-### 2024-02-16 ~ 2024-02-18
+### 2024-02-09 ~ 2024-02-18
 
 #### New inventory system(Rotating/Stacking/Various size of items...etc) And lootable objects added
 
