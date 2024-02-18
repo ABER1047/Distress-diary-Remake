@@ -11,7 +11,4 @@ if (is_dragging_window)
 	}
 	
 	show_debug_message("global.min_depth : "+string(global.min_depth));
-	
-	//인벤토리 창 스택에 추가
-	add_inv_stack(id);
 }

@@ -52,7 +52,7 @@ if (instance_exists(parents_id))
 		
 		
 		//아이템 옮기는 중
-		if (moving_now == 0)
+		if (moving_now == 0 && mouse_check_button_pressed(mb_left))
 		{
 			moving_now = 1;
 		
@@ -78,7 +78,7 @@ if (instance_exists(parents_id))
 
 
 		
-		if (moving_now == 1 && is_moving_item_outside == 0)
+		if (moving_now == 1 && is_moving_item_outside == 0) //옮기고 있는 아이템이 인벤토리 칸 안인 경우
 		{
 			//아이템을 해당 포지션으로 옮기기 (= 기존 아이템은 삭제하고 해당 위치에 아이템 재생성)
 			var tmp_i = y_pos;
@@ -102,11 +102,9 @@ if (instance_exists(parents_id))
 			new_item_width = variable_owner_ins.inv_info_width[tmp_i][tmp_ii];
 			new_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
 			new_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
-		}
-		
-		
-		if (is_moving_item_outside == 0) //옮기고 있는 아이템이 인벤토리 칸 안인 경우
-		{
+	
+	
+	
 			//자리 비어있는지 체크하는 알고리즘
 			var is_all_place_empty = true;
 			var tmp_inv_width = nearsest_inv_variable_owner_ins.inv_width;
@@ -245,9 +243,35 @@ if (instance_exists(parents_id))
 				}
 				else if (is_moveable_pos == 5) //아이템 다른 인벤으로 자동 이동
 				{
-					//빈 자리 찾기 알고리즘 실행
-					tmp_nearest_inv_ui = global.showing_inv;
+					//열려있는 창이 총 2개인 경우
+					var tmp_selected_window = -4;
+					if (instance_number(obj_inv_ui) == 2)
+					{
+						//2개만 열려 있는 경우 해당 아이템을 가지고 있지 않은 다른 창을 선택
+						with(obj_inv_ui)
+						{
+							if (id != other.parents_id)
+							{
+								tmp_selected_window = id;
+							}
+						}
+					}
+					else if (instance_exists(global.showing_inv) && instance_number(obj_inv_ui) > 2)
+					{
+						//2개 초과로 열려 있고, 내 인벤토리도 열려 있는 경우 내 인벤토리를 선택
+						tmp_selected_window = global.showing_inv;
+					}
+					else
+					{
+						//1개만 열려 있는 경우 해당 아이템을 가지고 있는 인벤토리 창 자신을 선택
+						tmp_selected_window = parents_id;
+					}
+					
+					//자동 이동시, 선택된 창으로 아이템이 이동됨
+					tmp_nearest_inv_ui = tmp_selected_window;
 					nearsest_inv_variable_owner_ins = tmp_nearest_inv_ui.variable_owner; //아이템이 옮겨질 자리
+					
+					//빈 자리 찾기 알고리즘 실행
 					var has_empty_pos = find_empty_pos(origin_spr,origin_img,origin_item_width,origin_item_height,origin_stack_num,origin_max_stack_num,origin_name,nearsest_inv_variable_owner_ins);
 					if (has_empty_pos == true)
 					{

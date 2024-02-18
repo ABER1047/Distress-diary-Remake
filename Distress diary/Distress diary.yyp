@@ -160,7 +160,6 @@
     {"id":{"name":"create_map","path":"scripts/create_map/create_map.yy",},},
     {"id":{"name":"send_GlobalVariableData","path":"scripts/send_GlobalVariableData/send_GlobalVariableData.yy",},},
     {"id":{"name":"spr_arrow_ui","path":"sprites/spr_arrow_ui/spr_arrow_ui.yy",},},
-    {"id":{"name":"add_inv_stack","path":"scripts/add_inv_stack/add_inv_stack.yy",},},
     {"id":{"name":"spr_original_bp3_1","path":"sprites/spr_original_bp3_1/spr_original_bp3_1.yy",},},
     {"id":{"name":"inventory_system_note","path":"notes/inventory_system_note/inventory_system_note.yy",},},
     {"id":{"name":"spr_original_bp5","path":"sprites/spr_original_bp5/spr_original_bp5.yy",},},

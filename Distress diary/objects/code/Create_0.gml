@@ -19,7 +19,6 @@ global.my_player_id = 0;
 //플레이어 실제 인스턴스 아이디
 global.my_player_ins_id = array_create(1,-4);
 
-
 //obj_id 배정용 변수
 global.object_id_ind = 1; //0번은 플레이어 나 자신
 
@@ -89,8 +88,6 @@ global.showing_inv = -4;
 //인벤토리 ui중 가장 낮은 depth를 가진 값을 저장하는 변수
 global.min_depth = -999;
 
-//인벤토리 열때 열린 인벤토리 id값 저장하는 스택
-global.stack_for_inv_id = [ -4, -4 ];
 
 //인벤토리 빈칸 찾기용 변수
 global.inv_empty_xpos = -4;

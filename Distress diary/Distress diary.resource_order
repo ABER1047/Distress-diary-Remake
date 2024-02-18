@@ -118,7 +118,6 @@
     {"name":"spr_hp_bar_remake","order":3,"path":"sprites/spr_hp_bar_remake/spr_hp_bar_remake.yy",},
     {"name":"send_GlobalVariableData","order":2,"path":"scripts/send_GlobalVariableData/send_GlobalVariableData.yy",},
     {"name":"spr_arrow_ui","order":7,"path":"sprites/spr_arrow_ui/spr_arrow_ui.yy",},
-    {"name":"add_inv_stack","order":7,"path":"scripts/add_inv_stack/add_inv_stack.yy",},
     {"name":"spr_original_bp3_1","order":18,"path":"sprites/spr_original_bp3_1/spr_original_bp3_1.yy",},
     {"name":"spr_original_bp5","order":21,"path":"sprites/spr_original_bp5/spr_original_bp5.yy",},
     {"name":"send_MyRoomPos","order":8,"path":"scripts/send_MyRoomPos/send_MyRoomPos.yy",},
