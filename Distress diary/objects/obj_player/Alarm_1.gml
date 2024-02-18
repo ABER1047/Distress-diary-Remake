@@ -28,9 +28,9 @@ if (obj_id == global.my_player_id)
 	}
 
 	//현재 바라보는 각도 보내기
-	if (my_n_dir != global.n_dir)
+	if (b_n_dir != global.n_dir)
 	{
-		my_n_dir = global.n_dir;
+		b_n_dir = global.n_dir;
 		send_InstanceVariableData(id,"my_n_dir");
 	}
 

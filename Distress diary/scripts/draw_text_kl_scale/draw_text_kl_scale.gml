@@ -15,8 +15,8 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 	///@param xscale
 	///@param yscale
 	///@param angle
-	var args = [ argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10*1.625, argument11*1.625, argument12 ]
-
+	var args = [ argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10*1.625, argument11*1.625, argument12 ];
+	
 	////////////////////////////////////////////////////////////////
 
 	//폰트설정
@@ -88,13 +88,6 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 			draw_text_ext_transformed(args[0],args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
 		}
 	}
-
-
-
-
-
-
-
 
 
 	////////////////MADE BY KUNMAGUN///////////////////////

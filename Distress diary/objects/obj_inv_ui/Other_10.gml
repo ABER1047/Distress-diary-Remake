@@ -31,8 +31,10 @@ while(true)
 	tmp_ins = instance_place(x,y,obj_inv_ui);
 	if (instance_exists(tmp_ins))
 	{
-		tmp_x_to_go = (x - tmp_ins.x)/512;
-		tmp_y_to_go = (y - tmp_ins.y)/512;
+		var tmp_cal_xx = (x - tmp_ins.x)/32;
+		var tmp_cal_yy = (y - tmp_ins.y)/32;
+		tmp_x_to_go = fix_num_inside(abs(tmp_cal_xx),0.5,256)*sign(tmp_cal_xx);
+		tmp_y_to_go = fix_num_inside(abs(tmp_cal_yy),0.5,256)*sign(tmp_cal_yy);
 		
 		x_pos += tmp_x_to_go;
 		y_pos += tmp_y_to_go;
@@ -42,6 +44,8 @@ while(true)
 	{
 		break;
 	}
+	
+	show_debug_message("preventing stacking");
 }
 
 

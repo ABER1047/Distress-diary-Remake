@@ -92,6 +92,7 @@ if (instance_exists(variable_owner))
 		}
 		
 		is_drag_droped = false;
+		show_debug_message("preventing out of window");
 		event_user(0);
 	}
 	

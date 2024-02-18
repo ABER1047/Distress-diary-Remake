@@ -89,6 +89,14 @@ global.showing_inv = -4;
 //인벤토리 ui중 가장 낮은 depth를 가진 값을 저장하는 변수
 global.min_depth = -999;
 
+//인벤토리 열때 열린 인벤토리 id값 저장하는 스택
+global.stack_for_inv_id = [ -4, -4 ];
+
+//인벤토리 빈칸 찾기용 변수
+global.inv_empty_xpos = -4;
+global.inv_empty_ypos = -4;
+global.inv_empty_rotated = -4;
+
 
 //인벤토리 아이템 옮기는 중
 global.is_moving_item_now = -4;

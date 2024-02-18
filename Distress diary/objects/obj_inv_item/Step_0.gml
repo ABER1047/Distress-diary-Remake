@@ -132,7 +132,7 @@ if (instance_exists(parents_id))
 			}
 			
 			
-			if (is_all_place_empty) //자리 비어있음
+			if (is_all_place_empty && (new_x_pos != x_pos || new_y_pos != y_pos)) //자리 비어있음
 			{
 				if (origin_stack_num > 1 && keyboard_check(vk_shift))
 				{
@@ -167,7 +167,14 @@ if (instance_exists(parents_id))
 			//아이템의 옮기려는 위치가 기존 위치랑 똑같은지 체크 (rorated도 똑같은지)
 			if (tmp_nearest_inv_ui == parents_id && new_x_pos == x_pos && new_y_pos == y_pos && moving_item_rotation == origin_item_rorated)
 			{
-				is_moveable_pos = -4;
+				if (keyboard_check(vk_shift))
+				{
+					is_moveable_pos = 5;//Shift 키를 누르고 있으면, 아이템 다른 인벤토리 창으로 자동 이동
+				}
+				else //안누르면 그냥 이동 안하는 걸로
+				{
+					is_moveable_pos = -4;
+				}
 			}
 		}
 	}
@@ -236,6 +243,23 @@ if (instance_exists(parents_id))
 					//새로운 자리에 아이템 정보 배열에 저장
 					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,tmp_half,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_rotation);
 				}
+				else if (is_moveable_pos == 5) //아이템 다른 인벤으로 자동 이동
+				{
+					//빈 자리 찾기 알고리즘 실행
+					tmp_nearest_inv_ui = global.showing_inv;
+					nearsest_inv_variable_owner_ins = tmp_nearest_inv_ui.variable_owner; //아이템이 옮겨질 자리
+					var has_empty_pos = find_empty_pos(origin_spr,origin_img,origin_item_width,origin_item_height,origin_stack_num,origin_max_stack_num,origin_name,nearsest_inv_variable_owner_ins);
+					if (has_empty_pos == true)
+					{
+						//새로운 자리에 아이템 정보 배열에 저장
+						set_inv_variable(nearsest_inv_variable_owner_ins,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,global.inv_empty_rotated);
+					}
+					else if (has_empty_pos == false)
+					{
+						//자리가 없으면 삭제한 아이템 복구
+						set_inv_variable(variable_owner_ins,tmp_kk,tmp_k,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated);
+					}
+				}
 			}
 				
 		
@@ -246,7 +270,7 @@ if (instance_exists(parents_id))
 			{
 				send_InventoryData(variable_owner_ins.obj_id,variable_owner_ins.object_index);
 				parents_id.reload_inv = 1; //인벤토리 ui정보 리로드
-				if (variable_owner_ins != nearsest_inv_variable_owner_ins)
+				if (is_moving_item_outside == 0 && variable_owner_ins != nearsest_inv_variable_owner_ins)
 				{
 					send_InventoryData(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index);
 					tmp_nearest_inv_ui.reload_inv = 1; //인벤토리 ui정보 리로드

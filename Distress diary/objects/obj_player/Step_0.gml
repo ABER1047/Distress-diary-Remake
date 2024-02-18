@@ -13,6 +13,10 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	
 	
+	//내 플레이어 각도 설정
+	my_n_dir = global.n_dir;
+	
+	
 	//카메라 위치 설정
 	if (global.camera_target != -4)
 	{
