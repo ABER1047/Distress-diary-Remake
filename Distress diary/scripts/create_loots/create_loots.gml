@@ -14,6 +14,8 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	var tmp_width = argument3;
 	var tmp_height = argument4;
 	
+	if (argument2 != -4) //-4인경우 바닥에 떨군 아이템 보관용 박스 생성
+	{
 	var tmp_ins = instance_create_depth(argument0,argument1,depth,obj_loots);
 	tmp_ins.image_index = argument2;
 	tmp_ins.inv_width = tmp_width;
@@ -21,21 +23,30 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	tmp_ins.obj_id = argument6;
 	tmp_ins.loots_name = argument5;
 	
-	with(tmp_ins)
-	{
-		if (id == tmp_ins)
+		with(tmp_ins)
 		{
-			for(var i = 0; i < tmp_height; i++)
+			if (id == tmp_ins)
 			{
-				for(var ii = 0; ii < tmp_width; ii++)
+				for(var i = 0; i < tmp_height; i++)
 				{
-					//inv_info_spr_ind가
-					//-4일때 = 비어있음
-					//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
-					reset_inv_variable(ii,i);
+					for(var ii = 0; ii < tmp_width; ii++)
+					{
+						//inv_info_spr_ind가
+						//-4일때 = 비어있음
+						//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
+						reset_inv_variable(ii,i);
+					}
 				}
 			}
 		}
+	}
+	else
+	{
+		var tmp_ins = instance_create_depth(argument0,argument1,depth,obj_dropped_item);
+		tmp_ins.inv_width = tmp_width;
+		tmp_ins.inv_height = tmp_height;
+		tmp_ins.obj_id = argument6;
+		tmp_ins.loots_name = argument5;
 	}
 	
 

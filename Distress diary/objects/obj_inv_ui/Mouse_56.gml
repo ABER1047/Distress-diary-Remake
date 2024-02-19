@@ -16,5 +16,5 @@ relative_x_pos = -4;
 if (is_dragging_window == true)
 {
 	is_dragging_window = false;
-	is_drag_droped = true;
+	is_drag_dropped = true;
 }

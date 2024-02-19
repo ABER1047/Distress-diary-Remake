@@ -8,14 +8,14 @@ function z_axis_gravity()
 
 	if (z < 0)
 	{
-		if zspeed > 0
+		if (zspeed > 0)
 		{
 			zspeed = 0;
 		}
 		zgravity = 0;
 		z = 0;
 	}
-	else
+	else if (z > 0)
 	{
 		zgravity = 0.07;
 	}

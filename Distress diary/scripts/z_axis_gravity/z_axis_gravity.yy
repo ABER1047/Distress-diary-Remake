@@ -5,7 +5,7 @@
   "isCompatibility": false,
   "isDnD": false,
   "parent": {
-    "name": "Numeral functions",
-    "path": "folders/스크립트/Numeral functions.yy",
+    "name": "Physics",
+    "path": "folders/스크립트/Physics.yy",
   },
 }

@@ -5,6 +5,11 @@
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
 if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
+	//pushable_objects끼리 밀리는 효과
+	pushable_objects_physics();
+	
+	
+	
 	//hp정보 보내기 (멀티플레이)
 	if (hp != b_hp)
 	{
@@ -215,6 +220,15 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			is_lootable = string(tmp_ins.loots_name);
 		}
+		else
+		{
+			//버려진 아이템 루팅하기 (= 아이템 버렸을 때 생성되는 특수 상자)
+			tmp_ins = instance_nearest_notme(x,y,obj_dropped_item);
+			if (instance_exists(tmp_ins) && tmp_ins.is_opened == -4 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+			{
+				is_lootable = "바닥에 떨어진 아이템";
+			}
+		}
 	}
 
 	
@@ -228,7 +242,6 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
 			tmp_ins.is_opened = n_looting_inv_id;
-			show_message_log("루팅 중... / "+string(object_get_name(tmp_ins.object_index))+" / "+string(tmp_ins.obj_id));
 		}
 	}
 }

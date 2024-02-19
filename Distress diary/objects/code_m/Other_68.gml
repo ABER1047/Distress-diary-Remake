@@ -199,7 +199,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				//디버그 메세지로 받아온 값 출력
-				show_debug_message(tmp_val);
+				show_debug_message("INS_VAR_DATA ["+string(tmp_name)+" : "+string(tmp_val)+"]");
 				
 				
 				
@@ -409,7 +409,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 								inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
 								tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 							}
-							tmp_str = string(tmp_str)+"\n"
+							tmp_str = string(tmp_str)+"\n";
 						}
 					
 						//모든 인벤토리 UI들 리로드
@@ -475,7 +475,11 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
 				
 				//상자 생성
-				create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_inv_name,tmp_obj_id,1);
+				var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_inv_name,tmp_obj_id,1);
+				//네트워크상으로 위치 전송하기 위한 용도
+				tmp_ins.b_vspeed = 0;
+				tmp_ins.b_hspeed = 0;
+				tmp_ins.b_zspeed = 0;
 			}
 		break;
 	}

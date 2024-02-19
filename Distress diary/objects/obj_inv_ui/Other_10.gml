@@ -38,7 +38,7 @@ while(true)
 		
 		x_pos += tmp_x_to_go;
 		y_pos += tmp_y_to_go;
-		is_drag_droped = true;
+		is_drag_dropped = true;
 	}
 	else
 	{

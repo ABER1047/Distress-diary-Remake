@@ -117,6 +117,7 @@ if (instance_exists(parents_id))
 			//만약 이동 중인 아이템이 인벤토리 내의 칸 안에 있는 경우
 			if (is_inside_rectangle(tmp_moving_item_x_pos,tmp_moving_item_y_pos,-1,-1,tmp_inv_width,tmp_inv_height))
 			{
+				//아이템 뒤에 배경 그리기 (그린 = 겹치기 가능, 레드 = 불가능, 화이트 = 옮기기 가능)
 				var tmp_x = nearest_inv_startx+(moving_item_x_pos*slot_size);
 				var tmp_y = nearest_inv_starty+(moving_item_y_pos*slot_size);
 				draw_set_alpha(tmp_nearest_inv_ui.image_alpha*0.15*(1+mouse_on));

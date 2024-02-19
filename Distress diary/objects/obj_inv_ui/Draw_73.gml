@@ -67,7 +67,7 @@ if (instance_exists(variable_owner))
 			y_pos = tmp_target_yy;
 		}
 	}
-	else if (is_drag_droped) //창 드래그 후 드롭한 순간에만 위치 값 적용시켜주기 (최적화 때문에)
+	else if (is_drag_dropped) //창 드래그 후 드롭한 순간에만 위치 값 적용시켜주기 (최적화 때문에)
 	{
 		//인벤토리 창이 화면 밖을 벗어나지 못하도록 설정
 		var tmp_cal_val1 = xx_w-(inv_width*slot_size)-outline_weight;
@@ -91,7 +91,7 @@ if (instance_exists(variable_owner))
 			y_pos = tmp_cal_val3;
 		}
 		
-		is_drag_droped = false;
+		is_drag_dropped = false;
 		show_debug_message("preventing out of window");
 		event_user(0);
 	}

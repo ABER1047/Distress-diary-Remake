@@ -32,6 +32,8 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 			}
 		}
 		
+		
+		show_message_log("루팅 중... / "+string(object_get_name(tmp_owner.object_index))+" / "+string(tmp_owner.obj_id)+" ["+string(tmp_owner.inv_width)+", "+string(tmp_owner.inv_height)+"]");
 		return tmp_ins;
 	}
 	else

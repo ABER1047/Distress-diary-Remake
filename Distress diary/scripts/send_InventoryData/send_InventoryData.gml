@@ -5,7 +5,7 @@
 ///@param object_index
 function send_InventoryData(argument0,argument1)
 {
-	var tmp_variable_owner = -4;
+	var tmp_variable_owner = argument0;
 	with(argument1)
 	{
 		if (obj_id == argument0)

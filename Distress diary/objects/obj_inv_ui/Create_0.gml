@@ -17,7 +17,7 @@
 relative_x_pos = -4;
 relative_y_pos = -4;
 is_dragging_window = false;
-is_drag_droped = false;
+is_drag_dropped = false;
 
 
 //인벤토리 첫번째 칸 시작 위치
