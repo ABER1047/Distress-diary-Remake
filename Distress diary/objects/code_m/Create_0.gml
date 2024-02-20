@@ -45,7 +45,9 @@ enum DATA
 	MY_ROOM_POS, //각 플레이어의 위치 정보 받아오기 용
 	INV_DATA, //인벤토리 데이터 전송용
 	OBJECTS_DATA, //오브젝트 생성/삭제용
-	CHEST_DATA //상자 생성용 (삭제는 OBJECTS_DATA로 제어)
+	CHEST_DATA, //상자 생성용 (삭제는 OBJECTS_DATA로 제어)
+	CHECK_PLAYING_NOW, //특정 플레이어 튕겼나 아닌가 체크용
+	REPLY_STILL_PLAYING //아직 플레이 중 이라고 다시 한 번 보내주는 용
 }
 global.DATA_IMG_DATA = DATA.IMG_DATA;
 global.DATA_GL_VAR_DATA = DATA.GL_VAR_DATA;
@@ -86,3 +88,10 @@ list_types = ds_list_create();
 
 cli_num = 0;
 chat_buffer = buffer_create(2, buffer_grow, 1);
+
+
+//자동으로 튕긴 사람 혹은 강제종료 한사람 감지후 내보내기
+alarm[0] = global.tickrate*20;
+//감지용 위치 저장 변수
+global.saved_players_xx = [ -4 ];
+global.saved_players_yy = [ -4 ];

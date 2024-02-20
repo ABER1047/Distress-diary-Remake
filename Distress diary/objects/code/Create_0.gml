@@ -26,8 +26,10 @@ global.object_id_ind = 1; //0번은 플레이어 나 자신
 global.object_id_player_only = 0;
 
 //틱레이트
-global.tickrate = 5;
+global.tickrate = 6;
 
+//최대 핑 허용치 (허용치를 벗어난 핑은 그냥 내보내버림)
+global.maximum_ping_acception = 256;
 
 
 

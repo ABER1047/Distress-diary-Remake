@@ -39,32 +39,11 @@ if (type == network_type_connect)
 	
 	network_send_packet(socket, info_buffer, buffer_get_size(info_buffer));
 
-	ds_list_add(clients, socket);
+	ds_list_add(clients, global.object_id_player_only);
 }
 else if (type == network_type_disconnect) // 누군가 나갔을 때 발생하는 이벤트
 {
-	var socket = async_load[? "socket"];//"id"쓰지 말것 무조건 0이 나온다.
-
-	buffer_seek(dis_buffer, buffer_seek_start, 0);
-	buffer_write(dis_buffer, buffer_u8, DATA.REMOVE_CLI);
-	buffer_write(dis_buffer, buffer_u8, socket);
-	show_message_log("tmp_soc : "+string(socket));
-	var tmp_nickname = "";
-	with(obj_player) 
-	{
-		if (soc == socket) 
-		{
-			//나간 플레이어가 해당 플레이어인 경우
-			tmp_nickname = nickname;
-			instance_destroy();
-		}
-	}
-	show_message_log("'"+string(tmp_nickname)+"'가 나갔습니다.");
-	
-	var pos = ds_list_find_index(clients, socket);
-	ds_list_delete(clients, pos);
-	
-	send_all(dis_buffer);
+	//게임종료 이벤트에 다 들어있음
 }
 
 else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생하는 이벤트
@@ -159,15 +138,62 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		break;
 
 		case DATA.REMOVE_CLI:
-			var tmp_soc = buffer_read(buffer, buffer_u8);
-			show_message_log("tmp_soc : "+string(tmp_soc));
-			with(obj_player) 
+			var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
+			show_message_log("tmp_obj_id_player_only : "+string(tmp_obj_id_player_only));
+			
+			//만약 대답이 늦어서 튕겼다고 판단되어 내보내진 경우
+			if (global.my_player_id == tmp_obj_id_player_only)
 			{
-				if (soc == tmp_soc) 
+				//핑차이가 너무 심하거나, 연결 상태가 좋지 못한 경우라서 그냥 내보내버림
+				network_destroy(server);
+				instance_destroy(obj_player);
+				instance_create_depth(room_width*0.5,room_height*0.5,depth,obj_player);
+				
+				
+				show_message_log("연결 상태가 좋지 않아 연결이 끊어졌습니다.");
+			}
+			else //진짜로 튕겨서 대답이 안 간 경우 그냥 내보내버리기
+			{
+				with(obj_player) 
 				{
-					//나간 플레이어가 해당 플레이어인 경우
-					show_message_log("'"+string(nickname)+"'가 나갔습니다.");
-					instance_destroy();
+					if (obj_id_player_only == tmp_obj_id_player_only) 
+					{
+						//나간 플레이어가 해당 플레이어인 경우
+						show_message_log("'"+string(nickname)+"'가 나갔습니다.");
+						instance_destroy();
+					}
+				}
+			}
+		break;
+		
+		case DATA.CHECK_PLAYING_NOW:
+			//show_message_log("- 서버측에서 튕겼나 아닌가 체크하는거에 대답");
+			//서버측에서 튕겼나 아닌가 체크하는거에 대답하는 코드
+			if (!global.is_server)
+			{
+				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
+				if (global.my_player_id == tmp_obj_id_player_only)
+				{
+					buffer_seek(dis_buffer, buffer_seek_start, 0);
+					buffer_write(dis_buffer, buffer_u8, DATA.REPLY_STILL_PLAYING);
+					buffer_write(dis_buffer, buffer_u8, global.my_player_id);
+					send_all(dis_buffer);
+				}
+			}
+		break;
+		
+		case DATA.REPLY_STILL_PLAYING:
+			//서버 측 에서만 튕겼다고 판단한 플레이어가 대답이 온거를 받음
+			if (global.is_server)
+			{
+				var tmp_obj_id_player_only = buffer_read(buffer, buffer_u8);
+				with(obj_player)
+				{
+					if (obj_id_player_only == tmp_obj_id_player_only)
+					{
+						//대답이 왔으니 -5로 설정된 값이 기존 x좌표 값으로 다시 바뀜
+						global.saved_players_xx[obj_id_player_only] = x;
+					}
 				}
 			}
 		break;
