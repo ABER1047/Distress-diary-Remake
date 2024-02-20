@@ -69,9 +69,12 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//받아온 서버의 소켓
 				var tmp_soc = buffer_read(buffer, buffer_u8);
 				network_set_timeout(tmp_soc, 3000, 3000);
-				obj_player.soc = tmp_soc;
-				obj_player.obj_id = tmp_object_id_ind;
-				obj_player.obj_id_player_only = tmp_object_id_ind_player_only;
+				if (instance_exists(obj_player))
+				{
+					obj_player.soc = tmp_soc;
+					obj_player.obj_id = tmp_object_id_ind;
+					obj_player.obj_id_player_only = tmp_object_id_ind_player_only;
+				}
 			
 				//code_m 오브젝트에도 obj_id 저장해둠
 				global.my_player_id = tmp_object_id_ind_player_only;
@@ -147,8 +150,11 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//핑차이가 너무 심하거나, 연결 상태가 좋지 못한 경우라서 그냥 내보내버림
 				network_destroy(server);
 				instance_destroy(obj_player);
-				instance_create_depth(room_width*0.5,room_height*0.5,depth,obj_player);
-				
+				my_instance_id = instance_create_depth(room_width*0.5,room_height*0.5,depth,obj_player);
+				my_instance_id.obj_id = 0;
+				my_instance_id.soc = 0;
+				my_instance_id.obj_id_player_only = 0;
+				global.my_player_id = 0;
 				
 				show_message_log("연결 상태가 좋지 않아 연결이 끊어졌습니다.");
 			}
@@ -167,17 +173,15 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		break;
 		
 		case DATA.CHECK_PLAYING_NOW:
-			//show_message_log("- 서버측에서 튕겼나 아닌가 체크하는거에 대답");
+			show_message_log("- 서버측에서 연결 상태 체크하는 중...");
 			//서버측에서 튕겼나 아닌가 체크하는거에 대답하는 코드
 			if (!global.is_server)
 			{
-				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
+				var tmp_obj_id_player_only = buffer_read(buffer, buffer_string);
 				if (global.my_player_id == tmp_obj_id_player_only)
 				{
-					buffer_seek(dis_buffer, buffer_seek_start, 0);
-					buffer_write(dis_buffer, buffer_u8, DATA.REPLY_STILL_PLAYING);
-					buffer_write(dis_buffer, buffer_u8, global.my_player_id);
-					send_all(dis_buffer);
+					//서버에 플레이어가 여러명일때 동시 다발적으로 보내면 인식을 못해서 사이에 텀을 주기 위해
+					alarm[2] = global.my_player_id*5;
 				}
 			}
 		break;
@@ -187,12 +191,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			if (global.is_server)
 			{
 				var tmp_obj_id_player_only = buffer_read(buffer, buffer_u8);
+				show_message_log("- 접속한 플레이어 연결 상태 재확인 중... ["+string(tmp_obj_id_player_only)+"]");
 				with(obj_player)
 				{
 					if (obj_id_player_only == tmp_obj_id_player_only)
 					{
 						//대답이 왔으니 -5로 설정된 값이 기존 x좌표 값으로 다시 바뀜
-						global.saved_players_xx[obj_id_player_only] = x;
+						global.saved_players_xx[obj_id_player_only-1] = x;
 					}
 				}
 			}

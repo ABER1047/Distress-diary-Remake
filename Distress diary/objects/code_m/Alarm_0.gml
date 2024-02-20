@@ -4,7 +4,7 @@
 if (global.is_server)
 {
 	//각 플레이어 위치 저장할 변수
-	var all_player_num = instance_number(obj_player);
+	var all_player_num = global.object_id_player_only;
 	if (array_length(global.saved_players_xx) < all_player_num)
 	{
 		array_resize(global.saved_players_xx,all_player_num);
@@ -12,18 +12,18 @@ if (global.is_server)
 	}
 
 
-	
-	var is_there_any_player_need_to_check = global.tickrate*60; //다시 한 번 체크하는 시간이 저장됨
+	var is_there_any_player_need_to_check = 60+global.tickrate*60; //다시 한 번 체크하는 시간이 저장됨
 	var tmp_buffer = dis_buffer;
 	with(obj_player)
 	{
+		var tmp_target_obj_id = obj_id_player_only-1;
 		if (obj_id_player_only != 0) //서버 자신은 제외
 		{
 			//이전에 저장된 위치랑 지금 위치랑 계속 똑같은 경우
-			if (global.saved_players_xx[obj_id_player_only] == -5 || (x == global.saved_players_xx[obj_id_player_only] && y == global.saved_players_yy[obj_id_player_only]))
+			if (global.saved_players_xx[tmp_target_obj_id] == -5 || (x == global.saved_players_xx[tmp_target_obj_id] && y == global.saved_players_yy[tmp_target_obj_id]))
 			{
 				//튕겼다고 판단한 플레이어 내보내기
-				if (global.saved_players_xx[obj_id_player_only] == -5)
+				if (global.saved_players_xx[tmp_target_obj_id] == -5)
 				{
 					//show_message_log("- 비정상적으로 연결이 끊긴 플레이어 내보내는 중... ["+string(obj_id_player_only)+"]");
 					
@@ -57,19 +57,19 @@ if (global.is_server)
 					send_all(tmp_buffer);
 			
 					//-5인 경우 대답이 없으면 내보내버림 (대답이 돌아올 시 -5값이 x좌표값으로 다시 바뀜)
-					global.saved_players_xx[obj_id_player_only] = -5;
+					global.saved_players_xx[tmp_target_obj_id] = -5;
 				}
 			}
 			else
 			{
-				global.saved_players_xx[obj_id_player_only] = x;
-				global.saved_players_yy[obj_id_player_only] = y;
+				global.saved_players_xx[tmp_target_obj_id] = x;
+				global.saved_players_yy[tmp_target_obj_id] = y;
 			}
 		}
 	}
 
 
-	show_message_log("- 비정상적으로 연결이 끊긴 플레이어 체크 중... ("+string(is_there_any_player_need_to_check)+"초 후 재시도)");
+	show_message_log("- 비정상적으로 연결이 끊긴 플레이어 체크 중... ("+string(floor(is_there_any_player_need_to_check/60))+"초 후 재시도)");
 
 	//튕겼다고 판단된 플레이어가 있을 경우 빠르게 진짜로 튕겼나 다시 한 번 체크
 	alarm[0] = is_there_any_player_need_to_check;

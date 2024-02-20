@@ -15,19 +15,16 @@ function draw_interaction_key(argument0,argument1,argument2)
 		{
 			if (id == tmp_ins)
 			{
-				interaction_key_for_draw = tmp_interaction_key;
 				show_interaction_key = 2;
 				interaction_name_for_draw = tmp_interaction_name;
 		
 				if (tmp_interaction_key == "Tab")
 				{
-					interaction_key_real_ind_for_draw = 0;
-					interaction_key_for_draw = vk_tab;
+					interaction_key_real_ind_for_draw = 3;
 				}
 				else if (tmp_interaction_key == "Shift")
 				{
-					interaction_key_real_ind_for_draw = 0;
-					interaction_key_for_draw = vk_shift;
+					interaction_key_real_ind_for_draw = 4;
 				}
 				else
 				{
@@ -51,10 +48,6 @@ function draw_interaction_key(argument0,argument1,argument2)
 					{
 						interaction_key_real_ind_for_draw = 6;
 					}
-					
-					
-					
-					interaction_key_for_draw = ord(tmp_interaction_key);
 				}
 			}
 		}

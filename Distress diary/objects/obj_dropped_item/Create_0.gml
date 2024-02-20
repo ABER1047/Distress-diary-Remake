@@ -34,7 +34,6 @@ resize_inv = false;
 
 
 //인터렉션 키 드로우 용
-interaction_key_for_draw = -4;
 interaction_name_for_draw = "";
 interaction_key_real_ind_for_draw = 0;
 show_interaction_key = 0; // 0일때 드로우 안함

@@ -208,7 +208,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//다른 죽은 플레이어 루팅하기
 	var is_lootable = "";
 	var tmp_ins = instance_nearest_notme(x,y,obj_player);
-	if (instance_exists(tmp_ins) && tmp_ins.is_opened == -4 && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
+	if (instance_exists(tmp_ins) && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
 	{
 		is_lootable = string(tmp_ins.nickname)+"'s inventory";
 	}
@@ -216,7 +216,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	{
 		//상자 루팅하기
 		tmp_ins = instance_nearest_notme(x,y,obj_loots);
-		if (instance_exists(tmp_ins) && tmp_ins.is_opened == -4 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+		if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
 		{
 			is_lootable = string(tmp_ins.loots_name);
 		}
@@ -224,7 +224,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			//버려진 아이템 루팅하기 (= 아이템 버렸을 때 생성되는 특수 상자)
 			tmp_ins = instance_nearest_notme(x,y,obj_dropped_item);
-			if (instance_exists(tmp_ins) && tmp_ins.is_opened == -4 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
 			{
 				is_lootable = "바닥에 떨어진 아이템";
 			}
@@ -236,9 +236,21 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//아이템 루팅 중...
 	if (is_lootable != "")
 	{
-		var tmp_key = "F";
-		draw_interaction_key(tmp_ins,tmp_key,"루팅 하기");
-		if (!instance_exists(n_looting_inv_id) && keyboard_check_pressed(ord(tmp_key)))
+		var tmp_key;
+		if (tmp_ins.is_opened != -4)
+		{
+			tmp_key = -4;
+			draw_interaction_key(tmp_ins,tmp_key,"루팅 중");
+		}
+		else
+		{
+			tmp_key = "F";
+			draw_interaction_key(tmp_ins,tmp_key,"루팅 하기");
+		}
+		
+		
+		
+		if (tmp_key != -4 && keyboard_check_pressed(ord(tmp_key)) && !instance_exists(n_looting_inv_id))
 		{
 			n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
 			tmp_ins.is_opened = n_looting_inv_id;

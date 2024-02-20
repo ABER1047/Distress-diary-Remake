@@ -58,7 +58,7 @@ if (resize_inv)
 	}
 	else
 	{
-		inv_width = max_width;
+		inv_width = (max_width < 3) ? 3 : max_width;
 		inv_height = max_height;
 		show_message_log("- 자동 칸 조절 ["+string(inv_width)+", "+string(inv_height)+"]");
 	}
