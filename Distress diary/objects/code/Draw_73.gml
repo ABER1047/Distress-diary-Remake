@@ -225,15 +225,15 @@ if (global.dev_mode == 1)
 	if (global.is_server && keyboard_check_pressed(vk_f1))
 	{
 		clean_message_log();
-		var tmp_width = irandom_range(10,16);
-		var tmp_height = irandom_range(10,16);
+		var tmp_width = 9;
+		var tmp_height = 9;
 		var tmp_start_xx = irandom_range(0,tmp_width-1);
 		var tmp_start_yy = irandom_range(0,tmp_height-1);
-		var tmp_max_root = irandom_range(2,max(tmp_width,tmp_height)*4);
+		var tmp_max_root = irandom_range(16,max(tmp_width,tmp_height)*choose(4,5,6));
 		var tmp_room_max_width = irandom_range(3,24);
 		var tmp_room_max_height = irandom_range(3,24);
 		var tmp_additional_room_cre_percentage = irandom_range(0,100);
-		var tmp_total_room_num = irandom_range(5,floor(tmp_room_max_width*tmp_room_max_height/4));
+		var tmp_total_room_num = irandom_range(25,floor(tmp_room_max_width*tmp_room_max_height/4));
 		var tmp_min_room_width = irandom_range(3,5);
 		var tmp_min_room_height = irandom_range(3,5);
 		
