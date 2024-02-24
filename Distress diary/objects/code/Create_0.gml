@@ -68,6 +68,9 @@ global.max_root_length = 0;
 global.max_room_num = 0;
 global.n_room_num = 0;
 global.map_creation_falied = 0;
+
+
+//서피스 생성
 outter_room_surf = surface_create(4000,3000);
 
 

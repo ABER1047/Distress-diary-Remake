@@ -17,18 +17,34 @@ if (reload_inv == 1)
 	}
 
 
+	//무게를 다시 재기 위해 초기화
+	inv_weight = 0;
 	for(var i = 0; i < tmp_owner.inv_height; i++)
 	{
 		for(var ii = 0; ii < tmp_owner.inv_width; ii++)
 		{
 			if (sprite_exists(tmp_owner.inv_info_spr_ind[i][ii]))
 			{
-				create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],id,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii]);
+				var tmp_weight = tmp_owner.inv_info_weight[i][ii];
+				inv_weight += (tmp_weight > 0) ? tmp_weight : 0;
+				create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],id,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_weight);
 			}
 		}
 	}
 	
 	reload_inv = -4;
+	
+	//인벤토리 무게 띄워주기
+	show_message_log("- 인벤토리 내 아이템 무게 총합 : "+string(inv_weight)+"kg");
+	
+	
+	if (global.showing_inv == id)
+	{
+		//내 무게 설정
+		var tmp_my_weight = inv_weight;
+		var my_p = global.my_player_ins_id[global.my_player_id];
+		global.my_weight = tmp_my_weight;
+	}
 }
 
 

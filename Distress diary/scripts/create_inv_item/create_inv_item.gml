@@ -12,7 +12,7 @@
 ///@param width
 ///@param height
 ///@param rotated
-function create_inv_item(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
+function create_inv_item(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11)
 {
 	var tmp_parents_id = argument5;
 	
@@ -28,6 +28,7 @@ function create_inv_item(argument0,argument1,argument2,argument3,argument4,argum
 	tmp_ins.item_width = argument8;
 	tmp_ins.item_height = argument9;
 	tmp_ins.item_rotated = argument10;
+	tmp_ins.item_weight = argument11;
 
 	return tmp_ins;
 }

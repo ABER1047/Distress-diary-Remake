@@ -36,8 +36,9 @@ else if (global.n_camera_zoom > 1.15)
 
 global.view_angle_ += (0 - global.view_angle_)*0.1;
 
-
-camera_set_view_size(view_camera[0],floor(v_x)*global.n_camera_zoom,floor(v_y)*global.n_camera_zoom);
+var w_width = window_get_width()/1280;
+var w_height = window_get_height()/720;
+camera_set_view_size(view_camera[0],floor(v_x)*global.n_camera_zoom*w_width,floor(v_y)*global.n_camera_zoom*w_height);
 
 
 if (global.t_shake_x <= 0.01)

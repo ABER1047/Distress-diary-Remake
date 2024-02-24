@@ -13,10 +13,11 @@ my_backpack = 0;
 b_my_backpack = -4;
 
 //이동 관련 변수
-global.max_movement_hspeed = 12;
-global.max_movement_vspeed = 12;
+global.max_movement_speed = 12;
 global.movement_hspeed = 0;
 global.movement_vspeed = 0;
+
+global.n_running = false;
 
 //이전에 있던 내 룸 포지션
 my_room_pos_xx = -4;
@@ -71,13 +72,13 @@ for(var i = 0; i < inv_height; i++)
 	}
 }
 
-set_inv_variable(id,0,0,spr_stackables,0,"Coin",1,99,1,1,0);
-set_inv_variable(id,1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5,1,1,0);
-set_inv_variable(id,2,0,spr_drink,0,"Coke",-4,-4,1,1,0);
+set_inv_variable(id,0,0,spr_stackables,0,"Coin",1,99,1,1,0,0.002);
+set_inv_variable(id,1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5,1,1,0,0.001);
+set_inv_variable(id,2,0,spr_drink,0,"Coke",-4,-4,1,1,0,0.58);
 
-set_inv_variable(id,0,1,spr_backpack,0,"Backpack",-4,-4,2,3,0);
-set_inv_variable(id,2,1,spr_comp,8,"GPU",-4,-4,2,1,1);
-set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,2,0);
+set_inv_variable(id,0,1,spr_backpack,0,"Backpack",-4,-4,2,3,0,3);
+set_inv_variable(id,2,1,spr_comp,8,"GPU",-4,-4,2,1,1,1);
+set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,2,0,6);
 
 
 
@@ -85,7 +86,17 @@ set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,2,0);
 
 //체력
 hp = 100;
+max_hp = 100;
 b_hp = -4;
+
+//스테미나
+stamina = 100;
+max_stamina = 100;
+stamina_cooltime = 0;
+
+//내 무게
+global.my_weight = 0;
+speed_by_weight = 0;
 
 
 //인터렉션 키 드로우 용

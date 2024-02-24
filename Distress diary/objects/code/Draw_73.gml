@@ -82,12 +82,12 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_text_k_scale(xx+8,yy+32,"맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]";
 	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
-	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
 	global.show_map_data = keyboard_check(ord("M"));
@@ -127,6 +127,26 @@ if (global.dev_mode == 1)
 			instance_destroy(global.showing_inv);
 		}
 		show_message_log("- 인벤토리 열기/닫기 ["+string(global.showing_inv)+"]");
+	}
+	
+	
+	//전체화면
+	if (keyboard_check_pressed(vk_escape))
+	{
+		if (window_get_fullscreen())
+		{
+			window_set_size(1280,720);
+		}
+		else
+		{
+			window_set_size(1920,1080);
+		}
+		
+		//서피스 재생성
+		alarm[0] = 15;
+		
+		
+		window_set_fullscreen(!window_get_fullscreen());
 	}
 	
 	
@@ -267,12 +287,16 @@ if (global.dev_mode == 1)
 			obj_player.x = room_width*0.5;
 			obj_player.y = room_height*0.5;
 			send_NewMapData();
+			
+			//카메라 줌 설정
+			global.n_camera_zoom = 0.6;
 		}
 		else
 		{
 			show_message_log("- 맵 생성 실패!");
 			reset_map_arraies();
 			failed_map_creation();
+			global.n_camera_zoom = 0.7;
 		}
 		
 		

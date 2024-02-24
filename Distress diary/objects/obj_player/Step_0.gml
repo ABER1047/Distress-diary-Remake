@@ -29,26 +29,36 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	
 	//이동 관련
+	var tmp_max_vspeed = global.max_movement_speed;
+	var tmp_max_hspeed = global.max_movement_speed;
+	if (global.movement_vspeed != 0 && global.movement_hspeed != 0)
+	{
+		tmp_max_vspeed = tmp_max_vspeed/sqrt(2);//= sin(pi/4);
+		
+		//수직 이동은 속도가 좀 더 느리게 이동함
+		tmp_max_hspeed = tmp_max_hspeed/sqrt(2)*0.98;//= cos(pi/4);
+	}
+	
 	if (keyboard_check(ord("W")))
 	{
 		global.n_dir = 1;
-		global.movement_vspeed += (-global.max_movement_vspeed - global.movement_vspeed)*0.1;
+		global.movement_vspeed += (-tmp_max_vspeed - global.movement_vspeed)*0.1;
 	}
 	else if (keyboard_check(ord("S")))
 	{
 		global.n_dir = 3;
-		global.movement_vspeed += (global.max_movement_vspeed - global.movement_vspeed)*0.1;
+		global.movement_vspeed += (tmp_max_vspeed - global.movement_vspeed)*0.1;
 	}
 
 	if (keyboard_check(ord("D")))
 	{
 		global.n_dir = 0;
-		global.movement_hspeed += (global.max_movement_hspeed - global.movement_hspeed)*0.1;
+		global.movement_hspeed += (tmp_max_hspeed - global.movement_hspeed)*0.1;
 	}
 	else if (keyboard_check(ord("A")))
 	{
 		global.n_dir = 2;
-		global.movement_hspeed += (-global.max_movement_hspeed - global.movement_hspeed)*0.1;
+		global.movement_hspeed += (-tmp_max_hspeed - global.movement_hspeed)*0.1;
 	}
 
 
@@ -61,6 +71,52 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	{
 		global.movement_vspeed = 0;
 	}
+	
+	
+	
+	//무게 시스템
+	//무게에 의한 이동속도
+	var tmp_weight_ratio = fix_to_zero(global.my_weight-10)/120;
+	speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
+	
+	
+	
+	//달리기
+	var stamina_decreasement = 0.6*(1+tmp_weight_ratio);
+	if (stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
+	{
+		//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
+		global.max_movement_speed = 12*speed_by_weight;
+		
+		//달리기 도중 쉬프트에서 손 때면 그만 달리기
+		global.n_running = keyboard_check(vk_shift);
+		
+		//스테미나 닳는거
+		stamina -= stamina_decreasement;
+		
+		//스테미나 회복 쿨타임 (프레임 단위)
+		stamina_cooltime = 60;
+	}
+	else
+	{
+		if (stamina_cooltime <= 0)
+		{
+			if (stamina < max_stamina)
+			{
+				stamina += 0.5*(1-tmp_weight_ratio);
+			}
+		}
+		else
+		{
+			stamina_cooltime --;
+		}
+		global.max_movement_speed = 7*speed_by_weight;
+		global.n_running = false;
+	}
+	
+
+
+	
 
 	//점프 관련
 	if (z == 0 && keyboard_check_pressed(vk_space))

@@ -2,8 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 ///@param ins_id
-///@param inv_width[ii]
-///@param inv_height[i]
+///@param x_pos[ii]
+///@param y_pos[i]
 ///@param spr_ind
 ///@param img_ind
 ///@param name
@@ -12,7 +12,8 @@
 ///@param width
 ///@param height
 ///@param rotated
-function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
+///@param weight
+function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11)
 {
 	var tmp_ins = argument0;
 	var i = argument2;
@@ -39,4 +40,5 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 	tmp_ins.inv_info_width[i][ii] = argument8; //아이템 가로 길이
 	tmp_ins.inv_info_height[i][ii] = argument9; //아이템 세로 길이
 	tmp_ins.inv_info_rotated[i][ii] = argument10; //아이템 회전 유무
+	tmp_ins.inv_info_weight[i][ii] = argument11; //아이템 무게
 }

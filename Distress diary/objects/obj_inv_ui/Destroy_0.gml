@@ -26,3 +26,4 @@ if (instance_exists(variable_owner) && variable_owner.object_index == obj_droppe
 
 
 
+
