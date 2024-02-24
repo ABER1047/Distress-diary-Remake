@@ -32,6 +32,8 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 			}
 		}
 		
+		//변수를 가지고 있는 인스턴스한테 ui창 인스턴스 아이디 값 저장
+		tmp_owner.ui_ins = tmp_ins;
 		
 		show_message_log("루팅 중... / "+string(object_get_name(tmp_owner.object_index))+" / "+string(tmp_owner.obj_id)+" ["+string(tmp_owner.inv_width)+", "+string(tmp_owner.inv_height)+"]");
 		return tmp_ins;

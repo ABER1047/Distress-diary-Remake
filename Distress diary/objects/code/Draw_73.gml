@@ -108,6 +108,20 @@ if (global.dev_mode == 1)
 	}
 	
 	
+	
+	//모든 상자에 아이템 생성
+	if (keyboard_check_pressed(ord("B")))
+	{
+		with(obj_loots)
+		{
+			if (object_index == obj_loots)
+			{
+				set_inv_variable(id,0,0,spr_comp,7,"Wire",-4,-4,2,1,0,6);
+			}
+		}
+	}
+	
+	
 	//디버그 창
 	if (keyboard_check_pressed(vk_f10))
 	{

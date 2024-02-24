@@ -314,6 +314,16 @@ if (instance_exists(parents_id))
 						tmp_nearest_dropped_item.y = tmp_my_p_yy;
 						tmp_nearest_dropped_item.z = tmp_my_p.z-32;
 						tmp_nearest_dropped_item.zspeed = -8;
+						
+						//인벤토리 ui 리로드
+						var tmp_inv_ui = tmp_nearest_dropped_item.ui_ins;
+						if (instance_exists(tmp_inv_ui))
+						{
+							tmp_inv_ui.reload_inv = 1;
+						}
+						
+						
+
 						if (global.n_dir == 0 || global.n_dir == 2)
 						{
 							tmp_nearest_dropped_item.hspeed = -sign_nonzero(tmp_my_p.image_xscale)*8;

@@ -8,6 +8,13 @@ function set_inv_size(argument0,argument1)
 	var tmp_width = argument0;
 	var tmp_height = argument1;
 	
+	if (!variable_instance_exists(id,"inv_width"))
+	{
+		inv_width = 0;
+		inv_height = 0;
+	}
+	
+	
 	if (inv_width < tmp_width || inv_height < tmp_height)
 	{
 		for(var i = inv_height; i < tmp_height; i++)
@@ -24,6 +31,9 @@ function set_inv_size(argument0,argument1)
 	
 	inv_width = tmp_width;
 	inv_height = tmp_height;
+	
+	//ui 인스턴스 id값 저장용
+	ui_ins = -4;
 	
 	return true;
 }
