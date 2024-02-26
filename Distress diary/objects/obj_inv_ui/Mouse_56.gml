@@ -18,3 +18,13 @@ if (is_dragging_window == true)
 	is_dragging_window = false;
 	is_drag_dropped = true;
 }
+
+
+
+//픽셀 깨지는거 방지용으로 창 위치 정수화
+relative_x_pos = floor(relative_x_pos);
+relative_y_pos = floor(relative_y_pos);
+x_pos = floor(x_pos);
+y_pos = floor(y_pos);
+x = floor(x);
+y = floor(y);

@@ -34,7 +34,7 @@
     {"resourceType":"GMImageLayer","resourceVersion":"1.0","name":"04304ef7-ce61-4ab1-a0fe-66834fac56c5","blendMode":0,"displayName":"default","isLocked":false,"opacity":100.0,"visible":true,},
   ],
   "nineSlice": null,
-  "origin": 4,
+  "origin": 9,
   "parent": {
     "name": "Sprite_UI",
     "path": "folders/스프라이트/Sprite_UI.yy",
@@ -82,7 +82,7 @@
     "visibleRange": null,
     "volume": 1.0,
     "xorigin": 40,
-    "yorigin": 40,
+    "yorigin": 52,
   },
   "swatchColours": null,
   "swfPrecision": 2.525,

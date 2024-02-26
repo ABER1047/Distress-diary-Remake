@@ -12,9 +12,9 @@ if (instance_exists(variable_owner))
 	var xx_w = camera_get_view_width(view_camera[0]);
 	var yy_h = camera_get_view_height(view_camera[0]);
 
-	var slot_size = 160*global.n_camera_zoom; //1칸당 픽셀 사이즈
-	var window_weight = 64*global.n_camera_zoom; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
-	var outline_weight = 3*global.n_camera_zoom; //테두리 두께
+	var slot_size = 160*global.n_camera_zoom/global.w_ratio_by_window; //1칸당 픽셀 사이즈
+	var window_weight = 64*global.n_camera_zoom/global.h_ratio_by_window; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
+	var outline_weight = 3*global.n_camera_zoom/global.w_ratio_by_window; //테두리 두께
 
 	//해당 인벤토리 변수를 가진 인스턴스한테서 width, height 받아오기
 	var inv_width = variable_owner.inv_width;

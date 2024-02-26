@@ -12,8 +12,20 @@ function create_room_specific_pos(argument0,argument1,argument2)
 	show_debug_message("map_arr_ ("+string(argument0)+","+string(argument1)+") - "+string(global.map_arr[argument1][argument0]));
 					
 	//각 방에 대한 방 넓이
-	global.map_room_width[argument1][argument0] = irandom_range(global.min_room_width,global.max_room_width);
-	global.map_room_height[argument1][argument0] = irandom_range(global.min_room_height,global.max_room_height);
+	//첫 방 사이즈는 동일한 사이즈로 생성 
+	var tmp_room_width, tmp_room_height;
+	if (argument0 == global.map_start_pos_xx && argument1 == global.map_start_pos_yy)
+	{
+		tmp_room_width = 16;
+		tmp_room_height = 16;
+	}
+	else
+	{
+		tmp_room_width = irandom_range(global.min_room_width,global.max_room_width);
+		tmp_room_height = irandom_range(global.min_room_height,global.max_room_height);
+	}
+	global.map_room_width[argument1][argument0] = tmp_room_width;
+	global.map_room_height[argument1][argument0] = tmp_room_height;
 	
 	
 	//총 룸 갯수

@@ -108,3 +108,9 @@ global.is_moving_item_now = -4;
 fps_timer = 0;
 global.average_fps_per_sec = 0;
 global.average_fps_for_draw = 0;
+
+
+
+//화면 사이즈에 따른 비율
+global.w_ratio_by_window = 1;
+global.h_ratio_by_window = 1;

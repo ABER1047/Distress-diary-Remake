@@ -17,18 +17,20 @@ if (draw_alpha > 0)
 
 
 	//인터렉션 키 드로우 용
+	var tmp_yy = y-(192+z)/global.h_ratio_by_window;
 	if (show_interaction_key > 0)
 	{
 		//인터렉션 이름 드로우
 		var txt_scale = 0.64*global.n_camera_zoom;
-		var tmp_yy = y-192;
-		draw_text_kl_scale(x-string_width(interaction_name_for_draw)*txt_scale*0.5,tmp_yy,string(interaction_name_for_draw),64,-1,image_alpha,c_white,0,-1,font_normal,txt_scale,txt_scale,0);
+		var str_width = string_width(interaction_name_for_draw)/global.w_ratio_by_window*0.5;
+		draw_text_kl_scale(x-str_width*txt_scale*0.5,tmp_yy,string(interaction_name_for_draw),64,-1,image_alpha,c_white,0,-1,font_normal,txt_scale,txt_scale,0);
 	
 		//인터렉션 키 드로우
-		draw_sprite_ext(spr_key_ui,interaction_key_real_ind_for_draw,x-string_width(interaction_name_for_draw)*txt_scale,tmp_yy+64*global.n_camera_zoom,txt_scale*2.5,txt_scale*2.5,0,c_white,image_alpha);
+		draw_sprite_ext(spr_key_ui,interaction_key_real_ind_for_draw,x-str_width*txt_scale,tmp_yy+64*global.n_camera_zoom,txt_scale*2.5/global.w_ratio_by_window,txt_scale*2.5/global.h_ratio_by_window,0,c_white,image_alpha);
 	}
 	else
 	{
-		draw_text_k_scale(x,y-192,string(nickname)+"\n\n\n\n\nobj_id : "+string(obj_id)+"\nobj_id_player_only : "+string(obj_id_player_only),64,-1,image_alpha,c_white,0,0,font_normal,0.4,0.4,0);
+		draw_text_k_scale(x,tmp_yy,string(nickname),64,-1,image_alpha,c_white,0,0,font_normal,0.4,0.4,0);
+		draw_text_k_scale(x,y+32/global.h_ratio_by_window,"obj_id : "+string(obj_id)+"\nobj_id_player_only : "+string(obj_id_player_only),64,-1,image_alpha,c_white,0,0,font_normal,0.4,0.4,0);
 	}
 }

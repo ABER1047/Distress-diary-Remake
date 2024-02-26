@@ -9,7 +9,7 @@ if (instance_exists(parents_id))
 	var xx_w = camera_get_view_width(view_camera[0]);
 	var yy_h = camera_get_view_height(view_camera[0]);
 
-	var slot_size = 160*global.n_camera_zoom; //1칸당 픽셀 사이즈
+	var slot_size = 160*global.n_camera_zoom/global.w_ratio_by_window; //1칸당 픽셀 사이즈
 	
 	//아이템 회전 적용
 	var tmp_item_width = (item_rotated == 0) ? item_width : item_height;
