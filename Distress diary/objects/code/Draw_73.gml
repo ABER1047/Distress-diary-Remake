@@ -85,7 +85,7 @@ if (global.dev_mode == 1)
 	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
-	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]";
+	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]";
 	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
 	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
@@ -103,6 +103,58 @@ if (global.dev_mode == 1)
 			{
 				nickname = global.nickname;
 				send_InstanceVariableData(id,"nickname");
+			}
+		}
+	}
+	
+	
+	//접속인원
+	if (keyboard_check(20))
+	{
+		var tmp_yy = yy+yy_h*0.3;
+		var tmp_width = 320*global.n_camera_zoom/global.w_ratio_by_window;
+		var outline_weight = 3*global.n_camera_zoom/global.w_ratio_by_window;
+		var tmp_player_num = ds_list_size(global.client_num);
+		
+		draw_text_kl_scale(xx_center,tmp_yy-tmp_player_num*64-128,"접속 인원",64,-1,1,c_white,-1,0,font_normal,0.75*global.n_camera_zoom,0.75*global.n_camera_zoom,0);
+		
+		
+		//전체 내부 배경
+		draw_set_alpha(0.9);
+		draw_set_color(merge_color(#17111A,c_black,0.5));
+		draw_rectangle(xx_center-tmp_width,tmp_yy-tmp_player_num*64,xx_center+tmp_width,tmp_yy+tmp_player_num*64,false);
+		
+		//전체 외곽선
+		draw_set_alpha(1);
+		draw_set_color(c_white);
+		for(var i = 0; i < outline_weight; i++)
+		{
+			draw_rectangle(xx_center-tmp_width-i,tmp_yy-tmp_player_num*64-i,xx_center+tmp_width+i,tmp_yy+tmp_player_num*64+i,true);
+		}
+		
+		for(var i = 0; i <= tmp_player_num; i++)
+		{
+			var tmp_player_id = fix_to_zero(ds_list_find_value(global.client_num,i));
+			var tmp_yy2 = (tmp_yy-tmp_player_num*64) + ((i+1)*64);
+			if (i != tmp_player_num)
+			{
+				//플레이어 칸 나누는 선
+				draw_set_alpha(0.7);
+				draw_line_width(xx_center-tmp_width,tmp_yy2,xx_center+tmp_width,tmp_yy2,outline_weight);
+			
+				//플레이어 이름
+				draw_text_kl_scale(xx_center-tmp_width+outline_weight*4,tmp_yy2-64,string(global.my_player_ins_id[tmp_player_id].nickname),64,-1,1,c_white,-1,-1,font_normal,0.7*global.n_camera_zoom,0.7*global.n_camera_zoom,0);
+			
+				//핑
+				var tmp_ping_real = (tmp_player_id < 1) ? 0 : global.users_ping_display[tmp_player_id-1];
+				var tmp_img_ind = fix_num_inside(round(256-tmp_ping_real)/45,0,5);
+				draw_sprite_ext(spr_ping_state,tmp_img_ind,xx_center+tmp_width-outline_weight*16,tmp_yy2-32,global.n_camera_zoom*1.25,global.n_camera_zoom*1.25,0,c_white,1);
+				draw_text_kl_scale(xx_center+tmp_width-outline_weight*32,tmp_yy2-48,"["+string(tmp_ping_real)+"ms]",64,-1,1,c_white,-1,1,font_normal,0.5*global.n_camera_zoom,0.5*global.n_camera_zoom,0);
+			}
+			else
+			{
+				//플레이어 이름
+				draw_text_kl_scale(xx_center,tmp_yy2-64,"...",64,-1,1,c_white,-1,0,font_normal,0.7*global.n_camera_zoom,0.7*global.n_camera_zoom,0);
 			}
 		}
 	}

@@ -5,12 +5,16 @@ var type = async_load[? "type"];
 if (type == network_type_connect) 
 {
 	var socket = async_load[? "socket"];
-	var cli_max = ds_list_size(clients);
+	var cli_max = ds_list_size(global.client_num);
 	network_set_timeout(socket, 3000, 3000);
 	
 
 	//object_id_player_only 할당용 변수
 	global.object_id_player_only ++;
+	
+	//핑 저장용 변수
+	array_resize(global.users_ping,global.object_id_player_only);
+	array_resize(global.users_ping_display,global.object_id_player_only);
 
 	
 	buffer_seek(info_buffer, buffer_seek_start, 0);
@@ -39,7 +43,7 @@ if (type == network_type_connect)
 	
 	network_send_packet(socket, info_buffer, buffer_get_size(info_buffer));
 
-	ds_list_add(clients, global.object_id_player_only);
+	ds_list_add(global.client_num, global.object_id_player_only);
 }
 else if (type == network_type_disconnect) // 누군가 나갔을 때 발생하는 이벤트
 {
@@ -78,6 +82,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			
 				//code_m 오브젝트에도 obj_id 저장해둠
 				global.my_player_id = tmp_object_id_ind_player_only;
+				
+				//핑 저장용 변수
+				array_resize(global.users_ping,tmp_object_id_ind_player_only);
+				array_resize(global.users_ping_display,tmp_object_id_ind_player_only);
 				
 
 				show_message_log("채팅방에 들어왔습니다.");
@@ -177,7 +185,16 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//서버측에서 튕겼나 아닌가 체크하는거에 대답하는 코드
 			if (!global.is_server)
 			{
-				var tmp_obj_id_player_only = buffer_read(buffer, buffer_string);
+				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
+				
+				//서버로 부터 받은 각 플레이어에 대한 핑 정보 값 적용하기
+				var tmp_arr_length = real(buffer_read(buffer, buffer_string));
+				for(var i = 0; i < tmp_arr_length; i++)
+				{
+					global.users_ping_display[i] = real(buffer_read(buffer, buffer_string));
+				}
+				
+				
 				if (global.my_player_id == tmp_obj_id_player_only)
 				{
 					//서버에 플레이어가 여러명일때 동시 다발적으로 보내면 인식을 못해서 사이에 텀을 주기 위해
@@ -190,14 +207,26 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//서버 측 에서만 튕겼다고 판단한 플레이어가 대답이 온거를 받음
 			if (global.is_server)
 			{
-				var tmp_obj_id_player_only = buffer_read(buffer, buffer_u8);
+				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
+				
 				show_message_log("- 접속한 플레이어 연결 상태 재확인 중... ["+string(tmp_obj_id_player_only)+"]");
 				with(obj_player)
 				{
 					if (obj_id_player_only == tmp_obj_id_player_only)
 					{
+						var tmp_p_id = tmp_obj_id_player_only-1;
+						
+						
+						//핑 계산
+						var cal_ping = global.users_ping[tmp_p_id]-(tmp_obj_id_player_only*5 + 1);
+						cal_ping = ((cal_ping/60)*1000)/2; //fps to ms
+						//(나누기 2하는거는 왔다->가는 시간이기 때문)
+						show_debug_message("player id - "+string(tmp_obj_id_player_only)+"의 ping : "+string(cal_ping)+"ms / "+string(global.users_ping[tmp_p_id]))
+						global.users_ping_display[tmp_p_id] = cal_ping;
+						global.users_ping[tmp_p_id] = 0;
+						
 						//대답이 왔으니 -5로 설정된 값이 기존 x좌표 값으로 다시 바뀜
-						global.saved_players_xx[obj_id_player_only-1] = x;
+						global.saved_players_xx[tmp_p_id] = x;
 					}
 				}
 			}

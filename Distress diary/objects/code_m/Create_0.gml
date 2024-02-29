@@ -2,7 +2,7 @@
 // You can write your code in this editor
 window()
 server_ip = "";
-server_port = 33136; 
+server_port = 35221; 
 global.is_server = true;
 index = 0;
 server = -4;
@@ -79,7 +79,8 @@ global.inv_data_buffer = buffer_create(16384,buffer_grow,1);
 my_instance_id = -4;
 
 //클라이언트 object_id 저장용
-clients = ds_list_create();
+global.client_num = ds_list_create();
+ds_list_add(global.client_num, -1);
 list_names = ds_list_create();
 list_vals = ds_list_create();
 list_types = ds_list_create();
@@ -95,3 +96,8 @@ alarm[0] = global.tickrate*20;
 //감지용 위치 저장 변수
 global.saved_players_xx = [ -4 ];
 global.saved_players_yy = [ -4 ];
+
+//핑 계산용 변수
+global.users_ping = [ -4 ];
+//핑 표기용 변수
+global.users_ping_display = [ -4 ];

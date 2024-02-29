@@ -97,6 +97,7 @@
     {"id":{"name":"sign_nonzero","path":"scripts/sign_nonzero/sign_nonzero.yy",},},
     {"id":{"name":"add_z_axis","path":"scripts/add_z_axis/add_z_axis.yy",},},
     {"id":{"name":"spr_bomb","path":"sprites/spr_bomb/spr_bomb.yy",},},
+    {"id":{"name":"spr_ping_state","path":"sprites/spr_ping_state/spr_ping_state.yy",},},
     {"id":{"name":"spr_original_bp2_1","path":"sprites/spr_original_bp2_1/spr_original_bp2_1.yy",},},
     {"id":{"name":"percentage_k","path":"scripts/percentage_k/percentage_k.yy",},},
     {"id":{"name":"find_empty_pos","path":"scripts/find_empty_pos/find_empty_pos.yy",},},

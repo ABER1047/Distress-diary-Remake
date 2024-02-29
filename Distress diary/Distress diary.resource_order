@@ -70,6 +70,7 @@
     {"name":"draw_text_kl_scale","order":1,"path":"scripts/draw_text_kl_scale/draw_text_kl_scale.yy",},
     {"name":"sign_nonzero","order":3,"path":"scripts/sign_nonzero/sign_nonzero.yy",},
     {"name":"spr_bomb","order":1,"path":"sprites/spr_bomb/spr_bomb.yy",},
+    {"name":"spr_ping_state","order":9,"path":"sprites/spr_ping_state/spr_ping_state.yy",},
     {"name":"spr_original_bp2_1","order":16,"path":"sprites/spr_original_bp2_1/spr_original_bp2_1.yy",},
     {"name":"find_empty_pos","order":6,"path":"scripts/find_empty_pos/find_empty_pos.yy",},
     {"name":"spr_loots","order":12,"path":"sprites/spr_loots/spr_loots.yy",},
