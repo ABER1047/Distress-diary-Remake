@@ -132,7 +132,7 @@ if (instance_exists(parents_id))
 			}
 			
 			
-			if (is_all_place_empty && (new_x_pos != x_pos || new_y_pos != y_pos)) //자리 비어있음
+			if (is_all_place_empty && (new_x_pos != x_pos || new_y_pos != y_pos || moving_item_rotation != origin_item_rorated)) //자리 비어있음
 			{
 				if (origin_stack_num > 1 && keyboard_check(vk_shift))
 				{
