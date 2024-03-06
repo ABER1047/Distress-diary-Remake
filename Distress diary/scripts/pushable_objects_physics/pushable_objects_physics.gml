@@ -13,6 +13,25 @@ function pushable_objects_physics()
 		vspeed = (vspeed*0.5) + tmp_yy;
 	}
 	
+	//vspeed-hspeed로 인해 오브젝트가 벽을 뚫지 못하도록 방지
+	for(var i = 0; i < floor(max(abs(hspeed),abs(vspeed))); i++)
+	{
+		var sign_hspeed = sign(hspeed);
+		var sign_vspeed = sign(vspeed);
+		if (place_meeting(x+i*sign_hspeed,y,obj_wall_parents))
+		{
+			x += (i-1)*sign_hspeed;
+			hspeed = 0;
+		}
+		
+		if (place_meeting(x,y+i*sign_vspeed,obj_wall_parents))
+		{
+			y += (i-1)*sign_vspeed;
+			vspeed = 0;
+		}
+	}
+	
+	
 	if (z == 0) //땅 바닥에 있어야 속도 감소 효과 먹음 (= 마찰력)
 	{
 		hspeed += (0 - hspeed)*0.2;
