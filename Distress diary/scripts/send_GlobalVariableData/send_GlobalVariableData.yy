@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "send_GlobalVariableData",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Multiplayer",
-    "path": "folders/스크립트/Multiplayer.yy",
+  "$GMScript":"",
+  "%Name":"send_GlobalVariableData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"send_GlobalVariableData",
+  "parent":{
+    "name":"Multiplayer",
+    "path":"folders/스크립트/Multiplayer.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

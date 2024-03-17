@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "reset_inv_variable",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Inventory",
-    "path": "folders/스크립트/Inventory.yy",
+  "$GMScript":"",
+  "%Name":"reset_inv_variable",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"reset_inv_variable",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

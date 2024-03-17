@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "z_axis_gravity",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Physics",
-    "path": "folders/스크립트/Physics.yy",
+  "$GMScript":"",
+  "%Name":"z_axis_gravity",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"z_axis_gravity",
+  "parent":{
+    "name":"Physics",
+    "path":"folders/스크립트/Physics.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "ini_close_protect",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "UserData_Load",
-    "path": "folders/스크립트/UserData_Load.yy",
+  "$GMScript":"",
+  "%Name":"ini_close_protect",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"ini_close_protect",
+  "parent":{
+    "name":"UserData_Load",
+    "path":"folders/스크립트/UserData_Load.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

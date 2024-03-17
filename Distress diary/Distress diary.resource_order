@@ -1,6 +1,5 @@
 {
-  "FolderOrderSettings": [
-    {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
+  "FolderOrderSettings":[
     {"name":"경로","order":8,"path":"folders/경로.yy",},
     {"name":"글꼴","order":5,"path":"folders/글꼴.yy",},
     {"name":"룸","order":10,"path":"folders/룸.yy",},
@@ -30,8 +29,9 @@
     {"name":"타일 세트","order":7,"path":"folders/타일 세트.yy",},
     {"name":"타임라인","order":9,"path":"folders/타임라인.yy",},
     {"name":"확장","order":14,"path":"folders/확장.yy",},
+    {"name":"Particle Systems","order":15,"path":"folders/Particle Systems.yy",},
   ],
-  "ResourceOrderSettings": [
+  "ResourceOrderSettings":[
     {"name":"fix_num_inside","order":2,"path":"scripts/fix_num_inside/fix_num_inside.yy",},
     {"name":"spr_original_bp1_1","order":14,"path":"sprites/spr_original_bp1_1/spr_original_bp1_1.yy",},
     {"name":"spr_wall_mask_right","order":3,"path":"sprites/spr_wall_mask_right/spr_wall_mask_right.yy",},

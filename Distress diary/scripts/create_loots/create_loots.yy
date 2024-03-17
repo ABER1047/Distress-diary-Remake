@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "create_loots",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "MapCreating",
-    "path": "folders/스크립트/MapCreating.yy",
+  "$GMScript":"",
+  "%Name":"create_loots",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_loots",
+  "parent":{
+    "name":"MapCreating",
+    "path":"folders/스크립트/MapCreating.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

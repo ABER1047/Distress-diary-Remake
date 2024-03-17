@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "show_inv_ui",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Inventory",
-    "path": "folders/스크립트/Inventory.yy",
+  "$GMScript":"",
+  "%Name":"show_inv_ui",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"show_inv_ui",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "set_inv_size_by_bp",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Inventory",
-    "path": "folders/스크립트/Inventory.yy",
+  "$GMScript":"",
+  "%Name":"set_inv_size_by_bp",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"set_inv_size_by_bp",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

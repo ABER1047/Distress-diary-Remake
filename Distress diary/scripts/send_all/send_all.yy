@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "send_all",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "settings",
-    "path": "folders/스크립트/Multiplayer/settings.yy",
+  "$GMScript":"",
+  "%Name":"send_all",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"send_all",
+  "parent":{
+    "name":"settings",
+    "path":"folders/스크립트/Multiplayer/settings.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "find_empty_pos",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Inventory",
-    "path": "folders/스크립트/Inventory.yy",
+  "$GMScript":"",
+  "%Name":"find_empty_pos",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"find_empty_pos",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }

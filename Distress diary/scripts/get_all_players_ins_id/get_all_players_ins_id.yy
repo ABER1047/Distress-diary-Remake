@@ -1,11 +1,13 @@
 {
-  "resourceType": "GMScript",
-  "resourceVersion": "1.0",
-  "name": "get_all_players_ins_id",
-  "isCompatibility": false,
-  "isDnD": false,
-  "parent": {
-    "name": "Multiplayer",
-    "path": "folders/스크립트/Multiplayer.yy",
+  "$GMScript":"",
+  "%Name":"get_all_players_ins_id",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"get_all_players_ins_id",
+  "parent":{
+    "name":"Multiplayer",
+    "path":"folders/스크립트/Multiplayer.yy",
   },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
 }
