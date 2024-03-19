@@ -3,7 +3,7 @@
 function pushable_objects_physics()
 {
 	var tmp_ins = instance_place(x,y,obj_pushable_object);
-	if (instance_exists(tmp_ins) && z == tmp_ins.z) //z축도 같은지 체크
+	if (instance_exists(tmp_ins) && tmp_ins.image_alpha > 0 && z == tmp_ins.z) //z축도 같은지 체크
 	{
 		var tmp_xx = (x - tmp_ins.x)/32;
 		var tmp_yy = (y - tmp_ins.y)/32;

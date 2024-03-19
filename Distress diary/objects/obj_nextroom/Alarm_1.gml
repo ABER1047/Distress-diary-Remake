@@ -21,12 +21,12 @@ if (is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,
 	if (condition1 || condition2 || condition3 || condition4)
 	{
 		is_connected = 1;
+		can_use_tp = 1;
 	}
 }
 
 
 image_alpha = (is_connected == 1) ? 0.2 : 0;
-can_use_tp = 1;
 
 
 

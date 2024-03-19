@@ -70,9 +70,12 @@ global.n_room_num = 0;
 global.map_creation_falied = 0;
 
 
-//서피스 생성
+//벽 외부 서피스 생성
 outter_room_surf = surface_create(4000,3000);
 
+//라이트 서피스 생성
+global.light_surf = surface_create(4000,3000);
+global.enable_light_surf = false;
 
 
 //현재 모든 플레이어 위치 (룸) [인덱스는 플레이어 obj_id 값을 의미함]
