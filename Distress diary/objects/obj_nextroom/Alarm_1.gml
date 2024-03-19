@@ -25,12 +25,15 @@ if (is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,
 }
 
 
-image_alpha = (is_connected == 1) ? 1 : 0.1;
+image_alpha = (is_connected == 1) ? 0.2 : 0;
 can_use_tp = 1;
 
 
 
 
+
+//깊이 설정
+depth = obj_map_texture_draw.depth-1;
 
 
 

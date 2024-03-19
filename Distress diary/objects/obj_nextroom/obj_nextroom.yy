@@ -32,8 +32,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"Sprite12",
-    "path":"sprites/Sprite12/Sprite12.yy",
+    "name":"spr_exit",
+    "path":"sprites/spr_exit/spr_exit.yy",
   },
   "spriteMaskId":null,
   "visible":true,

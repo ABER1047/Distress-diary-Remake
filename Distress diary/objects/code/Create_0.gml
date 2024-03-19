@@ -34,7 +34,7 @@ global.maximum_ping_acception = 256;
 
 
 //플레이어 스킨
-global.player_skin_num = 3;
+global.player_skin_num = 4;
 global.player_skin = irandom_range(0,global.player_skin_num-1);
 
 //플레이어 착용중인 백팩

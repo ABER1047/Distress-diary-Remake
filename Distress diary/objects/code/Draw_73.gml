@@ -82,7 +82,7 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 데이터 보기 [M]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 보기 [`]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]";
@@ -90,7 +90,7 @@ if (global.dev_mode == 1)
 	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
-	global.show_map_data = keyboard_check(ord("M"));
+	global.show_map_data = keyboard_check(222) || keyboard_check(192) || keyboard_check(ord("`"));
 	
 	//랜덤 닉네임
 	if (keyboard_check_pressed(ord("Q")))
@@ -318,15 +318,15 @@ if (global.dev_mode == 1)
 		//맵 생성 실패시 자동 재시도
 		while(true)
 		{
-			var tmp_width = 9;
-			var tmp_height = 9;
+			var tmp_width = floor(9*(0.5+instance_number(obj_player)*0.5));
+			var tmp_height = floor(9*(0.5+instance_number(obj_player)*0.5));
 			var tmp_start_xx = irandom_range(0,tmp_width-1);
 			var tmp_start_yy = irandom_range(0,tmp_height-1);
-			var tmp_max_root = irandom_range(16,max(tmp_width,tmp_height)*choose(4,5,6));
+			var tmp_max_root = irandom_range(16,max(tmp_width,tmp_height)*choose(4,5,6))*instance_number(obj_player);
 			var tmp_room_max_width = 24;
 			var tmp_room_max_height = 24;
 			var tmp_additional_room_cre_percentage = irandom_range(0,100);
-			var tmp_total_room_num = irandom_range(25,floor(tmp_room_max_width*tmp_room_max_height/4));
+			var tmp_total_room_num = irandom_range(25,floor(tmp_room_max_width*tmp_room_max_height/4))*instance_number(obj_player);
 			var tmp_min_room_width = 7;
 			var tmp_min_room_height = 7;
 		
@@ -369,7 +369,6 @@ if (global.dev_mode == 1)
 			else
 			{
 				show_message_log("- 맵 생성 실패! (재시도 중...)");
-				reset_map_arraies();
 				failed_map_creation();
 				global.n_camera_zoom = 0.7;
 			}
@@ -395,7 +394,7 @@ if (global.dev_mode == 1)
 //맵 드로우 코드
 if (global.show_map_data == 1)
 {
-	var room_ui_scale = 2;
+	var room_ui_scale = 24/(global.map_height);
 	var tmp_space = (64*room_ui_scale+16)*tmp_c_x;
 	var tmp_xx = (room_width*0.5-global.map_width/2*tmp_space);
 	var tmp_yy = (room_height*0.5-global.map_height/2*tmp_space);
@@ -415,14 +414,14 @@ if (global.show_map_data == 1)
 				if (global.room_connected_to_xx[i][ii] != -4)
 				{
 					draw_set_color(#5cc4cd);
-					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy[i][ii]*tmp_space,16*tmp_c_x);
+					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy[i][ii]*tmp_space,8*tmp_c_x*room_ui_scale);
 				}
 				
 				//방 연결된거 표시 (sec)
 				if (global.room_connected_to_xx_sec[i][ii] != -4)
 				{
 					draw_set_color(#d892a6);
-					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx_sec[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy_sec[i][ii]*tmp_space,16*tmp_c_x);
+					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx_sec[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy_sec[i][ii]*tmp_space,8*tmp_c_x*room_ui_scale);
 				}
 			}
 		}

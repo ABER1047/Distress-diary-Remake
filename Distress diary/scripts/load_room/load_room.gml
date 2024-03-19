@@ -24,9 +24,17 @@ function load_room(argument0,argument1)
 	
 	
 	//위쪽 벽 드로워 생성
-	if (!instance_exists(obj_wall_upper_drawer))
+	if (!instance_exists(obj_map_texture_draw))
 	{
-		instance_create_depth(0,0,0,obj_wall_upper_drawer);
+		instance_create_depth(0,0,0,obj_map_texture_draw);
+	}
+	else
+	{
+		//바닥 타일 이미지 재랜덤화
+		with(obj_map_texture_draw)
+		{
+			event_user(0);
+		}
 	}
 	
 	
@@ -52,7 +60,7 @@ function load_room(argument0,argument1)
 	
 	
 	//세로 벽 2개 생성
-	var tmp_ins = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-90,tmp_yy,0,obj_wall_parents);
+	var tmp_ins = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-128,tmp_yy,0,obj_wall_parents);
 	tmp_ins.sprite_index = spr_wall_mask_left;
 	tmp_ins.image_xscale = tmp_scale;
 	tmp_ins.image_yscale = (global.n_room_height+2)*tmp_scale;
@@ -65,12 +73,13 @@ function load_room(argument0,argument1)
 	
 	
 	//다음 방으로 이동하는 포탈 생성
-	var t_xx = [ global.n_room_width*0.5-1, 0, -global.n_room_width*0.5, 0 ];
-	var t_yy = [ 0, -global.n_room_height*0.5, 0, global.n_room_height*0.5 ];
+	var t_xx = [ global.n_room_width*0.5*tmp_sprite_size-64, -48, -global.n_room_width*0.5*tmp_sprite_size-32, -48 ];
+	var t_yy = [ 0, -global.n_room_height*0.5, 0, global.n_room_height*0.5+0.5 ];
 	
 	for(var i = 0; i < 4; i++)
 	{
-		var tmp_ins = instance_create_depth(tmp_xx+t_xx[i]*tmp_sprite_size,tmp_yy+t_yy[i]*tmp_sprite_size,0,obj_nextroom);
+		var tmp_ins = instance_create_depth(tmp_xx+t_xx[i],tmp_yy+t_yy[i]*tmp_sprite_size,0,obj_nextroom);
 		tmp_ins.tp_to = i;
+		tmp_ins.image_angle = (i-1)*90;
 	}	
 }
