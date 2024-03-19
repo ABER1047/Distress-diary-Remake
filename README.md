@@ -23,6 +23,15 @@
 |<img src = "imgs/old random map algorithm.gif"></img>|<img src = "imgs/distress diary remake random map algorithm.gif">|
 
 
+기존엔 한쪽 방향으로만 뻗어나가는 형태를 띄고 있는 문제가 있어
+
+완전히 새롭게 알고리즘을 구성했음
+
+리메이크된게 최적화할려고 맵 배열 사이즈에 제한을 걸어뒀는데
+
+이것때문에 아주 가끔 맵 생성 시간이 오래걸리는 단점이 있음 (길면 1~2초 차이)
+
+
 ##
 
 ### 2024-01-26
