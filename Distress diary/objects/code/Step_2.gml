@@ -1,6 +1,14 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+//서피스가 없어진 경우 재생성
+if (!surface_exists(global.light_surf))
+{
+	event_user(0);
+}
+
+
+
 //새로운 플레이어가 중도 참여했을 때, 맵 데이터 전송
 if (global.new_player_joined > 0)
 {

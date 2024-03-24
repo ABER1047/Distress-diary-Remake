@@ -12,8 +12,11 @@ global.n_dir = 2; //*90하면 바라보는 각도 값 나옴
 my_backpack = 0;
 b_my_backpack = -4;
 
+//플레이어가 바라보는 방향을 마우스 방향으로 고정
+global.fixed_dir = 1;
+
 //이동 관련 변수
-global.max_movement_speed = 12;
+global.max_movement_speed = 8;
 global.movement_hspeed = 0;
 global.movement_vspeed = 0;
 

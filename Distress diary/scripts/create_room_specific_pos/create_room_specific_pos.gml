@@ -16,8 +16,8 @@ function create_room_specific_pos(argument0,argument1,argument2)
 	var tmp_room_width, tmp_room_height;
 	if (argument0 == global.map_start_pos_xx && argument1 == global.map_start_pos_yy)
 	{
-		tmp_room_width = 16;
-		tmp_room_height = 16;
+		tmp_room_width = 7;
+		tmp_room_height = 7;
 	}
 	else
 	{

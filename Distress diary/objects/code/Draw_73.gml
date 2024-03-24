@@ -84,6 +84,7 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 //라이트 서피스 그리기
 if (global.enable_light_surf && surface_exists(global.light_surf))
 {
+	global.fixed_dir = 1;
 	surface_set_target(global.light_surf);
 	draw_clear(0);
 	draw_sprite_ext(spr_wall_mask_bottom,1,0,0,84,84,0,c_black,1);
@@ -94,16 +95,41 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	
 	//거리에 따른 라이트 크기 조절
 	var light_col = #FFE651;
-	var tmp_light_xx_surf = tmp_my_p.x-xx;
-	var tmp_light_yy_surf = tmp_my_p.y-32-yy-tmp_my_p.z;
+	var tmp_player_xx = tmp_my_p.x;
+	var tmp_player_yy = tmp_my_p.y-24;
+	var tmp_light_xx_surf = tmp_player_xx-xx;
+	var tmp_light_yy_surf = tmp_player_yy-tmp_my_p.z-yy;
 	var light_scale = 0.25;
-	var light_dis = 1278*light_scale;
-	var light_ang = point_direction(tmp_my_p.x,tmp_my_p.y,mouse_x,mouse_y);
+	var max_light_dis = 1278*light_scale;
+	var light_dis = fix_num_inside(point_distance(tmp_player_xx,tmp_player_yy,mouse_x,mouse_y),0,max_light_dis);
+	var light_ang = point_direction(tmp_player_xx,tmp_player_yy,mouse_x,mouse_y);
+	//플레이어가 바라보는 방향을 마우스 방향으로 고정
+	if (global.fixed_dir == 1)
+	{
+		if (light_ang <= 50 || light_ang >= 310)
+		{
+			global.n_dir = 0;
+		}
+		else if (light_ang > 50 && light_ang < 130)
+		{
+			global.n_dir = 1;
+		}
+		else if (light_ang >= 130 && light_ang <= 230)
+		{
+			global.n_dir = 2;
+		}
+		else
+		{
+			global.n_dir = 3;
+		}
+	}
+	
+	
 	var i = 0;
 	//플레이어가 바라보는 방향에 대해 플레이어부터 벽까지의 거리값
 	for(; i < light_dis; i += light_scale)
 	{
-		if (position_meeting(tmp_my_p.x+lengthdir_x(i,light_ang),tmp_my_p.y-24+lengthdir_y(i,light_ang),obj_wall_parents))
+		if (position_meeting(tmp_player_xx+lengthdir_x(i,light_ang),tmp_player_yy+lengthdir_y(i,light_ang),obj_wall_parents))
 		{
 			break;
 		}
@@ -118,28 +144,31 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	
 	//라이트 이미지 바디 부분
 	var light_alpha = 1; //라이트 밝기
-	var light_inner_deg = radtodeg(arctan(360/1278))*(1+(light_dis-i)/110); //삼각형 내부 끼인 각의 절반값 (라이트)
-	show_debug_message("dis : "+string(i)+" / deg : "+string(light_inner_deg));
+	var light_inner_deg = radtodeg(arctan(360/1278))*(1+(max_light_dis-i)/110); //삼각형 내부 끼인 각의 절반값 (라이트)
+	show_debug_message("dis : "+string(i)+" / deg : "+string(light_inner_deg)+" / ang : "+string(global.n_dir)+" ("+string(light_ang)+")");
 	var tmp_light_xx1_body = tmp_light_xx_surf+lengthdir_x(i,light_ang-light_inner_deg);
 	var tmp_light_yy1_body = tmp_light_yy_surf+lengthdir_y(i,light_ang-light_inner_deg);
 	var tmp_light_xx2_body = tmp_light_xx_surf+lengthdir_x(i,light_ang+light_inner_deg);
 	var tmp_light_yy2_body = tmp_light_yy_surf+lengthdir_y(i,light_ang+light_inner_deg);
 	draw_set_alpha(light_alpha*0.75);
-	draw_set_color()
+	draw_set_color(light_col);
 	draw_triangle(tmp_light_xx_surf,tmp_light_yy_surf,tmp_light_xx1_body,tmp_light_yy1_body,tmp_light_xx2_body,tmp_light_yy2_body,false)
 	
 	//라이트 이미지 헤드 부분
 	var tmp_light_xx_head = tmp_light_xx_surf+lengthdir_x(i,light_ang);
 	var tmp_light_yy_head = tmp_light_yy_surf+lengthdir_y(i,light_ang);
-	var radius_pixel = 360*light_scale-(i-light_dis)*light_scale;
+	var radius_pixel = 360*light_scale-(i-max_light_dis)*light_scale;
 	draw_set_alpha(light_alpha);
-	draw_circle(tmp_light_xx_head,tmp_light_yy_head,360*light_scale-(i-light_dis)*light_scale,false);
+	draw_circle(tmp_light_xx_head,tmp_light_yy_head,radius_pixel,false);
 	gpu_set_blendmode(bm_normal);
 	surface_reset_target();
 
 	draw_surface_ext(global.light_surf,xx,yy,1,1,0,c_white,1);
 }
-
+else
+{
+	global.fixed_dir = 0;
+}
 
 
 
@@ -278,24 +307,36 @@ if (global.dev_mode == 1)
 	//전체화면
 	if (keyboard_check_pressed(vk_escape))
 	{
+		var tmp_val = !window_get_fullscreen();
 		var w = 1280, h = 720;
-		if (!window_get_fullscreen())
+		if (tmp_val)
 		{
 			w = 1920;
 			h = 1080;
 		}
 		
+		
 		window_set_size(w,h);
-		window_set_max_width(w);
-		window_set_max_height(h);
-		window_set_min_width(w);
-		window_set_min_height(h);
+		window_set_fullscreen(tmp_val);
+	}
+	
+	
+	if (keyboard_check(vk_control))
+	{
+		global.n_camera_zoom += (mouse_wheel_down()-mouse_wheel_up())*0.05;
 		
-		//서피스 재생성
-		alarm[0] = 15;
-		
-		
-		window_set_fullscreen(!window_get_fullscreen());
+		if (keyboard_check_pressed(vk_alt))
+		{
+			var tmp_val = window_get_width();
+			var w = 1280, h = 720;
+			if (tmp_val == w)
+			{
+				w = 1920;
+				h = 1080;
+			}
+			
+			window_set_fullscreen(tmp_val);
+		}
 	}
 	
 	
@@ -442,7 +483,7 @@ if (global.dev_mode == 1)
 				send_NewMapData();
 			
 				//카메라 줌 설정
-				global.n_camera_zoom = 0.6;
+				global.n_camera_zoom = 0.5;
 				break; //while문 빠져나오기
 			}
 			else

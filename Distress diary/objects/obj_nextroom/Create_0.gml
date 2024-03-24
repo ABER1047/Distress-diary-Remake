@@ -10,3 +10,8 @@ can_use_tp = 0;
 alarm[1] = 5;
 
 
+
+//화살표 애니메이션
+arrow_animation_yy = 0;
+arrow_animation_timer = 0;
+

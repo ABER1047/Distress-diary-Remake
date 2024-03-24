@@ -10,12 +10,6 @@ if (!variable_instance_exists(id,"soc"))
 }
 
 
-//플레이어 실제 인스턴스 아이디
-if (array_length(global.my_player_ins_id) < global.object_id_player_only)
-{
-	get_all_players_ins_id();
-}
-
 
 if (obj_id == global.my_player_id)
 {

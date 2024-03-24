@@ -17,9 +17,10 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 	///@param angle
 	var w_ratio = (global.w_ratio_by_window);
 	var h_ratio = (global.h_ratio_by_window);
-	var txt_xscale = argument10*0.8125/w_ratio;
-	var txt_yscale = argument11*0.8125/h_ratio;
-	var args = [ argument0, argument1+8*h_ratio, argument2, argument3*2/h_ratio, argument4, argument5, argument6, argument7, argument8, argument9, txt_xscale, txt_yscale, argument12 ];
+	var text_scale_real = 2;
+	var txt_xscale = argument10*0.8125/w_ratio*text_scale_real;
+	var txt_yscale = argument11*0.8125/h_ratio*text_scale_real;
+	var args = [ argument0, argument1+4*h_ratio*text_scale_real/2, argument2, argument3/h_ratio*text_scale_real/2, argument4, argument5, argument6, argument7, argument8, argument9, txt_xscale, txt_yscale, argument12 ];
 	
 	////////////////////////////////////////////////////////////////
 
@@ -54,7 +55,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 		if (args[4] < 0)
 		{
 			//컬러설정
-			draw_set_color(c_black);
+			draw_set_color($FF191919&$ffffff);
 			for(var i = 1; i <= 3; i += 1.5)
 			{
 				//i = args[10]
@@ -75,7 +76,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 		else if (args[4] > 0)
 		{
 
-			draw_set_color(c_black);
+			draw_set_color($FF191919&$ffffff);
 			for(var i = 1; i <= 3; i += 1)
 			{
 				//i = args[10]
