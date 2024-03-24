@@ -196,7 +196,7 @@
     {"id":{"name":"spr_wall_mask_upper","path":"sprites/spr_wall_mask_upper/spr_wall_mask_upper.yy",},},
     {"id":{"name":"spr_weapon","path":"sprites/spr_weapon/spr_weapon.yy",},},
     {"id":{"name":"spr_X","path":"sprites/spr_X/spr_X.yy",},},
-    {"id":{"name":"Sprite12","path":"sprites/Sprite12/Sprite12.yy",},},
+    {"id":{"name":"tmp_sprite","path":"sprites/tmp_sprite/tmp_sprite.yy",},},
     {"id":{"name":"Sprite52","path":"sprites/Sprite52/Sprite52.yy",},},
     {"id":{"name":"Sprite57","path":"sprites/Sprite57/Sprite57.yy",},},
     {"id":{"name":"spr_grad_circle","path":"sprites/spr_grad_circle/spr_grad_circle.yy",},},

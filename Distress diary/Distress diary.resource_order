@@ -157,7 +157,7 @@
     {"name":"spr_wall_mask_right","order":3,"path":"sprites/spr_wall_mask_right/spr_wall_mask_right.yy",},
     {"name":"spr_weapon","order":14,"path":"sprites/spr_weapon/spr_weapon.yy",},
     {"name":"spr_X","order":8,"path":"sprites/spr_X/spr_X.yy",},
-    {"name":"Sprite12","order":2,"path":"sprites/Sprite12/Sprite12.yy",},
+    {"name":"tmp_sprite","order":2,"path":"sprites/tmp_sprite/tmp_sprite.yy",},
     {"name":"Sprite52","order":6,"path":"sprites/Sprite52/Sprite52.yy",},
     {"name":"Sprite57","order":1,"path":"sprites/Sprite57/Sprite57.yy",},
     {"name":"spr_grad_circle","order":4,"path":"sprites/spr_grad_circle/spr_grad_circle.yy",},

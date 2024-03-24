@@ -22,11 +22,11 @@ if (draw_alpha > 0)
 	{
 		//인터렉션 이름 드로우
 		var txt_scale = 0.64*global.n_camera_zoom;
-		var str_width = string_width(interaction_name_for_draw)/global.w_ratio_by_window*0.5;
+		var str_width = string_width(interaction_name_for_draw)/global.w_ratio_by_window;
 		draw_text_kl_scale(x-str_width*txt_scale*0.5,tmp_yy,string(interaction_name_for_draw),64,-1,image_alpha,c_white,0,-1,font_normal,txt_scale,txt_scale,0);
 	
 		//인터렉션 키 드로우
-		draw_sprite_ext(spr_key_ui,interaction_key_real_ind_for_draw,x-str_width*txt_scale,tmp_yy+64*global.n_camera_zoom,txt_scale*2.5/global.w_ratio_by_window,txt_scale*2.5/global.h_ratio_by_window,0,c_white,image_alpha);
+		draw_sprite_ext(spr_key_ui,interaction_key_real_ind_for_draw,x-str_width*txt_scale,tmp_yy+128*txt_scale/global.h_ratio_by_window,txt_scale*2.5/global.w_ratio_by_window,txt_scale*2.5/global.h_ratio_by_window,0,c_white,image_alpha);
 	}
 	else
 	{

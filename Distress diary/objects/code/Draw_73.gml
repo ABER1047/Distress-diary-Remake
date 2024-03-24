@@ -385,21 +385,36 @@ if (global.dev_mode == 1)
 	
 	
 	//랜덤 상자 생성
-	if (keyboard_check_pressed(ord("P")))
+	var tmp_img = 18//irandom_range(0,floor((sprite_get_number(spr_loots)-1)/2));
+	var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
+	var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
+	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_loots);
+	if (keyboard_check(ord("P")))
 	{
-		var tmp_ins = instance_nearest(mouse_x,mouse_y,obj_loots)
-		if (instance_exists(tmp_ins) && point_distance(tmp_ins.x,tmp_ins.y,mouse_x,mouse_y) < 128)
+		if (!instance_exists(tmp_ins))
+		{
+			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
+			draw_sprite_ext(spr_loots,tmp_img,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.5);
+		}
+		else
+		{
+			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
+		}
+	}
+
+	if (keyboard_check_released(ord("P")))
+	{
+		if (instance_exists(tmp_ins))
 		{
 			instance_destroy_multiplayer(tmp_ins);
 			show_message_log("- 오브젝트 삭제 [obj_id : "+string(tmp_ins)+"]");
 		}
 		else
 		{
-			var tmp_ins = create_loots(mouse_x,mouse_y,2*irandom_range(0,floor((sprite_get_number(spr_loots)-1)/2)),9,9,"Random chest - "+string(global.object_id_ind),global.object_id_ind,0);
+			var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img,9,9,"Random chest - "+string(global.object_id_ind),global.object_id_ind,0);
 			show_message_log("- 랜덤 상자 생성 [obj_id : "+string(tmp_ins.obj_id)+"]");
 		}
 	}
-
 	
 	
 	//틱레이트 조정
@@ -560,7 +575,7 @@ if (global.show_map_data == 1)
 				//방 표시
 				if (global.map_arr[i][ii] > 0)
 				{
-					draw_sprite_ext(Sprite12,(ii != global.map_start_pos_xx || i != global.map_start_pos_yy) ? 1 : 2,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_white,c_orange,global.map_arr[i][ii]/global.max_root_length),global.show_map_data);
+					draw_sprite_ext(tmp_sprite,(ii != global.map_start_pos_xx || i != global.map_start_pos_yy) ? 1 : 2,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_white,c_orange,global.map_arr[i][ii]/global.max_root_length),global.show_map_data);
 					
 					var angle = -4;
 					if (global.room_connected_to_xx[i][ii] < ii && global.room_connected_to_yy[i][ii] == i)
@@ -607,7 +622,7 @@ if (global.show_map_data == 1)
 				}
 				else
 				{
-					draw_sprite_ext(Sprite12,1,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_black,c_white,0.1),global.show_map_data);
+					draw_sprite_ext(tmp_sprite,1,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_black,c_white,0.1),global.show_map_data);
 				}
 			}
 		}
