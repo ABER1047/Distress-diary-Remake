@@ -470,6 +470,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 									inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
 									inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
 									inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+									inv_info_searched[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 서치됨
 									tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 								}
 							}
@@ -487,6 +488,56 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							{
 								reload_inv = 1;
 							}
+						}
+					}
+				}
+			}
+		break;
+		
+		case DATA.INV_DATA_SPECIFIC:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
+				
+				with(tmp_obj_ind)
+				{
+					var tmp_id = id;
+					var tmp_str = "";
+					if (obj_id == tmp_obj_id)
+					{
+						if (buffer_get_size(buffer) > 0)
+						{
+							var i = real(buffer_read(buffer, buffer_string));
+							var ii = real(buffer_read(buffer, buffer_string));
+							var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+							var tmp_spr_name = asset_get_index(tmp_spr_name_real);
+							inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
+							inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
+							inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+							inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+							inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
+							inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
+							inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
+							inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+							inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+							inv_info_searched[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 서치됨
+						}
+					}
+					
+					//모든 인벤토리 UI들 리로드
+					show_message_log("인벤토리 리로드(Specific) - "+string(object_get_name(tmp_obj_ind))+" / "+string(obj_id));
+					show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
+						
+					//인벤토리 ui정보 리로드
+					with(obj_inv_ui)
+					{
+						if (object_index == obj_inv_ui)
+						{
+							reload_inv = 1;
 						}
 					}
 				}

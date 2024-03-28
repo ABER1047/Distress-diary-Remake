@@ -35,4 +35,3 @@ image_speed = 0;
 interaction_name_for_draw = "";
 interaction_key_real_ind_for_draw = 0;
 show_interaction_key = 0; // 0일때 드로우 안함
-

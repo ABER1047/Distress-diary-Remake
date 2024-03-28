@@ -276,7 +276,7 @@ if (global.dev_mode == 1)
 		{
 			if (object_index == obj_loots)
 			{
-				set_inv_variable(id,0,0,spr_comp,7,"Wire",-4,-4,2,1,0,6);
+				set_inv_variable(id,0,0,spr_comp,7,"Wire",-4,-4,2,1,0,6,0);
 			}
 		}
 	}

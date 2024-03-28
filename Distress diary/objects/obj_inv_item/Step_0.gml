@@ -91,6 +91,7 @@ if (instance_exists(parents_id))
 			origin_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
 			origin_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
 			origin_item_weight = variable_owner_ins.inv_info_weight[tmp_i][tmp_ii];
+			origin_item_searched = variable_owner_ins.inv_info_searched[tmp_i][tmp_ii];
 					
 					
 			var tmp_i = new_y_pos;
@@ -104,6 +105,7 @@ if (instance_exists(parents_id))
 			new_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
 			new_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
 			new_item_weight = variable_owner_ins.inv_info_weight[tmp_i][tmp_ii];
+			new_item_searched = variable_owner_ins.inv_info_searched[tmp_i][tmp_ii];
 	
 	
 	
@@ -212,7 +214,7 @@ if (instance_exists(parents_id))
 			else
 			{
 				//자리때문에 옮기기에 실패한 경우, 전에 일단 지워뒀던 아이템 정보를 다시 복구 시킴
-				set_inv_variable(variable_owner_ins,x_pos,y_pos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated,origin_item_weight);
+				set_inv_variable(variable_owner_ins,x_pos,y_pos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated,origin_item_weight,origin_item_searched);
 				moving_now = 0;
 			}
 			
@@ -224,7 +226,7 @@ if (instance_exists(parents_id))
 				if (is_moveable_pos == 1)
 				{
 					//아이템 정보 배열에 저장
-					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_rotation,origin_item_weight);
+					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_rotation,origin_item_weight,origin_item_searched);
 				}
 				else if (is_moveable_pos == 2) //겹치기 해서 옮기기 가능한 자리임을 나타냄 (최대 스택 갯수 미만)
 				{
@@ -241,7 +243,7 @@ if (instance_exists(parents_id))
 					variable_owner_ins.inv_info_stack_num[tmp_k][tmp_kk] = origin_stack_num-tmp_half;
 					
 					//새로운 자리에 아이템 정보 배열에 저장
-					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,tmp_half,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_rotation,origin_item_weight);
+					set_inv_variable(nearsest_inv_variable_owner_ins,tmp_ii,tmp_i,origin_spr,origin_img,origin_name,tmp_half,origin_max_stack_num,origin_item_width,origin_item_height,moving_item_rotation,origin_item_weight,origin_item_searched);
 				}
 				else if (is_moveable_pos == 5) //아이템 다른 인벤으로 자동 이동
 				{
@@ -278,12 +280,12 @@ if (instance_exists(parents_id))
 					if (has_empty_pos == true)
 					{
 						//새로운 자리에 아이템 정보 배열에 저장
-						set_inv_variable(nearsest_inv_variable_owner_ins,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,global.inv_empty_rotated,origin_item_weight);
+						set_inv_variable(nearsest_inv_variable_owner_ins,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,global.inv_empty_rotated,origin_item_weight,origin_item_searched);
 					}
 					else if (has_empty_pos == false)
 					{
 						//자리가 없으면 삭제한 아이템 복구
-						set_inv_variable(variable_owner_ins,tmp_kk,tmp_k,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated,origin_item_weight);
+						set_inv_variable(variable_owner_ins,tmp_kk,tmp_k,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated,origin_item_weight,origin_item_searched);
 					}
 				}
 			}
@@ -309,7 +311,7 @@ if (instance_exists(parents_id))
 						show_message_log("- 아이템 떨어뜨림 [빈칸에 아이템 집어넣기]");
 						
 						//새로운 자리에 아이템 정보 배열에 저장
-						set_inv_variable(tmp_nearest_dropped_item,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,global.inv_empty_rotated,origin_item_weight);
+						set_inv_variable(tmp_nearest_dropped_item,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,global.inv_empty_rotated,origin_item_weight,origin_item_searched);
 						tmp_nearest_dropped_item.x = tmp_my_p_xx;
 						tmp_nearest_dropped_item.y = tmp_my_p_yy;
 						tmp_nearest_dropped_item.z = tmp_my_p.z-32;
@@ -338,7 +340,7 @@ if (instance_exists(parents_id))
 						}
 						
 						//네트워크상으로 해당 박스 인벤토리 정보 전송
-						send_InventoryData(tmp_nearest_dropped_item.obj_id,obj_dropped_item);
+						send_InventoryDataSpecificPos(tmp_nearest_dropped_item.obj_id,obj_dropped_item,global.inv_empty_xpos,global.inv_empty_ypos);
 					}
 					else if (has_empty_pos == false)
 					{
@@ -387,7 +389,7 @@ if (instance_exists(parents_id))
 					}
 						
 					//새로운 자리에 아이템 정보 배열에 저장
-					set_inv_variable(tmp_loot,0,0,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,0,origin_item_weight);
+					set_inv_variable(tmp_loot,0,0,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,0,origin_item_weight,origin_item_searched);
 					
 					//네트워크상으로 해당 박스 인벤토리 정보 전송
 					tmp_loot.alarm[0] = 1;
@@ -400,11 +402,11 @@ if (instance_exists(parents_id))
 			//해당 인벤토리 내부에 있는 모든 아이템 정보 전송
 			if (is_moveable_pos > 0)
 			{
-				send_InventoryData(variable_owner_ins.obj_id,variable_owner_ins.object_index);
+				send_InventoryDataSpecificPos(variable_owner_ins.obj_id,variable_owner_ins.object_index,tmp_kk,tmp_k);
+				send_InventoryDataSpecificPos(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index,tmp_ii,tmp_i);
 				parents_id.reload_inv = 1; //인벤토리 ui정보 리로드
 				if (is_moving_item_outside == 0 && variable_owner_ins != nearsest_inv_variable_owner_ins)
 				{
-					send_InventoryData(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index);
 					tmp_nearest_inv_ui.reload_inv = 1; //인벤토리 ui정보 리로드
 				}
 			}
@@ -419,7 +421,7 @@ else
 	//옮기는 도중에 갑자기 인벤토리가 닫힌 경우, 전에 일단 지워뒀던 아이템 정보를 다시 복구 시킴
 	if (moving_now == 1)
 	{
-		set_inv_variable(variable_owner_ins,x_pos,y_pos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated,origin_item_weight);
+		set_inv_variable(variable_owner_ins,x_pos,y_pos,origin_spr,origin_img,origin_name,origin_stack_num,origin_max_stack_num,origin_item_width,origin_item_height,origin_item_rorated,origin_item_weight,origin_item_searched);
 	}
 	
 	instance_destroy();

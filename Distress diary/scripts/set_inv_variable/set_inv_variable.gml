@@ -13,7 +13,8 @@
 ///@param height
 ///@param rotated
 ///@param weight
-function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11)
+///@param searched
+function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12)
 {
 	var tmp_ins = argument0;
 	var i = argument2;
@@ -41,4 +42,5 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 	tmp_ins.inv_info_height[i][ii] = argument9; //아이템 세로 길이
 	tmp_ins.inv_info_rotated[i][ii] = argument10; //아이템 회전 유무
 	tmp_ins.inv_info_weight[i][ii] = argument11; //아이템 무게
+	tmp_ins.inv_info_searched[i][ii] = argument12 //아이템 서치됨
 }

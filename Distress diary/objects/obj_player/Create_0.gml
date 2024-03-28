@@ -75,13 +75,13 @@ for(var i = 0; i < inv_height; i++)
 	}
 }
 
-set_inv_variable(id,0,0,spr_stackables,0,"Coin",1,99,1,1,0,0.002);
-set_inv_variable(id,1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5,1,1,0,0.001);
-set_inv_variable(id,2,0,spr_drink,0,"Coke",-4,-4,1,1,0,0.58);
+set_inv_variable(id,0,0,spr_stackables,0,"Coin",1,99,1,1,0,0.002,0);
+set_inv_variable(id,1,0,spr_stackables,3,"KeyCard",irandom_range(3,4),5,1,1,0,0.001,0);
+set_inv_variable(id,2,0,spr_drink,0,"Coke",-4,-4,1,1,0,0.58,0);
 
-set_inv_variable(id,0,1,spr_backpack,0,"Backpack",-4,-4,2,3,0,3);
-set_inv_variable(id,2,1,spr_comp,8,"GPU",-4,-4,2,1,1,1);
-set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,2,0,6);
+set_inv_variable(id,0,1,spr_backpack,0,"Backpack",-4,-4,2,3,0,3,0);
+set_inv_variable(id,2,1,spr_comp,8,"GPU",-4,-4,2,1,1,1,0);
+set_inv_variable(id,3,0,spr_comp,23,"Iron Stick",-4,-4,1,2,0,6,0);
 
 
 

@@ -45,6 +45,7 @@ function send_InventoryData(argument0,argument1)
 					buffer_write(global.inv_data_buffer, buffer_string, inv_info_height[i][ii]); //아이템의 갯수 값 보유
 					buffer_write(global.inv_data_buffer, buffer_string, inv_info_rotated[i][ii]); //아이템의 최대 스택 갯수 값 보유
 					buffer_write(global.inv_data_buffer, buffer_string, inv_info_weight[i][ii]); //아이템의 무게 (kg단위)
+					buffer_write(global.inv_data_buffer, buffer_string, 0); //아이템 서치됨
 					tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 				}
 				tmp_str = string(tmp_str)+"\n"

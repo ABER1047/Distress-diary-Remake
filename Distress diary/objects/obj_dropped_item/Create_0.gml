@@ -45,5 +45,3 @@ alarm[1] = 1;
 
 //멀티플레이 용 버퍼
 command_buffer = buffer_create(1024,buffer_grow,1);
-
-

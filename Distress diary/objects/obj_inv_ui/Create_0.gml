@@ -45,3 +45,8 @@ reload_inv = -4;
 
 //인벤토리 창끼리 겹치지 않도록 자동으로 창 좌표 고치기
 alarm[1] = 1;
+
+
+//아이템 서칭 시스템 작동
+search_item = true;
+searching_sfx = -4;

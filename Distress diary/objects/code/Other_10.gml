@@ -15,6 +15,11 @@ if (surface_exists(application_surface))
 	surface_resize(application_surface, window_get_width(), window_get_height());
 }
 
+//아이템 이미지 scale 재설정
+with(obj_inv_item)
+{
+	tmp_n_camera_zoom = -4;
+}
 
 
 

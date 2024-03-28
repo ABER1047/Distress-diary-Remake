@@ -86,7 +86,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	if (stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
 	{
 		//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
-		global.max_movement_speed = 8*speed_by_weight;
+		global.max_movement_speed = 9*speed_by_weight;
 		
 		//달리기 도중 쉬프트에서 손 때면 그만 달리기
 		global.n_running = keyboard_check(vk_shift);
@@ -95,7 +95,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		stamina -= stamina_decreasement;
 		
 		//스테미나 회복 쿨타임 (프레임 단위)
-		stamina_cooltime = 60;
+		stamina_cooltime = 10;
 	}
 	else
 	{
@@ -324,10 +324,23 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		
 		
 		
-		if (tmp_key != -4 && keyboard_check_pressed(ord(tmp_key)) && !instance_exists(n_looting_inv_id))
+		if (tmp_key != -4 && !instance_exists(n_looting_inv_id))
 		{
-			n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
-			tmp_ins.is_opened = n_looting_inv_id;
+			if (keyboard_check(ord(tmp_key)))
+			{
+				global.interaction_hold_time_max = 30;
+				global.interaction_hold_time ++;
+				
+				if (global.interaction_hold_time > global.interaction_hold_time_max)
+				{
+					n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
+					tmp_ins.is_opened = n_looting_inv_id;
+				}
+			}
+			else
+			{
+				global.interaction_hold_time = 0;
+			}
 		}
 	}
 }

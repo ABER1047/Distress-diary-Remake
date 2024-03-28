@@ -31,8 +31,15 @@ is_moveable_pos = -4;
 
 //아이템 가로 길이
 //item_width = 1;
+
 //아이템 세로 길이
 //item_height = 1;
 
 //아이템 회전 유무
 //item_rotated = 0;
+
+//아이템 무게
+//item_weight = 0;
+
+//아이템 서치됨
+//item_searched = 0;

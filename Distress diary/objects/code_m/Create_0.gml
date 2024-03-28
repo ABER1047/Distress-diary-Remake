@@ -43,7 +43,8 @@ enum DATA
 	SET_PLAYER_ID, //처음 접속시 플레이어 아이디 적용 용
 	NEW_MAP_DATA, //새로운 맵 데이터 받아오기 용
 	MY_ROOM_POS, //각 플레이어의 위치 정보 받아오기 용
-	INV_DATA, //인벤토리 데이터 전송용
+	INV_DATA, //인벤토리 데이터 전송용 (모든 칸)
+	INV_DATA_SPECIFIC, //인벤토리 데이터 전송용 (특정 1칸만)
 	OBJECTS_DATA, //오브젝트 생성/삭제용
 	CHEST_DATA, //상자 생성용 (삭제는 OBJECTS_DATA로 제어)
 	CHECK_PLAYING_NOW, //특정 플레이어 튕겼나 아닌가 체크용
@@ -55,6 +56,7 @@ global.DATA_INS_VAR_DATA = DATA.INS_VAR_DATA;
 global.DATA_NEW_MAP_DATA = DATA.NEW_MAP_DATA;
 global.DATA_MY_ROOM_POS = DATA.MY_ROOM_POS;
 global.DATA_INV_DATA = DATA.INV_DATA;
+global.DATA_INV_DATA_SPECIFIC = DATA.INV_DATA_SPECIFIC;
 global.DATA_OBJECTS_DATA = DATA.OBJECTS_DATA;
 global.DATA_CHEST_DATA = DATA.CHEST_DATA;
 

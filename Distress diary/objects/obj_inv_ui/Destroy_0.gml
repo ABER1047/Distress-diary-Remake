@@ -23,7 +23,11 @@ if (instance_exists(variable_owner) && variable_owner.object_index == obj_droppe
 }
 
 
-
+//창 닫혔으니 효과음 끄기
+if (searching_sfx != -4)
+{
+	audio_stop_sound(searching_sfx);
+}
 
 
 

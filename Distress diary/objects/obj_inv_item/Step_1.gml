@@ -17,8 +17,8 @@ if (instance_exists(parents_id))
 	if (tmp_n_camera_zoom != global.n_camera_zoom)
 	{
 		var slot_size = 160*global.n_camera_zoom/global.w_ratio_by_window; //1칸당 픽셀 사이즈
-		image_xscale = slot_size/sprite_get_width(sprite_index)*tmp_xscale/global.w_ratio_by_window; //아이템 회전 적용된 길이
-		image_yscale = slot_size/sprite_get_height(sprite_index)*tmp_yscale/global.h_ratio_by_window; //아이템 회전 적용된 길이
+		image_xscale = slot_size/sprite_get_width(sprite_index)*tmp_xscale; //아이템 회전 적용된 길이
+		image_yscale = slot_size/sprite_get_height(sprite_index)*tmp_yscale; //아이템 회전 적용된 길이
 		tmp_n_camera_zoom = global.n_camera_zoom;
 		image_angle = -90*item_rotated; //아이템 회전 적용된 앵글
 	}

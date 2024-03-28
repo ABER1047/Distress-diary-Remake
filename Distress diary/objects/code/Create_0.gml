@@ -117,3 +117,18 @@ global.average_fps_for_draw = 0;
 //화면 사이즈에 따른 비율
 global.w_ratio_by_window = 1;
 global.h_ratio_by_window = 1;
+
+
+//인터렉트 타이머 (몇 초 동안 홀드해야하는지)
+global.interaction_hold_time = 0;
+global.interaction_hold_time_max = 0;
+
+
+//아이템 서칭 속도 (몇 프레임 후 아이템 하나가 서칭 완료되는지)
+global.searching_time = 100;
+
+
+//사운드 볼륨
+global.master_volume = 1;
+global.sfx_volume = 1;
+global.bgm_volume = 1;

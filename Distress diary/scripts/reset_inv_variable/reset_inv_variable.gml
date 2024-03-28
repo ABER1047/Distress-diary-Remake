@@ -19,6 +19,7 @@ function reset_inv_variable(argument0,argument1)
 	inv_info_height[i][ii] = -4; //아이템 세로 길이
 	inv_info_rotated[i][ii] = -4; //아이템 회전 유무
 	inv_info_weight[i][ii] = -4; //아이템 무게 (단위는 kg)
+	inv_info_searched[i][ii] = -4; //아이템 서치됨
 	
 	return true;
 }
