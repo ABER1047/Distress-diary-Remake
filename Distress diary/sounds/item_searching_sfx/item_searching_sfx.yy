@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":4.257959,
+  "duration":4.296,
   "name":"item_searching_sfx",
   "parent":{
     "name":"사운드",

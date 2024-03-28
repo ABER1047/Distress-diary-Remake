@@ -21,7 +21,7 @@ if (search_item)
 					//효과음 재생
 					if (searching_sfx == -4)
 					{
-						searching_sfx = audio_play_sound(item_searching_sfx,1,true,global.master_volume*global.sfx_volume*0.1);
+						searching_sfx = play_sound(item_searching_sfx,true,0.1);
 					}
 				
 					tmp_owner.inv_info_searched[i][ii] += 1/global.searching_time;

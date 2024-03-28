@@ -59,6 +59,9 @@ if (instance_exists(parents_id))
 			//현재 옮기고 있는 아이템 rotated정보
 			moving_item_rotation = item_rotated;
 			
+			//효과음
+			play_sound(draging_item,false,0.03);
+			
 			//아이템 회전 적용
 			var tmp_origin_item_width = (item_rotated == 0) ? item_width : item_height;
 			var tmp_origin_item_height = (item_rotated == 0) ? item_height : item_width;
@@ -184,6 +187,10 @@ if (instance_exists(parents_id))
 	{
 		if (moving_now == 1)
 		{
+			//효과음
+			play_sound(draged_item,false,0.03);
+			
+			
 			//최적화 용 임시 변수
 			var tmp_i = new_y_pos;
 			var tmp_ii = new_x_pos;
