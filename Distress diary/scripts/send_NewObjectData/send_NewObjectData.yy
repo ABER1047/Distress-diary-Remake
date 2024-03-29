@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"send_NewObjectData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"send_NewObjectData",
+  "parent":{
+    "name":"MapCreating",
+    "path":"folders/스크립트/MapCreating.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

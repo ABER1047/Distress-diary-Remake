@@ -12,7 +12,12 @@ if (window_has_focus() && !surface_exists(global.light_surf))
 //새로운 플레이어가 중도 참여했을 때, 맵 데이터 전송
 if (global.new_player_joined > 0)
 {
+	//순수 맵 데이터 전송
 	send_NewMapData();
+	
+	//맵에 있는 모든 오브젝트 정보 전송
+	send_NewObjectData();
+	
 	global.new_player_joined --;
 }
 

@@ -5,45 +5,43 @@ var type = async_load[? "type"];
 if (type == network_type_connect) 
 {
 	var socket = async_load[? "socket"];
-	var cli_max = ds_list_size(global.client_num);
+	var cli_max = instance_number(obj_player);
 	network_set_timeout(socket, 3000, 3000);
 	
 
 	//object_id_player_only 할당용 변수
 	global.object_id_player_only ++;
 	
+	
 	//핑 저장용 변수
 	array_resize(global.users_ping,global.object_id_player_only);
 	array_resize(global.users_ping_display,global.object_id_player_only);
 
 	
+	//새로 들어온 플레이어한테 기본 정보 전송
 	buffer_seek(info_buffer, buffer_seek_start, 0);
 	buffer_write(info_buffer, buffer_u8, DATA.INIT_DATA);
 	buffer_write(info_buffer, buffer_string, cli_max);
 	buffer_write(info_buffer, buffer_string, global.object_id_ind);
 	buffer_write(info_buffer, buffer_string, global.object_id_player_only);
 	buffer_write(info_buffer, buffer_u8, socket);
-	
-	
-	//obj_id 할당용 변수
-	global.object_id_ind ++;
-	
-	
-	//처음 들어왔을 때
-	for(var i = 1; i < global.object_id_player_only; i++) 
+	with(obj_player)
 	{
-		//soc는 각 플레이어 마다 부여되는 소켓임 (= 고유 id)
-		var tmp_p_ins_id = global.my_player_ins_id[i];
-		if (instance_exists(tmp_p_ins_id))
-		{
-			buffer_write(other.info_buffer, buffer_u8, tmp_p_ins_id.soc);
-			buffer_write(other.info_buffer, buffer_string, tmp_p_ins_id.nickname);
-		}
+		buffer_write(other.info_buffer, buffer_string, obj_id); //오브젝트 아이디
+		buffer_write(other.info_buffer, buffer_string, obj_id_player_only); //플레이어 전용 오브젝트 아이디
+		buffer_write(other.info_buffer, buffer_u8, soc); //소켓
+		buffer_write(other.info_buffer, buffer_string, nickname); //닉네임
 	}
 	
 	network_send_packet(socket, info_buffer, buffer_get_size(info_buffer));
 
+	
+
+	//플레이어 인원수 측정용 리스트
 	ds_list_add(global.client_num, global.object_id_player_only);
+	
+	//obj_id 할당용 변수 (얘는 모든 작업이 끝난 후 플러스 해줌)
+	global.object_id_ind ++;
 }
 else if (type == network_type_disconnect) // 누군가 나갔을 때 발생하는 이벤트
 {
@@ -65,50 +63,62 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var tmp_player_num = real(buffer_read(buffer, buffer_string));
 				
 				//받아온 서버의 global.object_id_ind 값
-				var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
+				global.object_id_ind = real(buffer_read(buffer, buffer_string));
 				
 				//받아온 서버의 global.object_id_ind_player_only 값
-				var tmp_object_id_ind_player_only = real(buffer_read(buffer, buffer_string));
-			
+				global.object_id_player_only = real(buffer_read(buffer, buffer_string));
+				
 				//받아온 서버의 소켓
 				var tmp_soc = buffer_read(buffer, buffer_u8);
+				
+				
+				//내 플레이어 기본 정보 값 세팅
 				network_set_timeout(tmp_soc, 3000, 3000);
-				if (instance_exists(obj_player))
+				with(obj_player)
 				{
-					obj_player.soc = tmp_soc;
-					obj_player.obj_id = tmp_object_id_ind;
-					obj_player.obj_id_player_only = tmp_object_id_ind_player_only;
+					if (object_index != code_m)
+					{
+						soc = tmp_soc;
+						obj_id = global.object_id_ind;
+						obj_id_player_only = global.object_id_player_only;
+					}
 				}
+				
+				//내 플레이어 아이디 값 세팅
+				global.my_player_id = global.object_id_player_only;
+				
+				
+				
 			
-				//code_m 오브젝트에도 obj_id 저장해둠
-				global.my_player_id = tmp_object_id_ind_player_only;
-				
-				//핑 저장용 변수
-				array_resize(global.users_ping,tmp_object_id_ind_player_only);
-				array_resize(global.users_ping_display,tmp_object_id_ind_player_only);
-				
-
-				show_message_log("채팅방에 들어왔습니다.");
-				for(i = 1; i <= tmp_player_num; i++)
+				//나 이외의 모든 플레이어 기본 정보 값 세팅
+				for(i = 0; i < tmp_player_num; i++)
 				{
 					var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
-					obj.obj_id = tmp_object_id_ind-i; //고유 obj_id값 부여
-					obj.obj_id_player_only = tmp_object_id_ind_player_only-i; //고유 obj_id값 부여
-					
-					//각 플레이어마다 고유한 소켓을 가지고 있음 (= 고유 id)
-					obj.soc = buffer_read(buffer, buffer_u8);
-					obj.nickname = buffer_read(buffer, buffer_string);
+					obj.obj_id = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
+					obj.obj_id_player_only = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
+					obj.soc = buffer_read(buffer, buffer_u8); //소켓
+					obj.nickname = buffer_read(buffer, buffer_string); //닉네임
 				}
+			
+
+				//핑 저장용 변수
+				array_resize(global.users_ping,global.object_id_player_only);
+				array_resize(global.users_ping_display,global.object_id_player_only);
+				
 			
 			
 				//서버 및 다른 클라이언트 한테 접속했다고 데이터 발송
 				buffer_seek(info_buffer, buffer_seek_start, 0);
 				buffer_write(info_buffer, buffer_u8, DATA.ADD_CLI);
-				buffer_write(info_buffer, buffer_string, tmp_object_id_ind); //내가 배정받은 고유 obj_id를 서버로 전송
-				buffer_write(info_buffer, buffer_string, tmp_object_id_ind_player_only); //내가 배정받은 고유 obj_id_player_only를 서버로 전송
+				buffer_write(info_buffer, buffer_string, global.object_id_ind); //내가 배정받은 고유 obj_id를 서버로 전송
+				buffer_write(info_buffer, buffer_string, global.object_id_player_only); //내가 배정받은 고유 obj_id_player_only를 서버로 전송
 				buffer_write(info_buffer, buffer_string, global.nickname); //내 닉네임을 서버에 전송
 				buffer_write(info_buffer, buffer_u8, tmp_soc); //내 소켓 전송
 				send_all(info_buffer);
+				
+				
+				//접속 메세지 표기
+				show_message_log("채팅방에 들어왔습니다.");
 			}
 		break;
 		
@@ -446,49 +456,73 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			{
 				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
 				var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
+				var tmp_real_ins_id = -4;
+				var tmp_str = "";
 				
+				//상자류 오브젝트 중 obj_id가 일치하는 오브젝트 찾기 
 				with(tmp_obj_ind)
 				{
-					var tmp_id = id;
-					var tmp_str = "";
 					if (obj_id == tmp_obj_id)
 					{
-						for(var i = 0; i < inv_height; i++)
+						tmp_real_ins_id = id;
+						break;
+					}
+				}
+				
+				//obj_id가 일치하는 오브젝트가 아에 없는 경우 새로 생성
+				var tmp_args = [ -4, -4, -4, -4, -4, -4 ];
+				var tmp_num = array_length(tmp_args)-1;
+				for(var i = 0; i < tmp_num; i++)
+				{
+					tmp_args[i] = real(buffer_read(buffer, buffer_string));
+				}
+				tmp_args[tmp_num] = buffer_read(buffer, buffer_string); //loots_name
+				
+				if (tmp_real_ins_id == -4)
+				{
+					tmp_real_ins_id = create_loots(tmp_args[0],tmp_args[1],tmp_args[2],tmp_args[3],tmp_args[4],tmp_args[5],tmp_obj_id,true);
+				}
+				
+				
+				//위에서 찾은 상자류 오브젝트 정보값 받아오기
+				with(tmp_real_ins_id)
+				{
+					for(var i = 0; i < inv_height; i++)
+					{
+						for(var ii = 0; ii < inv_width; ii++)
 						{
-							for(var ii = 0; ii < inv_width; ii++)
+							if (buffer_get_size(buffer) > 0)
 							{
-								if (buffer_get_size(buffer) > 0)
-								{
-									var tmp_spr_name_real = buffer_read(buffer, buffer_string);
-									var tmp_spr_name = asset_get_index(tmp_spr_name_real);
-									inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
-									inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
-									inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-									inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
-									inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
-									inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
-									inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
-									inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-									inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-									inv_info_searched[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 서치됨
-									tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
-								}
+								var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+								var tmp_spr_name = asset_get_index(tmp_spr_name_real);
+								inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
+								inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
+								inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+								inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+								inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
+								inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
+								inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
+								inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+								inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+								inv_info_searched[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 서치됨
+								tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 							}
-							tmp_str = string(tmp_str)+"\n";
 						}
+						tmp_str = string(tmp_str)+"\n";
+					}
+				
 					
-						//모든 인벤토리 UI들 리로드
-						show_message_log("인벤토리 리로드 - "+string(object_get_name(tmp_obj_ind))+" / "+string(obj_id));
-						show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
+					//모든 인벤토리 UI들 리로드
+					show_message_log("인벤토리 리로드 - "+string(object_get_name(tmp_obj_ind))+" / "+string(obj_id));
+					show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
+				}
 						
-						//인벤토리 ui정보 리로드
-						with(obj_inv_ui)
-						{
-							if (object_index == obj_inv_ui)
-							{
-								reload_inv = 1;
-							}
-						}
+				//인벤토리 ui정보 리로드
+				with(obj_inv_ui)
+				{
+					if (object_index == obj_inv_ui)
+					{
+						reload_inv = 1;
 					}
 				}
 			}
@@ -505,7 +539,6 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				with(tmp_obj_ind)
 				{
-					var tmp_id = id;
 					var tmp_str = "";
 					if (obj_id == tmp_obj_id)
 					{

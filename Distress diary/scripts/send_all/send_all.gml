@@ -12,7 +12,9 @@ function send_all(argument0)
 		{
 			var soc = global.client_num[| i];
 			if (soc < 0)
-			continue;
+			{
+				continue;
+			}
 			network_send_packet(soc , buffer, buffer_get_size(buffer));
 		}
 	}

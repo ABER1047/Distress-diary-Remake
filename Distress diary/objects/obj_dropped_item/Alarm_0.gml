@@ -3,7 +3,7 @@
 inv_width = 9;
 inv_height = 9;
 resize_inv = true;
-send_InventoryData(obj_id,obj_dropped_item);
+send_InventoryDataAll(obj_id,obj_dropped_item);
 
 
 
