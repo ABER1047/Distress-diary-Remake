@@ -136,8 +136,10 @@ if (instance_exists(parents_id))
 				is_all_place_empty = false;
 			}
 			
+			//2번 연산하는거 1번 연산으로 최적화 할려고 만든 임시 변수
+			var tmp_if = (tmp_nearest_inv_ui == parents_id && new_x_pos == x_pos && new_y_pos == y_pos && moving_item_rotation == origin_item_rorated)
 			
-			if (is_all_place_empty && (new_x_pos != x_pos || new_y_pos != y_pos || moving_item_rotation != origin_item_rorated)) //자리 비어있음
+			if (is_all_place_empty && (!tmp_if)) //자리 비어있음
 			{
 				if (origin_stack_num > 1 && keyboard_check(vk_shift))
 				{
@@ -170,7 +172,7 @@ if (instance_exists(parents_id))
 			}
 			
 			//아이템의 옮기려는 위치가 기존 위치랑 똑같은지 체크 (rorated도 똑같은지)
-			if (tmp_nearest_inv_ui == parents_id && new_x_pos == x_pos && new_y_pos == y_pos && moving_item_rotation == origin_item_rorated)
+			if (tmp_if)
 			{
 				if (keyboard_check(vk_shift))
 				{
