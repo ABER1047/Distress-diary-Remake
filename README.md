@@ -70,4 +70,18 @@
 |<img src = "imgs/multicell stacking rotating.gif"></img>|
 
 
+
+##
+
+### 2024-03-27 ~ 2024-03-28
+
+#### searching system of unsearched items added
+
+#### 미발견 아이템 서칭 시스템 추가
+
+||
+|---|
+|<img src = "imgs/searching_system.gif"></img>|
+
+
 </div>
