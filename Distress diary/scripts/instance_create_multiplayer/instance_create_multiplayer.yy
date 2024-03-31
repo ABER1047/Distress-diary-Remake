@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"instance_create_multiplayer",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"instance_create_multiplayer",
+  "parent":{
+    "name":"MapCreating",
+    "path":"folders/스크립트/MapCreating.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

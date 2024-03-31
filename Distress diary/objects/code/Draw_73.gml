@@ -388,13 +388,13 @@ if (global.dev_mode == 1)
 	var tmp_img = 18//irandom_range(0,floor((sprite_get_number(spr_loots)-1)/2));
 	var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
 	var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
-	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_loots);
+	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
 	if (keyboard_check(ord("P")))
 	{
 		if (!instance_exists(tmp_ins))
 		{
 			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
-			draw_sprite_ext(spr_loots,tmp_img,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.5);
+			draw_sprite_ext(spr_loots,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
 		}
 		else
 		{
@@ -407,14 +407,45 @@ if (global.dev_mode == 1)
 		if (instance_exists(tmp_ins))
 		{
 			instance_destroy_multiplayer(tmp_ins);
-			show_message_log("- 오브젝트 삭제 [obj_id : "+string(tmp_ins)+"]");
 		}
 		else
 		{
-			var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img,9,9,"Random chest - "+string(global.object_id_ind),global.object_id_ind,0);
-			show_message_log("- 랜덤 상자 생성 [obj_id : "+string(tmp_ins.obj_id)+"]");
+			create_loots(tmp_xx,tmp_yy,tmp_img,9,9,"Random chest - "+string(global.object_id_ind),global.object_id_ind,0);
 		}
 	}
+	
+	
+	
+	//블럭 생성 (병)
+	var tmp_img = 0;
+	var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
+	var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
+	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
+	if (keyboard_check(ord("O")))
+	{
+		if (!instance_exists(tmp_ins))
+		{
+			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
+			draw_sprite_ext(spr_blocks,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
+		}
+		else
+		{
+			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
+		}
+	}
+
+	if (keyboard_check_released(ord("O")))
+	{
+		if (instance_exists(tmp_ins))
+		{
+			instance_destroy_multiplayer(tmp_ins);
+		}
+		else
+		{
+			instance_create_multiplayer(obj_bottle,tmp_xx,tmp_yy,global.object_id_ind,0,false);
+		}
+	}
+	
 	
 	
 	//틱레이트 조정

@@ -13,6 +13,7 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 {
 	var tmp_width = argument3;
 	var tmp_height = argument4;
+	var tmp_obj_id = argument6;
 	
 	if (argument2 != -4) //-4인경우 바닥에 떨군 아이템 보관용 박스 생성
 	{
@@ -30,10 +31,12 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 		if (id == tmp_ins)
 		{
 			set_inv_size(tmp_width,tmp_height);
-			obj_id = argument6;
+			obj_id = tmp_obj_id;
 			loots_name = argument5;
 		}
 	}
+	
+	show_message_log("- 상자 생성 [obj_id : "+string(tmp_obj_id)+"]");
 	
 
 	//생성된 상자 정보 다른 멀티플레이어한테 보내서 그쪽에도 오브젝트 생성하기

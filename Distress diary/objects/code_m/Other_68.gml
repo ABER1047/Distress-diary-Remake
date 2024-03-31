@@ -585,7 +585,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			{
 				var tmp_obj_ind_name = buffer_read(buffer, buffer_string);
 				var tmp_obj_ind = asset_get_index(tmp_obj_ind_name);
-				var is_destroy = real(buffer_read(buffer, buffer_string));
+				var is_destroy = real(buffer_read(buffer, buffer_string)); //is_destroy가 1인 경우 해당 obj_id에 부합하는 인스턴스 삭제
 				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
 				
 				//is_destroy가 1인 경우 해당 obj_id에 부합하는 인스턴스 삭제
@@ -604,6 +604,11 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				else
 				{
 					//is_destroy가 0인 경우 새로운 오브젝트 생성 (= 특별한 기능이 없는 오브젝트 [ex. 벽...])
+					var tmp_xx = real(buffer_read(buffer, buffer_string));
+					var tmp_yy = real(buffer_read(buffer, buffer_string));
+					var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+					
+					instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true);
 				}
 			}
 		break;
