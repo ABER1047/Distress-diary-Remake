@@ -16,13 +16,17 @@ if (image_alpha > 0)
 	}
 	
 	//내 자신 그리기
-	draw_self();
-	
-	//화살표 그리기
 	var tmp_dir = image_angle+270;
-	var tmp_dis = (arrow_animation_yy/96);
-	var tmp_scale = 0.6+tmp_dis*0.1;
-	draw_sprite_ext(spr_arrow_ui,0,x+lengthdir_x(arrow_animation_yy,tmp_dir),y+lengthdir_y(arrow_animation_yy,tmp_dir),image_xscale*tmp_scale,image_yscale*tmp_scale,tmp_dir-90,c_white,image_alpha*tmp_dis);
+	draw_sprite_ext(spr_exit_guide_arrow,floor_arrow_img_ind,x+lengthdir_x(128,tmp_dir),y+lengthdir_y(128,tmp_dir),image_xscale,image_yscale,tmp_dir-90,c_white,image_alpha*1.5);
+	
+	//바닥 화살표 그리기
+	
+	
+	
+	//화살표 인터페이스 그리기
+	//var tmp_dis = (arrow_animation_yy/96);
+	//var tmp_scale = 0.6+tmp_dis*0.1;
+	//draw_sprite_ext(spr_arrow_ui,0,x+lengthdir_x(arrow_animation_yy,tmp_dir),y+lengthdir_y(arrow_animation_yy,tmp_dir),image_xscale*tmp_scale,image_yscale*tmp_scale,tmp_dir-90,c_white,image_alpha*tmp_dis);
 }
 
 

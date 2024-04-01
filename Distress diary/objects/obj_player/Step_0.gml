@@ -5,6 +5,14 @@
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
 if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
+	//플래시 라이트
+	if (keyboard_check_pressed(ord("E")))
+	{
+		flashlight_toggle();
+	}
+	
+	
+	
 	//pushable_objects끼리 밀리는 효과
 	pushable_objects_physics();
 	

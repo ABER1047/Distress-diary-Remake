@@ -13,7 +13,7 @@ my_backpack = 0;
 b_my_backpack = -4;
 
 //플레이어가 바라보는 방향을 마우스 방향으로 고정
-global.fixed_dir = 1;
+global.fixed_dir = false;
 
 //이동 관련 변수
 global.max_movement_speed = 8;

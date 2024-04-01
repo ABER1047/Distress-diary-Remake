@@ -3,6 +3,7 @@
 if (!surface_exists(global.light_surf))
 {
 	global.light_surf = surface_create(4000,3000);
+	global.flashlight_surf = surface_create(4000,3000);
 }
 
 if (!surface_exists(outter_room_surf))

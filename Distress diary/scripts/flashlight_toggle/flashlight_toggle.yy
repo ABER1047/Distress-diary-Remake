@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"flashlight_toggle",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"flashlight_toggle",
+  "parent":{
+    "name":"PlayerActions",
+    "path":"folders/스크립트/PlayerActions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

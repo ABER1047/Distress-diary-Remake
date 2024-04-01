@@ -6,6 +6,8 @@ image_yscale = 2;
 //이동할 방 (0 = 오른쪽부터 시작해서 반시계방향)
 //tp_to = 0;
 
+floor_arrow_img_ind = irandom_range(0,2);
+
 can_use_tp = 0;
 alarm[1] = 5;
 

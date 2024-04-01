@@ -17,6 +17,11 @@
 
 function create_map(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
 {
+	global.enable_light_surf = true;
+	flashlight_toggle();
+	
+	
+	
 	global.n_player_room_xx = [ -4, -5, -6, -7, -8, -9 ];
 	global.n_player_room_yy = [ -4, -5, -6, -7, -8, -9 ];
 	

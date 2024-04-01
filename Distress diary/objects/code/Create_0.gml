@@ -75,7 +75,12 @@ outter_room_surf = surface_create(4000,3000);
 
 //라이트 서피스 생성
 global.light_surf = surface_create(4000,3000);
+global.flashlight_surf = surface_create(4000,3000);
 global.enable_light_surf = false;
+
+
+//플레시라이트 켜짐/꺼짐
+global.enable_flashlight = false;
 
 
 //현재 모든 플레이어 위치 (룸) [인덱스는 플레이어 obj_id 값을 의미함]
