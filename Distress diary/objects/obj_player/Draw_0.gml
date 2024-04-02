@@ -3,7 +3,7 @@
 
 if (draw_alpha > 0)
 {
-	draw_sprite_ext(spr_shadow,0,x,y,image_xscale,image_yscale,0,c_white,draw_alpha*0.3);
+	//플레이어 그리기
 	draw_sprite_ext(sprite_index,image_index,x,y-z,image_xscale,image_yscale,image_angle,image_blend,draw_alpha);
 	
 	if (my_n_dir != 3 && my_backpack != 0)

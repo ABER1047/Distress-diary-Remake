@@ -1,8 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-//그림자 그리기
-draw_sprite_ext(sprite_index,image_index,x,y,image_xscale,-image_yscale*0.85,image_angle,c_black,0.3)
 
 
 //오브젝트 그리기

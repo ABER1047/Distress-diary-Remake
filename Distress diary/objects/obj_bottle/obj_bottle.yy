@@ -38,6 +38,9 @@
     "name":"spr_blocks",
     "path":"sprites/spr_blocks/spr_blocks.yy",
   },
-  "spriteMaskId":null,
+  "spriteMaskId":{
+    "name":"spr_wall_mask_center",
+    "path":"sprites/spr_wall_mask_center/spr_wall_mask_center.yy",
+  },
   "visible":true,
 }

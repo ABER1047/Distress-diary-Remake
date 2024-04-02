@@ -29,7 +29,7 @@ for(var i = 0; i < global.n_room_width; i++)
 	
 	
 	//위쪽 벽 그리기
-	var tmp_spr_ind = n_wall_type*3+1;
+	var tmp_spr_ind = n_wall_type*9+1;
 	if (i == 0)
 	{
 		tmp_spr_ind -= 1;
@@ -38,16 +38,41 @@ for(var i = 0; i < global.n_room_width; i++)
 	{
 		tmp_spr_ind += 1;
 	}
-	draw_sprite_ext(spr_tiles_walls,tmp_spr_ind,tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y,tmp_wall_scale,tmp_wall_scale,0,c_white,1);
+	var tmp_xx = tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size;
+	draw_sprite_ext(spr_tiles_walls,tmp_spr_ind,tmp_xx,y,tmp_wall_scale,tmp_wall_scale,0,c_white,1);
 }
 
+//모든 그림자 그리기
+var xx = camera_get_view_x(view_camera[0]);
+var yy = camera_get_view_y(view_camera[0]);
+surface_set_target(global.shadow_surf);
+gpu_set_blendmode(bm_normal);
+draw_clear_alpha(c_black,0);
+draw_sprite_ext(spr_tiles_walls,1,tmp_room_xx-xx,y-yy,tmp_wall_scale*global.n_room_width*1.2,-tmp_wall_scale*0.85,image_angle,c_white,1);
+with(obj_wall_nearby_door)
+{
+	draw_sprite_ext(spr_tiles_walls,1,x-xx,y-yy,tmp_wall_scale,-tmp_wall_scale*0.85,image_angle,c_white,1);
+}
+
+with(obj_parents)
+{
+	draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
+}
+
+with(obj_player)
+{
+	draw_sprite_ext(spr_shadow,0,x-xx,y-yy,image_xscale,image_yscale,0,c_white,1);
+}
+
+with(obj_dropped_item)
+{
+	draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1)
+}
+surface_reset_target();
 
 
 
-
-
-
-
+draw_surface_ext(global.shadow_surf,xx,yy,1,1,0,c_black,0.3);
 
 
 

@@ -412,7 +412,10 @@ if (instance_exists(parents_id))
 			if (is_moveable_pos > 0)
 			{
 				send_InventoryDataSpecificPos(variable_owner_ins.obj_id,variable_owner_ins.object_index,tmp_kk,tmp_k);
-				send_InventoryDataSpecificPos(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index,tmp_ii,tmp_i);
+				if (instance_exists(nearsest_inv_variable_owner_ins))
+				{
+					send_InventoryDataSpecificPos(nearsest_inv_variable_owner_ins.obj_id,nearsest_inv_variable_owner_ins.object_index,tmp_ii,tmp_i);
+				}
 				parents_id.reload_inv = 1; //인벤토리 ui정보 리로드
 				if (is_moving_item_outside == 0 && variable_owner_ins != nearsest_inv_variable_owner_ins)
 				{

@@ -19,7 +19,7 @@ var tmp_wall_scale = 2;
 var tmp_wall_sprite_size = tmp_wall_scale*48;
 var n_wall_type = 0;
 
-if (global.is_map_exists != -4 && surface_exists(outter_room_surf))
+if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(outter_room_surf))
 {
 	surface_set_target(outter_room_surf);
 	draw_clear(0);
@@ -46,7 +46,7 @@ if (global.is_map_exists != -4 && surface_exists(outter_room_surf))
 for(var i = 0; i < global.n_room_width; i++)
 {
 	//아래쪽 벽 그리기
-	var tmp_spr_ind = n_wall_type*3+4;
+	var tmp_spr_ind = n_wall_type*9+5;
 	if (i == 0)
 	{
 		tmp_spr_ind -= 1;
@@ -64,7 +64,7 @@ var tmp_wall_sprite_size2 = tmp_wall_scale*96;
 for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 {
 	//왼쪽 벽 그리기
-	var tmp_spr_ind = n_wall_type*3+6;
+	var tmp_spr_ind = n_wall_type*9+7;
 	if (i == -1)
 	{
 		tmp_spr_ind += 1;
@@ -87,43 +87,51 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 	
 	//플래시라이트
+	surface_set_target(global.flashlight_surf);
+	draw_clear_alpha(c_black,0);
+	//거리에 따른 라이트 크기 조절
+	var light_col = #FFE651;
+	var tmp_player_xx = tmp_my_p.x;
+	var tmp_player_yy = tmp_my_p.y-24;
+	var tmp_light_xx_surf = tmp_player_xx-xx;
+	var tmp_light_yy_surf = tmp_player_yy-tmp_my_p.z-yy;
+	var light_ang = point_direction(tmp_player_xx,tmp_player_yy,mouse_x,mouse_y);
+	//플레이어가 바라보는 방향을 마우스 방향으로 고정
+	if (global.fixed_dir == 1)
+	{
+		if (light_ang <= 50 || light_ang >= 310)
+		{
+			global.n_dir = 0;
+		}
+		else if (light_ang > 50 && light_ang < 130)
+		{
+			global.n_dir = 1;
+		}
+		else if (light_ang >= 130 && light_ang <= 230)
+		{
+			global.n_dir = 2;
+		}
+		else
+		{
+			global.n_dir = 3;
+		}
+	}
+	
+	
+		
+	
+	
+	
+	//플레이어 주변 광원
+	var tmp_radius = (4/1191)*(64+(128*global.enable_flashlight)+(global.time_response_light*896));
+	draw_sprite_ext(spr_grad_circle,0,tmp_light_xx_surf,tmp_light_yy_surf,tmp_radius,tmp_radius,0,light_col,0.65);
+	//draw_circle(tmp_light_xx_surf,tmp_light_yy_surf,128,false);
+	
 	if (global.enable_flashlight)
 	{
-		surface_set_target(global.flashlight_surf);
-		draw_clear_alpha(c_black, 0);
-		gpu_set_blendmode(bm_normal);
-		//거리에 따른 라이트 크기 조절
-		var light_col = #FFE651;
-		var tmp_player_xx = tmp_my_p.x;
-		var tmp_player_yy = tmp_my_p.y-24;
-		var tmp_light_xx_surf = tmp_player_xx-xx;
-		var tmp_light_yy_surf = tmp_player_yy-tmp_my_p.z-yy;
 		var light_scale = 0.25;
 		var max_light_dis = 1278*light_scale;
 		var light_dis = fix_num_inside(point_distance(tmp_player_xx,tmp_player_yy,mouse_x,mouse_y),0,max_light_dis);
-		var light_ang = point_direction(tmp_player_xx,tmp_player_yy,mouse_x,mouse_y);
-		//플레이어가 바라보는 방향을 마우스 방향으로 고정
-		if (global.fixed_dir == 1)
-		{
-			if (light_ang <= 50 || light_ang >= 310)
-			{
-				global.n_dir = 0;
-			}
-			else if (light_ang > 50 && light_ang < 130)
-			{
-				global.n_dir = 1;
-			}
-			else if (light_ang >= 130 && light_ang <= 230)
-			{
-				global.n_dir = 2;
-			}
-			else
-			{
-				global.n_dir = 3;
-			}
-		}
-	
-	
 		var i = 0;
 		//플레이어가 바라보는 방향에 대해 플레이어부터 벽까지의 거리값
 		for(; i < light_dis; i += light_scale)
@@ -133,14 +141,7 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 				break;
 			}
 		}
-	
-	
-	
-		//플레이어 주변 광원
-		var tmp_radius = (4/1191)*360;
-		draw_sprite_ext(spr_grad_circle,0,tmp_light_xx_surf,tmp_light_yy_surf,tmp_radius,tmp_radius,0,light_col,0.65);
-		//draw_circle(tmp_light_xx_surf,tmp_light_yy_surf,128,false);
-	
+			
 		//라이트 이미지 바디 부분
 		var light_inner_deg = radtodeg(arctan(360/1278))*(1+(max_light_dis-i)/110); //삼각형 내부 끼인 각의 절반값 (라이트)
 		show_debug_message("dis : "+string(i)+" / deg : "+string(light_inner_deg)+" / ang : "+string(global.n_dir)+" ("+string(light_ang)+")");
@@ -158,24 +159,19 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 		var radius_pixel = 360*light_scale-(i-max_light_dis)*light_scale;
 		draw_set_alpha(1);
 		draw_circle(tmp_light_xx_head,tmp_light_yy_head,radius_pixel,false);
-	
-		surface_reset_target();
 	}
+	surface_reset_target();
 	
 	
 	
 	
 	surface_set_target(global.light_surf);
-	var light_alpha = 0.68; //라이트 밝기
+	var light_alpha = 0.68+(0.32*global.time_response_light)+(0.1*global.enable_flashlight); //라이트 밝기
 	draw_clear(0);
 	draw_sprite_ext(spr_wall_mask_bottom,1,0,0,84,84,0,c_black,1);
 	
-	if (global.enable_flashlight)
-	{
-		gpu_set_blendmode(bm_subtract);
-		draw_surface_ext(global.flashlight_surf,0,0,1,1,0,c_white,light_alpha);
-	}
-
+	gpu_set_blendmode(bm_subtract);
+	draw_surface_ext(global.flashlight_surf,0,0,1,1,0,c_white,light_alpha);
 	gpu_set_blendmode(bm_normal);
 	surface_reset_target();
 	//draw_set_alpha(0.2);
@@ -195,13 +191,14 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 
 
 
+
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
 	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 보기 [`]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
-	draw_text_k_scale(xx+xx_w-8,yy+yy_h-256,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+xx_w-8,yy+yy_h-320,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
-	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]";
+	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
 	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
 	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
@@ -456,6 +453,15 @@ if (global.dev_mode == 1)
 		{
 			instance_create_multiplayer(obj_bottle,tmp_xx,tmp_yy,global.object_id_ind,0,false);
 		}
+	}
+	
+	
+	
+	
+	//쉐도우 서피스 작동 여부
+	if (keyboard_check_pressed(ord("1")))
+	{
+		global.enable_light_surf = !global.enable_light_surf;
 	}
 	
 	

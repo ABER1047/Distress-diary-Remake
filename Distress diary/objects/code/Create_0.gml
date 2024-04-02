@@ -77,6 +77,11 @@ outter_room_surf = surface_create(4000,3000);
 global.light_surf = surface_create(4000,3000);
 global.flashlight_surf = surface_create(4000,3000);
 global.enable_light_surf = false;
+global.time_response_light = 1;
+
+//쉐도우 서피스 생성
+global.shadow_surf = surface_create(4000,3000);
+global.enable_shadow_surf = true;
 
 
 //플레시라이트 켜짐/꺼짐
@@ -137,3 +142,11 @@ global.searching_time = 100;
 global.master_volume = 1;
 global.sfx_volume = 1;
 global.bgm_volume = 1;
+
+
+//낮-밤 시간대 (단위 : 분)
+global.time = 60*8;
+global.time_display = "";
+global.time_increment = 3; //몇 프레임이 지나야 게임 시간의 1분이 흐르는지
+global.time_increment_timer = 0;
+global.time_is_day = true;

@@ -5,7 +5,7 @@
 image_speed = 0;
 image_xscale = 2;
 image_yscale = 2;
-
+image_alpha = 1;
 
 //z축 추가
 add_z_axis();

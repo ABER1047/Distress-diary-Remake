@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+depth = obj_map_texture_draw.depth-32;
 
 //화살표 애니메이션
 var tmp_my_p = global.my_player_ins_id[global.my_player_id];
