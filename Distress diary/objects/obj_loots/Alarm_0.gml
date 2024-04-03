@@ -271,6 +271,7 @@ switch(image_index)
 			tmp_img_ind = 6; //생성할 아이템 image_index
 			tmp_name = "Milk"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_height = 2; //생성할 아이템 height
 		}
 		else if (tmp_chances >= 5100 && tmp_chances < 5500) //4%확률로 오랜지 소다
 		{
@@ -569,6 +570,7 @@ switch(image_index)
 			tmp_img_ind = 6; //생성할 아이템 image_index
 			tmp_name = "Milk"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_height = 2; //생성할 아이템 height
 		}
 		else if (tmp_chances >= 3800 && tmp_chances < 4400) //6%확률로 오랜지 소다
 		{
@@ -1088,10 +1090,14 @@ switch(image_index)
 var has_empty_pos = find_empty_pos(tmp_spr_ind,tmp_img_ind,tmp_width,tmp_height,tmp_stack,tmp_max_stack,tmp_name,id); //상자 안의 빈자리 찾기
 if (has_empty_pos == true)
 {
-	set_inv_variable(id,global.inv_empty_xpos,global.inv_empty_ypos,tmp_spr_ind,tmp_img_ind,tmp_name,tmp_name_compressed,tmp_stack,tmp_max_stack,tmp_width,tmp_height,0,tmp_weight,0);
+	set_inv_variable(id,global.inv_empty_xpos,global.inv_empty_ypos,tmp_spr_ind,tmp_img_ind,tmp_name,tmp_name_compressed,tmp_stack,tmp_max_stack,tmp_width,tmp_height,global.inv_empty_rotated,tmp_weight,0);
 	if (item_num_to_create > 0)
 	{
-		alarm[0] = 10;
+		if (tmp_width*tmp_height >= 4)
+		{
+			item_num_to_create -= 2;
+		}
+		alarm[0] = 1;
 	}
 }
 

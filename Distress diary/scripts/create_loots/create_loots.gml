@@ -28,6 +28,17 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	//인벤토리 설정
 	with(tmp_ins)
 	{
+		for(var i = 0; i < tmp_height+8; i++)
+		{
+			for(var ii = 0; ii < tmp_width+8; ii++)
+			{
+				//inv_info_spr_ind가
+				//-4일때 = 비어있음
+				//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
+				reset_inv_variable(ii,i);
+			}
+		}
+		
 		if (id == tmp_ins)
 		{
 			set_inv_size(tmp_width,tmp_height);
@@ -35,6 +46,8 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 			loots_name = argument5;
 		}
 	}
+	
+	
 	
 	show_message_log("- 상자 생성 [obj_id : "+string(tmp_obj_id)+"]");
 	
