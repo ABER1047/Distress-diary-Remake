@@ -17,6 +17,7 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 	{
 		var tmp_inv_width = tmp_variable_owner.inv_width;
 		var tmp_inv_height = tmp_variable_owner.inv_height;
+		show_message_log("- find_empty_pos : "+string(tmp_inv_width)+" / "+string(tmp_inv_height));
 	
 		//아이템 관련 임시 변수
 		var tmp_item_spr_ind = argument0;
@@ -66,12 +67,14 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 					
 					var has_empty_pos = true, k = 0, kk = 0; //자리가 있는지 없는지를 반환해주는 임시 변수
 					//회전상태 적용된 상태로 칸 체크
-					for(k = 0; k < tmp_item_height; k++)
+					for(; k < tmp_item_height; k++)
 					{
 						for(kk = 0; kk < tmp_item_width; kk++)
 						{
 							var target_pos_xx = ii+kk;
 							var target_pos_yy = i+k;
+							show_debug_message("tmp_inv_width : "+string(tmp_inv_width)+" / tmp_inv_height : "+string(tmp_inv_height));
+							show_debug_message("target_pos_xx : "+string(target_pos_xx)+" / target_pos_yy : "+string(target_pos_yy));
 							if (is_inside_rectangle(target_pos_xx,target_pos_yy,-1,-1,tmp_inv_width,tmp_inv_height)) //그냥 어레이 밖을 벗어난 경우 컷하기
 							{
 								var var_owner_spr_ind = tmp_variable_owner.inv_info_spr_ind[target_pos_yy][target_pos_xx];

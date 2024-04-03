@@ -285,7 +285,7 @@ if (global.dev_mode == 1)
 		{
 			if (object_index == obj_loots)
 			{
-				set_inv_variable(id,0,0,spr_comp,7,"Wire",-4,-4,2,1,0,6,0);
+				set_inv_variable(id,0,0,spr_comp,7,"Wire","Wire",-4,-4,2,1,0,6,0);
 			}
 		}
 	}
@@ -303,7 +303,7 @@ if (global.dev_mode == 1)
 	{
 		if (!instance_exists(global.showing_inv))
 		{
-			global.showing_inv = show_inv_ui(400,320,"Inventory",global.my_player_ins_id[global.my_player_id],-4);
+			global.showing_inv = show_inv_ui(400,320,"인벤토리",global.my_player_ins_id[global.my_player_id],-4);
 		}
 		else
 		{
@@ -394,7 +394,7 @@ if (global.dev_mode == 1)
 	
 	
 	//랜덤 상자 생성
-	var tmp_img = 18//irandom_range(0,floor((sprite_get_number(spr_loots)-1)/2));
+	var tmp_img = choose(0,2,4,6,8,10,12,14,16,18,24,26)
 	var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
 	var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
 	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
@@ -419,7 +419,7 @@ if (global.dev_mode == 1)
 		}
 		else
 		{
-			create_loots(tmp_xx,tmp_yy,tmp_img,9,9,"Random chest - "+string(global.object_id_ind),global.object_id_ind,0);
+			create_randomized_loots(tmp_xx,tmp_yy,tmp_img,9,9,global.object_id_ind,0);
 		}
 	}
 	

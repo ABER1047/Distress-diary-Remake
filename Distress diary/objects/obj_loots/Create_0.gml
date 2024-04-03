@@ -35,3 +35,7 @@ image_speed = 0;
 interaction_name_for_draw = "";
 interaction_key_real_ind_for_draw = 0;
 show_interaction_key = 0; // 0일때 드로우 안함
+
+
+//생성되는 랜덤아이템 갯수
+item_num_to_create = -4; //-4으로 고정 후 alarm[0] 이벤트에서 관리

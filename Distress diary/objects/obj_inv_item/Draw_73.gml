@@ -9,7 +9,8 @@ if (instance_exists(parents_id))
 	var xx_w = camera_get_view_width(view_camera[0]);
 	var yy_h = camera_get_view_height(view_camera[0]);
 
-	var slot_size = 160*global.n_camera_zoom/global.w_ratio_by_window; //1칸당 픽셀 사이즈
+	var text_ratio = global.n_camera_zoom/global.w_ratio_by_window;
+	var slot_size = 160*text_ratio; //1칸당 픽셀 사이즈
 	
 	//아이템 회전 적용
 	var tmp_item_width = (item_rotated == 0) ? item_width : item_height;
@@ -51,7 +52,7 @@ if (instance_exists(parents_id))
 		draw_sprite_ext(sprite_index,image_index,startx+(slot_size*tmp_item_width*0.5),starty+(slot_size*tmp_item_height*0.5),img_icon_scale,img_icon_scale,-90*item_rotated,image_blend,parents_id.image_alpha);
 		
 		//아이템 이름
-		draw_text_kl_scale(startx+8*global.n_camera_zoom,starty-24*global.n_camera_zoom,string(item_name),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+		draw_text_kl_scale(startx+8*global.n_camera_zoom,starty-24*global.n_camera_zoom,string(item_name_compressed),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
 		
 		//아이템 스택 갯수 표기
 		if (max_stack_num > 1)
@@ -167,6 +168,40 @@ if (instance_exists(parents_id))
 			var img_icon_scale = (image_xscale < image_yscale) ? image_xscale : image_yscale;
 			draw_sprite_ext(sprite_index,image_index,x+slot_size*(tmp_item_width-1)*0.5,y+slot_size*(tmp_item_height-1)*0.5,img_icon_scale,img_icon_scale,-90*moving_item_rotation,image_blend,moving_now*0.7);
 		}
+	}
+	
+	
+	
+	
+	
+	//아이템 정보창 표기
+	if (show_item_info)
+	{
+		//뒷 배경 그리기
+		var item_info = "test item info test item info test item info test item info test item info";
+		var tmp_info_length = floor(string_length(item_info)/15);
+		var tmp_win_width = 480*text_ratio;
+		var tmp_win_height = (256+64*tmp_info_length)*text_ratio;
+		draw_set_alpha(0.6);
+		draw_set_color(c_black);
+		draw_rectangle(mouse_x,mouse_y,mouse_x+tmp_win_width,mouse_y+tmp_win_height,false);
+		
+		
+		
+		//아이템명
+		var tmp_text_startx = mouse_x+16*text_ratio;
+		var tmp_text_starty = mouse_y-8*text_ratio;
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty,string(item_name),64,-1,1,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+		
+		//아이템 정보
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(96*text_ratio),string(item_info),64,480,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+		
+		
+		//아이템명-아이템 정보 사이의 라인 그리기
+		var tmp_name_width = string_width(item_name)+16;
+		draw_set_color(c_white);
+		draw_set_alpha(1);
+		draw_line_width(tmp_text_startx,tmp_text_starty+(96*text_ratio),tmp_text_startx+(tmp_name_width*text_ratio),tmp_text_starty+(96*text_ratio),3*text_ratio);
 	}
 }
 

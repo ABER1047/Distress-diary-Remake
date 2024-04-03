@@ -27,10 +27,12 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 			{
 				if (sprite_exists(tmp_owner.inv_info_spr_ind[i][ii]))
 				{
-					create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],tmp_ins,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_owner.inv_info_weight[i][ii],tmp_owner.inv_info_searched[i][ii]);
+					create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_name_compressed[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],tmp_ins,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_owner.inv_info_weight[i][ii],tmp_owner.inv_info_searched[i][ii]);
 				}
 			}
 		}
+		
+		show_debug_message("show_inv_ui : "+string(tmp_owner)+" / "+string(tmp_owner.inv_info_name_compressed));
 		
 		//변수를 가지고 있는 인스턴스한테 ui창 인스턴스 아이디 값 저장
 		tmp_owner.ui_ins = tmp_ins;

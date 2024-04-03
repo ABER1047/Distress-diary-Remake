@@ -15,7 +15,7 @@ if (search_item)
 		{
 			if (sprite_exists(tmp_owner.inv_info_spr_ind[i][ii]))
 			{
-				show_debug_message("searching_now : "+string(ii)+", "+string(i));
+				//show_debug_message("searching_now : "+string(ii)+", "+string(i));
 				if (tmp_owner.inv_info_searched[i][ii] < 1)
 				{
 					//효과음 재생

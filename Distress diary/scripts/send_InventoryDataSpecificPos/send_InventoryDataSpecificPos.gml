@@ -43,6 +43,7 @@ function send_InventoryDataSpecificPos(argument0,argument1,argument2,argument3)
 			buffer_write(global.inv_data_buffer, buffer_string, tmp_spr_name); //spr_ind값 보유
 			buffer_write(global.inv_data_buffer, buffer_string, inv_info_img_ind[i][ii]); //img_ind값 보유
 			buffer_write(global.inv_data_buffer, buffer_string, inv_info_name[i][ii]); //아이템의 이름 값 보유
+			buffer_write(global.inv_data_buffer, buffer_string, inv_info_name_compressed[i][ii]); //아이템의 이름 값 보유
 			buffer_write(global.inv_data_buffer, buffer_string, inv_info_stack_num[i][ii]); //아이템의 갯수 값 보유
 			buffer_write(global.inv_data_buffer, buffer_string, inv_info_max_stack_num[i][ii]); //아이템의 최대 스택 갯수 값 보유
 			buffer_write(global.inv_data_buffer, buffer_string, inv_info_width[i][ii]); //아이템의 이름 값 보유

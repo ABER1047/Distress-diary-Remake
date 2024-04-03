@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"randomized_nickname",
   "parent":{
-    "name":"Numeral functions",
-    "path":"folders/스크립트/Numeral functions.yy",
+    "name":"String functions",
+    "path":"folders/스크립트/String functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

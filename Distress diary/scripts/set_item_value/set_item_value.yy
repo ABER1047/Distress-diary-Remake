@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"set_item_value",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"set_item_value",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

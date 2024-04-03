@@ -7,6 +7,7 @@
 ///@param spr_ind
 ///@param img_ind
 ///@param name
+///@param name[comp]
 ///@param stack_num
 ///@param max_stack_num
 ///@param width
@@ -14,33 +15,44 @@
 ///@param rotated
 ///@param weight
 ///@param searched
-function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12)
+function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13)
 {
 	var tmp_ins = argument0;
 	var i = argument2;
 	var ii = argument1;
 	
 	//회전 및 아이템 가로/세로 길이만큼 칸 차지하는 거 적용
-	var visual_width = (argument10 == 0) ? argument8 : argument9;
-	var visual_height = (argument10 == 0) ? argument9 : argument8;
+	var visual_width = (argument11 == 0) ? argument9 : argument10;
+	var visual_height = (argument11 == 0) ? argument10 : argument9;
 	
-	for(var k = 0; k < visual_height; k++)
+
+	
+	with(tmp_ins)
 	{
-		for(var kk = 0; kk < visual_width; kk++)
+		if (id == tmp_ins)
 		{
-			//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
-			tmp_ins.inv_info_spr_ind[i+k][ii+kk] = -3;
+			for(var k = 0; k < visual_height; k++)
+			{
+				for(var kk = 0; kk < visual_width; kk++)
+				{
+					//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
+					inv_info_spr_ind[i+k][ii+kk] = -3;
+				}
+			}
+			
+			inv_info_spr_ind[i][ii] = argument3;
+			inv_info_img_ind[i][ii] = argument4;
+			inv_info_name[i][ii] = argument5;
+			inv_info_name_compressed[i][ii] = argument6; //압축된 이름이 따로 없는 경우 기존 이름 그대로 사용
+			inv_info_stack_num[i][ii] = argument7;
+			inv_info_max_stack_num[i][ii] = argument8;
+			inv_info_width[i][ii] = argument9; //아이템 가로 길이
+			inv_info_height[i][ii] = argument10; //아이템 세로 길이
+			inv_info_rotated[i][ii] = argument11; //아이템 회전 유무
+			inv_info_weight[i][ii] = argument12; //아이템 무게
+			inv_info_searched[i][ii] = argument13; //아이템 서치됨
 		}
 	}
 	
-	tmp_ins.inv_info_spr_ind[i][ii] = argument3;
-	tmp_ins.inv_info_img_ind[i][ii] = argument4;
-	tmp_ins.inv_info_name[i][ii] = argument5;
-	tmp_ins.inv_info_stack_num[i][ii] = argument6;
-	tmp_ins.inv_info_max_stack_num[i][ii] = argument7;
-	tmp_ins.inv_info_width[i][ii] = argument8; //아이템 가로 길이
-	tmp_ins.inv_info_height[i][ii] = argument9; //아이템 세로 길이
-	tmp_ins.inv_info_rotated[i][ii] = argument10; //아이템 회전 유무
-	tmp_ins.inv_info_weight[i][ii] = argument11; //아이템 무게
-	tmp_ins.inv_info_searched[i][ii] = argument12 //아이템 서치됨
+	show_debug_message("set_inv_variable : "+string(tmp_ins)+" / "+string(tmp_ins.inv_info_name_compressed));
 }

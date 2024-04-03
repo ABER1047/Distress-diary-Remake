@@ -292,7 +292,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	var tmp_ins = instance_nearest_notme(x,y,obj_player);
 	if (instance_exists(tmp_ins) && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
 	{
-		is_lootable = string(tmp_ins.nickname)+"'s inventory";
+		is_lootable = string(tmp_ins.nickname)+"'의 인벤토리";
 	}
 	else
 	{

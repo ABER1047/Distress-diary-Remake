@@ -13,6 +13,7 @@ function reset_inv_variable(argument0,argument1)
 	inv_info_spr_ind[i][ii] = -4;//spr_ind값 보유
 	inv_info_img_ind[i][ii] = -4;//img_ind값 보유
 	inv_info_name[i][ii] = -4;//아이템의 이름 값 보유
+	inv_info_name_compressed[i][ii] = -4;//아이템의 이름 값 보유
 	inv_info_stack_num[i][ii] = -4;//아이템의 갯수 값 보유
 	inv_info_max_stack_num[i][ii] = -4;//아이템의 최대 스택 갯수 값 보유
 	inv_info_width[i][ii] = -4; //아이템 가로 길이
