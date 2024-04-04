@@ -28,9 +28,9 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	//인벤토리 설정
 	with(tmp_ins)
 	{
-		for(var i = 0; i < tmp_height+8; i++)
+		for(var i = 0; i < tmp_height+5; i++)
 		{
-			for(var ii = 0; ii < tmp_width+8; ii++)
+			for(var ii = 0; ii < tmp_width+5; ii++)
 			{
 				//inv_info_spr_ind가
 				//-4일때 = 비어있음

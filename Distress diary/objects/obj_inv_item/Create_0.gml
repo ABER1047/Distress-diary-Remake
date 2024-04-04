@@ -44,6 +44,9 @@ is_moveable_pos = -4;
 //아이템 서치됨
 //item_searched = 0;
 
+//아이템 이름 (번역명)
+//item_name_translated = "";
+
 
 
 //아이템 정보창 표기 시간
@@ -51,3 +54,4 @@ item_info_window_timer = 0;
 
 //아이템 정보창 표기
 show_item_info = false;
+
