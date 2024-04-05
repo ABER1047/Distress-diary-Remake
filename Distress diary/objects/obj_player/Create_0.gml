@@ -115,3 +115,11 @@ n_looting_inv_id = -4;
 //다른사람이 내 인벤을 루팅중인지 체크
 is_opened = -4; //-4 = 안 열림, -3 = 다른사람이 열고 있음, ins ref (숫자) = 내 자신이 열고 있으며 열려있는 인벤토리 id값을 반환
 b_is_opened = -4;
+
+
+//인터렉트 메세지
+interaction_message = "루팅";
+
+
+//발소리 효과음
+played_footstep_sfx = false;

@@ -178,6 +178,21 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	else
 	{
 		image_index += max(abs(global.movement_hspeed),abs(global.movement_vspeed))*0.015;
+		
+		
+		//발소리 효과음
+		if (floor(image_index) == 0 || floor(image_index) == 2)
+		{
+			if (!played_footstep_sfx)
+			{
+				played_footstep_sfx = true;
+				play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1280);
+			}
+		}
+		else
+		{
+			played_footstep_sfx = false;
+		}
 	}
 
 	if (image_index < 0)
@@ -310,6 +325,15 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			{
 				is_lootable = "바닥에 떨어진 아이템";
 			}
+			else
+			{
+				//벤딩 머신
+				tmp_ins = instance_nearest_notme(x,y,obj_vending_machine);
+				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+				{
+					is_lootable = "자동판매기";
+				}
+			}
 		}
 	}
 
@@ -322,13 +346,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		if (tmp_ins.is_opened != -4)
 		{
 			tmp_key = -4;
-			draw_interaction_key(tmp_ins,tmp_key,"루팅 중");
+			draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 중");
 		}
 		else
 		{
 			tmp_key = "F";
-			draw_interaction_key(tmp_ins,tmp_key,"루팅 하기");
+			draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 하기");
 		}
+
 		
 		
 		
@@ -341,8 +366,16 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				
 				if (global.interaction_hold_time > global.interaction_hold_time_max)
 				{
-					n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
-					tmp_ins.is_opened = n_looting_inv_id;
+					if (tmp_ins.interaction_message == "루팅")
+					{
+						n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
+						tmp_ins.is_opened = n_looting_inv_id;
+					}
+					else
+					{
+						
+					}
+					global.interaction_hold_time = 0;
 				}
 			}
 			else

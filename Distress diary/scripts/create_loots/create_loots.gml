@@ -53,7 +53,7 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	
 
 	//생성된 상자 정보 다른 멀티플레이어한테 보내서 그쪽에도 오브젝트 생성하기
-	if (argument7 != 1)
+	if (!argument7)
 	{
 		buffer_seek(global.obj_data_buffer, buffer_seek_start, 0);
 		buffer_write(global.obj_data_buffer, buffer_u8, global.DATA_CHEST_DATA);

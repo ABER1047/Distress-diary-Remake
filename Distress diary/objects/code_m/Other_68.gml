@@ -637,6 +637,24 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				tmp_ins.b_zspeed = 0;
 			}
 		break;
+		
+		case DATA.SFX_DATA:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				var tmp_audio_name = buffer_read(buffer, buffer_string);
+				var tmp_soundid = asset_get_index(tmp_audio_name);
+				
+				var tmp_volume = real(buffer_read(buffer, buffer_string));
+				var tmp_xx = real(buffer_read(buffer, buffer_string));
+				var tmp_yy = real(buffer_read(buffer, buffer_string));
+				var tmp_max_dis = real(buffer_read(buffer, buffer_string));
+				
+				play_sound_pos(tmp_soundid,false,tmp_volume,tmp_xx,tmp_yy,tmp_max_dis,true);
+			}
+		break;
 	}
 	
 	//클라이언트가 보낸거를 서버에서 받고 서버에서 다른 클라이언트한테 재전달

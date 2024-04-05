@@ -15,7 +15,7 @@ if (image_alpha > 0)
 if (show_interaction_key > 0)
 {
 	//인터렉션 이름 드로우
-	var tmp_yy = y-192/global.h_ratio_by_window;
+	var tmp_yy = y-128/global.h_ratio_by_window;
 	var txt_scale = 0.64*global.n_camera_zoom;
 	var str_width = string_width(interaction_name_for_draw)/global.w_ratio_by_window;
 	draw_text_kl_scale(x-str_width*txt_scale*0.5,tmp_yy,string(interaction_name_for_draw),64,-1,image_alpha,c_white,0,-1,font_normal,txt_scale,txt_scale,0);

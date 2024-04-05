@@ -29,6 +29,10 @@ resize_inv = false;
 
 
 
+//생성 효과음
+play_sound_pos(inventory1_sfx,false,0.1,x,y,160);
+
+
 //인터렉션 키 드로우 용
 interaction_name_for_draw = "";
 interaction_key_real_ind_for_draw = 0;
@@ -45,3 +49,7 @@ alarm[1] = 1;
 
 //멀티플레이 용 버퍼
 command_buffer = buffer_create(1024,buffer_grow,1);
+
+
+//인터렉트 메세지
+interaction_message = "루팅";

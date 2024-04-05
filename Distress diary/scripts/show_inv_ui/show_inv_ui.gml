@@ -21,6 +21,11 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 		tmp_ins.variable_owner = tmp_owner;
 		tmp_ins.max_distance = argument4;
 		
+		//인벤토리 효과음
+		var target_ins_for_sfx = (object_index == code) ? obj_player : self;
+		play_sound_pos(inventory1_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160);
+		play_sound_pos(inventory2_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160);
+		
 		for(var i = 0; i < tmp_owner.inv_height; i++)
 		{
 			for(var ii = 0; ii < tmp_owner.inv_width; ii++)

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"gain_sound_pos",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"gain_sound_pos",
+  "parent":{
+    "name":"Sounds",
+    "path":"folders/스크립트/Sounds.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -295,12 +295,12 @@ function set_item_value(argument0,argument1)
 				return 4;
 			break;
 		
-			case "Handmade Immobilizing splint":
+			case "Handmade Immobilizing Splint":
 				item_name_translated = "수제 부목";
 				return 2;
 			break;
 		
-			case "Immobilizing splint":
+			case "Immobilizing Splint":
 				item_name_translated = "부목";
 				return 8;
 			break;
