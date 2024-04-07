@@ -195,7 +195,7 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 보기 [`]\n맵 확대/축소 [상/하 방향키]\n벽 히트박스 표시 [F2]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n틱레이트 변경 [좌/우 방향키]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n맵 생성 [F1]\n맵 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	draw_text_k_scale(xx+xx_w-8,yy+yy_h-320,"인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
@@ -291,12 +291,7 @@ if (global.dev_mode == 1)
 	}
 	
 	
-	//디버그 창
-	if (keyboard_check_pressed(vk_f10))
-	{
-		show_debug_log(!is_debug_overlay_open());
-	}
-	
+
 	
 	//인벤토리
 	if (keyboard_check_pressed(vk_tab))
@@ -328,39 +323,9 @@ if (global.dev_mode == 1)
 		window_set_size(w,h);
 		window_set_fullscreen(tmp_val);
 	}
+
 	
-	
-	if (keyboard_check(vk_control))
-	{
-		global.n_camera_zoom += (mouse_wheel_down()-mouse_wheel_up())*0.05;
-		
-		if (keyboard_check_pressed(vk_alt))
-		{
-			var tmp_val = window_get_width();
-			var w = 1280, h = 720;
-			if (tmp_val == w)
-			{
-				w = 1920;
-				h = 1080;
-			}
-			
-			window_set_fullscreen(tmp_val);
-		}
-	}
-	
-	
-	//카메라 줌
-	if (keyboard_check_pressed(vk_down))
-	{
-		global.n_camera_zoom += 0.1;
-		show_message_log("- 현재 카메라 줌 : "+string(global.n_camera_zoom));
-	}
-	else if (keyboard_check_pressed(vk_up))
-	{
-		global.n_camera_zoom -= 0.1;
-		show_message_log("- 현재 카메라 줌 : "+string(global.n_camera_zoom));
-	}
-	
+
 	//스킨 변경
 	if (keyboard_check_pressed(ord("Y")))
 	{
@@ -419,7 +384,7 @@ if (global.dev_mode == 1)
 		}
 		else
 		{
-			create_randomized_loots(tmp_xx,tmp_yy,tmp_img,9,9,global.object_id_ind,0);
+			create_randomized_loots(tmp_xx,tmp_yy,tmp_img,global.object_id_ind,0);
 		}
 	}
 	
@@ -452,122 +417,6 @@ if (global.dev_mode == 1)
 		else
 		{
 			instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,0,false);
-		}
-	}
-	
-	
-	
-	
-	//쉐도우 서피스 작동 여부
-	if (keyboard_check_pressed(ord("1")))
-	{
-		global.enable_light_surf = !global.enable_light_surf;
-	}
-	
-	
-	
-	//틱레이트 조정
-	if (global.is_server && (keyboard_check_pressed(vk_right) || keyboard_check_pressed(vk_left)))
-	{
-		if (keyboard_check_pressed(vk_right))
-		{
-			global.tickrate += 1;
-		}
-		else if (keyboard_check_pressed(vk_left))
-		{
-			global.tickrate -= 1;
-		}
-		
-		if (global.tickrate < 1)
-		{
-			global.tickrate = 1;
-		}
-		send_GlobalVariableData("tickrate");
-		show_message_log("- 현재 틱 레이트 : "+string(global.tickrate));
-	}
-	
-	
-	//카메라 줌
-	if (keyboard_check_pressed(vk_f2))
-	{
-		global.show_wall_hitbox *= -1;
-		show_message_log("- 벽 히트박스 표시 : "+string(global.show_wall_hitbox));
-	}
-	
-	
-	//맵 생성
-	if (global.is_server && keyboard_check_pressed(vk_f1))
-	{
-		clean_message_log();
-		//맵 생성 실패시 자동 재시도
-		while(true)
-		{
-			var tmp_width = floor(9*(0.5+instance_number(obj_player)*0.5));
-			var tmp_height = floor(9*(0.5+instance_number(obj_player)*0.5));
-			var tmp_start_xx = irandom_range(0,tmp_width-1);
-			var tmp_start_yy = irandom_range(0,tmp_height-1);
-			var tmp_max_root = irandom_range(16,max(tmp_width,tmp_height)*choose(4,5,6))*instance_number(obj_player);
-			var tmp_room_max_width = 24;
-			var tmp_room_max_height = 24;
-			var tmp_additional_room_cre_percentage = irandom_range(0,100);
-			var tmp_total_room_num = irandom_range(25,floor(tmp_room_max_width*tmp_room_max_height/4))*instance_number(obj_player);
-			var tmp_min_room_width = 7;
-			var tmp_min_room_height = 7;
-		
-		
-
-			//맵 생성
-			create_map(tmp_start_xx,tmp_start_yy,tmp_width,tmp_height,tmp_max_root,tmp_room_max_width,tmp_room_max_height,tmp_additional_room_cre_percentage,tmp_total_room_num,tmp_min_room_width,tmp_min_room_height);
-		
-
-		
-		
-		
-			//맵 생성 - 디버그용 메세지
-			if (global.map_creation_falied == 0)
-			{
-				global.is_map_exists = random_get_seed();
-			
-				show_message_log("- 맵 생성 정보");
-				show_message_log("맵 시드 : "+string(global.is_map_exists));
-				show_message_log("맵 크기 (width x height) : "+string(tmp_width)+" x "+string(tmp_height));
-				show_message_log("루트 최대 길이 : "+string(tmp_max_root));
-				show_message_log("룸 최대 크기 (width x height) : "+string(tmp_room_max_width)+" x "+string(tmp_room_max_height));
-				show_message_log("룸 최소 크기 (width x height) : "+string(tmp_min_room_width)+" x "+string(tmp_min_room_height));
-				show_message_log("추가 방 연결 확률 : "+string(tmp_additional_room_cre_percentage)+"%");
-				show_message_log("방 갯수 : "+string(global.n_room_num)+"/"+string(tmp_total_room_num));
-			
-			
-				//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
-				load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
-			
-				show_message_log("- 맵 로드/전송 완료");
-				obj_player.x = room_width*0.5;
-				obj_player.y = room_height*0.5;
-				send_NewMapData();
-			
-				//카메라 줌 설정
-				global.n_camera_zoom = 0.5;
-				break; //while문 빠져나오기
-			}
-			else
-			{
-				show_message_log("- 맵 생성 실패! (재시도 중...)");
-				failed_map_creation();
-				global.n_camera_zoom = 0.7;
-			}
-		
-		
-			//맵 생성 - 디버그용 메세지
-			for(var i = 0; i < global.map_height; i++)
-			{
-				var tmp_str = "";
-				for(var ii = 0; ii < global.map_width; ii++)
-				{
-					tmp_str = string(tmp_str)+string(global.map_arr[i][ii])+" ";
-				}
-				show_debug_message(tmp_str);
-			}
 		}
 	}
 }

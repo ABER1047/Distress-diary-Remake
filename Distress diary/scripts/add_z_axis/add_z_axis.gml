@@ -11,4 +11,5 @@ function add_z_axis()
 		zspeed = 0;
 	}
 	zgravity = 0;
+	zspeed_timer = 0;
 }

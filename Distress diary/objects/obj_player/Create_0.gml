@@ -123,3 +123,4 @@ interaction_message = "루팅";
 
 //발소리 효과음
 played_footstep_sfx = false;
+played_jump_sfx = false;

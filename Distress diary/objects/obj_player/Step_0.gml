@@ -127,9 +127,23 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 
 	//점프 관련
-	if (z == 0 && keyboard_check_pressed(vk_space))
+	if (z == 0)
 	{
-		zspeed = -8;
+		if (played_jump_sfx)
+		{
+			//점프 효과음
+			play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1600,false);
+			played_jump_sfx = false;
+		}
+		
+		if (keyboard_check_pressed(vk_space))
+		{
+			zspeed = -8;
+		
+			//점프 효과음
+			play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false);
+			played_jump_sfx = true;
+		}
 	}
 
 	z_axis_gravity();

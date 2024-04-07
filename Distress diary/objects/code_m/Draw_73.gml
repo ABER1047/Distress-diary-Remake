@@ -10,7 +10,7 @@ if (chat_alpha > 0)
 {
 	draw_set_color(c_black);
 	draw_set_alpha(chat_alpha*0.7)
-	draw_rectangle(s_x,s_y+s_h,s_x+c_x*450,s_y+s_h-c_x*340,false)
+	draw_rectangle(s_x, s_y+s_h, s_x+c_x*450, s_y+s_h-c_x*340, false)
 	if (global.chat_activated == 1)
 	{
 		draw_text_kl_scale(s_x+c_x*16,s_y+s_h-c_x*64,string(chat_entering)+"|",64,9999,chat_alpha,c_white,0,-1,font_normal,c_x*0.2,c_x*0.2,0)
@@ -18,6 +18,12 @@ if (chat_alpha > 0)
 
 	for(var i = 0; i < 10; i++) 
 	{
-		draw_text_kl_scale(s_x+c_x*16,s_y+s_h-c_x*(100+i*24),global.chat[i],64,9999,chat_alpha,c_white,0,-1,font_normal,c_x*0.2,c_x*0.2,0)
+		draw_text_kl_scale(s_x+c_x*16,s_y+s_h-c_x*(100+i*24),global.chat[i+global.chating_scroll],64,9999,chat_alpha,c_white,0,-1,font_normal,c_x*0.2,c_x*0.2,0)
 	}
+	
+	
+	var tmp_scroll_ypos = s_y+s_h-((global.chating_scroll/global.max_chat_stack*330) + 48)*c_x;
+	draw_set_color(c_white);
+	draw_set_alpha((global.chat_scroll_alpha > 0.8) ? 0.8 : global.chat_scroll_alpha);
+	draw_rectangle(s_x+c_x*440,tmp_scroll_ypos,s_x+c_x*450,tmp_scroll_ypos+c_x*10,false);
 }

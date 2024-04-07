@@ -244,12 +244,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		
 		case DATA.CHAT:
 			var str = buffer_read(buffer, buffer_string);
-			chat_up(str);
-			if (!global.chat_activated)
-			{
-				show_message_log(str);
-			}
-			//show_message_log(str);
+			show_message_log(str);
 		break;
 		
 		case DATA.INS_VAR_DATA:

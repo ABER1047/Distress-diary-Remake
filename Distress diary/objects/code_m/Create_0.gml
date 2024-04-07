@@ -21,12 +21,7 @@ send_request = http_ip_get("");
 network_set_config(network_config_connect_timeout,4000);
 
 
-//채팅 UI관련
-depth = -room_width*2
-chat_alpha = 0;
-chat_entering = "";
-global.chat_activated = -1;
-global.chat = array_create(10, "");
+
 
 
 
@@ -110,3 +105,19 @@ global.saved_players_yy = [ -4 ];
 global.users_ping = [ -4 ];
 //핑 표기용 변수
 global.users_ping_display = [ -4 ];
+
+
+
+//채팅 스크롤 기능
+global.chating_scroll = 0;
+global.chat_scroll_alpha = 0;
+
+//채팅 UI관련
+depth = -room_width*2
+chat_alpha = 0;
+chat_entering = "";
+global.chat_activated = -1;
+global.max_chat_stack = 64;
+global.chat = array_create(global.max_chat_stack,"");
+
+

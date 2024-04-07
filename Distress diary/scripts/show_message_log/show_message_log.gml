@@ -7,7 +7,8 @@ function show_message_log(argument0)
 	var tmp_ins = instance_create_depth(0,0,code.depth-10,obj_message_log);
 	tmp_ins.text = argument0;
 	
-	show_debug_message(argument0);
+
+	chat_up(argument0);
 	
 	return tmp_ins;
 }

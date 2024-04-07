@@ -147,6 +147,8 @@ global.bgm_volume = 1;
 //낮-밤 시간대 (단위 : 분)
 global.time = 60*8;
 global.time_display = "";
-global.time_increment = 3; //몇 프레임이 지나야 게임 시간의 1분이 흐르는지
+global.time_increment = 100; //몇 프레임이 지나야 게임 시간의 1분이 흐르는지
 global.time_increment_timer = 0;
 global.time_is_day = true;
+
+

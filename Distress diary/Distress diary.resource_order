@@ -113,6 +113,8 @@
     {"name":"inventory1_sfx","order":14,"path":"sounds/inventory1_sfx/inventory1_sfx.yy",},
     {"name":"inventory2_sfx","order":15,"path":"sounds/inventory2_sfx/inventory2_sfx.yy",},
     {"name":"item_searching_sfx","order":7,"path":"sounds/item_searching_sfx/item_searching_sfx.yy",},
+    {"name":"jump_start1_sfx","order":16,"path":"sounds/jump_start1_sfx/jump_start1_sfx.yy",},
+    {"name":"jump_start2_sfx","order":17,"path":"sounds/jump_start2_sfx/jump_start2_sfx.yy",},
     {"name":"potion_drink","order":2,"path":"sounds/potion_drink/potion_drink.yy",},
     {"name":"vending_machine_sfx","order":9,"path":"sounds/vending_machine_sfx/vending_machine_sfx.yy",},
     {"name":"vending_machine_trading_sfx","order":10,"path":"sounds/vending_machine_trading_sfx/vending_machine_trading_sfx.yy",},

@@ -3,10 +3,17 @@
 function z_axis_gravity()
 {
 	///////////////////////////for z///////////////////////////
-	z -= zspeed;
-	zspeed += zgravity*9.81;
+	if (zspeed < 0 || zspeed_timer > 3)
+	{
+		z -= zspeed;
+		zspeed += zgravity*9.81;
+	}
+	else
+	{
+		zspeed_timer ++;
+	}
 
-	if (z < 0)
+	if (z <= 0)
 	{
 		if (zspeed > 0)
 		{
@@ -14,6 +21,7 @@ function z_axis_gravity()
 		}
 		zgravity = 0;
 		z = 0;
+		zspeed_timer = 0;
 	}
 	else if (z > 0)
 	{
