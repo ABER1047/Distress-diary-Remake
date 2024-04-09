@@ -84,6 +84,7 @@
     {"name":"pushable_objects_physics","order":2,"path":"scripts/pushable_objects_physics/pushable_objects_physics.yy",},
     {"name":"reset_inv_variable","order":4,"path":"scripts/reset_inv_variable/reset_inv_variable.yy",},
     {"name":"reset_map_arraies","order":4,"path":"scripts/reset_map_arraies/reset_map_arraies.yy",},
+    {"name":"give_damage","order":1,"path":"scripts/give_damage/give_damage.yy",},
     {"name":"send_all","order":4,"path":"scripts/send_all/send_all.yy",},
     {"name":"send_GlobalVariableData","order":2,"path":"scripts/send_GlobalVariableData/send_GlobalVariableData.yy",},
     {"name":"send_ImgData","order":1,"path":"scripts/send_ImgData/send_ImgData.yy",},

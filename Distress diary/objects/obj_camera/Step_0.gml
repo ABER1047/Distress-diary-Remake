@@ -1,5 +1,7 @@
 /// @description Insert description here
-// You can write your code in this editor
+
+
+//카메라 관련
 v_x += (tv_x - v_x)*0.1;
 v_y += (tv_y - v_y)*0.1;
 
@@ -72,3 +74,22 @@ camera_set_view_angle(view_camera[0],global.view_angle_);
 
 x = floor(x)
 y = floor(y)
+
+
+
+
+//체력, 스테미나 UI관련
+if (array_length(global.my_player_ins_id) > global.my_player_id)
+{
+	var my_p = global.my_player_ins_id[global.my_player_id];
+	hp_for_draw += (my_p.hp - hp_for_draw)*0.2;
+	stamina_for_draw += (my_p.stamina - stamina_for_draw)*0.1;
+	max_hp = my_p.max_hp;
+	max_stamina = my_p.max_stamina;
+}
+
+
+//버프-디버프 UI 드로우 관련 변수
+weight_for_draw += (global.my_weight - weight_for_draw)*0.1;
+hydro_for_draw += (global.hydration - hydro_for_draw)*0.1;
+hunger_for_draw += (global.hunger - hunger_for_draw)*0.1;

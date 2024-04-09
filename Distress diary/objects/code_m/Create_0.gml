@@ -112,11 +112,12 @@ global.users_ping_display = [ -4 ];
 global.chating_scroll = 0;
 global.chat_scroll_alpha = 0;
 
+
 //채팅 UI관련
 depth = -room_width*2
 chat_alpha = 0;
 chat_entering = "";
-global.chat_activated = -1;
+global.chat_activated = false;
 global.max_chat_stack = 64;
 global.chat = array_create(global.max_chat_stack,"");
 

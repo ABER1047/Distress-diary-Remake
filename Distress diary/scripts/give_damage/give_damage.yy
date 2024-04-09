@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"give_damage",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"give_damage",
+  "parent":{
+    "name":"PlayerActions",
+    "path":"folders/스크립트/PlayerActions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -5,6 +5,22 @@
 //캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우 조작 가능
 if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only)
 {
+	//데미지 애니메이션
+	if (dmg_cooltime > 0)
+	{
+		dmg_cooltime --;
+		if (dmg_cooltime%4 == 0)
+		{
+			image_alpha = (image_alpha == 1) ? 0.5 : 1;
+		}
+		
+		if (dmg_cooltime == 0)
+		{
+			image_alpha = 1;
+		}
+	}
+	
+	
 	//플래시 라이트
 	if (keyboard_check_pressed(ord("E")))
 	{
@@ -84,14 +100,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	//무게 시스템
 	//무게에 의한 이동속도
-	var tmp_weight_ratio = fix_to_zero(global.my_weight-10)/120;
+	var tmp_weight_ratio = fix_to_zero(global.my_weight-10)/90;
 	speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
 	
 	
 	
 	//달리기
 	var stamina_decreasement = 0.6*(1+tmp_weight_ratio);
-	if (stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
+	if (abs(global.movement_hspeed)+abs(global.movement_vspeed) > 0 && stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
 	{
 		//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
 		global.max_movement_speed = 9*speed_by_weight;

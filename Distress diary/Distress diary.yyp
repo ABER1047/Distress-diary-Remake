@@ -119,6 +119,7 @@
     {"id":{"name":"randomized_nickname","path":"scripts/randomized_nickname/randomized_nickname.yy",},},
     {"id":{"name":"reset_inv_variable","path":"scripts/reset_inv_variable/reset_inv_variable.yy",},},
     {"id":{"name":"reset_map_arraies","path":"scripts/reset_map_arraies/reset_map_arraies.yy",},},
+    {"id":{"name":"give_damage","path":"scripts/give_damage/give_damage.yy",},},
     {"id":{"name":"send_all","path":"scripts/send_all/send_all.yy",},},
     {"id":{"name":"send_GlobalVariableData","path":"scripts/send_GlobalVariableData/send_GlobalVariableData.yy",},},
     {"id":{"name":"send_ImgData","path":"scripts/send_ImgData/send_ImgData.yy",},},

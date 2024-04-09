@@ -3,13 +3,6 @@
 
 
 
-
-
-
-
-
-
-
 //핑 계산
 if (global.is_server)
 {

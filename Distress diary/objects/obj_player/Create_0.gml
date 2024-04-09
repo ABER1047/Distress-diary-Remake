@@ -101,6 +101,12 @@ stamina_cooltime = 0;
 global.my_weight = 0;
 speed_by_weight = 0;
 
+//배고픔
+global.hunger = 100;
+
+//목마름
+global.hydration = 100;
+
 
 //인터렉션 키 드로우 용
 interaction_name_for_draw = "";
@@ -124,3 +130,7 @@ interaction_message = "루팅";
 //발소리 효과음
 played_footstep_sfx = false;
 played_jump_sfx = false;
+
+
+//데미지 애니메이션 관련 변수
+dmg_cooltime = 0;

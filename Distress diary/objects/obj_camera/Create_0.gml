@@ -24,3 +24,15 @@ global.camera_target = -4;
 global.n_camera_zoom = 0.7
 
 depth = -99999;
+
+
+//체력바 및 스테미나 UI 드로우 관련 변수
+hp_for_draw = 0;
+stamina_for_draw = 0;
+max_hp = 0;
+max_stamina = 0;
+
+//버프-디버프 UI 드로우 관련 변수
+weight_for_draw = 0;
+hydro_for_draw = 0;
+hunger_for_draw = 0;

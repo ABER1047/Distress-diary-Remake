@@ -24,6 +24,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Bolt"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 3000) //15%확률로 너트
 		{
@@ -31,6 +32,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Nut"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 3250) //2.5%확률로 RAM
 		{
@@ -38,6 +40,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "RAM"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 3500) //2.5%확률로 CPU
 		{
@@ -45,6 +48,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "CPU"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 4000) //5%확률로 회로기판
 		{
@@ -52,6 +56,7 @@ switch(image_index)
 			tmp_img_ind = 6; //생성할 아이템 image_index
 			tmp_name = "Circuit Board"; //생성할 아이템 name
 			tmp_name_compressed = "Board"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 4500) //5%확률로 전선
 		{
@@ -60,6 +65,7 @@ switch(image_index)
 			tmp_name = "Wire"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 3; //아이템 무게
 		}
 		else if (tmp_chances < 4600) //1%확률로 SSD
 		{
@@ -67,6 +73,7 @@ switch(image_index)
 			tmp_img_ind = 9; //생성할 아이템 image_index
 			tmp_name = "SSD"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.3; //아이템 무게
 		}
 		else if (tmp_chances < 4610) //0.1%확률로 GPU
 		{
@@ -75,6 +82,7 @@ switch(image_index)
 			tmp_name = "GPU"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 1.6; //아이템 무게
 		}
 		else if (tmp_chances < 5410) //8%확률로 바느질 키트
 		{
@@ -82,6 +90,7 @@ switch(image_index)
 			tmp_img_ind = 10; //생성할 아이템 image_index
 			tmp_name = "Sewing kit"; //생성할 아이템 name
 			tmp_name_compressed = "Kit"; //생성할 아이템 name_compressed
+			tmp_weight = 0.05; //아이템 무게
 		}
 		else if (tmp_chances < 5510) //1%확률로 골든 해골
 		{
@@ -89,6 +98,7 @@ switch(image_index)
 			tmp_img_ind = 29; //생성할 아이템 image_index
 			tmp_name = "Golden skull"; //생성할 아이템 name
 			tmp_name_compressed = "Skull"; //생성할 아이템 name_compressed
+			tmp_weight = 0.4; //아이템 무게
 		}
 		else if (tmp_chances < 6010) //5%확률로 골든 코인 (1~15개)
 		{
@@ -98,6 +108,7 @@ switch(image_index)
 			tmp_name_compressed = "Coin"; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,15); //생성할 아이템 stack
 			tmp_max_stack = 99; //생성할 아이템 max_stack
+			tmp_weight = 0.002; //아이템 무게
 		}
 		else if (tmp_chances < 6110) //1%확률로 골든 십자가
 		{
@@ -105,6 +116,7 @@ switch(image_index)
 			tmp_img_ind = 27; //생성할 아이템 image_index
 			tmp_name = "Golden Cross"; //생성할 아이템 name
 			tmp_name_compressed = "Cross"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 6610) //5%확률로 주사기
 		{
@@ -112,6 +124,7 @@ switch(image_index)
 			tmp_img_ind = 22; //생성할 아이템 image_index
 			tmp_name = "Syringe"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.05; //아이템 무게
 		}
 		else if (tmp_chances < 7110) //5%확률로 플라스틱 덩어리
 		{
@@ -119,6 +132,7 @@ switch(image_index)
 			tmp_img_ind = 13; //생성할 아이템 image_index
 			tmp_name = "Plastic lump"; //생성할 아이템 name
 			tmp_name_compressed = "Plastic"; //생성할 아이템 name_compressed
+			tmp_weight = 0.5; //아이템 무게
 		}
 		else if (tmp_chances < 7510) //4%확률로 천 조각
 		{
@@ -127,6 +141,7 @@ switch(image_index)
 			tmp_name = "Cloth"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 7910) //4%확률로 빈 병
 		{
@@ -135,6 +150,7 @@ switch(image_index)
 			tmp_name = "Empty Bottle"; //생성할 아이템 name
 			tmp_name_compressed = "Bottle"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 8210) //3%확률로 파워서플라이어
 		{
@@ -144,6 +160,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 2; //아이템 무게
 		}
 		else if (tmp_chances < 9010) //8%확률로 종이 클립
 		{
@@ -153,6 +170,7 @@ switch(image_index)
 			tmp_name_compressed = "Clip"; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
 			tmp_max_stack = 10; //생성할 아이템 max_stack
+			tmp_weight = 0.001; //아이템 무게
 		}
 		else if (tmp_chances < 9110) //1%확률로 키카드
 		{
@@ -179,6 +197,7 @@ switch(image_index)
 			tmp_name = "Skull Statue"; //생성할 아이템 name
 			tmp_name_compressed = "Statue"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 9810) //1%확률로 별 동상
 		{
@@ -187,6 +206,7 @@ switch(image_index)
 			tmp_name = "Star Statue"; //생성할 아이템 name
 			tmp_name_compressed = "Statue"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 9970) //1.6%확률로 카드팩
 		{
@@ -194,6 +214,7 @@ switch(image_index)
 			tmp_img_ind = 16; //생성할 아이템 image_index
 			tmp_name = "Pack of Cards"; //생성할 아이템 name
 			tmp_name_compressed = "Cards"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else //0.3%확률로 골드 바
 		{
@@ -202,6 +223,7 @@ switch(image_index)
 			tmp_name = "Golden Bar"; //생성할 아이템 name
 			tmp_name_compressed = "Gold"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 3; //아이템 무게
 		}
 	break;
 		
@@ -213,6 +235,7 @@ switch(image_index)
 			tmp_name = "Wooden Stick"; //생성할 아이템 name
 			tmp_name_compressed = "Wood"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.7; //아이템 무게
 		}
 		else if (tmp_chances < 2300) //11%확률로 빈 병
 		{
@@ -221,6 +244,7 @@ switch(image_index)
 			tmp_name = "Empty Bottle"; //생성할 아이템 name
 			tmp_name_compressed = "Bottle"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 2700) //4%확률로 콜라
 		{
@@ -228,6 +252,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Coke"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 3100) //4%확률로 포도 주스
 		{
@@ -235,6 +260,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Grape Juice"; //생성할 아이템 name
 			tmp_name_compressed = "Juice"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 3500) //4%확률로 오랜지 주스
 		{
@@ -242,6 +268,7 @@ switch(image_index)
 			tmp_img_ind = 2; //생성할 아이템 image_index
 			tmp_name = "Orange Juice"; //생성할 아이템 name
 			tmp_name_compressed = "Juice"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 3900) //4%확률로 물병
 		{
@@ -250,6 +277,7 @@ switch(image_index)
 			tmp_name = "Bottle of Water"; //생성할 아이템 name
 			tmp_name_compressed = "Water"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.61; //아이템 무게
 		}
 		else if (tmp_chances < 4300) //4%확률로 그린티
 		{
@@ -257,6 +285,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "Green tea"; //생성할 아이템 name
 			tmp_name_compressed = "Tea"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 4700) //4%확률로 연유
 		{
@@ -264,6 +293,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "Condensed Milk"; //생성할 아이템 name
 			tmp_name_compressed = "Cond"; //생성할 아이템 name_compressed
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 5100) //4%확률로 우유
 		{
@@ -272,6 +302,7 @@ switch(image_index)
 			tmp_name = "Milk"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.9; //아이템 무게
 		}
 		else if (tmp_chances < 5500) //4%확률로 오랜지 소다
 		{
@@ -279,6 +310,7 @@ switch(image_index)
 			tmp_img_ind = 7; //생성할 아이템 image_index
 			tmp_name = "Orange Soda"; //생성할 아이템 name
 			tmp_name_compressed = "Soda"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 5900) //4%확률로 포도 소다
 		{
@@ -286,6 +318,7 @@ switch(image_index)
 			tmp_img_ind = 8; //생성할 아이템 image_index
 			tmp_name = "Grape Soda"; //생성할 아이템 name
 			tmp_name_compressed = "Soda"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 6300) //4%확률로 에너지 드링크
 		{
@@ -293,6 +326,7 @@ switch(image_index)
 			tmp_img_ind = 9; //생성할 아이템 image_index
 			tmp_name = "Energy Drink"; //생성할 아이템 name
 			tmp_name_compressed = "Energy"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 6350) //0.5%확률로 꿀병
 		{
@@ -301,6 +335,7 @@ switch(image_index)
 			tmp_name = "Bottle of Honey"; //생성할 아이템 name
 			tmp_name_compressed = "Honey"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.7; //아이템 무게
 		}
 		else if (tmp_chances < 6550) //2%확률로 수상한 액체
 		{
@@ -309,6 +344,7 @@ switch(image_index)
 			tmp_name = "Suspicious liquid"; //생성할 아이템 name
 			tmp_name_compressed = "Liquid"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.61; //아이템 무게
 		}
 		else if (tmp_chances < 6750) //2%확률로 정제된 물
 		{
@@ -316,6 +352,7 @@ switch(image_index)
 			tmp_img_ind = 12; //생성할 아이템 image_index
 			tmp_name = "Purified Water"; //생성할 아이템 name
 			tmp_name_compressed = "Water"; //생성할 아이템 name_compressed
+			tmp_weight = 0.4; //아이템 무게
 		}
 		else if (tmp_chances < 7150) //4%확률로 에너지바
 		{
@@ -323,6 +360,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Energy bar"; //생성할 아이템 name
 			tmp_name_compressed = "Bar"; //생성할 아이템 name_compressed
+			tmp_weight = 0.2; //아이템 무게
 		}
 		else if (tmp_chances < 7550) //4%확률로 초콜릿바
 		{
@@ -330,6 +368,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Chocolate bar"; //생성할 아이템 name
 			tmp_name_compressed = "Choco"; //생성할 아이템 name_compressed
+			tmp_weight = 0.2; //아이템 무게
 		}
 		else if (tmp_chances < 7950) //4%확률로 감자칩
 		{
@@ -337,6 +376,7 @@ switch(image_index)
 			tmp_img_ind = 2; //생성할 아이템 image_index
 			tmp_name = "Chips"; //생성할 아이템 name
 			tmp_name_compressed = "Chips"; //생성할 아이템 name_compressed
+			tmp_weight = 0.007; //아이템 무게
 		}
 		else if (tmp_chances < 8350) //4%확률로 소세지
 		{
@@ -345,6 +385,7 @@ switch(image_index)
 			tmp_name = "Sausage"; //생성할 아이템 name
 			tmp_name_compressed = "Saus"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.25; //아이템 무게
 		}
 		else if (tmp_chances < 8750) //4%확률로 생선 통조림
 		{
@@ -352,6 +393,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "Can of Fish"; //생성할 아이템 name
 			tmp_name_compressed = "Fish"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 9150) //4%확률로 비프 스튜 통조림
 		{
@@ -359,6 +401,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "Can of Beef stew"; //생성할 아이템 name
 			tmp_name_compressed = "Beef"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 9250) //1%확률로 설탕 팩
 		{
@@ -366,6 +409,7 @@ switch(image_index)
 			tmp_img_ind = 6; //생성할 아이템 image_index
 			tmp_name = "Pack of Sugar"; //생성할 아이템 name
 			tmp_name_compressed = "Sugar"; //생성할 아이템 name_compressed
+			tmp_weight = 0.2; //아이템 무게
 		}
 		else if (tmp_chances < 9650) //4%확률로 종이 클립
 		{
@@ -375,6 +419,7 @@ switch(image_index)
 			tmp_name_compressed = "Clip"; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
 			tmp_max_stack = 10; //생성할 아이템 max_stack
+			tmp_weight = 0.001; //아이템 무게
 		}
 		else if (tmp_chances < 9651) //0.01%확률로 키카드
 		{
@@ -411,6 +456,7 @@ switch(image_index)
 			tmp_name = "Handmade Immobilizing Splint"; //생성할 아이템 name
 			tmp_name_compressed = "Splint"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 6000) //10%확률로 부목
 		{
@@ -418,6 +464,7 @@ switch(image_index)
 			tmp_img_ind = 2; //생성할 아이템 image_index
 			tmp_name = "Immobilizing Splint"; //생성할 아이템 name
 			tmp_name_compressed = "Splint"; //생성할 아이템 name_compressed
+			tmp_weight = 0.01; //아이템 무게
 		}
 		else if (tmp_chances < 6500) //5%확률로 방사능약
 		{
@@ -425,6 +472,7 @@ switch(image_index)
 			tmp_img_ind = 3; //생성할 아이템 image_index
 			tmp_name = "Anti-Radiation Pills"; //생성할 아이템 name
 			tmp_name_compressed = "Rad"; //생성할 아이템 name_compressed
+			tmp_weight = 0.3; //아이템 무게
 		}
 		else if (tmp_chances < 7000) //5%확률로 해독약
 		{
@@ -432,6 +480,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "Anti-Poisoning Pills"; //생성할 아이템 name
 			tmp_name_compressed = "Poison"; //생성할 아이템 name_compressed
+			tmp_weight = 0.3; //아이템 무게
 		}
 		else if (tmp_chances < 8000) //10%확률로 알코올
 		{
@@ -439,6 +488,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "Alcohol"; //생성할 아이템 name
 			tmp_name_compressed = "C2H6O"; //생성할 아이템 name_compressed
+			tmp_weight = 0.5; //아이템 무게
 		}
 		else if (tmp_chances < 8500) //5%확률로 의료 주사기
 		{
@@ -447,6 +497,7 @@ switch(image_index)
 			tmp_name = "Medical Syringe"; //생성할 아이템 name
 			tmp_name_compressed = "Medkit"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.05; //아이템 무게
 		}
 		else if (tmp_chances < 9500) //10%확률로 주사기
 		{
@@ -454,6 +505,7 @@ switch(image_index)
 			tmp_img_ind = 22; //생성할 아이템 image_index
 			tmp_name = "Syringe"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.05; //아이템 무게
 		}
 		else if (tmp_chances < 9800) //3%확률로 수상한 액체
 		{
@@ -462,6 +514,7 @@ switch(image_index)
 			tmp_name = "Suspicious liquid"; //생성할 아이템 name
 			tmp_name_compressed = "Liquid"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.61; //아이템 무게
 		}
 		else //2%확률로 정제된 물
 		{
@@ -469,6 +522,7 @@ switch(image_index)
 			tmp_img_ind = 3; //생성할 아이템 image_index
 			tmp_name = "Purified Water"; //생성할 아이템 name
 			tmp_name_compressed = "Water"; //생성할 아이템 name_compressed
+			tmp_weight = 0.4; //아이템 무게
 		}
 	break;
 		
@@ -480,6 +534,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "RAM"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 4800) //24%확률로 CPU
 		{
@@ -487,6 +542,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "CPU"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 7300) //25%확률로 회로기판
 		{
@@ -494,6 +550,7 @@ switch(image_index)
 			tmp_img_ind = 6; //생성할 아이템 image_index
 			tmp_name = "Circuit Board"; //생성할 아이템 name
 			tmp_name_compressed = "Board"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 9800) //25%확률로 전선
 		{
@@ -502,6 +559,7 @@ switch(image_index)
 			tmp_name = "Wire"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 3; //아이템 무게
 		}
 		else if (tmp_chances < 9850) //0.5%확률로 GPU
 		{
@@ -510,6 +568,7 @@ switch(image_index)
 			tmp_name = "GPU"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 1.6; //아이템 무게
 		}
 		else //1.5%확률로 SSD
 		{
@@ -517,6 +576,7 @@ switch(image_index)
 			tmp_img_ind = 9; //생성할 아이템 image_index
 			tmp_name = "SSD"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.3; //아이템 무게
 		}
 	break;
 		
@@ -527,6 +587,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Coke"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 1100) //6%확률로 포도 주스
 		{
@@ -534,6 +595,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Grape Juice"; //생성할 아이템 name
 			tmp_name_compressed = "Juice"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 1700) //6%확률로 오랜지 주스
 		{
@@ -541,6 +603,7 @@ switch(image_index)
 			tmp_img_ind = 2; //생성할 아이템 image_index
 			tmp_name = "Orange Juice"; //생성할 아이템 name
 			tmp_name_compressed = "Juice"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 2300) //6%확률로 물병
 		{
@@ -549,6 +612,7 @@ switch(image_index)
 			tmp_name = "Bottle of Water"; //생성할 아이템 name
 			tmp_name_compressed = "Water"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.61; //아이템 무게
 		}
 		else if (tmp_chances < 2900) //6%확률로 그린티
 		{
@@ -556,6 +620,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "Green tea"; //생성할 아이템 name
 			tmp_name_compressed = "Tea"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 3200) //3%확률로 연유
 		{
@@ -563,6 +628,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "Condensed Milk"; //생성할 아이템 name
 			tmp_name_compressed = "Cond"; //생성할 아이템 name_compressed
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 3800) //6%확률로 우유
 		{
@@ -571,6 +637,7 @@ switch(image_index)
 			tmp_name = "Milk"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.9; //아이템 무게
 		}
 		else if (tmp_chances < 4400) //6%확률로 오랜지 소다
 		{
@@ -578,6 +645,7 @@ switch(image_index)
 			tmp_img_ind = 7; //생성할 아이템 image_index
 			tmp_name = "Orange Soda"; //생성할 아이템 name
 			tmp_name_compressed = "Soda"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 5000) //6%확률로 포도 소다
 		{
@@ -585,6 +653,7 @@ switch(image_index)
 			tmp_img_ind = 8; //생성할 아이템 image_index
 			tmp_name = "Grape Soda"; //생성할 아이템 name
 			tmp_name_compressed = "Soda"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 5600) //6%확률로 에너지 드링크
 		{
@@ -592,6 +661,7 @@ switch(image_index)
 			tmp_img_ind = 9; //생성할 아이템 image_index
 			tmp_name = "Energy Drink"; //생성할 아이템 name
 			tmp_name_compressed = "Energy"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 5700) //1%확률로 꿀병
 		{
@@ -600,6 +670,7 @@ switch(image_index)
 			tmp_name = "Bottle of Honey"; //생성할 아이템 name
 			tmp_name_compressed = "Honey"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.7; //아이템 무게
 		}
 		else if (tmp_chances < 6000) //3%확률로 수상한 액체
 		{
@@ -608,6 +679,7 @@ switch(image_index)
 			tmp_name = "Suspicious liquid"; //생성할 아이템 name
 			tmp_name_compressed = "Liquid"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.61; //아이템 무게
 		}
 		else if (tmp_chances < 6300) //3%확률로 정제된 물
 		{
@@ -615,6 +687,7 @@ switch(image_index)
 			tmp_img_ind = 12; //생성할 아이템 image_index
 			tmp_name = "Purified Water"; //생성할 아이템 name
 			tmp_name_compressed = "Water"; //생성할 아이템 name_compressed
+			tmp_weight = 0.4; //아이템 무게
 		}
 		else if (tmp_chances < 6900) //6%확률로 에너지바
 		{
@@ -622,6 +695,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Energy bar"; //생성할 아이템 name
 			tmp_name_compressed = "Bar"; //생성할 아이템 name_compressed
+			tmp_weight = 0.2; //아이템 무게
 		}
 		else if (tmp_chances < 7400) //5%확률로 초콜릿바
 		{
@@ -629,6 +703,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Chocolate bar"; //생성할 아이템 name
 			tmp_name_compressed = "Choco"; //생성할 아이템 name_compressed
+			tmp_weight = 0.2; //아이템 무게
 		}
 		else if (tmp_chances < 8000) //6%확률로 감자칩
 		{
@@ -636,6 +711,7 @@ switch(image_index)
 			tmp_img_ind = 2; //생성할 아이템 image_index
 			tmp_name = "Chips"; //생성할 아이템 name
 			tmp_name_compressed = "Chips"; //생성할 아이템 name_compressed
+			tmp_weight = 0.007; //아이템 무게
 		}
 		else if (tmp_chances < 8600) //6%확률로 소세지
 		{
@@ -644,6 +720,7 @@ switch(image_index)
 			tmp_name = "Sausage"; //생성할 아이템 name
 			tmp_name_compressed = "Saus"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.25; //아이템 무게
 		}
 		else if (tmp_chances < 9200) //6%확률로 생선 통조림
 		{
@@ -651,6 +728,7 @@ switch(image_index)
 			tmp_img_ind = 4; //생성할 아이템 image_index
 			tmp_name = "Can of Fish"; //생성할 아이템 name
 			tmp_name_compressed = "Fish"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else if (tmp_chances < 9700) //5%확률로 비프 스튜 통조림
 		{
@@ -658,6 +736,7 @@ switch(image_index)
 			tmp_img_ind = 5; //생성할 아이템 image_index
 			tmp_name = "Can of Beef stew"; //생성할 아이템 name
 			tmp_name_compressed = "Beef"; //생성할 아이템 name_compressed
+			tmp_weight = 0.58; //아이템 무게
 		}
 		else //3%확률로 설탕 팩
 		{
@@ -665,6 +744,7 @@ switch(image_index)
 			tmp_img_ind = 6; //생성할 아이템 image_index
 			tmp_name = "Pack of Sugar"; //생성할 아이템 name
 			tmp_name_compressed = "Sugar"; //생성할 아이템 name_compressed
+			tmp_weight = 0.2; //아이템 무게
 		}
 	break;
 		
@@ -676,6 +756,7 @@ switch(image_index)
 			tmp_name = "Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 3500) //10%확률로 고품질 금속 주괴
 		{
@@ -684,6 +765,7 @@ switch(image_index)
 			tmp_name = "High Quality Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "HQMetal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 6000) //25%확률로 전선
 		{
@@ -692,6 +774,7 @@ switch(image_index)
 			tmp_name = "Wire"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 3; //아이템 무게
 		}
 		else if (tmp_chances < 8000) //20%확률로 플라스틱 덩어리
 		{
@@ -699,6 +782,7 @@ switch(image_index)
 			tmp_img_ind = 13; //생성할 아이템 image_index
 			tmp_name = "Plastic lump"; //생성할 아이템 name
 			tmp_name_compressed = "Plastic"; //생성할 아이템 name_compressed
+			tmp_weight = 0.5; //아이템 무게
 		}
 		else if (tmp_chances < 8300) //3%확률로 천 조각
 		{
@@ -707,6 +791,7 @@ switch(image_index)
 			tmp_name = "Cloth"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else //17%확률로 금속 파이프
 		{
@@ -715,6 +800,7 @@ switch(image_index)
 			tmp_name = "Metal Pipe"; //생성할 아이템 name
 			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 3; //아이템 무게
 		}
 	break;
 		
@@ -725,6 +811,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Bolt"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 4000) //20%확률로 너트
 		{
@@ -732,6 +819,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Nut"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 4500) //5%확률로 원유
 		{
@@ -741,6 +829,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 15; //아이템 무게
 		}
 		else if (tmp_chances < 5000) //5%확률로 정제된 기름
 		{
@@ -750,6 +839,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 15; //아이템 무게
 		}
 		else if (tmp_chances < 7000) //20%확률로 전선
 		{
@@ -758,6 +848,7 @@ switch(image_index)
 			tmp_name = "Wire"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 3; //아이템 무게
 		}
 		else if (tmp_chances < 8000) //10%확률로 플라스틱 덩어리
 		{
@@ -765,6 +856,7 @@ switch(image_index)
 			tmp_img_ind = 13; //생성할 아이템 image_index
 			tmp_name = "Plastic lump"; //생성할 아이템 name
 			tmp_name_compressed = "Plastic"; //생성할 아이템 name_compressed
+			tmp_weight = 0.5; //아이템 무게
 		}
 		else if (tmp_chances < 9000) //10%확률로 금속 주괴
 		{
@@ -773,6 +865,7 @@ switch(image_index)
 			tmp_name = "Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 9500) //5%확률로 고품질 금속 주괴
 		{
@@ -781,6 +874,7 @@ switch(image_index)
 			tmp_name = "High Quality Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "HQMetal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 9600) //1%확률로 천 조각
 		{
@@ -789,6 +883,7 @@ switch(image_index)
 			tmp_name = "Cloth"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else //4%확률로 금속 파이프
 		{
@@ -797,6 +892,7 @@ switch(image_index)
 			tmp_name = "Metal Pipe"; //생성할 아이템 name
 			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 3; //아이템 무게
 		}
 	break;
 		
@@ -807,6 +903,7 @@ switch(image_index)
 			tmp_img_ind = 0; //생성할 아이템 image_index
 			tmp_name = "Bolt"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 5000) //25%확률로 너트
 		{
@@ -814,6 +911,7 @@ switch(image_index)
 			tmp_img_ind = 1; //생성할 아이템 image_index
 			tmp_name = "Nut"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 7000) //20%확률로 금속 주괴
 		{
@@ -822,6 +920,7 @@ switch(image_index)
 			tmp_name = "Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 9500) //25%확률로 종이 클립
 		{
@@ -831,6 +930,7 @@ switch(image_index)
 			tmp_name_compressed = "Clip"; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
 			tmp_max_stack = 10; //생성할 아이템 max_stack
+			tmp_weight = 0.001; //아이템 무게
 		}
 		else //4%확률로 금속 파이프
 		{
@@ -839,6 +939,7 @@ switch(image_index)
 			tmp_name = "Metal Pipe"; //생성할 아이템 name
 			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 3; //아이템 무게
 		}
 	break;
 		
@@ -851,6 +952,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 3; //생성할 아이템 width
 			tmp_height = 4; //생성할 아이템 height
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 2800) //13%확률로 의료 가방
 		{
@@ -860,6 +962,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 3; //생성할 아이템 width
 			tmp_height = 3; //생성할 아이템 height
+			tmp_weight = 1.6; //아이템 무게
 		}
 		else if (tmp_chances < 3900) //11%확률로 더플백
 		{
@@ -869,6 +972,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 4; //생성할 아이템 width
 			tmp_height = 3; //생성할 아이템 height
+			tmp_weight = 1.3; //아이템 무게
 		}
 		else if (tmp_chances < 4800) //9%확률로 백팩
 		{
@@ -878,6 +982,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 3; //생성할 아이템 width
 			tmp_height = 4; //생성할 아이템 height
+			tmp_weight = 1.6; //아이템 무게
 		}
 		else if (tmp_chances < 5500) //7%확률로 여행자 백팩
 		{
@@ -887,6 +992,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 3; //생성할 아이템 width
 			tmp_height = 4; //생성할 아이템 height
+			tmp_weight = 2; //아이템 무게
 		}
 		else if (tmp_chances < 6400) //9%확률로 대형 의료 가방
 		{
@@ -896,6 +1002,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 3; //생성할 아이템 width
 			tmp_height = 4; //생성할 아이템 height
+			tmp_weight = 1.6; //아이템 무게
 		}
 		else if (tmp_chances < 6700) //3%확률로 전술용 가방
 		{
@@ -905,6 +1012,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 3; //생성할 아이템 width
 			tmp_height = 4; //생성할 아이템 height
+			tmp_weight = 2; //아이템 무게
 		}
 		else if (tmp_chances < 8500) //18%확률로 흰색 페인트
 		{
@@ -914,6 +1022,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 10; //아이템 무게
 		}
 		else if (tmp_chances < 9000) //5%확률로 붉은색 페인트
 		{
@@ -923,6 +1032,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 10; //아이템 무게
 		}
 		else //10%확률로 비누
 		{
@@ -930,6 +1040,7 @@ switch(image_index)
 			tmp_img_ind = 12; //생성할 아이템 image_index
 			tmp_name = "Soap"; //생성할 아이템 name
 			tmp_name_compressed = "Soap"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 	break;
 		
@@ -942,6 +1053,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 10; //아이템 무게
 		}
 		else if (tmp_chances < 3800) //8%확률로 붉은색 페인트
 		{
@@ -951,6 +1063,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 10; //아이템 무게
 		}
 		else if (tmp_chances < 4800) //10%확률로 금속 주괴
 		{
@@ -959,6 +1072,7 @@ switch(image_index)
 			tmp_name = "Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 7300) //25%확률로 나무 막대
 		{
@@ -967,6 +1081,7 @@ switch(image_index)
 			tmp_name = "Wooden Stick"; //생성할 아이템 name
 			tmp_name_compressed = "Wood"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 0.7; //아이템 무게
 		}
 		else if (tmp_chances < 8300) //10%확률로 금속 파이프
 		{
@@ -975,6 +1090,7 @@ switch(image_index)
 			tmp_name = "Metal Pipe"; //생성할 아이템 name
 			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 3; //아이템 무게
 		}
 		else if (tmp_chances < 9300) //10%확률로 원유
 		{
@@ -984,6 +1100,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 15; //아이템 무게
 		}
 		else //7%확률로 정제된 기름
 		{
@@ -993,6 +1110,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_height = 2; //생성할 아이템 height
+			tmp_weight = 15; //아이템 무게
 		}
 	break;
 		
@@ -1004,6 +1122,7 @@ switch(image_index)
 			tmp_name = "Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 3000) //20%확률로 고품질 금속 주괴
 		{
@@ -1012,6 +1131,7 @@ switch(image_index)
 			tmp_name = "High Quality Metal ingot"; //생성할 아이템 name
 			tmp_name_compressed = "HQMetal"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 5; //아이템 무게
 		}
 		else if (tmp_chances < 3700) //7%확률로 해골 동상
 		{
@@ -1020,6 +1140,7 @@ switch(image_index)
 			tmp_name = "Skull Statue"; //생성할 아이템 name
 			tmp_name_compressed = "Statue"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 4400) //7%확률로 별 동상
 		{
@@ -1028,6 +1149,7 @@ switch(image_index)
 			tmp_name = "Star Statue"; //생성할 아이템 name
 			tmp_name_compressed = "Statue"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 1; //아이템 무게
 		}
 		else if (tmp_chances < 4900) //5%확률로 골드 바
 		{
@@ -1036,6 +1158,7 @@ switch(image_index)
 			tmp_name = "Golden Bar"; //생성할 아이템 name
 			tmp_name_compressed = "Gold"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
+			tmp_weight = 3; //아이템 무게
 		}
 		else if (tmp_chances < 5900) //10%확률로 금속 십자가
 		{
@@ -1043,6 +1166,7 @@ switch(image_index)
 			tmp_img_ind = 26; //생성할 아이템 image_index
 			tmp_name = "Metal Cross"; //생성할 아이템 name
 			tmp_name_compressed = "Cross"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 6600) //7%확률로 골든 십자가
 		{
@@ -1050,6 +1174,7 @@ switch(image_index)
 			tmp_img_ind = 27; //생성할 아이템 image_index
 			tmp_name = "Golden Cross"; //생성할 아이템 name
 			tmp_name_compressed = "Cross"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 		else if (tmp_chances < 7300) //7%확률로 골든 해골
 		{
@@ -1057,6 +1182,7 @@ switch(image_index)
 			tmp_img_ind = 29; //생성할 아이템 image_index
 			tmp_name = "Golden skull"; //생성할 아이템 name
 			tmp_name_compressed = "Skull"; //생성할 아이템 name_compressed
+			tmp_weight = 0.4; //아이템 무게
 		}
 		else if (tmp_chances < 9100) //18%확률로 골든 코인 (1~15개)
 		{
@@ -1066,6 +1192,7 @@ switch(image_index)
 			tmp_name_compressed = "Coin"; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,15); //생성할 아이템 stack
 			tmp_max_stack = 99; //생성할 아이템 max_stack
+			tmp_weight = 0.002; //아이템 무게
 		}
 		else if (tmp_chances < 9900) //8%확률로 SSD
 		{
@@ -1073,6 +1200,7 @@ switch(image_index)
 			tmp_img_ind = 9; //생성할 아이템 image_index
 			tmp_name = "SSD"; //생성할 아이템 name
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_weight = 0.3; //아이템 무게
 		}
 		else //1%확률로 키카드
 		{

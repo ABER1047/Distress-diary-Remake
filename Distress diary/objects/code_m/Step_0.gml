@@ -88,8 +88,8 @@ if (global.chat_activated)
 			var is_command = false;
 			if (global.dev_mode == 1)
 			{
-				var commands = [ "/kill", "/dev", "/create_map", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light" ];
-				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차민큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화" ];
+				var commands = [ "/kill", "/dev", "/create_map", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro" ];
+				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모" ];
 				for(var i = 0; i < array_length(commands); i++)
 				{
 					if (string_pos(commands[i],chat_entering))
@@ -102,7 +102,7 @@ if (global.chat_activated)
 						
 						if (i == 0) //suicide
 						{
-							(global.my_player_ins_id[global.my_player_id]).hp = 0;
+							give_damage(global.my_player_ins_id[global.my_player_id],9999,true);
 						}
 						else if (i == 1) //개발자 모드 on-off
 						{
@@ -204,7 +204,7 @@ if (global.chat_activated)
 						else if (i == 6) //시간 설정
 						{
 							var tmp_time = global.time;
-							global.time = global.time_increment*tmp_parameter;
+							global.time = 60*tmp_parameter;
 							show_message_log("- 시간 변경 : "+string(global.time)+" [기존 : "+string(tmp_time)+"]");
 						}
 						else if (i == 7) //명령어 가이드 표시
@@ -230,9 +230,22 @@ if (global.chat_activated)
 							global.enable_light_surf = !global.enable_light_surf;
 							show_message_log("- 광원 : "+string(global.enable_light_surf));
 						}
+						else if (i == 11) //데미지 입히기
+						{
+							give_damage(global.my_player_ins_id[global.my_player_id],tmp_parameter,true);
+						}
+						else if (i == 12) //배고픔 값 줄이기
+						{
+							global.hunger -= tmp_parameter;
+						}
+						else if (i == 13) //배고픔 값 줄이기
+						{
+							global.hydration -= tmp_parameter;
+						}
 						
 						
 						is_command = true;
+						global.chat_activated = false;
 					}
 				}
 			}
@@ -266,7 +279,7 @@ if (global.chat_activated)
 		else
 		{
 			clean_message_log();
-			global.chat_activated *= -1;
+			global.chat_activated = !global.chat_activated;
 		}
 	}
 }
@@ -274,7 +287,7 @@ else
 {
 	if (keyboard_check_pressed(ord("U")) || keyboard_check_pressed(vk_enter))
 	{
-		global.chat_activated *= -1;
+		global.chat_activated = !global.chat_activated;
 		keyboard_string = "";
 	}
 	chat_alpha += (-0.01 - chat_alpha)*0.3;
