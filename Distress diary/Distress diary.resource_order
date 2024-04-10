@@ -38,7 +38,6 @@
   "ResourceOrderSettings":[
     {"name":"font_light","order":5,"path":"fonts/font_light/font_light.yy",},
     {"name":"font_normal","order":4,"path":"fonts/font_normal/font_normal.yy",},
-    {"name":"code_m","order":2,"path":"objects/code_m/code_m.yy",},
     {"name":"obj_bottle","order":7,"path":"objects/obj_bottle/obj_bottle.yy",},
     {"name":"obj_camera","order":1,"path":"objects/obj_camera/obj_camera.yy",},
     {"name":"obj_dropped_item","order":6,"path":"objects/obj_dropped_item/obj_dropped_item.yy",},

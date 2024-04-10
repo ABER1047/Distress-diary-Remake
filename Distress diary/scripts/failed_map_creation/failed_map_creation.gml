@@ -4,8 +4,6 @@ function failed_map_creation()
 {
 	reset_map_arraies();
 	global.is_map_exists = -4;
-	global.n_room_width = -4;
-	global.n_room_height = -4;
 	instance_destroy(obj_wall_parents);
 	instance_destroy(obj_nextroom);
 }

@@ -88,7 +88,7 @@ if (global.chat_activated)
 			var is_command = false;
 			if (global.dev_mode == 1)
 			{
-				var commands = [ "/kill", "/dev", "/create_map", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro" ];
+				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro" ];
 				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모" ];
 				for(var i = 0; i < array_length(commands); i++)
 				{
@@ -119,8 +119,8 @@ if (global.chat_activated)
 								{
 									var tmp_width = floor(9*(0.5+instance_number(obj_player)*0.5));
 									var tmp_height = floor(9*(0.5+instance_number(obj_player)*0.5));
-									var tmp_start_xx = irandom_range(0,tmp_width-1);
-									var tmp_start_yy = irandom_range(0,tmp_height-1);
+									var tmp_start_xx = floor(tmp_width/2);
+									var tmp_start_yy = floor(tmp_height/2);
 									var tmp_max_root = irandom_range(16,max(tmp_width,tmp_height)*choose(4,5,6))*instance_number(obj_player);
 									var tmp_room_max_width = 24;
 									var tmp_room_max_height = 24;
@@ -156,7 +156,7 @@ if (global.chat_activated)
 										//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
 										load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
 			
-										show_message_log("- 맵 로드/전송 완료");
+										show_message_log("- 맵 로드 완료");
 										obj_player.x = room_width*0.5;
 										obj_player.y = room_height*0.5;
 										send_NewMapData();

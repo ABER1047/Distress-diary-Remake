@@ -32,8 +32,22 @@ function create_map_room(argument0,argument1)
 					create_room_specific_pos(t_xx,t_yy,global.map_arr[argument1][argument0]+1);
 					
 					//방 A와 연결되있는 방 B의 위치 인덱스
-					global.room_connected_to_xx[t_yy][t_xx] = argument0;
-					global.room_connected_to_yy[t_yy][t_xx] = argument1;
+					
+					var tmp_check = true;;
+					if (t_xx != global.map_start_pos_xx && t_yy != global.map_start_pos_yy)
+					{
+						tmp_check = true;
+					}
+					else if (global.create_only_one_enterance)
+					{
+						tmp_check = false;
+					}
+					
+					if (tmp_check)
+					{
+						global.room_connected_to_xx[t_yy][t_xx] = argument0;
+						global.room_connected_to_yy[t_yy][t_xx] = argument1;
+					}
 					
 					create_map_room(t_xx,t_yy);
 					break;

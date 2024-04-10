@@ -37,7 +37,6 @@ enum DATA
 	INS_VAR_DATA, //instance_variable값 받아오기 용
 	SET_PLAYER_ID, //처음 접속시 플레이어 아이디 적용 용
 	NEW_MAP_DATA, //새로운 맵 데이터 받아오기 용
-	NEW_OBJECT_DATA, //새로운 맵의 모든 오브젝트들 데이터 받아오기 용
 	MY_ROOM_POS, //각 플레이어의 위치 정보 받아오기 용
 	INV_DATA, //인벤토리 데이터 전송용 (모든 칸)
 	INV_DATA_SPECIFIC, //인벤토리 데이터 전송용 (특정 1칸만)
@@ -51,7 +50,6 @@ global.DATA_IMG_DATA = DATA.IMG_DATA;
 global.DATA_GL_VAR_DATA = DATA.GL_VAR_DATA;
 global.DATA_INS_VAR_DATA = DATA.INS_VAR_DATA;
 global.DATA_NEW_MAP_DATA = DATA.NEW_MAP_DATA;
-global.DATA_NEW_MAP_DATA = DATA.NEW_OBJECT_DATA;
 global.DATA_MY_ROOM_POS = DATA.MY_ROOM_POS;
 global.DATA_INV_DATA = DATA.INV_DATA;
 global.DATA_INV_DATA_SPECIFIC = DATA.INV_DATA_SPECIFIC;

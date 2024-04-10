@@ -29,8 +29,21 @@ function create_room_connection()
 							{
 								if (ii != global.room_connected_to_xx_sec[t_yy][t_xx] && i != global.room_connected_to_yy_sec[t_yy][t_xx] && t_xx != global.room_connected_to_xx_sec[i][ii] && t_yy != global.room_connected_to_yy_sec[i][ii])
 								{
-									global.room_connected_to_xx_sec[t_yy][t_xx] = ii;
-									global.room_connected_to_yy_sec[t_yy][t_xx] = i;
+									var tmp_check = true;;
+									if (t_xx != global.map_start_pos_xx && t_yy != global.map_start_pos_yy)
+									{
+										tmp_check = true;
+									}
+									else if (global.create_only_one_enterance)
+									{
+										tmp_check = false;
+									}
+					
+									if (tmp_check)
+									{
+										global.room_connected_to_xx_sec[t_yy][t_xx] = ii;
+										global.room_connected_to_yy_sec[t_yy][t_xx] = i;
+									}
 								}
 							}
 						}

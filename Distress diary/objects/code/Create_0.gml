@@ -68,6 +68,7 @@ global.max_root_length = 0;
 global.max_room_num = 0;
 global.n_room_num = 0;
 global.map_creation_falied = 0;
+global.create_only_one_enterance = false;
 
 
 //벽 외부 서피스 생성
@@ -94,8 +95,8 @@ global.n_player_room_yy = [ -4, -4, -4, -4, -4, -4 ];
 
 
 //현재 불러온 룸 정보
-global.n_room_width = 0;
-global.n_room_height = 0;
+global.n_room_width = -4;
+global.n_room_height = -4;
 
 
 

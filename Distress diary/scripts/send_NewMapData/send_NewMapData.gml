@@ -50,4 +50,6 @@ function send_NewMapData()
 	}
 	
 	send_all(global.map_data_buffer);
+	
+	show_message_log("- 맵 데이터 전송 완료");
 }

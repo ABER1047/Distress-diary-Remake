@@ -18,7 +18,7 @@
 function create_map(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
 {
 	global.enable_light_surf = true;
-	
+	global.create_only_one_enterance = false;
 	
 	
 	global.n_player_room_xx = [ -4, -5, -6, -7, -8, -9 ];
@@ -69,6 +69,7 @@ function create_map(argument0,argument1,argument2,argument3,argument4,argument5,
 	repeat(2)
 	{
 		create_map_room(global.map_start_pos_xx,global.map_start_pos_yy);
+		global.create_only_one_enterance = true;
 	}
 	
 	
