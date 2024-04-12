@@ -406,6 +406,8 @@ if (instance_exists(parents_id))
 					//네트워크상으로 해당 박스 인벤토리 정보 전송
 					tmp_loot.alarm[0] = 1;
 				}
+				
+				parents_id.reload_inv = 1; //인벤토리 ui정보 리로드
 			}
 				
 		
