@@ -134,3 +134,8 @@ played_jump_sfx = false;
 
 //데미지 애니메이션 관련 변수
 dmg_cooltime = 0;
+
+
+
+//맵 이동 화면전환 애니메이션
+move_to_other_room = -4;

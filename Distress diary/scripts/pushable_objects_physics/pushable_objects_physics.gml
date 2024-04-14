@@ -11,6 +11,13 @@ function pushable_objects_physics()
 		//pushable_objects끼리 부딛혔을 경우 서로 밀리는 효과
 		hspeed = (hspeed*0.5) + tmp_xx;
 		vspeed = (vspeed*0.5) + tmp_yy;
+		
+		
+		//만약 오브젝트가 플레이어이고, 부딛힌 오브젝트가 몬스터인 경우 데미지 입기
+		if (object_index == obj_player && object_get_parent(tmp_ins.object_index) == obj_monster_parents)
+		{
+			give_damage(id,tmp_ins.attack_dmg,false);
+		}
 	}
 	
 	//vspeed-hspeed로 인해 오브젝트가 벽을 뚫지 못하도록 방지

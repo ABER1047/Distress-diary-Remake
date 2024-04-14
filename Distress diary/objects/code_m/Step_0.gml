@@ -88,8 +88,8 @@ if (global.chat_activated)
 			var is_command = false;
 			if (global.dev_mode == 1)
 			{
-				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro" ];
-				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모" ];
+				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob" ];
+				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성" ];
 				for(var i = 0; i < array_length(commands); i++)
 				{
 					if (string_pos(commands[i],chat_entering))
@@ -97,7 +97,18 @@ if (global.chat_activated)
 						//파라미터 값
 						var tmp_parameter = string_replace_all(chat_entering,commands[i],"");
 						tmp_parameter = string_replace_all(tmp_parameter," ","");
-						tmp_parameter = (tmp_parameter != "") ? real(tmp_parameter) : 0;
+						try
+						{
+							tmp_parameter = (tmp_parameter == "") ? 0 : real(tmp_parameter);
+							is_command = true;
+						}
+						catch(e)
+						{
+							is_command = true;
+							show_message_log("- '"+string(chat_entering)+"'는 잘못된 명령어 입니다!");
+							break;
+						}
+						
 						
 						
 						if (i == 0) //suicide
@@ -162,7 +173,7 @@ if (global.chat_activated)
 										send_NewMapData();
 			
 										//카메라 줌 설정
-										global.n_camera_zoom = 0.5;
+										global.n_camera_zoom = 0.53;
 										break; //while문 빠져나오기
 									}
 									else
@@ -238,9 +249,19 @@ if (global.chat_activated)
 						{
 							global.hunger -= tmp_parameter;
 						}
-						else if (i == 13) //배고픔 값 줄이기
+						else if (i == 13) //목마름 값 줄이기
 						{
 							global.hydration -= tmp_parameter;
+						}
+						else if (i == 14) //타일셋 변경
+						{
+							global.n_room_tileset = tmp_parameter;
+						}
+						else if (i == 15) //몬스터 생성 (파이어 볼)
+						{
+							var tmp_mob_obj_ind = [ obj_fireball, obj_wisp, obj_skull_head ];
+							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
+							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false);
 						}
 						
 						
@@ -249,30 +270,39 @@ if (global.chat_activated)
 					}
 				}
 			}
+
 			
 			
 			if (!is_command && global.is_server) 
 			{
-				//채팅 전송
-				var tmp_chat = string(global.nickname)+" : "+string(chat_entering);
-				buffer_seek(chat_buffer, buffer_seek_start, 0);
-				buffer_write(chat_buffer, buffer_u8, DATA.CHAT);
-				buffer_write(chat_buffer, buffer_string, tmp_chat);
-				send_all(chat_buffer);
-				
-				
-				//내 화면에도 채팅 표기
-				show_message_log(tmp_chat);
-				
-				
-				//스크롤 위치 초기화
-				global.chating_scroll = 0;
-				
-				if (global.chat[10] != "")
+				if (string_pos("/",chat_entering))
 				{
-					global.chat_scroll_alpha = 10;
+					show_message_log("- '"+string(chat_entering)+"'는 잘못된 명령어 입니다!");
+				}
+				else
+				{
+					//채팅 전송
+					var tmp_chat = string(global.nickname)+" : "+string(chat_entering);
+					buffer_seek(chat_buffer, buffer_seek_start, 0);
+					buffer_write(chat_buffer, buffer_u8, DATA.CHAT);
+					buffer_write(chat_buffer, buffer_string, tmp_chat);
+					send_all(chat_buffer);
+				
+				
+					//내 화면에도 채팅 표기
+					show_message_log(tmp_chat);
+				
+				
+					//스크롤 위치 초기화
+					global.chating_scroll = 0;
+				
+					if (global.chat[10] != "")
+					{
+						global.chat_scroll_alpha = 10;
+					}
 				}
 			}
+			
 			chat_entering = "";
 			keyboard_string = "";
 		}

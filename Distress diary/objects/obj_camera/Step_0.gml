@@ -20,8 +20,8 @@ if (global.camera_target_x == -4)
 }
 else
 {
-	x += (global.camera_target_x - x)*0.3;
-	y += (global.camera_target_y - y)*0.3;
+	x += (global.camera_target_x - x)*0.15;
+	y += (global.camera_target_y - y)*0.15;
 }
 
 
@@ -38,9 +38,9 @@ else if (global.n_camera_zoom > 1.15)
 
 global.view_angle_ += (0 - global.view_angle_)*0.1;
 
-global.w_ratio_by_window = sqrt(window_get_width()/1280);
-global.h_ratio_by_window = sqrt(window_get_height()/720);
-camera_set_view_size(view_camera[0],floor(v_x)*global.n_camera_zoom*global.w_ratio_by_window,floor(v_y)*global.n_camera_zoom*global.h_ratio_by_window);
+global.w_ratio_by_window = floor(sqrt(window_get_width()/1280)*10)/10;
+global.h_ratio_by_window = floor(sqrt(window_get_height()/720)*10)/10;
+camera_set_view_size(view_camera[0],floor(v_x*global.n_camera_zoom*global.w_ratio_by_window),floor(v_y*global.n_camera_zoom*global.h_ratio_by_window));
 
 
 if (global.t_shake_x <= 0.01)

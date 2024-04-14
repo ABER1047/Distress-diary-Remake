@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
-v_x = 3584
-v_y = 2016
+v_x = 1280
+v_y = 720
 tv_x = 3584
 tv_y = 2016
 view_shake_xx = 0

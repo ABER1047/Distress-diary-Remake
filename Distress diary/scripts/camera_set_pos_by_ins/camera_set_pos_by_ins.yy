@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"camera_set_pos_by_ins",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"camera_set_pos_by_ins",
+  "parent":{
+    "name":"UI&Camera",
+    "path":"folders/스크립트/UI&Camera.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -1,6 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 randomize();
+event_user(1);
 depth = -102;
 
 //디버그 용
@@ -34,7 +35,7 @@ global.maximum_ping_acception = 256;
 
 
 //플레이어 스킨
-global.player_skin_num = 4;
+global.player_skin_num = 5;
 global.player_skin = irandom_range(0,global.player_skin_num-1);
 
 //플레이어 착용중인 백팩
@@ -72,16 +73,16 @@ global.create_only_one_enterance = false;
 
 
 //벽 외부 서피스 생성
-outter_room_surf = surface_create(4000,3000);
+outter_room_surf = surface_create(3840,2160);
 
 //라이트 서피스 생성
-global.light_surf = surface_create(4000,3000);
-global.flashlight_surf = surface_create(4000,3000);
+global.light_surf = surface_create(3840,2160);
+global.flashlight_surf = surface_create(3840,2160);
 global.enable_light_surf = false;
 global.time_response_light = 1;
 
 //쉐도우 서피스 생성
-global.shadow_surf = surface_create(4000,3000);
+global.shadow_surf = surface_create(3840,2160);
 global.enable_shadow_surf = true;
 
 
@@ -97,6 +98,9 @@ global.n_player_room_yy = [ -4, -4, -4, -4, -4, -4 ];
 //현재 불러온 룸 정보
 global.n_room_width = -4;
 global.n_room_height = -4;
+
+//현재 룸 타일 셋 정보
+global.n_room_tileset = 0;
 
 
 
@@ -152,4 +156,11 @@ global.time_increment = 100; //몇 프레임이 지나야 게임 시간의 1분�
 global.time_increment_timer = 0;
 global.time_is_day = true;
 
+
+//혈흔 그리기용 서피스
+global.blood_surf = surface_create(3840,2160);
+
+
+//텍스트 그리기용 서피스
+global.text_surf = surface_create(3840,2160);
 

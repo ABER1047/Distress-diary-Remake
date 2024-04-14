@@ -7,7 +7,7 @@ function send_NewObjectData()
 		if (object_index != obj_player)
 		{
 			//루트 가능한 오브젝트 (= 상자류)가 아닌경우
-			if (!variable_instance_exists(id,"is_opened"))
+			if (!variable_instance_exists(id,"inv_width"))
 			{
 				buffer_seek(global.obj_data_buffer, buffer_seek_start, 0);
 				buffer_write(global.obj_data_buffer, buffer_u8, global.DATA_OBJECTS_DATA);

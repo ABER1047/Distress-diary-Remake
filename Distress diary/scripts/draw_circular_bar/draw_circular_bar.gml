@@ -31,7 +31,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 			surface_set_target(piesurface);
 
 			draw_clear_alpha(c_blue,0.7);
-			draw_clear_alpha(c_black,0);
+			draw_clear_alpha(#17111A,0);
         
 			draw_primitive_begin(pr_trianglefan);
 			draw_vertex(argument5, argument5);
@@ -50,7 +50,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
         
 			
 			gpu_set_blendmode(bm_subtract);
-			draw_set_colour(c_black);
+			draw_set_colour(#17111A);
 			//draw_sprite_ext(charging_gage_bar,2,argument0,argument1,c_x,c_x,0,c_white,argument6)
 			draw_circle(argument5-1, argument5-1,argument5-argument7,false);
 			gpu_set_blendmode(bm_normal);

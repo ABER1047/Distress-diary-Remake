@@ -33,7 +33,7 @@ if (instance_exists(variable_owner))
 	//인벤토리 윈도우 젤 왼쪽 상단 시작 위치
 	w_starty = starty-window_weight;
 	
-	//인벤토리 창의 정가운데 위치는 x, y값임 (어차피 드로우 할 때 x, y값 아에 안써서 그럼)
+	//인벤토리 창의 정가운데 위치는 x, y값임 (어차혈흔 드로우 할 때 x, y값 아에 안써서 그럼)
 	x = startx+(inv_width*slot_size*0.5);
 	y = w_starty+((window_weight+inv_height*slot_size)*0.5);
 	

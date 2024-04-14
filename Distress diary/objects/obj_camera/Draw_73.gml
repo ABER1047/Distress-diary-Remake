@@ -53,7 +53,7 @@ for(var i = 0; i < 3; i++)
 	draw_circular_bar(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),tmp_values[i],tmp_values_max[i],tmp_color[i],32*scale,1,scale*6);
 	draw_sprite_ext(spr_ui,i,xx+(scale*(48+78*i)),yy+yy_h-(144*scale),scale*0.9,scale*0.9,0,c_white,1);
 	
-	draw_text_kl_scale(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),string(tmp_values_for_display[i])+string(tmp_unit[i]),64,-1,1,c_white,0,0,font_normal,scale*0.3,scale*0.3,0);
+	draw_text_kl_scale(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),string(tmp_values_for_display[i])+string(tmp_unit[i]),64,-1,1,c_white,0,0,font_normal,0.4,0.4,0);
 }
 
 

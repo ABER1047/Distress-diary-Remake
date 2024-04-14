@@ -329,6 +329,8 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var tmp_blend = buffer_read(buffer, buffer_string);
 				var tmp_alpha = buffer_read(buffer, buffer_string);
 				
+
+
 				with(tmp_obj_ind)
 				{
 					if (tmp_object_id_ind == obj_id)

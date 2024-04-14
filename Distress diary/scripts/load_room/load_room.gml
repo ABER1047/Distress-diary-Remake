@@ -15,6 +15,8 @@ function load_room(argument0,argument1)
 	
 	
 	
+	//모든 혈흔 삭제
+	instance_destroy(obj_blood_effect);
 	
 	//모든 벽 삭제
 	instance_destroy(obj_wall_parents);

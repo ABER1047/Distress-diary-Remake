@@ -15,5 +15,20 @@ function give_damage(argument0,argument1,argument2)
 		{
 			tmp_ins.hp = 0;
 		}
+		
+		
+		
+		//혈흔 이펙트 생성
+		var tmp_depth = tmp_ins.depth+16;
+		if (instance_exists(obj_map_texture_draw))
+		{
+			tmp_depth = obj_map_texture_draw.depth-4;
+		}
+		
+		var tmp_ins = instance_create_depth(tmp_ins.x,tmp_ins.y,tmp_depth,obj_blood_effect);
+		
+		
+		//피격음
+		play_sound_pos(hit_sfx,false,0.1,x,y,960,false);
 	}
 }

@@ -17,7 +17,7 @@ var tmp_room_xx = room_width*0.5;
 var tmp_room_yy = room_height*0.5;
 var tmp_wall_scale = 2;
 var tmp_wall_sprite_size = tmp_wall_scale*48;
-var n_wall_type = 0;
+var n_wall_type = global.n_room_tileset;
 
 if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(outter_room_surf))
 {
@@ -90,7 +90,7 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	surface_set_target(global.flashlight_surf);
 	draw_clear_alpha(c_black,0);
 	//거리에 따른 라이트 크기 조절
-	var light_col = #FFE651;
+	var light_col = c_white;
 	var tmp_player_xx = tmp_my_p.x;
 	var tmp_player_yy = tmp_my_p.y-24;
 	var tmp_light_xx_surf = tmp_player_xx-xx;
@@ -118,13 +118,22 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	}
 	
 	
+	//버블이펙트 (is_bright == true인 경우)
+	with(obj_bubble_effect)
+	{
+		if (is_bright)
+		{
+			var tmp_img_scale = image_xscale*0.054*4;
+			draw_sprite_ext(spr_grad_circle,0,x-xx,y-yy,tmp_img_scale,tmp_img_scale,image_angle,c_white,image_alpha*2);
+		}
+	}
 		
 	
 	
 	
 	//플레이어 주변 광원
-	var tmp_radius = (4/1191)*(64+(128*global.enable_flashlight)+(global.time_response_light*896));
-	draw_sprite_ext(spr_grad_circle,0,tmp_light_xx_surf,tmp_light_yy_surf,tmp_radius,tmp_radius,0,light_col,0.65);
+	var tmp_radius = (4/1191)*(64+(128*global.enable_flashlight)+(global.time_response_light*480));
+	draw_sprite_ext(spr_grad_circle,0,tmp_light_xx_surf,tmp_light_yy_surf,tmp_radius,tmp_radius,0,light_col,0.65*(1+global.time_response_light));
 	//draw_circle(tmp_light_xx_surf,tmp_light_yy_surf,128,false);
 	
 	if (global.enable_flashlight)
@@ -195,10 +204,13 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
+	draw_set_font(font_normal);
+	draw_set_alpha(1);
+	
 	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n지도 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]\n\n인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
-	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
+	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이혈흔 : "+string(global.my_ip) : "아이혈흔 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
 	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
@@ -276,15 +288,111 @@ if (global.dev_mode == 1)
 	}
 	
 	
-	
-	//모든 상자에 아이템 생성
-	if (keyboard_check_pressed(ord("B")))
+	if (!global.chat_activated)
 	{
-		with(obj_loots)
+		//모든 상자에 아이템 생성
+		if (keyboard_check_pressed(ord("B")))
 		{
-			if (object_index == obj_loots)
+			with(obj_loots)
 			{
-				set_inv_variable(id,0,0,spr_comp,7,"Wire","Wire",-4,-4,2,1,0,6,0);
+				if (object_index == obj_loots)
+				{
+					set_inv_variable(id,0,0,spr_comp,7,"Wire","Wire",-4,-4,2,1,0,6,0);
+				}
+			}
+		}
+		
+		//스킨 변경
+		if (keyboard_check_pressed(ord("Y")))
+		{
+			global.player_skin ++;
+			if (global.player_skin < 0)
+			{
+				global.player_skin = global.player_skin_num-1;
+			}
+			else if (global.player_skin >= global.player_skin_num)
+			{
+				global.player_skin = 0;
+			}
+			show_message_log("- 플레이어 스킨 변경 : "+string(sprite_get_name(obj_player.sprite_index)));
+		}
+	
+		//가방 변경
+		if (keyboard_check_pressed(ord("T")))
+		{
+			global.n_backpack ++;
+			if (global.n_backpack < 0)
+			{
+				global.n_backpack = global.backpack_num-1;
+			}
+			else if (global.n_backpack >= global.backpack_num)
+			{
+				global.n_backpack = 0;
+			}
+			show_message_log("- 가방 변경 : "+string(global.n_backpack));
+		}
+	
+	
+	
+		//랜덤 상자 생성
+		var tmp_img = choose(0,2,4,6,8,10,12,14,16,18,24,26)
+		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
+		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
+		var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
+		if (keyboard_check(ord("P")))
+		{
+			if (!instance_exists(tmp_ins))
+			{
+				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
+				draw_sprite_ext(spr_loots,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
+			}
+			else
+			{
+				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
+			}
+		}
+
+		if (keyboard_check_released(ord("P")))
+		{
+			if (instance_exists(tmp_ins))
+			{
+				instance_destroy_multiplayer(tmp_ins);
+			}
+			else
+			{
+				create_randomized_loots(tmp_xx,tmp_yy,tmp_img,global.object_id_ind,0);
+			}
+		}
+	
+	
+	
+		//블럭 생성 (병)
+		var tmp_img = 0;
+		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
+		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
+		var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
+		if (keyboard_check(ord("O")))
+		{
+			if (!instance_exists(tmp_ins))
+			{
+				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
+				draw_sprite_ext(spr_blocks,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
+			}
+			else
+			{
+				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
+			}
+		}
+
+		if (keyboard_check_released(ord("O")))
+		{
+			if (instance_exists(tmp_ins))
+			{
+				instance_destroy_multiplayer(tmp_ins);
+			}
+			else
+			{
+				instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,0,false);
 			}
 		}
 	}
@@ -310,113 +418,7 @@ if (global.dev_mode == 1)
 	//전체화면
 	if (keyboard_check_pressed(vk_escape))
 	{
-		var tmp_val = !window_get_fullscreen();
-		var w = 1280, h = 720;
-		if (tmp_val)
-		{
-			w = 1920;
-			h = 1080;
-		}
-		
-		
-		window_set_size(w,h);
-		window_set_fullscreen(tmp_val);
-	}
-
-	
-
-	//스킨 변경
-	if (keyboard_check_pressed(ord("Y")))
-	{
-		global.player_skin ++;
-		if (global.player_skin < 0)
-		{
-			global.player_skin = global.player_skin_num-1;
-		}
-		else if (global.player_skin >= global.player_skin_num)
-		{
-			global.player_skin = 0;
-		}
-		show_message_log("- 플레이어 스킨 변경 : "+string(sprite_get_name(obj_player.sprite_index)));
-	}
-	
-	//가방 변경
-	if (keyboard_check_pressed(ord("T")))
-	{
-		global.n_backpack ++;
-		if (global.n_backpack < 0)
-		{
-			global.n_backpack = global.backpack_num-1;
-		}
-		else if (global.n_backpack >= global.backpack_num)
-		{
-			global.n_backpack = 0;
-		}
-		show_message_log("- 가방 변경 : "+string(global.n_backpack));
-	}
-	
-	
-	
-	//랜덤 상자 생성
-	var tmp_img = choose(0,2,4,6,8,10,12,14,16,18,24,26)
-	var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
-	var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
-	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
-	if (keyboard_check(ord("P")))
-	{
-		if (!instance_exists(tmp_ins))
-		{
-			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
-			draw_sprite_ext(spr_loots,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
-		}
-		else
-		{
-			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
-		}
-	}
-
-	if (keyboard_check_released(ord("P")))
-	{
-		if (instance_exists(tmp_ins))
-		{
-			instance_destroy_multiplayer(tmp_ins);
-		}
-		else
-		{
-			create_randomized_loots(tmp_xx,tmp_yy,tmp_img,global.object_id_ind,0);
-		}
-	}
-	
-	
-	
-	//블럭 생성 (병)
-	var tmp_img = 0;
-	var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
-	var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
-	var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
-	if (keyboard_check(ord("O")))
-	{
-		if (!instance_exists(tmp_ins))
-		{
-			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
-			draw_sprite_ext(spr_blocks,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
-		}
-		else
-		{
-			draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
-		}
-	}
-
-	if (keyboard_check_released(ord("O")))
-	{
-		if (instance_exists(tmp_ins))
-		{
-			instance_destroy_multiplayer(tmp_ins);
-		}
-		else
-		{
-			instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,0,false);
-		}
+		event_user(1);
 	}
 }
 

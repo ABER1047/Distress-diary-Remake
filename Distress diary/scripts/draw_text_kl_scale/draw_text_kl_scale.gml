@@ -15,9 +15,10 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 	///@param xscale
 	///@param yscale
 	///@param angle
-	var w_ratio = (global.w_ratio_by_window);
-	var h_ratio = (global.h_ratio_by_window);
-	var text_scale_real = 2;
+	var tmp_scale = camera_get_view_width(view_camera[0])/1280;
+	var w_ratio = global.w_ratio_by_window;
+	var h_ratio = global.h_ratio_by_window;
+	var text_scale_real = tmp_scale;
 	var txt_xscale = argument10*0.8125/w_ratio*text_scale_real;
 	var txt_yscale = argument11*0.8125/h_ratio*text_scale_real;
 	var args = [ argument0, argument1+4*h_ratio*text_scale_real/2, argument2, argument3/h_ratio*text_scale_real/2, argument4, argument5, argument6, argument7, argument8, argument9, txt_xscale, txt_yscale, argument12 ];
@@ -93,7 +94,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 			draw_text_ext_transformed(args[0],args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
 		}
 	}
-
+	
 
 	////////////////MADE BY KUNMAGUN///////////////////////
 }

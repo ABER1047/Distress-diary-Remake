@@ -13,12 +13,12 @@
   "name":"obj_player",
   "overriddenProperties":[],
   "parent":{
-    "name":"오브젝트",
-    "path":"folders/오브젝트.yy",
+    "name":"mob",
+    "path":"folders/오브젝트/mob.yy",
   },
   "parentObjectId":{
-    "name":"obj_pushable_object",
-    "path":"objects/obj_pushable_object/obj_pushable_object.yy",
+    "name":"obj_mob_parents",
+    "path":"objects/obj_mob_parents/obj_mob_parents.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
