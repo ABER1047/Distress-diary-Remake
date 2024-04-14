@@ -2,9 +2,20 @@
 // You can write your code in this editor
 
 //서피스가 없어진 경우 재생성
-if (window_has_focus() && !surface_exists(global.light_surf))
+if (window_has_focus())
 {
-	event_user(0);
+	if (!surface_exists(global.light_surf))
+	{
+		event_user(0);
+	}
+}
+else
+{
+	//풀스크린 상태에서 윈도우 창이 포커스 되지 않은 경우, 메모리 누수 방지를 위해 서피스 삭제
+	if (window_get_fullscreen() && surface_exists(global.light_surf))
+	{
+		event_user(2);
+	}
 }
 
 

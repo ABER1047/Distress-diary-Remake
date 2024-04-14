@@ -223,7 +223,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			if (!played_footstep_sfx)
 			{
 				played_footstep_sfx = true;
-				play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1280);
+				play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1280,false);
 			}
 		}
 		else
@@ -391,6 +391,15 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
 				{
 					is_lootable = "자동판매기";
+				}
+				else
+				{
+					//벤딩 머신
+					tmp_ins = instance_nearest_notme(x,y,obj_gamble_machine);
+					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+					{
+						is_lootable = "겜블머신";
+					}
 				}
 			}
 		}

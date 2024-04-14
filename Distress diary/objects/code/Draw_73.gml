@@ -392,7 +392,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,0,false);
+				instance_create_multiplayer(choose(obj_vending_machine,obj_gamble_machine),tmp_xx,tmp_yy,global.object_id_ind,0,false);
 			}
 		}
 	}

@@ -82,7 +82,7 @@ function set_item_value(argument0,argument1)
 				return 8;
 			break;
 			
-			case "Chocolate Bar":
+			case "Chocolate bar":
 				item_name_translated = "초콜릿 바";
 				return 8;
 			break;

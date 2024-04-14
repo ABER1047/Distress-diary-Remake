@@ -28,6 +28,8 @@ while(true)
 	x = startx+(inv_width*slot_size*0.5);
 	y = w_starty+((window_weight+inv_height*slot_size)*0.5);
 	
+	
+	//창끼리 겹쳤을때 겹친거 펼치는 기능
 	tmp_ins = instance_place(x,y,obj_inv_ui);
 	if (instance_exists(tmp_ins))
 	{

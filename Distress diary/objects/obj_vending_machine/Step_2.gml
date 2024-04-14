@@ -33,7 +33,7 @@ if (obj_animation_timer >= 360)
 sfx_timer ++;
 if (sfx_timer > 45)
 {
-	sfx = play_sound_pos(vending_machine_sfx,false,0.1,x,y,640);
+	sfx = play_sound_pos(vending_machine_sfx,false,0.1,x,y,640,true);
 	sfx_timer = 0;
 }
 

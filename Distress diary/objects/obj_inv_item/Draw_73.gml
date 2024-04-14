@@ -210,13 +210,14 @@ if (instance_exists(parents_id))
 		
 		//아이템명
 		var tmp_text_startx = mouse_x+16*text_ratio;
-		var tmp_text_starty = mouse_y-8*text_ratio;
+		var tmp_text_starty = mouse_y-8*global.n_camera_zoom;
 		var tmp_name_to_draw = string(item_name);
 		if (item_name != item_name_translated)
 		{
 			tmp_name_to_draw = tmp_name_to_draw+" ("+string(item_name_translated)+")";
 		}
-		draw_text_kl_scale(tmp_text_startx,tmp_text_starty,string(tmp_name_to_draw),64,-1,1,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty,string(tmp_name_to_draw),64,-1,1,c_white,0,-1,font_normal,0.58*global.n_camera_zoom,0.58*global.n_camera_zoom,0);
+		
 		
 		//아이템 정보
 		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(96*text_ratio),string(item_info),64,480,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
