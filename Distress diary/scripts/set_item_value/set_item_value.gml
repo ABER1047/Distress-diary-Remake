@@ -270,6 +270,11 @@ function set_item_value(argument0,argument1)
 				item_name_translated = "골든 코인";
 				return 1;
 			break;
+			
+			case "Golden ring":
+				item_name_translated = "골든 링";
+				return 20;
+			break;
 		
 		
 			//열쇠류

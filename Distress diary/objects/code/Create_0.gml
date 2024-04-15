@@ -157,10 +157,9 @@ global.time_increment_timer = 0;
 global.time_is_day = true;
 
 
-//혈흔 그리기용 서피스
-global.blood_surf = surface_create(3840,2160);
+//바닥 액체 그리기용 서피스
+global.liquid_on_floor_surf = surface_create(3840,2160);
 
 
-//텍스트 그리기용 서피스
-global.text_surf = surface_create(3840,2160);
-
+//그래픽 퀄리티
+global.graphics_quality = 2; // 2 == 최고품질 / 1 == 보통 / 0 == 최고 성능

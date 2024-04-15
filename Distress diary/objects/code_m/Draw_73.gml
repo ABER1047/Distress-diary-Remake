@@ -9,7 +9,7 @@ var c_x = global.n_camera_zoom*4;
 var text_size = power(1+global.n_camera_zoom,2);
 
 
-if (surface_exists(global.text_surf) && chat_alpha > 0)
+if (chat_alpha > 0)
 {
 	//채팅창 뒷 배경
 	draw_set_color(c_black);

@@ -55,15 +55,18 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 	{
 		if (args[4] < 0)
 		{
-			//컬러설정
-			draw_set_color($FF191919&$ffffff);
-			for(var i = 1; i <= 3; i += 1.5)
+			if (global.graphics_quality > 0)
 			{
-				//i = args[10]
-				draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-				draw_text_ext_transformed(args[0],args[1]+i+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-				draw_text_ext_transformed(args[0]-i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-				draw_text_ext_transformed(args[0],args[1]-i+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
+				//컬러설정
+				draw_set_color($FF191919&$ffffff);
+				for(var i = 1; i <= 3; i += 1.5)
+				{
+					//i = args[10]
+					draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
+					draw_text_ext_transformed(args[0],args[1]+i+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
+					draw_text_ext_transformed(args[0]-i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
+					draw_text_ext_transformed(args[0],args[1]-i+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
+				}
 			}
 	
 	
@@ -76,15 +79,17 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 		}
 		else if (args[4] > 0)
 		{
-
-			draw_set_color($FF191919&$ffffff);
-			for(var i = 1; i <= 3; i += 1)
+			if (global.graphics_quality > 0)
 			{
-				//i = args[10]
-				draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-				draw_text_ext_transformed(args[0],args[1]+i+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-				draw_text_ext_transformed(args[0]-i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-				draw_text_ext_transformed(args[0],args[1]-i+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
+				draw_set_color($FF191919&$ffffff);
+				for(var i = 1; i <= 3; i += 1)
+				{
+					//i = args[10]
+					draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
+					draw_text_ext_transformed(args[0],args[1]+i+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
+					draw_text_ext_transformed(args[0]-i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
+					draw_text_ext_transformed(args[0],args[1]-i+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
+				}
 			}
 
 

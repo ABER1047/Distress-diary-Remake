@@ -29,6 +29,6 @@ function give_damage(argument0,argument1,argument2)
 		
 		
 		//피격음
-		play_sound_pos(hit_sfx,false,0.1,x,y,960,false);
+		play_sound_pos(hit_sfx,false,0.1,obj_camera.x,obj_camera.y,960,false);
 	}
 }

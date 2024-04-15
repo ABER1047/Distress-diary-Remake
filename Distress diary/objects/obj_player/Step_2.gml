@@ -3,7 +3,7 @@
 
 
 //위치 (y축에 따라 depth 설정)
-depth = -y;
+depth = -floor(y);
 
 
 //인터렉션 키 드로우 용

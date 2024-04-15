@@ -95,6 +95,8 @@ chat_buffer = buffer_create(2, buffer_grow, 1);
 
 //자동으로 튕긴 사람 혹은 강제종료 한사람 감지후 내보내기
 alarm[0] = global.tickrate*20;
+global.is_check_me = false;
+
 //감지용 위치 저장 변수
 global.saved_players_xx = [ -4 ];
 global.saved_players_yy = [ -4 ];

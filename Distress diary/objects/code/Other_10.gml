@@ -9,11 +9,8 @@ if (!surface_exists(global.light_surf))
 	//버블 이펙트 외곽선 효과용 서피스
 	global.bubble_surf = surface_create(3840,2160);
 	
-	//혈흔 그리기용 서피스
-	global.blood_surf = surface_create(3840,2160);
-	
-	//텍스트 그리기용 서피스
-	global.text_surf = surface_create(3840,2160);
+	//바닥 액체 그리기용 서피스
+	global.liquid_on_floor_surf = surface_create(3840,2160);
 }
 
 if (!surface_exists(outter_room_surf))

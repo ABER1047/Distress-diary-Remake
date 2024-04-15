@@ -180,6 +180,7 @@ switch(image_index)
 			tmp_name_compressed = "Card"; //생성할 아이템 name_compressed
 			tmp_stack = 1; //생성할 아이템 stack
 			tmp_max_stack = 5; //생성할 아이템 max_stack
+			tmp_weight = 0.001; //아이템 무게
 		}
 		else if (tmp_chances < 9610) //5%확률로 열쇠
 		{
@@ -189,6 +190,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
 			tmp_max_stack = 3; //생성할 아이템 max_stack
+			tmp_weight = 0.002; //아이템 무게
 		}
 		else if (tmp_chances < 9710) //1%확률로 해골 동상
 		{
@@ -429,6 +431,7 @@ switch(image_index)
 			tmp_name_compressed = "Card"; //생성할 아이템 name_compressed
 			tmp_stack = 1; //생성할 아이템 stack
 			tmp_max_stack = 5; //생성할 아이템 max_stack
+			tmp_weight = 0.001; //아이템 무게
 		}
 		else //3.49%확률로 열쇠
 		{
@@ -438,6 +441,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
 			tmp_max_stack = 3; //생성할 아이템 max_stack
+			tmp_weight = 0.002; //아이템 무게
 		}
 	break;
 		
@@ -763,7 +767,7 @@ switch(image_index)
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 20; //생성할 아이템 image_index
 			tmp_name = "High Quality Metal ingot"; //생성할 아이템 name
-			tmp_name_compressed = "HQMetal"; //생성할 아이템 name_compressed
+			tmp_name_compressed = "HQM"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 5; //아이템 무게
 		}
@@ -872,7 +876,7 @@ switch(image_index)
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 20; //생성할 아이템 image_index
 			tmp_name = "High Quality Metal ingot"; //생성할 아이템 name
-			tmp_name_compressed = "HQMetal"; //생성할 아이템 name_compressed
+			tmp_name_compressed = "HQM"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 5; //아이템 무게
 		}
@@ -1124,16 +1128,16 @@ switch(image_index)
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 5; //아이템 무게
 		}
-		else if (tmp_chances < 3000) //20%확률로 고품질 금속 주괴
+		else if (tmp_chances < 2500) //20%확률로 고품질 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 20; //생성할 아이템 image_index
 			tmp_name = "High Quality Metal ingot"; //생성할 아이템 name
-			tmp_name_compressed = "HQMetal"; //생성할 아이템 name_compressed
+			tmp_name_compressed = "HQM"; //생성할 아이템 name_compressed
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 5; //아이템 무게
 		}
-		else if (tmp_chances < 3700) //7%확률로 해골 동상
+		else if (tmp_chances < 3200) //7%확률로 해골 동상
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 14; //생성할 아이템 image_index
@@ -1142,7 +1146,7 @@ switch(image_index)
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 1; //아이템 무게
 		}
-		else if (tmp_chances < 4400) //7%확률로 별 동상
+		else if (tmp_chances < 3900) //7%확률로 별 동상
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 15; //생성할 아이템 image_index
@@ -1151,7 +1155,7 @@ switch(image_index)
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 1; //아이템 무게
 		}
-		else if (tmp_chances < 4900) //5%확률로 골드 바
+		else if (tmp_chances < 4400) //5%확률로 골드 바
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 21; //생성할 아이템 image_index
@@ -1160,7 +1164,7 @@ switch(image_index)
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 3; //아이템 무게
 		}
-		else if (tmp_chances < 5900) //10%확률로 금속 십자가
+		else if (tmp_chances < 5400) //10%확률로 금속 십자가
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 26; //생성할 아이템 image_index
@@ -1168,7 +1172,7 @@ switch(image_index)
 			tmp_name_compressed = "Cross"; //생성할 아이템 name_compressed
 			tmp_weight = 0.1; //아이템 무게
 		}
-		else if (tmp_chances < 6600) //7%확률로 골든 십자가
+		else if (tmp_chances < 6100) //7%확률로 골든 십자가
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 27; //생성할 아이템 image_index
@@ -1176,7 +1180,7 @@ switch(image_index)
 			tmp_name_compressed = "Cross"; //생성할 아이템 name_compressed
 			tmp_weight = 0.1; //아이템 무게
 		}
-		else if (tmp_chances < 7300) //7%확률로 골든 해골
+		else if (tmp_chances < 6800) //7%확률로 골든 해골
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 29; //생성할 아이템 image_index
@@ -1184,7 +1188,7 @@ switch(image_index)
 			tmp_name_compressed = "Skull"; //생성할 아이템 name_compressed
 			tmp_weight = 0.4; //아이템 무게
 		}
-		else if (tmp_chances < 9100) //18%확률로 골든 코인 (1~15개)
+		else if (tmp_chances < 8600) //18%확률로 골든 코인 (1~15개)
 		{
 			tmp_spr_ind = spr_stackables; //생성할 아이템 sprite_index
 			tmp_img_ind = 0; //생성할 아이템 image_index
@@ -1194,7 +1198,7 @@ switch(image_index)
 			tmp_max_stack = 99; //생성할 아이템 max_stack
 			tmp_weight = 0.002; //아이템 무게
 		}
-		else if (tmp_chances < 9900) //8%확률로 SSD
+		else if (tmp_chances < 9400) //8%확률로 SSD
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 9; //생성할 아이템 image_index
@@ -1202,7 +1206,7 @@ switch(image_index)
 			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
 			tmp_weight = 0.3; //아이템 무게
 		}
-		else //1%확률로 키카드
+		else if (tmp_chances < 9500) //1%확률로 키카드
 		{
 			tmp_spr_ind = spr_stackables; //생성할 아이템 sprite_index
 			tmp_img_ind = 3; //생성할 아이템 image_index
@@ -1210,6 +1214,15 @@ switch(image_index)
 			tmp_name_compressed = "Card"; //생성할 아이템 name_compressed
 			tmp_stack = 1; //생성할 아이템 stack
 			tmp_max_stack = 5; //생성할 아이템 max_stack
+			tmp_weight = 0.001; //아이템 무게
+		}
+		else //5%확률로 골든 링
+		{
+			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
+			tmp_img_ind = 30; //생성할 아이템 image_index
+			tmp_name = "Golden ring"; //생성할 아이템 name
+			tmp_name_compressed = "Ring"; //생성할 아이템 name_compressed
+			tmp_weight = 0.1; //아이템 무게
 		}
 	break;
 }

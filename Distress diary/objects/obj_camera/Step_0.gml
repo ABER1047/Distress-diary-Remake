@@ -82,10 +82,13 @@ y = floor(y)
 if (array_length(global.my_player_ins_id) > global.my_player_id)
 {
 	var my_p = global.my_player_ins_id[global.my_player_id];
-	hp_for_draw += (my_p.hp - hp_for_draw)*0.2;
-	stamina_for_draw += (my_p.stamina - stamina_for_draw)*0.1;
-	max_hp = my_p.max_hp;
-	max_stamina = my_p.max_stamina;
+	if (instance_exists(my_p))
+	{
+		hp_for_draw += (my_p.hp - hp_for_draw)*0.2;
+		stamina_for_draw += (my_p.stamina - stamina_for_draw)*0.1;
+		max_hp = my_p.max_hp;
+		max_stamina = my_p.max_stamina;
+	}
 }
 
 

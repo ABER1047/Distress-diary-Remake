@@ -15,7 +15,7 @@ else
 
 
 
-if (surface_exists(bubble_surf))
+if (global.graphics_quality > 0 && surface_exists(bubble_surf))
 {
 	//외곽선 효과
 	var xx = camera_get_view_x(view_camera[0]);

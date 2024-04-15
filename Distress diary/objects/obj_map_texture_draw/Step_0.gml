@@ -7,7 +7,7 @@ var tmp_wall_sprite_size = tmp_wall_scale*48;
 var n_wall_type = global.n_room_tileset;
 
 y = tmp_room_yy-global.n_room_height*0.5*tmp_wall_sprite_size-8;
-depth = -y;
+depth = -floor(y);
 
 
 

@@ -6,7 +6,7 @@ buffer_write(dis_buffer, buffer_u8, DATA.REPLY_STILL_PLAYING);
 buffer_write(dis_buffer, buffer_string, global.my_player_id);
 send_all(dis_buffer);
 
-
+global.is_check_me = true;
 
 
 

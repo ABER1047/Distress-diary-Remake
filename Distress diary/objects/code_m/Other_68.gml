@@ -89,7 +89,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				
-			
+				//뭔가 문제가 생겨서 제대로 연결이 되지 못한 경우 체크
+				alarm[3] = global.tickrate*25;
+				
+
 				//나 이외의 모든 플레이어 기본 정보 값 세팅
 				for(i = 0; i < tmp_player_num; i++)
 				{
@@ -166,15 +169,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			if (global.my_player_id == tmp_obj_id_player_only)
 			{
 				//핑차이가 너무 심하거나, 연결 상태가 좋지 못한 경우라서 그냥 내보내버림
-				network_destroy(server);
-				instance_destroy(obj_player);
-				my_instance_id = instance_create_depth(room_width*0.5,room_height*0.5,depth,obj_player);
-				my_instance_id.obj_id = 0;
-				my_instance_id.soc = 0;
-				my_instance_id.obj_id_player_only = 0;
-				global.my_player_id = 0;
-				
-				show_message_log("연결 상태가 좋지 않아 연결이 끊어졌습니다.");
+				event_user(0);
 			}
 			else //진짜로 튕겨서 대답이 안 간 경우 그냥 내보내버리기
 			{
@@ -431,6 +426,12 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				show_message_log("- 맵 로드 완료");
 				obj_player.x = room_width*0.5;
 				obj_player.y = room_height*0.5;
+				
+				//카메라 줌 설정
+				global.n_camera_zoom = 0.53;
+				
+				//라이트 서피스 설정
+				global.enable_light_surf = true;
 			}
 		break;
 		
@@ -602,12 +603,29 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				}
 				else
 				{
-					//is_destroy가 0인 경우 새로운 오브젝트 생성 (= 특별한 기능이 없는 오브젝트 [ex. 벽...])
-					var tmp_xx = real(buffer_read(buffer, buffer_string));
-					var tmp_yy = real(buffer_read(buffer, buffer_string));
-					var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+					//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
+					/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고
+					명령을 보내는데, 이 때문에 오브젝트가 중복되서 생성되는 것을 방지하기 위함*/
+					var can_create_object = true;
+					with(tmp_obj_ind)
+					{
+						if (obj_id == tmp_obj_id)
+						{
+							can_create_object = false;
+						}
+					}
 					
-					instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true);
+					
+					//존재하지 않으면 생성해주기
+					if (can_create_object)
+					{
+						//is_destroy가 0인 경우 새로운 오브젝트 생성 (= 특별한 기능이 없는 오브젝트 [ex. 벽...])
+						var tmp_xx = real(buffer_read(buffer, buffer_string));
+						var tmp_yy = real(buffer_read(buffer, buffer_string));
+						var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+					
+						instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true);
+					}
 				}
 			}
 		break;

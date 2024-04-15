@@ -27,6 +27,7 @@ function pushable_objects_physics()
 	{
 		x += sign(x - ins_place.x);
 		y += sign(y - ins_place.y);
+		vspeed = 0;
 		hspeed = 0;
 	}
 
