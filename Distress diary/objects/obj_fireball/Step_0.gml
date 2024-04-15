@@ -53,3 +53,25 @@ else
 
 
 
+
+//데미지 애니메이션 관련 변수
+if (dmg_cooltime > 0)
+{
+	dmg_cooltime --;
+	image_blend = #E14141;
+	
+	if (dmg_cooltime < 50)
+	{
+		image_blend = c_white;
+	}
+	
+	if (dmg_cooltime%4 == 0)
+	{
+		image_alpha = (image_alpha == 1) ? 0.5 : 1;
+	}
+		
+	if (dmg_cooltime == 0)
+	{
+		image_alpha = 1;
+	}
+}

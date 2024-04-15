@@ -90,7 +90,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				//뭔가 문제가 생겨서 제대로 연결이 되지 못한 경우 체크
-				alarm[3] = global.tickrate*25;
+				alarm[3] = global.tickrate*65;
 				
 
 				//나 이외의 모든 플레이어 기본 정보 값 세팅

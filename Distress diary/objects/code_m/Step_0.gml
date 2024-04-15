@@ -273,9 +273,16 @@ if (global.chat_activated)
 						}
 						else if (i == 17) //화살 생성
 						{
-							var tmp_ins = instance_create_multiplayer(obj_arrow,global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false);
-							tmp_ins.direction = irandom_range(0,359);
+							var tmp_xx = global.my_player_ins_id[global.my_player_id].x;
+							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
+							
+							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
+							
+							var tmp_ins = instance_create_multiplayer(obj_arrow,tmp_xx,tmp_yy,global.object_id_ind,0,false);
+							tmp_ins.direction = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
 							tmp_ins._speed = 48;
+							tmp_ins.parents = global.my_player_ins_id[global.my_player_id];
+							tmp_ins.attack_dmg = 22;
 						}
 						else if (i == 18) //그래픽 퀄리티 설정
 						{

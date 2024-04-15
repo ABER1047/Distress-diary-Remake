@@ -46,3 +46,6 @@ targeted = -4;
 
 //공격력
 attack_dmg = 15;
+
+//데미지 애니메이션 관련 변수
+dmg_cooltime = 0;

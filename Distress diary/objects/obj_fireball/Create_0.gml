@@ -8,6 +8,7 @@ image_yscale = 2;
 add_z_axis();
 
 
+
 //멀티플레이용 틱레이트 포지션
 tickrate_x = x;
 tickrate_y = y;
@@ -46,3 +47,6 @@ targeted = -4;
 
 //공격력
 attack_dmg = 15;
+
+//데미지 애니메이션 관련 변수
+dmg_cooltime = 0;

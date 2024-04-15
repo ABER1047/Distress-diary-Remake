@@ -7,9 +7,10 @@
 function give_damage(argument0,argument1,argument2)
 {
 	var tmp_ins = argument0;
-	if (tmp_ins.dmg_cooltime == 0 || argument2)
+	if (instance_exists(tmp_ins) && (tmp_ins.dmg_cooltime == 0 || argument2))
 	{
-		tmp_ins.hp -= argument1;
+		var tmp_dmg = argument1;
+		tmp_ins.hp -= tmp_dmg;
 		tmp_ins.dmg_cooltime = 60;
 		if (tmp_ins.hp < 0)
 		{
@@ -30,5 +31,13 @@ function give_damage(argument0,argument1,argument2)
 		
 		//피격음
 		play_sound_pos(hit_sfx,false,0.1,obj_camera.x,obj_camera.y,960,false);
+		
+		
+		//데미지 정보 표기
+		var tmp_yy = (tmp_ins.y-128);
+		tmp_yy += (variable_instance_exists(tmp_ins,"floating_yy")) ? tmp_ins.floating_yy : 0;
+		tmp_yy -= (variable_instance_exists(tmp_ins,"z")) ? tmp_ins.z : 0;
+		
+		damage_display(tmp_ins.x,tmp_yy,#7A213A,tmp_ins,string(tmp_dmg));
 	}
 }
