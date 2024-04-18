@@ -38,3 +38,12 @@ interaction_message = "상호작용";
 //벤딩머신 사운드 이펙트
 sfx = -4;
 sfx_timer = 0;
+
+
+//블럭 밀기 시스템
+pushing_timer = 0;
+p_stack = 0;
+origin_xx = xstart;
+origin_yy = ystart;
+draw_xx = 0;
+draw_yy = 0;

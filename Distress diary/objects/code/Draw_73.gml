@@ -336,8 +336,8 @@ if (global.dev_mode == 1)
 	
 		//랜덤 상자 생성
 		var tmp_img = choose(0,2,4,6,8,10,12,14,16,18,24,26)
-		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
-		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
+		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
+		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
 		var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
 		if (keyboard_check(ord("P")))
 		{
@@ -368,8 +368,8 @@ if (global.dev_mode == 1)
 	
 		//블럭 생성 (병)
 		var tmp_img = 0;
-		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/128)*128;
-		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/128)*128;
+		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
+		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
 		var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
 		if (keyboard_check(ord("O")))
 		{
@@ -392,7 +392,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				instance_create_multiplayer(choose(obj_vending_machine,obj_gamble_machine),tmp_xx,tmp_yy,global.object_id_ind,0,false);
+				instance_create_multiplayer(choose(obj_vending_machine,obj_gamble_machine,obj_only_breakable),tmp_xx,tmp_yy,global.object_id_ind,0,false);
 			}
 		}
 	}

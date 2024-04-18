@@ -3,9 +3,6 @@
   "%Name":"obj_fireball",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_fireball",
@@ -15,8 +12,8 @@
     "path":"folders/오브젝트/mob.yy",
   },
   "parentObjectId":{
-    "name":"obj_monster_parents",
-    "path":"objects/obj_monster_parents/obj_monster_parents.yy",
+    "name":"obj_floating_monster_parents",
+    "path":"objects/obj_floating_monster_parents/obj_floating_monster_parents.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

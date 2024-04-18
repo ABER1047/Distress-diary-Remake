@@ -9,7 +9,7 @@ if (image_alpha > 0)
 		var n_wall_type = global.n_room_tileset;
 		draw_sprite_ext(sprite_index,1+n_wall_type,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
 		
-		if (global.show_wall_hitbox == 1)
+		if (global.show_wall_hitbox)
 		{
 			draw_sprite_ext(spr_arrow_ui,0,x,y,image_xscale,image_yscale,90+90*tp_to,#17111A,1);
 		}

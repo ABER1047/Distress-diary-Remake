@@ -9,3 +9,5 @@ var n_wall_type = global.n_room_tileset;
 
 var tmp_spr_ind = n_wall_type*9+3;
 draw_sprite_ext(sprite_index,tmp_spr_ind,x,y,tmp_wall_scale,tmp_wall_scale,0,c_white,1);
+
+

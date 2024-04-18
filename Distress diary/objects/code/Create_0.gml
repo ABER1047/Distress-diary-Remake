@@ -7,7 +7,7 @@ depth = -102;
 //디버그 용
 global.show_map_data = -1;
 global.dev_mode = 1;
-global.show_wall_hitbox = -1;
+global.show_wall_hitbox = false;
 show_debug_log(global.dev_mode);
 
 
@@ -163,3 +163,7 @@ global.liquid_on_floor_surf = surface_create(3840,2160);
 
 //그래픽 퀄리티
 global.graphics_quality = 2; // 2 == 최고품질 / 1 == 보통 / 0 == 최고 성능
+
+
+//몹 시점 표시
+global.display_view_of_mob = false;

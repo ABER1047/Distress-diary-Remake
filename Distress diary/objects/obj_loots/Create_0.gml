@@ -43,3 +43,11 @@ item_num_to_create = -4; //-4으로 고정 후 alarm[0] 이벤트에서 관리
 
 //인터렉트 메세지
 interaction_message = "루팅";
+
+
+//블럭 밀기 시스템
+pushing_timer = 0;
+p_stack = 0;
+origin_xx = xstart;
+origin_yy = ystart;
+draw_yy = 0;

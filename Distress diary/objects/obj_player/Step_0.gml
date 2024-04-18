@@ -177,13 +177,19 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	for(var i = 0; i < abs(global.movement_hspeed); i++)
 	{
 		var tmp = sign(global.movement_hspeed);
+		var tmp_ins = instance_place(x+tmp,y,obj_wall_parents);
 		//벽에 막혔는지 체크
-		if (!place_meeting(x+tmp,y,obj_wall_parents))
+		if (!instance_exists(tmp_ins))
 		{
 			x += tmp;
 		}
 		else
 		{
+			//오브젝트 밀기 효과
+			if (object_get_parent(tmp_ins.object_index) == obj_player_pushable_object)
+			{
+				tmp_ins.pushing_timer += global.max_movement_speed/5;
+			}
 			global.movement_hspeed = 0;
 			break;
 		}
@@ -192,13 +198,19 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	for(var i = 0; i < abs(global.movement_vspeed); i++)
 	{
 		var tmp = sign(global.movement_vspeed);
+		var tmp_ins = instance_place(x,y+tmp,obj_wall_parents);
 		//벽에 막혔는지 체크
-		if (!place_meeting(x,y+tmp,obj_wall_parents))
+		if (!instance_exists(tmp_ins))
 		{
 			y += tmp;
 		}
 		else
 		{
+			//오브젝트 밀기 효과
+			if (object_get_parent(tmp_ins.object_index) == obj_player_pushable_object)
+			{
+				tmp_ins.pushing_timer += global.max_movement_speed/5;
+			}
 			global.movement_vspeed = 0;
 			break;
 		}

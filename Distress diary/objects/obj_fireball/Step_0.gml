@@ -1,8 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-//위치 (y축에 따라 depth 설정)
-depth = -floor(y);
 
 
 //idle animation
@@ -22,56 +20,15 @@ else
 
 
 
-//z-axis
-z_axis_gravity();
-
-
-//pushable_objects끼리 밀리는 효과
-pushable_objects_physics();
-
 
 
 //불 이펙트
 if (percentage_k(15))
 {
-	var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z+floating_yy-39,#FD3102,#FDBD00,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true);
+	var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z+floating_yy-32,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true);
 	tmp_ins.image_xscale = 1.3;
 	tmp_ins.image_yscale = 1.3;
 }
 
 
 
-//플레이어 타깃팅
-if (instance_exists(targeted))
-{
-	image_xscale = sign_nonzero(x - targeted.x)*abs(image_xscale);
-}
-else
-{
-	targeted = instance_nearest(x,y,obj_player);
-}
-
-
-
-
-//데미지 애니메이션 관련 변수
-if (dmg_cooltime > 0)
-{
-	dmg_cooltime --;
-	image_blend = #E14141;
-	
-	if (dmg_cooltime < 50)
-	{
-		image_blend = c_white;
-	}
-	
-	if (dmg_cooltime%4 == 0)
-	{
-		image_alpha = (image_alpha == 1) ? 0.5 : 1;
-	}
-		
-	if (dmg_cooltime == 0)
-	{
-		image_alpha = 1;
-	}
-}

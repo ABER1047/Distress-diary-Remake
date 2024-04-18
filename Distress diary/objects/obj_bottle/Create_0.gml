@@ -31,3 +31,12 @@ command_buffer = buffer_create(1024,buffer_grow,1);
 
 //인터렉트 메세지
 interaction_message = "상호작용";
+
+
+//블럭 밀기 시스템
+pushing_timer = 0;
+p_stack = 0;
+origin_xx = xstart;
+origin_yy = ystart;
+draw_xx = 0;
+draw_yy = 0;

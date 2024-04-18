@@ -2,8 +2,8 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function pushable_objects_physics()
 {
-	var tmp_ins = instance_place(x,y,obj_pushable_object);
-	if (instance_exists(tmp_ins) && tmp_ins.image_alpha > 0 && z == tmp_ins.z) //z축도 같은지 체크
+	var tmp_ins = instance_place(x,y,obj_mob_pushable_object);
+	if (instance_exists(tmp_ins) && tmp_ins.image_alpha > 0 && abs(z-tmp_ins.z) <= sprite_height*0.4) //z축도 같은지 체크
 	{
 		var tmp_xx = (x - tmp_ins.x)/32;
 		var tmp_yy = (y - tmp_ins.y)/32;
@@ -33,7 +33,7 @@ function pushable_objects_physics()
 
 	
 	
-	if (z == 0) //땅 바닥에 있어야 속도 감소 효과 먹음 (= 마찰력)
+	if (z <= 0) //땅 바닥에 있어야 속도 감소 효과 먹음 (= 마찰력)
 	{
 		hspeed += (0 - hspeed)*0.2;
 		vspeed += (0 - vspeed)*0.2;

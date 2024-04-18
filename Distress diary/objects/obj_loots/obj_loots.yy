@@ -15,8 +15,8 @@
     "path":"folders/오브젝트/map_objects.yy",
   },
   "parentObjectId":{
-    "name":"obj_parents",
-    "path":"objects/obj_parents/obj_parents.yy",
+    "name":"obj_player_pushable_object",
+    "path":"objects/obj_player_pushable_object/obj_player_pushable_object.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,
@@ -40,8 +40,8 @@
     "path":"sprites/spr_loots/spr_loots.yy",
   },
   "spriteMaskId":{
-    "name":"spr_wall_mask_center",
-    "path":"sprites/spr_wall_mask_center/spr_wall_mask_center.yy",
+    "name":"spr_block_hitbox",
+    "path":"sprites/spr_block_hitbox/spr_block_hitbox.yy",
   },
   "visible":true,
 }
