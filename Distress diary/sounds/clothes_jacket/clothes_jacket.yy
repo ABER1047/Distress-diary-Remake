@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":1.959184,
+  "duration":22.834677,
   "name":"clothes_jacket",
   "parent":{
     "name":"사운드",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":44100,
-  "soundFile":"clothes_jacket",
+  "soundFile":"clothes_jacket.wav",
   "type":1,
   "volume":1.0,
 }

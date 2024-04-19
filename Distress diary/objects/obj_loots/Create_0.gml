@@ -25,8 +25,8 @@ opening_animation = 0;
 
 
 //이미지 관련 기본 세팅
-image_xscale = 2;
-image_yscale = 2;
+image_xscale = 2.5;
+image_yscale = 2.5;
 image_speed = 0;
 
 
@@ -46,8 +46,10 @@ interaction_message = "루팅";
 
 
 //블럭 밀기 시스템
+pushing_animation = false;
 pushing_timer = 0;
-p_stack = 0;
 origin_xx = xstart;
 origin_yy = ystart;
+draw_xx = 0;
 draw_yy = 0;
+pusher = -4;

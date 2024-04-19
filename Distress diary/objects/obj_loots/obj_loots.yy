@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_loots",
-    "path":"sprites/spr_loots/spr_loots.yy",
+    "name":"spr_objects",
+    "path":"sprites/spr_objects/spr_objects.yy",
   },
   "spriteMaskId":{
     "name":"spr_block_hitbox",

@@ -81,7 +81,7 @@ set_inv_variable(id,2,0,spr_drink,0,"Coke","Coke",-4,-4,1,1,0,0.58,0);
 
 set_inv_variable(id,0,1,spr_backpack,0,"Backpack","Backpack",-4,-4,2,3,0,3,0);
 set_inv_variable(id,2,1,spr_comp,8,"GPU","GPU",-4,-4,2,1,1,1,0);
-set_inv_variable(id,3,0,spr_comp,23,"Metal Pipe","Pipe",-4,-4,1,2,0,6,0);
+set_inv_variable(id,3,0,spr_comp,23,"Metal Rod","Pipe",-4,-4,1,2,0,6,0);
 
 
 

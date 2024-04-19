@@ -209,8 +209,8 @@ function set_item_value(argument0,argument1)
 				return 9;
 			break;
 		
-			case "Metal Pipe":
-				item_name_translated = "금속 파이프";
+			case "Metal Rod":
+				item_name_translated = "금속 막대";
 				return 9;
 			break;
 		

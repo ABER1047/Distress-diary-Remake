@@ -41,9 +41,10 @@ sfx_timer = 0;
 
 
 //블럭 밀기 시스템
+pushing_animation = false;
 pushing_timer = 0;
-p_stack = 0;
 origin_xx = xstart;
 origin_yy = ystart;
 draw_xx = 0;
 draw_yy = 0;
+pusher = -4;

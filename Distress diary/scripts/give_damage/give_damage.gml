@@ -20,12 +20,7 @@ function give_damage(argument0,argument1,argument2)
 		
 		
 		//혈흔 이펙트 생성
-		var tmp_depth = tmp_ins.depth+16;
-		if (instance_exists(obj_map_texture_draw))
-		{
-			tmp_depth = obj_map_texture_draw.depth-4;
-		}
-		
+		var tmp_depth = obj_map_texture_draw.depth-4;
 		var tmp_ins = instance_create_depth(tmp_ins.x,tmp_ins.y,tmp_depth,obj_blood_effect);
 		
 		

@@ -343,12 +343,12 @@ if (global.dev_mode == 1)
 		{
 			if (!instance_exists(tmp_ins))
 			{
-				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
-				draw_sprite_ext(spr_loots,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
+				draw_sprite_ext(spr_block_hitbox,1,tmp_xx,tmp_yy,2.5,2.5,0,#4AD05A,0.3);
+				draw_sprite_ext(spr_objects,tmp_img,tmp_xx,tmp_yy,2.5,2.5,0,c_white,0.5);
 			}
 			else
 			{
-				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
+				draw_sprite_ext(spr_block_hitbox,1,tmp_xx,tmp_yy,2.5,2.5,0,#E64A53,0.5);
 			}
 		}
 
@@ -375,12 +375,12 @@ if (global.dev_mode == 1)
 		{
 			if (!instance_exists(tmp_ins))
 			{
-				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#4AD05A,0.3);
-				draw_sprite_ext(spr_blocks,tmp_img,tmp_xx,tmp_yy,2,2,0,c_white,0.5);
+				draw_sprite_ext(spr_block_hitbox,1,tmp_xx,tmp_yy,2.5,2.5,0,#4AD05A,0.3);
+				draw_sprite_ext(spr_objects,tmp_img,tmp_xx,tmp_yy,2.5,2.5,0,c_white,0.5);
 			}
 			else
 			{
-				draw_sprite_ext(tmp_sprite,1,tmp_xx,tmp_yy,2,2,0,#E64A53,0.5);
+				draw_sprite_ext(spr_block_hitbox,1,tmp_xx,tmp_yy,2.5,2.5,0,#E64A53,0.5);
 			}
 		}
 
@@ -392,7 +392,23 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				instance_create_multiplayer(choose(obj_vending_machine,obj_gamble_machine,obj_only_breakable),tmp_xx,tmp_yy,global.object_id_ind,0,false);
+				var rd_choose = choose(0,1,2,3);
+				if (rd_choose == 0)
+				{
+					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,44,false);
+				}
+				else if (rd_choose == 1)
+				{
+					instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(28,34),false);
+				}
+				else if (rd_choose == 2)
+				{
+					instance_create_multiplayer(obj_pc,tmp_xx,tmp_yy,global.object_id_ind,47,false);
+				}
+				else if (rd_choose == 3)
+				{
+					instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy,global.object_id_ind,choose(56,58,60),false);
+				}
 			}
 		}
 	}

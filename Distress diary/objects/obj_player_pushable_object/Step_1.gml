@@ -3,80 +3,121 @@
 
 
 //블럭 밀기 시스템
-var tmp_ins = instance_nearest(x,y,obj_player);
-var tmp_xx = x - tmp_ins.x;
-var tmp_yy = y - tmp_ins.y;
-var tmp_scale = sprite_width*0.5;
-
-if (pushing_timer > 10)
+if (pusher != -4)
 {
-	p_stack ++;
-	pushing_timer -= 5;
-	
+	var tmp_ins = global.my_player_ins_id[pusher];
+	if (instance_exists(tmp_ins))
+	{
+		var tmp_scale = 96;
+		var tmp_xx = x - tmp_ins.x;
+		var tmp_yy = y - tmp_ins.y;
+		var tmp_is_my_player_pushing = (pusher == global.my_player_id);
 
-	var tmp_sign = (p_stack%2 == 0) ? 1 : -1;
-	if (abs(tmp_xx) < abs(tmp_yy))
-	{
-		draw_xx = 4*tmp_sign;
-	}
-	else
-	{
-		draw_yy = 4*tmp_sign;
+
+
+		//블럭 미는 애니메이션
+		if (pushing_animation)
+		{
+			pushing_timer ++;
+		
+			//블럭 미는 애니메이션 상태 정보 전송
+			if (tmp_is_my_player_pushing && pushing_timer == 1)
+			{
+				send_InstanceVariableData(id,"pushing_animation",true);
+				send_InstanceVariableData(id,"pusher",global.my_player_id);
+			}
+		
+			if ((tmp_is_my_player_pushing && global.n_running) || point_distance(x,y,tmp_ins.x,tmp_ins.y) > sprite_width)
+			{
+				pushing_animation = false;
+			}
+		}
+
+
+
+		//애니메이션 재생 관련
+		if (pushing_timer > 10)
+		{
+			//일정 시간 이상 밀었을 때
+			if (tmp_is_my_player_pushing && pushing_timer > 30 && pushing_timer < 999)
+			{
+				//이동할 칸이 있는 경우
+				if (abs(tmp_xx) > abs(tmp_yy))
+				{
+					var tmp_cal = tmp_scale*sign(tmp_xx);
+					origin_xx += (!place_meeting(x+tmp_cal,y,obj_wall_parents) && !place_meeting(x+tmp_cal,y,obj_mob_parents)) ? tmp_cal : 0;
+					send_InstanceVariableData(id,"origin_xx");
+				}
+				else
+				{
+					var tmp_cal = tmp_scale*sign(tmp_yy);
+					origin_yy += (!place_meeting(x,y+tmp_cal,obj_wall_parents)  && !place_meeting(x,y+tmp_cal,obj_mob_parents)) ? tmp_cal : 0;
+					send_InstanceVariableData(id,"origin_yy");
+				}
+	
+	
+	
+				//블럭 이동 효과음
+				play_sound_pos(move_block_sfx,false,0.1,x,y,1280,false);
+				play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false);
+	
+	
+				//사용한 스테미나 일부 회복
+				var tmp_recovery = 25;
+				if (tmp_ins.stamina < (tmp_ins.max_stamina)-tmp_recovery)
+				{
+					tmp_ins.stamina += tmp_recovery;
+				}
+				else
+				{
+					tmp_ins.stamina = tmp_ins.max_stamina;
+				}
+			
+			
+				//블럭 이동 애니메이션 재생 시작
+				pushing_timer = 999;
+			}
+			else if (pushing_timer >= 999 || (!tmp_is_my_player_pushing && pushing_timer > 30))
+			{
+				//블럭 이동 애니메이션
+				if (abs(origin_xx - x) <= 1 && abs(origin_yy - y) <= 1)
+				{
+					//이동 완료
+					x = origin_xx;
+					y = origin_yy;
+					pusher = -4;
+					send_InstanceVariableData(id,"pusher");
+				}
+				else
+				{
+					//이동 중
+					x += (origin_xx - x)*0.1;
+					y += (origin_yy - y)*0.1;
+				}
+				
+				//좌우로 흔들림 애니메이션 종료
+				pushing_animation = false;
+			}
+			else
+			{
+				//좌우로 흔들리는 애니메이션
+				var tmp_sign = ((pushing_timer-10)%5 == 0) ? 4 : -4;
+				if (abs(tmp_xx) < abs(tmp_yy))
+				{
+					draw_xx = tmp_sign;
+				}
+				else
+				{
+					draw_yy = tmp_sign;
+				}
+			}
+		}
 	}
 }
 else
 {
-	if (pushing_timer > 0)
-	{
-		pushing_timer --;
-	}
-	else
-	{
-		if (p_stack <= 8)
-		{
-			p_stack = 0;
-		}
-		pushing_timer = 0;
-		draw_xx = 0;
-		draw_yy = 0;
-	}
+	pushing_animation = false;
+	pushing_timer = 0;
+	draw_xx = 0;
+	draw_yy = 0;
 }
-
-
-
-
-
-if (p_stack >= 999)
-{
-	if (abs(origin_xx - x) <= 1 && abs(origin_yy - y) <= 1)
-	{
-		x = origin_xx;
-		y = origin_yy;
-		pushing_timer = 0;
-		p_stack = 0;
-		draw_xx = 0;
-		draw_yy = 0;
-	}
-	else
-	{
-		x += (origin_xx - x)*0.1;
-		y += (origin_yy - y)*0.1;
-	}
-}
-else if (p_stack > 8)
-{
-	//이동할 칸이 있는 경우
-	if (abs(tmp_xx) > abs(tmp_yy))
-	{
-		var tmp_cal = tmp_scale*sign(tmp_xx);
-		origin_xx += (!place_meeting(x+tmp_cal,y,obj_wall_parents)) ? tmp_cal : 0;
-	}
-	else
-	{
-		var tmp_cal = tmp_scale*sign(tmp_yy);
-		origin_yy += (!place_meeting(x,y+tmp_cal,obj_wall_parents)) ? tmp_cal : 0;
-	}
-
-	p_stack = 999;
-}
-

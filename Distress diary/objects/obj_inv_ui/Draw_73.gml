@@ -14,7 +14,7 @@ if (instance_exists(variable_owner))
 
 	var slot_size = 160*global.n_camera_zoom/global.w_ratio_by_window; //1칸당 픽셀 사이즈
 	var window_weight = 64*global.n_camera_zoom/global.h_ratio_by_window; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
-	var outline_weight = 3/global.w_ratio_by_window; //테두리 두께
+	var outline_weight = 4/global.w_ratio_by_window; //테두리 두께
 
 	//해당 인벤토리 변수를 가진 인스턴스한테서 width, height 받아오기
 	var inv_width = variable_owner.inv_width;
@@ -148,7 +148,7 @@ if (instance_exists(variable_owner))
 	
 
 	//인벤토리 이름
-	draw_text_kl_scale(startx+8,w_starty-24*global.n_camera_zoom,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+	draw_text_kl_scale(startx+8,w_starty-24*global.n_camera_zoom,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.63*global.n_camera_zoom,0.63*global.n_camera_zoom,0);
 }
 else
 {

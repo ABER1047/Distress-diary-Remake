@@ -12,9 +12,9 @@ obj_animation_timer ++;
 if (obj_animation_timer >= 360)
 {
 	image_index += (obj_animation_timer%20 == 0) ? 1 : 0;
-	if (image_index == 3)
+	if (image_index == 47)
 	{
-		image_index = 1;
+		image_index = 45;
 	}
 	obj_animation_timer -= 19;
 	obj_animation ++;
@@ -22,7 +22,7 @@ if (obj_animation_timer >= 360)
 	if (obj_animation > 4)
 	{
 		obj_animation_timer = 0;
-		image_index = 0;
+		image_index = 44;
 		obj_animation = 0;
 	}
 }

@@ -144,7 +144,7 @@ global.searching_time = 100;
 
 
 //사운드 볼륨
-global.master_volume = 1;
+global.master_volume = 2;
 global.sfx_volume = 1;
 global.bgm_volume = 1;
 
@@ -167,3 +167,5 @@ global.graphics_quality = 2; // 2 == 최고품질 / 1 == 보통 / 0 == 최고 �
 
 //몹 시점 표시
 global.display_view_of_mob = false;
+
+

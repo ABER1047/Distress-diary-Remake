@@ -26,9 +26,9 @@ for(var i = 0; i < global.n_room_width; i++)
 		}
 		
 		//타일 이끼 효과
-		if (rd_tile_moss_ef[i][ii] >= 0)
+		if (rd_tile_other_ef[i][ii] >= 0)
 		{
-			draw_sprite_ext(spr_tiles_grass,rd_tile_moss_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_moss_ef_ang[i][ii],c_white,1);
+			draw_sprite_ext(spr_tiles_grass,rd_tile_other_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_other_ef_ang[i][ii],c_white,1);
 		}
 	}
 	
@@ -127,6 +127,13 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 
 
 
+//버튼 그리기
+with(obj_floor_button)
+{
+	draw_self();
+}
+
+
 
 //모든 그림자 그리기
 if (surface_exists(global.shadow_surf))
@@ -142,7 +149,7 @@ if (surface_exists(global.shadow_surf))
 
 	with(obj_parents)
 	{
-		draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
+		draw_sprite_ext(sprite_index,image_index,x-xx,y-64-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
 	}
 
 	with(obj_mob_parents)

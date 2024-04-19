@@ -15,9 +15,9 @@ var tmp_name_compressed = -4; //생성할 아이템 name_compressed
 var tmp_chances = irandom_range(0,9999); //아이템 종류 설정 확률용 임시 변수
 show_message_log("- 랜덤 아이템 생성 : "+string(tmp_chances));
 	
-switch(image_index)
+switch(loots_name)
 {
-	case 0: //버려진 철제 서랍
+	case "버려진 철제 서랍": //버려진 철제 서랍
 		if (tmp_chances < 1500) //15%확률로 볼트
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
@@ -229,7 +229,7 @@ switch(image_index)
 		}
 	break;
 		
-	case 2: //버려진 백팩
+	case "버려진 백팩": //버려진 백팩
 		if (tmp_chances < 1200) //12%확률로 나무 막대
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
@@ -445,7 +445,7 @@ switch(image_index)
 		}
 	break;
 		
-	case 4: //버려진 의료 가방
+	case "버려진 의료 가방": //버려진 의료 가방
 		if (tmp_chances < 3500) //35%확률로 붕대
 		{
 			tmp_spr_ind = spr_healings; //생성할 아이템 sprite_index
@@ -530,8 +530,7 @@ switch(image_index)
 		}
 	break;
 		
-	case 6: //버려진 비트코인 채굴기
-	case 8: //버려진 비트코인 채굴기
+	case "버려진 PC": //버려진 PC
 		if (tmp_chances < 2400) //24%확률로 RAM
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
@@ -584,7 +583,7 @@ switch(image_index)
 		}
 	break;
 		
-	case 10: //나무 상자
+	case "나무 상자": //나무 상자
 		if (tmp_chances < 500) //5%확률로 콜라
 		{
 			tmp_spr_ind = spr_drink; //생성할 아이템 sprite_index
@@ -752,7 +751,7 @@ switch(image_index)
 		}
 	break;
 		
-	case 12: //잠긴 상자
+	case "황금 나무 상자": //황금 나무 상자
 		if (tmp_chances < 2500) //25%확률로 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
@@ -797,18 +796,18 @@ switch(image_index)
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 0.1; //아이템 무게
 		}
-		else //17%확률로 금속 파이프
+		else //17%확률로 금속 막대
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 23; //생성할 아이템 image_index
-			tmp_name = "Metal Pipe"; //생성할 아이템 name
+			tmp_name = "Metal Rod"; //생성할 아이템 name
 			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
 			tmp_weight = 3; //아이템 무게
 		}
 	break;
 		
-	case 14: //대형 잠긴 상자
+	case "버려진 캐비넷": //대형 잠긴 상자
 		if (tmp_chances < 2000) //20%확률로 볼트
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
@@ -889,65 +888,18 @@ switch(image_index)
 			tmp_width = 2; //생성할 아이템 width
 			tmp_weight = 0.1; //아이템 무게
 		}
-		else //4%확률로 금속 파이프
+		else //4%확률로 금속 막대
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
 			tmp_img_ind = 23; //생성할 아이템 image_index
-			tmp_name = "Metal Pipe"; //생성할 아이템 name
+			tmp_name = "Metal Rod"; //생성할 아이템 name
 			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
 			tmp_height = 2; //생성할 아이템 height
 			tmp_weight = 3; //아이템 무게
 		}
 	break;
 		
-	case 16: //공구 상자
-		if (tmp_chances < 2500) //25%확률로 볼트
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 0; //생성할 아이템 image_index
-			tmp_name = "Bolt"; //생성할 아이템 name
-			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
-			tmp_weight = 0.1; //아이템 무게
-		}
-		else if (tmp_chances < 5000) //25%확률로 너트
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 1; //생성할 아이템 image_index
-			tmp_name = "Nut"; //생성할 아이템 name
-			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
-			tmp_weight = 0.1; //아이템 무게
-		}
-		else if (tmp_chances < 7000) //20%확률로 금속 주괴
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 19; //생성할 아이템 image_index
-			tmp_name = "Metal ingot"; //생성할 아이템 name
-			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
-			tmp_width = 2; //생성할 아이템 width
-			tmp_weight = 5; //아이템 무게
-		}
-		else if (tmp_chances < 9500) //25%확률로 종이 클립
-		{
-			tmp_spr_ind = spr_stackables; //생성할 아이템 sprite_index
-			tmp_img_ind = 2; //생성할 아이템 image_index
-			tmp_name = "Paper Clip"; //생성할 아이템 name
-			tmp_name_compressed = "Clip"; //생성할 아이템 name_compressed
-			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
-			tmp_max_stack = 10; //생성할 아이템 max_stack
-			tmp_weight = 0.001; //아이템 무게
-		}
-		else //4%확률로 금속 파이프
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 23; //생성할 아이템 image_index
-			tmp_name = "Metal Pipe"; //생성할 아이템 name
-			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 3; //아이템 무게
-		}
-	break;
-		
-	case 18: //버려진 캐비넷
+	case "엘리트 상자": //엘리트 상자
 		if (tmp_chances < 1500) //15%확률로 슬링백
 		{
 			tmp_spr_ind = spr_backpack; //생성할 아이템 sprite_index
@@ -1038,87 +990,19 @@ switch(image_index)
 			tmp_height = 2; //생성할 아이템 height
 			tmp_weight = 10; //아이템 무게
 		}
-		else //10%확률로 비누
+		else //10%확률로 열쇠
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 12; //생성할 아이템 image_index
-			tmp_name = "Soap"; //생성할 아이템 name
-			tmp_name_compressed = "Soap"; //생성할 아이템 name_compressed
-			tmp_weight = 0.1; //아이템 무게
+			tmp_spr_ind = spr_stackables; //생성할 아이템 sprite_index
+			tmp_img_ind = 4; //생성할 아이템 image_index
+			tmp_name = "Key"; //생성할 아이템 name
+			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
+			tmp_stack = irandom_range(1,3); //생성할 아이템 stack
+			tmp_max_stack = 3; //생성할 아이템 max_stack
+			tmp_weight = 0.002; //아이템 무게
 		}
 	break;
 		
-	case 24: //대형 나무 상자
-		if (tmp_chances < 3000) //30%확률로 흰색 페인트
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 17; //생성할 아이템 image_index
-			tmp_name = "White Paint"; //생성할 아이템 name
-			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
-			tmp_width = 2; //생성할 아이템 width
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 10; //아이템 무게
-		}
-		else if (tmp_chances < 3800) //8%확률로 붉은색 페인트
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 18; //생성할 아이템 image_index
-			tmp_name = "Red Paint"; //생성할 아이템 name
-			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
-			tmp_width = 2; //생성할 아이템 width
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 10; //아이템 무게
-		}
-		else if (tmp_chances < 4800) //10%확률로 금속 주괴
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 19; //생성할 아이템 image_index
-			tmp_name = "Metal ingot"; //생성할 아이템 name
-			tmp_name_compressed = "Metal"; //생성할 아이템 name_compressed
-			tmp_width = 2; //생성할 아이템 width
-			tmp_weight = 5; //아이템 무게
-		}
-		else if (tmp_chances < 7300) //25%확률로 나무 막대
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 24; //생성할 아이템 image_index
-			tmp_name = "Wooden Stick"; //생성할 아이템 name
-			tmp_name_compressed = "Wood"; //생성할 아이템 name_compressed
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 0.7; //아이템 무게
-		}
-		else if (tmp_chances < 8300) //10%확률로 금속 파이프
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 23; //생성할 아이템 image_index
-			tmp_name = "Metal Pipe"; //생성할 아이템 name
-			tmp_name_compressed = "Pipe"; //생성할 아이템 name_compressed
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 3; //아이템 무게
-		}
-		else if (tmp_chances < 9300) //10%확률로 원유
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 2; //생성할 아이템 image_index
-			tmp_name = "Crude Oil"; //생성할 아이템 name
-			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
-			tmp_width = 2; //생성할 아이템 width
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 15; //아이템 무게
-		}
-		else //7%확률로 정제된 기름
-		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 3; //생성할 아이템 image_index
-			tmp_name = "Refined Oil"; //생성할 아이템 name
-			tmp_name_compressed = tmp_name; //생성할 아이템 name_compressed
-			tmp_width = 2; //생성할 아이템 width
-			tmp_height = 2; //생성할 아이템 height
-			tmp_weight = 15; //아이템 무게
-		}
-	break;
-		
-	case 26: //금고
+	case "금고": //금고
 		if (tmp_chances < 1000) //10%확률로 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index

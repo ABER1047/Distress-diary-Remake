@@ -42,6 +42,21 @@ if (type == network_type_connect)
 	
 	//obj_id 할당용 변수 (얘는 모든 작업이 끝난 후 플러스 해줌)
 	global.object_id_ind ++;
+	
+	
+	
+	//제대로 접속이 되어있나 체크
+	buffer_seek(dis_buffer, buffer_seek_start, 0);
+	buffer_write(dis_buffer, buffer_u8, DATA.CHECK_PLAYING_NOW);
+	buffer_write(dis_buffer, buffer_string, 0);
+	//클라이언트에게 계산된 각 플레이어 핑 보내기
+	var tmp_arr_length = array_length(global.users_ping);
+	buffer_write(dis_buffer, buffer_string, tmp_arr_length);
+	for(var i = 0; i < tmp_arr_length; i++)
+	{
+		buffer_write(dis_buffer, buffer_string, global.users_ping[i]);
+	}
+	send_all(dis_buffer);
 }
 else if (type == network_type_disconnect) // 누군가 나갔을 때 발생하는 이벤트
 {
@@ -90,7 +105,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				//뭔가 문제가 생겨서 제대로 연결이 되지 못한 경우 체크
-				alarm[3] = global.tickrate*65;
+				alarm[3] = 180;
 				
 
 				//나 이외의 모든 플레이어 기본 정보 값 세팅
@@ -205,6 +220,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					//서버에 플레이어가 여러명일때 동시 다발적으로 보내면 인식을 못해서 사이에 텀을 주기 위해
 					alarm[2] = global.my_player_id*5;
 				}
+				global.is_check_me = true;
 			}
 		break;
 		

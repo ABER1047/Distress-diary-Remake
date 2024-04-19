@@ -130,11 +130,16 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	else
 	{
+		//스테미나 자동 회복
 		if (stamina_cooltime <= 0)
 		{
 			if (stamina < max_stamina)
 			{
 				stamina += 0.5*(1-tmp_weight_ratio);
+			}
+			else
+			{
+				stamina = max_stamina;
 			}
 		}
 		else
@@ -186,9 +191,10 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		else
 		{
 			//오브젝트 밀기 효과
-			if (object_get_parent(tmp_ins.object_index) == obj_player_pushable_object)
+			if (global.n_running && object_get_parent(tmp_ins.object_index) == obj_player_pushable_object && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 			{
-				tmp_ins.pushing_timer += global.max_movement_speed/5;
+				tmp_ins.pushing_animation = true;
+				tmp_ins.pusher = global.my_player_id;
 			}
 			global.movement_hspeed = 0;
 			break;
@@ -207,9 +213,10 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		else
 		{
 			//오브젝트 밀기 효과
-			if (object_get_parent(tmp_ins.object_index) == obj_player_pushable_object)
+			if (global.n_running && object_get_parent(tmp_ins.object_index) == obj_player_pushable_object && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 			{
-				tmp_ins.pushing_timer += global.max_movement_speed/5;
+				tmp_ins.pushing_animation = true;
+				tmp_ins.pusher = global.my_player_id;
 			}
 			global.movement_vspeed = 0;
 			break;
@@ -384,7 +391,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	{
 		//상자 루팅하기
 		tmp_ins = instance_nearest_notme(x,y,obj_loots);
-		if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+		if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
 		{
 			is_lootable = string(tmp_ins.loots_name);
 		}
@@ -392,7 +399,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			//버려진 아이템 루팅하기 (= 아이템 버렸을 때 생성되는 특수 상자)
 			tmp_ins = instance_nearest_notme(x,y,obj_dropped_item);
-			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
 			{
 				is_lootable = "바닥에 떨어진 아이템";
 			}
@@ -400,17 +407,17 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			{
 				//벤딩 머신
 				tmp_ins = instance_nearest_notme(x,y,obj_vending_machine);
-				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
 				{
 					is_lootable = "자동판매기";
 				}
 				else
 				{
-					//벤딩 머신
-					tmp_ins = instance_nearest_notme(x,y,obj_gamble_machine);
-					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
+					//PC
+					tmp_ins = instance_nearest_notme(x,y,obj_pc);
+					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
 					{
-						is_lootable = "겜블머신";
+						is_lootable = "PC";
 					}
 				}
 			}
@@ -451,9 +458,9 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 						n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
 						tmp_ins.is_opened = n_looting_inv_id;
 					}
-					else
+					else if (tmp_ins.interaction_message == "상호작용")
 					{
-						
+						tmp_ins.is_opened = true;
 					}
 					global.interaction_hold_time = 0;
 				}

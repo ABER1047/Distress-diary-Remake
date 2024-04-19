@@ -44,4 +44,6 @@ function pushable_objects_physics()
 		hspeed += (0 - hspeed)*0.02;
 		vspeed += (0 - vspeed)*0.02;
 	}
+	
+	return tmp_ins;
 }

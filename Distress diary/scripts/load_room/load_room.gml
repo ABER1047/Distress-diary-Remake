@@ -24,19 +24,15 @@ function load_room(argument0,argument1)
 	//모든 룸 이동 포탈 삭제
 	instance_destroy(obj_nextroom);
 	
+	//모든 발판 버튼 삭제
+	instance_destroy(obj_floor_button);
 	
-	//위쪽 벽 드로워 생성
-	if (!instance_exists(obj_map_texture_draw))
+	
+
+	//바닥 타일 이미지 재랜덤화
+	with(obj_map_texture_draw)
 	{
-		instance_create_depth(0,0,0,obj_map_texture_draw);
-	}
-	else
-	{
-		//바닥 타일 이미지 재랜덤화
-		with(obj_map_texture_draw)
-		{
-			event_user(0);
-		}
+		event_user(0);
 	}
 	
 	

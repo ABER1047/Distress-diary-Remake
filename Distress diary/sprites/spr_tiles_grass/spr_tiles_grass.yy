@@ -18,6 +18,9 @@
     {"$GMSpriteFrame":"","%Name":"2c160c00-1469-4fb8-b58d-32779edd94c6","name":"2c160c00-1469-4fb8-b58d-32779edd94c6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"d71b9522-615b-4c33-a86b-9add44dbbf49","name":"d71b9522-615b-4c33-a86b-9add44dbbf49","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"4fb1a293-a669-47a9-a5fa-78ab531023eb","name":"4fb1a293-a669-47a9-a5fa-78ab531023eb","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"05d3110e-df3b-4c78-ad92-457c4e64865d","name":"05d3110e-df3b-4c78-ad92-457c4e64865d","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"3abba8dc-f97f-4c8f-866e-95278f6f935f","name":"3abba8dc-f97f-4c8f-866e-95278f6f935f","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"59e529bb-0f4d-4dfe-b6b6-35dda70979e7","name":"59e529bb-0f4d-4dfe-b6b6-35dda70979e7","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":2,
   "gridY":2,
@@ -54,7 +57,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":6.0,
+    "length":9.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -91,6 +94,15 @@
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"4fb1a293-a669-47a9-a5fa-78ab531023eb","path":"sprites/spr_tiles_grass/spr_tiles_grass.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"742f3306-72d3-4075-83fb-88b1fdc59961","IsCreationKey":false,"Key":5.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"05d3110e-df3b-4c78-ad92-457c4e64865d","path":"sprites/spr_tiles_grass/spr_tiles_grass.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"cd6d7a3f-3c4d-4a56-bee7-e217ea01ed87","IsCreationKey":false,"Key":6.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"3abba8dc-f97f-4c8f-866e-95278f6f935f","path":"sprites/spr_tiles_grass/spr_tiles_grass.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"24b9a0fc-9c2c-4b60-9509-df0482b37ec5","IsCreationKey":false,"Key":7.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"59e529bb-0f4d-4dfe-b6b6-35dda70979e7","path":"sprites/spr_tiles_grass/spr_tiles_grass.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"e50e90b8-6d74-4a69-87d0-c4c8c1f6e37b","IsCreationKey":false,"Key":8.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

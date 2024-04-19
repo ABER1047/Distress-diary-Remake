@@ -35,8 +35,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_vending_machine",
-    "path":"sprites/spr_vending_machine/spr_vending_machine.yy",
+    "name":"spr_objects",
+    "path":"sprites/spr_objects/spr_objects.yy",
   },
   "spriteMaskId":{
     "name":"spr_block_hitbox",
