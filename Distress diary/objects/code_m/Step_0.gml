@@ -290,7 +290,7 @@ if (global.chat_activated)
 						}
 						else if (i == 19) //몹 시점 표시
 						{
-							global.display_view_of_mob = tmp_parameter;
+							global.display_view_of_mob = !global.display_view_of_mob;
 						}
 						else if (i == 20) //퍼즐방 생성
 						{

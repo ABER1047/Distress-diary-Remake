@@ -29,7 +29,7 @@ if (global.graphics_quality > 0 && surface_exists(bubble_surf))
 		{
 			draw_set_alpha(1);
 			draw_set_color(c_white);
-			draw_circle(x+hspeed-xx,y+vspeed-yy,(image_xscale+scale_for_outline)*32,false);
+			draw_circle(x+_hspeed-xx,y+_vspeed-yy,(image_xscale+scale_for_outline)*32,false);
 		}
 	}
 	surface_reset_target();

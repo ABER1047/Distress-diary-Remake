@@ -340,15 +340,15 @@ if (instance_exists(parents_id))
 
 						if (global.n_dir == 0 || global.n_dir == 2)
 						{
-							tmp_nearest_dropped_item.hspeed = -sign_nonzero(tmp_my_p.image_xscale)*8;
+							tmp_nearest_dropped_item._hspeed = -sign_nonzero(tmp_my_p.image_xscale)*8;
 						}
 						else if (global.n_dir == 1)
 						{
-							tmp_nearest_dropped_item.vspeed = -8;
+							tmp_nearest_dropped_item._vspeed = -8;
 						}
 						else
 						{
-							tmp_nearest_dropped_item.vspeed = 8;
+							tmp_nearest_dropped_item._vspeed = 8;
 						}
 						
 						//네트워크상으로 해당 박스 인벤토리 정보 전송
@@ -389,15 +389,15 @@ if (instance_exists(parents_id))
 					tmp_loot.b_zspeed = -4;
 					if (global.n_dir == 0 || global.n_dir == 2)
 					{
-						tmp_loot.hspeed = -sign_nonzero(tmp_my_p.image_xscale)*8;
+						tmp_loot._hspeed = -sign_nonzero(tmp_my_p.image_xscale)*8;
 					}
 					else if (global.n_dir == 1)
 					{
-						tmp_loot.vspeed = -8;
+						tmp_loot._vspeed = -8;
 					}
 					else
 					{
-						tmp_loot.vspeed = 8;
+						tmp_loot._vspeed = 8;
 					}
 						
 					//새로운 자리에 아이템 정보 배열에 저장

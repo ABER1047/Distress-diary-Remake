@@ -57,7 +57,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 
 		with(obj_blood_effect)
 		{
-			if (id != other.id)
+			if (id != other.id && !stop_calculating_by_pos_statement)
 			{
 				for(var i = 0; i < array_length(rd_xx); i++)
 				{
@@ -83,7 +83,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 		
 		with(obj_poison_effect)
 		{
-			if (id != other.id)
+			if (id != other.id && !stop_calculating_by_pos_statement)
 			{
 				var tmp_arr_length = array_length(rd_xx);
 				for(var i = 0; i < tmp_arr_length; i++)
@@ -149,17 +149,26 @@ if (surface_exists(global.shadow_surf))
 
 	with(obj_parents)
 	{
-		draw_sprite_ext(sprite_index,image_index,x-xx,y-64-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
+		if (!stop_calculating_by_pos_statement)
+		{
+			draw_sprite_ext(sprite_index,image_index,x-xx,y-64-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
+		}
 	}
 
 	with(obj_mob_parents)
 	{
-		draw_sprite_ext(spr_shadow,0,x-xx,y-yy,image_xscale,image_yscale,0,c_white,1);
+		if (!stop_calculating_by_pos_statement)
+		{
+			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,image_xscale,image_yscale,0,c_white,1);
+		}
 	}
 
 	with(obj_dropped_item)
 	{
-		draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1)
+		if (!stop_calculating_by_pos_statement)
+		{
+			draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1)
+		}
 	}
 	surface_reset_target();
 

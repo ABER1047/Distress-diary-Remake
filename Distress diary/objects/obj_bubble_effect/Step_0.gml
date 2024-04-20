@@ -17,8 +17,8 @@ image_blend = merge_color(col1,col2,(color_shift > 1) ? 1 : color_shift);
 
 
 //이동 속도 감소
-hspeed += (0 - hspeed)*speed_to_zero;
-vspeed += (0 - vspeed)*speed_to_zero;
+_hspeed += (0 - _hspeed)*speed_to_zero;
+_vspeed += (0 - _vspeed)*speed_to_zero;
 
 
 

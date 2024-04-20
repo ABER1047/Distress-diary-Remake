@@ -169,3 +169,6 @@ global.graphics_quality = 2; // 2 == 최고품질 / 1 == 보통 / 0 == 최고 �
 global.display_view_of_mob = false;
 
 
+
+//맵 바깥 구역 막는 투명 벽
+global.outside_of_map_wall = array_create(4,-4);

@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"statement_by_pos",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"statement_by_pos",
+  "parent":{
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -8,6 +8,12 @@ image_yscale = 2;
 add_z_axis();
 
 
+//속도 관련 변수
+_speed = 0;
+_vspeed = 0;
+_hspeed = 0;
+
+
 //멀티플레이용 틱레이트 포지션
 tickrate_x = x;
 tickrate_y = y;

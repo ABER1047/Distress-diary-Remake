@@ -40,7 +40,14 @@ if (tmp_xx != -4 && tmp_yy != -4)
 	var tmp_ins = instance_create_depth(x,y,0,puzzle_generation_step4);
 	tmp_ins.image_angle = rd_map_angle;
 	
+	
 	alarm[0] = 1;
+	
+	
+	
+	//퍼즐맵 답안 체크 관련
+	can_check_is_solved = false;
+	alarm[1] = 60; 
 }
 else
 {

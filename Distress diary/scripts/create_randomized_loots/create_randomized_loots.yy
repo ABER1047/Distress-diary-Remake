@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"create_randomized_loots",
   "parent":{
-    "name":"MapCreating",
-    "path":"folders/스크립트/MapCreating.yy",
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -2,12 +2,12 @@
 
 
 var changed = false;
-if (abs(vspeed) > 0.1)
+if (abs(_vspeed) > 0.1)
 {
 	if (b_vspeed == -4)
 	{
-		send_InstanceVariableData(id,"vspeed");
-		b_vspeed = vspeed;
+		send_InstanceVariableData(id,"_vspeed");
+		b_vspeed = _vspeed;
 		changed = true;
 	}
 }
@@ -16,12 +16,12 @@ else
 	b_vspeed = -4;
 }
 	
-if (abs(hspeed) > 0.1)
+if (abs(_hspeed) > 0.1)
 {
 	if (b_hspeed == -4)
 	{
-		send_InstanceVariableData(id,"hspeed");
-		b_hspeed = hspeed;
+		send_InstanceVariableData(id,"_hspeed");
+		b_hspeed = _hspeed;
 		changed = true;
 	}
 }

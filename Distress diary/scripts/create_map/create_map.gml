@@ -82,4 +82,8 @@ function create_map(argument0,argument1,argument2,argument3,argument4,argument5,
 	{
 		global.map_creation_falied = 1;
 	}
+	
+	
+	//맵에 있는 모든 오브젝트 삭제
+	instance_destroy(obj_parents);
 }

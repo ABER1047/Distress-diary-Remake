@@ -198,9 +198,12 @@ if (instance_exists(parents_id))
 	if (show_item_info)
 	{
 		//뒷 배경 그리기
+		var tmp_name_to_draw = string(item_name); //아이템명
+		var tmp_txt_width = string_width(tmp_name_to_draw)*2;
+		tmp_txt_width = (tmp_txt_width > 480) ? tmp_txt_width : 480;
 		var item_info = "테스트용 아이템 정보 테스트용 아이템 정보 테스트용 아이템 정보 테스트용 아이템 정보";
-		var tmp_info_length = 1+floor(string_length(item_info)/15);
-		var tmp_win_width = 480*text_ratio;
+		var tmp_info_length = 1+floor(string_length(item_info)/(tmp_txt_width/32));
+		var tmp_win_width = (tmp_txt_width+32)*text_ratio;
 		var tmp_win_height = (256+64*tmp_info_length)*text_ratio;
 		draw_set_alpha(0.6);
 		draw_set_color(c_black);
@@ -208,10 +211,9 @@ if (instance_exists(parents_id))
 		
 		
 		
-		//아이템명
+		//아이템명 그리기
 		var tmp_text_startx = mouse_x+16*text_ratio;
 		var tmp_text_starty = mouse_y-8*global.n_camera_zoom;
-		var tmp_name_to_draw = string(item_name);
 		if (item_name != item_name_translated)
 		{
 			tmp_name_to_draw = tmp_name_to_draw+" ("+string(item_name_translated)+")";
@@ -219,15 +221,15 @@ if (instance_exists(parents_id))
 		draw_text_kl_scale(tmp_text_startx,tmp_text_starty,string(tmp_name_to_draw),64,-1,1,c_white,0,-1,font_normal,0.58*global.n_camera_zoom,0.58*global.n_camera_zoom,0);
 		
 		
-		//아이템 정보
-		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(96*text_ratio),string(item_info),64,480,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+		//아이템 정보 그리기
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(96*text_ratio),string(item_info),64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
 		
 		
 		//아이템명-아이템 정보 사이의 라인 그리기
 		var tmp_name_width = string_width(item_name)+16;
 		draw_set_color(c_white);
 		draw_set_alpha(1);
-		draw_line_width(tmp_text_startx,tmp_text_starty+(96*text_ratio),tmp_text_startx+(tmp_name_width*text_ratio),tmp_text_starty+(96*text_ratio),3*text_ratio);
+		draw_line_width(tmp_text_startx,tmp_text_starty+(96*text_ratio),tmp_text_startx+(tmp_name_width-16)*text_ratio,tmp_text_starty+(96*text_ratio),3*text_ratio);
 		
 		
 		var tmp_txt_col = merge_color(c_white,c_black,0.3);

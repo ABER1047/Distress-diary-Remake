@@ -9,8 +9,8 @@ function pushable_objects_physics()
 		var tmp_yy = (y - tmp_ins.y)/32;
 		
 		//pushable_objects끼리 부딛혔을 경우 서로 밀리는 효과
-		hspeed = (hspeed*0.5) + tmp_xx;
-		vspeed = (vspeed*0.5) + tmp_yy;
+		_hspeed = (_hspeed*0.5) + tmp_xx;
+		_vspeed = (_vspeed*0.5) + tmp_yy;
 		
 		
 		//만약 오브젝트가 플레이어이고, 부딛힌 오브젝트가 몬스터인 경우 데미지 입기
@@ -20,29 +20,55 @@ function pushable_objects_physics()
 		}
 	}
 	
-	//vspeed-hspeed로 인해 오브젝트가 벽을 뚫지 못하도록 방지
-
-	var ins_place = instance_place(x,y,obj_wall_parents);
-	if (instance_exists(ins_place))
+	
+	//_speed를 _vspeed-_hspeed로 변환
+	_hspeed = lengthdir_x(_speed,direction);
+	_vspeed = lengthdir_y(_speed,direction);
+	
+	
+	//_vspeed-hspeed로 인해 오브젝트가 벽을 뚫지 못하도록 방지
+	for(var i = 0; i < abs(_hspeed); i++)
 	{
-		x += sign(x - ins_place.x);
-		y += sign(y - ins_place.y);
-		vspeed = 0;
-		hspeed = 0;
+		var tmp_cal = sign(_hspeed);
+		var ins_place = instance_place(x+tmp_cal,y,obj_wall_parents);
+		if (instance_exists(ins_place))
+		{
+			_hspeed = 0;
+			_speed = 0;
+		}
+		else
+		{
+			x += tmp_cal;
+		}
+	}
+	
+	for(var i = 0; i < abs(_vspeed); i++)
+	{
+		var tmp_cal = sign(_vspeed);
+		var ins_place = instance_place(x,y+tmp_cal,obj_wall_parents);
+		if (instance_exists(ins_place))
+		{
+			_vspeed = 0;
+			_speed = 0;
+		}
+		else
+		{
+			y += tmp_cal;
+		}
 	}
 
 	
 	
 	if (z <= 0) //땅 바닥에 있어야 속도 감소 효과 먹음 (= 마찰력)
 	{
-		hspeed += (0 - hspeed)*0.2;
-		vspeed += (0 - vspeed)*0.2;
+		_hspeed += (0 - _hspeed)*0.2;
+		_vspeed += (0 - _vspeed)*0.2;
 	}
 	else
 	{
 		//공중에 있어야 속도 감소 효과 먹음 (= 공기저항)
-		hspeed += (0 - hspeed)*0.02;
-		vspeed += (0 - vspeed)*0.02;
+		_hspeed += (0 - _hspeed)*0.02;
+		_vspeed += (0 - _vspeed)*0.02;
 	}
 	
 	return tmp_ins;

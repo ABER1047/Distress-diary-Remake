@@ -5,6 +5,14 @@ image_xscale = 2;
 image_yscale = 2;
 
 
+//속도 관련 변수
+add_speed_valuables();
+
+
+//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+add_my_pos_statement();
+
+
 //방향 관련 변수
 my_n_dir = 0;
 b_n_dir = 2;

@@ -11,6 +11,13 @@ image_alpha = 1;
 add_z_axis();
 
 
+//속도 관련 변수
+add_speed_valuables();
+
+//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+add_my_pos_statement();
+
+
 //상자 이름
 //loots_name = "";
 

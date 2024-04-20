@@ -16,16 +16,22 @@ function load_room(argument0,argument1)
 	
 	
 	//모든 바닥 이펙트 삭제
-	instance_destroy(obj_floor_effect_parents);
+	//instance_destroy(obj_floor_effect_parents);
 	
-	//모든 벽 삭제
-	instance_destroy(obj_wall_parents);
+	//모든 외부 투명벽 삭제
+	for(var i = 0; i < 4; i++)
+	{
+		if (instance_exists(global.outside_of_map_wall[i]))
+		{
+			instance_destroy(global.outside_of_map_wall[i]);
+		}
+	}
 	
 	//모든 룸 이동 포탈 삭제
 	instance_destroy(obj_nextroom);
 	
 	//모든 발판 버튼 삭제
-	instance_destroy(obj_floor_button);
+	//instance_destroy(obj_floor_button);
 	
 	
 
@@ -45,28 +51,28 @@ function load_room(argument0,argument1)
 	
 	
 	//가로 벽 2개 생성
-	var tmp_ins = instance_create_depth(tmp_xx-48,tmp_yy-global.n_room_height*0.5*tmp_sprite_size,0,obj_wall_parents);
-	tmp_ins.sprite_index = spr_wall_mask_upper;
-	tmp_ins.image_xscale = (global.n_room_width+2)*tmp_scale;
-	tmp_ins.image_yscale = tmp_scale;
+	global.outside_of_map_wall[0] = instance_create_depth(tmp_xx-48,tmp_yy-global.n_room_height*0.5*tmp_sprite_size,0,obj_wall_parents);
+	global.outside_of_map_wall[0].sprite_index = spr_wall_mask_upper;
+	global.outside_of_map_wall[0].image_xscale = (global.n_room_width+2)*tmp_scale;
+	global.outside_of_map_wall[0].image_yscale = tmp_scale;
 	
-	var tmp_ins = instance_create_depth(tmp_xx-48,tmp_yy+(global.n_room_height*0.5+0.5)*tmp_sprite_size,0,obj_wall_parents);
-	tmp_ins.sprite_index = spr_wall_mask_bottom;
-	tmp_ins.image_xscale = (global.n_room_width+2)*tmp_scale;
-	tmp_ins.image_yscale = tmp_scale;
+	global.outside_of_map_wall[1] = instance_create_depth(tmp_xx-48,tmp_yy+(global.n_room_height*0.5+0.5)*tmp_sprite_size,0,obj_wall_parents);
+	global.outside_of_map_wall[1].sprite_index = spr_wall_mask_bottom;
+	global.outside_of_map_wall[1].image_xscale = (global.n_room_width+2)*tmp_scale;
+	global.outside_of_map_wall[1].image_yscale = tmp_scale;
 	
 	
 	
 	//세로 벽 2개 생성
-	var tmp_ins = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-128,tmp_yy,0,obj_wall_parents);
-	tmp_ins.sprite_index = spr_wall_mask_left;
-	tmp_ins.image_xscale = tmp_scale;
-	tmp_ins.image_yscale = (global.n_room_height+2)*tmp_scale;
+	global.outside_of_map_wall[2] = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-128,tmp_yy,0,obj_wall_parents);
+	global.outside_of_map_wall[2].sprite_index = spr_wall_mask_left;
+	global.outside_of_map_wall[2].image_xscale = tmp_scale;
+	global.outside_of_map_wall[2].image_yscale = (global.n_room_height+2)*tmp_scale;
 	
-	var tmp_ins = instance_create_depth(tmp_xx+global.n_room_width*0.5*tmp_sprite_size+32,tmp_yy,0,obj_wall_parents);
-	tmp_ins.sprite_index = spr_wall_mask_right;
-	tmp_ins.image_xscale = tmp_scale;
-	tmp_ins.image_yscale = (global.n_room_height+2)*tmp_scale;
+	global.outside_of_map_wall[3] = instance_create_depth(tmp_xx+global.n_room_width*0.5*tmp_sprite_size+32,tmp_yy,0,obj_wall_parents);
+	global.outside_of_map_wall[3].sprite_index = spr_wall_mask_right;
+	global.outside_of_map_wall[3].image_xscale = tmp_scale;
+	global.outside_of_map_wall[3].image_yscale = (global.n_room_height+2)*tmp_scale;
 	
 	
 	

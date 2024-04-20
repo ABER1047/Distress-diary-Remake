@@ -211,7 +211,7 @@ if (global.dev_mode == 1)
 	
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
 	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이혈흔 : "+string(global.my_ip) : "아이혈흔 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
-	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
 	global.show_map_data = keyboard_check(222) || keyboard_check(192) || keyboard_check(ord("`"));

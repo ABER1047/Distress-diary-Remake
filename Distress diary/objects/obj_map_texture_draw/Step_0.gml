@@ -16,5 +16,3 @@ depth = -floor(y);
 
 
 
-
-

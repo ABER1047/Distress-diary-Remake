@@ -8,8 +8,8 @@
 ///@param col1
 ///@param col2
 ///@param des_speed
-///@param vspeed
-///@param hspeed
+///@param _vspeed
+///@param _hspeed
 ///@param speed_to_zero
 ///@param image_speed
 ///@param is_bright
@@ -19,8 +19,8 @@ function create_bubble_effect(argument0,argument1,argument2,argument3,argument4,
 	tmp_ins.col1 = argument3;
 	tmp_ins.col2 = argument4;
 	tmp_ins.des_speed = argument5;
-	tmp_ins.vspeed = argument6;
-	tmp_ins.hspeed = argument7;
+	tmp_ins._vspeed = argument6;
+	tmp_ins._hspeed = argument7;
 	tmp_ins.speed_to_zero = argument8;
 	tmp_ins.image_blend = argument3;
 	tmp_ins.image_speed = argument9;

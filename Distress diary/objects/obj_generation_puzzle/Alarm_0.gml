@@ -27,7 +27,8 @@ for(var i = -3; i <= 3; i++)
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,puzzle_generation_step4))
 		{
-			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,choose(30,31,32),false);
+			var tmp_ind = (!position_meeting(tmp_xx,tmp_yy-96,obj_only_breakable)) ? choose(30,31,32) : choose(31,32);
+			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,tmp_ind,false);
 		}
 	}
 }
