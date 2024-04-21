@@ -49,14 +49,16 @@ if (pusher != -4)
 				//이동할 칸이 있는 경우
 				if (abs(tmp_xx) > abs(tmp_yy))
 				{
+					var tmp_chk_xx = x+tmp_cal;
 					var tmp_cal = tmp_scale*sign(tmp_xx);
-					origin_xx += (!place_meeting(x+tmp_cal,y,obj_wall_parents) && !place_meeting(x+tmp_cal,y,obj_mob_parents)) ? tmp_cal : 0;
+					origin_xx += (!place_meeting(tmp_chk_xx,y,obj_nextroom) && !place_meeting(tmp_chk_xx,y,obj_wall_parents) && !place_meeting(tmp_chk_xx,y,obj_mob_parents)) ? tmp_cal : 0;
 					send_InstanceVariableData(id,"origin_xx");
 				}
 				else
 				{
+					var tmp_chk_yy = y+tmp_cal;
 					var tmp_cal = tmp_scale*sign(tmp_yy);
-					origin_yy += (!place_meeting(x,y+tmp_cal,obj_wall_parents)  && !place_meeting(x,y+tmp_cal,obj_mob_parents)) ? tmp_cal : 0;
+					origin_yy += (!place_meeting(x,tmp_chk_yy,obj_nextroom) && !place_meeting(x,tmp_chk_yy,obj_wall_parents)  && !place_meeting(x,tmp_chk_yy,obj_mob_parents)) ? tmp_cal : 0;
 					send_InstanceVariableData(id,"origin_yy");
 				}
 	

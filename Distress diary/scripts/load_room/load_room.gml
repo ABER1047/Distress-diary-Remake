@@ -13,6 +13,7 @@ function load_room(argument0,argument1)
 	show_message_log("현재 룸 사이즈 (가로 x 세로) : "+string(global.n_room_width)+" x "+string(global.n_room_height));
 	
 	
+
 	
 	
 	//모든 바닥 이펙트 삭제
@@ -85,6 +86,15 @@ function load_room(argument0,argument1)
 	var dy = [ 0, -1, 0, 1 ];
 	var n_xx = global.n_player_room_xx[global.my_player_id];
 	var n_yy = global.n_player_room_yy[global.my_player_id];
+	
+	
+	//새로운 방 방문 (= 플레이어가 적정 선 이상 이동시 방 문 닫기)
+	code.alarm[0] = 10;
+	global.visited_new_room = true;
+	global.map_arr[argument1][argument0] = 2;
+	global.f_pos_xx = global.my_player_ins_id[global.my_player_id].x;
+	global.f_pos_yy = global.my_player_ins_id[global.my_player_id].y;
+	
 	
 	for(var i = 0; i < 4; i++)
 	{

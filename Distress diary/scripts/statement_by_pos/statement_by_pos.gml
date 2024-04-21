@@ -11,7 +11,7 @@ function statement_by_pos()
 			
 		origin_x_axis = x;
 		origin_y_axis = y;
-		stop_calculating_by_pos_statement = true;
+		stop_cal_by_pos_statement = true;
 	}
 	else
 	{
@@ -24,7 +24,7 @@ function statement_by_pos()
 			y = origin_y_axis;
 			origin_x_axis = -4;
 			origin_y_axis = -4;
-			stop_calculating_by_pos_statement = false;
+			stop_cal_by_pos_statement = false;
 		}
 	}
 }

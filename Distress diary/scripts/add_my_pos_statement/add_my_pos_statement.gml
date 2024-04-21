@@ -8,5 +8,5 @@ function add_my_pos_statement()
 	origin_hitbox = mask_index;
 	origin_x_axis = -4;
 	origin_y_axis = -4;
-	stop_calculating_by_pos_statement = false;
+	stop_cal_by_pos_statement = false;
 }

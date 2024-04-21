@@ -12,6 +12,10 @@ add_z_axis();
 add_speed_valuables();
 
 
+//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+add_my_pos_statement();
+
+
 
 //멀티플레이용 틱레이트 포지션
 tickrate_x = x;

@@ -296,83 +296,106 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 
 
 	//룸 이동
-	if (move_to_other_room == -4)
+	if (move_to_other_room == -5)
 	{
-		var ins_place = instance_place(x,y,obj_nextroom);
-		if (instance_exists(ins_place) && ins_place.can_use_tp == 1)
+		var tmp_ins = instance_nearest(x,y,obj_nextroom);
+		if (point_distance(x,y,tmp_ins.x,tmp_ins.y) > 64)
 		{
-			move_to_other_room = ins_place;
+			move_to_other_room = -4;
 		}
 	}
 	else
 	{
-		var xx_w = camera_get_view_width(view_camera[0]);
-		var yy_h = camera_get_view_height(view_camera[0]);
-		var tmp_xx = [ 1, 0, -1, 0 ];
-		var tmp_yy = [ 0, -1, 0, 1 ];
-		var tmp_tp_to = move_to_other_room.tp_to;
-		
-		var tmp_camera_xx = move_to_other_room.x+tmp_xx[tmp_tp_to]*xx_w*0.5;
-		var tmp_camera_yy = move_to_other_room.y+tmp_yy[tmp_tp_to]*yy_h*0.5;
-		
-		camera_set_t_pos(tmp_camera_xx,tmp_camera_yy);
-		
-		if (point_distance(tmp_camera_xx,tmp_camera_yy,obj_camera.x,obj_camera.y) < yy_h*0.25)
+		if (!instance_exists(move_to_other_room))
 		{
+			var ins_place = instance_place(x,y,obj_nextroom);
+			if (instance_exists(ins_place) && ins_place.can_use_tp == 1)
+			{
+				move_to_other_room = ins_place;
+			}
+		}
+		else
+		{
+			var xx_w = camera_get_view_width(view_camera[0]);
+			var yy_h = camera_get_view_height(view_camera[0]);
+			var tmp_xx = [ 1, 0, -1, 0 ];
+			var tmp_yy = [ 0, -1, 0, 1 ];
+			var tmp_tp_to = move_to_other_room.tp_to;
+		
 			var n_xx = global.n_player_room_xx[global.my_player_id];
 			var n_yy = global.n_player_room_yy[global.my_player_id];
 			var t_xx = n_xx+tmp_xx[tmp_tp_to];
 			var t_yy = n_yy+tmp_yy[tmp_tp_to];
 		
-			//포탈 이동 후 플레이어 위치 지정용
-			var tmp_scale = 2; //wall_parents의 image_scale (플레이어가 현재 2배 사이즈라서 2배 해줌)
-			var tmp_sprite_size = 48*tmp_scale; //obj_wall_parents의 스프라이트 사이즈
-			var tmp_n_room_width = global.map_room_width[t_yy][t_xx]*0.5*tmp_sprite_size;
-			var tmp_n_room_height = global.map_room_height[t_yy][t_xx]*0.5*tmp_sprite_size;
-			var p_xx = [ tmp_n_room_width-64-65, -48, -tmp_n_room_width-32+65, -48 ];
-			var p_yy = [ 0, -tmp_n_room_height+48, 0, tmp_n_room_height ];
-			var tmp_spawn_portal = tmp_tp_to-2;
-			tmp_spawn_portal += (tmp_spawn_portal < 0) ? 4 : 0;
+		
+			//문이 열려있음
+			if (global.map_arr[n_yy][n_xx] == 1 && global.map_arr[t_yy][t_xx] == 1)
+			{
+				//룸 이동 애니메이션 (카메라 이동 효과)
+				var tmp_camera_xx = move_to_other_room.x+tmp_xx[tmp_tp_to]*xx_w*0.5;
+				var tmp_camera_yy = move_to_other_room.y+tmp_yy[tmp_tp_to]*yy_h*0.5;
+				camera_set_t_pos(tmp_camera_xx,tmp_camera_yy);
+			
+			
+				//카메라 이동이 끝난 경우 실제로 룸 이동
+				if (point_distance(tmp_camera_xx,tmp_camera_yy,obj_camera.x,obj_camera.y) < yy_h*0.25)
+				{
+					//포탈 이동 후 플레이어 위치 지정용
+					var tmp_scale = 2; //wall_parents의 image_scale (플레이어가 현재 2배 사이즈라서 2배 해줌)
+					var tmp_sprite_size = 48*tmp_scale; //obj_wall_parents의 스프라이트 사이즈
+					var tmp_n_room_width = global.map_room_width[t_yy][t_xx]*0.5*tmp_sprite_size;
+					var tmp_n_room_height = global.map_room_height[t_yy][t_xx]*0.5*tmp_sprite_size;
+					var p_xx = [ -tmp_n_room_width+4, -48, tmp_n_room_width-100, -48 ];
+					var p_yy = [ 0, tmp_n_room_height+32, 0, -tmp_n_room_height+32 ];
 
 	
-			//이동 예정인 룸이 배열 밖인지 체크
-			if (is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,t_yy))
-			{
-				//show_message_log("조건 1 만족 ("+string(n_xx)+", "+string(n_yy)+")");
+					//이동 예정인 룸이 배열 밖인지 체크
+					if (is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,t_yy))
+					{
+						//show_message_log("조건 1 만족 ("+string(n_xx)+", "+string(n_yy)+")");
 		
-				//이동 예정인 룸이 현재 룸과 연결되어 있는지 체크
-				var is_connected = 0;
-				var condition1 = (global.room_connected_to_xx[t_yy][t_xx] == n_xx && global.room_connected_to_yy[t_yy][t_xx] == n_yy);
-				var condition2 = (global.room_connected_to_xx[n_yy][n_xx] == t_xx && global.room_connected_to_yy[n_yy][n_xx] == t_yy);
-				var condition3 = (global.room_connected_to_xx_sec[t_yy][t_xx] == n_xx && global.room_connected_to_yy_sec[t_yy][t_xx] == n_yy);
-				var condition4 = (global.room_connected_to_xx_sec[n_yy][n_xx] == t_xx && global.room_connected_to_yy_sec[n_yy][n_xx] == t_yy);
-				if (condition1 || condition2 || condition3 || condition4)
-				{
-					is_connected = 1;
-				}
+						//이동 예정인 룸이 현재 룸과 연결되어 있는지 체크
+						var condition1 = (global.room_connected_to_xx[t_yy][t_xx] == n_xx && global.room_connected_to_yy[t_yy][t_xx] == n_yy);
+						var condition2 = (global.room_connected_to_xx[n_yy][n_xx] == t_xx && global.room_connected_to_yy[n_yy][n_xx] == t_yy);
+						var condition3 = (global.room_connected_to_xx_sec[t_yy][t_xx] == n_xx && global.room_connected_to_yy_sec[t_yy][t_xx] == n_yy);
+						var condition4 = (global.room_connected_to_xx_sec[n_yy][n_xx] == t_xx && global.room_connected_to_yy_sec[n_yy][n_xx] == t_yy);
+						var is_connected = (condition1 || condition2 || condition3 || condition4);
 		
-				//룸 연결됨 => 룸 이동함
-				if (is_connected == 1)
-				{
-					//플레이어 및 카메라 위치 설정
-					var tmp_p_xx = room_width*0.5+p_xx[tmp_spawn_portal];
-					var tmp_p_yy = room_height*0.5+p_yy[tmp_spawn_portal];
-					x = tmp_p_xx;
-					y = tmp_p_yy;
-					camera_set_pos_by_ins(id);
-					move_to_other_room = -4;
-					obj_camera.x = tmp_p_xx-tmp_xx[tmp_tp_to]*xx_w;
-					obj_camera.y = tmp_p_yy-tmp_yy[tmp_tp_to]*yy_h;
+						//룸 연결됨
+						if (is_connected)
+						{
+							//플레이어 및 카메라 위치 설정
+							var tmp_p_xx = room_width*0.5+p_xx[tmp_tp_to];
+							var tmp_p_yy = room_height*0.5+p_yy[tmp_tp_to];
+							x = tmp_p_xx;
+							y = tmp_p_yy;
+							camera_set_pos_by_ins(id);
+							move_to_other_room = -5;
+							obj_camera.x = tmp_p_xx-tmp_xx[tmp_tp_to]*xx_w;
+							obj_camera.y = tmp_p_yy-tmp_yy[tmp_tp_to]*yy_h;
 			
 			
-			
-					show_message_log("룸 이동 : ("+string(n_xx)+", "+string(n_yy)+") -> ("+string(t_xx)+", "+string(t_yy)+")");
+							//룸 이동
+							show_message_log("룸 이동 : ("+string(n_xx)+", "+string(n_yy)+") -> ("+string(t_xx)+", "+string(t_yy)+")");
 				
-					//지도상의 위치 설정
-					global.n_player_room_xx[global.my_player_id] = t_xx;
-					global.n_player_room_yy[global.my_player_id] = t_yy;
+							//지도상의 위치 설정
+							global.n_player_room_xx[global.my_player_id] = t_xx;
+							global.n_player_room_yy[global.my_player_id] = t_yy;
+						
+						
 			
-					load_room(t_xx,t_yy);
+							load_room(t_xx,t_yy);
+						}
+					}
+				}
+			}
+			else
+			{
+				//룸 이동 실패
+				if (!string_pos("문 닫힘",global.chat[0]))
+				{
+					show_message_log("룸 이동 실패 [문 닫힘] : ("+string(global.map_arr[n_yy][n_xx])+") -> ("+string(global.map_arr[t_yy][t_xx])+")");
+					move_to_other_room = -4;
 				}
 			}
 		}

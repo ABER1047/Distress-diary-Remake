@@ -11,3 +11,7 @@ image_yscale = 2;
 image_speed = 0;
 s_img_ind = -4;
 alarm[0] = 1;
+
+
+//맵 클리어 됐는지 체크
+is_cleared = false;

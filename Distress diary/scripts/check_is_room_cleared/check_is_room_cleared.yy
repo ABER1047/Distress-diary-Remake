@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"check_is_room_cleared",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"check_is_room_cleared",
+  "parent":{
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

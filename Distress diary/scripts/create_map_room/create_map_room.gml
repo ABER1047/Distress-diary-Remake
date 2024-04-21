@@ -29,7 +29,7 @@ function create_map_room(argument0,argument1)
 				if (global.map_arr[t_yy][t_xx] == 0)
 				{
 					//방 생성
-					create_room_specific_pos(t_xx,t_yy,global.map_arr[argument1][argument0]+1);
+					create_room_specific_pos(t_xx,t_yy,1);
 					
 					//방 A와 연결되있는 방 B의 위치 인덱스
 					

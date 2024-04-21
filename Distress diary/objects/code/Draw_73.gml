@@ -209,9 +209,17 @@ if (global.dev_mode == 1)
 	
 	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n지도 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]\n\n인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	
+	var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+	var tmp_xx = global.n_player_room_xx[global.my_player_id];
+	var tmp_yy = global.n_player_room_yy[global.my_player_id];
+	var tmp_str = "no room";
+	if (tmp_xx != -4)
+	{
+		tmp_str = global.map_arr[tmp_xx][tmp_yy];
+	}
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
 	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이혈흔 : "+string(global.my_ip) : "아이혈흔 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
-	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
+	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed)+"\n현재 룸 정보 : "+string(tmp_str),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
 	global.show_map_data = keyboard_check(222) || keyboard_check(192) || keyboard_check(ord("`"));
@@ -338,7 +346,7 @@ if (global.dev_mode == 1)
 		var tmp_img = choose(0,2,4,6,8,10,12,14,16,18,24,26)
 		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
 		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
-		var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
+		var tmp_ins = instance_place(mouse_x,mouse_y,obj_parents);
 		if (keyboard_check(ord("P")))
 		{
 			if (!instance_exists(tmp_ins))
@@ -370,7 +378,7 @@ if (global.dev_mode == 1)
 		var tmp_img = 0;
 		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
 		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
-		var tmp_ins = instance_place(tmp_xx,tmp_yy,obj_parents);
+		var tmp_ins = instance_place(mouse_x,mouse_y,obj_parents);
 		if (keyboard_check(ord("O")))
 		{
 			if (!instance_exists(tmp_ins))
@@ -490,7 +498,7 @@ if (global.show_map_data == 1)
 				//방 표시
 				if (global.map_arr[i][ii] > 0)
 				{
-					draw_sprite_ext(tmp_sprite,(ii != global.map_start_pos_xx || i != global.map_start_pos_yy) ? 1 : 2,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_white,c_orange,global.map_arr[i][ii]/global.max_root_length),global.show_map_data);
+					draw_sprite_ext(tmp_sprite,(ii != global.map_start_pos_xx || i != global.map_start_pos_yy) ? 1 : 2,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_white,c_orange,global.map_arr[i][ii]/2),global.show_map_data);
 					
 					var angle = -4;
 					if (global.room_connected_to_xx[i][ii] < ii && global.room_connected_to_yy[i][ii] == i)

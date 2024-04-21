@@ -42,16 +42,10 @@ if (tmp_xx != -4 && tmp_yy != -4)
 	
 	
 	alarm[0] = 1;
-	
-	
-	
-	//퍼즐맵 답안 체크 관련
-	can_check_is_solved = false;
-	alarm[1] = 60; 
 }
 else
 {
 	//생성 실패
 	show_message_log("퍼즐 생성 실패!");
-	instance_destroy(obj_g_puzzle_parents);
+	instance_destroy();
 }

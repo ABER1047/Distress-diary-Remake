@@ -57,7 +57,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 
 		with(obj_blood_effect)
 		{
-			if (id != other.id && !stop_calculating_by_pos_statement)
+			if (id != other.id && !stop_cal_by_pos_statement)
 			{
 				for(var i = 0; i < array_length(rd_xx); i++)
 				{
@@ -83,7 +83,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 		
 		with(obj_poison_effect)
 		{
-			if (id != other.id && !stop_calculating_by_pos_statement)
+			if (id != other.id && !stop_cal_by_pos_statement)
 			{
 				var tmp_arr_length = array_length(rd_xx);
 				for(var i = 0; i < tmp_arr_length; i++)
@@ -130,7 +130,10 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 //버튼 그리기
 with(obj_floor_button)
 {
-	draw_self();
+	if (!stop_cal_by_pos_statement)
+	{
+		draw_self();
+	}
 }
 
 
@@ -149,7 +152,7 @@ if (surface_exists(global.shadow_surf))
 
 	with(obj_parents)
 	{
-		if (!stop_calculating_by_pos_statement)
+		if (!stop_cal_by_pos_statement)
 		{
 			draw_sprite_ext(sprite_index,image_index,x-xx,y-64-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
 		}
@@ -157,7 +160,7 @@ if (surface_exists(global.shadow_surf))
 
 	with(obj_mob_parents)
 	{
-		if (!stop_calculating_by_pos_statement)
+		if (!stop_cal_by_pos_statement)
 		{
 			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,image_xscale,image_yscale,0,c_white,1);
 		}
@@ -165,7 +168,7 @@ if (surface_exists(global.shadow_surf))
 
 	with(obj_dropped_item)
 	{
-		if (!stop_calculating_by_pos_statement)
+		if (!stop_cal_by_pos_statement)
 		{
 			draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1)
 		}

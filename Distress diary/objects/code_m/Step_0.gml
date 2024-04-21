@@ -294,7 +294,7 @@ if (global.chat_activated)
 						}
 						else if (i == 20) //퍼즐방 생성
 						{
-							instance_destroy(obj_g_puzzle_parents);
+							instance_destroy(obj_generation_puzzle);
 							var tmp_ins = instance_create_depth(x,y,0,obj_generation_puzzle);
 						}
 						

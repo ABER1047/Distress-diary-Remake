@@ -72,6 +72,13 @@ global.map_creation_falied = 0;
 global.create_only_one_enterance = false;
 
 
+//새로운 방 방문 (= 플레이어가 적정 선 이상 이동시 방 문 닫기)
+global.visited_new_room = false;
+global.can_check_room_cleared = false;
+global.f_pos_xx = -4; //처음 룸 방문시의 플레이어 x위치정보
+global.f_pos_yy = -4; //처음 룸 방문시의 플레이어 y위치정보
+
+
 //벽 외부 서피스 생성
 outter_room_surf = surface_create(3840,2160);
 

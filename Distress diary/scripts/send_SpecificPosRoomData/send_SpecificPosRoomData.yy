@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"send_SpecificPosRoomData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"send_SpecificPosRoomData",
+  "parent":{
+    "name":"Multiplayer",
+    "path":"folders/스크립트/Multiplayer.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

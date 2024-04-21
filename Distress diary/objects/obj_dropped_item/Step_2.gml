@@ -4,20 +4,22 @@
 
 
 
-
-//인터렉션 키 드로우 용
-if (show_interaction_key > 0)
+if (!stop_cal_by_pos_statement)
 {
-	show_interaction_key -= 1;
-}
+	//인터렉션 키 드로우 용
+	if (show_interaction_key > 0)
+	{
+		show_interaction_key -= 1;
+	}
 
 
-//다른사람이 루팅 중인 경우, 루팅 중이라고 정보 보내기
-if (is_opened != b_is_opened)
-{
-	resize_inv = true;
-	send_InstanceVariableData(id,"is_opened");
-	b_is_opened = is_opened;
+	//다른사람이 루팅 중인 경우, 루팅 중이라고 정보 보내기
+	if (is_opened != b_is_opened)
+	{
+		resize_inv = true;
+		send_InstanceVariableData(id,"is_opened");
+		b_is_opened = is_opened;
+	}
 }
 
 

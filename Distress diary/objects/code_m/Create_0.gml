@@ -44,7 +44,8 @@ enum DATA
 	CHEST_DATA, //상자 생성용 (삭제는 OBJECTS_DATA로 제어)
 	CHECK_PLAYING_NOW, //특정 플레이어 튕겼나 아닌가 체크용
 	REPLY_STILL_PLAYING, //아직 플레이 중 이라고 다시 한 번 보내주는 용
-	SFX_DATA //효과음 전송용 (play_sound_pos함수)
+	SFX_DATA, //효과음 전송용 (play_sound_pos함수)
+	ROOM_DATA_SPECIFIC //특정 룸 정보 전송 (문이 잠겨있나 열려있나만)
 }
 global.DATA_IMG_DATA = DATA.IMG_DATA;
 global.DATA_GL_VAR_DATA = DATA.GL_VAR_DATA;
@@ -56,6 +57,7 @@ global.DATA_INV_DATA_SPECIFIC = DATA.INV_DATA_SPECIFIC;
 global.DATA_OBJECTS_DATA = DATA.OBJECTS_DATA;
 global.DATA_CHEST_DATA = DATA.CHEST_DATA;
 global.DATA_SFX_DATA = DATA.SFX_DATA;
+global.DATA_ROOM_DATA_SPECIFIC = DATA.ROOM_DATA_SPECIFIC;
 
 info_buffer = buffer_create(16384, buffer_grow, 1);
 dis_buffer = buffer_create(16384, buffer_grow, 1);
