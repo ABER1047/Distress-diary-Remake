@@ -392,11 +392,8 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			else
 			{
 				//룸 이동 실패
-				if (!string_pos("문 닫힘",global.chat[0]))
-				{
-					show_message_log("룸 이동 실패 [문 닫힘] : ("+string(global.map_arr[n_yy][n_xx])+") -> ("+string(global.map_arr[t_yy][t_xx])+")");
-					move_to_other_room = -4;
-				}
+				show_message_log("룸 이동 실패 [문 닫힘] : ("+string(global.map_arr[n_yy][n_xx])+") -> ("+string(global.map_arr[t_yy][t_xx])+")");
+				move_to_other_room = -5;
 			}
 		}
 	}

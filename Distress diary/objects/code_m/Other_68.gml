@@ -652,7 +652,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						var tmp_yy = real(buffer_read(buffer, buffer_string));
 						var tmp_img_ind = real(buffer_read(buffer, buffer_string));
 					
-						instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true);
+						var tmp_ins = instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true);
+						tmp_ins.my_pos_xx = real(buffer_read(buffer, buffer_string));
+						tmp_ins.my_pos_yy = real(buffer_read(buffer, buffer_string));
 					}
 				}
 			}

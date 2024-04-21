@@ -209,11 +209,16 @@ if (global.dev_mode == 1)
 	
 	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n지도 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]\n\n인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
 	
-	var tmp_my_p = global.my_player_ins_id[global.my_player_id];
-	var tmp_xx = global.n_player_room_xx[global.my_player_id];
-	var tmp_yy = global.n_player_room_yy[global.my_player_id];
+	var tmp_my_player_id = 0;
+	if (global.my_player_id >= 0 && global.my_player_id < array_length(global.my_player_ins_id))
+	{
+		tmp_my_player_id = global.my_player_id;
+	}
+	var tmp_my_p = global.my_player_ins_id[tmp_my_player_id];
+	var tmp_xx = global.n_player_room_xx[tmp_my_player_id];
+	var tmp_yy = global.n_player_room_yy[tmp_my_player_id];
 	var tmp_str = "no room";
-	if (tmp_xx != -4)
+	if (tmp_xx >= 0)
 	{
 		tmp_str = global.map_arr[tmp_xx][tmp_yy];
 	}
@@ -229,14 +234,9 @@ if (global.dev_mode == 1)
 	{
 		global.nickname = randomized_nickname();
 		show_message_log("- 변경된 닉네임 : "+string(global.nickname));
-		with(obj_player)
-		{
-			if (global.my_player_id == obj_id_player_only)
-			{
-				nickname = global.nickname;
-				send_InstanceVariableData(id,"nickname");
-			}
-		}
+
+		tmp_my_p.nickname = global.nickname;
+		send_InstanceVariableData(tmp_my_p,"nickname");
 	}
 	
 	
