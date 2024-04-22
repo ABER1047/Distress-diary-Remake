@@ -18,7 +18,7 @@ function decode_invite_code(argument0)
 			}
 			else if (tmp_char == string_digits(tmp_char))
 			{
-				var tmp_margin = current_day+current_hour*7-floor(current_minute/5);
+				var tmp_margin = current_day+current_hour*7-floor(current_minute/15);
 				var tmp_num = real(tmp_char)+(tmp_margin);
 				while(true)
 				{

@@ -4,7 +4,7 @@
 //초대 코드 생성
 if (global.my_ip != "")
 {
-	var tmp_rd_invite_code_seed = floor(current_minute/5)
+	var tmp_rd_invite_code_seed = floor(current_minute/15)
 	if (global.invite_code_seed != tmp_rd_invite_code_seed)
 	{
 		global.invite_code = create_invite_code(global.my_ip);
@@ -34,22 +34,7 @@ if (server == -4)
 	}
 	else if (keyboard_check_pressed(vk_f11)) //서버 접속
 	{
-		var tmp_ip = decode_invite_code(clipboard_get_text());
-		server_ip = (tmp_ip == global.my_ip) ? "127.0.0.1" : tmp_ip;
-		server = network_create_socket(network_socket_tcp);
-		var res = network_connect(server, server_ip, server_port);
-		
-		if (res < 0) 
-		{
-			server = -4;
-			show_message_log("해당 서버에 접속할 수 없습니다");
-		}
-		else 
-		{
-			alarm[1] = 1;
-			global.is_server = false;
-			show_message_log("서버 접속 완료!");
-		}
+		event_user(1);
 	}
 }
 
@@ -58,6 +43,13 @@ if (server == -4)
 if (global.chat_activated)
 {
 	chat_alpha += (1 - chat_alpha)*0.3;
+	
+	if (keyboard_check(vk_control) && keyboard_check_pressed(ord("V")))
+	{
+		chat_entering = string(chat_entering)+string(clipboard_get_text());
+		keyboard_string = chat_entering;
+	}
+	
 	if (string_width(string(global.nickname)+string(keyboard_string)) > 1280)
 	{
 		keyboard_string = chat_entering;
@@ -88,8 +80,8 @@ if (global.chat_activated)
 			var is_command = false;
 			if (global.dev_mode == 1)
 			{
-				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob", "/ef", "/arr", "/gq", "/vom", "/cp" ];
-				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성", "이펙트 생성", "화살 생성", "그래픽 퀄리티 설정", "몹 시점 표시", "퍼즐방 생성" ];
+				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob", "/ef", "/arr", "/gq", "/vom", "/cp", "/invite", "/disconnect", "/connect" ];
+				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성", "이펙트 생성", "화살 생성", "그래픽 퀄리티 설정", "몹 시점 표시", "퍼즐방 생성", "초대코드 복사", "서버 연결 해제", "서버 접속" ];
 				for(var i = 0; i < array_length(commands); i++)
 				{
 					if (string_pos(commands[i],chat_entering))
@@ -97,6 +89,8 @@ if (global.chat_activated)
 						//파라미터 값
 						var tmp_parameter = string_replace_all(chat_entering,commands[i],"");
 						tmp_parameter = string_replace_all(tmp_parameter," ","");
+						
+						var tmp_parameter_str = tmp_parameter;
 						try
 						{
 							tmp_parameter = (tmp_parameter == "") ? 0 : real(tmp_parameter);
@@ -296,6 +290,20 @@ if (global.chat_activated)
 						{
 							instance_destroy(obj_generation_puzzle);
 							var tmp_ins = instance_create_depth(x,y,0,obj_generation_puzzle);
+						}
+						else if (i == 21) //초대 코드 복사
+						{
+							show_message_log("초대 코드 생성 및 복사 완료!");
+							global.invite_code = create_invite_code(global.my_ip);
+						}
+						else if (i == 22) //연결 해제
+						{
+							event_user(0);
+						}
+						else if (i == 23) //서버 접속
+						{
+							clipboard_set_text(tmp_parameter_str);
+							event_user(1);
 						}
 						
 						

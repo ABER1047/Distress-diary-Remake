@@ -84,6 +84,7 @@
     {"name":"camera_set_pos_by_ins","order":9,"path":"scripts/camera_set_pos_by_ins/camera_set_pos_by_ins.yy",},
     {"name":"camera_set_pos","order":7,"path":"scripts/camera_set_pos/camera_set_pos.yy",},
     {"name":"camera_set_t_pos","order":8,"path":"scripts/camera_set_t_pos/camera_set_t_pos.yy",},
+    {"name":"check_is_room_cleared","order":16,"path":"scripts/check_is_room_cleared/check_is_room_cleared.yy",},
     {"name":"clean_message_log","order":4,"path":"scripts/clean_message_log/clean_message_log.yy",},
     {"name":"create_bubble_effect","order":3,"path":"scripts/create_bubble_effect/create_bubble_effect.yy",},
     {"name":"create_inv_item","order":1,"path":"scripts/create_inv_item/create_inv_item.yy",},
@@ -117,7 +118,6 @@
     {"name":"pushable_objects_physics","order":2,"path":"scripts/pushable_objects_physics/pushable_objects_physics.yy",},
     {"name":"reset_inv_variable","order":4,"path":"scripts/reset_inv_variable/reset_inv_variable.yy",},
     {"name":"reset_map_arraies","order":4,"path":"scripts/reset_map_arraies/reset_map_arraies.yy",},
-    {"name":"check_is_room_cleared","order":16,"path":"scripts/check_is_room_cleared/check_is_room_cleared.yy",},
     {"name":"send_all","order":4,"path":"scripts/send_all/send_all.yy",},
     {"name":"send_GlobalVariableData","order":2,"path":"scripts/send_GlobalVariableData/send_GlobalVariableData.yy",},
     {"name":"send_ImgData","order":1,"path":"scripts/send_ImgData/send_ImgData.yy",},
@@ -251,6 +251,7 @@
     {"name":"sprite174","order":3,"path":"sprites/sprite174/sprite174.yy",},
     {"name":"Sprite52","order":6,"path":"sprites/Sprite52/Sprite52.yy",},
     {"name":"Sprite57","order":4,"path":"sprites/Sprite57/Sprite57.yy",},
+    {"name":"spr_map_ui_room","order":12,"path":"sprites/spr_map_ui_room/spr_map_ui_room.yy",},
     {"name":"tmp_sprite","order":2,"path":"sprites/tmp_sprite/tmp_sprite.yy",},
   ],
 }

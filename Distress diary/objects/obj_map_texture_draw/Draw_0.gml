@@ -57,7 +57,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 
 		with(obj_blood_effect)
 		{
-			if (id != other.id && !stop_cal_by_pos_statement)
+			if (id != other.id)
 			{
 				for(var i = 0; i < array_length(rd_xx); i++)
 				{
@@ -83,7 +83,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 		
 		with(obj_poison_effect)
 		{
-			if (id != other.id && !stop_cal_by_pos_statement)
+			if (id != other.id)
 			{
 				var tmp_arr_length = array_length(rd_xx);
 				for(var i = 0; i < tmp_arr_length; i++)

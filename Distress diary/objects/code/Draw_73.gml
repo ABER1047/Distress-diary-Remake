@@ -223,7 +223,7 @@ if (global.dev_mode == 1)
 		tmp_str = global.map_arr[tmp_xx][tmp_yy];
 	}
 	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
-	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이혈흔 : "+string(global.my_ip) : "아이혈흔 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
+	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
 	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed)+"\n현재 룸 정보 : "+string(tmp_str),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
 	
 	//맵 드로우
@@ -452,13 +452,17 @@ if (global.dev_mode == 1)
 //맵 드로우 코드
 if (global.show_map_data == 1)
 {
-	var room_ui_scale = 24/(global.map_height);
-	var tmp_space = (64*room_ui_scale+16)*tmp_c_x;
+	var room_ui_scale = 16/(global.map_height);
+	var tmp_space = (52*room_ui_scale+16)*tmp_c_x;
 	var tmp_xx = (xx_center-global.map_width/2*tmp_space);
 	var tmp_yy = (yy_center-global.map_height/2*tmp_space);
 	//맵이 존재하는 경우
 	if (global.is_map_exists != -4)
 	{
+		draw_set_alpha(global.show_map_data*0.85);
+		draw_set_color(#090708);
+		draw_rectangle(tmp_xx-tmp_space,tmp_yy-tmp_space,tmp_xx+global.map_width*tmp_space,tmp_yy+global.map_height*tmp_space,false);
+		
 		draw_set_alpha(global.show_map_data);
 		for(var i = 0; i < global.map_height; i++)
 		{
@@ -471,14 +475,14 @@ if (global.show_map_data == 1)
 				//방 연결된거 표시
 				if (global.room_connected_to_xx[i][ii] != -4)
 				{
-					draw_set_color(#5cc4cd);
+					draw_set_color(#333333);
 					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy[i][ii]*tmp_space,8*tmp_c_x*room_ui_scale);
 				}
 				
 				//방 연결된거 표시 (sec)
 				if (global.room_connected_to_xx_sec[i][ii] != -4)
 				{
-					draw_set_color(#d892a6);
+					draw_set_color(#333333);
 					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx_sec[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy_sec[i][ii]*tmp_space,8*tmp_c_x*room_ui_scale);
 				}
 			}
@@ -498,9 +502,18 @@ if (global.show_map_data == 1)
 				//방 표시
 				if (global.map_arr[i][ii] > 0)
 				{
-					draw_sprite_ext(tmp_sprite,(ii != global.map_start_pos_xx || i != global.map_start_pos_yy) ? 1 : 2,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_white,c_orange,global.map_arr[i][ii]/2),global.show_map_data);
+					var is_someone_here = 0;
+					for(var k = 0; k < array_length(global.n_player_room_xx); k++)
+					{
+						if (global.n_player_room_xx[k] == ii && global.n_player_room_yy[k] == i)
+						{
+							is_someone_here = 1;
+						}
+					}
 					
-					var angle = -4;
+					draw_sprite_ext(spr_map_ui_room,is_someone_here,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,c_white,global.show_map_data);
+					
+					/*var angle = -4;
 					if (global.room_connected_to_xx[i][ii] < ii && global.room_connected_to_yy[i][ii] == i)
 					{
 						angle = 270;
@@ -530,23 +543,23 @@ if (global.show_map_data == 1)
 						}
 						
 						//현재 위치 표시 + 이동 가능한 방 표시
-						draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,(is_someone_here == 1) ? c_red : c_gray,global.show_map_data);
-					}
+						//draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,(is_someone_here == 1) ? #46376A : #3B3447,global.show_map_data);
+					}*/
 					
 
 					
 					if (global.room_connected_to_xx_sec[i][ii] != -4)
 					{
-						var tmp_str_2 = "("+string(global.room_connected_to_xx_sec[i][ii])+", "+string(global.room_connected_to_yy_sec[i][ii])+")";
-						draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,font_light,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
+						//var tmp_str_2 = "("+string(global.room_connected_to_xx_sec[i][ii])+", "+string(global.room_connected_to_yy_sec[i][ii])+")";
+						//draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,font_light,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
 					}
 					
 					//show_debug_message("drawing_map ("+string(tmp_xx)+", "+string(tmp_yy)+")   /   "+string(xx))
 				}
-				else
-				{
-					draw_sprite_ext(tmp_sprite,1,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_black,c_white,0.1),global.show_map_data);
-				}
+				//else
+				//{
+				//	draw_sprite_ext(tmp_sprite,1,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_black,c_white,0.1),global.show_map_data);
+				//}
 			}
 		}
 	}

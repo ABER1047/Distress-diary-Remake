@@ -15,11 +15,18 @@ if (instance_exists(variable_owner) && variable_instance_exists(variable_owner,"
 }
 
 
-//창이 닫혔을 때, 아이템 정보값을 가지고 있는 오브젝트가 obj_dropped_item인 경우
-if (instance_exists(variable_owner) && variable_owner.object_index == obj_dropped_item)
+//창이 닫혔을 때
+if (instance_exists(variable_owner))
 {
-	//인벤 칸 자동 리사이징 해주기
-	variable_owner.resize_inv = true;
+	//아이템 정보값을 가지고 있는 오브젝트가 obj_dropped_item인 경우
+	if (variable_owner.object_index == obj_dropped_item)
+	{
+		//인벤 칸 자동 리사이징 해주기
+		variable_owner.resize_inv = true;
+	}
+	
+	//모든 인벤토리 정보를 상대에게 보내기
+	send_InventoryDataAll(variable_owner.obj_id,variable_owner.object_index);
 }
 
 
@@ -28,6 +35,5 @@ if (searching_sfx != -4)
 {
 	audio_stop_sound(searching_sfx);
 }
-
 
 

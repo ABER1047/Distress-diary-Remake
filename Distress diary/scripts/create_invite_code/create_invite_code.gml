@@ -2,7 +2,6 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function create_invite_code(argument0)
 {
-	global.invite_code_seed = current_hour;
 	var tmp_alphabet_arr1 = [ "a","c","e","g","i","k","m","o","q","s","u","w","y" ];
 	var tmp_alphabet_arr2 = [ "b","d","f","h","j","l","n","p","r","t","v","x","z" ];
 	var tmp_result = "";
@@ -16,7 +15,7 @@ function create_invite_code(argument0)
 		}
 		else
 		{
-			var tmp_margin = current_day+current_hour*7-floor(current_minute/5);
+			var tmp_margin = current_day+current_hour*7-floor(current_minute/15);
 			var tmp_num = real(tmp_char)-(tmp_margin);
 			while(true)
 			{

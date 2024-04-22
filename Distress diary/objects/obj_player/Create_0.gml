@@ -124,6 +124,7 @@ show_interaction_key = 0; // 0일때 드로우 안함
 
 //다른 사람 시체 루팅
 n_looting_inv_id = -4;
+loots_name = string(nickname)+"'의 인벤토리";
 
 
 //다른사람이 내 인벤을 루팅중인지 체크

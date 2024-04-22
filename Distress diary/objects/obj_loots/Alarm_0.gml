@@ -1124,6 +1124,11 @@ if (has_empty_pos == true)
 		}
 		alarm[0] = 1;
 	}
+	else
+	{
+		//모든 인벤토리 정보를 상대에게 보내기
+		send_InventoryDataAll(obj_id,object_index);
+	}
 }
 
 

@@ -9,11 +9,11 @@ server = -4;
 soc = 0;
 
 
-//내 아이혈흔
+//내 아이피
 global.my_ip = "";
 global.invite_code = "";
 global.invite_code_seed = -4; //랜덤 초대 코드 생성용 시드
-//아이혈흔 받아오기 용
+//아이피 받아오기 용
 send_request = http_ip_get("");
 
 
