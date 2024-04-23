@@ -191,7 +191,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		else
 		{
 			//오브젝트 밀기 효과
-			if (global.n_running && object_get_parent(tmp_ins.object_index) == obj_player_pushable_object && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
+			if (object_get_parent(tmp_ins.object_index) == obj_player_pushable_object && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 			{
 				tmp_ins.pushing_animation = true;
 				tmp_ins.pusher = global.my_player_id;
@@ -213,7 +213,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		else
 		{
 			//오브젝트 밀기 효과
-			if (global.n_running && object_get_parent(tmp_ins.object_index) == obj_player_pushable_object && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
+			if (object_get_parent(tmp_ins.object_index) == obj_player_pushable_object && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 			{
 				tmp_ins.pushing_animation = true;
 				tmp_ins.pusher = global.my_player_id;
@@ -421,7 +421,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			tmp_ins = instance_nearest_notme(x,y,obj_dropped_item);
 			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
 			{
-				is_lootable = "바닥에 떨어진 아이템";
+				is_lootable = "버려진 아이템";
 			}
 			else
 			{

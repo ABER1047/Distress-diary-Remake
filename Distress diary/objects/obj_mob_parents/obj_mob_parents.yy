@@ -13,10 +13,7 @@
     "name":"mob",
     "path":"folders/오브젝트/mob.yy",
   },
-  "parentObjectId":{
-    "name":"obj_mob_pushable_object",
-    "path":"objects/obj_mob_pushable_object/obj_mob_pushable_object.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

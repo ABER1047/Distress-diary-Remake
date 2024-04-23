@@ -9,8 +9,19 @@
 ///@param loots_name
 ///@param obj_id
 ///@param DoNotSend
-function create_loots(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7)
+///@param xpos
+///@param ypos
+function create_loots(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9)
 {
+	var tmp_my_pos_xx = argument8;
+	var tmp_my_pos_yy = argument9;
+	if (tmp_my_pos_xx == -4)
+	{
+		tmp_my_pos_xx = global.n_player_room_xx[global.my_player_id];
+		tmp_my_pos_yy = global.n_player_room_yy[global.my_player_id];
+	}
+	
+	
 	var tmp_width = argument3;
 	var tmp_height = argument4;
 	var tmp_obj_id = argument6;
@@ -24,6 +35,8 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	{
 		var tmp_ins = instance_create_depth(argument0,argument1,depth,obj_dropped_item);
 	}
+	tmp_ins.my_pos_xx = tmp_my_pos_xx;
+	tmp_ins.my_pos_yy = tmp_my_pos_yy;
 	
 	//인벤토리 설정
 	with(tmp_ins)

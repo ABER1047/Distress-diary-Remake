@@ -8,10 +8,13 @@
   "name":"obj_mob_pushable_object",
   "overriddenProperties":[],
   "parent":{
-    "name":"map_objects",
-    "path":"folders/오브젝트/map_objects.yy",
+    "name":"mob",
+    "path":"folders/오브젝트/mob.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_mob_parents",
+    "path":"objects/obj_mob_parents/obj_mob_parents.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

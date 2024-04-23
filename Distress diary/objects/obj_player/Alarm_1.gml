@@ -13,14 +13,6 @@ if (!variable_instance_exists(id,"soc"))
 
 if (obj_id_player_only == global.my_player_id)
 {
-	//내 룸 포지션이 변경된 경우
-	if (my_room_pos_xx != global.n_player_room_xx[global.my_player_id] || my_room_pos_xx != global.n_player_room_yy[global.my_player_id])
-	{
-		my_room_pos_xx = global.n_player_room_xx[global.my_player_id];
-		my_room_pos_yy = global.n_player_room_yy[global.my_player_id];
-		send_MyRoomPos();
-	}
-
 	//현재 바라보는 각도 보내기
 	if (b_n_dir != global.n_dir)
 	{

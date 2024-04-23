@@ -35,6 +35,9 @@ function send_NewMapData()
 			//map_arr = 0 일때 방이 없음 / 1일때 방 존재
 			buffer_write(global.map_data_buffer, buffer_string, global.map_arr[i][ii]);
 			
+			//방 종류
+			buffer_write(global.map_data_buffer, buffer_string, global.map_room_type[i][ii]);
+			
 			//각 방에 대한 방 넓이
 			buffer_write(global.map_data_buffer, buffer_string, global.map_room_width[i][ii]);
 			buffer_write(global.map_data_buffer, buffer_string, global.map_room_height[i][ii]);

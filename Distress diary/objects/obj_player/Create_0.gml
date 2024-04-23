@@ -30,10 +30,6 @@ global.movement_vspeed = 0;
 
 global.n_running = false;
 
-//이전에 있던 내 룸 포지션
-my_room_pos_xx = -4;
-my_room_pos_yy = -4;
-
 
 //z축
 add_z_axis();

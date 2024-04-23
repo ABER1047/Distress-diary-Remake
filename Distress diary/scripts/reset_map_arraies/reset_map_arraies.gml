@@ -9,6 +9,9 @@ function reset_map_arraies()
 			//map_arr = 0 일때 방이 없음 - 1일때는 방 존재(문 열림) - 2일때는 방 존재(문 닫힘)
 			global.map_arr[i][ii] = 0;
 			
+			//방 종류
+			global.map_room_type[i][ii] = 0;
+			
 			
 			//각 방에 대한 방 넓이
 			global.map_room_width[i][ii] = 0;

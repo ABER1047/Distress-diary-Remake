@@ -368,7 +368,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				create_randomized_loots(tmp_xx,tmp_yy,tmp_img,global.object_id_ind,0);
+				create_randomized_loots(tmp_xx,tmp_yy,tmp_img,global.object_id_ind,0,-4,-4);
 			}
 		}
 	
@@ -403,19 +403,19 @@ if (global.dev_mode == 1)
 				var rd_choose = choose(0,1,2,3);
 				if (rd_choose == 0)
 				{
-					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,44,false);
+					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,44,false,-4,-4);
 				}
 				else if (rd_choose == 1)
 				{
-					instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(28,34),false);
+					instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(28,34),false,-4,-4);
 				}
 				else if (rd_choose == 2)
 				{
-					instance_create_multiplayer(obj_pc,tmp_xx,tmp_yy,global.object_id_ind,47,false);
+					instance_create_multiplayer(obj_pc,tmp_xx,tmp_yy,global.object_id_ind,47,false,-4,-4);
 				}
 				else if (rd_choose == 3)
 				{
-					instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy,global.object_id_ind,choose(56,58,60),false);
+					instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy,global.object_id_ind,choose(56,58,60),false,-4,-4);
 				}
 			}
 		}
@@ -513,6 +513,25 @@ if (global.show_map_data == 1)
 					
 					draw_sprite_ext(spr_map_ui_room,is_someone_here,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,c_white,global.show_map_data);
 					
+					//퍼즐방 표시
+					var img_ind_by_room_type = -4
+					if (global.map_room_type[i][ii] == 1)
+					{
+						img_ind_by_room_type = 11;
+					}
+					else if (global.map_room_type[i][ii] == 2)
+					{
+						img_ind_by_room_type = 12;
+					}
+					else if (global.map_room_type[i][ii] == 3)
+					{
+						img_ind_by_room_type = 13;
+					}
+					
+					if (img_ind_by_room_type != -4)
+					{
+						draw_sprite_ext(spr_ui,img_ind_by_room_type,draw_xx,draw_yy,tmp_c_x*room_ui_scale*0.8,tmp_c_x*room_ui_scale*0.8,0,c_white,global.show_map_data);
+					}
 					/*var angle = -4;
 					if (global.room_connected_to_xx[i][ii] < ii && global.room_connected_to_yy[i][ii] == i)
 					{
@@ -548,11 +567,11 @@ if (global.show_map_data == 1)
 					
 
 					
-					if (global.room_connected_to_xx_sec[i][ii] != -4)
-					{
+					//if (global.room_connected_to_xx_sec[i][ii] != -4)
+					//{
 						//var tmp_str_2 = "("+string(global.room_connected_to_xx_sec[i][ii])+", "+string(global.room_connected_to_yy_sec[i][ii])+")";
 						//draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,font_light,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
-					}
+					//}
 					
 					//show_debug_message("drawing_map ("+string(tmp_xx)+", "+string(tmp_yy)+")   /   "+string(xx))
 				}

@@ -105,7 +105,7 @@ if (global.is_server)
 	}
 
 
-	show_message_log("- 비정상적으로 연결이 끊긴 플레이어 체크 중... ("+string(floor(is_there_any_player_need_to_check/60))+"초 후 재시도)");
+	show_debug_message("- 비정상적으로 연결이 끊긴 플레이어 체크 중... ("+string(floor(is_there_any_player_need_to_check/60))+"초 후 재시도)");
 
 	//튕겼다고 판단된 플레이어가 있을 경우 빠르게 진짜로 튕겼나 다시 한 번 체크
 	alarm[0] = is_there_any_player_need_to_check;

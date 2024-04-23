@@ -96,6 +96,11 @@ function load_room(argument0,argument1)
 	global.f_pos_yy = global.my_player_ins_id[global.my_player_id].y;
 	
 	
+	
+	//내 방 위치정보 전송
+	send_MyRoomPos();
+	
+	
 	for(var i = 0; i < 4; i++)
 	{
 		var t_xx = global.n_player_room_xx[global.my_player_id]+dx[i];

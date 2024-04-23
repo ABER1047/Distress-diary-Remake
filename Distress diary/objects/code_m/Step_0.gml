@@ -158,13 +158,18 @@ if (global.chat_activated)
 										show_message_log("방 갯수 : "+string(global.n_room_num)+"/"+string(tmp_total_room_num));
 			
 			
+										//맵 내의 구조물 생성
+										create_map_monuments();
+			
+			
 										//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
 										load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
 			
 										show_message_log("- 맵 로드 완료");
 										obj_player.x = room_width*0.5;
 										obj_player.y = room_height*0.5;
-										send_NewMapData();
+										
+										alarm[4] = 30;
 			
 										//카메라 줌 설정
 										global.n_camera_zoom = 0.53;
@@ -255,7 +260,7 @@ if (global.chat_activated)
 						{
 							var tmp_mob_obj_ind = [ obj_fireball, obj_wisp, obj_skull_head, obj_skeleton ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
-							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false);
+							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
 							
 							give_damage(global.my_player_ins_id[global.my_player_id],0,true);
 						}
@@ -263,7 +268,7 @@ if (global.chat_activated)
 						{
 							var tmp_mob_obj_ind = [ obj_blood_effect, obj_poison_effec,t ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
-							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false);
+							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
 						}
 						else if (i == 17) //화살 생성
 						{
@@ -272,7 +277,7 @@ if (global.chat_activated)
 							
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							
-							var tmp_ins = instance_create_multiplayer(obj_arrow,tmp_xx,tmp_yy,global.object_id_ind,0,false);
+							var tmp_ins = instance_create_multiplayer(obj_arrow,tmp_xx,tmp_yy,global.object_id_ind,0,false,-4,-4);
 							tmp_ins.direction = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
 							tmp_ins._speed = 48;
 							tmp_ins.parents = global.my_player_ins_id[global.my_player_id];
@@ -289,7 +294,7 @@ if (global.chat_activated)
 						else if (i == 20) //퍼즐방 생성
 						{
 							instance_destroy(obj_generation_puzzle);
-							var tmp_ins = instance_create_depth(x,y,0,obj_generation_puzzle);
+							var tmp_ins = instance_create_depth(x,y,0,obj_generation_puzzle,{xpos : global.n_player_room_xx[global.my_player_id], ypos : global.n_player_room_yy[global.my_player_id]});
 						}
 						else if (i == 21) //초대 코드 복사
 						{

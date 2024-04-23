@@ -18,6 +18,8 @@ function send_NewObjectData()
 				buffer_write(global.obj_data_buffer, buffer_string, x);
 				buffer_write(global.obj_data_buffer, buffer_string, y);
 				buffer_write(global.obj_data_buffer, buffer_string, image_index);
+				buffer_write(global.obj_data_buffer, buffer_string, my_pos_xx);
+				buffer_write(global.obj_data_buffer, buffer_string, my_pos_yy);
 				send_all(global.obj_data_buffer);
 			}
 			else

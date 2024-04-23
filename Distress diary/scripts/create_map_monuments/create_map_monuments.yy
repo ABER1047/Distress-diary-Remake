@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"create_map_monuments",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_map_monuments",
+  "parent":{
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -20,10 +20,6 @@ function create_map(argument0,argument1,argument2,argument3,argument4,argument5,
 	global.enable_light_surf = true;
 	global.create_only_one_enterance = false;
 	
-	
-	global.n_player_room_xx = [ -4, -5, -6, -7, -8, -9 ];
-	global.n_player_room_yy = [ -4, -5, -6, -7, -8, -9 ];
-	
 	global.map_creation_falied = 0;
 	global.n_room_num = 0;
 	
@@ -44,6 +40,13 @@ function create_map(argument0,argument1,argument2,argument3,argument4,argument5,
 	//현재 내 플레이어 위치 (룸)
 	global.n_player_room_xx[global.my_player_id] = global.map_start_pos_xx;
 	global.n_player_room_yy[global.my_player_id] = global.map_start_pos_yy;
+	
+	//모든 플레이어의 위치정보를 스타트 지점으로 초기화
+	for(var i = 0; i < array_length(global.n_player_room_xx); i++)
+	{
+		global.n_player_room_xx[i] = global.map_start_pos_xx;
+		global.n_player_room_yy[i] = global.map_start_pos_yy;
+	}
 	
 	//방의 최대 넓이 지정
 	global.max_room_width = argument5;

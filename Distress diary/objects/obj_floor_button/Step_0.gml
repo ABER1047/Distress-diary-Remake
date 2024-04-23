@@ -39,6 +39,23 @@ else
 	
 				image_index = s_img_ind;
 			}
+		}
 	}
+	
+	if (s_img_ind == 56 && image_index == s_img_ind+1)
+	{
+		skip_puzzle_timer++;
+		if (skip_puzzle_timer > 600)
+		{
+			with(obj_floor_button)
+			{
+				is_cleared = true;
+			}
+			skip_puzzle_timer = 0;
+		}
+	}
+	else
+	{
+		skip_puzzle_timer = 0;
 	}
 }

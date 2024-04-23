@@ -412,6 +412,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						//map_arr = 0 일때 방이 없음 / 1일때 방 존재
 						global.map_arr[i][ii] = real(buffer_read(buffer, buffer_string));
 						
+						//map_arr = 0 일때 방이 없음 / 1일때 방 존재
+						global.map_room_type[i][ii] = real(buffer_read(buffer, buffer_string));
+						
 						//각 방에 대한 방 넓이
 						global.map_room_width[i][ii] = real(buffer_read(buffer, buffer_string));
 						global.map_room_height[i][ii] = real(buffer_read(buffer, buffer_string));
@@ -651,10 +654,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						var tmp_xx = real(buffer_read(buffer, buffer_string));
 						var tmp_yy = real(buffer_read(buffer, buffer_string));
 						var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+						var tmp_xpos = real(buffer_read(buffer, buffer_string));
+						var tmp_ypos = real(buffer_read(buffer, buffer_string));
 					
-						var tmp_ins = instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true);
-						tmp_ins.my_pos_xx = real(buffer_read(buffer, buffer_string));
-						tmp_ins.my_pos_yy = real(buffer_read(buffer, buffer_string));
+						instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos);
 					}
 				}
 			}

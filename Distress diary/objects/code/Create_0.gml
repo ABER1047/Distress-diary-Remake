@@ -8,7 +8,7 @@ depth = -102;
 global.show_map_data = -1;
 global.dev_mode = 1;
 global.show_wall_hitbox = false;
-show_debug_log(global.dev_mode);
+show_debug_overlay(global.dev_mode,true);
 
 
 //랜덤 이름 생성

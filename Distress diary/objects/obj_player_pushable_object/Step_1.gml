@@ -32,7 +32,7 @@ if (pusher != -4)
 				send_InstanceVariableData(id,"pusher",global.my_player_id);
 			}
 		
-			if ((tmp_is_my_player_pushing && global.n_running) || point_distance(x,y,tmp_ins.x,tmp_ins.y) > sprite_width)
+			if ((tmp_is_my_player_pushing) || point_distance(x,y,tmp_ins.x,tmp_ins.y) > sprite_width)
 			{
 				pushing_animation = false;
 			}

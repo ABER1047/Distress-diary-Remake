@@ -7,7 +7,11 @@ if (image_alpha > 0)
 	if (tp_to == 1)
 	{
 		var n_wall_type = global.n_room_tileset;
+		//문 안쪽 검은 배경
 		draw_sprite_ext(sprite_index,1+n_wall_type,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
+		
+		//문 틀
+		draw_sprite_ext(sprite_index,2+n_wall_type,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
 		
 		if (global.show_wall_hitbox)
 		{
