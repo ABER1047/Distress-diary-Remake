@@ -34,6 +34,8 @@ function send_InventoryDataAll(argument0,argument1)
 			buffer_write(global.inv_data_buffer, buffer_string, tmp_width);
 			buffer_write(global.inv_data_buffer, buffer_string, tmp_height);
 			buffer_write(global.inv_data_buffer, buffer_string, loots_name);
+			buffer_write(global.inv_data_buffer, buffer_string, my_pos_xx);
+			buffer_write(global.inv_data_buffer, buffer_string, my_pos_yy);
 			
 			
 			var tmp_str = "";
@@ -55,7 +57,6 @@ function send_InventoryDataAll(argument0,argument1)
 					buffer_write(global.inv_data_buffer, buffer_string, inv_info_height[i][ii]); //아이템의 갯수 값 보유
 					buffer_write(global.inv_data_buffer, buffer_string, inv_info_rotated[i][ii]); //아이템의 최대 스택 갯수 값 보유
 					buffer_write(global.inv_data_buffer, buffer_string, inv_info_weight[i][ii]); //아이템의 무게 (kg단위)
-					buffer_write(global.inv_data_buffer, buffer_string, 0); //아이템 서치됨
 					tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 				}
 				tmp_str = string(tmp_str)+"\n"

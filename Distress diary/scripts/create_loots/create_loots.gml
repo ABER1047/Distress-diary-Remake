@@ -74,10 +74,12 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 		buffer_write(global.obj_data_buffer, buffer_string, argument0);
 		buffer_write(global.obj_data_buffer, buffer_string, argument1);
 		buffer_write(global.obj_data_buffer, buffer_string, argument2);
-		buffer_write(global.obj_data_buffer, buffer_string, argument3);
-		buffer_write(global.obj_data_buffer, buffer_string, argument4);
+		buffer_write(global.obj_data_buffer, buffer_string, tmp_width);
+		buffer_write(global.obj_data_buffer, buffer_string, tmp_height);
 		buffer_write(global.obj_data_buffer, buffer_string, argument5);
-		buffer_write(global.obj_data_buffer, buffer_string, argument6);
+		buffer_write(global.obj_data_buffer, buffer_string, tmp_obj_id);
+		buffer_write(global.obj_data_buffer, buffer_string, tmp_my_pos_xx);
+		buffer_write(global.obj_data_buffer, buffer_string, tmp_my_pos_yy);
 		send_all(global.obj_data_buffer);
 	}
 	

@@ -385,12 +385,8 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//여기에는 시드 값이 적용됨
 				global.is_map_exists = tmp_map_seed;
 				
-				global.n_player_room_xx = [ -4, -5, -6, -7, -8, -9 ];
-				global.n_player_room_yy = [ -4, -5, -6, -7, -8, -9 ];
-				
 				//최대 루트 길이
 				global.max_root_length = real(buffer_read(buffer, buffer_string));
-				
 				
 				//행 = height, 열 = width
 				global.map_width = real(buffer_read(buffer, buffer_string));
@@ -402,6 +398,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				//전체 룸 갯수
 				global.n_room_num = real(buffer_read(buffer, buffer_string));
+				
+				//모든 플레이어의 위치정보를 스타트 지점으로 초기화
+				for(var i = 0; i < array_length(global.n_player_room_xx); i++)
+				{
+					global.n_player_room_xx[i] = global.map_start_pos_xx;
+					global.n_player_room_yy[i] = global.map_start_pos_yy;
+				}
 				
 				
 				
@@ -506,10 +509,12 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					tmp_args[i] = real(buffer_read(buffer, buffer_string));
 				}
 				tmp_args[tmp_num] = buffer_read(buffer, buffer_string); //loots_name
+				var tmp_xpos = real(buffer_read(buffer, buffer_string)); //xpos
+				var tmp_ypos = real(buffer_read(buffer, buffer_string)); //ypos
 				
 				if (tmp_real_ins_id == -4)
 				{
-					tmp_real_ins_id = create_loots(tmp_args[0],tmp_args[1],tmp_args[2],tmp_args[3],tmp_args[4],tmp_args[5],tmp_obj_id,true);
+					tmp_real_ins_id = create_loots(tmp_args[0],tmp_args[1],tmp_args[2],tmp_args[3],tmp_args[4],tmp_args[5],tmp_obj_id,true,tmp_xpos,tmp_ypos);
 				}
 				
 				
@@ -534,7 +539,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 								inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
 								inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
 								inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-								inv_info_searched[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 서치됨
+								inv_info_searched[i][ii] = 0;//아이템 서치됨
 								tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 							}
 						}
@@ -588,7 +593,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
 							inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
 							inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-							inv_info_searched[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 서치됨
+							inv_info_searched[i][ii] = 0;//아이템 서치됨
 						}
 					}
 					
@@ -614,50 +619,95 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//보낸 나 자신 제외
 			if (global.my_player_id != tmp_my_player_id)
 			{
-				var tmp_obj_ind_name = buffer_read(buffer, buffer_string);
-				var tmp_obj_ind = asset_get_index(tmp_obj_ind_name);
-				var is_destroy = real(buffer_read(buffer, buffer_string)); //is_destroy가 1인 경우 해당 obj_id에 부합하는 인스턴스 삭제
-				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				instance_create_or_delete(buffer);
+			}
+		break;
+		
+		case DATA.OBJECTS_DATA_WHOLESCALE:
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				while(true)
+				{
+					var tmp_obj_ind_name = buffer_read(buffer, buffer_string);
+					if (tmp_obj_ind_name == "") //수신할 데이터가 더 이상 없는 경우
+					{
+						break;
+					}
+					else //아직 데이터가 남아있는 경우
+					{
+						var tmp_obj_ind = asset_get_index(tmp_obj_ind_name);
+						var tmp_obj_id = real(buffer_read(buffer, buffer_string));
 				
-				//is_destroy가 1인 경우 해당 obj_id에 부합하는 인스턴스 삭제
-				if (is_destroy == 1)
-				{
-					show_message_log("- 오브젝트 삭제 요청 ["+string(tmp_obj_ind_name)+", obj_id : "+string(tmp_obj_id)+"]");
-					with(tmp_obj_ind)
-					{
-						if (obj_id == tmp_obj_id)
+
+						show_message_log("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
+					
+						//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
+						/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고
+						명령을 보내는데, 이 때문에 오브젝트가 중복되서 생성되는 것을 방지하기 위함*/
+						var can_create_object = true;
+						with(tmp_obj_ind)
 						{
-							show_message_log("- 오브젝트 삭제 [obj_id : "+string(obj_id)+"]");
-							instance_destroy();
+							if (obj_id == tmp_obj_id)
+							{
+								can_create_object = false;
+							}
 						}
-					}
-				}
-				else
-				{
-					//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
-					/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고
-					명령을 보내는데, 이 때문에 오브젝트가 중복되서 생성되는 것을 방지하기 위함*/
-					var can_create_object = true;
-					with(tmp_obj_ind)
-					{
-						if (obj_id == tmp_obj_id)
+					
+					
+						//존재하지 않으면 생성해주기
+						if (can_create_object)
 						{
-							can_create_object = false;
+							//상자류-일반 오브젝트 모두 공통적으로 수신받는 값
+							var tmp_xx = real(buffer_read(buffer, buffer_string));
+							var tmp_yy = real(buffer_read(buffer, buffer_string));
+							var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+							var tmp_xpos = real(buffer_read(buffer, buffer_string));
+							var tmp_ypos = real(buffer_read(buffer, buffer_string));
+							
+							
+							//루팅 가능한 오브젝트(= 상자류)인지 일반 오브젝트인지 체크
+							if (tmp_obj_ind == obj_loots)
+							{
+								var tmp_inv_width = real(buffer_read(buffer, buffer_string));
+								var tmp_inv_height = real(buffer_read(buffer, buffer_string));
+								var tmp_loot_name = buffer_read(buffer, buffer_string);
+								
+								var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_loot_name,tmp_obj_id,true,tmp_xpos,tmp_ypos);
+								
+								with(tmp_ins)
+								{
+									for(var i = 0; i < tmp_inv_height; i++)
+									{
+										for(var ii = 0; ii < tmp_inv_width; ii++)
+										{
+											if (buffer_get_size(buffer) > 0)
+											{
+												var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+												var tmp_spr_name = asset_get_index(tmp_spr_name_real);
+												inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
+												inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
+												inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+												inv_info_name_compressed[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+												inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+												inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
+												inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
+												inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
+												inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+												inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+												inv_info_searched[i][ii] = 0;//아이템 서치됨
+											}
+										}
+									}
+								}
+							}
+							else
+							{
+								instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos);
+							}
 						}
-					}
-					
-					
-					//존재하지 않으면 생성해주기
-					if (can_create_object)
-					{
-						//is_destroy가 0인 경우 새로운 오브젝트 생성 (= 특별한 기능이 없는 오브젝트 [ex. 벽...])
-						var tmp_xx = real(buffer_read(buffer, buffer_string));
-						var tmp_yy = real(buffer_read(buffer, buffer_string));
-						var tmp_img_ind = real(buffer_read(buffer, buffer_string));
-						var tmp_xpos = real(buffer_read(buffer, buffer_string));
-						var tmp_ypos = real(buffer_read(buffer, buffer_string));
-					
-						instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos);
 					}
 				}
 			}
@@ -676,9 +726,11 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var tmp_inv_height = real(buffer_read(buffer, buffer_string));
 				var tmp_inv_name = buffer_read(buffer, buffer_string);
 				var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+				var tmp_xpos = real(buffer_read(buffer, buffer_string));
+				var tmp_ypos = real(buffer_read(buffer, buffer_string));
 				
 				//상자 생성
-				var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_inv_name,tmp_obj_id,1);
+				var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_inv_name,tmp_obj_id,1,tmp_xpos,tmp_ypos);
 				//네트워크상으로 위치 전송하기 위한 용도
 				tmp_ins.b_vspeed = 0;
 				tmp_ins.b_hspeed = 0;

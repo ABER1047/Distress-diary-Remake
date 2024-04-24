@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"send_AllMapData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"send_AllMapData",
+  "parent":{
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

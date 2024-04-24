@@ -36,18 +36,8 @@ function instance_create_multiplayer(argument0,argument1,argument2,argument3,arg
 		tmp_ins.my_pos_xx = tmp_my_pos_xx;
 		tmp_ins.my_pos_yy = tmp_my_pos_yy;
 		
-		buffer_seek(global.obj_data_buffer, buffer_seek_start, 0);
-		buffer_write(global.obj_data_buffer, buffer_u8, global.DATA_OBJECTS_DATA);
-		buffer_write(global.obj_data_buffer, buffer_string, global.my_player_id);
-		buffer_write(global.obj_data_buffer, buffer_string, object_get_name(tmp_obj_ind));
-		buffer_write(global.obj_data_buffer, buffer_string, 0);
-		buffer_write(global.obj_data_buffer, buffer_string, tmp_obj_id);
-		buffer_write(global.obj_data_buffer, buffer_string, tmp_xx);
-		buffer_write(global.obj_data_buffer, buffer_string, tmp_yy);
-		buffer_write(global.obj_data_buffer, buffer_string, tmp_img_ind);
-		buffer_write(global.obj_data_buffer, buffer_string, tmp_my_pos_xx);
-		buffer_write(global.obj_data_buffer, buffer_string, tmp_my_pos_yy);
-		send_all(global.obj_data_buffer);
+		
+		send_InstanceData(tmp_ins);
 	}
 	
 	

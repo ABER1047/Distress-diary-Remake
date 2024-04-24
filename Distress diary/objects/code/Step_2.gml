@@ -23,11 +23,8 @@ else
 //새로운 플레이어가 중도 참여했을 때, 맵 데이터 전송
 if (global.new_player_joined > 0)
 {
-	//순수 맵 데이터 전송
-	send_NewMapData();
-	
-	//맵에 있는 모든 오브젝트 정보 전송
-	send_NewObjectData();
+	//맵 데이터 전송
+	code_m.alarm[4] = 1;
 	
 	global.new_player_joined --;
 }

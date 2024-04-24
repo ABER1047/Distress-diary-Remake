@@ -41,6 +41,7 @@ enum DATA
 	INV_DATA, //인벤토리 데이터 전송용 (모든 칸)
 	INV_DATA_SPECIFIC, //인벤토리 데이터 전송용 (특정 1칸만)
 	OBJECTS_DATA, //오브젝트 생성/삭제용
+	OBJECTS_DATA_WHOLESCALE, //오브젝트 대량 생성/삭제용
 	CHEST_DATA, //상자 생성용 (삭제는 OBJECTS_DATA로 제어)
 	CHECK_PLAYING_NOW, //특정 플레이어 튕겼나 아닌가 체크용
 	REPLY_STILL_PLAYING, //아직 플레이 중 이라고 다시 한 번 보내주는 용
@@ -58,6 +59,7 @@ global.DATA_OBJECTS_DATA = DATA.OBJECTS_DATA;
 global.DATA_CHEST_DATA = DATA.CHEST_DATA;
 global.DATA_SFX_DATA = DATA.SFX_DATA;
 global.DATA_ROOM_DATA_SPECIFIC = DATA.ROOM_DATA_SPECIFIC;
+global.DATA_OBJECTS_DATA_WHOLESCALE = DATA.OBJECTS_DATA_WHOLESCALE;
 
 info_buffer = buffer_create(16384, buffer_grow, 1);
 dis_buffer = buffer_create(16384, buffer_grow, 1);
@@ -65,19 +67,19 @@ one_buffer = buffer_create(16384, buffer_grow, 1);
 much_buffer = buffer_create(16384, buffer_grow, 1);
 
 //변수 전송용 버퍼
-global.variable_data_buffer = buffer_create(16384,buffer_grow,1);
+global.variable_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //맵 데이터 전송용 버퍼
 global.map_data_buffer = buffer_create(16384*4,buffer_grow,1);
 
 //오브젝트 데이터 전송용 버퍼
-global.obj_data_buffer = buffer_create(16384,buffer_grow,1);
+global.obj_data_buffer = buffer_create(16384*4,buffer_grow,1);
 
 //인벤토리 데이터 전송용 버퍼
-global.inv_data_buffer = buffer_create(16384,buffer_grow,1);
+global.inv_data_buffer = buffer_create(16384*4,buffer_grow,1);
 
 //사운드 이펙트용 버퍼
-global.sfx_data_buffer = buffer_create(16384,buffer_grow,1);
+global.sfx_data_buffer = buffer_create(1024,buffer_grow,1);
 
 //내 플레이어 실제 id값 (게임 엔진 내에서의 id값)
 my_instance_id = -4;

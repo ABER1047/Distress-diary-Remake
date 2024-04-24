@@ -378,7 +378,7 @@ if (instance_exists(parents_id))
 						
 					//img_ind가 -4인경우 바닥에 떨군 아이템 보관용 박스 생성
 					var tmp_obj_id = global.object_id_ind;
-					var tmp_loot = create_loots(tmp_my_p_xx,tmp_my_p_yy,-4,9,9,"버려진 아이템",tmp_obj_id,0);
+					var tmp_loot = create_loots(tmp_my_p_xx,tmp_my_p_yy,-4,9,9,"버려진 아이템",tmp_obj_id,0,-4,-4);
 					tmp_loot.z = tmp_my_p.z-32;
 					tmp_loot.zspeed = -8;
 					tmp_loot.inv_width = origin_item_width;
