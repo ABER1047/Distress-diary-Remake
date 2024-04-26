@@ -638,74 +638,75 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					}
 					else //아직 데이터가 남아있는 경우
 					{
+						//상자류-일반 오브젝트 모두 공통적으로 수신받는 값
 						var tmp_obj_ind = asset_get_index(tmp_obj_ind_name);
 						var tmp_obj_id = real(buffer_read(buffer, buffer_string));
+						var tmp_xx = real(buffer_read(buffer, buffer_string));
+						var tmp_yy = real(buffer_read(buffer, buffer_string));
+						var tmp_img_ind = real(buffer_read(buffer, buffer_string));
+						var tmp_xpos = real(buffer_read(buffer, buffer_string));
+						var tmp_ypos = real(buffer_read(buffer, buffer_string));
+						
 				
-
-						show_message_log("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
-					
-						//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
-						/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고
-						명령을 보내는데, 이 때문에 오브젝트가 중복되서 생성되는 것을 방지하기 위함*/
-						var can_create_object = true;
-						with(tmp_obj_ind)
+						if (object_exists(tmp_obj_ind))
 						{
-							if (obj_id == tmp_obj_id)
-							{
-								can_create_object = false;
-							}
-						}
+							show_message_log("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
 					
-					
-						//존재하지 않으면 생성해주기
-						if (can_create_object)
-						{
-							//상자류-일반 오브젝트 모두 공통적으로 수신받는 값
-							var tmp_xx = real(buffer_read(buffer, buffer_string));
-							var tmp_yy = real(buffer_read(buffer, buffer_string));
-							var tmp_img_ind = real(buffer_read(buffer, buffer_string));
-							var tmp_xpos = real(buffer_read(buffer, buffer_string));
-							var tmp_ypos = real(buffer_read(buffer, buffer_string));
-							
-							
-							//루팅 가능한 오브젝트(= 상자류)인지 일반 오브젝트인지 체크
-							if (tmp_obj_ind == obj_loots)
+							//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
+							/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고
+							명령을 보내는데, 이 때문에 오브젝트가 중복되서 생성되는 것을 방지하기 위함*/
+							var can_create_object = true;
+							with(tmp_obj_ind)
 							{
-								var tmp_inv_width = real(buffer_read(buffer, buffer_string));
-								var tmp_inv_height = real(buffer_read(buffer, buffer_string));
-								var tmp_loot_name = buffer_read(buffer, buffer_string);
-								
-								var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_loot_name,tmp_obj_id,true,tmp_xpos,tmp_ypos);
-								
-								with(tmp_ins)
+								if (obj_id == tmp_obj_id)
 								{
-									for(var i = 0; i < tmp_inv_height; i++)
+									can_create_object = false;
+								}
+							}
+					
+					
+							//존재하지 않으면 생성해주기
+							if (can_create_object)
+							{
+								//루팅 가능한 오브젝트(= 상자류)인지 일반 오브젝트인지 체크
+								if (tmp_obj_ind == obj_loots)
+								{
+									var tmp_inv_width = real(buffer_read(buffer, buffer_string));
+									var tmp_inv_height = real(buffer_read(buffer, buffer_string));
+									var tmp_loot_name = buffer_read(buffer, buffer_string);
+								
+									var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_loot_name,tmp_obj_id,true,tmp_xpos,tmp_ypos);
+								
+									with(tmp_ins)
 									{
-										for(var ii = 0; ii < tmp_inv_width; ii++)
+										for(var i = 0; i < tmp_inv_height; i++)
 										{
-											if (buffer_get_size(buffer) > 0)
+											for(var ii = 0; ii < tmp_inv_width; ii++)
 											{
-												var tmp_spr_name_real = buffer_read(buffer, buffer_string);
-												var tmp_spr_name = asset_get_index(tmp_spr_name_real);
-												inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
-												inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
-												inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-												inv_info_name_compressed[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-												inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
-												inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
-												inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
-												inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
-												inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-												inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-												inv_info_searched[i][ii] = 0;//아이템 서치됨
+												if (buffer_get_size(buffer) > 0)
+												{
+													var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+													var tmp_spr_name = asset_get_index(tmp_spr_name_real);
+													inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
+													inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
+													inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+													inv_info_name_compressed[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
+													inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
+													inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
+													inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
+													inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
+													inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+													inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+													inv_info_searched[i][ii] = 0;//아이템 서치됨
+												}
 											}
 										}
 									}
 								}
-							}
-							else
-							{
-								instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos);
+								else
+								{
+									instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos);
+								}
 							}
 						}
 					}
