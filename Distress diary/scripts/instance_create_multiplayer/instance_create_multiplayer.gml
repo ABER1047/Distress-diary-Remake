@@ -22,21 +22,20 @@ function instance_create_multiplayer(argument0,argument1,argument2,argument3,arg
 	tmp_ins.image_index = tmp_img_ind;
 	tmp_ins.obj_id = tmp_obj_id;
 
+
+	var tmp_my_pos_xx = argument6;
+	var tmp_my_pos_yy = argument7;
+	if (argument6 == -4)
+	{
+		tmp_my_pos_xx = global.n_player_room_xx[global.my_player_id];
+		tmp_my_pos_yy = global.n_player_room_yy[global.my_player_id];
+	}
+	tmp_ins.my_pos_xx = tmp_my_pos_xx;
+	tmp_ins.my_pos_yy = tmp_my_pos_yy;
 	
 	
 	if (argument5 == false)
 	{
-		var tmp_my_pos_xx = argument6;
-		var tmp_my_pos_yy = argument7;
-		if (argument6 == -4)
-		{
-			tmp_my_pos_xx = global.n_player_room_xx[global.my_player_id];
-			tmp_my_pos_yy = global.n_player_room_yy[global.my_player_id];
-		}
-		tmp_ins.my_pos_xx = tmp_my_pos_xx;
-		tmp_ins.my_pos_yy = tmp_my_pos_yy;
-		
-		
 		send_InstanceData(tmp_ins);
 	}
 	

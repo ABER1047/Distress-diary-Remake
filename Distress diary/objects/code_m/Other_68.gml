@@ -327,18 +327,20 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//보낸 나 자신 제외
 			if (global.my_player_id != tmp_my_player_id)
 			{
-				var tmp_object_id_ind = real(buffer_read(buffer, buffer_string));
-				var tmp_obj_ind = asset_get_index(buffer_read(buffer, buffer_string));
-				var tmp_spr_ind = asset_get_index(buffer_read(buffer, buffer_string));
-				var tmp_img_ind = buffer_read(buffer, buffer_string);
-				var tmp_xx = buffer_read(buffer, buffer_string);
-				var tmp_yy = buffer_read(buffer, buffer_string);
-				var tmp_zz = buffer_read(buffer, buffer_string);
-				var tmp_xscale = buffer_read(buffer, buffer_string);
-				var tmp_yscale = buffer_read(buffer, buffer_string);
-				var tmp_angle = buffer_read(buffer, buffer_string);
-				var tmp_blend = buffer_read(buffer, buffer_string);
-				var tmp_alpha = buffer_read(buffer, buffer_string);
+				var tmp_str_data = buffer_read(buffer, buffer_string);
+				var tmp_str = string_split(tmp_str_data,"#");
+				var tmp_object_id_ind = real(tmp_str[0]);
+				var tmp_obj_ind = asset_get_index(tmp_str[1]);
+				var tmp_spr_ind = asset_get_index(tmp_str[2]);
+				var tmp_img_ind = tmp_str[3];
+				var tmp_xx = tmp_str[4];
+				var tmp_yy = tmp_str[5];
+				var tmp_zz = tmp_str[6];
+				var tmp_xscale = tmp_str[7];
+				var tmp_yscale = tmp_str[8];
+				var tmp_angle = tmp_str[9];
+				var tmp_blend = tmp_str[10];
+				var tmp_alpha = tmp_str[11];
 				
 
 
@@ -502,19 +504,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				}
 				
 				//obj_id가 일치하는 오브젝트가 아에 없는 경우 새로 생성
-				var tmp_args = [ -4, -4, -4, -4, -4, -4 ];
-				var tmp_num = array_length(tmp_args)-1;
-				for(var i = 0; i < tmp_num; i++)
-				{
-					tmp_args[i] = real(buffer_read(buffer, buffer_string));
-				}
-				tmp_args[tmp_num] = buffer_read(buffer, buffer_string); //loots_name
-				var tmp_xpos = real(buffer_read(buffer, buffer_string)); //xpos
-				var tmp_ypos = real(buffer_read(buffer, buffer_string)); //ypos
+				var tmp_str = buffer_read(buffer, buffer_string);
+				var tmp_args = string_split(tmp_str,"#");
+
 				
 				if (tmp_real_ins_id == -4)
 				{
-					tmp_real_ins_id = create_loots(tmp_args[0],tmp_args[1],tmp_args[2],tmp_args[3],tmp_args[4],tmp_args[5],tmp_obj_id,true,tmp_xpos,tmp_ypos);
+					tmp_real_ins_id = create_loots(real(tmp_args[0]),real(tmp_args[1]),real(tmp_args[2]),real(tmp_args[3]),real(tmp_args[4]),tmp_args[5],tmp_obj_id,true,real(tmp_args[6]),real(tmp_args[7]));
 				}
 				
 				
@@ -527,23 +523,25 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						{
 							if (buffer_get_size(buffer) > 0)
 							{
-								var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+								//문자열로 압축된 데이터 값
+								var tmp_str_data = buffer_read(buffer, buffer_string);
+								var tmp_str = string_split(tmp_str_data,"#");
+
+								var tmp_spr_name_real = tmp_str[0];
 								var tmp_spr_name = asset_get_index(tmp_spr_name_real);
 								inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
-								inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
-								inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-								inv_info_name_compressed[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-								inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
-								inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
-								inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
-								inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
-								inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-								inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+								inv_info_img_ind[i][ii] = real(tmp_str[1]);//img_ind값 보유
+								inv_info_name[i][ii] = tmp_str[2];//아이템의 이름 값 보유
+								inv_info_name_compressed[i][ii] = tmp_str[3];//아이템의 이름 값 보유
+								inv_info_stack_num[i][ii] = real(tmp_str[4]);//아이템의 갯수 값 보유
+								inv_info_max_stack_num[i][ii] = real(tmp_str[5]);//아이템의 최대 스택 갯수 값 보유
+								inv_info_width[i][ii] = real(tmp_str[6]);//아이템 가로 길이
+								inv_info_height[i][ii] = real(tmp_str[7]);//아이템 세로 길이
+								inv_info_rotated[i][ii] = real(tmp_str[8]);//아이템 회전 유무
+								inv_info_weight[i][ii] = real(tmp_str[9]);//아이템 회전 유무
 								inv_info_searched[i][ii] = 0;//아이템 서치됨
-								tmp_str = string(tmp_str)+string(inv_info_spr_ind[i][ii])+" ";
 							}
 						}
-						tmp_str = string(tmp_str)+"\n";
 					}
 				
 					
@@ -574,25 +572,26 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				with(tmp_obj_ind)
 				{
-					var tmp_str = "";
 					if (obj_id == tmp_obj_id)
 					{
 						if (buffer_get_size(buffer) > 0)
 						{
-							var i = real(buffer_read(buffer, buffer_string));
-							var ii = real(buffer_read(buffer, buffer_string));
-							var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+							var tmp_str_data = buffer_read(buffer, buffer_string);
+							var tmp_str = string_split(tmp_str_data,"#");
+							var i = real(tmp_str[0]);
+							var ii = real(tmp_str[1]);
+							var tmp_spr_name_real = tmp_str[2];
 							var tmp_spr_name = asset_get_index(tmp_spr_name_real);
 							inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
-							inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
-							inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-							inv_info_name_compressed[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-							inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
-							inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
-							inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
-							inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
-							inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-							inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+							inv_info_img_ind[i][ii] = real(tmp_str[3]);//img_ind값 보유
+							inv_info_name[i][ii] = tmp_str[4];//아이템의 이름 값 보유
+							inv_info_name_compressed[i][ii] = tmp_str[5];//아이템의 이름 값 보유
+							inv_info_stack_num[i][ii] = real(tmp_str[6]);//아이템의 갯수 값 보유
+							inv_info_max_stack_num[i][ii] = real(tmp_str[7]);//아이템의 최대 스택 갯수 값 보유
+							inv_info_width[i][ii] = real(tmp_str[8]);//아이템 가로 길이
+							inv_info_height[i][ii] = real(tmp_str[9]);//아이템 세로 길이
+							inv_info_rotated[i][ii] = real(tmp_str[10]);//아이템 회전 유무
+							inv_info_weight[i][ii] = real(tmp_str[11]);//아이템 회전 유무
 							inv_info_searched[i][ii] = 0;//아이템 서치됨
 						}
 					}
@@ -631,21 +630,23 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			{
 				while(true)
 				{
-					var tmp_obj_ind_name = buffer_read(buffer, buffer_string);
-					if (tmp_obj_ind_name == "") //수신할 데이터가 더 이상 없는 경우
+					var tmp_str_data = buffer_read(buffer, buffer_string);
+					var tmp_str = string_split(tmp_str_data,"#");
+					show_debug_message("tmp_str : "+string(tmp_str)+" / "+string(array_length(tmp_str)));
+					if (tmp_str[0] == "") //수신할 데이터가 더 이상 없는 경우
 					{
 						break;
 					}
 					else //아직 데이터가 남아있는 경우
 					{
 						//상자류-일반 오브젝트 모두 공통적으로 수신받는 값
-						var tmp_obj_ind = asset_get_index(tmp_obj_ind_name);
-						var tmp_obj_id = real(buffer_read(buffer, buffer_string));
-						var tmp_xx = real(buffer_read(buffer, buffer_string));
-						var tmp_yy = real(buffer_read(buffer, buffer_string));
-						var tmp_img_ind = real(buffer_read(buffer, buffer_string));
-						var tmp_xpos = real(buffer_read(buffer, buffer_string));
-						var tmp_ypos = real(buffer_read(buffer, buffer_string));
+						var tmp_obj_ind = asset_get_index(tmp_str[0]);
+						var tmp_obj_id = real(tmp_str[1]);
+						var tmp_xx = real(tmp_str[2]);
+						var tmp_yy = real(tmp_str[3]);
+						var tmp_img_ind = real(tmp_str[4]);
+						var tmp_xpos = real(tmp_str[5]);
+						var tmp_ypos = real(tmp_str[6]);
 						
 				
 						if (object_exists(tmp_obj_ind))
@@ -670,10 +671,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							{
 								//루팅 가능한 오브젝트(= 상자류)인지 일반 오브젝트인지 체크
 								if (tmp_obj_ind == obj_loots)
-								{
-									var tmp_inv_width = real(buffer_read(buffer, buffer_string));
-									var tmp_inv_height = real(buffer_read(buffer, buffer_string));
-									var tmp_loot_name = buffer_read(buffer, buffer_string);
+								{	
+									var tmp_inv_width = real(tmp_str[7]);
+									var tmp_inv_height = real(tmp_str[8]);
+									var tmp_loot_name = tmp_str[9];
 								
 									var tmp_ins = create_loots(tmp_xx,tmp_yy,tmp_img_ind,tmp_inv_width,tmp_inv_height,tmp_loot_name,tmp_obj_id,true,tmp_xpos,tmp_ypos);
 								
@@ -685,18 +686,23 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 											{
 												if (buffer_get_size(buffer) > 0)
 												{
-													var tmp_spr_name_real = buffer_read(buffer, buffer_string);
+													//문자열로 압축된 데이터 값
+													var tmp_str_data = buffer_read(buffer, buffer_string);
+													var tmp_str = string_split(tmp_str_data,"#");
+													show_debug_message("tmp_str : "+string(tmp_str)+" / "+string(array_length(tmp_str)));
+
+													var tmp_spr_name_real = tmp_str[0];
 													var tmp_spr_name = asset_get_index(tmp_spr_name_real);
 													inv_info_spr_ind[i][ii] = (tmp_spr_name == -1) ? real(tmp_spr_name_real) : tmp_spr_name;//spr_ind값 보유
-													inv_info_img_ind[i][ii] = real(buffer_read(buffer, buffer_string));//img_ind값 보유
-													inv_info_name[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-													inv_info_name_compressed[i][ii] = buffer_read(buffer, buffer_string);//아이템의 이름 값 보유
-													inv_info_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 갯수 값 보유
-													inv_info_max_stack_num[i][ii] = real(buffer_read(buffer, buffer_string));//아이템의 최대 스택 갯수 값 보유
-													inv_info_width[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 가로 길이
-													inv_info_height[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 세로 길이
-													inv_info_rotated[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
-													inv_info_weight[i][ii] = real(buffer_read(buffer, buffer_string));//아이템 회전 유무
+													inv_info_img_ind[i][ii] = real(tmp_str[1]);//img_ind값 보유
+													inv_info_name[i][ii] = tmp_str[2];//아이템의 이름 값 보유
+													inv_info_name_compressed[i][ii] = tmp_str[3];//아이템의 이름 값 보유
+													inv_info_stack_num[i][ii] = real(tmp_str[4]);//아이템의 갯수 값 보유
+													inv_info_max_stack_num[i][ii] = real(tmp_str[5]);//아이템의 최대 스택 갯수 값 보유
+													inv_info_width[i][ii] = real(tmp_str[6]);//아이템 가로 길이
+													inv_info_height[i][ii] = real(tmp_str[7]);//아이템 세로 길이
+													inv_info_rotated[i][ii] = real(tmp_str[8]);//아이템 회전 유무
+													inv_info_weight[i][ii] = real(tmp_str[9]);//아이템 회전 유무
 													inv_info_searched[i][ii] = 0;//아이템 서치됨
 												}
 											}

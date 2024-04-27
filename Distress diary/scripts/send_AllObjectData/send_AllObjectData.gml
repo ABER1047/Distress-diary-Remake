@@ -10,24 +10,21 @@ function send_AllObjectData()
 	{
 		if (id != other.id && object_index != obj_player)
 		{
-			//일반 오브젝트 정보 전송 (+상자류 오브젝트도 해당 부분은 공통적으로 보냄)
-			buffer_write(global.obj_data_buffer, buffer_string, object_get_name(object_index));
-			buffer_write(global.obj_data_buffer, buffer_string, obj_id);
-			buffer_write(global.obj_data_buffer, buffer_string, x);
-			buffer_write(global.obj_data_buffer, buffer_string, y);
-			buffer_write(global.obj_data_buffer, buffer_string, image_index);
-			buffer_write(global.obj_data_buffer, buffer_string, my_pos_xx);
-			buffer_write(global.obj_data_buffer, buffer_string, my_pos_yy);
+			//문자열로 데이터 압축 후 보내기 (+상자류 오브젝트도 해당 부분은 공통적으로 보냄)
+			var tmp_str = string(object_get_name(object_index))+"#"+string(obj_id)+"#"+string(x)+"#"+string(y)+"#"+string(image_index)+"#"+string(my_pos_xx)+"#"+string(my_pos_yy);
+			show_debug_message("tmp_str : "+string(tmp_str));
+			show_debug_message(tmp_str);
 			
 			
 			if (object_index == obj_loots) //루팅 가능한 오브젝트(= 상자류) 정보 전송
 			{
-				buffer_write(global.obj_data_buffer, buffer_string, inv_width);
-				buffer_write(global.obj_data_buffer, buffer_string, inv_height);
-				buffer_write(global.obj_data_buffer, buffer_string, loots_name);
+				//문자열로 데이터 압축 후 보내기 (상자류는 기존 문자열에 추가로 몇가지 더 정보를 붙여서 보냄)
+				tmp_str = string(tmp_str)+"#"+string(inv_width)+"#"+string(inv_height)+"#"+string(loots_name);
+				buffer_write(global.obj_data_buffer, buffer_string, tmp_str);
+				show_debug_message(tmp_str);
 			
 			
-				var tmp_str = "";
+
 				for(var i = 0; i < inv_height; i++)
 				{
 					for(var ii = 0; ii < inv_width; ii++)
@@ -35,19 +32,19 @@ function send_AllObjectData()
 						//inv_info_spr_ind가
 						//-4일때 = 비어있음
 						//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
+						
+						//문자열로 데이터 압축 후 보내기
 						var tmp_spr_name = (sprite_exists(inv_info_spr_ind[i][ii])) ? sprite_get_name(inv_info_spr_ind[i][ii]) : inv_info_spr_ind[i][ii];
-						buffer_write(global.obj_data_buffer, buffer_string, tmp_spr_name); //spr_ind값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_img_ind[i][ii]); //img_ind값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_name[i][ii]); //아이템의 이름 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_name_compressed[i][ii]); //아이템의 이름 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_stack_num[i][ii]); //아이템의 갯수 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_max_stack_num[i][ii]); //아이템의 최대 스택 갯수 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_width[i][ii]); //아이템의 이름 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_height[i][ii]); //아이템의 갯수 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_rotated[i][ii]); //아이템의 최대 스택 갯수 값 보유
-						buffer_write(global.obj_data_buffer, buffer_string, inv_info_weight[i][ii]); //아이템의 무게 (kg단위)
+						var tmp_str = string(tmp_spr_name)+"#"+string(inv_info_img_ind[i][ii])+"#"+string(inv_info_name[i][ii])+"#"+string(inv_info_name_compressed[i][ii])+"#"+string(inv_info_stack_num[i][ii])+"#"+string(inv_info_max_stack_num[i][ii])+"#"+string(inv_info_width[i][ii])+"#"+string(inv_info_height[i][ii])+"#"+string(inv_info_rotated[i][ii])+"#"+string(inv_info_weight[i][ii]);
+						buffer_write(global.obj_data_buffer, buffer_string, tmp_str);
+						show_debug_message(tmp_str);
 					}
 				}
+			}
+			else
+			{
+				//일반 오브젝트 정보만 전송
+				buffer_write(global.obj_data_buffer, buffer_string, tmp_str);
 			}
 		}
 		

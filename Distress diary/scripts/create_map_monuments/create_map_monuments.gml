@@ -15,7 +15,10 @@ function create_map_monuments()
 				if (tmp_room_type == 1)
 				{
 					//퍼즐 방 생성
-					instance_create_depth(x,y,0,obj_generation_puzzle,{xpos : ii, ypos : i});
+					var tmp_ins = instance_create_depth(x,y,0,obj_generation_puzzle);
+					tmp_ins.xpos = ii;
+					tmp_ins.ypos = i;
+					
 					tmp_room_width = 9;
 					tmp_room_height = 9;
 				}

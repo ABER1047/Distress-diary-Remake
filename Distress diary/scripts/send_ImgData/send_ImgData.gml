@@ -22,17 +22,9 @@ function send_ImgData(argument0,argument1,argument2,argument3,argument4,argument
 	buffer_seek(command_buffer, buffer_seek_start, 0);
 	buffer_write(command_buffer, buffer_u8, global.DATA_IMG_DATA);
 	buffer_write(command_buffer, buffer_string, global.my_player_id); // my_player_id
-	buffer_write(command_buffer, buffer_string, floor(args[0])); // obj_id
-	buffer_write(command_buffer, buffer_string, object_get_name(args[1].object_index));
-	buffer_write(command_buffer, buffer_string, sprite_get_name(args[2]));
-	buffer_write(command_buffer, buffer_string, floor(args[3]*100)); // image_index
-	buffer_write(command_buffer, buffer_string, floor(args[4]*100)); // x
-	buffer_write(command_buffer, buffer_string, floor(args[5]*100)); // y
-	buffer_write(command_buffer, buffer_string, floor(args[6]*100)); // z
-	buffer_write(command_buffer, buffer_string, floor(args[7]*100)); // image_xscale
-	buffer_write(command_buffer, buffer_string, floor(args[8]*100)); // image_yscale
-	buffer_write(command_buffer, buffer_string, floor(args[9]*100)); // image_angle
-	buffer_write(command_buffer, buffer_string, floor(args[10]*100)); // image_blend
-	buffer_write(command_buffer, buffer_string, floor(args[11]*100)); // image_alpha
+	
+	//데이터 압축
+	var tmp_str = string(floor(args[0]))+"#"+string(object_get_name(args[1].object_index))+"#"+string(sprite_get_name(args[2]))+"#"+string(floor(args[3]*100))+"#"+string(floor(args[4]*100))+"#"+string(floor(args[5]*100))+"#"+string(floor(args[6]*100))+"#"+string(floor(args[7]*100))+"#"+string(floor(args[8]*100))+"#"+string(floor(args[9]*100))+"#"+string(floor(args[10]*100))+"#"+string(floor(args[11]*100));
+	buffer_write(command_buffer, buffer_string, tmp_str);
 	send_all(command_buffer);
 }
