@@ -502,16 +502,16 @@ if (global.show_map_data == 1)
 				//방 표시
 				if (global.map_arr[i][ii] > 0)
 				{
-					var is_someone_here = 0;
+					var img_ind = (global.map_arr[i][ii] != 2) ? 0 : 1;
 					for(var k = 0; k < array_length(global.n_player_room_xx); k++)
 					{
 						if (global.n_player_room_xx[k] == ii && global.n_player_room_yy[k] == i)
 						{
-							is_someone_here = 1;
+							img_ind = 2;
 						}
 					}
 					
-					draw_sprite_ext(spr_map_ui_room,is_someone_here,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,c_white,global.show_map_data);
+					draw_sprite_ext(spr_map_ui_room,img_ind,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,c_white,global.show_map_data);
 					
 					//퍼즐방 표시
 					var img_ind_by_room_type = -4

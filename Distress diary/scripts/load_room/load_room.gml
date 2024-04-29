@@ -89,9 +89,12 @@ function load_room(argument0,argument1)
 	
 	
 	//새로운 방 방문 (= 플레이어가 적정 선 이상 이동시 방 문 닫기)
-	code.alarm[0] = 10;
-	global.visited_new_room = true;
-	global.map_arr[argument1][argument0] = 2;
+	if (global.map_arr[argument1][argument0] != 2)
+	{
+		code.alarm[0] = 10;
+		global.visited_new_room = true;
+		global.map_arr[argument1][argument0] = 3;
+	}
 	global.f_pos_xx = global.my_player_ins_id[global.my_player_id].x;
 	global.f_pos_yy = global.my_player_ins_id[global.my_player_id].y;
 	

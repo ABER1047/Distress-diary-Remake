@@ -329,7 +329,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		
 		
 			//문이 열려있음
-			if (global.map_arr[n_yy][n_xx] == 1 && global.map_arr[t_yy][t_xx] == 1)
+			if (global.map_arr[n_yy][n_xx] <= 2 && global.map_arr[t_yy][t_xx] <= 2 && global.map_arr[n_yy][n_xx] >= 1 && global.map_arr[t_yy][t_xx] >= 1)
 			{
 				//룸 이동 애니메이션 (카메라 이동 효과)
 				var tmp_camera_xx = move_to_other_room.x+tmp_xx[tmp_tp_to]*xx_w*0.5;

@@ -40,10 +40,10 @@ if (global.can_check_room_cleared)
 			else
 			{
 				//클리어 판정 체크 후 방 오픈
-				if (global.map_arr[tmp_yy][tmp_xx] >= 2 && check_is_room_cleared())
+				if (global.map_arr[tmp_yy][tmp_xx] >= 3 && check_is_room_cleared())
 				{
 					global.can_check_room_cleared = false;
-					global.map_arr[tmp_yy][tmp_xx] = 1;
+					global.map_arr[tmp_yy][tmp_xx] = 2;
 					send_SpecificPosRoomData(tmp_xx,tmp_yy);
 				}
 			}

@@ -89,7 +89,6 @@
     {"id":{"name":"obj_mob_pushable_object","path":"objects/obj_mob_pushable_object/obj_mob_pushable_object.yy",},},
     {"id":{"name":"obj_monster_parents","path":"objects/obj_monster_parents/obj_monster_parents.yy",},},
     {"id":{"name":"obj_nextroom","path":"objects/obj_nextroom/obj_nextroom.yy",},},
-    {"id":{"name":"obj_none","path":"objects/obj_none/obj_none.yy",},},
     {"id":{"name":"obj_only_breakable_pushable","path":"objects/obj_only_breakable_pushable/obj_only_breakable_pushable.yy",},},
     {"id":{"name":"obj_only_breakable","path":"objects/obj_only_breakable/obj_only_breakable.yy",},},
     {"id":{"name":"obj_parents","path":"objects/obj_parents/obj_parents.yy",},},

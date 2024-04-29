@@ -61,7 +61,6 @@
     {"name":"obj_mob_pushable_object","order":1,"path":"objects/obj_mob_pushable_object/obj_mob_pushable_object.yy",},
     {"name":"obj_monster_parents","order":2,"path":"objects/obj_monster_parents/obj_monster_parents.yy",},
     {"name":"obj_nextroom","order":3,"path":"objects/obj_nextroom/obj_nextroom.yy",},
-    {"name":"obj_none","order":1,"path":"objects/obj_none/obj_none.yy",},
     {"name":"obj_only_breakable_pushable","order":12,"path":"objects/obj_only_breakable_pushable/obj_only_breakable_pushable.yy",},
     {"name":"obj_only_breakable","order":11,"path":"objects/obj_only_breakable/obj_only_breakable.yy",},
     {"name":"obj_parents","order":5,"path":"objects/obj_parents/obj_parents.yy",},

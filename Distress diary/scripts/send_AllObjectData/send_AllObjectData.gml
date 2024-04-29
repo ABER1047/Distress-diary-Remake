@@ -2,13 +2,28 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 function send_AllObjectData()
 {
+	//전송할 오브젝트 종류
+	var ins_ = [ obj_loots, obj_vending_machine, obj_pc, obj_only_breakable, obj_only_breakable_pushable, obj_floor_button, obj_floor_button ];
+	
+	
 	buffer_seek(global.obj_data_buffer, buffer_seek_start, 0);
 	buffer_write(global.obj_data_buffer, buffer_u8, global.DATA_OBJECTS_DATA_WHOLESCALE);
 	buffer_write(global.obj_data_buffer, buffer_string, global.my_player_id);
 	
-	with(obj_parents)
+	with(all)
 	{
-		if (id != other.id && object_index != obj_player)
+		var chk_ = false;
+		for(var i = 0; i < array_length(ins_); i++)
+		{
+			if (object_index == ins_[i])
+			{
+				chk_ = true;
+				break;
+			}
+		}
+		
+		
+		if (chk_)
 		{
 			//문자열로 데이터 압축 후 보내기 (+상자류 오브젝트도 해당 부분은 공통적으로 보냄)
 			var tmp_str = string(object_get_name(object_index))+"#"+string(obj_id)+"#"+string(x)+"#"+string(y)+"#"+string(image_index)+"#"+string(my_pos_xx)+"#"+string(my_pos_yy);
@@ -46,9 +61,8 @@ function send_AllObjectData()
 				//일반 오브젝트 정보만 전송
 				buffer_write(global.obj_data_buffer, buffer_string, tmp_str);
 			}
+			show_message_log("- ["+string(obj_id)+"] 오브젝트 데이터 전송 완료");
 		}
-		
-		show_message_log("- ["+string(obj_id)+"] 오브젝트 데이터 전송 완료");
 	}
 	
 	

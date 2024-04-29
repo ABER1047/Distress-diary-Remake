@@ -14,10 +14,7 @@
     "name":"map_objects",
     "path":"folders/오브젝트/map_objects.yy",
   },
-  "parentObjectId":{
-    "name":"obj_parents",
-    "path":"objects/obj_parents/obj_parents.yy",
-  },
+  "parentObjectId":null,
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

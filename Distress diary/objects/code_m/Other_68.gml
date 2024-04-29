@@ -628,6 +628,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//보낸 나 자신 제외
 			if (global.my_player_id != tmp_my_player_id)
 			{
+				//어차피 모든 오브젝트 데이터 받아올거니까 지금 존재하는 모든 오브젝트 삭제
+				instance_destroy(obj_parents);
+				
+				
 				while(true)
 				{
 					var tmp_str_data = buffer_read(buffer, buffer_string);
