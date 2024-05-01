@@ -30,7 +30,7 @@ obj_animation = 0;
 
 
 //상자 열린상태인지 체크
-is_opened = -4; //-4 = 안 열림, -3 = 다른사람이 열고 있음, ins ref (숫자) = 내 자신이 열고 있으며 열려있는 인벤토리 id값을 반환
+is_opened = -4; //-5 = 안 열림, -3 = 다른사람이 열고 있음, ins ref (숫자) = 내 자신이 열고 있으며 열려있는 인벤토리 id값을 반환
 b_is_opened = -4;
 
 
@@ -51,4 +51,8 @@ origin_yy = ystart;
 draw_xx = 0;
 draw_yy = 0;
 pusher = -4;
+
+
+//이미지 인덱스 (디스플레이)
+display_img_ind = 0;
 

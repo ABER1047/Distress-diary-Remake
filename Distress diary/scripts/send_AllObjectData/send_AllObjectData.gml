@@ -3,7 +3,7 @@
 function send_AllObjectData()
 {
 	//전송할 오브젝트 종류
-	var ins_ = [ obj_loots, obj_vending_machine, obj_pc, obj_only_breakable, obj_only_breakable_pushable, obj_floor_button, obj_floor_button ];
+	var ins_ = [ obj_loots, obj_vending_machine, obj_arcade_pc, obj_only_breakable, obj_only_breakable_pushable, obj_floor_button, obj_floor_button ];
 	
 	
 	buffer_seek(global.obj_data_buffer, buffer_seek_start, 0);

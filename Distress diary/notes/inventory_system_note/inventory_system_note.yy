@@ -4,7 +4,7 @@
   "name":"inventory_system_note",
   "parent":{
     "name":"Inventory",
-    "path":"folders/오브젝트/Inventory.yy",
+    "path":"folders/오브젝트/ui/Inventory.yy",
   },
   "resourceType":"GMNotes",
   "resourceVersion":"2.0",

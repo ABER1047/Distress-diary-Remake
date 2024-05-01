@@ -547,7 +547,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					
 					//모든 인벤토리 UI들 리로드
 					show_debug_message("인벤토리 리로드 - "+string(object_get_name(tmp_obj_ind))+" / "+string(obj_id));
-					show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
+					//show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
 				}
 						
 				//인벤토리 ui정보 리로드
@@ -598,7 +598,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					
 					//모든 인벤토리 UI들 리로드
 					show_debug_message("인벤토리 리로드(Specific) - "+string(object_get_name(tmp_obj_ind))+" / "+string(obj_id));
-					show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
+					//show_debug_message(tmp_str); //인벤토리 정보 디버그 콘솔창에 표기
 						
 					//인벤토리 ui정보 리로드
 					with(obj_inv_ui)

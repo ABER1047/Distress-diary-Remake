@@ -13,7 +13,7 @@
   "overriddenProperties":[],
   "parent":{
     "name":"Inventory",
-    "path":"folders/오브젝트/Inventory.yy",
+    "path":"folders/오브젝트/ui/Inventory.yy",
   },
   "parentObjectId":null,
   "persistent":false,

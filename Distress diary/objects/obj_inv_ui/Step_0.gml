@@ -17,8 +17,9 @@ if (reload_inv == 1)
 	}
 
 
-	//무게를 다시 재기 위해 초기화
+	//무게-골드 갯수를 다시 재기 위해 초기화
 	inv_weight = 0;
+	var inv_gold_num = 0;
 	for(var i = 0; i < tmp_owner.inv_height; i++)
 	{
 		for(var ii = 0; ii < tmp_owner.inv_width; ii++)
@@ -27,6 +28,7 @@ if (reload_inv == 1)
 			{
 				var tmp_weight = tmp_owner.inv_info_weight[i][ii];
 				inv_weight += (tmp_weight > 0) ? tmp_weight : 0;
+				inv_gold_num += (tmp_owner.inv_info_spr_ind[i][ii] == spr_stackables && tmp_owner.inv_info_img_ind[i][ii] == 0) ? tmp_owner.inv_info_stack_num[i][ii] : 0;
 				create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_name_compressed[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],id,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_weight,tmp_owner.inv_info_searched[i][ii]);
 			}
 		}
@@ -41,9 +43,11 @@ if (reload_inv == 1)
 	if (global.showing_inv == id)
 	{
 		//내 무게 설정
-		var tmp_my_weight = inv_weight;
 		var my_p = global.my_player_ins_id[global.my_player_id];
-		global.my_weight = tmp_my_weight;
+		global.my_weight = inv_weight;
+		
+		//내 보유 골드 설정
+		global.my_gold = inv_gold_num;
 	}
 }
 

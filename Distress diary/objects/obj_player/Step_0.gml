@@ -60,93 +60,104 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	
 	//이동 관련
-	var tmp_max_vspeed = global.max_movement_speed;
-	var tmp_max_hspeed = global.max_movement_speed;
-	if (global.movement_vspeed != 0 && global.movement_hspeed != 0)
+	if (!global.prohibit_movement_input)
 	{
-		tmp_max_vspeed = tmp_max_vspeed/sqrt(2);//= sin(pi/4);
-		
-		//수직 이동은 속도가 좀 더 느리게 이동함
-		tmp_max_hspeed = tmp_max_hspeed/sqrt(2)*0.98;//= cos(pi/4);
-	}
-	
-	if (keyboard_check(ord("W")))
-	{
-		global.n_dir = (global.fixed_dir == 0) ? 1 : global.n_dir;
-		global.movement_vspeed += (-tmp_max_vspeed - global.movement_vspeed)*0.1;
-	}
-	else if (keyboard_check(ord("S")))
-	{
-		global.n_dir = (global.fixed_dir == 0) ? 3 : global.n_dir;
-		global.movement_vspeed += (tmp_max_vspeed - global.movement_vspeed)*0.1;
-	}
-
-	if (keyboard_check(ord("D")))
-	{
-		global.n_dir = (global.fixed_dir == 0) ? 0 : global.n_dir;
-		global.movement_hspeed += (tmp_max_hspeed - global.movement_hspeed)*0.1;
-	}
-	else if (keyboard_check(ord("A")))
-	{
-		global.n_dir = (global.fixed_dir == 0) ? 2 : global.n_dir;
-		global.movement_hspeed += (-tmp_max_hspeed - global.movement_hspeed)*0.1;
-	}
-
-
-	if (keyboard_check_released(ord("A")) || keyboard_check_released(ord("D")))
-	{
-		global.movement_hspeed = 0;
-	}
-
-	if (keyboard_check_released(ord("W")) || keyboard_check_released(ord("S")))
-	{
-		global.movement_vspeed = 0;
-	}
-	
-	
-	
-	//무게 시스템
-	//무게에 의한 이동속도
-	var tmp_weight_ratio = fix_to_zero(global.my_weight-10)/90;
-	speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
-	
-	
-	
-	//달리기
-	var stamina_decreasement = 0.6*(1+tmp_weight_ratio);
-	if (abs(global.movement_hspeed)+abs(global.movement_vspeed) > 0 && stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
-	{
-		//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
-		global.max_movement_speed = 9*speed_by_weight;
-		
-		//달리기 도중 쉬프트에서 손 때면 그만 달리기
-		global.n_running = keyboard_check(vk_shift);
-		
-		//스테미나 닳는거
-		stamina -= stamina_decreasement;
-		
-		//스테미나 회복 쿨타임 (프레임 단위)
-		stamina_cooltime = 10;
-	}
-	else
-	{
-		//스테미나 자동 회복
-		if (stamina_cooltime <= 0)
+		var tmp_max_vspeed = global.max_movement_speed;
+		var tmp_max_hspeed = global.max_movement_speed;
+		if (global.movement_vspeed != 0 && global.movement_hspeed != 0)
 		{
-			if (stamina < max_stamina)
-			{
-				stamina += 0.5*(1-tmp_weight_ratio);
-			}
-			else
-			{
-				stamina = max_stamina;
-			}
+			tmp_max_vspeed = tmp_max_vspeed/sqrt(2);//= sin(pi/4);
+		
+			//수직 이동은 속도가 좀 더 느리게 이동함
+			tmp_max_hspeed = tmp_max_hspeed/sqrt(2)*0.98;//= cos(pi/4);
+		}
+	
+		if (keyboard_check(ord("W")))
+		{
+			global.n_dir = (global.fixed_dir == 0) ? 1 : global.n_dir;
+			global.movement_vspeed += (-tmp_max_vspeed - global.movement_vspeed)*0.1;
+		}
+		else if (keyboard_check(ord("S")))
+		{
+			global.n_dir = (global.fixed_dir == 0) ? 3 : global.n_dir;
+			global.movement_vspeed += (tmp_max_vspeed - global.movement_vspeed)*0.1;
+		}
+
+		if (keyboard_check(ord("D")))
+		{
+			global.n_dir = (global.fixed_dir == 0) ? 0 : global.n_dir;
+			global.movement_hspeed += (tmp_max_hspeed - global.movement_hspeed)*0.1;
+		}
+		else if (keyboard_check(ord("A")))
+		{
+			global.n_dir = (global.fixed_dir == 0) ? 2 : global.n_dir;
+			global.movement_hspeed += (-tmp_max_hspeed - global.movement_hspeed)*0.1;
+		}
+
+
+		if (keyboard_check_released(ord("A")) || keyboard_check_released(ord("D")))
+		{
+			global.movement_hspeed = 0;
+		}
+
+		if (keyboard_check_released(ord("W")) || keyboard_check_released(ord("S")))
+		{
+			global.movement_vspeed = 0;
+		}
+	
+	
+	
+	
+		//무게 시스템
+		//무게에 의한 이동속도
+		var tmp_weight_ratio = fix_to_zero(global.my_weight-10)/90;
+		speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
+	
+	
+	
+		//달리기
+		var stamina_decreasement = 0.6*(1+tmp_weight_ratio);
+		if (abs(global.movement_hspeed)+abs(global.movement_vspeed) > 0 && stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
+		{
+			//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
+			global.max_movement_speed = 9*speed_by_weight;
+		
+			//달리기 도중 쉬프트에서 손 때면 그만 달리기
+			global.n_running = keyboard_check(vk_shift);
+		
+			//스테미나 닳는거
+			stamina -= stamina_decreasement;
+		
+			//스테미나 회복 쿨타임 (프레임 단위)
+			stamina_cooltime = 10;
 		}
 		else
 		{
-			stamina_cooltime --;
+			//스테미나 자동 회복
+			if (stamina_cooltime <= 0)
+			{
+				if (stamina < max_stamina)
+				{
+					stamina += 0.5*(1-tmp_weight_ratio);
+				}
+				else
+				{
+					stamina = max_stamina;
+				}
+			}
+			else
+			{
+				stamina_cooltime --;
+			}
+			global.max_movement_speed = 5*speed_by_weight;
+			global.n_running = false;
 		}
-		global.max_movement_speed = 5*speed_by_weight;
+	}
+	else
+	{
+		//움직임 인풋 금지되어있을 때 속도 0으로 고정
+		global.movement_hspeed = 0;
+		global.movement_vspeed = 0;
 		global.n_running = false;
 	}
 	
@@ -434,7 +445,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				else
 				{
 					//PC
-					tmp_ins = instance_nearest_notme(x,y,obj_pc);
+					tmp_ins = instance_nearest_notme(x,y,obj_arcade_pc);
 					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
 					{
 						is_lootable = "PC";
@@ -480,7 +491,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 					}
 					else if (tmp_ins.interaction_message == "상호작용")
 					{
-						tmp_ins.is_opened = true;
+						tmp_ins.is_opened = id;
 					}
 					global.interaction_hold_time = 0;
 				}

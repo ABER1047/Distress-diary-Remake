@@ -400,7 +400,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				var rd_choose = choose(0,1,2,3);
+				var rd_choose = choose(0,1,2);
 				if (rd_choose == 0)
 				{
 					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,44,false,-4,-4);
@@ -411,7 +411,7 @@ if (global.dev_mode == 1)
 				}
 				else if (rd_choose == 2)
 				{
-					instance_create_multiplayer(obj_pc,tmp_xx,tmp_yy,global.object_id_ind,47,false,-4,-4);
+					instance_create_multiplayer(obj_arcade_pc,tmp_xx,tmp_yy,global.object_id_ind,47,false,-4,-4);
 				}
 				else if (rd_choose == 3)
 				{
@@ -440,7 +440,7 @@ if (global.dev_mode == 1)
 	
 	
 	//전체화면
-	if (keyboard_check_pressed(vk_escape))
+	if (!instance_exists(obj_ui_arcade_pc) && keyboard_check_pressed(vk_escape))
 	{
 		event_user(1);
 	}

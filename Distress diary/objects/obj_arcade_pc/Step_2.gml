@@ -15,28 +15,35 @@ if (!stop_cal_by_pos_statement)
 	if (b_is_opened != is_opened)
 	{
 		//효과음 재생
-		play_sound_pos(flash_light_sfx,false,0.1,x,y,256,false);
 		play_sound_pos(activate_sfx,false,0.3,x,y,256,false);
+		
+		if (global.my_player_ins_id[global.my_player_id] == is_opened)
+		{
+			var tmp_ui = instance_create_depth(x,y,depth,obj_ui_arcade_pc);
+			tmp_ui.sprite_index = spr_pc_ui;
+			tmp_ui.parent_id = id;
+		}
+		
 		b_is_opened = is_opened;
 	}
 
 
-	if (is_opened == true)
+	if (is_opened != -4)
 	{
 		obj_animation_timer ++;
 		if (obj_animation_timer >= 50)
 		{
-			image_index ++;
-			if (image_index == 51)
+			display_img_ind ++;
+			if (display_img_ind == 4)
 			{
-				image_index = 48;
+				display_img_ind = 1;
 			}
 			obj_animation_timer = 0;
 		}
 	}
 	else
 	{
-		image_index = 47;
+		display_img_ind = 0;
 	}
 
 
