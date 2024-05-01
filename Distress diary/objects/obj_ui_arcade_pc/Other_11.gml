@@ -3,8 +3,8 @@
 var output = bet_amount*(my_bet_dice+2);
 var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 
-var i = global.inv_empty_ypos, ii = global.inv_empty_xpos;
-if (tmp_my_p.inv_info_stack_num[i][ii]+output <= 99) //인벤토리에 칸이 있는 경우
+
+if (i != -4 && ii != -4 && tmp_my_p.inv_info_stack_num[i][ii]+output <= 99) //인벤토리에 칸이 있는 경우
 {
 	tmp_my_p.inv_info_stack_num[i][ii] += output;
 	global.my_gold += output;

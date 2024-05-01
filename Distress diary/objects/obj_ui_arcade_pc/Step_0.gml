@@ -3,7 +3,6 @@
 
 
 
-
 //얼굴 이모지 애니메이션
 if (play_face_animation > 0)
 {
@@ -53,7 +52,7 @@ if (play_result_animation > 0)
 			} 
 			until(tmp_result_img_ind != result_img_ind);
 
-			play_sound_pos(arcade_bet_sfx,false,0.1,parent_id.x,parent_id.y,1280,false);
+			play_sound_pos(arcade_bet_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
 			play_result_animation ++;
 			result_animation_timer = 0;
 		}
@@ -101,7 +100,7 @@ if (play_result_animation > 0)
 			{
 				//이김
 				show_message_log("승리!");
-				play_sound_pos(arcade_win_sfx,false,0.1,parent_id.x,parent_id.y,1280,false);
+				play_sound_pos(arcade_win_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
 				face_img_ind = 4;
 				
 				//골드 지급
@@ -111,8 +110,14 @@ if (play_result_animation > 0)
 			{
 				//짐
 				show_message_log("패배!");
-				play_sound_pos(arcade_loose_sfx,false,0.1,parent_id.x,parent_id.y,1280,false);
+				play_sound_pos(arcade_loose_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
 				face_img_ind = 3;
+			}
+			
+			//베팅 금액이 5이상인데 내 돈보다 많은 경우 자동 조정
+			if (bet_amount > 5 && global.my_gold < bet_amount)
+			{
+				bet_amount = floor(global.my_gold/5)*5;
 			}
 		}
 	}
@@ -132,19 +137,16 @@ if (!instance_exists(parent_id) || (play_result_animation <= 1 && keyboard_check
 //베팅
 if (play_result_animation <= 1)
 {
-	//베팅 금액
-	if (keyboard_check_pressed(vk_up))
+	//베팅할 골드
+	if (global.my_gold >= bet_amount+5 && keyboard_check_pressed(vk_up))
 	{
-		if (global.my_gold >= bet_amount+5)
-		{
-			bet_amount += 5;
-		}
-		play_sound_pos(arcade_bet_sfx,false,0.05,parent_id.x,parent_id.y,1280,false);
+		bet_amount += 5;
+		play_sound(arcade_bet_sfx,false,0.05);
 	}
 	else if (bet_amount > 5 && keyboard_check_pressed(vk_down))
 	{
 		bet_amount -= 5;
-		play_sound_pos(arcade_bet_sfx,false,0.05,parent_id.x,parent_id.y,1280,false);
+		play_sound(arcade_bet_sfx,false,0.05);
 	}
 	else if (keyboard_check_pressed(vk_left))
 	{
@@ -153,7 +155,7 @@ if (play_result_animation <= 1)
 		{
 			my_bet_dice = 4;
 		}
-		play_sound_pos(arcade_bet_sfx,false,0.05,parent_id.x,parent_id.y,1280,false);
+		play_sound(arcade_bet_sfx,false,0.05);
 	}
 	else if (keyboard_check_pressed(vk_right))
 	{
@@ -162,7 +164,7 @@ if (play_result_animation <= 1)
 		{
 			my_bet_dice = 0;
 		}
-		play_sound_pos(arcade_bet_sfx,false,0.05,parent_id.x,parent_id.y,1280,false);
+		play_sound(arcade_bet_sfx,false,0.05);
 	}
 	else if (global.my_gold >= bet_amount && keyboard_check_pressed(ord("F")))
 	{
@@ -178,7 +180,8 @@ if (play_result_animation <= 1)
 		
 		if (is_exists)
 		{
-			var i = global.inv_empty_ypos, ii = global.inv_empty_xpos;
+			i = global.inv_empty_ypos;
+			ii = global.inv_empty_xpos;
 			if (tmp_owner.inv_info_stack_num[i][ii] > bet_amount) //해당 칸에 있는 돈이 충분히 여유가 있는 경우
 			{
 				tmp_owner.inv_info_stack_num[i][ii] -= bet_amount;

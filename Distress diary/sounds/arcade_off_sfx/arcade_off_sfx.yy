@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":0.731429,
+  "duration":0.679184,
   "name":"arcade_off_sfx",
   "parent":{
     "name":"사운드",
@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"arcade_off_sfx.mp3",
   "type":1,
-  "volume":1.0,
+  "volume":0.6,
 }

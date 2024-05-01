@@ -1,16 +1,18 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+//플레이어 이동 금지인거 풀기
 global.prohibit_movement_input = false;
 
-
-
-//닫힌거 감지
+//창 닫힌거 감지
 if (instance_exists(parent_id))
 {
 	parent_id.is_opened = -4;
 	
 	//효과음
-	play_sound_pos(arcade_off_sfx,false,0.1,parent_id.x,parent_id.y,1280,false);
+	play_sound_pos(arcade_off_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
 }
+
+
+//서피스 삭제
+surface_free(crt_surf);

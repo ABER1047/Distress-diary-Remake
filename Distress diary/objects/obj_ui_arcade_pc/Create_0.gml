@@ -20,7 +20,8 @@ result_animation_playtime = -4; //애니메이션 재생 시간 (프레임 단�
 result_animation_timer_sec = 0;
 
 
-//베팅 금액
+
+//베팅할 골드
 bet_amount = 5;
 
 //베팅한 주사위
@@ -32,3 +33,16 @@ alarm[0] = 1;
 
 //인벤토리 UI강제 닫기
 instance_destroy(obj_inv_ui);
+
+
+//CRT효과 서피스
+var whole_scale = global.n_camera_zoom/0.7;
+var xx_w = camera_get_view_width(view_camera[0]);
+var tmp_scale = xx_w/1280;
+crt_surf = surface_create(320*5.5*tmp_scale/whole_scale,256*2.56*tmp_scale/whole_scale);
+crt_yy = 0;
+
+
+//임시 변수
+i = 0;
+ii = 0;

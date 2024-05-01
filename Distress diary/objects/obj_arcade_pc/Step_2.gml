@@ -11,7 +11,7 @@ if (!stop_cal_by_pos_statement)
 
 
 
-	//컴퓨터 전원 켜짐
+	//다른사람이 상호작용 중인 경우, 상호작용 중이라고 정보 보내기
 	if (b_is_opened != is_opened)
 	{
 		//효과음 재생
@@ -20,11 +20,11 @@ if (!stop_cal_by_pos_statement)
 		if (global.my_player_ins_id[global.my_player_id] == is_opened)
 		{
 			var tmp_ui = instance_create_depth(x,y,depth,obj_ui_arcade_pc);
-			tmp_ui.sprite_index = spr_pc_ui;
 			tmp_ui.parent_id = id;
 		}
 		
 		b_is_opened = is_opened;
+		send_InstanceVariableData(id,"is_opened");
 	}
 
 

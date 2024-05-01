@@ -3,4 +3,4 @@
 
 
 //효과음 재생
-play_sound_pos(arcade_on_sfx,false,0.1,parent_id.x,parent_id.y,1280,false);
+play_sound_pos(arcade_on_sfx,false,0.07,parent_id.x,parent_id.y,640,false);

@@ -21,7 +21,7 @@ global.camera_target_y = -4
 
 global.camera_target = -4;
 
-global.n_camera_zoom = 0.7
+global.n_camera_zoom = 0.7;
 
 depth = -99999;
 
