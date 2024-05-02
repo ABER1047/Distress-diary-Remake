@@ -4,7 +4,7 @@
 //인벤토리가 2개만 남아있을때, 깊이 값 초기화
 if (instance_number(obj_inv_ui) == 2)
 {
-	global.min_depth = -999;
+	global.min_depth = obj_camera.depth-64;
 }
 
 

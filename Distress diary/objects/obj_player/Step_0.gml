@@ -281,24 +281,24 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	{
 		if (global.n_dir == 0 || global.n_dir == 2)
 		{
-			var tmp_skin_spr = [ spr_original_p0, spr_original_b0, spr_original_d0, spr_original_r0, spr_original_m0 ];
+			var tmp_skin_spr = [ spr_original_p0, spr_original_b0, spr_original_d0, spr_original_r0, spr_original_m0, spr_original_h0 ];
 			sprite_index = tmp_skin_spr[global.player_skin];
 			image_xscale = (global.n_dir == 0) ? -abs(image_xscale) : abs(image_xscale);
 		}
 		else if (global.n_dir == 1)
 		{
-			var tmp_skin_spr = [ spr_original_p1, spr_original_b1, spr_original_d1, spr_original_r1, spr_original_m1 ];
+			var tmp_skin_spr = [ spr_original_p1, spr_original_b1, spr_original_d1, spr_original_r1, spr_original_m1, spr_original_h1 ];
 			sprite_index = tmp_skin_spr[global.player_skin];
 		}
 		else
 		{
-			var tmp_skin_spr = [ spr_original_p2, spr_original_b2, spr_original_d2, spr_original_r2, spr_original_m2 ];
+			var tmp_skin_spr = [ spr_original_p2, spr_original_b2, spr_original_d2, spr_original_r2, spr_original_m2, spr_original_h2 ];
 			sprite_index = tmp_skin_spr[global.player_skin];
 		}
 	}
 	else
 	{
-		var tmp_skin_spr = [ spr_original_p3, spr_original_b3, spr_original_d3, spr_original_r3, spr_original_m3 ];
+		var tmp_skin_spr = [ spr_original_p3, spr_original_b3, spr_original_d3, spr_original_r3, spr_original_m3, spr_original_h3 ];
 		sprite_index = tmp_skin_spr[global.player_skin];
 	}
 
@@ -317,15 +317,8 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	else
 	{
-		if (!instance_exists(move_to_other_room))
-		{
-			var ins_place = instance_place(x,y,obj_nextroom);
-			if (instance_exists(ins_place) && ins_place.can_use_tp == 1)
-			{
-				move_to_other_room = ins_place;
-			}
-		}
-		else
+		move_to_other_room = instance_place(x,y,obj_nextroom);
+		if (instance_exists(move_to_other_room))
 		{
 			var xx_w = camera_get_view_width(view_camera[0]);
 			var yy_h = camera_get_view_height(view_camera[0]);
@@ -340,7 +333,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		
 		
 			//문이 열려있음
-			if (global.map_arr[n_yy][n_xx] <= 2 && global.map_arr[t_yy][t_xx] <= 2 && global.map_arr[n_yy][n_xx] >= 1 && global.map_arr[t_yy][t_xx] >= 1)
+			if (move_to_other_room.can_use_tp)
 			{
 				//룸 이동 애니메이션 (카메라 이동 효과)
 				var tmp_camera_xx = move_to_other_room.x+tmp_xx[tmp_tp_to]*xx_w*0.5;

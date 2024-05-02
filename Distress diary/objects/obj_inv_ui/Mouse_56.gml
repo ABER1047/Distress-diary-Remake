@@ -8,7 +8,7 @@ if (is_dragging_window && instance_number(obj_inv_ui) > 1)
 	{
 		if (id != other.id)
 		{
-			depth = -999;
+			depth = obj_camera.depth-64;
 		}
 	}
 }

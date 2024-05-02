@@ -4,7 +4,7 @@ var output = bet_amount*(my_bet_dice+2);
 var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 
 
-if (i != -4 && ii != -4 && tmp_my_p.inv_info_stack_num[i][ii]+output <= 99) //인벤토리에 칸이 있는 경우
+if (i != -4 && ii != -4 && tmp_my_p.inv_info_stack_num[i][ii]+output <= tmp_my_p.inv_info_max_stack_num[i][ii]) //인벤토리에 칸이 있는 경우
 {
 	tmp_my_p.inv_info_stack_num[i][ii] += output;
 	global.my_gold += output;
@@ -31,7 +31,7 @@ else
 			show_message_log("- 아이템 떨어뜨림 [빈칸에 아이템 집어넣기]");
 						
 			//새로운 자리에 아이템 정보 배열에 저장
-			set_inv_variable(tmp_nearest_dropped_item,global.inv_empty_xpos,global.inv_empty_ypos,spr_stackables,0,"Golden Coin","Coin",output,99,1,1,global.inv_empty_rotated,0.002,1);
+			set_inv_variable(tmp_nearest_dropped_item,global.inv_empty_xpos,global.inv_empty_ypos,spr_stackables,0,"Golden Coin","Coin",output,9999,1,1,global.inv_empty_rotated,0.002,1);
 			tmp_nearest_dropped_item.x = tmp_my_p_xx;
 			tmp_nearest_dropped_item.y = tmp_my_p_yy;
 			tmp_nearest_dropped_item.z = tmp_my_p.z-32;
@@ -109,7 +109,7 @@ else
 		}
 						
 		//새로운 자리에 아이템 정보 배열에 저장
-		set_inv_variable(tmp_loot,0,0,spr_stackables,0,"Golden Coin","Coin",output,99,1,1,0,0.002,1);
+		set_inv_variable(tmp_loot,0,0,spr_stackables,0,"Golden Coin","Coin",output,9999,1,1,0,0.002,1);
 					
 		//네트워크상으로 해당 박스 인벤토리 정보 전송
 		tmp_loot.alarm[0] = 1;

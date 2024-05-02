@@ -77,7 +77,8 @@ if (instance_exists(parents_id))
 		//아이템 스택 갯수 표기
 		if (max_stack_num > 1)
 		{
-			draw_text_kl_scale(startx+(slot_size)-(8*global.n_camera_zoom),starty+(slot_size)-(64*global.n_camera_zoom),string(stack_num)+"/"+string(max_stack_num),64,-1,parents_id.image_alpha,c_white,0,1,font_normal,0.5*global.n_camera_zoom,0.5*global.n_camera_zoom,0);
+			var txt_max_stack = (max_stack_num != 9999) ? "/"+string(max_stack_num) : "";
+			draw_text_kl_scale(startx+(slot_size)-(8*global.n_camera_zoom),starty+(slot_size)-(64*global.n_camera_zoom),string(stack_num)+string(txt_max_stack),64,-1,parents_id.image_alpha,c_white,0,1,font_normal,0.5*global.n_camera_zoom,0.5*global.n_camera_zoom,0);
 		}
 	}
 	else

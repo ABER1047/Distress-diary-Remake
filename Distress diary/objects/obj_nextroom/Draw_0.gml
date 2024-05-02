@@ -6,12 +6,17 @@ if (image_alpha > 0)
 	//위로 올라가는 포탈인 경우 벽까지 그리기
 	if (tp_to == 1)
 	{
+		var xx = camera_get_view_x(view_camera[0]);
+		var yy = camera_get_view_y(view_camera[0]);
 		var n_wall_type = global.n_room_tileset;
 		//문 안쪽 검은 배경
-		draw_sprite_ext(sprite_index,1+n_wall_type,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
+		draw_sprite_ext(sprite_index,1+n_wall_type*3,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
+		
+		//문
+		draw_surface_ext(door_surf,x-40,y-120,image_xscale,image_yscale,0,c_white,1);
 		
 		//문 틀
-		draw_sprite_ext(sprite_index,2+n_wall_type,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
+		draw_sprite_ext(sprite_index,2+n_wall_type*3,x,y-16,image_xscale,image_yscale,0,image_blend,sign(image_alpha));
 		
 		if (global.show_wall_hitbox)
 		{

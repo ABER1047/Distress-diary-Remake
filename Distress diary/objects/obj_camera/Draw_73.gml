@@ -69,5 +69,14 @@ for(var i = 0; i < 3; i++)
 
 
 
+//UI창이 열려있을때 뒷 배경 까맣게 칠하기
+if (instance_exists(obj_ui_parents))
+{
+	draw_set_alpha(0.9);
+	draw_set_color(c_black);
+	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+}
+
+
 
 

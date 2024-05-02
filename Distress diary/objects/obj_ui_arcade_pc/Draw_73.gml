@@ -8,10 +8,6 @@ var xx_w = camera_get_view_width(view_camera[0]);
 var yy_h = camera_get_view_height(view_camera[0]);
 
 
-//뒷 배경 까맣게 칠하기
-draw_set_alpha(0.9);
-draw_set_color(c_black);
-draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
 
 
 

@@ -35,7 +35,7 @@ global.maximum_ping_acception = 256;
 
 
 //플레이어 스킨
-global.player_skin_num = 5;
+global.player_skin_num = 6;
 global.player_skin = irandom_range(0,global.player_skin_num-1);
 
 //플레이어 착용중인 백팩
@@ -116,7 +116,7 @@ global.n_room_tileset = 0;
 global.showing_inv = -4;
 
 //인벤토리 ui중 가장 낮은 depth를 가진 값을 저장하는 변수
-global.min_depth = -999;
+global.min_depth = -99999-64;
 
 
 //인벤토리 빈칸 찾기용 변수

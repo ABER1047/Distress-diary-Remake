@@ -77,7 +77,7 @@ function set_item_value(argument0,argument1)
 				return 9;
 			break;
 		
-			case "Energy Bar":
+			case "Energy bar":
 				item_name_translated = "에너지바";
 				return 8;
 			break;

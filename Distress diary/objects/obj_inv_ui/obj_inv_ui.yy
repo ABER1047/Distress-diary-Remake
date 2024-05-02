@@ -19,7 +19,10 @@
     "name":"Inventory",
     "path":"folders/오브젝트/ui/Inventory.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_ui_parents",
+    "path":"objects/obj_ui_parents/obj_ui_parents.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

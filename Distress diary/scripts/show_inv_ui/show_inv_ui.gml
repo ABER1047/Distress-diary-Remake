@@ -14,7 +14,7 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 	var tmp_owner = argument3;
 	if (instance_exists(tmp_owner))
 	{
-		var tmp_ins = instance_create_depth(-999,-999,-999,obj_inv_ui);
+		var tmp_ins = instance_create_depth(-999,-999,global.min_depth,obj_inv_ui);
 		tmp_ins.x_pos = argument0;
 		tmp_ins.y_pos = argument1;
 		tmp_ins.inv_name = argument2;

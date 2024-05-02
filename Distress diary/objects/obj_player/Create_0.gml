@@ -83,7 +83,7 @@ for(var i = 0; i < inv_height; i++)
 	}
 }
 
-set_inv_variable(id,0,0,spr_stackables,0,"Golden Coin","Coin",irandom_range(60,99),99,1,1,0,0.002,0);
+set_inv_variable(id,0,0,spr_stackables,0,"Golden Coin","Coin",irandom_range(60,99),9999,1,1,0,0.002,0);
 set_inv_variable(id,1,0,spr_stackables,3,"Keycard","Card",irandom_range(3,4),5,1,1,0,0.001,0);
 set_inv_variable(id,2,0,spr_drink,0,"Coke","Coke",-4,-4,1,1,0,0.58,0);
 

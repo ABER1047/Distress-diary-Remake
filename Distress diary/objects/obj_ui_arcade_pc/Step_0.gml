@@ -118,6 +118,10 @@ if (play_result_animation > 0)
 			if (bet_amount > 5 && global.my_gold < bet_amount)
 			{
 				bet_amount = floor(global.my_gold/5)*5;
+				if (bet_amount < 5)
+				{
+					bet_amount = 5;
+				}
 			}
 		}
 	}
@@ -138,7 +142,7 @@ if (!instance_exists(parent_id) || (play_result_animation <= 1 && keyboard_check
 if (play_result_animation <= 1)
 {
 	//베팅할 골드
-	if (global.my_gold >= bet_amount+5 && keyboard_check_pressed(vk_up))
+	if (global.my_gold >= bet_amount+5 && bet_amount < 50 && keyboard_check_pressed(vk_up))
 	{
 		bet_amount += 5;
 		play_sound(arcade_bet_sfx,false,0.05);

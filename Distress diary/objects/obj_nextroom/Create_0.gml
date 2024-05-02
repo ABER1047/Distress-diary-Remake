@@ -11,8 +11,8 @@ floor_arrow_img_ind = irandom_range(0,2);
 
 
 //방 이동 가능한지 (문이 잠겨있거나 한 경우 이동 불가능)
-can_use_tp = 1;
-
+can_use_tp = false;
+door_yy = 0;
 
 
 
@@ -23,3 +23,5 @@ arrow_animation_timer = 0;
 //입구 주변 벽 인스턴스 저장용 변수
 ins_wall = [ -4, -4 ];
 
+//문 그리기용 서피스
+door_surf = surface_create(128,116);
