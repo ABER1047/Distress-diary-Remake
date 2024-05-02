@@ -4,10 +4,6 @@
 
 if (xpos != -4 && ypos != -4)
 {
-	//고정 사이즈의 방 세팅
-	global.map_room_width[ypos][xpos] = 8;
-	global.map_room_height[ypos][xpos] = 8;
-	
 	//load_room(tmp_xx,tmp_yy);
 
 

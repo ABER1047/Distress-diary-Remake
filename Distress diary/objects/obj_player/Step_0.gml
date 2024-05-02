@@ -149,7 +149,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			{
 				stamina_cooltime --;
 			}
-			global.max_movement_speed = 5*speed_by_weight;
+			global.max_movement_speed = 7*speed_by_weight;
 			global.n_running = false;
 		}
 	}
@@ -415,7 +415,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	{
 		//상자 루팅하기
 		tmp_ins = instance_nearest_notme(x,y,obj_loots);
-		if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
+		if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 		{
 			is_lootable = string(tmp_ins.loots_name);
 		}
@@ -423,7 +423,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			//버려진 아이템 루팅하기 (= 아이템 버렸을 때 생성되는 특수 상자)
 			tmp_ins = instance_nearest_notme(x,y,obj_dropped_item);
-			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
+			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 			{
 				is_lootable = "버려진 아이템";
 			}
@@ -431,7 +431,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			{
 				//벤딩 머신
 				tmp_ins = instance_nearest_notme(x,y,obj_vending_machine);
-				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
+				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 				{
 					is_lootable = "자동판매기";
 				}
@@ -439,7 +439,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				{
 					//PC
 					tmp_ins = instance_nearest_notme(x,y,obj_arcade_pc);
-					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-32) <= 96)
+					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
 					{
 						is_lootable = "PC";
 					}

@@ -88,5 +88,9 @@ function create_map(argument0,argument1,argument2,argument3,argument4,argument5,
 	
 	
 	//맵에 있는 모든 오브젝트 삭제
-	instance_destroy(obj_parents);
+	var ins_ = [ obj_loots, obj_vending_machine, obj_arcade_pc, obj_only_breakable, obj_only_breakable_pushable, obj_floor_button, obj_floor_button ];
+	for(var i = 0; i < array_length(ins_); i++)
+	{
+		instance_destroy(ins_[i]);
+	}
 }

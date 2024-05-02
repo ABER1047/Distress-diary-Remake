@@ -417,7 +417,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						//map_arr = 0 일때 방이 없음 / 1일때 방 존재
 						global.map_arr[i][ii] = real(buffer_read(buffer, buffer_string));
 						
-						//map_arr = 0 일때 방이 없음 / 1일때 방 존재
+						//0 - 빈방 / 1 - 퍼즐방 / 2 - 습격방 / 3 - 세이프존 / 4 - 아케이드방
 						global.map_room_type[i][ii] = real(buffer_read(buffer, buffer_string));
 						
 						//각 방에 대한 방 넓이
@@ -629,7 +629,11 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			if (global.my_player_id != tmp_my_player_id)
 			{
 				//어차피 모든 오브젝트 데이터 받아올거니까 지금 존재하는 모든 오브젝트 삭제
-				instance_destroy(obj_parents);
+				var ins_ = [ obj_loots, obj_vending_machine, obj_arcade_pc, obj_only_breakable, obj_only_breakable_pushable, obj_floor_button, obj_floor_button ];
+				for(var i = 0; i < array_length(ins_); i++)
+				{
+					instance_destroy(ins_[i]);
+				}
 				
 				
 				while(true)

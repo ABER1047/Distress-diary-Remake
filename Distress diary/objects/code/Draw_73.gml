@@ -513,7 +513,7 @@ if (global.show_map_data == 1)
 					
 					draw_sprite_ext(spr_map_ui_room,img_ind,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,c_white,global.show_map_data);
 					
-					//퍼즐방 표시
+					//방 아이콘 표시
 					var img_ind_by_room_type = -4
 					if (global.map_room_type[i][ii] == 1)
 					{
@@ -526,6 +526,10 @@ if (global.show_map_data == 1)
 					else if (global.map_room_type[i][ii] == 3)
 					{
 						img_ind_by_room_type = 13;
+					}
+					else if (global.map_room_type[i][ii] == 4)
+					{
+						img_ind_by_room_type = 14;
 					}
 					
 					if (img_ind_by_room_type != -4)

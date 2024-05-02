@@ -7,8 +7,7 @@
 ///@param connection_num
 function create_room_specific_pos(argument0,argument1,argument2)
 {
-	//방 종류 지정
-	//0 = 빈방 - 1 = 퍼즐방 - 2 = 습격방 - 3 = 아지트
+	//랜덤 방 종류 지정용 변수
 	var tmp_room_type;
 	
 	
@@ -30,7 +29,8 @@ function create_room_specific_pos(argument0,argument1,argument2)
 	else
 	{
 		//방 종류 지정
-		tmp_room_type = choose(0,0,0,0,0,0,1,2,3)
+		//0 - 빈방 / 1 - 퍼즐방 / 2 - 습격방 / 3 - 세이프존 / 4 - 아케이드방
+		tmp_room_type = choose(0,0,0,0,0,0,1,2,3,4)
 		
 		tmp_room_width = irandom_range(global.min_room_width,global.max_room_width);
 		tmp_room_height = irandom_range(global.min_room_height,global.max_room_height);

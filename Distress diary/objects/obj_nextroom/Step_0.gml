@@ -33,7 +33,8 @@ if (surface_exists(door_surf))
 	var t_yy = n_yy+tmp_yy[tp_to];
 	if (global.map_arr[n_yy][n_xx] <= 2 && global.map_arr[t_yy][t_xx] <= 2 && global.map_arr[n_yy][n_xx] >= 1 && global.map_arr[t_yy][t_xx] >= 1)
 	{
-		door_yy += (116 - door_yy)*0.03;
+		door_yy += (116 - door_yy)*0.06;
+		
 		if (door_yy > 64)
 		{
 			can_use_tp = true;
@@ -41,7 +42,15 @@ if (surface_exists(door_surf))
 	}
 	else
 	{
-		door_yy += (0 - door_yy)*0.1;
+		if (door_yy > 0)
+		{
+			door_yy -= 6;
+		}
+		else 
+		{
+			door_yy = 0;
+		}
+		
 		can_use_tp = false;
 	}
 	

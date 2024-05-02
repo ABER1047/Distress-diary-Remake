@@ -30,7 +30,7 @@ if (surface_exists(crt_surf))
 
 	tmp_yy += 320*whole_scale;
 	draw_text_k_scale(tmp_xx,tmp_yy-52,"베팅할 골드",64,-1,1,#83E04C,0,0,font_normal,txt_scale*1.25,txt_scale*1.25,0);
-	draw_text_k_scale(tmp_xx,tmp_yy,string(bet_amount)+" / "+string(global.my_gold),64,-1,1,#83E04C,0,0,font_normal,txt_scale,txt_scale,0);
+	draw_text_k_scale(tmp_xx,tmp_yy,string(bet_amount)+" / "+string(global.my_gold),64,-1,1,#83E04C,0,0,font_normal,txt_scale*1.25,txt_scale*1.25,0);
 
 
 

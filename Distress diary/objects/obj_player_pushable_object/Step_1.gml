@@ -18,7 +18,14 @@ if (pusher != -4)
 		var tmp_yy = y - tmp_ins.y;
 		var tmp_is_my_player_pushing = (pusher == global.my_player_id);
 
-
+		//일정 거리 이상 멀어지면 밀기 효과 삭제
+		if (pushing_timer <= 30 && point_distance(x,y-48,tmp_ins.x,tmp_ins.y) > 96)
+		{
+			pushing_timer = 0;
+			pushing_animation = false;
+			draw_xx = 0;
+			draw_yy = 0;
+		}
 
 		//블럭 미는 애니메이션
 		if (pushing_animation)
@@ -32,7 +39,7 @@ if (pusher != -4)
 				send_InstanceVariableData(id,"pusher",global.my_player_id);
 			}
 		
-			if ((tmp_is_my_player_pushing) || point_distance(x,y,tmp_ins.x,tmp_ins.y) > sprite_width)
+			if (tmp_is_my_player_pushing)
 			{
 				pushing_animation = false;
 			}
