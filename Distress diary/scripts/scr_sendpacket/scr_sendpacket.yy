@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"scr_sendpacket",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"scr_sendpacket",
+  "parent":{
+    "name":"VoiceChat",
+    "path":"folders/스크립트/VoiceChat.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

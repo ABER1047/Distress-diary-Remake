@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"async_networking_ev",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"async_networking_ev",
+  "parent":{
+    "name":"VoiceChat",
+    "path":"folders/스크립트/VoiceChat.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
