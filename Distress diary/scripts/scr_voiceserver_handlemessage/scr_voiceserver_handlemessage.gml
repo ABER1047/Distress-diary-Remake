@@ -56,7 +56,7 @@ function scr_voiceserver_handlemessage(buffer, socket){
 			//receive user info from client
 			case 3:
 
-				scr_voiceserver_receive_userinfo(buffer, socket);
+				//scr_voiceserver_receive_userinfo(buffer, socket);
 		
 			break;
 			
