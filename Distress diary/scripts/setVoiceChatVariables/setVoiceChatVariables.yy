@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"setVoiceChatVariables",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"setVoiceChatVariables",
+  "parent":{
+    "name":"VoiceChat",
+    "path":"folders/스크립트/VoiceChat.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

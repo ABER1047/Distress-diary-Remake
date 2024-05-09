@@ -126,3 +126,7 @@ global.max_chat_stack = 64;
 global.chat = array_create(global.max_chat_stack,"");
 
 
+
+//general variables for VC
+setVoiceChatVariables();
+

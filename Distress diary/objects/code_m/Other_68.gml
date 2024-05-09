@@ -759,20 +759,17 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//보낸 나 자신 제외
 			if (global.my_player_id != tmp_my_player_id)
 			{
-				if (global.n_player_room_xx[tmp_my_player_id] == global.n_player_room_xx[global.my_player_id] && global.n_player_room_yy[tmp_my_player_id] == global.n_player_room_yy[global.my_player_id])
-				{
-					var tmp_audio_name = buffer_read(buffer, buffer_string);
-					var tmp_soundid = asset_get_index(tmp_audio_name);
+				var tmp_audio_name = buffer_read(buffer, buffer_string);
+				var tmp_soundid = asset_get_index(tmp_audio_name);
 				
-					var tmp_volume = real(buffer_read(buffer, buffer_string));
-					var tmp_xx = real(buffer_read(buffer, buffer_string));
-					var tmp_yy = real(buffer_read(buffer, buffer_string));
-					var tmp_max_dis = real(buffer_read(buffer, buffer_string));
-					var tmp_xpos = real(buffer_read(buffer, buffer_string));
-					var tmp_ypos = real(buffer_read(buffer, buffer_string));
+				var tmp_volume = real(buffer_read(buffer, buffer_string));
+				var tmp_xx = real(buffer_read(buffer, buffer_string));
+				var tmp_yy = real(buffer_read(buffer, buffer_string));
+				var tmp_max_dis = real(buffer_read(buffer, buffer_string));
+				var tmp_xpos = real(buffer_read(buffer, buffer_string));
+				var tmp_ypos = real(buffer_read(buffer, buffer_string));
 				
-					play_sound_pos(tmp_soundid,false,tmp_volume,tmp_xx,tmp_yy,tmp_max_dis,true,tmp_xpos,tmp_ypos);
-				}
+				play_sound_pos(tmp_soundid,false,tmp_volume,tmp_xx,tmp_yy,tmp_max_dis,true,tmp_xpos,tmp_ypos);
 			}
 		break;
 	}

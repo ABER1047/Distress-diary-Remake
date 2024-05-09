@@ -22,18 +22,20 @@ function play_sound_pos(argument0,argument1,argument2,argument3,argument4,argume
 	var tmp_ypos = (argument8 != -4) ? argument8 : my_pos_yy;
 	
 	//룸 사이의 거리
-	var tmp_dis_room = point_distance(tmp_xpos,tmp_ypos,my_pos_xx,my_pos_yy)*tmp_room_size;
-	
-	//사운드 볼륨 조절용 거리 값
-	var distance_ = fix_to_zero(1-(point_distance(argument3,argument4,obj_camera.x,obj_camera.y)+tmp_dis_room)/argument5);
-	
-	
-	//소리 볼륨이 0인경우 플레이 안함 
+	var tmp_dis_xx = (tmp_xpos-my_pos_xx)*tmp_room_size;
+	var tmp_dis_yy = (tmp_ypos-my_pos_yy)*tmp_room_size;
+
+
+	//사운드 플레이
 	var tmp_sound = -4;
-	if (distance_ > 0)
+	var tmp_xx = -(argument3+tmp_dis_xx);
+	var tmp_yy = -(argument4+tmp_dis_yy);
+	var tmp_ins = global.my_player_ins_id[global.my_player_id];
+	if (instance_exists(tmp_ins) && point_distance(tmp_ins.x,tmp_ins.y,tmp_xx,tmp_yy) <= argument5+64)
 	{
-		tmp_sound = play_sound(argument0,argument1,argument2*distance_);
+		tmp_sound = audio_play_sound_at(argument0,-(argument3+tmp_dis_xx),-(argument4+tmp_dis_yy),0,64,argument5,10,argument1,0,argument2*global.master_volume*global.sfx_volume);
 	}
+	
 	
 	if (!argument6 && !argument1)
 	{
@@ -49,6 +51,9 @@ function play_sound_pos(argument0,argument1,argument2,argument3,argument4,argume
 		buffer_write(global.sfx_data_buffer, buffer_string, tmp_ypos);
 		send_all(global.sfx_data_buffer);
 	}
+	
+	show_debug_message("real_x : "+string(argument3)+" / real_y : "+string(argument4));
+	show_debug_message("x : "+string(argument3+tmp_dis_xx)+" / y : "+string(argument4+tmp_dis_yy));
 	
 	return tmp_sound;
 }

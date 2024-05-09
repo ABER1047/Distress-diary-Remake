@@ -22,13 +22,12 @@ if (server == -4)
 		
 		if (server < 0) 
 		{
-			server = -4;
+			event_user(3);
 			show_message_log("서버 생성 오류 발생!");
 		}
 		else 
 		{
-			alarm[1] = 1;
-			global.is_server = true;
+			event_user(4);
 			show_message_log("서버 생성 완료!");
 		}
 	}

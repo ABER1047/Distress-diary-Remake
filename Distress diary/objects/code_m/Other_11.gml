@@ -1,4 +1,4 @@
-/// @description Insert description here
+/// @description Server Connection
 // You can write your code in this editor
 
 
@@ -10,7 +10,7 @@ var res = network_connect(server, server_ip, server_port);
 		
 if (res < 0) 
 {
-	server = -4;
+	event_user(3);
 	show_message_log("해당 서버에 접속할 수 없습니다 ["+string(tmp_ip)+"]");
 }
 else 

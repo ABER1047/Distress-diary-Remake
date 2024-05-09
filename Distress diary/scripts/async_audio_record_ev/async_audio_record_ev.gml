@@ -5,7 +5,7 @@ function async_audio_record_ev()
 	//Only applies for client
 	if (voice_client == true)
 	{
-		if (mic_set == true) && (mic_on == true)
+		if (mic_set == true && mic_on == true)
 		{
 			var channel = async_load[? "channel_index"];
 
