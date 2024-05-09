@@ -12,5 +12,5 @@ function scr_voiceclient_send_audio(audio_buffer, Len, rate, format)
 	buffer_copy(audio_buffer, 0, Len, bitSend, buffer_tell(bitSend)) //Put the audio_buffer data into the buffer we are sending
 			
 	buffer_seek(bitSend, buffer_seek_relative, Len);
-	scr_sendpacket(voice_server_socket, bitSend, voice_header_buffer, voice_send_buffer); //Send the whole data to server
+	scr_sendpacket(server, bitSend, voice_header_buffer, voice_send_buffer); //Send the whole data to server
 }

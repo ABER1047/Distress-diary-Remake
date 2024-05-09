@@ -1,6 +1,6 @@
 function scr_voiceserver_start()
 {
-	voice_server_started = network_create_server_raw(network_socket_tcp, voice_server_port, 1000);
+	voice_server_started = network_create_server(network_socket_tcp, voice_server_port, 1000);
 	
 	if (voice_server_started >= 0) 
 	{

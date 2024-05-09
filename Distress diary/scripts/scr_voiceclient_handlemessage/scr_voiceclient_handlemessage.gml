@@ -3,11 +3,12 @@ function scr_voiceclient_handlemessage(buffer)
 {
 	while(true) 
 	{
-		
 		var expected_packet_size = 0;
 	    var message_id = buffer_read(buffer,buffer_u8);
 		
-		if (message_id == 99){ //packet with the size information of next packet
+		if (message_id == 99)
+		{ 
+			//packet with the size information of next packet
 			if (buffer_tell(buffer)+4 < buffer_get_size(buffer))
 			{ 
 				//packet is of the correct size (at least 4bytes)
@@ -48,11 +49,10 @@ function scr_voiceclient_handlemessage(buffer)
 			case 4:
 				scr_voiceclient_receive_audio(buffer);
 			break;
-			
-			
 		}
 		
-		if( buffer_tell(buffer) >= buffer_get_size(buffer) ){
+		if (buffer_tell(buffer) >= buffer_get_size(buffer))
+		{
 			break;	
 		}
 	}

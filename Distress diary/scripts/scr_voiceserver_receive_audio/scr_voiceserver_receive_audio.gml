@@ -25,15 +25,18 @@ function scr_voiceserver_receive_audio(buffer, socket)
 		
 		//send audio to all users of the same party
 		var party_to_send = global.server_voice_users[? socket][? "party_id"];
-		for(var k = ds_map_find_first(global.server_voice_users); !is_undefined(k); k = ds_map_find_next(global.server_voice_users,k) ){
-			if global.server_voice_users[? k][? "party_id"] == party_to_send {
+		for(var k = ds_map_find_first(global.server_voice_users); !is_undefined(k); k = ds_map_find_next(global.server_voice_users,k))
+		{
+			if (global.server_voice_users[? k][? "party_id"] == party_to_send)
+			{
 				scr_sendpacket(k, bitSend, voice_header_buffer[socket], voice_send_buffer[socket]);
 			}
 		}
 		
 		buffer_seek(buffer, buffer_seek_relative, Len);
-		
-	} else {
+	} 
+	else 
+	{
 		//skip duplicated packet
 		buffer_seek(buffer, buffer_seek_relative, Len);	
 	}

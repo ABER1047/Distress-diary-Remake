@@ -1,6 +1,6 @@
 function send_all(argument0) 
 {
-	buffer = argument0;
+	var buffer = argument0;
 	
 	if (global.is_server == false) 
 	{

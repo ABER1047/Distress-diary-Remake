@@ -25,7 +25,7 @@ function scr_voiceclient_start()
 	//loop microphones
 	for(var i = 0; i < number_of_mics; i++)
 	{
-		record_info[i] = audio_start_recording(i)					
+		record_info[i] = audio_start_recording(i);
 		var ds_map = audio_get_recorder_info(i);
 		show_debug_message("audio_get_recorder_info : "+string(ds_map));
 		

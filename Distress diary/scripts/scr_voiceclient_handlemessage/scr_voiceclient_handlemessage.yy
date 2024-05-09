@@ -6,7 +6,7 @@
   "name":"scr_voiceclient_handlemessage",
   "parent":{
     "name":"client_functions",
-    "path":"folders/스크립트/VoiceChat/client_functions.yy",
+    "path":"folders/스크립트/VoiceChat/inner code/client_functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

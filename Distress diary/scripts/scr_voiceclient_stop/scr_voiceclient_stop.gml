@@ -2,7 +2,7 @@ function scr_voiceclient_stop()
 {
 	connected_to_voice_server = false;
 
-	network_destroy(voice_server_socket);
+	network_destroy(server);
 	ds_map_destroy(voice_chat_users_dsmap);
 
 	buffer_delete(voice_fragment_buffer);
