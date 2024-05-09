@@ -171,7 +171,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		if (played_jump_sfx)
 		{
 			//점프 효과음
-			play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1600,false);
+			play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1600,false,-4,-4);
 			played_jump_sfx = false;
 		}
 		
@@ -180,7 +180,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			zspeed = -8;
 		
 			//점프 효과음
-			play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false);
+			play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false,-4,-4);
 			played_jump_sfx = true;
 		}
 	}
@@ -253,7 +253,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			if (!played_footstep_sfx)
 			{
 				played_footstep_sfx = true;
-				play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1280,false);
+				play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1280,false,-4,-4);
 			}
 		}
 		else

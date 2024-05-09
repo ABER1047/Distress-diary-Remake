@@ -60,7 +60,7 @@ if (type == network_type_connect)
 }
 else if (type == network_type_disconnect) // 누군가 나갔을 때 발생하는 이벤트
 {
-	//게임종료 이벤트에 다 들어있음
+	event_user(2);
 }
 
 else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생하는 이벤트
@@ -768,8 +768,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					var tmp_xx = real(buffer_read(buffer, buffer_string));
 					var tmp_yy = real(buffer_read(buffer, buffer_string));
 					var tmp_max_dis = real(buffer_read(buffer, buffer_string));
+					var tmp_xpos = real(buffer_read(buffer, buffer_string));
+					var tmp_ypos = real(buffer_read(buffer, buffer_string));
 				
-					play_sound_pos(tmp_soundid,false,tmp_volume,tmp_xx,tmp_yy,tmp_max_dis,true);
+					play_sound_pos(tmp_soundid,false,tmp_volume,tmp_xx,tmp_yy,tmp_max_dis,true,tmp_xpos,tmp_ypos);
 				}
 			}
 		break;

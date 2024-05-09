@@ -37,7 +37,7 @@ resize_inv = false;
 
 
 //생성 효과음
-play_sound_pos(inventory1_sfx,false,0.1,x,y,160,true);
+play_sound_pos(inventory1_sfx,false,0.1,x,y,160,true,-4,-4);
 
 
 //인터렉션 키 드로우 용

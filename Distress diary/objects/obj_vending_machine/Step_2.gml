@@ -36,7 +36,7 @@ if (!stop_cal_by_pos_statement)
 	sfx_timer ++;
 	if (sfx_timer > 45)
 	{
-		sfx = play_sound_pos(vending_machine_sfx,false,0.1,x,y,640,true);
+		sfx = play_sound_pos(vending_machine_sfx,false,0.1,x,y,640,true,-4,-4);
 		sfx_timer = 0;
 	}
 

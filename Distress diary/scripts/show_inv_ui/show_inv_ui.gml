@@ -23,8 +23,8 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 		
 		//인벤토리 효과음
 		var target_ins_for_sfx = (object_index == code) ? obj_player : self;
-		play_sound_pos(inventory1_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160,false);
-		play_sound_pos(inventory2_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160,false);
+		play_sound_pos(inventory1_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160,false,-4,-4);
+		play_sound_pos(inventory2_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160,false,-4,-4);
 		
 		for(var i = 0; i < tmp_owner.inv_height; i++)
 		{

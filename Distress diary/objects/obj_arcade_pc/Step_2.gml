@@ -15,7 +15,7 @@ if (!stop_cal_by_pos_statement)
 	if (b_is_opened != is_opened)
 	{
 		//효과음 재생
-		play_sound_pos(activate_sfx,false,0.3,x,y,256,false);
+		play_sound_pos(activate_sfx,false,0.3,x,y,256,false,-4,-4);
 		
 		if (global.my_player_ins_id[global.my_player_id] == is_opened)
 		{
@@ -54,7 +54,7 @@ if (!stop_cal_by_pos_statement)
 	sfx_timer ++;
 	if (sfx_timer > 45)
 	{
-		sfx = play_sound_pos(vending_machine_sfx,false,0.1,x,y,640,true);
+		sfx = play_sound_pos(vending_machine_sfx,false,0.1,x,y,640,true,-4,-4);
 		sfx_timer = 0;
 	}
 

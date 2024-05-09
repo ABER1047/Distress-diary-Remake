@@ -25,7 +25,7 @@ else
 			if (image_index != tmp_ind)
 			{
 				//효과음 재생
-				play_sound_pos(button_sfx,false,0.3,x,y,640,false);
+				play_sound_pos(button_sfx,false,0.3,x,y,640,false,-4,-4);
 		
 				image_index = tmp_ind;
 			}
@@ -35,7 +35,7 @@ else
 			if (image_index != s_img_ind)
 			{
 				//효과음 재생
-				play_sound_pos(button_sfx,false,0.3,x,y,640,false);
+				play_sound_pos(button_sfx,false,0.3,x,y,640,false,-4,-4);
 	
 				image_index = s_img_ind;
 			}

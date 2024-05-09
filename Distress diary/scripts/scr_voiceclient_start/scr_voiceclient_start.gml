@@ -1,9 +1,7 @@
-function scr_voiceclient_start(){
+function scr_voiceclient_start()
+{
 	//init voice client
 	
-	randomize();
-	
-	username = get_string("Enter Username: ","user_"+string(irandom(1000)));
 	my_voice_id = -1;
 	
 	audioQueue = array_create(1000, -1);
@@ -25,15 +23,17 @@ function scr_voiceclient_start(){
 	show_debug_message("number of mics : " +string(number_of_mics));
 
 	//loop microphones
-	for (var i = 0; i < number_of_mics; i += 1){
-					
+	for(var i = 0; i < number_of_mics; i++)
+	{
 		record_info[i] = audio_start_recording(i)					
 		var ds_map = audio_get_recorder_info(i);
 		show_debug_message("audio_get_recorder_info : "+string(ds_map));
 		
 		//get microphone name
-		if ds_exists(ds_map,ds_type_map){
-			if ds_map_exists(ds_map, "name"){
+		if (ds_exists(ds_map,ds_type_map))
+		{
+			if (ds_map_exists(ds_map, "name"))
+			{
 				mic_names[i] = ds_map[? "name"];
 				ds_map_destroy(ds_map);
 			} 
@@ -43,12 +43,11 @@ function scr_voiceclient_start(){
 	}
 	
 	//default to first microphone
-	if (number_of_mics > 0){
+	if (number_of_mics > 0)
+	{
 		mic_set = true;
 		mic_id = 0;
 	}
-	
-	pushToTalkKey = ord("V"); //key used to record voice on press
 	
 	voice_packetTimeStamp = 0; //stores last audio packet timestamp, to check for duplicated audio packets
 	voice_packet_fragmented = false; //It can happen that a packet received is incomplete, in that case this variable holds the information of weither the last packet received was fragmented
@@ -57,28 +56,4 @@ function scr_voiceclient_start(){
 	voice_send_buffer = buffer_create(1, buffer_grow, 1);
 	voice_write_buffer = buffer_create(1, buffer_grow, 1);
 	voice_header_buffer = buffer_create(1, buffer_grow, 1);
-
-	//connect to server
-	network_set_config(network_config_connect_timeout, 500);
-	voice_server_socket = network_create_socket(network_socket_tcp);
-	voice_server_connect = network_connect_raw(voice_server_socket, voice_server_ip, voice_server_port);
-	
-	if voice_server_connect < 0 {
-		//connection failed
-		scr_voiceclient_stop();
-		exit;
-	}
-	else
-	{
-		connected_to_voice_server = true;
-		voice_client = true;
-		display_text  = "Voice chat Client";
-		
-		audio_debug(true);
-		
-		scr_voiceclient_send_userinfo();
-		
-		//alarm[1] = room_speed*5; //connection time-out timer, reset by ping packet
-		
-	}
 }

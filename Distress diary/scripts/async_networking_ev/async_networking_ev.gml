@@ -6,14 +6,12 @@ function async_networking_ev()
 	{
 		case network_type_connect:
 			//Server only
-		
-			//var _m_ip = async_load[? "ip" ];
 			var _m_port = async_load[? "port" ];
 	        var _m_buffer = async_load[? "buffer" ];
-	        //var _m_size   = async_load[? "size" ];
 			var _m_socket = async_load[? "socket"];
 	
-			if (voice_server == true) && (_m_port == voice_server_port){
+			if (voice_server == true && _m_port == voice_server_port)
+			{
 				scr_voiceserver_userconnect(_m_socket);
 			}
 		
@@ -22,11 +20,8 @@ function async_networking_ev()
 	
 		case network_type_disconnect:
 			//Server only
-		
-			//var _m_ip = async_load[? "ip" ];
 			var _m_port = async_load[? "port" ];
 	        var _m_buffer = async_load[? "buffer" ];
-	        //var _m_size   = async_load[? "size" ];
 			var _m_socket = async_load[? "socket"];
 
 			if (voice_server == true) &&  (_m_port == voice_server_port) && (_m_socket != undefined)
@@ -40,21 +35,18 @@ function async_networking_ev()
         
 	    case network_type_data:
 			//Client and Server
-		
-			//var _m_ip = async_load[? "ip" ];
 			var _m_port = async_load[? "port" ];
 	        var _m_buffer = async_load[? "buffer" ];
 	        var _m_size   = async_load[? "size" ];
 			var _m_socket = async_load[? "id"];
 		
-			//inbps += _m_size;
 		
 			if (_m_port == voice_server_port) && (_m_socket != undefined)
 			{
 				//CLIENT
-				if voice_client == true 
+				if (voice_client == true)
 				{
-					if voice_packet_fragmented == true 
+					if (voice_packet_fragmented == true)
 					{
 						var _voice_tmp_buffer = buffer_create(buffer_get_size(_m_buffer) + buffer_get_size(voice_fragment_buffer),buffer_fixed,1);
 				

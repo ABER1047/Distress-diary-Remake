@@ -1,12 +1,13 @@
-function scr_voiceserver_receive_audio(buffer, socket){
-	
+function scr_voiceserver_receive_audio(buffer, socket)
+{
 	var Len = buffer_read(buffer, buffer_s16); //Get voice recording length
 	var rate = buffer_read(buffer, buffer_s16);
 	var format = buffer_read(buffer, buffer_s16);
 	var timeStamp = buffer_read(buffer, buffer_u64);
 		
 
-	if (packetTimeStamp[socket] != timeStamp) {
+	if (packetTimeStamp[socket] != timeStamp) 
+	{
 		packetTimeStamp[socket] = timeStamp
 		
 		var bitSend = voice_write_buffer[socket];

@@ -52,7 +52,7 @@ if (play_result_animation > 0)
 			} 
 			until(tmp_result_img_ind != result_img_ind);
 
-			play_sound_pos(arcade_bet_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
+			play_sound_pos(arcade_bet_sfx,false,0.07,parent_id.x,parent_id.y,640,false,-4,-4);
 			play_result_animation ++;
 			result_animation_timer = 0;
 		}
@@ -100,7 +100,7 @@ if (play_result_animation > 0)
 			{
 				//이김
 				show_message_log("승리!");
-				play_sound_pos(arcade_win_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
+				play_sound_pos(arcade_win_sfx,false,0.07,parent_id.x,parent_id.y,640,false,-4,-4);
 				face_img_ind = 4;
 				
 				//골드 지급
@@ -110,7 +110,7 @@ if (play_result_animation > 0)
 			{
 				//짐
 				show_message_log("패배!");
-				play_sound_pos(arcade_loose_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
+				play_sound_pos(arcade_loose_sfx,false,0.07,parent_id.x,parent_id.y,640,false,-4,-4);
 				face_img_ind = 3;
 			}
 			

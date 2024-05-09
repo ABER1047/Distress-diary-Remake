@@ -1,4 +1,5 @@
-function scr_voiceclient_send_audio(audio_buffer, Len, rate, format){
+function scr_voiceclient_send_audio(audio_buffer, Len, rate, format)
+{
 	//send audio buffer
 	var bitSend = voice_write_buffer;
 	buffer_seek(bitSend, buffer_seek_start, 0);

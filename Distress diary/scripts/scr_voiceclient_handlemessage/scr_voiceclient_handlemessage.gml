@@ -1,7 +1,6 @@
 
 function scr_voiceclient_handlemessage(buffer)
 {
-	
 	while(true) 
 	{
 		
@@ -36,26 +35,10 @@ function scr_voiceclient_handlemessage(buffer)
 			voice_packet_fragmented = true;
 		    exit;
 	    }
-		
-		if message_id == 99 
-		{
-			message_id = buffer_read(buffer,buffer_u8);
-			lastpacket = message_id;
-		}
 
 
 	    switch(message_id)
 	    {
-			//receive ping 
-			//case 1:
-				//scr_voiceclient_send_ping();
-			//break;
-			
-			//receive ping value
-			//case 2:
-				//ping = buffer_read(buffer,buffer_u16);
-			//break;
-			
 			//receive user info
 			case 3:
 				scr_voiceclient_receive_userinfo(buffer);
@@ -72,6 +55,5 @@ function scr_voiceclient_handlemessage(buffer)
 		if( buffer_tell(buffer) >= buffer_get_size(buffer) ){
 			break;	
 		}
-		
 	}
 }

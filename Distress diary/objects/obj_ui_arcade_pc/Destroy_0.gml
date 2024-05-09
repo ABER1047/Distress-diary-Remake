@@ -10,7 +10,7 @@ if (instance_exists(parent_id))
 	parent_id.is_opened = -4;
 	
 	//효과음
-	play_sound_pos(arcade_off_sfx,false,0.07,parent_id.x,parent_id.y,640,false);
+	play_sound_pos(arcade_off_sfx,false,0.07,parent_id.x,parent_id.y,640,false,-4,-4);
 }
 
 

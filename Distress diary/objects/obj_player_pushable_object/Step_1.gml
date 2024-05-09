@@ -72,8 +72,8 @@ if (pusher != -4)
 	
 	
 				//블럭 이동 효과음
-				play_sound_pos(move_block_sfx,false,0.1,x,y,1280,false);
-				play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false);
+				play_sound_pos(move_block_sfx,false,0.1,x,y,1280,false,-4,-4);
+				play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false,-4,-4);
 	
 	
 				//사용한 스테미나 일부 회복
