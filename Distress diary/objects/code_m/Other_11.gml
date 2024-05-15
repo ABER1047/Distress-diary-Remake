@@ -17,7 +17,9 @@ if (res < 0)
 {
 	event_user(3);
 	show_message_log("해당 서버에 접속할 수 없습니다 ["+string(tmp_ip)+"]");
-	scr_voiceclient_stop();
+	
+	//VC system
+	//scr_voiceclient_stop();
 }
 else 
 {
@@ -28,7 +30,8 @@ else
 	connected_to_voice_server = true;
 	voice_client = true;
 		
-	audio_debug(true);
 		
-	scr_voiceclient_send_userinfo();
+	//VC system
+	//scr_voiceclient_send_userinfo();
+	//audio_debug(true);
 }

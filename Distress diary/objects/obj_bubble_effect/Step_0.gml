@@ -20,5 +20,3 @@ image_blend = merge_color(col1,col2,(color_shift > 1) ? 1 : color_shift);
 hspeed += (0 - hspeed)*speed_to_zero;
 vspeed += (0 - vspeed)*speed_to_zero;
 
-
-

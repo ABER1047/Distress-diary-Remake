@@ -13,7 +13,10 @@
     "name":"effects",
     "path":"folders/오브젝트/effects.yy",
   },
-  "parentObjectId":null,
+  "parentObjectId":{
+    "name":"obj_effect_parents",
+    "path":"objects/obj_effect_parents/obj_effect_parents.yy",
+  },
   "persistent":false,
   "physicsAngularDamping":0.1,
   "physicsDensity":0.5,

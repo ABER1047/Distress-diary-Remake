@@ -2,11 +2,15 @@
 
 
 //사운드 볼륨 조절용 거리 값
-var tmp_ins = global.my_player_ins_id[global.my_player_id];
-if (instance_exists(tmp_ins))
+if (array_length(global.my_player_ins_id) < global.my_player_id)
 {
-	audio_listener_position(-tmp_ins.x,-tmp_ins.y,tmp_ins.z);
+	var tmp_ins = global.my_player_ins_id[global.my_player_id];
+	if (instance_exists(tmp_ins))
+	{
+		audio_listener_position(-tmp_ins.x,-tmp_ins.y,tmp_ins.z);
+	}
 }
+
 
 
 //플레이어 실제 인스턴스 아이디

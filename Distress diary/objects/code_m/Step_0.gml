@@ -270,9 +270,12 @@ if (global.chat_activated)
 						}
 						else if (i == 16) //이펙트 생성
 						{
-							var tmp_mob_obj_ind = [ obj_blood_effect, obj_poison_effec,t ];
+							var tmp_mob_obj_ind = [ obj_explosion ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
 							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
+							tmp_ins.xpos = global.n_player_room_xx[global.my_player_id];
+							tmp_ins.ypos = global.n_player_room_yy[global.my_player_id];
+							tmp_ins.explo_dmg = 10;
 						}
 						else if (i == 17) //화살 생성
 						{
