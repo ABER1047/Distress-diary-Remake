@@ -4,9 +4,7 @@ function scr_voiceserver_userdisconnect(_m_socket)
 	buffer_write(voice_write_buffer[_m_socket ], buffer_u8, 3);
 	buffer_write(voice_write_buffer[_m_socket ], buffer_u16, _m_socket);
 	buffer_write(voice_write_buffer[_m_socket ], buffer_u8, 2); //remove user
-	
-	var tmp_val = ds_map_find_first(global.server_voice_users);
-	for(var k = tmp_val; !is_undefined(k); k = ds_map_find_next(global.server_voice_users,k))
+	for(var k = ds_map_find_first(global.server_voice_users); !is_undefined(k); k = ds_map_find_next(global.server_voice_users,k))
 	{
 		scr_sendpacket(k, voice_write_buffer[_m_socket ], voice_header_buffer[_m_socket ], voice_send_buffer[_m_socket ]);
 	}		

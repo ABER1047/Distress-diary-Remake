@@ -7,7 +7,8 @@ function scr_voiceclient_receive_audio(buffer)
 	var timeStamp = buffer_read(buffer, buffer_u64);
 	
 	if (voice_packetTimeStamp != timeStamp)
-	{	
+	{
+					
 		voice_packetTimeStamp = timeStamp;
 
 		//extract audio buffer from buffer
@@ -25,18 +26,17 @@ function scr_voiceclient_receive_audio(buffer)
 		audio_queue_sound(audioQueue[voice_id], audio_buffer, 0, Len);
 		if (!audio_is_playing(audioQueue[voice_id]))
 		{
-			//play audio
-			audio_play_sound(audioQueue[voice_id], 1, 0);
+			//audio_listener_position()
+			audio_play_sound_at(audioQueue[voice_id],mouse_x,mouse_y,0,320,1280,10,false,1);
 		}
+		
 		//} uncomment this if you want to mute self audio
 
 	} 
-	else
+	else 
 	{
 		//skip duplicated audio packet
 		buffer_seek(buffer, buffer_seek_relative, Len);
-		
-		return -4;
 	}
 	
 }

@@ -6,10 +6,11 @@ function scr_voiceserver_handlemessage(buffer, socket)
 	    var message_id = buffer_read(buffer,buffer_u8);
 		var expected_packet_size = 0;
 		
-		if (message_id == 99){ //packet with the size information of next packet
+		if (message_id == 99)
+		{ 
+			//packet with the size information of next packet
 			if (buffer_tell(buffer)+4 < buffer_get_size(buffer))
-			{ 
-				//packet is of the correct size (at least 4bytes)
+			{ //packet is of the correct size (at least 4bytes)
 				expected_packet_size = buffer_read(buffer,buffer_u32); //read expected size of the incoming packet
 			}
 			else //packet size is incorrect (incomplete packet)
@@ -25,8 +26,7 @@ function scr_voiceserver_handlemessage(buffer, socket)
 		
 		
 	    if (buffer_get_size(buffer) - (buffer_tell(buffer) ) < expected_packet_size)
-		{ 
-			// packet is smaller than the expected size = voice_packet_fragmented packet
+		{ // packet is smaller than the expected size = voice_packet_fragmented packet
 			//add the packet to the voice_fragment_buffer, exit the message handler and wait for the remaining data
 			buffer_delete(voice_fragment_buffer[@ socket]);
 		    voice_fragment_buffer[@ socket] = buffer_create(buffer_get_size(buffer) - (buffer_tell(buffer)-5), buffer_fixed, 1); //buffer_tell()-5 to put back the message_id and size into the buffer
@@ -35,18 +35,12 @@ function scr_voiceserver_handlemessage(buffer, socket)
 		    exit;
 	    }
 
-
-
 	    switch(message_id)
 	    {
-			//receive ping response from client
-			case 1:
-				buffer_seek(voice_write_buffer[socket], buffer_seek_start, 0);
-				buffer_write(voice_write_buffer[socket], buffer_u8, 2);
-				//buffer_write(voice_write_buffer[socket], buffer_u16, ping);
-				scr_sendpacket(socket, voice_write_buffer[socket], voice_header_buffer[socket], voice_send_buffer[socket]);		
+			//receive user info from client
+			case 3:
+				scr_voiceserver_receive_userinfo(buffer, socket);
 			break;
-
 			
 			//voice message
 			case 4:

@@ -1,5 +1,6 @@
 function scr_voiceserver_receive_audio(buffer, socket)
 {
+	
 	var Len = buffer_read(buffer, buffer_s16); //Get voice recording length
 	var rate = buffer_read(buffer, buffer_s16);
 	var format = buffer_read(buffer, buffer_s16);
@@ -34,6 +35,7 @@ function scr_voiceserver_receive_audio(buffer, socket)
 		}
 		
 		buffer_seek(buffer, buffer_seek_relative, Len);
+		
 	} 
 	else 
 	{

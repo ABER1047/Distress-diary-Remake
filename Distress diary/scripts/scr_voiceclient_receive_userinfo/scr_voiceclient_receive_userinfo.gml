@@ -1,11 +1,14 @@
 function scr_voiceclient_receive_userinfo(buffer)
 {
+	
 	var socket_id = buffer_read(buffer, buffer_u16);
 	var user_status = buffer_read(buffer, buffer_u8);//0: update self, 1: update other, 2: remove
 	
 	if (user_status == 0 || user_status == 1)
 	{
+		
 		//update a user
+		
 		var username = buffer_read(buffer, buffer_string);
 		var party_id = buffer_read(buffer, buffer_u16);
 		var mic_on = buffer_read(buffer, buffer_u8);
@@ -15,7 +18,7 @@ function scr_voiceclient_receive_userinfo(buffer)
 			my_voice_id = socket_id;
 		}
 		
-		if !ds_map_exists(voice_chat_users_dsmap, socket_id)
+		if (!ds_map_exists(voice_chat_users_dsmap, socket_id))
 		{
 			ds_map_add_map(voice_chat_users_dsmap, socket_id, ds_map_create());
 		}
@@ -39,7 +42,6 @@ function scr_voiceclient_receive_userinfo(buffer)
 			ds_map_destroy(voice_chat_users_dsmap[? socket_id]);
 			ds_map_delete(voice_chat_users_dsmap, socket_id);			
 		}
-		
 		//stop audio stream
 		if (audioQueue[socket_id] != -1)
 		{

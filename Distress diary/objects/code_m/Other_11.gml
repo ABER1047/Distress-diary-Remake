@@ -7,15 +7,28 @@ var tmp_ip = (tmp_encoded == "127.0.0.1" || tmp_encoded == "") ? "127.0.0.1" : d
 server_ip = tmp_ip;
 server = network_create_socket(network_socket_tcp);
 var res = network_connect(server, server_ip, server_port);
+
+
+//VC system
+//voice_server_socket = server;
+
 		
 if (res < 0) 
 {
 	event_user(3);
 	show_message_log("해당 서버에 접속할 수 없습니다 ["+string(tmp_ip)+"]");
+	scr_voiceclient_stop();
 }
 else 
 {
 	alarm[1] = 1;
 	global.is_server = false;
 	show_message_log("서버 접속 완료!");
+	
+	connected_to_voice_server = true;
+	voice_client = true;
+		
+	audio_debug(true);
+		
+	scr_voiceclient_send_userinfo();
 }

@@ -780,3 +780,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		send_all(buffer);
 	}
 }
+
+
+
+
+//VC system
+//asyncNetworkingEvent();

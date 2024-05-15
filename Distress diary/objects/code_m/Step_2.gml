@@ -24,3 +24,44 @@ if (global.is_server)
 
 
 
+//VC system
+/*if (voice_client == true)
+{
+	//	voice client step	
+	//if (connected_to_voice_server == true)
+	//{
+		if keyboard_check(pushToTalkKey) 
+		{
+			if (mic_on == false && mic_set == true)
+			{
+				mic_on = true;
+				record_info[mic_id] = audio_start_recording(mic_id);
+				
+				//send to server recording has started
+				scr_voiceclient_send_userinfo();
+			}
+		}
+		else
+		{
+			if (mic_on == true)
+			{
+				mic_on = false;
+				
+				audio_stop_recording(record_info[mic_id]); 
+				
+				//send to server recording has stopped
+				scr_voiceclient_send_userinfo();
+			}
+		}
+	//}
+	
+	//change microphone
+	for(var i = 0; i < number_of_mics; i++)
+	{
+		if (keyboard_check(ord(string(i+1))))
+		{
+			mic_id = i;
+			mic_set = true;
+		}
+	}
+}*/

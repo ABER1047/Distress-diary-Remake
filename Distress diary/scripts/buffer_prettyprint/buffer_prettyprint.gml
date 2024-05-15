@@ -27,14 +27,12 @@ function buffer_prettyprint(_buf, _per_row = 20)
     }
     buffer_write(_out, buffer_text, "):");
     
-    for (var i = 0; i < _size; i++) 
+    for(var i = 0; i < _size; i++) 
 	{
         if (i % _per_row == 0) 
-		{ 
-			// row start
+		{ // row start
             if (i > 0) 
-			{ 
-				// printable chars
+			{ // printable chars
                 buffer_write(_out, buffer_text, " | ");
                 buffer_write(_chars, buffer_u8, 0);
                 buffer_seek(_chars, buffer_seek_start, 0);
@@ -54,7 +52,7 @@ function buffer_prettyprint(_buf, _per_row = 20)
 		{
             buffer_write(_chars, buffer_u8, _byte);
         } 
-		else 
+		else
 		{
             buffer_write(_chars, buffer_text, "·");
         }
@@ -67,7 +65,7 @@ function buffer_prettyprint(_buf, _per_row = 20)
     }
     
     // last row's spaces and printable chars:
-    if (_size % _per_row != 0) 
+    if (_size % _per_row != 0)
 	{
         repeat (_per_row - (_size % _per_row)) 
 		{

@@ -2,6 +2,9 @@ function scr_voiceclient_start()
 {
 	//init voice client
 	
+	randomize();
+	
+	username = "user_"+string(irandom(99999));
 	my_voice_id = -1;
 	
 	audioQueue = array_create(1000, -1);
@@ -16,7 +19,6 @@ function scr_voiceclient_start()
 	mic_id = 0; //id of the selected microphone
 	mic_on = false; //recording voice or not
 	
-	
 	number_of_mics = audio_get_recorder_count();
 	record_info = array_create(number_of_mics, 0);
 	mic_names = array_create(number_of_mics, "");
@@ -25,9 +27,8 @@ function scr_voiceclient_start()
 	//loop microphones
 	for(var i = 0; i < number_of_mics; i++)
 	{
-		record_info[i] = audio_start_recording(i);
+		record_info[i] = audio_start_recording(i)					
 		var ds_map = audio_get_recorder_info(i);
-		show_debug_message("audio_get_recorder_info : "+string(ds_map));
 		
 		//get microphone name
 		if (ds_exists(ds_map,ds_type_map))
@@ -48,6 +49,8 @@ function scr_voiceclient_start()
 		mic_set = true;
 		mic_id = 0;
 	}
+	
+	pushToTalkKey = ord("V"); //key used to record voice on press
 	
 	voice_packetTimeStamp = 0; //stores last audio packet timestamp, to check for duplicated audio packets
 	voice_packet_fragmented = false; //It can happen that a packet received is incomplete, in that case this variable holds the information of weither the last packet received was fragmented

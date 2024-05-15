@@ -19,6 +19,7 @@ if (server == -4)
 	if (keyboard_check_pressed(vk_f12)) 
 	{
 		server = network_create_server(network_socket_tcp, server_port, 3);
+
 		
 		if (server < 0) 
 		{
@@ -29,6 +30,10 @@ if (server == -4)
 		{
 			event_user(4);
 			show_message_log("서버 생성 완료!");
+			
+			//VC system
+			//voice_server_started = server;
+			//scr_voiceserver_start();
 		}
 	}
 	else if (keyboard_check_pressed(vk_f11)) //서버 접속

@@ -127,6 +127,8 @@ global.chat = array_create(global.max_chat_stack,"");
 
 
 
-//general variables for VC
-setVoiceChatVariables();
+//VC system
+//voice_client = false; //applcation is set as client
+//voice_server = false; //applcation is set as server
+
 

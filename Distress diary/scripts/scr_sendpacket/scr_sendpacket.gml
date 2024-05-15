@@ -1,11 +1,12 @@
 function scr_sendpacket(socket, w_buffer, h_buffer, s_buffer)
 {
+	
 	var w_b_tell = buffer_tell(w_buffer);
 	
 	//Add the message size info at the beginning of the message
 	buffer_seek(h_buffer, buffer_seek_start, 0);
 	buffer_write(h_buffer, buffer_u8, 99);
-	buffer_write(h_buffer, buffer_u32, w_b_tell);
+	buffer_write(h_buffer, buffer_u32,w_b_tell);
 	
 	var h_b_tell = buffer_tell(h_buffer);
 	
