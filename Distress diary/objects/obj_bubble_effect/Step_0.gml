@@ -5,6 +5,16 @@
 image_xscale += (-0.01 - image_xscale)*des_speed;
 image_yscale += (-0.01 - image_yscale)*des_speed;
 
+if (force_des_time != -4)
+{
+	force_des_timer ++;
+	if (force_des_timer > force_des_time)
+	{
+		image_xscale += (-0.01 - image_xscale)*0.1;
+		image_yscale += (-0.01 - image_yscale)*0.1;
+	}
+}
+
 if (image_xscale <= 0 || image_index > 6)
 {
 	instance_destroy();

@@ -151,3 +151,10 @@ dmg_cooltime = 0;
 
 //맵 이동 화면전환 애니메이션
 move_to_other_room = -4;
+
+
+//인스턴스 아이디 저장 
+if (instance_number(obj_player) == 1)
+{
+	global.my_player_ins_id[0] = id;
+}

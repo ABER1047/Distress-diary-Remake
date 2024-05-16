@@ -13,10 +13,15 @@
 //폭발 데미지 
 //explo_dmg = 0;
 
+//폭발 이펙트 생성 
+create_explo_effect_timer = 0;
 
 //효과 적용 
 effect_applied = false;
 alarm[1] = 1;
+
+
+
 
 
 //버블 이펙트 외곽선 효과용 오브젝트

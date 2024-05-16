@@ -30,11 +30,7 @@ function play_sound_pos(argument0,argument1,argument2,argument3,argument4,argume
 	var tmp_sound = -4;
 	var tmp_xx = -(argument3+tmp_dis_xx);
 	var tmp_yy = -(argument4+tmp_dis_yy);
-	var tmp_ins = global.my_player_ins_id[global.my_player_id];
-	if (instance_exists(tmp_ins) && point_distance(tmp_ins.x,tmp_ins.y,tmp_xx,tmp_yy) <= argument5+64)
-	{
-		tmp_sound = audio_play_sound_at(argument0,-(argument3+tmp_dis_xx),-(argument4+tmp_dis_yy),0,64,argument5,10,argument1,0,argument2*global.master_volume*global.sfx_volume);
-	}
+	tmp_sound = audio_play_sound_at(argument0,-(argument3+tmp_dis_xx),-(argument4+tmp_dis_yy),0,argument5/5,argument5,0,argument1,0,argument2*global.master_volume*global.sfx_volume);
 	
 	
 	if (!argument6 && !argument1)

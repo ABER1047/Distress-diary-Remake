@@ -28,16 +28,23 @@ if (place_meeting(x,y,tmp_my_p))
 var rd_val = irandom_range(1,3);
 for(var i = 0; i < image_xscale+rd_val; i++)
 {
-	var tmp_effect_dis = 64*image_xscale;
-	var tmp_ins = create_bubble_effect(x+irandom_range(-tmp_effect_dis,tmp_effect_dis),y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42,-1,#3B3447,#222034,0.01,-irandom_range(6,12),irandom_range(-8,8),0.02,0,false);
-	tmp_ins.image_xscale = 2*i;
-	tmp_ins.image_yscale = 2*i;
+	var tmp_effect_dis = 160*image_xscale;
+	var tmp_xx = x+irandom_range(-tmp_effect_dis,tmp_effect_dis);
+	var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
+	var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
+	var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,-1,c_white,c_white,0,irandom_range(-2,2)*0.42,irandom_range(-2,2),0,0.8,true,-9999);
+	tmp_ins.image_xscale = 10/((1+tmp_dis/128));
+	tmp_ins.image_yscale = 10/((1+tmp_dis/128));
+	tmp_ins.sprite_index = spr_explosion;
 }
 
 
-alarm[2] = 1;
 
 
 
 //폭발 이펙트 적용됨 
 effect_applied = true;
+
+
+//화면 흔들림 
+view_shake(0.1,16,0.1,0);

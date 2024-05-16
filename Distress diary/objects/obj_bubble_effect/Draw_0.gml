@@ -1,7 +1,18 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-draw_set_color(image_blend);
-draw_set_alpha(image_alpha);
-draw_circle(x,y,image_xscale*32,false);
+if (sprite_index == spr_explosion)
+{
+	draw_self();
+	if (image_index > 8)
+	{
+		instance_destroy();
+	}
+}
+else
+{
+	draw_set_color(image_blend);
+	draw_set_alpha(image_alpha);
+	draw_circle(x,y,image_xscale*32,false);
+}
 

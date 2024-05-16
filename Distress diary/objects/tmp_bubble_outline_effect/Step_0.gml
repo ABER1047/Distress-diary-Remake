@@ -25,7 +25,7 @@ if (global.graphics_quality > 0 && surface_exists(bubble_surf))
 	draw_clear_alpha(c_black,0);
 	with(obj_bubble_effect)
 	{
-		if (parent_id == other.id)
+		if (parent_id == other.id && !sprite_exists(sprite_index))
 		{
 			draw_set_alpha(1);
 			draw_set_color(c_white);

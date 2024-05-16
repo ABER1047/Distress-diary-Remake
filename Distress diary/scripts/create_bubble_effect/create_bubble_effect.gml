@@ -13,9 +13,11 @@
 ///@param speed_to_zero
 ///@param image_speed
 ///@param is_bright
-function create_bubble_effect(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
+///@param force_depth
+///@param force_des_time
+function create_bubble_effect(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12)
 {
-	var tmp_ins = instance_create_depth(argument0,argument1+argument2,-argument1,obj_bubble_effect);
+	var tmp_ins = instance_create_depth(argument0,argument1+argument2,(argument11 == undefined) ? -argument1 : argument11,obj_bubble_effect);
 	tmp_ins.col1 = argument3;
 	tmp_ins.col2 = argument4;
 	tmp_ins.des_speed = argument5;
@@ -26,6 +28,7 @@ function create_bubble_effect(argument0,argument1,argument2,argument3,argument4,
 	tmp_ins.image_speed = argument9;
 	tmp_ins.is_bright = argument10;
 	tmp_ins.parent_id = bubble_ef_ins;
+	tmp_ins.force_des_time = (argument12 == undefined) ? -4 : argument12;
 	bubble_ef_ins.child_num ++;
 	
 	return tmp_ins;
