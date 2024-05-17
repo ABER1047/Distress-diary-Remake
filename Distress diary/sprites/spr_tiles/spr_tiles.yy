@@ -89,8 +89,8 @@
   "swatchColours":null,
   "swfPrecision":2.525,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"textrue_spr_map",
+    "path":"texturegroups/textrue_spr_map",
   },
   "type":0,
   "VTile":false,

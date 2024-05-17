@@ -67,7 +67,7 @@
   "origin":4,
   "parent":{
     "name":"puzzles",
-    "path":"folders/스프라이트/puzzles.yy",
+    "path":"folders/스프라이트/Sprite_map/puzzles.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",
@@ -245,8 +245,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"textrue_spr_map",
+    "path":"texturegroups/textrue_spr_map",
   },
   "type":0,
   "VTile":false,

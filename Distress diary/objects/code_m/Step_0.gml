@@ -84,8 +84,8 @@ if (global.chat_activated)
 			var is_command = false;
 			if (global.dev_mode == 1)
 			{
-				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob", "/ef", "/arr", "/gq", "/vom", "/cp", "/invite", "/disconnect", "/connect", "/ds" ];
-				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성", "이펙트 생성", "화살 생성", "그래픽 퀄리티 설정", "몹 시점 표시", "퍼즐방 생성", "초대코드 복사", "서버 연결 해제", "서버 접속", "현재 룸의 모든 문 열기/닫기" ];
+				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob", "/ef", "/arr", "/gq", "/vom", "/cp", "/invite", "/disconnect", "/connect", "/ds", "/explo" ];
+				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성", "이펙트 생성", "화살 생성", "그래픽 퀄리티 설정", "몹 시점 표시", "퍼즐방 생성", "초대코드 복사", "서버 연결 해제", "서버 접속", "현재 룸의 모든 문 열기/닫기", "폭발 이펙트 생성" ];
 				for(var i = 0; i < array_length(commands); i++)
 				{
 					if (string_pos(commands[i],chat_entering))
@@ -272,10 +272,9 @@ if (global.chat_activated)
 						{
 							var tmp_mob_obj_ind = [ obj_explosion ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
-							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
-							tmp_ins.xpos = global.n_player_room_xx[global.my_player_id];
-							tmp_ins.ypos = global.n_player_room_yy[global.my_player_id];
-							tmp_ins.explo_dmg = 10;
+							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,-4);
+							tmp_ins.explo_dmg = 28;
+							tmp_ins.image_xscale = 4;
 						}
 						else if (i == 17) //화살 생성
 						{
@@ -322,6 +321,13 @@ if (global.chat_activated)
 							var n_xx = global.n_player_room_xx[global.my_player_id];
 							var n_yy = global.n_player_room_yy[global.my_player_id];
 							global.map_arr[n_yy][n_xx] = (tmp_parameter_str > 0) ? 3 : 1;
+						}
+						else if (i == 25) //폭발 이펙트 생성
+						{
+							var tmp_xx = global.my_player_ins_id[global.my_player_id].x;
+							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
+							
+							create_explosion_effect(tmp_xx,tmp_yy,28,4,-4,-4);
 						}
 						
 						

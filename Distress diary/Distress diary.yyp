@@ -35,7 +35,7 @@
     {"$GMFolder":"","%Name":"client_functions","folderPath":"folders/스크립트/VoiceChat/inner codes/client_functions.yy","name":"client_functions","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"server_functions","folderPath":"folders/스크립트/VoiceChat/inner codes/server_functions.yy","name":"server_functions","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"스프라이트","folderPath":"folders/스프라이트.yy","name":"스프라이트","resourceType":"GMFolder","resourceVersion":"2.0",},
-    {"$GMFolder":"","%Name":"puzzles","folderPath":"folders/스프라이트/puzzles.yy","name":"puzzles","resourceType":"GMFolder","resourceVersion":"2.0",},
+    {"$GMFolder":"","%Name":"puzzles","folderPath":"folders/스프라이트/Sprite_map/puzzles.yy","name":"puzzles","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprite_effect","folderPath":"folders/스프라이트/Sprite_effect.yy","name":"Sprite_effect","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprite_items","folderPath":"folders/스프라이트/Sprite_items.yy","name":"Sprite_items","resourceType":"GMFolder","resourceVersion":"2.0",},
     {"$GMFolder":"","%Name":"Sprite_map","folderPath":"folders/스프라이트/Sprite_map.yy","name":"Sprite_map","resourceType":"GMFolder","resourceVersion":"2.0",},
@@ -132,6 +132,7 @@
     {"id":{"name":"check_is_room_cleared","path":"scripts/check_is_room_cleared/check_is_room_cleared.yy",},},
     {"id":{"name":"clean_message_log","path":"scripts/clean_message_log/clean_message_log.yy",},},
     {"id":{"name":"create_bubble_effect","path":"scripts/create_bubble_effect/create_bubble_effect.yy",},},
+    {"id":{"name":"create_explosion_effect","path":"scripts/create_explosion_effect/create_explosion_effect.yy",},},
     {"id":{"name":"create_inv_item","path":"scripts/create_inv_item/create_inv_item.yy",},},
     {"id":{"name":"create_invite_code","path":"scripts/create_invite_code/create_invite_code.yy",},},
     {"id":{"name":"create_loots","path":"scripts/create_loots/create_loots.yy",},},
@@ -359,5 +360,11 @@
   "templateType":"game",
   "TextureGroups":[
     {"$GMTextureGroup":"","%Name":"Default","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"Default","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"textrue_spr_player","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_player","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"textrue_spr_items","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_items","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"textrue_spr_map","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_map","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"textrue_spr_UI","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_UI","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"textrue_spr_effect","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_effect","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"textrue_spr_monsters","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_monsters","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
   ],
 }

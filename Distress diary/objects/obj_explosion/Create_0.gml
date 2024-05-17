@@ -2,9 +2,13 @@
 // You can write your code in this editor
 
 
+//멀티플레이 용 버퍼
+command_buffer = buffer_create(1024,buffer_grow,1);
 
-//xpos = -4;
-//ypos = -4;
+
+z = 0;
+//my_pos_xx = -4;
+//my_pos_yy = -4;
 
 
 //폭발 범위

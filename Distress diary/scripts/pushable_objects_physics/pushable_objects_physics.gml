@@ -82,14 +82,28 @@ function pushable_objects_physics()
 	
 	if (z <= 0) //땅 바닥에 있어야 속도 감소 효과 먹음 (= 마찰력)
 	{
-		_hspeed += (0 - _hspeed)*0.2;
-		_vspeed += (0 - _vspeed)*0.2;
+		if (abs(_speed) > 0)
+		{
+			_speed += (0 - _speed)*0.15;
+		}
+		else
+		{
+			_hspeed += (0 - _hspeed)*0.2;
+			_vspeed += (0 - _vspeed)*0.2;
+		}
 	}
 	else
 	{
 		//공중에 있어야 속도 감소 효과 먹음 (= 공기저항)
-		_hspeed += (0 - _hspeed)*0.02;
-		_vspeed += (0 - _vspeed)*0.02;
+		if (abs(_speed) > 0)
+		{
+			_speed += (0 - _speed)*0.015;
+		}
+		else
+		{
+			_hspeed += (0 - _hspeed)*0.02;
+			_vspeed += (0 - _vspeed)*0.02;
+		}
 	}
 	
 	return tmp_ins;

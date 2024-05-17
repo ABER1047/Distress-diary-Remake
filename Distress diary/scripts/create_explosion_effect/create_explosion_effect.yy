@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"create_explosion_effect",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_explosion_effect",
+  "parent":{
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

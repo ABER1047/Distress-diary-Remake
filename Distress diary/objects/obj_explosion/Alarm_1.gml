@@ -4,31 +4,42 @@
 //폭발 관련 충돌 마스크 자동 지정
 image_yscale = image_xscale*0.42;
 
+//데미지 값 전송 
+send_InstanceVariableData(id,"explo_dmg",explo_dmg);
+send_ImgData(obj_id,id,sprite_index,image_index,x,y,z,image_xscale,image_yscale,0,0,1);
+
 
 //효과음 재생
-play_sound_pos(bomb_sfx,false,0.1,x,y,2600,true,xpos,ypos);
+play_sound_pos(bomb_sfx,false,0.1,x,y,2600,true,my_pos_xx,my_pos_yy);
+
 
 
 //폭발 데미지
-var tmp_my_p = global.my_player_ins_id[global.my_player_id];
-if (place_meeting(x,y,tmp_my_p))
+with(obj_mob_parents)
 {
-	var dis_xx = (x-tmp_my_p.x);
-	var dis_yy = (y-tmp_my_p.y)*0.42;
-	var real_dis = sqrt(power(dis_xx,2)+power(dis_yy,2));
-	var tmp_dmg_decrease_dis = image_xscale*96;
-	var tmp_dmg = (real_dis > tmp_dmg_decrease_dis) ? explo_dmg/(real_dis-tmp_dmg_decrease_dis) : explo_dmg;
+	if (place_meeting(x,y,other.id))
+	{
+		var dis_xx = (other.x-x);
+		var dis_yy = (other.y-y)*0.42;
+		var real_dis = sqrt(power(dis_xx,2)+power(dis_yy,2));
+		var tmp_dmg_decrease_dis = other.image_xscale*96;
+		var tmp_dmg = (real_dis > tmp_dmg_decrease_dis) ? other.explo_dmg/((real_dis-tmp_dmg_decrease_dis)/32) : other.explo_dmg;
 	
-	give_damage(tmp_my_p,tmp_dmg,false);
+		give_damage(id,tmp_dmg,false);
+	
+		//넉백 효과
+		direction = point_direction(other.x,other.y,x,y);
+		_speed = (real_dis > tmp_dmg_decrease_dis) ? 32/(real_dis-tmp_dmg_decrease_dis) : 32;
+	}
 }
 
 
 
 //폭발 이펙트 
 var rd_val = irandom_range(1,3);
-for(var i = 0; i < image_xscale+rd_val; i++)
+for(var i = 0; i < image_xscale*0.7+rd_val; i++)
 {
-	var tmp_effect_dis = 160*image_xscale;
+	var tmp_effect_dis = 96*image_xscale;
 	var tmp_xx = x+irandom_range(-tmp_effect_dis,tmp_effect_dis);
 	var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
 	var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
