@@ -3,42 +3,35 @@
 
 
 
-create_explo_effect_timer ++;
-if (create_explo_effect_timer == 1 || create_explo_effect_timer == 10 || create_explo_effect_timer == 4 || create_explo_effect_timer == 25)
+
+if (effect_applied)
 {
-	var tmp_effect_dis = 128*image_xscale;
+	//불꽃 이펙트 
+	var rd_ind = irandom_range(0,effect_ins_arr_ind-1);
+	var tmp_ef_ins = effect_ins_arr[rd_ind];
+	if (instance_exists(tmp_ef_ins) && tmp_ef_ins.image_xscale*256 >= 32)
+	{
+		var tmp_xx = tmp_ef_ins.x;
+		var tmp_yy = tmp_ef_ins.y;
+		var tmp_scale = irandom_range(10,20)*0.03;
+		var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,0,#DD4C4C,#FFAC4B,0.1,-irandom_range(8,16),-(tmp_ef_ins.hspeed),0.03,0,true,tmp_ef_ins.depth+1);
+		tmp_ins.image_xscale = tmp_scale;
+		tmp_ins.image_yscale = tmp_scale;
+			
+		show_debug_message("ef_cr"+string(rd_ind));
+	}
 	
-	//폭발 이펙트 
-	var rd_val = irandom_range(1,3);
-	for(var i = 0; i < image_xscale*4+rd_val; i++)
+	
+	
+	
+	//시간 지나면 자동 삭제 
+	if (bubble_ef_ins.child_num == 0)
 	{
-		var tmp_xx = x+irandom_range(-tmp_effect_dis,tmp_effect_dis);
-		var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
-		var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
-		var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,-1,#3B3447,#222034,0.003,irandom_range(-2,2)*0.42,irandom_range(-2,2),0.02,0,false,-tmp_yy,90);
-		tmp_ins.image_xscale = 9/((1+tmp_dis/96));
-		tmp_ins.image_yscale = 9/((1+tmp_dis/96));
-	}
-
-
-
-	var rd_val = irandom_range(0,2);
-	for(var i = 0; i < image_xscale*4+rd_val; i++)
-	{
-		var tmp_xx = x+irandom_range(-tmp_effect_dis,tmp_effect_dis);
-		var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
-		var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
-		var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,0,#DD4C4C,#FFAC4B,0.1,irandom_range(-4,4)*0.42,irandom_range(-4,4),0.03,0,true);
-		tmp_ins.image_xscale = 16/((1+tmp_dis/64))
-		tmp_ins.image_yscale = 16/((1+tmp_dis/64))
+		show_debug_message("dest");
+		instance_destroy();
 	}
 }
 
 
 
 
-//시간 지나면 자동 삭제 
-if (effect_applied && child_num == 0)
-{
-	instance_destroy();
-}

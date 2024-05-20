@@ -24,13 +24,12 @@ create_explo_effect_timer = 0;
 effect_applied = false;
 alarm[1] = 1;
 
-
+//이펙트 인스턴스 id 저장용 배열 
+effect_ins_arr = -4;
+effect_ins_arr_ind = 0;
 
 
 
 //버블 이펙트 외곽선 효과용 오브젝트
 bubble_ef_ins = instance_create_depth(x,y,0,tmp_bubble_outline_effect);
 bubble_ef_ins.parent_id = id;
-
-//해당 서피스를 이용중인 다른 오브젝트들 갯수
-child_num = 0;

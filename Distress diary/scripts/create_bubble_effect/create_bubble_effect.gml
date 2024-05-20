@@ -8,8 +8,8 @@
 ///@param col1
 ///@param col2
 ///@param des_speed
-///@param _vspeed
-///@param _hspeed
+///@param vspeed
+///@param hspeed
 ///@param speed_to_zero
 ///@param image_speed
 ///@param is_bright

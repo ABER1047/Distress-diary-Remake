@@ -8,7 +8,7 @@ if (array_length(global.my_player_ins_id) > global.my_player_id)
 	if (instance_exists(tmp_ins))
 	{
 		audio_listener_position(-tmp_ins.x,-tmp_ins.y,tmp_ins.z);
-		show_debug_message("listener_pos_set");
+		//show_debug_message("listener_pos_set");
 	}
 }
 

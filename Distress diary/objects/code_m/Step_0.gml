@@ -4,7 +4,7 @@
 //초대 코드 생성
 if (global.my_ip != "")
 {
-	var tmp_rd_invite_code_seed = floor(current_minute/15)
+	var tmp_rd_invite_code_seed = floor(current_minute/15);
 	if (global.invite_code_seed != tmp_rd_invite_code_seed)
 	{
 		global.invite_code = create_invite_code(global.my_ip);

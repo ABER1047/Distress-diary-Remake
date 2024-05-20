@@ -28,5 +28,20 @@ image_blend = merge_color(col1,col2,(color_shift > 1) ? 1 : color_shift);
 
 //이동 속도 감소
 hspeed += (0 - hspeed)*speed_to_zero;
-vspeed += (0 - vspeed)*speed_to_zero;
+if (gravity == 0)
+{
+	vspeed += (0 - vspeed)*speed_to_zero;
+}
 
+
+
+//z축이 정의된 경우
+if (is_z_axis_defined)
+{
+	if (y > z && vspeed > 0)
+	{
+		vspeed = 0;
+		gravity = 0;
+		y = z;
+	}
+}
