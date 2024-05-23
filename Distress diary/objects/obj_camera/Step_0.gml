@@ -52,8 +52,8 @@ if (global.t_shake_y <= 0.01)
 {
 	global.t_shake_y = 0;
 }
-global.t_shake_x += (0 - global.t_shake_x)*0.25;
-global.t_shake_y += (0 - global.t_shake_y)*0.25;
+global.t_shake_x += (0 - global.t_shake_x)*0.15;
+global.t_shake_y += (0 - global.t_shake_y)*0.15;
 global.real_shake_x = global.t_shake_x*global.shake_x;
 global.real_shake_y = global.t_shake_y*global.shake_y;
 global.shake_time ++;

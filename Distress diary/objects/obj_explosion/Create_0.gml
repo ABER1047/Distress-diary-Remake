@@ -29,6 +29,9 @@ effect_ins_arr = -4;
 effect_ins_arr_ind = 0;
 
 
+//불 이펙트 생성 지속시간
+fire_ef_timer = 0;
+
 
 //버블 이펙트 외곽선 효과용 오브젝트
 bubble_ef_ins = instance_create_depth(x,y,0,tmp_bubble_outline_effect);

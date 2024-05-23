@@ -21,5 +21,5 @@
   "sampleRate":48000,
   "soundFile":"bomb_sfx.mp3",
   "type":1,
-  "volume":0.65,
+  "volume":0.7,
 }

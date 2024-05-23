@@ -1,13 +1,15 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if (sprite_index == spr_explosion)
+if (sprite_exists(sprite_index))
 {
 	draw_self();
 	if (image_index > 8)
 	{
 		instance_destroy();
 	}
+	
+	image_angle -= hspeed*1.5;
 }
 else
 {

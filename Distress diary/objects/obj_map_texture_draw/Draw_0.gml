@@ -48,6 +48,21 @@ for(var i = 0; i < global.n_room_width; i++)
 }
 
 
+//폭발 자국 그리기
+with(obj_explosion_effect_on_ground)
+{
+	if (id != other.id)
+	{
+		for(var i = 0; i < 11; i++)
+		{
+			var tmp_xx = x+rd_xx[i];
+			var tmp_yy = y+rd_yy[i];
+			var tmp_scale = (1-point_distance(x,y,tmp_xx,tmp_yy)/320);
+			draw_sprite_ext(spr_circle,0,tmp_xx,tmp_yy,tmp_scale*image_xscale,tmp_scale*0.48*image_xscale,0,$FF1C171A,tmp_scale*0.08);
+		}
+	}
+}
+
 
 //바닥 액체 그리기
 if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
@@ -55,10 +70,16 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 	surface_set_target(global.liquid_on_floor_surf);
 	draw_clear_alpha(c_black,0);
 
-		with(obj_blood_effect)
+		with(obj_floor_effect_parents)
 		{
-			if (id != other.id)
+			if (id != other.id && object_index != obj_explosion_effect_on_ground)
 			{
+				var tmp_color = #7A213A;
+				if (object_index == obj_poison_effect)
+				{
+					tmp_color = #44A978;
+				}
+				
 				for(var i = 0; i < array_length(rd_xx); i++)
 				{
 					var tmp_xx = rd_xx[i];
@@ -80,32 +101,6 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 				}
 			}
 		}
-		
-		with(obj_poison_effect)
-		{
-			if (id != other.id)
-			{
-				var tmp_arr_length = array_length(rd_xx);
-				for(var i = 0; i < tmp_arr_length; i++)
-				{
-					var tmp_xx = rd_xx[i];
-					var tmp_yy = rd_yy[i];
-					var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
-		
-					//10초 뒤에 알파값이 점점 작아지면서 삭제
-					var tmp_cal = sqrt(tmp_arr_length);
-					var tmp_scale = 0.5/(1+tmp_dis/(24*tmp_cal));
-		
-		
-					//가장 가까운 액체부터 순차적으로 드로우 (= 바닥에 고여서 흐르는 효과)
-					if (animation_timer > tmp_dis*0.7/tmp_cal)
-					{
-						blood_scale[i] += (tmp_scale - blood_scale[i])*0.1;
-					}
-					draw_sprite_ext(spr_circle,0,tmp_xx-xx,tmp_yy-yy,blood_scale[i],blood_scale[i]*0.42,0,#44A978,image_alpha);
-				}
-			}
-		}
 	surface_reset_target();
 
 
@@ -124,6 +119,8 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 
 	draw_surface_ext(global.liquid_on_floor_surf,xx,yy,1,1,0,c_white,1);
 }
+
+
 
 
 

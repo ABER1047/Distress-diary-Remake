@@ -40,8 +40,8 @@ if (is_z_axis_defined)
 {
 	if (y > z && vspeed > 0)
 	{
+		y = z;
 		vspeed = 0;
 		gravity = 0;
-		y = z;
 	}
 }
