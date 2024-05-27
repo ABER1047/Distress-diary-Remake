@@ -159,7 +159,7 @@ if (surface_exists(global.shadow_surf))
 	{
 		if (!stop_cal_by_pos_statement)
 		{
-			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,image_xscale,image_yscale,0,c_white,1);
+			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
 		}
 	}
 

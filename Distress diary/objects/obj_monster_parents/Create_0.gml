@@ -53,3 +53,8 @@ dmg_cooltime = 0;
 //적 트래킹
 tracking_timer = 0;
 tracking_dir = 0;
+
+
+//임시 변수 (각 몹마다 적절하게 사용)
+tmp_value1 = 0;
+tmp_value2 = 0;
