@@ -7,11 +7,7 @@ if (!stop_cal_by_pos_statement)
 	depth = -floor(y);
 
 	//pushable_objects끼리 밀리는 효과 추가
-	var tmp_ins = pushable_objects_physics();
-	if (tmp_ins == global.my_player_ins_id[global.my_player_id])
-	{
-		alarm[1] = 1;
-	}
+	pushable_objects_physics();
 }
 
 //룸 포지션에 따른 오브젝트 숨기기/표시 시스템

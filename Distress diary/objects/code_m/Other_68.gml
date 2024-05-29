@@ -201,7 +201,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		break;
 		
 		case DATA.CHECK_PLAYING_NOW:
-			show_message_log("- 서버측에서 연결 상태 체크하는 중...");
+			show_debug_message("- 서버측에서 연결 상태 체크하는 중...");
 			//서버측에서 튕겼나 아닌가 체크하는거에 대답하는 코드
 			if (!global.is_server)
 			{
@@ -230,7 +230,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			{
 				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
 				
-				show_message_log("- 접속한 플레이어 연결 상태 재확인 중... ["+string(tmp_obj_id_player_only)+"]");
+				show_debug_message("- 접속한 플레이어 연결 상태 재확인 중... ["+string(tmp_obj_id_player_only)+"]");
 				with(obj_player)
 				{
 					if (obj_id_player_only == tmp_obj_id_player_only)
@@ -268,37 +268,66 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				var tmp_obj_name = asset_get_index(buffer_read(buffer, buffer_string));
 				var tmp_name = buffer_read(buffer, buffer_string);
 				var tmp_val = buffer_read(buffer, buffer_string);
-				try
-				{
-					tmp_val = real(tmp_val);
-				} catch(e) {}
 				
 				
 				//디버그 메세지로 받아온 값 출력
 				show_debug_message("INS_VAR_DATA ["+string(tmp_name)+" : "+string(tmp_val)+"]");
 				
-				
-				
-				
-				if (tmp_val != "")
+				//값이 적용될 인스턴스 찾기
+				var tmp_id_real = -4;
+				with(tmp_obj_name)
 				{
-					var tmp_id_real = -4;
-					with(tmp_obj_name)
+					if (obj_id == tmp_obj_id)
 					{
-						if (obj_id == tmp_obj_id)
-						{
-							tmp_id_real = id;
-						}
+						tmp_id_real = id;
 					}
-					
-					//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
-					if (tmp_name == "is_opened")
-					{
-						tmp_val = (tmp_val != -4) ? -3 : tmp_val; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
-						variable_instance_set(tmp_id_real,"b_is_opened",tmp_val);
-					}
+				}
 				
-					variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
+				//한 번에 값이 여러개 온 경우
+				if (string_pos(",",tmp_val) != 0)
+				{
+					var tmp_splited_val = string_split(tmp_val,",");
+					var tmp_splited_varname = string_split(tmp_name,",");
+					for(var i = 0; i < array_length(tmp_splited_val); i++)
+					{
+						//string화 된 실수를 진짜 실수로
+						try
+						{
+							tmp_splited_val[i] = real(tmp_splited_val[i]);
+						} catch(e) {}
+						
+						
+						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
+						if (tmp_splited_varname[i] == "is_opened")
+						{
+							tmp_splited_val[i] = (tmp_splited_val[i] != -4) ? -3 : tmp_splited_val[i]; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
+							variable_instance_set(tmp_id_real,"b_is_opened",tmp_splited_val[i]);
+						}
+				
+						variable_instance_set(tmp_id_real,string(tmp_splited_varname[i]),tmp_splited_val[i]);
+					}
+				}
+				else
+				{
+					//값이 한 개만 온 경우
+					if (string_trim(tmp_val) != "")
+					{
+						//string화 된 실수를 진짜 실수로
+						try
+						{
+							tmp_val = real(tmp_val);
+						} catch(e) {}
+						
+						
+						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
+						if (tmp_name == "is_opened")
+						{
+							tmp_val = (tmp_val != -4) ? -3 : tmp_val; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
+							variable_instance_set(tmp_id_real,"b_is_opened",tmp_val);
+						}
+				
+						variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
+					}
 				}
 			}
 		break;

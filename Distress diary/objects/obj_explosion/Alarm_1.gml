@@ -10,14 +10,14 @@ send_ImgData(obj_id,id,sprite_index,image_index,x,y,z,image_xscale,image_yscale,
 
 
 //효과음 재생
-play_sound_pos(bomb_sfx,false,0.1,x,y,2600,true,my_pos_xx,my_pos_yy);
+play_sound_pos(bomb_sfx,false,0.1,x,y,2600,false,my_pos_xx,my_pos_yy);
 
 
 
 //폭발 데미지
 with(obj_mob_parents)
 {
-	if (place_meeting(x,y,other.id))
+	if (!stop_cal_by_pos_statement && place_meeting(x,y,other.id))
 	{
 		var dis_xx = (other.x-x);
 		var dis_yy = (other.y-y)*0.42;
@@ -30,6 +30,17 @@ with(obj_mob_parents)
 		//넉백 효과
 		direction = point_direction(other.x,other.y,x,y);
 		_speed = (real_dis > tmp_dmg_decrease_dis) ? 32/(real_dis-tmp_dmg_decrease_dis) : 32;
+		
+		
+		//폭탄이 폭탄 근처에서 터지면 연쇄적으로 터지는 효과 적용
+		if (object_index == obj_bomb)
+		{
+			timer += 100;
+		}
+		else if (object_index == obj_cherry_bomb)
+		{
+			z = 0;
+		}
 	}
 }
 

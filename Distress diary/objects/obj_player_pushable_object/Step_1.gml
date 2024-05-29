@@ -33,14 +33,12 @@ if (pusher != -4)
 			pushing_timer ++;
 		
 			//블럭 미는 애니메이션 상태 정보 전송
-			if (tmp_is_my_player_pushing && pushing_timer == 1)
-			{
-				send_InstanceVariableData(id,"pushing_animation",true);
-				send_InstanceVariableData(id,"pusher",global.my_player_id);
-			}
-		
 			if (tmp_is_my_player_pushing)
 			{
+				if (pushing_timer == 1)
+				{
+					send_InstanceMuchVariableData(id,"pushing_animation,pusher",string(true)+","+string(global.my_player_id));
+				}
 				pushing_animation = false;
 			}
 		}
@@ -59,14 +57,14 @@ if (pusher != -4)
 					var tmp_cal = tmp_scale*sign(tmp_xx);
 					var tmp_chk_xx = x+tmp_cal;
 					origin_xx += (!place_meeting(tmp_chk_xx,y,obj_nextroom) && !place_meeting(tmp_chk_xx,y,obj_wall_parents) && !place_meeting(tmp_chk_xx,y,obj_mob_parents)) ? tmp_cal : 0;
-					send_InstanceVariableData(id,"origin_xx");
+					send_InstanceMuchVariableData(id,"origin_xx,pushing_timer",string(origin_xx)+",999");
 				}
 				else
 				{
 					var tmp_cal = tmp_scale*sign(tmp_yy);
 					var tmp_chk_yy = y+tmp_cal;
 					origin_yy += (!place_meeting(x,tmp_chk_yy,obj_nextroom) && !place_meeting(x,tmp_chk_yy,obj_wall_parents)  && !place_meeting(x,tmp_chk_yy,obj_mob_parents)) ? tmp_cal : 0;
-					send_InstanceVariableData(id,"origin_yy");
+					send_InstanceMuchVariableData(id,"origin_yy,pushing_timer",string(origin_yy)+",999");
 				}
 	
 	
@@ -99,8 +97,13 @@ if (pusher != -4)
 					//이동 완료
 					x = origin_xx;
 					y = origin_yy;
-					pusher = -4;
-					send_InstanceVariableData(id,"pusher");
+					
+					//오브젝트를 밀은 사람이 정보 보내주기
+					if (pusher != -4)
+					{
+						pusher = -4;
+						send_InstanceVariableData(id,"pusher");
+					}
 				}
 				else
 				{

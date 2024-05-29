@@ -327,7 +327,7 @@ if (global.chat_activated)
 							var tmp_xx = global.my_player_ins_id[global.my_player_id].x;
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							
-							create_explosion_effect(tmp_xx,tmp_yy,28,4,-4,-4);
+							create_explosion_effect(tmp_xx,tmp_yy,28,4,-4,-4,true);
 						}
 						
 						

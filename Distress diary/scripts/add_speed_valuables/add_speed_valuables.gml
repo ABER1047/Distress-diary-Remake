@@ -4,6 +4,12 @@ function add_speed_valuables()
 {
 	//속도 관련 변수
 	_speed = 0;
-	_vspeed = 0;
-	_hspeed = 0;
+	if (!variable_instance_exists(id,"_vspeed"))
+	{
+		_vspeed = 0;
+	}
+	if (!variable_instance_exists(id,"_hspeed"))
+	{
+		_hspeed = 0;
+	}
 }

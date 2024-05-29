@@ -33,9 +33,6 @@ if (global.is_server && !stop_cal_by_pos_statement)
 					tracking_timer = 81;
 					show_debug_message(string(tracking_timer)+" /z "+string(z)+" /zspeed "+string(zspeed));
 				}
-				
-				//애니메이션 정보 전송
-				send_InstanceVariableData(id,"tracking_timer",tracking_timer);
 			break;
 		
 		
@@ -66,9 +63,6 @@ if (global.is_server && !stop_cal_by_pos_statement)
 					image_yscale = 0.5;
 					tracking_timer = 82;
 					show_debug_message(string(tracking_timer)+" /z "+string(z)+" /zspeed "+string(zspeed));
-					
-					//애니메이션 정보 전송
-					send_InstanceVariableData(id,"tracking_timer",tracking_timer);
 				}
 			break;
 			
@@ -90,15 +84,21 @@ if (global.is_server && !stop_cal_by_pos_statement)
 					image_index = 0;
 					tracking_timer = 0;
 					show_debug_message(string(tracking_timer)+" /z "+string(z)+" /zspeed "+string(zspeed));
-					
-					//애니메이션 정보 전송
-					send_InstanceVariableData(id,"tracking_timer",tracking_timer);
 				}
 			break;
 		}
 	}
 	else
 	{
-		tracking_timer ++;
+		if (global.is_server)
+		{
+			tracking_timer ++;
+			
+			if (tracking_timer == 80)
+			{
+				//애니메이션 정보 전송
+				send_InstanceVariableData(id,"tracking_timer",tracking_timer);
+			}
+		}
 	}
 }

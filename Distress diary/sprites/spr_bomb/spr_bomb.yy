@@ -42,7 +42,7 @@
     ],
     "top":0,
   },
-  "origin":4,
+  "origin":9,
   "parent":{
     "name":"Sprite_items",
     "path":"folders/스프라이트/Sprite_items.yy",
@@ -95,7 +95,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":32,
-    "yorigin":32,
+    "yorigin":42,
   },
   "swatchColours":null,
   "swfPrecision":2.525,

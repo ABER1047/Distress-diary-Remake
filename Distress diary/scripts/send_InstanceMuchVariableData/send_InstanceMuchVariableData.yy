@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"send_InstanceMuchVariableData",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"send_InstanceMuchVariableData",
+  "parent":{
+    "name":"Multiplayer",
+    "path":"folders/스크립트/Multiplayer.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -7,7 +7,7 @@
 function give_damage(argument0,argument1,argument2)
 {
 	var tmp_ins = argument0;
-	if (instance_exists(tmp_ins) && (tmp_ins.dmg_cooltime == 0 || argument2))
+	if (instance_exists(tmp_ins) && ((variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0) || argument2))
 	{
 		var tmp_dmg = argument1;
 		tmp_ins.hp -= tmp_dmg;
