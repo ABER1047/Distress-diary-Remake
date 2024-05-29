@@ -80,6 +80,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 					tmp_color = #44A978;
 				}
 				
+				
 				for(var i = 0; i < array_length(rd_xx); i++)
 				{
 					var tmp_xx = rd_xx[i];

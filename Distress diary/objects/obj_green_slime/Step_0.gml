@@ -16,8 +16,8 @@ if (!stop_cal_by_pos_statement)
 				{
 					if (instance_exists(targeted))
 					{
-						tmp_value1 = targeted.x+choose(-8,8);
-						tmp_value2 = targeted.y+choose(-8,8);
+						tmp_value1 = targeted.x;
+						tmp_value2 = targeted.y;
 					}
 					else
 					{
@@ -26,7 +26,7 @@ if (!stop_cal_by_pos_statement)
 					}
 					
 					//점프 효과음
-					play_sound_pos(slime_jump_sfx,false,0.7,x,y,960,true,my_pos_xx,my_pos_yy);
+					play_sound_pos(slime_jump_sfx,false,0.25,x,y,960,true,my_pos_xx,my_pos_yy);
 					
 					//점프 애니메이션
 					zspeed = -64;
@@ -56,7 +56,7 @@ if (!stop_cal_by_pos_statement)
 				else if (zspeed == 0)
 				{
 					//착지 효과음
-					play_sound_pos(slime_land_sfx,false,0.7,x,y,960,true,my_pos_xx,my_pos_yy);
+					play_sound_pos(slime_land_sfx,false,0.25,x,y,960,true,my_pos_xx,my_pos_yy);
 					
 					//착지 애니메이션 재생
 					image_xscale = sign(image_xscale)*4;
@@ -90,6 +90,15 @@ if (!stop_cal_by_pos_statement)
 	}
 	else
 	{
-		tracking_timer ++;
+		if (global.is_server)
+		{
+			tracking_timer ++;
+			
+			if (tracking_timer == 80)
+			{
+				//애니메이션 정보 전송
+				send_InstanceVariableData(id,"tracking_timer",tracking_timer);
+			}
+		}
 	}
 }

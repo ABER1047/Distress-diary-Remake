@@ -1,6 +1,5 @@
 /// @description Insert description here
 // You can write your code in this editor
-
 if (!stop_cal_by_pos_statement)
 {
 	if (_speed > 0)

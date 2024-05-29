@@ -16,13 +16,17 @@ depth = -floor(y);
 
 
 //플레이어 타깃팅
-if (instance_exists(targeted))
+if (instance_exists(targeted) && point_distance(x,y,targeted.x,targeted.y) < 960)
 {
 	image_xscale = sign_nonzero(x - targeted.x)*abs(image_xscale);
 }
 else
 {
+	//타깃팅 완료
 	targeted = instance_nearest(x,y,obj_player);
+	
+	//멀티플레이어 측은 타깃정보 리셋후 리타겟팅
+	send_InstanceVariableData(id,"targeted",-4);
 }
 
 
@@ -49,3 +53,5 @@ if (dmg_cooltime > 0)
 		image_alpha = 1;
 	}
 }
+
+

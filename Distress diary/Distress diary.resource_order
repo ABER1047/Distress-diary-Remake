@@ -52,6 +52,7 @@
     {"name":"obj_bouncing_object","order":8,"path":"objects/obj_bouncing_object/obj_bouncing_object.yy",},
     {"name":"obj_bubble_effect","order":2,"path":"objects/obj_bubble_effect/obj_bubble_effect.yy",},
     {"name":"obj_camera","order":1,"path":"objects/obj_camera/obj_camera.yy",},
+    {"name":"obj_corruption_slime","order":10,"path":"objects/obj_corruption_slime/obj_corruption_slime.yy",},
     {"name":"obj_damage_display","order":2,"path":"objects/obj_damage_display/obj_damage_display.yy",},
     {"name":"obj_dropped_item","order":6,"path":"objects/obj_dropped_item/obj_dropped_item.yy",},
     {"name":"obj_explosion_effect_on_ground","order":6,"path":"objects/obj_explosion_effect_on_ground/obj_explosion_effect_on_ground.yy",},

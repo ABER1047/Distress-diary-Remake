@@ -78,6 +78,7 @@
     {"id":{"name":"obj_bouncing_object","path":"objects/obj_bouncing_object/obj_bouncing_object.yy",},},
     {"id":{"name":"obj_bubble_effect","path":"objects/obj_bubble_effect/obj_bubble_effect.yy",},},
     {"id":{"name":"obj_camera","path":"objects/obj_camera/obj_camera.yy",},},
+    {"id":{"name":"obj_corruption_slime","path":"objects/obj_corruption_slime/obj_corruption_slime.yy",},},
     {"id":{"name":"obj_damage_display","path":"objects/obj_damage_display/obj_damage_display.yy",},},
     {"id":{"name":"obj_dropped_item","path":"objects/obj_dropped_item/obj_dropped_item.yy",},},
     {"id":{"name":"obj_effect_parents","path":"objects/obj_effect_parents/obj_effect_parents.yy",},},

@@ -41,7 +41,7 @@ max_hp = 100;
 
 //타겟팅 된 플레이어
 targeted = -4;
-
+b_targeted = -4;
 
 //공격력
 attack_dmg = 15;
@@ -53,6 +53,7 @@ dmg_cooltime = 0;
 //적 트래킹
 tracking_timer = 0;
 tracking_dir = 0;
+
 
 
 //임시 변수 (각 몹마다 적절하게 사용)
