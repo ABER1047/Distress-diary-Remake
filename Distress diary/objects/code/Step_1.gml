@@ -36,13 +36,13 @@ if (global.time_increment < global.time_increment_timer)
 	//게임 내의 시간 - 1분 지남
 	global.time ++;
 	global.time_increment_timer -= global.time_increment;
-	if (global.time == 60*6.5)//오전 6시 30분 (낮)
-	{
-		global.time_is_day = true;
-	}
-	else if (global.time == 60*22)//오후 10시 (밤)
+	if (global.time >= 60*22 || global.time < 60*6.5)//오후 10시~오전 6시 30분 (밤)
 	{
 		global.time_is_day = false;
+	}
+	else //오전 6시 30분~오후 10시 (낮)
+	{
+		global.time_is_day = true;
 	}
 	
 	if (global.time >= 60*24)

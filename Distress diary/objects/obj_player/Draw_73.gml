@@ -28,6 +28,9 @@ if (draw_alpha > 0)
 	else
 	{
 		draw_text_k_scale(x,tmp_yy,string(nickname),64,-1,1,c_white,0,0,font_normal,0.4,0.4,0);
-		draw_text_k_scale(x,y+32/global.h_ratio_by_window,"obj_id : "+string(obj_id)+"\nobj_id_player_only : "+string(obj_id_player_only),64,-1,1,c_white,0,0,font_normal,0.4,0.4,0);
+		if (global.show_wall_hitbox)
+		{
+			draw_text_k_scale(x,y+32/global.h_ratio_by_window,"obj_id : "+string(obj_id)+"\nobj_id_player_only : "+string(obj_id_player_only),64,-1,1,c_white,0,0,font_normal,0.4,0.4,0);
+		}
 	}
 }

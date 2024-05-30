@@ -23,7 +23,7 @@
   ],
   "name":"spr_skull_head",
   "nineSlice":null,
-  "origin":7,
+  "origin":9,
   "parent":{
     "name":"sprite_monsters",
     "path":"folders/스프라이트/sprite_monsters.yy",
@@ -76,7 +76,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":32,
-    "yorigin":64,
+    "yorigin":46,
   },
   "swatchColours":null,
   "swfPrecision":0.5,

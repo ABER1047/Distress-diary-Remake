@@ -7,7 +7,7 @@
 function give_damage(argument0,argument1,argument2)
 {
 	var tmp_ins = argument0;
-	if (instance_exists(tmp_ins) && ((variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0) || argument2))
+	if (instance_exists(tmp_ins) && ((variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0) || (argument2 && variable_instance_exists(tmp_ins,"hp"))))
 	{
 		var tmp_dmg = argument1;
 		tmp_ins.hp -= tmp_dmg;
@@ -30,7 +30,6 @@ function give_damage(argument0,argument1,argument2)
 		
 		//데미지 정보 표기
 		var tmp_yy = (tmp_ins.y-128);
-		tmp_yy += (variable_instance_exists(tmp_ins,"floating_yy")) ? tmp_ins.floating_yy : 0;
 		tmp_yy -= (variable_instance_exists(tmp_ins,"z")) ? tmp_ins.z : 0;
 		
 		damage_display(tmp_ins.x,tmp_yy,#7A213A,tmp_ins,string(tmp_dmg));

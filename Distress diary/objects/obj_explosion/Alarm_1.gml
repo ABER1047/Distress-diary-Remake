@@ -19,13 +19,14 @@ with(obj_mob_parents)
 {
 	if (!stop_cal_by_pos_statement && place_meeting(x,y,other.id))
 	{
+		var tmp_real_dmg = other.explo_dmg;
 		var dis_xx = (other.x-x);
 		var dis_yy = (other.y-y)*0.42;
 		var real_dis = sqrt(power(dis_xx,2)+power(dis_yy,2));
 		var tmp_dmg_decrease_dis = other.image_xscale*96;
-		var tmp_dmg = (real_dis > tmp_dmg_decrease_dis) ? other.explo_dmg/((real_dis-tmp_dmg_decrease_dis)/32) : other.explo_dmg;
+		var tmp_dmg = (real_dis > tmp_dmg_decrease_dis) ? tmp_real_dmg/((real_dis-tmp_dmg_decrease_dis)/32) : tmp_real_dmg;
 	
-		give_damage(id,tmp_dmg,false);
+		give_damage(id,(tmp_real_dmg > tmp_dmg) ? tmp_dmg : tmp_real_dmg,false);
 	
 		//넉백 효과
 		direction = point_direction(other.x,other.y,x,y);

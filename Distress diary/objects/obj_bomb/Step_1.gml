@@ -31,5 +31,3 @@ if (timer > 150)
 	instance_destroy();
 }
 
-
-draw_alpha = !stop_cal_by_pos_statement;

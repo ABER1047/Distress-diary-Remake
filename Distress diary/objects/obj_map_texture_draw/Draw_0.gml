@@ -163,6 +163,14 @@ if (surface_exists(global.shadow_surf))
 			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
 		}
 	}
+	
+	with(obj_arrow)
+	{
+		if (!stop_cal_by_pos_statement && is_on_mob == -4)
+		{
+			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
+		}
+	}
 
 	with(obj_dropped_item)
 	{

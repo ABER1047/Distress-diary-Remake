@@ -27,7 +27,6 @@ alarm[1] = 1;
 
 
 //애니메이션
-floating_yy = -32;
 idle_animation = 0;
 
 

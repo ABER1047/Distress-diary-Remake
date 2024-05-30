@@ -288,6 +288,7 @@ if (global.chat_activated)
 							tmp_ins._speed = 48;
 							tmp_ins.parents = global.my_player_ins_id[global.my_player_id];
 							tmp_ins.attack_dmg = 22;
+							tmp_ins.z = 64;
 						}
 						else if (i == 18) //그래픽 퀄리티 설정
 						{

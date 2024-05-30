@@ -8,11 +8,11 @@ if (!stop_cal_by_pos_statement)
 	idle_animation ++;
 	if (idle_animation < 90)
 	{
-		floating_yy += (-32 - floating_yy)*0.01;
+		z += (32 - z)*0.01;
 	}
 	else if (idle_animation < 180)
 	{
-		floating_yy += (-96 - floating_yy)*0.01;
+		z += (96 - z)*0.01;
 	}
 	else
 	{
@@ -26,7 +26,7 @@ if (!stop_cal_by_pos_statement)
 	//불 이펙트
 	if (percentage_k(15))
 	{
-		var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z+floating_yy-32,c_black,#3E375C,0.05,-irandom_range(0,12),irandom_range(-2,2),0.07,0,true);
+		var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z-32,c_black,#3E375C,0.05,-irandom_range(0,12),irandom_range(-2,2),0.07,0,true);
 		tmp_ins.image_xscale = 1.3;
 		tmp_ins.image_yscale = 1.3;
 	}
