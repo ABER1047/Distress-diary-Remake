@@ -37,7 +37,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//폭탄 던지기
 	if (!global.chat_activated && keyboard_check_pressed(ord("G")))
 	{
-		var rd_bomb = choose(false);
+		var rd_bomb = choose(false,true);
 		if (rd_bomb)
 		{
 			var tmp_ins = instance_create_multiplayer(obj_bomb,x,y,global.object_id_ind,0,false,-4,-4);

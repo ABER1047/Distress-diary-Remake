@@ -23,7 +23,7 @@ alarm[1] = 1;
 alarm[2] = 1;
 
 //image_alpha값이랑 똑같은데 draw_sprite에서만 드로우 되지 않게 해주는 alpha값
-draw_alpha = 0;
+draw_alpha = 1;
 
 //멀티플레이 용 버퍼
 command_buffer = buffer_create(1024,buffer_grow,1);

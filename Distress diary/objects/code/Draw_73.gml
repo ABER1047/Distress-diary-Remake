@@ -374,7 +374,7 @@ if (global.dev_mode == 1)
 	
 	
 	
-		//블럭 생성 (병)
+		//블럭 생성
 		var tmp_img = 0;
 		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
 		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
@@ -407,7 +407,7 @@ if (global.dev_mode == 1)
 				}
 				else if (rd_choose == 1)
 				{
-					instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(28,34),false,-4,-4);
+					instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(76,87),false,-4,-4);
 				}
 				else if (rd_choose == 2)
 				{
