@@ -20,15 +20,12 @@ if (!stop_cal_by_pos_statement)
 		light_timer = 0;
 		
 		//효과음 재생
-		sfx = play_sound_pos(fire_turn_on_sfx,false,0.3,x,y,256,false,-4,-4);
+		sfx = play_sound_pos(fire_turn_on_sfx,false,0.1,x,y-32,640,false,-4,-4);
 		alarm[1] = 10;
 
 		b_is_opened = is_opened;
 		send_InstanceVariableData(id,"is_opened");
 	}
-
-	//이미지 설정
-	image_index = s_img_ind+is_opened;
 
 	
 	//상호작용 중 일때
@@ -37,20 +34,36 @@ if (!stop_cal_by_pos_statement)
 		light_timer ++;
 		
 		//라이트 효과
-		c_light(light_col[image_index*0.5],light_scale*0.75,light_alpha);
+		c_light(light_col[image_index*0.5],light_scale*0.75,light_alpha,x,y-32);
 		if (light_timer < 90)
 		{
-			light_alpha += (1 - light_alpha)*0.3;
-			light_scale += (1 - light_scale)*0.3;
+			light_alpha += (1 - light_alpha)*0.1;
+			light_scale += (1 - light_scale)*0.1;
 		}
 		else if (light_timer < 120)
 		{
-			light_alpha += (0.8 - light_alpha)*0.1;
+			light_alpha += (0.92 - light_alpha)*0.1;
 			light_scale += (0.95 - light_scale)*0.1;
 		}
 		else
 		{
-			light_timer -= irandom_range(90,120);
+			light_timer = 0;
+		}
+		
+		if (!audio_is_playing(sfx_idle))
+		{
+			sfx_idle = play_sound_pos(fire_sfx,true,0.1,x,y-32,96,true,-4,-4);
+		}
+		else
+		{
+			gain_sound_pos(sfx_idle,light_alpha*0.1,x,y-32,96);
+		}
+	}
+	else
+	{
+		if (audio_is_playing(sfx_idle))
+		{
+			audio_stop_sound(sfx_idle);
 		}
 	}
 }

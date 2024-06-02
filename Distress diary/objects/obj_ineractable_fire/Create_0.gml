@@ -9,8 +9,6 @@ add_my_pos_statement();
 image_xscale = 2;
 image_yscale = 2;
 image_speed = 0;
-s_img_ind = -4;
-alarm[0] = 1;
 
 
 
@@ -42,16 +40,7 @@ interaction_message = "불 켜기/끄기";
 
 //사운드 이펙트
 sfx = -4;
-
-
-//블럭 밀기 시스템
-pushing_animation = false;
-pushing_timer = 0;
-origin_xx = xstart;
-origin_yy = ystart;
-draw_xx = 0;
-draw_yy = 0;
-pusher = -4;
+sfx_idle = -4;
 
 
 //라이트 관련 세팅
@@ -59,3 +48,10 @@ light_col = [ #FFAC4B, #FFAC4B, #FFAC4B, #0BE5C4, #FFAC4B, #0BE5C4, #FFAC4B, #0B
 light_scale = 1;
 light_alpha = 1;
 light_timer = 0;
+
+
+
+//불꽃 애니메이션 관련 세팅
+fire_yy = [ 76, 102, 100, 28 ];
+fire_type = choose(0,1);
+fire_scale = [ 1, 0.75, 1, 1 ];
