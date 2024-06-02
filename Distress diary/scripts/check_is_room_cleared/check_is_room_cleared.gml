@@ -11,7 +11,7 @@ function check_is_room_cleared()
 	{
 		with(obj_floor_button)
 		{
-			if (!stop_cal_by_pos_statement && image_index == s_img_ind && !is_cleared && image_index > 57)
+			if (!stop_cal_by_pos_statement && image_index == s_img_ind && !is_cleared && image_index > 0)
 			{
 				can_open_room = false;
 			}

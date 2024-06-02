@@ -1,6 +1,5 @@
 /// @description Insert description here
 
-
 //사운드 볼륨 조절용 거리 값
 if (array_length(global.my_player_ins_id) > global.my_player_id)
 {

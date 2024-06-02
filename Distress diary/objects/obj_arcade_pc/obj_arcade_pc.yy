@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_objects",
-    "path":"sprites/spr_objects/spr_objects.yy",
+    "name":"spr_arcade_pc",
+    "path":"sprites/spr_arcade_pc/spr_arcade_pc.yy",
   },
   "spriteMaskId":{
     "name":"spr_block_hitbox",

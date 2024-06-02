@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"c_light",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"c_light",
+  "parent":{
+    "name":"LightSystem",
+    "path":"folders/스크립트/LightSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

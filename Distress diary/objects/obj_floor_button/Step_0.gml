@@ -21,13 +21,13 @@ else
 		var tmp_ins = instance_place(x,y,obj_mob_parents);
 		if ((instance_exists(tmp_ins) && tmp_ins.z == 0) || place_meeting(x,y,obj_player_pushable_object))
 		{
-			var tmp_ind = s_img_ind+1;
-			if (image_index != tmp_ind)
+			var tmp_val = s_img_ind+1;
+			if (image_index != tmp_val)
 			{
 				//효과음 재생
 				play_sound_pos(button_sfx,false,0.3,x,y,640,false,-4,-4);
 		
-				image_index = tmp_ind;
+				image_index = tmp_val;
 			}
 		}
 		else
@@ -42,7 +42,7 @@ else
 		}
 	}
 	
-	if (s_img_ind == 56 && image_index == s_img_ind+1)
+	if (s_img_ind == 2 && image_index == s_img_ind+1)
 	{
 		skip_puzzle_timer++;
 		if (skip_puzzle_timer > 600)

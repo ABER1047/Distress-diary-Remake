@@ -11,28 +11,28 @@ for(var i = -3; i <= 3; i++)
 		var tmp_yy = y+ii*96;
 		if (position_meeting(tmp_xx,tmp_yy,supporter_arr[0]))
 		{
-			instance_create_multiplayer(obj_only_breakable_pushable,tmp_xx,tmp_yy + 96,global.object_id_ind,62,false,xpos,ypos);
+			instance_create_multiplayer(obj_only_breakable_pushable,tmp_xx,tmp_yy + 96,global.object_id_ind,7,false,xpos,ypos);
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,supporter_arr[1]))
 		{
-			instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,58,false,xpos,ypos);
+			instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,0,false,xpos,ypos);
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,supporter_arr[2]))
 		{
-			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,choose(31,32),false,xpos,ypos);
+			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,choose(3,4),false,xpos,ypos);
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,supporter_arr[3]))
 		{
-			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,30,false,xpos,ypos);
+			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,2,false,xpos,ypos);
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,supporter_arr[4]))
 		{
-			var tmp_ind = (!position_meeting(tmp_xx,tmp_yy-96,obj_only_breakable)) ? choose(30,31,32) : choose(31,32);
+			var tmp_ind = (!position_meeting(tmp_xx,tmp_yy-96,obj_only_breakable)) ? choose(2,3,4) : choose(3,4);
 			instance_create_multiplayer(obj_only_breakable,tmp_xx,tmp_yy + 96,global.object_id_ind,tmp_ind,false,xpos,ypos);
 		}
 		else if (!skip_button_created && position_meeting(tmp_xx,tmp_yy,supporter_arr[5]))
 		{
-			instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,56,false,xpos,ypos);
+			instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,2,false,xpos,ypos);
 			skip_button_created = true;
 		}
 	}

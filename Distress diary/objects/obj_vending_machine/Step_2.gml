@@ -15,9 +15,9 @@ if (!stop_cal_by_pos_statement)
 	if (obj_animation_timer >= 360)
 	{
 		image_index += (obj_animation_timer%20 == 0) ? 1 : 0;
-		if (image_index == 47)
+		if (image_index == 3)
 		{
-			image_index = 45;
+			image_index = 1;
 		}
 		obj_animation_timer -= 19;
 		obj_animation ++;
@@ -25,7 +25,7 @@ if (!stop_cal_by_pos_statement)
 		if (obj_animation > 4)
 		{
 			obj_animation_timer = 0;
-			image_index = 44;
+			image_index = 0;
 			obj_animation = 0;
 		}
 	}

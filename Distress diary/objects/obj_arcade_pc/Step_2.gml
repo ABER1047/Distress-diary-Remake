@@ -28,6 +28,7 @@ if (!stop_cal_by_pos_statement)
 	}
 
 
+	//상호작용 중 일때
 	if (is_opened != -4)
 	{
 		obj_animation_timer ++;

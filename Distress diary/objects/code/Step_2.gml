@@ -19,6 +19,20 @@ else
 }
 
 
+//라이트 서피스
+if surface_exists(global.light_surf)
+{
+	var xx_w = camera_get_view_width(view_camera[0]);
+	surface_set_target(global.light_surf);
+	gpu_set_blendmode_ext(bm_inv_dest_color, bm_inv_src_color);
+	draw_set_color($ffffff);
+	draw_set_alpha(1);
+	draw_rectangle(0, 0, 1920*2, 1080*2, 0);
+	gpu_set_blendmode(bm_normal);
+	surface_reset_target();
+}
+
+
 
 //새로운 플레이어가 중도 참여했을 때, 맵 데이터 전송
 if (global.new_player_joined > 0)

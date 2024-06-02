@@ -6,5 +6,5 @@ function flashlight_toggle()
 	global.fixed_dir = !global.fixed_dir;
 	play_sound_pos(flash_light_sfx,false,0.1,x,y,256,false,-4,-4);
 	//surface_free(global.flashlight_surf);
-	//global.flashlight_surf = surface_create(4000,3000);
+	//global.flashlight_surf = surface_create(3840,2160);
 }

@@ -37,8 +37,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_objects",
-    "path":"sprites/spr_objects/spr_objects.yy",
+    "name":"spr_objects_openable",
+    "path":"sprites/spr_objects_openable/spr_objects_openable.yy",
   },
   "spriteMaskId":{
     "name":"spr_block_hitbox",

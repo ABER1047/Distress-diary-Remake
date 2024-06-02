@@ -465,6 +465,15 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 					{
 						is_lootable = "PC";
 					}
+					else
+					{
+						//불 오브젝트
+						tmp_ins = instance_nearest_notme(x,y,obj_ineractable_fire);
+						if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
+						{
+							is_lootable = "Fire";
+						}
+					}
 				}
 			}
 		}
@@ -476,15 +485,23 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	if (is_lootable != "")
 	{
 		var tmp_key;
-		if (tmp_ins.is_opened != -4)
+		if (tmp_ins.interaction_message != "불 켜기/끄기")
 		{
-			tmp_key = -4;
-			draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 중");
+			if (tmp_ins.is_opened != -4)
+			{
+				tmp_key = -4;
+				draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 중");
+			}
+			else
+			{
+				tmp_key = "F";
+				draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 하기");
+			}
 		}
 		else
 		{
 			tmp_key = "F";
-			draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 하기");
+			draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message));
 		}
 
 		
@@ -507,6 +524,10 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 					else if (tmp_ins.interaction_message == "상호작용")
 					{
 						tmp_ins.is_opened = id;
+					}
+					else if (tmp_ins.interaction_message == "불 켜기/끄기")
+					{
+						tmp_ins.is_opened = !tmp_ins.is_opened;
 					}
 					global.interaction_hold_time = 0;
 				}
