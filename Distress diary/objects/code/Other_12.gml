@@ -8,6 +8,6 @@ for(var i = 0; i < array_length(tmp_surf); i++)
 {
 	if surface_exists(tmp_surf[i])
 	{
-		surface_free(tmp_surf[i]);
+		surf_free(tmp_surf[i]);
 	}
 }

@@ -80,16 +80,16 @@ global.f_pos_yy = -4; //처음 룸 방문시의 플레이어 y위치정보
 
 
 //벽 외부 서피스 생성
-outter_room_surf = surface_create(3840,2160);
+outter_room_surf = surf_cre(3840,2160);
 
 //라이트 서피스 생성
-global.light_surf = surface_create(3840,2160);
-global.flashlight_surf = surface_create(3840,2160);
+global.light_surf = surf_cre(3840,2160);
+global.flashlight_surf = surf_cre(3840,2160);
 global.enable_light_surf = false;
 global.time_response_light = 1;
 
 //쉐도우 서피스 생성
-global.shadow_surf = surface_create(3840,2160);
+global.shadow_surf = surf_cre(3840,2160);
 global.enable_shadow_surf = true;
 
 
@@ -165,7 +165,7 @@ global.time_is_day = true;
 
 
 //바닥 액체 그리기용 서피스
-global.liquid_on_floor_surf = surface_create(3840,2160);
+global.liquid_on_floor_surf = surf_cre(3840,2160);
 
 
 //그래픽 퀄리티
@@ -179,3 +179,7 @@ global.display_view_of_mob = false;
 
 //맵 바깥 구역 막는 투명 벽
 global.outside_of_map_wall = array_create(4,-4);
+
+
+//서피스 저장용 큐
+global.surf_queue = ds_list_create();

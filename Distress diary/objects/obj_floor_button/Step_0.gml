@@ -9,13 +9,18 @@ statement_by_pos();
 depth = obj_map_texture_draw.depth-16;
 
 
-//버튼 발판 밟기
-if (is_cleared)
+//룸 클리어 되었나 체크
+var is_room_cleared = (global.map_arr[my_pos_yy][my_pos_xx] == 1) ? true : false;
+
+
+
+if (is_room_cleared)
 {
 	image_index = s_img_ind+1;
 }
 else
 {
+	//버튼 발판 밟기
 	if (s_img_ind != -4)
 	{
 		var tmp_ins = instance_place(x,y,obj_mob_parents);
@@ -40,22 +45,5 @@ else
 				image_index = s_img_ind;
 			}
 		}
-	}
-	
-	if (s_img_ind == 2 && image_index == s_img_ind+1)
-	{
-		skip_puzzle_timer++;
-		if (skip_puzzle_timer > 600)
-		{
-			with(obj_floor_button)
-			{
-				is_cleared = true;
-			}
-			skip_puzzle_timer = 0;
-		}
-	}
-	else
-	{
-		skip_puzzle_timer = 0;
 	}
 }

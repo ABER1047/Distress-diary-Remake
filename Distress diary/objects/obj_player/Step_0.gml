@@ -435,53 +435,47 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	else
 	{
-		//상자 루팅하기
-		tmp_ins = instance_nearest_notme(x,y,obj_loots);
-		if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
+		//오브젝트 상호작용 하기
+		tmp_ins = -4;
+		with(obj_parents)
 		{
-			is_lootable = string(tmp_ins.loots_name);
-		}
-		else
-		{
-			//버려진 아이템 루팅하기 (= 아이템 버렸을 때 생성되는 특수 상자)
-			tmp_ins = instance_nearest_notme(x,y,obj_dropped_item);
-			if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
+			if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 96)
 			{
-				is_lootable = "버려진 아이템";
+				tmp_ins = id;
+				break;
 			}
-			else
+		}
+		
+		if (instance_exists(tmp_ins))
+		{
+			switch(tmp_ins.object_index)
 			{
-				//벤딩 머신
-				tmp_ins = instance_nearest_notme(x,y,obj_vending_machine);
-				if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
-				{
+				case obj_loots:
+					is_lootable = string(tmp_ins.loots_name);
+				break;
+				
+				case obj_dropped_item:
+					is_lootable = "버려진 아이템";
+				break;
+				
+				case obj_vending_machine:
 					is_lootable = "자동판매기";
-				}
-				else
-				{
-					//PC
-					tmp_ins = instance_nearest_notme(x,y,obj_arcade_pc);
-					if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
-					{
-						is_lootable = "PC";
-					}
-					else
-					{
-						//불 오브젝트
-						tmp_ins = instance_nearest_notme(x,y,obj_ineractable_fire);
-						if (instance_exists(tmp_ins) && point_distance(x,y,tmp_ins.x,tmp_ins.y-48) <= 96)
-						{
-							is_lootable = "Fire";
-						}
-					}
-				}
+				break;
+				
+				case obj_arcade_pc:
+					is_lootable = "PC";
+				break;
+				
+				case obj_ineractable_fire:
+					is_lootable = "Fire";
+				break;
 			}
 		}
 	}
 
 	
 	
-	//아이템 루팅 중...
+	//아이템 상호작용 키 표시 및 게이지 차는 로직
 	if (is_lootable != "")
 	{
 		var tmp_key;

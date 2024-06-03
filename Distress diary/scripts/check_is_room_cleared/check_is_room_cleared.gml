@@ -6,12 +6,12 @@ function check_is_room_cleared()
 	var can_open_room = true;
 
 	
-	//퍼즐방 클리어 판정
+	//퍼즐방(모든 발판 눌렸나) 클리어 판정
 	if (instance_exists(obj_floor_button))
 	{
 		with(obj_floor_button)
 		{
-			if (!stop_cal_by_pos_statement && image_index == s_img_ind && !is_cleared && image_index > 0)
+			if (!stop_cal_by_pos_statement && image_index == s_img_ind)
 			{
 				can_open_room = false;
 			}

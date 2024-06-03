@@ -32,7 +32,7 @@ for(var i = -3; i <= 3; i++)
 		}
 		else if (!skip_button_created && position_meeting(tmp_xx,tmp_yy,supporter_arr[5]))
 		{
-			instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,2,false,xpos,ypos);
+			//instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,2,false,xpos,ypos);
 			skip_button_created = true;
 		}
 	}

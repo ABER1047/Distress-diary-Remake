@@ -55,3 +55,8 @@ light_timer = 0;
 fire_yy = [ 76, 102, 100, 28 ];
 fire_type = choose(0,1);
 fire_scale = [ 1, 0.75, 1, 1 ];
+
+
+//버블 이펙트 외곽선 효과용 오브젝트
+bubble_ef_ins = instance_create_depth(x,y,0,tmp_bubble_outline_effect);
+bubble_ef_ins.parent_id = id;

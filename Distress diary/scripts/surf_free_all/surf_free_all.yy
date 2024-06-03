@@ -1,12 +1,12 @@
 {
   "$GMScript":"",
-  "%Name":"c_light",
+  "%Name":"surf_free_all",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"c_light",
+  "name":"surf_free_all",
   "parent":{
-    "name":"LightSystem",
-    "path":"folders/스크립트/Surface/LightSystem.yy",
+    "name":"Surface",
+    "path":"folders/스크립트/Surface.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -12,8 +12,8 @@
   "duration":0.1827,
   "name":"draging_item",
   "parent":{
-    "name":"사운드",
-    "path":"folders/사운드.yy",
+    "name":"Inventory_sfx",
+    "path":"folders/사운드/Inventory_sfx.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

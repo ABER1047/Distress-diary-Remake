@@ -1,22 +1,23 @@
 /// @description surf reset
 // You can write your code in this editor
-if (!surface_exists(global.light_surf))
-{
-	global.light_surf = surface_create(3840,2160);
-	global.flashlight_surf = surface_create(3840,2160);
-	global.shadow_surf = surface_create(3840,2160);
-	
-	//버블 이펙트 외곽선 효과용 서피스
-	global.bubble_surf = surface_create(3840,2160);
-	
-	//바닥 액체 그리기용 서피스
-	global.liquid_on_floor_surf = surface_create(3840,2160);
-}
 
-if (!surface_exists(outter_room_surf))
-{
-	outter_room_surf = surface_create(3840,2160);
-}
+//서피스 전체 리셋
+surf_free_all();
+
+
+global.light_surf = surf_cre(3840,2160);
+global.flashlight_surf = surf_cre(3840,2160);
+global.shadow_surf = surf_cre(3840,2160);
+	
+//버블 이펙트 외곽선 효과용 서피스
+global.bubble_surf = surf_cre(3840,2160);
+	
+//바닥 액체 그리기용 서피스
+global.liquid_on_floor_surf = surf_cre(3840,2160);
+
+
+outter_room_surf = surf_cre(3840,2160);
+
 
 if (surface_exists(application_surface))
 {
@@ -35,7 +36,7 @@ with(tmp_bubble_outline_effect)
 {
 	if (object_index == tmp_bubble_outline_effect)
 	{
-		bubble_surf = surface_create(3840,2160);
+		bubble_surf = surf_cre(3840,2160);
 	}
 }
 

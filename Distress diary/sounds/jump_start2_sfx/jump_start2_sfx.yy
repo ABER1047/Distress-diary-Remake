@@ -12,8 +12,8 @@
   "duration":0.452208,
   "name":"jump_start2_sfx",
   "parent":{
-    "name":"사운드",
-    "path":"folders/사운드.yy",
+    "name":"Mob_sfx",
+    "path":"folders/사운드/Mob_sfx.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

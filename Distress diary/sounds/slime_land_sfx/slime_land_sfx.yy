@@ -12,8 +12,8 @@
   "duration":0.6245,
   "name":"slime_land_sfx",
   "parent":{
-    "name":"사운드",
-    "path":"folders/사운드.yy",
+    "name":"Mob_sfx",
+    "path":"folders/사운드/Mob_sfx.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

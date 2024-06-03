@@ -12,8 +12,8 @@
   "duration":1.1484,
   "name":"bomb_sfx",
   "parent":{
-    "name":"사운드",
-    "path":"folders/사운드.yy",
+    "name":"Object_sfx",
+    "path":"folders/사운드/Object_sfx.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

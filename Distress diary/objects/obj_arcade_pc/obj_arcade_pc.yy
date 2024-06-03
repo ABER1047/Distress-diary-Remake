@@ -15,8 +15,8 @@
     "path":"folders/오브젝트/map_objects.yy",
   },
   "parentObjectId":{
-    "name":"obj_player_pushable_object",
-    "path":"objects/obj_player_pushable_object/obj_player_pushable_object.yy",
+    "name":"obj_parents",
+    "path":"objects/obj_parents/obj_parents.yy",
   },
   "persistent":false,
   "physicsAngularDamping":0.1,

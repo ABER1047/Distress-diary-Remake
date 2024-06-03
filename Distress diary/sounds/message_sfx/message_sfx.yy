@@ -12,8 +12,8 @@
   "duration":0.1827,
   "name":"message_sfx",
   "parent":{
-    "name":"사운드",
-    "path":"folders/사운드.yy",
+    "name":"Action_sfx",
+    "path":"folders/사운드/Action_sfx.yy",
   },
   "preload":false,
   "resourceType":"GMSound",

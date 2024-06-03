@@ -292,6 +292,16 @@ if (global.chat_activated)
 						}
 						else if (i == 18) //그래픽 퀄리티 설정
 						{
+							//서피스 전체 리셋
+							with(code)
+							{
+								if (id != other.id)
+								{
+									event_user(0);
+								}
+							}
+							
+							//그래픽 퀄리티 값 적용
 							global.graphics_quality = tmp_parameter;
 						}
 						else if (i == 19) //몹 시점 표시

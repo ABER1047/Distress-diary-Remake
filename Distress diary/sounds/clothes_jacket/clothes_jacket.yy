@@ -12,8 +12,8 @@
   "duration":22.834677,
   "name":"clothes_jacket",
   "parent":{
-    "name":"사운드",
-    "path":"folders/사운드.yy",
+    "name":"Action_sfx",
+    "path":"folders/사운드/Action_sfx.yy",
   },
   "preload":false,
   "resourceType":"GMSound",
