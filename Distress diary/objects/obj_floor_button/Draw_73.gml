@@ -4,7 +4,7 @@
 
 
 //게이지 바 드로우
-if (!stop_cal_by_pos_statement && skip_puzzle_timer > 0)
+/*if (!stop_cal_by_pos_statement)
 {
 	//이름 드로우
 	var interaction_name_for_draw = "포기하기";

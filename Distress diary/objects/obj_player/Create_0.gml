@@ -22,6 +22,7 @@ b_my_backpack = -4;
 
 //플레이어가 바라보는 방향을 마우스 방향으로 고정
 global.fixed_dir = false;
+global.b_fixed_dir = false;
 
 //이동 관련 변수
 global.max_movement_speed = 8;
@@ -158,3 +159,7 @@ if (instance_number(obj_player) == 1)
 {
 	global.my_player_ins_id[0] = id;
 }
+
+//공격 이펙트 방향 저장용
+b_attack_ins = -4;
+a_timer = 0;

@@ -23,7 +23,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 		if (val > 1) 
 		{
 			// HTML5 version doesnt like triangle with only 2 sides 
-			piesurface = surf_cre(argument5*2,argument5*2)
+			piesurface = surface_create(argument5*2,argument5*2)
 
 			draw_set_colour(argument4);
 			draw_set_alpha(argument6);
@@ -59,7 +59,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
      
 			draw_surface(piesurface,argument0-argument5, argument1-argument5);
         
-			surf_free(piesurface);
+			surface_free(piesurface);
 		}
 	}
 }

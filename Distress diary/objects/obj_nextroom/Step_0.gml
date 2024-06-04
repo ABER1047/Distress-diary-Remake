@@ -64,5 +64,5 @@ if (surface_exists(door_surf))
 }
 else
 {
-	door_surf = surf_cre(128,116);
+	door_surf = surface_create(128,116);
 }

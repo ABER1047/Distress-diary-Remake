@@ -1,6 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+
+
 //서피스가 없어진 경우 재생성
 if (window_has_focus())
 {

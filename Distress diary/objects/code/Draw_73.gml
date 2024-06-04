@@ -343,7 +343,7 @@ if (global.dev_mode == 1)
 	
 	
 	//전체화면
-	if (!instance_exists(obj_ui_arcade_pc) && keyboard_check_pressed(vk_escape))
+	if (!instance_exists(obj_ui_parents) && keyboard_check_pressed(vk_escape))
 	{
 		event_user(1);
 	}

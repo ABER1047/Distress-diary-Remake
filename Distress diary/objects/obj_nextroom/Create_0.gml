@@ -24,4 +24,4 @@ arrow_animation_timer = 0;
 ins_wall = [ -4, -4 ];
 
 //문 그리기용 서피스
-door_surf = surf_cre(128,116);
+door_surf = surface_create(128,116);

@@ -72,5 +72,5 @@ if (surface_exists(crt_surf))
 else
 {
 	var tmp_scale = xx_w/1280;
-	crt_surf = surf_cre(320*5.5*tmp_scale/whole_scale,256*2.56*tmp_scale/whole_scale);
+	crt_surf = surface_create(320*5.5*tmp_scale/whole_scale,256*2.56*tmp_scale/whole_scale);
 }

@@ -26,11 +26,8 @@ with(obj_mob_parents)
 		var tmp_dmg_decrease_dis = other.image_xscale*96;
 		var tmp_dmg = (real_dis > tmp_dmg_decrease_dis) ? tmp_real_dmg/((real_dis-tmp_dmg_decrease_dis)/32) : tmp_real_dmg;
 	
-		give_damage(id,(tmp_real_dmg > tmp_dmg) ? tmp_dmg : tmp_real_dmg,false);
-	
-		//넉백 효과
-		direction = point_direction(other.x,other.y,x,y);
-		_speed = (real_dis > tmp_dmg_decrease_dis) ? 32/(real_dis-tmp_dmg_decrease_dis) : 32;
+		var knockback_speed = (real_dis > tmp_dmg_decrease_dis) ? 32/(real_dis-tmp_dmg_decrease_dis) : 32;
+		give_damage(id,(tmp_real_dmg > tmp_dmg) ? tmp_dmg : tmp_real_dmg,false,knockback_speed,other.x,other.y);
 		
 		
 		//폭탄이 폭탄 근처에서 터지면 연쇄적으로 터지는 효과 적용

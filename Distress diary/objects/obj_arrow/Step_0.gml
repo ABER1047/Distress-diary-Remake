@@ -20,13 +20,13 @@ for(var i = 0; i < _speed; i++)
 		{
 			var tmp_z_val = z-tmp_ins.z;
 			var hitbox_check = (abs(tmp_z_val) <= 4) || (tmp_z_val > 0 && tmp_z_val < (tmp_ins.bbox_bottom - tmp_ins.bbox_top)+4);
-			if (hitbox_check && parents != object_get_name(tmp_ins.object_index))
+			if (hitbox_check && parents_obj_ind != object_get_name(tmp_ins.object_index))
 			{
 				is_on_mob = tmp_ins;
 				saved_xscale = sign(tmp_ins.image_xscale);
 			
 				//데미지
-				give_damage(tmp_ins,attack_dmg,true);
+				give_damage(tmp_ins,attack_dmg,true,16,other.id,parents.x,parents.y);
 			
 				_speed = 0;
 				stop_flying = 16;

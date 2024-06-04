@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"create_attack_effect",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_attack_effect",
+  "parent":{
+    "name":"PlayerActions",
+    "path":"folders/스크립트/PlayerActions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

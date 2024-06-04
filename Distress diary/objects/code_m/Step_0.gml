@@ -111,7 +111,7 @@ if (global.chat_activated)
 						
 						if (i == 0) //suicide
 						{
-							give_damage(global.my_player_ins_id[global.my_player_id],9999,true);
+							give_damage(global.my_player_ins_id[global.my_player_id],9999,true,0,other.x,other.y);
 						}
 						else if (i == 1) //개발자 모드 on-off
 						{
@@ -246,7 +246,7 @@ if (global.chat_activated)
 						}
 						else if (i == 11) //데미지 입히기
 						{
-							give_damage(global.my_player_ins_id[global.my_player_id],tmp_parameter,true);
+							give_damage(global.my_player_ins_id[global.my_player_id],tmp_parameter,true,0,other.x,other.y);
 						}
 						else if (i == 12) //배고픔 값 줄이기
 						{
@@ -266,15 +266,15 @@ if (global.chat_activated)
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
 							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[(array_length(tmp_mob_obj_ind) <= rd_select) ? array_length(tmp_mob_obj_ind)-1 : rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
 							
-							give_damage(global.my_player_ins_id[global.my_player_id],0,true);
+							give_damage(global.my_player_ins_id[global.my_player_id],0,true,0,other.x,other.y);
 						}
 						else if (i == 16) //이펙트 생성
 						{
-							var tmp_mob_obj_ind = [ obj_explosion ];
+							var tmp_mob_obj_ind = [ obj_attack_effect ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
-							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,-4);
-							tmp_ins.explo_dmg = 28;
-							tmp_ins.image_xscale = 4;
+							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y-512,global.object_id_ind,0,false,-4,-4);
+							tmp_ins.max_line_width = 128;
+							tmp_ins.dir = choose(-1,1);
 						}
 						else if (i == 17) //화살 생성
 						{
@@ -302,6 +302,7 @@ if (global.chat_activated)
 							}
 							
 							//그래픽 퀄리티 값 적용
+							show_message_log("- 그래픽 퀄리티 변경 : "+string(tmp_parameter)+" [기존 : "+string(global.graphics_quality)+"]");
 							global.graphics_quality = tmp_parameter;
 						}
 						else if (i == 19) //몹 시점 표시

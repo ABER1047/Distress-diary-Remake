@@ -15,4 +15,4 @@ if (instance_exists(parent_id))
 
 
 //서피스 삭제
-surf_free(crt_surf);
+surface_free(crt_surf);

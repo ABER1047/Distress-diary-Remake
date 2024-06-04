@@ -4,7 +4,10 @@
 ///@param ins_id
 ///@param dmg
 ///@param ignore_cooltime
-function give_damage(argument0,argument1,argument2)
+///@param knockback
+///@param attacker_xx
+///@param attacker_yy
+function give_damage(argument0,argument1,argument2,argument3,argument4,argument5)
 {
 	var tmp_ins = argument0;
 	if (instance_exists(tmp_ins) && ((variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0) || (argument2 && variable_instance_exists(tmp_ins,"hp"))))
@@ -15,6 +18,19 @@ function give_damage(argument0,argument1,argument2)
 		if (tmp_ins.hp < 0)
 		{
 			tmp_ins.hp = 0;
+		}
+		
+		//넉백
+		var knockback_speed = argument3;
+		if (variable_instance_exists(tmp_ins,"_speed"))
+		{
+			var attacker_xx = argument4;
+			var attacker_yy = argument5;
+			var dir_ = point_direction(attacker_xx,attacker_yy,tmp_ins.x,tmp_ins.y);
+			tmp_ins._speed += knockback_speed;
+			tmp_ins.direction = dir_;
+			
+			show_message_log("dgmd");
 		}
 		
 		
