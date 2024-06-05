@@ -6,18 +6,16 @@
 ///@param width[item]
 ///@param height[item]
 ///@param stack[item]
-///@param max_stack[item]
-///@param name[item]
 ///@param to_find_target[var_owner]
-function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7)
+function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argument5)
 {
 	//인벤토리 창 관련 임시 변수
-	var tmp_variable_owner = argument7;
+	var tmp_variable_owner = argument5;
 	if (instance_exists(tmp_variable_owner))
 	{
 		var tmp_inv_width = tmp_variable_owner.inv_width;
 		var tmp_inv_height = tmp_variable_owner.inv_height;
-		show_message_log("- find_empty_pos : "+string(tmp_inv_width)+" / "+string(tmp_inv_height));
+		show_debug_message("- find_empty_pos : "+string(tmp_inv_width)+" / "+string(tmp_inv_height));
 	
 		//아이템 관련 임시 변수
 		var tmp_item_spr_ind = argument0;
@@ -25,8 +23,7 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 		var tmp_item_width = argument2;
 		var tmp_item_height = argument3;
 		var tmp_item_stacks = argument4;
-		var tmp_item_max_stack = argument5;
-		var tmp_item_name = argument6;
+
 
 	
 	
@@ -82,15 +79,15 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 								{
 									show_debug_message("자리가 있는지 없는지 체크");
 									
+									var tmp_item_max_stack = tmp_variable_owner.inv_info_max_stack_num[target_pos_yy][target_pos_xx];
 									if (tmp_item_max_stack > 1) //최대 스택 갯수가 2이상인 경우 (겹칠 수 있나 체크용)
 									{
 										var var_owner_img_ind = tmp_variable_owner.inv_info_img_ind[target_pos_yy][target_pos_xx];
-										var var_owner_name = tmp_variable_owner.inv_info_name[target_pos_yy][target_pos_xx];
 										var var_owner_stacks = tmp_variable_owner.inv_info_stack_num[target_pos_yy][target_pos_xx];
 
 										//같은 종류의 아이템인지 체크
 										show_debug_message("같은 종류의 아이템인지 체크 ["+string(sprite_get_name(var_owner_spr_ind))+string(sprite_get_name(tmp_item_spr_ind))+"]");
-										if (var_owner_spr_ind == tmp_item_spr_ind && var_owner_img_ind == tmp_item_img_ind && var_owner_name == tmp_item_name)
+										if (var_owner_spr_ind == tmp_item_spr_ind && var_owner_img_ind == tmp_item_img_ind)
 										{
 											//두 아이템 겹쳤을 때 갯수가 최대 갯수 초과 안 했을 경우
 											var tmp_total_stack = tmp_item_stacks+var_owner_stacks;
@@ -135,7 +132,7 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 						global.inv_empty_xpos = ii;
 						global.inv_empty_ypos = i;
 						
-						show_message_log("- 자동 자리 배치 ["+string(ii)+", "+string(i)+"]");
+						show_debug_message("- 자동 자리 배치 ["+string(ii)+", "+string(i)+"]");
 						
 						return true;
 					}

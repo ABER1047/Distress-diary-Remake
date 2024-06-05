@@ -6,24 +6,25 @@
 ///@param y_pos[i]
 ///@param spr_ind
 ///@param img_ind
-///@param name
-///@param name[comp]
 ///@param stack_num
-///@param max_stack_num
-///@param width
-///@param height
 ///@param rotated
-///@param weight
-///@param searched
-function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13)
+///@param searched 
+function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7)
 {
+	var item_rotated = argument6;
+	var tmp_spr_ind = argument3;
+	var tmp_img_ind = argument4;
+	var item_name = set_item_info_values(tmp_spr_ind,tmp_img_ind);
+	var tmp_item_width = global.item_width;
+	var tmp_item_height = global.item_height;
+
 	var tmp_ins = argument0;
 	var i = argument2;
 	var ii = argument1;
 	
 	//회전 및 아이템 가로/세로 길이만큼 칸 차지하는 거 적용
-	var visual_width = (argument11 == 0) ? argument9 : argument10;
-	var visual_height = (argument11 == 0) ? argument10 : argument9;
+	var visual_width = (item_rotated == 0) ? tmp_item_width : tmp_item_height;
+	var visual_height = (item_rotated == 0) ? tmp_item_height : tmp_item_width;
 	
 
 	
@@ -40,19 +41,19 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 				}
 			}
 			
-			inv_info_spr_ind[i][ii] = argument3;
-			inv_info_img_ind[i][ii] = argument4;
-			inv_info_name[i][ii] = argument5;
-			inv_info_name_compressed[i][ii] = argument6; //압축된 이름이 따로 없는 경우 기존 이름 그대로 사용
-			inv_info_stack_num[i][ii] = argument7;
-			inv_info_max_stack_num[i][ii] = argument8;
-			inv_info_width[i][ii] = argument9; //아이템 가로 길이
-			inv_info_height[i][ii] = argument10; //아이템 세로 길이
-			inv_info_rotated[i][ii] = argument11; //아이템 회전 유무
-			inv_info_weight[i][ii] = argument12; //아이템 무게
-			inv_info_searched[i][ii] = argument13; //아이템 서치됨
+			inv_info_spr_ind[i][ii] = tmp_spr_ind;
+			inv_info_img_ind[i][ii] = tmp_img_ind;
+			inv_info_name[i][ii] = item_name;
+			inv_info_name_compressed[i][ii] = global.short_name; //압축된 이름이 따로 없는 경우 기존 이름 그대로 사용
+			inv_info_stack_num[i][ii] = argument5;
+			inv_info_max_stack_num[i][ii] = global.item_max_stack_num;
+			inv_info_width[i][ii] = tmp_item_width; //아이템 가로 길이
+			inv_info_height[i][ii] = tmp_item_height; //아이템 세로 길이
+			inv_info_rotated[i][ii] = item_rotated; //아이템 회전 유무
+			inv_info_weight[i][ii] = global.item_weight; //아이템 무게
+			inv_info_searched[i][ii] = argument7; //아이템 서치됨
 		}
 	}
 	
-	show_debug_message("set_inv_variable : "+string(tmp_ins)+" / "+string(tmp_ins.inv_info_name_compressed));
+	//show_debug_message("set_inv_variable : "+string(tmp_ins)+" / "+string(tmp_ins.inv_info_name_compressed));
 }

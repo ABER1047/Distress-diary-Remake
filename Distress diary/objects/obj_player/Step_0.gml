@@ -454,7 +454,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 					is_lootable = string(tmp_ins.loots_name);
 				break;
 				
-				case obj_dropped_item:
+				case obj_dropped_item_box:
 					is_lootable = "버려진 아이템";
 				break;
 				

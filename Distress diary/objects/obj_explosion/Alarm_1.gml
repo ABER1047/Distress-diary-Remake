@@ -101,7 +101,7 @@ for(var i = 0; i < image_xscale*4+rd_val; i++)
 	
 	
 	//바닥 이펙트 생성
-	var tmp_ins = instance_create_depth(x,y,depth,obj_explosion_effect_on_ground);
+	var tmp_ins = instance_create_multiplayer(obj_explosion_effect_on_ground,x,y,global.object_id_ind,0,true,-4,-4);
 	tmp_ins.image_xscale = image_xscale*0.4;
 }
 

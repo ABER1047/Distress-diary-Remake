@@ -124,6 +124,21 @@ global.inv_empty_xpos = -4;
 global.inv_empty_ypos = -4;
 global.inv_empty_rotated = -4;
 
+//아이템 이름 지정용 변수 (set_item_info_values 함수 리턴용)
+global.short_name = -4;
+
+//아이템 최대 스택 갯수 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_max_stack_num = -4;
+
+//아이템 무게 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_weight = -4;
+
+//아이템 가로 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_width = 1;
+
+//아이템 세로 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_height = 1;
+
 
 //인벤토리 아이템 옮기는 중
 global.is_moving_item_now = -4;

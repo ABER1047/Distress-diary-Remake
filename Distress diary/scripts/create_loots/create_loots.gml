@@ -33,7 +33,7 @@ function create_loots(argument0,argument1,argument2,argument3,argument4,argument
 	}
 	else
 	{
-		var tmp_ins = instance_create_depth(argument0,argument1,depth,obj_dropped_item);
+		var tmp_ins = instance_create_depth(argument0,argument1,depth,obj_dropped_item_box);
 	}
 	tmp_ins.my_pos_xx = tmp_my_pos_xx;
 	tmp_ins.my_pos_yy = tmp_my_pos_yy;

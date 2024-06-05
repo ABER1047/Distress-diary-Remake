@@ -51,7 +51,7 @@ for(var i = 0; i < global.n_room_width; i++)
 //폭발 자국 그리기
 with(obj_explosion_effect_on_ground)
 {
-	if (id != other.id)
+	if (id != other.id && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
 	{
 		for(var i = 0; i < 11; i++)
 		{
@@ -72,7 +72,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 
 		with(obj_floor_effect_parents)
 		{
-			if (id != other.id && object_index != obj_explosion_effect_on_ground)
+			if (id != other.id && object_index != obj_explosion_effect_on_ground && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
 			{
 				var tmp_color = #7A213A;
 				if (object_index == obj_poison_effect)
@@ -172,7 +172,7 @@ if (surface_exists(global.shadow_surf))
 		}
 	}
 
-	with(obj_dropped_item)
+	with(obj_dropped_item_box)
 	{
 		if (!stop_cal_by_pos_statement)
 		{

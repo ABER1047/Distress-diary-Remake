@@ -84,13 +84,13 @@ for(var i = 0; i < inv_height; i++)
 	}
 }
 
-set_inv_variable(id,0,0,spr_stackables,0,"Golden Coin","Coin",irandom_range(60,99),9999,1,1,0,0.002,0);
-set_inv_variable(id,1,0,spr_stackables,3,"Keycard","Card",irandom_range(3,4),5,1,1,0,0.001,0);
-set_inv_variable(id,2,0,spr_drink,0,"Coke","Coke",-4,-4,1,1,0,0.58,0);
+set_inv_variable(id,0,0,spr_stackables,0,irandom_range(60,99),0,0);
+set_inv_variable(id,1,0,spr_stackables,3,irandom_range(3,4),0,0);
+set_inv_variable(id,2,0,spr_drink,0,-4,0,0);
 
-set_inv_variable(id,0,1,spr_backpack,0,"Backpack","Backpack",-4,-4,2,3,0,3,0);
-set_inv_variable(id,2,1,spr_comp,8,"GPU","GPU",-4,-4,2,1,1,1,0);
-set_inv_variable(id,3,0,spr_comp,23,"Metal Rod","Pipe",-4,-4,1,2,0,6,0);
+set_inv_variable(id,0,1,spr_backpack,0,-4,0,0);
+set_inv_variable(id,2,1,spr_comp,8,-4,0,0);
+set_inv_variable(id,3,0,spr_comp,23,-4,0,0);
 
 
 

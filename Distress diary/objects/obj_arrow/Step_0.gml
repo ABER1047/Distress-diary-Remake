@@ -26,7 +26,7 @@ for(var i = 0; i < _speed; i++)
 				saved_xscale = sign(tmp_ins.image_xscale);
 			
 				//데미지
-				give_damage(tmp_ins,attack_dmg,true,16,other.id,parents.x,parents.y);
+				give_damage(tmp_ins,attack_dmg,true,16,parents.x,parents.y);
 			
 				_speed = 0;
 				stop_flying = 16;

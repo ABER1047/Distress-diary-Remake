@@ -1,4 +1,5 @@
-/// @description 네트워크상으로 위치 전송하기 위한 용도
+/// @description Insert description here
+// You can write your code in this editor
 if (global.is_server)
 {
 	var changed = false;
@@ -49,10 +50,6 @@ if (global.is_server)
 	
 	alarm[1] = global.tickrate*25;
 }
-
-
-
-
 
 
 

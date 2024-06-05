@@ -16,7 +16,7 @@ else
 	var tmp_my_p_yy = tmp_my_p.y;
 	var create_new_box = false; //새로운 박스 생성 유무
 				
-	var tmp_nearest_dropped_item = instance_nearest(tmp_my_p_xx,tmp_my_p_yy,obj_dropped_item);
+	var tmp_nearest_dropped_item = instance_nearest(tmp_my_p_xx,tmp_my_p_yy,obj_dropped_item_box);
 	if (instance_exists(tmp_nearest_dropped_item) && point_distance(tmp_my_p_xx,tmp_my_p_yy,tmp_nearest_dropped_item.x,tmp_nearest_dropped_item.y) < 160)
 	{
 		//근처에 떨궈진 아이템 보관중인 박스가 있는 경우
@@ -25,7 +25,7 @@ else
 		//빈칸 있는지 체크
 		tmp_nearest_dropped_item.inv_width = 9; //빈공간 검사 알고리즘 때문에 임시적으로 칸 수 늘려줬음
 		tmp_nearest_dropped_item.inv_height = 9;
-		var has_empty_pos = find_empty_pos(spr_stackables,0,1,1,output,99,"Golden Coin",tmp_nearest_dropped_item);
+		var has_empty_pos = find_empty_pos(spr_stackables,0,1,1,output,tmp_nearest_dropped_item);
 		if (has_empty_pos == true)
 		{
 			show_message_log("- 아이템 떨어뜨림 [빈칸에 아이템 집어넣기]");
@@ -60,7 +60,7 @@ else
 			}
 						
 			//네트워크상으로 해당 박스 인벤토리 정보 전송
-			send_InventoryDataSpecificPos(tmp_nearest_dropped_item.obj_id,obj_dropped_item,global.inv_empty_xpos,global.inv_empty_ypos);
+			send_InventoryDataSpecificPos(tmp_nearest_dropped_item.obj_id,obj_dropped_item_box,global.inv_empty_xpos,global.inv_empty_ypos);
 		}
 		else if (has_empty_pos == false)
 		{
@@ -109,7 +109,7 @@ else
 		}
 						
 		//새로운 자리에 아이템 정보 배열에 저장
-		set_inv_variable(tmp_loot,0,0,spr_stackables,0,"Golden Coin","Coin",output,9999,1,1,0,0.002,1);
+		set_inv_variable(tmp_loot,0,0,spr_stackables,0,output,0,1);
 					
 		//네트워크상으로 해당 박스 인벤토리 정보 전송
 		tmp_loot.alarm[0] = 1;

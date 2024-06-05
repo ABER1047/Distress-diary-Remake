@@ -15,10 +15,6 @@ function load_room(argument0,argument1)
 	
 
 	
-	
-	//모든 바닥 이펙트 삭제
-	instance_destroy(obj_floor_effect_parents);
-	
 	//모든 외부 투명벽 삭제
 	for(var i = 0; i < 4; i++)
 	{

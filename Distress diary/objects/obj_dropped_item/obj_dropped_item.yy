@@ -3,19 +3,16 @@
   "%Name":"obj_dropped_item",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":1,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":73,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
+    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
   "name":"obj_dropped_item",
   "overriddenProperties":[],
   "parent":{
-    "name":"map_objects",
-    "path":"folders/오브젝트/map_objects.yy",
+    "name":"mob",
+    "path":"folders/오브젝트/mob.yy",
   },
   "parentObjectId":{
     "name":"obj_mob_pushable_object",
@@ -39,12 +36,12 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_droped_item",
-    "path":"sprites/spr_droped_item/spr_droped_item.yy",
+    "name":"spr_backpack",
+    "path":"sprites/spr_backpack/spr_backpack.yy",
   },
   "spriteMaskId":{
-    "name":"spr_block_hitbox",
-    "path":"sprites/spr_block_hitbox/spr_block_hitbox.yy",
+    "name":"spr_player_hitbox",
+    "path":"sprites/spr_player_hitbox/spr_player_hitbox.yy",
   },
   "visible":true,
 }

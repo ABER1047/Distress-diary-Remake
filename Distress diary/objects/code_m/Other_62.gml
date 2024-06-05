@@ -4,7 +4,7 @@ if (ds_map_find_value(async_load, "id") == send_request) //If received data is o
 {
 	if (ds_map_find_value(async_load, "status") == 0) //If data received
 	{
-		global.my_ip = string(string_replace_all(string_replace_all(ds_map_find_value(async_load, "result")," ",""),"\n","")); //Write message + data (IP)
+		global.my_ip = string_trim(string_replace_all(ds_map_find_value(async_load, "result")," ","")); //Write message + data (IP)
 	}
 	else if (ds_map_find_value(async_load, "status") < 0) //If error occurred
 	{

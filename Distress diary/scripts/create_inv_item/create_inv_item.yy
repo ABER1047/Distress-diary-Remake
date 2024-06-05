@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"create_inv_item",
   "parent":{
-    "name":"Inventory",
-    "path":"folders/스크립트/Inventory.yy",
+    "name":"System",
+    "path":"folders/스크립트/Inventory/System.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
