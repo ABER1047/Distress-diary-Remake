@@ -32,8 +32,8 @@
   "nineSlice":null,
   "origin":7,
   "parent":{
-    "name":"Sprite_map",
-    "path":"folders/스프라이트/Sprite_map.yy",
+    "name":"Sprite_effect",
+    "path":"folders/스프라이트/Sprite_effect.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

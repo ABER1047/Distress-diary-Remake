@@ -10,8 +10,8 @@
   "name":"obj_mob_parents",
   "overriddenProperties":[],
   "parent":{
-    "name":"mob",
-    "path":"folders/오브젝트/mob.yy",
+    "name":"오브젝트",
+    "path":"folders/오브젝트.yy",
   },
   "parentObjectId":null,
   "persistent":false,

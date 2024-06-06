@@ -16,11 +16,11 @@ for(var i = 0; i < _speed; i++)
 	else
 	{
 		var tmp_ins = instance_place(x,y,obj_mob_parents);
-		if (instance_exists(tmp_ins))
+		if (instance_exists(tmp_ins) && tmp_ins.object_index != obj_bomb && tmp_ins.object_index != obj_dropped_item_box && tmp_ins.object_index != obj_dropped_item && parents_obj_ind != object_get_name(tmp_ins.object_index))
 		{
 			var tmp_z_val = z-tmp_ins.z;
 			var hitbox_check = (abs(tmp_z_val) <= 4) || (tmp_z_val > 0 && tmp_z_val < (tmp_ins.bbox_bottom - tmp_ins.bbox_top)+4);
-			if (hitbox_check && parents_obj_ind != object_get_name(tmp_ins.object_index))
+			if (hitbox_check)
 			{
 				is_on_mob = tmp_ins;
 				saved_xscale = sign(tmp_ins.image_xscale);
