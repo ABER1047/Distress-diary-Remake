@@ -203,7 +203,7 @@ if (instance_exists(parents_id))
 		var tmp_txt_width = string_width(tmp_name_to_draw)*2;
 		tmp_txt_width = (tmp_txt_width > 480) ? tmp_txt_width : 480;
 		var item_info = "테스트용 아이템 정보 테스트용 아이템 정보 테스트용 아이템 정보 테스트용 아이템 정보";
-		var tmp_info_length = 1+floor(string_length(item_info)/(tmp_txt_width/32));
+		var tmp_info_length = 2+floor(string_length(item_info)/(tmp_txt_width/32));
 		var tmp_win_width = (tmp_txt_width+32)*text_ratio;
 		var tmp_win_height = (256+64*tmp_info_length)*text_ratio;
 		draw_set_alpha(0.6);
@@ -234,18 +234,64 @@ if (instance_exists(parents_id))
 		
 		
 		var tmp_txt_col = merge_color(c_white,c_black,0.3);
+		var tmp_txt_str = "";
+		var tmp_txt_size = 0.6*global.n_camera_zoom;
+		var tmp_icon_size = text_ratio*1.1;
+		
+		//가방 칸수
+		if (sprite_index == spr_backpack)
+		{
+			switch(image_index)
+			{
+				case 0:
+					tmp_txt_str = "4x4 사이즈";
+				break;
+				
+				case 1:
+					tmp_txt_str = "5x4 사이즈";
+				break;
+				
+				case 2:
+					tmp_txt_str = "6x3 사이즈";
+				break;
+				
+				case 3:
+					tmp_txt_str = "4x6 사이즈";
+				break;
+				
+				case 4:
+					tmp_txt_str = "5x6 사이즈";
+				break;
+				
+				case 5:
+					tmp_txt_str = "4x6 사이즈";
+				break;
+				
+				case 6:
+					tmp_txt_str = "6x6 사이즈";
+				break;
+			}
+			
+			tmp_txt_size = 0.5*global.n_camera_zoom;
+			tmp_icon_size /= 1.2;
+			
+			//가방 칸수 (아이콘)
+			draw_sprite_ext(spr_ui,0,tmp_text_startx+24*text_ratio,tmp_text_starty+((219+(tmp_info_length-1)*64)*text_ratio),tmp_icon_size,tmp_icon_size,0,tmp_txt_col,1);
+			
+			//칸수 텍스트
+			draw_text_kl_scale(tmp_text_startx+64*text_ratio,tmp_text_starty+((160+(tmp_info_length-1)*64)*text_ratio),string(tmp_txt_str),64,480,1,tmp_txt_col,-1,-1,font_normal,tmp_txt_size,tmp_txt_size,0);
+		}
 		
 		//아이템 가치
-		draw_text_kl_scale(tmp_text_startx+tmp_win_width-32*text_ratio,tmp_text_starty+((160+tmp_info_length*64)*text_ratio),"가치 : "+string(item_value),64,480,1,tmp_txt_col,0,1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
-		
-		
+		draw_text_kl_scale(tmp_text_startx+tmp_win_width-32*text_ratio,tmp_text_starty+((160+tmp_info_length*64)*text_ratio),"가치 : "+string(item_value),64,480,1,tmp_txt_col,-1,1,font_normal,0.55*global.n_camera_zoom,0.55*global.n_camera_zoom,0);
+
 		
 		//아이템 무게 (아이콘)
-		draw_sprite_ext(spr_ui,10,tmp_text_startx+24*text_ratio,tmp_text_starty+((219+tmp_info_length*64)*text_ratio),text_ratio*1.1,text_ratio*1.1,0,tmp_txt_col,1);
+		draw_sprite_ext(spr_ui,10,tmp_text_startx+24*text_ratio,tmp_text_starty+((219+tmp_info_length*64)*text_ratio),tmp_icon_size,tmp_icon_size,0,tmp_txt_col,1);
 		
 		//아이템 무게
 		var tmp_cal_weight = (stack_num != -4) ? stack_num*item_weight : item_weight;
-		draw_text_kl_scale(tmp_text_startx+64*text_ratio,tmp_text_starty+((160+tmp_info_length*64)*text_ratio),string(tmp_cal_weight)+"kg",64,480,1,tmp_txt_col,0,-1,font_normal,0.6*global.n_camera_zoom,0.6*global.n_camera_zoom,0);
+		draw_text_kl_scale(tmp_text_startx+64*text_ratio,tmp_text_starty+((160+tmp_info_length*64)*text_ratio),string(tmp_cal_weight)+"kg",64,480,1,tmp_txt_col,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0);
 	}
 }
 

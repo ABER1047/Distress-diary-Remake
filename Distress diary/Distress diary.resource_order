@@ -79,7 +79,6 @@
     {"name":"obj_loots","order":5,"path":"objects/obj_loots/obj_loots.yy",},
     {"name":"obj_map_texture_draw","order":2,"path":"objects/obj_map_texture_draw/obj_map_texture_draw.yy",},
     {"name":"obj_message_log","order":1,"path":"objects/obj_message_log/obj_message_log.yy",},
-    {"name":"obj_mob_parents","order":8,"path":"objects/obj_mob_parents/obj_mob_parents.yy",},
     {"name":"obj_mob_pushable_object","order":1,"path":"objects/obj_mob_pushable_object/obj_mob_pushable_object.yy",},
     {"name":"obj_monster_parents","order":2,"path":"objects/obj_monster_parents/obj_monster_parents.yy",},
     {"name":"obj_nextroom","order":4,"path":"objects/obj_nextroom/obj_nextroom.yy",},
