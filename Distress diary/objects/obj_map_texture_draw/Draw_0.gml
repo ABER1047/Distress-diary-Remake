@@ -164,7 +164,7 @@ if (surface_exists(global.shadow_surf))
 		}
 	}
 	
-	with(obj_arrow)
+	with(obj_projectile)
 	{
 		if (!stop_cal_by_pos_statement && is_on_mob == -4)
 		{

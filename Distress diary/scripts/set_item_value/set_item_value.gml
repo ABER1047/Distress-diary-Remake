@@ -72,9 +72,9 @@ function set_item_value(argument0,argument1)
 				return 3;
 			break;
 		
-			case "Purified Water":
-				item_name_translated = "정제된 물";
-				return 9;
+			case "Poison":
+				item_name_translated = "독극물";
+				return 3;
 			break;
 		
 			case "Energy bar":
@@ -111,6 +111,7 @@ function set_item_value(argument0,argument1)
 				item_name_translated = "설탕팩";
 				return 16;
 			break;
+			
 		
 		
 			//컴포넌트류

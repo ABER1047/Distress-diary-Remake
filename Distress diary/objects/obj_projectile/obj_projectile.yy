@@ -1,6 +1,6 @@
 {
   "$GMObject":"",
-  "%Name":"obj_arrow",
+  "%Name":"obj_projectile",
   "eventList":[
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
@@ -11,7 +11,7 @@
     {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":2,"eventType":2,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_arrow",
+  "name":"obj_projectile",
   "overriddenProperties":[],
   "parent":{
     "name":"projectiles",
@@ -36,8 +36,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_arrow",
-    "path":"sprites/spr_arrow/spr_arrow.yy",
+    "name":"spr_projectiles",
+    "path":"sprites/spr_projectiles/spr_projectiles.yy",
   },
   "spriteMaskId":null,
   "visible":true,

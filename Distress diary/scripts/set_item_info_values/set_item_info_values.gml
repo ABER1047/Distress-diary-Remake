@@ -347,6 +347,12 @@ function set_item_info_values(argument0,argument1)
 				tmp_name = "Purified Water";
 				item_weight = 0.4;
 			break;
+			
+			case 13:
+				tmp_short_name = "Poison";
+				tmp_name = "Poison";
+				item_weight = 0.4;
+			break;
 		}
 	}
 	else if (argument0 == spr_healings)

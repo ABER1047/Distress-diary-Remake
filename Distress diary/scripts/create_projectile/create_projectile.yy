@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"create_projectile",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_projectile",
+  "parent":{
+    "name":"PlayerActions",
+    "path":"folders/스크립트/PlayerActions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -3,8 +3,6 @@
 
 
 image_speed = 0;
-image_xscale = 2;
-image_yscale = 2;
 
 //z축 적용
 add_z_axis();
