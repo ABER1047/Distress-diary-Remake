@@ -17,7 +17,7 @@ global.bubble_surf = surface_create(tmp_w,tmp_h);
 global.liquid_on_floor_surf = surface_create(tmp_w,tmp_h);
 
 
-outter_room_surf = surface_create(tmp_w,tmp_h);
+global.outter_room_surf = surface_create(tmp_w,tmp_h);
 
 
 if (surface_exists(application_surface))

@@ -29,8 +29,6 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			var dir_ = point_direction(attacker_xx,attacker_yy,tmp_ins.x,tmp_ins.y);
 			tmp_ins._speed += knockback_speed;
 			tmp_ins.direction = dir_;
-			
-			show_message_log("dgmd");
 		}
 		
 		

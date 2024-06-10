@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+depth = code.depth-1;
 //애니메이션용 변수
 animation = 0;
 text_yy = 0;

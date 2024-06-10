@@ -88,6 +88,8 @@
     {"name":"obj_player_pushable_object","order":1,"path":"objects/obj_player_pushable_object/obj_player_pushable_object.yy",},
     {"name":"obj_player","order":5,"path":"objects/obj_player/obj_player.yy",},
     {"name":"obj_poison_effect","order":5,"path":"objects/obj_poison_effect/obj_poison_effect.yy",},
+    {"name":"obj_projectile_monster","order":1,"path":"objects/obj_projectile_monster/obj_projectile_monster.yy",},
+    {"name":"obj_projectile_parents","order":2,"path":"objects/obj_projectile_parents/obj_projectile_parents.yy",},
     {"name":"obj_skeleton","order":9,"path":"objects/obj_skeleton/obj_skeleton.yy",},
     {"name":"obj_skull_head","order":8,"path":"objects/obj_skull_head/obj_skull_head.yy",},
     {"name":"obj_ui_arcade_pc","order":3,"path":"objects/obj_ui_arcade_pc/obj_ui_arcade_pc.yy",},

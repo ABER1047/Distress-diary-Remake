@@ -16,4 +16,6 @@ else
 timer ++;
 
 
-real_pos += (pos - real_pos)*0.15
+real_pos += (pos - real_pos)*0.15;
+
+

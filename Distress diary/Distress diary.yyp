@@ -118,6 +118,8 @@
     {"id":{"name":"obj_player_pushable_object","path":"objects/obj_player_pushable_object/obj_player_pushable_object.yy",},},
     {"id":{"name":"obj_player","path":"objects/obj_player/obj_player.yy",},},
     {"id":{"name":"obj_poison_effect","path":"objects/obj_poison_effect/obj_poison_effect.yy",},},
+    {"id":{"name":"obj_projectile_monster","path":"objects/obj_projectile_monster/obj_projectile_monster.yy",},},
+    {"id":{"name":"obj_projectile_parents","path":"objects/obj_projectile_parents/obj_projectile_parents.yy",},},
     {"id":{"name":"obj_projectile","path":"objects/obj_projectile/obj_projectile.yy",},},
     {"id":{"name":"obj_skeleton","path":"objects/obj_skeleton/obj_skeleton.yy",},},
     {"id":{"name":"obj_skull_head","path":"objects/obj_skull_head/obj_skull_head.yy",},},

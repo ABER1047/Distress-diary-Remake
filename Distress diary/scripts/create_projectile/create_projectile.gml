@@ -10,10 +10,11 @@
 ///@param dmg
 ///@param z
 ///@param ErrorRange
-function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8)
+///@param direction
+function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9)
 {
 	var ER = irandom_range(0,argument8);
-	var dir = point_direction(x,y,mouse_x,mouse_y);
+	var dir = argument9;
 	var tmp_ins = instance_create_multiplayer(obj_projectile,argument0,argument1,global.object_id_ind,argument2,false,-4,-4);
 	tmp_ins.direction = dir+irandom_range(0,argument8)*choose(-1,1)*0.5;
 	tmp_ins._speed = argument3;

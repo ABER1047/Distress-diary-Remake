@@ -20,7 +20,7 @@ function pushable_objects_physics()
 			if (tmp_obj_ind == obj_monster_parents || tmp_obj_ind == obj_floating_monster_parents)
 			{
 				//show_debug_message("placed - monster");
-				give_damage(id,tmp_ins.attack_dmg,false,16,tmp_ins,other.x,other.y);
+				give_damage(id,tmp_ins.attack_dmg,false,16,other.x,other.y);
 			}
 		}
 		

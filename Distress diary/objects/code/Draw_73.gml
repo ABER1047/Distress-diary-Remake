@@ -12,16 +12,14 @@ var yy_center = yy+yy_h*0.5;
 var tmp_c_x = 0.5//global.n_camera_zoom;
 
 
-//룸 바깥쪽 가림막 그리기
 var tmp_room_xx = room_width*0.5;
 var tmp_room_yy = room_height*0.5;
 var tmp_wall_scale = 2;
 var tmp_wall_sprite_size = tmp_wall_scale*48;
 var n_wall_type = global.n_room_tileset;
-
-if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(outter_room_surf))
+if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(global.outter_room_surf))
 {
-	surface_set_target(outter_room_surf);
+	surface_set_target(global.outter_room_surf);
 	draw_clear(0);
 	draw_sprite_ext(spr_wall_mask_bottom,1,0,0,84,84,0,c_black,1);
 	
@@ -37,9 +35,8 @@ if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(out
 	gpu_set_blendmode(bm_normal);
 	surface_reset_target();
 
-	draw_surface_ext(outter_room_surf,xx,yy,1,1,0,c_black,1);
+	draw_surface_ext(global.outter_room_surf,xx,yy,1,1,0,c_black,1);
 }
-
 
 
 //현재 불러와진 룸 그리기

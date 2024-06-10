@@ -1,16 +1,13 @@
 {
   "$GMObject":"",
-  "%Name":"obj_damage_display",
-  "eventList":[
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":73,"eventType":8,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-    {"$GMEvent":"","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":0,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
-  ],
+  "%Name":"obj_projectile_parents",
+  "eventList":[],
   "managed":true,
-  "name":"obj_damage_display",
+  "name":"obj_projectile_parents",
   "overriddenProperties":[],
   "parent":{
-    "name":"ui",
-    "path":"folders/오브젝트/ui.yy",
+    "name":"projectiles",
+    "path":"folders/오브젝트/projectiles.yy",
   },
   "parentObjectId":null,
   "persistent":false,

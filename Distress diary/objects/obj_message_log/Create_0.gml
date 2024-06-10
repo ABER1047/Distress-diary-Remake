@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-depth = code.depth-102
+depth = code.depth-999;
 timer = 0;
 pos = 0;
 real_pos = 0

@@ -5,6 +5,11 @@
 
 if (!stop_cal_by_pos_statement)
 {
+	//라이트 효과
+	var tmp_value = sin((idle_animation/180)*pi);
+	c_light(#FFAC4B,(0.3+abs(tmp_value))*0.75,0.2+tmp_value*0.1,x,y-z);
+	
+	
 	//idle animation
 	idle_animation ++;
 	if (idle_animation < 90)
@@ -20,6 +25,44 @@ if (!stop_cal_by_pos_statement)
 		idle_animation = 0;
 	}
 
+
+	//공격
+	if (attack_timer > 180)
+	{
+		var is_exists_projectile = false;
+		with(obj_projectile_monster)
+		{
+			if (parents == other.id)
+			{
+				is_exists_projectile = true;
+				break;
+			}
+		}
+		
+		if (!is_exists_projectile)
+		{
+			for(var i = 0; i < 2; i++)
+			{
+				var tmp_projectile = instance_create_depth(x,y,depth,obj_projectile_monster);
+				tmp_projectile.parents = id;
+				tmp_projectile.type = 1;
+				tmp_projectile.sprite_index = spr_fire_animation;
+				tmp_projectile.image_xscale = 0;
+				tmp_projectile.image_yscale = 0;
+				tmp_projectile.direction = i*180;
+				tmp_projectile.z = z;
+				tmp_projectile.dmg = 24;
+				tmp_projectile.my_pos_xx = my_pos_xx;
+				tmp_projectile.my_pos_yy = my_pos_yy;
+			}
+			
+			attack_timer = 0;
+		}
+	}
+	else
+	{
+		attack_timer ++;
+	}
 
 
 

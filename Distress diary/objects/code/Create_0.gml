@@ -80,7 +80,7 @@ global.f_pos_yy = -4; //처음 룸 방문시의 플레이어 y위치정보
 
 
 //벽 외부 서피스 생성
-outter_room_surf = surface_create(3840,2160);
+global.outter_room_surf = surface_create(3840,2160);
 
 //라이트 서피스 생성
 global.light_surf = surface_create(3840,2160);
