@@ -19,8 +19,7 @@ if (!stop_cal_by_pos_statement)
 		light_timer = 0;
 		
 		//효과음 재생
-		sfx = play_sound_pos(fire_turn_on_sfx,false,0.1,x,y-32,640,false,-4,-4);
-		alarm[1] = 10;
+		play_sound_pos(fire_ignition_sfx,false,0.1,x,y-32,640,false,-4,-4);
 
 		b_is_opened = is_opened;
 		send_InstanceVariableData(id,"is_opened");
@@ -33,7 +32,7 @@ if (!stop_cal_by_pos_statement)
 		light_timer ++;
 		
 		//라이트 효과
-		c_light(light_col[image_index*0.5],light_scale*0.75,light_alpha,x,y-32);
+		c_light(light_col[fire_type],light_scale*0.75,light_alpha,x,y-32);
 		if (light_timer < 90)
 		{
 			light_alpha += (1 - light_alpha)*0.1;

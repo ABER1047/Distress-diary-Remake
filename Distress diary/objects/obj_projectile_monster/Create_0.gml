@@ -27,5 +27,4 @@ add_my_pos_statement();
 
 
 //버블 이펙트 외곽선 효과용 오브젝트
-bubble_ef_ins = instance_create_depth(x,y,0,tmp_bubble_outline_effect);
-bubble_ef_ins.parent_id = id;
+bubble_ef_ins = -4;

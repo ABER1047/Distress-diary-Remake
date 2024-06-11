@@ -1,5 +1,15 @@
 /// @description Insert description here
 
+var tmp_room_w_center = room_width*0.5, tmp_room_h_center = room_height*0.5;
+
+global.view_angle_ += (0 - global.view_angle_)*0.1;
+
+global.w_ratio_by_window = floor(sqrt(window_get_width()/1280)*10)/10;
+global.h_ratio_by_window = floor(sqrt(window_get_height()/720)*10)/10;
+var tmp_v_w = floor(v_x*global.n_camera_zoom*global.w_ratio_by_window), tmp_v_h = floor(v_y*global.n_camera_zoom*global.h_ratio_by_window);
+camera_set_view_size(view_camera[0],tmp_v_w,tmp_v_h);
+
+
 
 //카메라 관련
 v_x += (tv_x - v_x)*0.1;
@@ -15,14 +25,17 @@ if (instance_exists(global.camera_target))
 
 if (global.camera_target_x == -4)
 {
-	x += (room_width*0.5 - x)*0.15;
-	y += (room_height*0.5 - y)*0.15;
+	x += (tmp_room_w_center - x)*0.15;
+	y += (tmp_room_h_center - y)*0.15;
 }
 else
 {
 	x += (global.camera_target_x - x)*0.15;
 	y += (global.camera_target_y - y)*0.15;
 }
+
+
+
 
 
 if (global.n_camera_zoom < 0.5)
@@ -36,11 +49,9 @@ else if (global.n_camera_zoom > 1.15)
 
 
 
-global.view_angle_ += (0 - global.view_angle_)*0.1;
 
-global.w_ratio_by_window = floor(sqrt(window_get_width()/1280)*10)/10;
-global.h_ratio_by_window = floor(sqrt(window_get_height()/720)*10)/10;
-camera_set_view_size(view_camera[0],floor(v_x*global.n_camera_zoom*global.w_ratio_by_window),floor(v_y*global.n_camera_zoom*global.h_ratio_by_window));
+
+
 
 
 if (global.t_shake_x <= 0.01)
@@ -67,6 +78,13 @@ if (global.shake_time > 1)
 
 
 
+
+
+
+
+
+
+
 x += global.real_shake_x*0.3;
 y += global.real_shake_y*0.3;
 camera_set_view_angle(view_camera[0],global.view_angle_);
@@ -74,6 +92,23 @@ camera_set_view_angle(view_camera[0],global.view_angle_);
 
 x = floor(x)
 y = floor(y)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

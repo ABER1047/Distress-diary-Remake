@@ -80,3 +80,11 @@ if (instance_exists(obj_ui_parents))
 
 
 
+
+if (image_index%2 == 1)
+{
+	depth = code.depth-9999;
+	draw_self();
+	
+	draw_text(x,y,"x : "+string(x)+" / y : "+string(y))
+}

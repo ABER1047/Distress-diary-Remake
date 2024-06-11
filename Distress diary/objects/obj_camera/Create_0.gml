@@ -1,5 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
+image_speed = 0;
 v_x = 1280
 v_y = 720
 tv_x = 3584

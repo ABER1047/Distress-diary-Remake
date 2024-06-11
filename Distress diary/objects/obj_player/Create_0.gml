@@ -11,6 +11,8 @@ add_speed_valuables();
 
 //룸 포지션에 따른 오브젝트 숨기기/표시 시스템
 add_my_pos_statement();
+my_pos_xx = -4;
+my_pos_yy = -4;
 
 
 //방향 관련 변수

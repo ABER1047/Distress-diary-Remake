@@ -3,8 +3,8 @@
 
 //서피스 전체 리셋
 event_user(2);
-var tmp_w = camera_get_view_width(view_camera[0]);
-var tmp_h = camera_get_view_height(view_camera[0]);
+var tmp_w = camera_get_view_width(view_camera[0])*1.1;
+var tmp_h = camera_get_view_height(view_camera[0])*1.1;
 
 global.light_surf = surface_create(tmp_w,tmp_h);
 global.flashlight_surf = surface_create(tmp_w,tmp_h);
