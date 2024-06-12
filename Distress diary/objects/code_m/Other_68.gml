@@ -271,7 +271,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				//디버그 메세지로 받아온 값 출력
-				show_debug_message("INS_VAR_DATA ["+string(tmp_name)+" : "+string(tmp_val)+"]");
+				show_debug_message("send data [obj : "+string(tmp_obj_id)+" / var : "+string(tmp_name)+"] : "+string(tmp_val));
 				
 				//값이 적용될 인스턴스 찾기
 				var tmp_id_real = -4;
@@ -298,7 +298,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						
 						
 						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
-						if (tmp_splited_varname[i] == "is_opened")
+						if (tmp_splited_varname[i] == "is_opened" && tmp_obj_name != obj_ineractable_fire)
 						{
 							tmp_splited_val[i] = (tmp_splited_val[i] != -4) ? -3 : tmp_splited_val[i]; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
 							variable_instance_set(tmp_id_real,"b_is_opened",tmp_splited_val[i]);
@@ -320,7 +320,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						
 						
 						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
-						if (tmp_name == "is_opened")
+						if (tmp_name == "is_opened" && tmp_obj_name != obj_ineractable_fire)
 						{
 							tmp_val = (tmp_val != -4) ? -3 : tmp_val; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
 							variable_instance_set(tmp_id_real,"b_is_opened",tmp_val);
@@ -416,75 +416,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//여기에는 시드 값이 적용됨
 				global.is_map_exists = tmp_map_seed;
 				
-				//최대 루트 길이
-				global.max_root_length = real(buffer_read(buffer, buffer_string));
-				
-				//행 = height, 열 = width
-				global.map_width = real(buffer_read(buffer, buffer_string));
-				global.map_height = real(buffer_read(buffer, buffer_string));
-				
-				//스타트 지점
-				global.map_start_pos_xx = real(buffer_read(buffer, buffer_string));
-				global.map_start_pos_yy = real(buffer_read(buffer, buffer_string));
-				
-				//전체 룸 갯수
-				global.n_room_num = real(buffer_read(buffer, buffer_string));
-				
-				//모든 플레이어의 위치정보를 스타트 지점으로 초기화
-				for(var i = 0; i < array_length(global.n_player_room_xx); i++)
-				{
-					global.n_player_room_xx[i] = global.map_start_pos_xx;
-					global.n_player_room_yy[i] = global.map_start_pos_yy;
-				}
-				
-				
-				
-				for(var i = 0; i < global.map_height; i++;)
-				{
-					for(var ii = 0; ii < global.map_width; ii++;)
-					{
-						//map_arr = 0 일때 방이 없음 / 1일때 방 존재
-						global.map_arr[i][ii] = real(buffer_read(buffer, buffer_string));
-						
-						//0 - 빈방 / 1 - 퍼즐방 / 2 - 습격방 / 3 - 세이프존 / 4 - 아케이드방
-						global.map_room_type[i][ii] = real(buffer_read(buffer, buffer_string));
-						
-						//각 방에 대한 방 넓이
-						global.map_room_width[i][ii] = real(buffer_read(buffer, buffer_string));
-						global.map_room_height[i][ii] = real(buffer_read(buffer, buffer_string));
-						
-						//방 A와 연결되있는 방 B의 위치 인덱스
-						global.room_connected_to_xx[i][ii] = real(buffer_read(buffer, buffer_string));
-						global.room_connected_to_yy[i][ii] = real(buffer_read(buffer, buffer_string));
-						
-						//방 A와 연결되있는 방 B의 위치 인덱스 (2번째 연결)
-						global.room_connected_to_xx_sec[i][ii] = real(buffer_read(buffer, buffer_string));
-						global.room_connected_to_yy_sec[i][ii] = real(buffer_read(buffer, buffer_string));
-					}
-				}
-				
-				
-				
-				//현재 내 플레이어 위치 (룸)
-				global.n_player_room_xx[global.my_player_id] = global.map_start_pos_xx;
-				global.n_player_room_yy[global.my_player_id] = global.map_start_pos_yy;
-				
-				
-				//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
-				load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
-		
-		
-		
-				
-				show_message_log("- 맵 로드 완료");
-				obj_player.x = room_width*0.5;
-				obj_player.y = room_height*0.5;
-				
-				//카메라 줌 설정
-				global.n_camera_zoom = 0.53;
-				
-				//라이트 서피스 설정
-				global.enable_light_surf = true;
+
+				//맵 생성
+				create_map(global.is_map_exists);
 			}
 		break;
 		

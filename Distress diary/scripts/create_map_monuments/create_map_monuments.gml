@@ -1,11 +1,15 @@
 // Script assets have changed for v2.3.0 see
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
-function create_map_monuments()
+
+
+///@param seed
+function create_map_monuments(argument0)
 {
 	for(var i = 0; i < global.map_height; i++;)
 	{
 		for(var ii = 0; ii < global.map_width; ii++;)
 		{
+			random_set_seed(argument0);
 			//0 - 빈방 / 1 - 퍼즐방 / 2 - 습격방 / 3 - 세이프존 / 4 - 아케이드방
 			var tmp_room_type = global.map_room_type[i][ii];
 			
@@ -48,7 +52,7 @@ function create_map_monuments()
 							var tmp_yy = room_height*0.5-96;
 							if (!position_meeting(tmp_xx,tmp_yy,obj_parents))
 							{
-								instance_create_multiplayer(obj_arcade_pc,tmp_xx,tmp_yy,global.object_id_ind,47,false,ii,i);
+								instance_create_multiplayer(obj_arcade_pc,tmp_xx,tmp_yy,global.object_id_ind,47,true,ii,i);
 								break;
 							}
 						}
@@ -109,7 +113,7 @@ function create_map_monuments()
 							var tmp_xx = room_width*0.5-48+dx[k] + ((k%2 == 1) ? sign(kk-0.5)*144 : 0);
 							var tmp_yy = room_height*0.5+dy[k] + ((k%2 == 0) ? sign(kk-0.5)*144 : 0);
 
-							var tmp_ins = instance_create_multiplayer(obj_ineractable_fire,tmp_xx,tmp_yy,global.object_id_ind,(k%2 == 0) ? ((k == 0) ? 5 : 4) : 0,false,ii,i);
+							var tmp_ins = instance_create_multiplayer(obj_ineractable_fire,tmp_xx,tmp_yy,global.object_id_ind,(k%2 == 0) ? ((k == 0) ? 5 : 4) : 0,true,ii,i);
 							tmp_ins.is_opened = percentage_k(70);
 							tmp_ins.fire_type = (global.n_room_tileset == 0 || global.n_room_tileset == 1) ? 1 : 0; //타일셋에 따라 다른 종류의 불꽃 세팅
 						}

@@ -29,8 +29,9 @@ if (!stop_cal_by_pos_statement)
 			tmp_ui.parent_id = id;
 		}
 		
-		b_is_opened = is_opened;
+		
 		send_InstanceVariableData(id,"is_opened");
+		b_is_opened = is_opened;
 	}
 
 

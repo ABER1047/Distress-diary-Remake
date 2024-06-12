@@ -16,5 +16,5 @@ function send_InstanceVariableData(tmp_ins,val_name,tmp_variable = variable_inst
 	buffer_write(global.variable_data_buffer, buffer_string, tmp_variable); //변수 값
 	send_all(global.variable_data_buffer);
 	
-	show_debug_message("send data ["+string(val_name)+"] : "+string(tmp_variable));
+	show_debug_message("send data [obj : "+string(tmp_ins.obj_id)+" / var : "+string(val_name)+"] : "+string(tmp_variable));
 }

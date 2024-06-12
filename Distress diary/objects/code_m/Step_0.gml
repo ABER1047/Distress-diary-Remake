@@ -124,80 +124,11 @@ if (global.chat_activated)
 							{
 								clean_message_log();
 								//맵 생성 실패시 자동 재시도
-								while(true)
-								{
-									var tmp_width = floor(9*(0.5+instance_number(obj_player)*0.5));
-									var tmp_height = floor(9*(0.5+instance_number(obj_player)*0.5));
-									var tmp_start_xx = floor(tmp_width/2);
-									var tmp_start_yy = floor(tmp_height/2);
-									var tmp_max_root = irandom_range(16,max(tmp_width,tmp_height)*choose(4,5,6))*instance_number(obj_player);
-									var tmp_room_max_width = 24;
-									var tmp_room_max_height = 24;
-									var tmp_additional_room_cre_percentage = irandom_range(0,100);
-									var tmp_total_room_num = irandom_range(25,floor(tmp_room_max_width*tmp_room_max_height/4))*instance_number(obj_player);
-									var tmp_min_room_width = 7;
-									var tmp_min_room_height = 7;
-		
-		
+								randomize();
+								global.is_map_exists = random_get_seed();
 
-									//맵 생성
-									create_map(tmp_start_xx,tmp_start_yy,tmp_width,tmp_height,tmp_max_root,tmp_room_max_width,tmp_room_max_height,tmp_additional_room_cre_percentage,tmp_total_room_num,tmp_min_room_width,tmp_min_room_height);
-		
-
-		
-		
-		
-									//맵 생성 - 디버그용 메세지
-									if (global.map_creation_falied == 0)
-									{
-										global.is_map_exists = random_get_seed();
-			
-										show_message_log("- 맵 생성 정보");
-										show_message_log("맵 시드 : "+string(global.is_map_exists));
-										show_message_log("맵 크기 (width x height) : "+string(tmp_width)+" x "+string(tmp_height));
-										show_message_log("루트 최대 길이 : "+string(tmp_max_root));
-										show_message_log("룸 최대 크기 (width x height) : "+string(tmp_room_max_width)+" x "+string(tmp_room_max_height));
-										show_message_log("룸 최소 크기 (width x height) : "+string(tmp_min_room_width)+" x "+string(tmp_min_room_height));
-										show_message_log("추가 방 연결 확률 : "+string(tmp_additional_room_cre_percentage)+"%");
-										show_message_log("방 갯수 : "+string(global.n_room_num)+"/"+string(tmp_total_room_num));
-			
-			
-										//맵 내의 구조물 생성
-										create_map_monuments();
-			
-			
-										//현재 위치 (= 스타트 지점)에 대한 룸 정보 불러오기
-										load_room(global.n_player_room_xx[global.my_player_id],global.n_player_room_yy[global.my_player_id]);
-			
-										show_message_log("- 맵 로드 완료");
-										obj_player.x = room_width*0.5;
-										obj_player.y = room_height*0.5;
-										
-										alarm[4] = 30;
-			
-										//카메라 줌 설정
-										global.n_camera_zoom = 0.53;
-										break; //while문 빠져나오기
-									}
-									else
-									{
-										show_message_log("- 맵 생성 실패! (재시도 중...)");
-										failed_map_creation();
-										global.n_camera_zoom = 0.7;
-									}
-		
-		
-									//맵 생성 - 디버그용 메세지
-									for(var i = 0; i < global.map_height; i++)
-									{
-										var tmp_str = "";
-										for(var ii = 0; ii < global.map_width; ii++)
-										{
-											tmp_str = string(tmp_str)+string(global.map_arr[i][ii])+" ";
-										}
-										show_debug_message(tmp_str);
-									}
-								}
+								//맵 생성
+								create_map(global.is_map_exists);
 							}
 						}
 						else if (i == 3) //디버그 창 on-off

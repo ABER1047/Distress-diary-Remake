@@ -10,7 +10,11 @@ depth = obj_map_texture_draw.depth-16;
 
 
 //룸 클리어 되었나 체크
-var is_room_cleared = (global.map_arr[my_pos_yy][my_pos_xx] == 1) ? true : false;
+var is_room_cleared = false;
+if (is_inside_rectangle(my_pos_xx,my_pos_yy,-1,-1,global.map_width,global.map_height))
+{
+	is_room_cleared = (global.map_arr[my_pos_yy][my_pos_xx] == 1) ? true : false;
+}
 
 
 

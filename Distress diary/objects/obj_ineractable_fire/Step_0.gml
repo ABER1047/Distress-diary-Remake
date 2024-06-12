@@ -21,8 +21,8 @@ if (!stop_cal_by_pos_statement)
 		//효과음 재생
 		play_sound_pos(fire_ignition_sfx,false,0.1,x,y-32,640,false,-4,-4);
 
+		send_InstanceVariableData(id,"is_opened",is_opened);
 		b_is_opened = is_opened;
-		send_InstanceVariableData(id,"is_opened");
 	}
 
 	
