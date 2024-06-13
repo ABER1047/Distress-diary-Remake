@@ -9,3 +9,6 @@ line_width = 1;
 //dir = choose(-1,1);
 //attack_dmg = 0;
 alarm[0] = 1;
+
+
+depth = -y;

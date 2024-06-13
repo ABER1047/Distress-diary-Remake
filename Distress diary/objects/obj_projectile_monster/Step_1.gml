@@ -12,6 +12,6 @@ statement_by_pos();
 var tmp_ins = instance_place(x,y,obj_player);
 if (instance_exists(tmp_ins))
 {
-	give_damage(tmp_ins,dmg,false,16,x,y);
-	instance_destroy();
+	give_damage(tmp_ins,dmg,false,16,x,y,60);
+	instance_destroy_multiplayer(id);
 }

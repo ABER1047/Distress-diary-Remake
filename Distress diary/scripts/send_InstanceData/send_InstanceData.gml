@@ -3,9 +3,10 @@
 
 
 ///@param ins(id)
-function send_InstanceData(argument0)
+///@param [variables_name]
+///@param [variables]
+function send_InstanceData(tmp_ins,variables_name = "",variables = "")
 {
-	var tmp_ins = argument0;
 	with(tmp_ins)
 	{
 		buffer_seek(global.obj_data_buffer, buffer_seek_start, 0);
@@ -19,6 +20,8 @@ function send_InstanceData(argument0)
 		buffer_write(global.obj_data_buffer, buffer_string, image_index);
 		buffer_write(global.obj_data_buffer, buffer_string, my_pos_xx);
 		buffer_write(global.obj_data_buffer, buffer_string, my_pos_yy);
+		buffer_write(global.obj_data_buffer, buffer_string, variables_name); //변수명
+		buffer_write(global.obj_data_buffer, buffer_string, variables); //변수값
 		send_all(global.obj_data_buffer);
 	}
 }

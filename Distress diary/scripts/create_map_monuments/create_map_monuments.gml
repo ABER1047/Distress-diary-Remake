@@ -69,7 +69,7 @@ function create_map_monuments(argument0)
 				global.map_room_height[i][ii] = tmp_room_height;
 				
 
-				show_message_log("구조물 생성중... ["+string(ii)+", "+string(i)+"]");
+				show_debug_message("구조물 생성중... ["+string(ii)+", "+string(i)+"]");
 			}
 			
 			//라이트 오브젝트 생성

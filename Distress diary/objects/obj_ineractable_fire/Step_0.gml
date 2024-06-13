@@ -14,20 +14,20 @@ if (!stop_cal_by_pos_statement)
 
 
 	//다른사람이 상호작용 중인 경우, 상호작용 중이라고 정보 보내기
-	if (b_is_opened != is_opened)
+	if (b_is_activated != is_activated)
 	{
 		light_timer = 0;
 		
 		//효과음 재생
 		play_sound_pos(fire_ignition_sfx,false,0.1,x,y-32,640,false,-4,-4);
 
-		send_InstanceVariableData(id,"is_opened",is_opened);
-		b_is_opened = is_opened;
+		send_InstanceVariableData(id,"is_activated",is_activated);
+		b_is_activated = is_activated;
 	}
 
 	
 	//상호작용 중 일때
-	if (is_opened)
+	if (is_activated)
 	{
 		light_timer ++;
 		

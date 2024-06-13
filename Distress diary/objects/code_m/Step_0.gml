@@ -111,7 +111,7 @@ if (global.chat_activated)
 						
 						if (i == 0) //suicide
 						{
-							give_damage(global.my_player_ins_id[global.my_player_id],9999,true,0,other.x,other.y);
+							give_damage(global.my_player_ins_id[global.my_player_id],9999,true,0,other.x,other.y,60);
 						}
 						else if (i == 1) //개발자 모드 on-off
 						{
@@ -177,7 +177,7 @@ if (global.chat_activated)
 						}
 						else if (i == 11) //데미지 입히기
 						{
-							give_damage(global.my_player_ins_id[global.my_player_id],tmp_parameter,true,0,other.x,other.y);
+							give_damage(global.my_player_ins_id[global.my_player_id],tmp_parameter,true,0,other.x,other.y,60);
 						}
 						else if (i == 12) //배고픔 값 줄이기
 						{
@@ -197,7 +197,7 @@ if (global.chat_activated)
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
 							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[(array_length(tmp_mob_obj_ind) <= rd_select) ? array_length(tmp_mob_obj_ind)-1 : rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
 							
-							give_damage(global.my_player_ins_id[global.my_player_id],0,true,0,other.x,other.y);
+							give_damage(global.my_player_ins_id[global.my_player_id],0,true,0,other.x,other.y,60);
 						}
 						else if (i == 16) //이펙트 생성
 						{

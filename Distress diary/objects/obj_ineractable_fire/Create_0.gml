@@ -30,11 +30,11 @@ obj_animation = 0;
 
 
 //상자 열린상태인지 체크
-if (!variable_instance_exists(id,"is_opened"))
+if (!variable_instance_exists(id,"is_activated"))
 {
-	is_opened = false; //-5 = 안 열림, -3 = 다른사람이 열고 있음, ins ref (숫자) = 내 자신이 열고 있으며 열려있는 인벤토리 id값을 반환
+	is_activated = false; //-5 = 안 열림, -3 = 다른사람이 열고 있음, ins ref (숫자) = 내 자신이 열고 있으며 열려있는 인벤토리 id값을 반환
 }
-b_is_opened = -4;
+b_is_activated = -4;
 
 
 //인터렉트 메세지

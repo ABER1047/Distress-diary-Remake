@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"instance_create_multiplayer_ext",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"instance_create_multiplayer_ext",
+  "parent":{
+    "name":"MapSystem",
+    "path":"folders/스크립트/MapSystem.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

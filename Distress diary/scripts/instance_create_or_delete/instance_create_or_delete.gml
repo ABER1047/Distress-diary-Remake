@@ -25,6 +25,7 @@ function instance_create_or_delete(argument0)
 	}
 	else
 	{
+		//디버그용 메시지
 		show_message_log("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
 					
 		//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
@@ -49,8 +50,10 @@ function instance_create_or_delete(argument0)
 			var tmp_img_ind = real(buffer_read(buffer, buffer_string));
 			var tmp_xpos = real(buffer_read(buffer, buffer_string));
 			var tmp_ypos = real(buffer_read(buffer, buffer_string));
+			var tmp_variables_name = buffer_read(buffer, buffer_string); //변수명
+			var tmp_variables = buffer_read(buffer, buffer_string); //변수값
 					
-			instance_create_multiplayer(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos);
+			instance_create_multiplayer_ext(tmp_obj_ind,tmp_xx,tmp_yy,tmp_obj_id,tmp_img_ind,true,tmp_xpos,tmp_ypos,tmp_variables_name,tmp_variables);
 		}
 	}
 }

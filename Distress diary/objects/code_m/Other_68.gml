@@ -298,10 +298,14 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						
 						
 						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
-						if (tmp_splited_varname[i] == "is_opened" && tmp_obj_name != obj_ineractable_fire)
+						if (tmp_splited_varname[i] == "is_opened")
 						{
 							tmp_splited_val[i] = (tmp_splited_val[i] != -4) ? -3 : tmp_splited_val[i]; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
 							variable_instance_set(tmp_id_real,"b_is_opened",tmp_splited_val[i]);
+						}
+						else if (tmp_name == "is_activated")
+						{
+							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
 						}
 				
 						variable_instance_set(tmp_id_real,string(tmp_splited_varname[i]),tmp_splited_val[i]);
@@ -320,10 +324,14 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						
 						
 						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
-						if (tmp_name == "is_opened" && tmp_obj_name != obj_ineractable_fire)
+						if (tmp_name == "is_opened")
 						{
 							tmp_val = (tmp_val != -4) ? -3 : tmp_val; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
 							variable_instance_set(tmp_id_real,"b_is_opened",tmp_val);
+						}
+						else if (tmp_name == "is_activated")
+						{
+							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
 						}
 				
 						variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);

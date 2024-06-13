@@ -36,7 +36,7 @@ function instance_create_multiplayer(argument0,argument1,argument2,argument3,arg
 	
 	if (argument5 == false)
 	{
-		send_InstanceData(tmp_ins);
+		send_InstanceData(tmp_ins,"","");
 	}
 	
 	

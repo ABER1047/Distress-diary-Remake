@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"instance_create_or_delete",
   "parent":{
-    "name":"Multiplayer",
-    "path":"folders/스크립트/Multiplayer.yy",
+    "name":"settings",
+    "path":"folders/스크립트/Multiplayer/settings.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"send_InstanceData",
   "parent":{
-    "name":"MapSystem",
-    "path":"folders/스크립트/MapSystem.yy",
+    "name":"settings",
+    "path":"folders/스크립트/Multiplayer/settings.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

@@ -32,7 +32,7 @@ if (!stop_cal_by_pos_statement)
 		var is_exists_projectile = false;
 		with(obj_projectile_monster)
 		{
-			if (parents == other.id)
+			if (floor(obj_id) == other.obj_id)
 			{
 				is_exists_projectile = true;
 				break;
@@ -43,17 +43,9 @@ if (!stop_cal_by_pos_statement)
 		{
 			for(var i = 0; i < 3; i++)
 			{
-				var tmp_projectile = instance_create_depth(x,y,depth,obj_projectile_monster);
-				tmp_projectile.parents = id;
-				tmp_projectile.type = 2;
-				tmp_projectile.sprite_index = spr_ghost_fire_animation;
-				tmp_projectile.image_xscale = 0;
-				tmp_projectile.image_yscale = 0;
-				tmp_projectile.direction = i*120;
-				tmp_projectile.z = z;
-				tmp_projectile.dmg = 24;
-				tmp_projectile.my_pos_xx = my_pos_xx;
-				tmp_projectile.my_pos_yy = my_pos_yy;
+				var tmp_var_name = "type,sprite_index,image_xscale,image_yscale,direction,z,dmg";
+				var tmp_var = "2,spr_ghost_fire_animation,0,0,"+string(i*120)+","+string(z)+",24";
+				var tmp_projectile = instance_create_multiplayer_ext(obj_projectile_monster,x,y,obj_id+(i/10),0,true,my_pos_xx,my_pos_yy,tmp_var_name,tmp_var);
 			}
 			
 			attack_timer = 0;

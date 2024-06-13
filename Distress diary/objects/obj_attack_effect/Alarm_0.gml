@@ -49,7 +49,7 @@ with(obj_monster_parents)
 {
 	if (id != other.id && place_meeting(x,y,other.id))
 	{
-		give_damage(id,attack_dmg,true,16,other.x,other.y);
+		give_damage(id,attack_dmg,true,16,other.x,other.y,25);
 	}
 }
 

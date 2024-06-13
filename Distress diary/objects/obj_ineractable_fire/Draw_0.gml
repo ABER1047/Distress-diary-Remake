@@ -7,7 +7,7 @@ if (image_alpha > 0)
 {
 	draw_sprite_ext(sprite_index,image_index,x,y,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 	
-	if (is_opened)
+	if (is_activated)
 	{
 		var tmp_fire_scale = fire_scale[image_index]*image_xscale;
 		var fire_spr = [ spr_fire_animation, spr_ghost_fire_animation ];

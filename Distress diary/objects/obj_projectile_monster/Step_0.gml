@@ -4,6 +4,18 @@
 //불이 원 주위로 빙빙 돔
 if (type == 1 || type == 2)
 {
+	if (parents == -1)
+	{
+		parents = -4;
+		with(obj_monster_parents)
+		{
+			if (obj_id == floor(other.obj_id))
+			{
+				other.parents = id;
+			}
+		}
+	}
+	
 	if (instance_exists(parents))
 	{
 		//해당 투사체 주인으로 부터의 거리 설정용 변수
@@ -61,7 +73,7 @@ if (type == 1 || type == 2)
 		
 		if (image_xscale <= 0)
 		{
-			instance_destroy();
+			instance_destroy_multiplayer(id);
 		}
 	}
 }

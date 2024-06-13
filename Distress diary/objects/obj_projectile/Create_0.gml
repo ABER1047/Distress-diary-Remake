@@ -28,8 +28,6 @@ angle_comp = 0;
 stop_flying = -4;
 
 
-//화살을 발사한 인스턴스
-//parents = -4;
 
 //화살 데미지
 //attack_dmg = 0;

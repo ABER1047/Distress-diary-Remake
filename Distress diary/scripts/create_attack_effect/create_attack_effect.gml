@@ -17,17 +17,10 @@ function create_attack_effect(argument0,argument1,argument2,argument3,argument4,
 	var tmp_yy = argument1-32;
 	var to_swing_dir = argument3;
 	
-	
-	var tmp_ins = instance_create_depth(tmp_xx,tmp_yy,-tmp_yy,obj_attack_effect);
-	tmp_ins.max_line_width = tmp_size;
-	tmp_ins.dir = to_swing_dir;
-	tmp_ins.direction = tmp_angle-45;
-	tmp_ins.direction += (to_swing_dir < 0) ? 90 : 0;
-	tmp_ins.image_angle = tmp_angle-90;
-	tmp_ins.image_xscale = tmp_size/24;
-	tmp_ins.image_yscale = tmp_size/52;
-	tmp_ins.attack_dmg = argument6;
-	tmp_ins.z = argument2;
+	var tmp_var_name = "max_line_width,dir,direction,image_angle,image_xscale,image_yscale,attack_dmg,z";
+	var tmp_direction = tmp_angle-45 + ((to_swing_dir < 0) ? 90 : 0);
+	var tmp_var = string(tmp_size)+","+string(to_swing_dir)+","+string(tmp_direction)+","+string(tmp_angle-90)+","+string(tmp_size/24)+","+string(tmp_size/52)+","+string(argument6)+","+string(argument2);
+	var tmp_ins = instance_create_multiplayer_ext(obj_attack_effect,tmp_xx,tmp_yy,global.object_id_ind,0,false,-4,-4,tmp_var_name,tmp_var);
 	
 	return tmp_ins;
 }
