@@ -30,31 +30,37 @@ draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_f
 
 
 //버프-디버프 UI
-var tmp_values = [ fix_num_inside(weight_for_draw,0,10), hydro_for_draw, hunger_for_draw ];
-var tmp_values_max = [ 10, 100 ,100 ];
-var tmp_color = [ -4, merge_color(#E14141,c_white,(tmp_values[1] > 10) ? 1 : tmp_values[1]/10), merge_color(#E14141,c_white,(tmp_values[2] > 10) ? 1 : tmp_values[2]/10) ];
-
-if (weight_for_draw < 10)
+if (global.graphics_quality > 0)
 {
-	tmp_color[0] = merge_color(c_white,#FFBF36,fix_to_zero(weight_for_draw-5)/5);
-}
-else
-{
-	tmp_color[0] = merge_color(#FFBF36,#E14141,fix_to_zero(weight_for_draw-10)/50);
-}
+	var tmp_values = [ fix_num_inside(weight_for_draw,0,10), hydro_for_draw, hunger_for_draw ];
+	var tmp_values_max = [ 10, 100 ,100 ];
+	var tmp_color = [ -4, merge_color(#E14141,c_white,(tmp_values[1] > 10) ? 1 : tmp_values[1]/10), merge_color(#E14141,c_white,(tmp_values[2] > 10) ? 1 : tmp_values[2]/10) ];
 
+	if (weight_for_draw < 10)
+	{
+		tmp_color[0] = merge_color(c_white,#FFBF36,fix_to_zero(weight_for_draw-5)/5);
+	}
+	else
+	{
+		tmp_color[0] = merge_color(#FFBF36,#E14141,fix_to_zero(weight_for_draw-10)/50);
+	}
+}
 
 
 var tmp_values_for_display = [ global.my_weight, global.hydration, global.hunger ];
 var tmp_unit = [ "kg", "%", "%" ];
 for(var i = 0; i < 3; i++)
 {
-	draw_circular_bar(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),1,1,#17111A,32*scale,1,scale*6);
-	draw_circular_bar(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),tmp_values[i],tmp_values_max[i],tmp_color[i],32*scale,1,scale*6);
+	if (global.graphics_quality > 0)
+	{
+		//draw_circular_bar(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),1,1,#17111A,32*scale,1,scale*6);
+		draw_circular_bar(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),tmp_values[i],tmp_values_max[i],tmp_color[i],32*scale,1,scale*6,#17111A);
+	}
 	draw_sprite_ext(spr_ui,i,xx+(scale*(48+78*i)),yy+yy_h-(144*scale),scale*0.9,scale*0.9,0,c_white,1);
 	
 	draw_text_kl_scale(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),string(tmp_values_for_display[i])+string(tmp_unit[i]),64,-1,1,c_white,0,0,font_normal,0.4,0.4,0);
 }
+
 
 
 

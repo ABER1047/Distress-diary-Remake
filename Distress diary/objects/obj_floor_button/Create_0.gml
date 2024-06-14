@@ -9,7 +9,7 @@ add_my_pos_statement();
 image_xscale = 2;
 image_yscale = 2;
 image_speed = 0;
-s_img_ind = -4;
-alarm[0] = 1;
+//s_img_ind = -4;
+
 
 

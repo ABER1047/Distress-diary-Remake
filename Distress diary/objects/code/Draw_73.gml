@@ -364,141 +364,83 @@ if (global.dev_mode == 1)
 
 
 
-//맵 드로우 코드
-if (global.show_map_data == 1)
+//맵 드로우 코드 && 맵이 존재하는 경우
+if (global.show_map_data == 1 && global.is_map_exists != -4)
 {
-	var room_ui_scale = 16/(global.map_height);
-	var tmp_space = (52*room_ui_scale+16)*tmp_c_x;
-	var tmp_xx = (xx_center-global.map_width/2*tmp_space);
-	var tmp_yy = (yy_center-global.map_height/2*tmp_space);
-	//맵이 존재하는 경우
-	if (global.is_map_exists != -4)
+	//플레이어 위치를 중심으로 좌우 총 합 5칸씩 표시
+	var tmp_size = 2; //플레이어 중심으로 좌우로 몇칸까지 표시할지 (양옆으로 2칸씩 = 총 5칸)
+	var ui_scale = 1; //지도 UI사이즈 지정용
+	var real_scale = ui_scale*64; // 얘는 건들지 마셈
+	if (surface_exists(global.map_ui_surf))
 	{
-		draw_set_alpha(global.show_map_data*0.85);
-		draw_set_color(#090708);
-		draw_rectangle(tmp_xx-tmp_space,tmp_yy-tmp_space,tmp_xx+global.map_width*tmp_space,tmp_yy+global.map_height*tmp_space,false);
+		surface_set_target(global.map_ui_surf);
+		draw_clear_alpha(c_black,0);
 		
-		draw_set_alpha(global.show_map_data);
-		for(var i = 0; i < global.map_height; i++)
+		//플레이어 현재 위치 참조용 임시 변수
+		var tmp_my_p_pos_xx = global.n_player_room_xx[global.my_player_id], tmp_my_p_pos_yy = global.n_player_room_yy[global.my_player_id];
+		
+		//선 색 지정
+		draw_set_color(#333333);
+		draw_set_alpha(1);
+		for(var i = -tmp_size; i <= tmp_size; i++)
 		{
-			for(var ii = 0; ii < global.map_width; ii++)
+			for(var ii = -tmp_size; ii <= tmp_size; ii++)
 			{
-				var draw_xx = tmp_xx+ii*tmp_space;
-				var draw_yy = tmp_yy+i*tmp_space;
-				
-				
-				//방 연결된거 표시
-				if (global.room_connected_to_xx[i][ii] != -4)
+				var dx = tmp_my_p_pos_xx + ii, dy = tmp_my_p_pos_yy + i;
+				//배열 크기를 벗어나지 않는 경우
+				if (is_inside_rectangle(dx,dy,-1,-1,global.map_width,global.map_height) && global.map_arr[dy][dx] != 0)
 				{
-					draw_set_color(#333333);
-					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy[i][ii]*tmp_space,8*tmp_c_x*room_ui_scale);
-				}
-				
-				//방 연결된거 표시 (sec)
-				if (global.room_connected_to_xx_sec[i][ii] != -4)
-				{
-					draw_set_color(#333333);
-					draw_line_width(draw_xx,draw_yy,tmp_xx+global.room_connected_to_xx_sec[i][ii]*tmp_space,tmp_yy+global.room_connected_to_yy_sec[i][ii]*tmp_space,8*tmp_c_x*room_ui_scale);
-				}
-			}
-		}
-		
-		
-		
-		for(var i = 0; i < global.map_height; i++)
-		{
-			for(var ii = 0; ii < global.map_width; ii++)
-			{
-				var draw_xx = tmp_xx+ii*tmp_space;
-				var draw_yy = tmp_yy+i*tmp_space;
-				
-				
-				
-				//방 표시
-				if (global.map_arr[i][ii] > 0)
-				{
-					var img_ind = (global.map_arr[i][ii] != 2) ? 0 : 1;
-					for(var k = 0; k < array_length(global.n_player_room_xx); k++)
+					var tmp_ui_xx = (1+tmp_size+ii)*real_scale;
+					var tmp_ui_yy = (1+tmp_size+i)*real_scale;
+					var tmp_img_ind = 0;
+					if (dx == tmp_my_p_pos_xx && dy == tmp_my_p_pos_yy)
 					{
-						if (global.n_player_room_xx[k] == ii && global.n_player_room_yy[k] == i)
-						{
-							img_ind = 2;
-						}
+						tmp_img_ind = 2;
 					}
-					
-					draw_sprite_ext(spr_map_ui_room,img_ind,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,c_white,global.show_map_data);
-					
-					//방 아이콘 표시
-					var img_ind_by_room_type = -4
-					if (global.map_room_type[i][ii] == 1)
+					else if (global.map_arr[dy][dx] != 1)
 					{
-						img_ind_by_room_type = 11;
+						tmp_img_ind = 1;
 					}
-					else if (global.map_room_type[i][ii] == 2)
-					{
-						img_ind_by_room_type = 12;
-					}
-					else if (global.map_room_type[i][ii] == 3)
-					{
-						img_ind_by_room_type = 13;
-					}
-					else if (global.map_room_type[i][ii] == 4)
-					{
-						img_ind_by_room_type = 14;
-					}
-					
-					if (img_ind_by_room_type != -4)
-					{
-						draw_sprite_ext(spr_ui,img_ind_by_room_type,draw_xx,draw_yy,tmp_c_x*room_ui_scale*0.8,tmp_c_x*room_ui_scale*0.8,0,c_white,global.show_map_data);
-					}
-					/*var angle = -4;
-					if (global.room_connected_to_xx[i][ii] < ii && global.room_connected_to_yy[i][ii] == i)
-					{
-						angle = 270;
-					}
-					else if (global.room_connected_to_xx[i][ii] > ii && global.room_connected_to_yy[i][ii] == i)
-					{
-						angle = 90;
-					}
-					else if (global.room_connected_to_xx[i][ii] == ii && global.room_connected_to_yy[i][ii] < i)
-					{
-						angle = 180;
-					}
-					else if (global.room_connected_to_xx[i][ii] == ii && global.room_connected_to_yy[i][ii] > i)
-					{
-						angle = 0;
-					}
-					
-					if (angle != -4)
-					{
-						var is_someone_here = 0;
-						for(var k = 0; k < array_length(global.n_player_room_xx); k++)
-						{
-							if (global.n_player_room_xx[k] == ii && global.n_player_room_yy[k] == i)
-							{
-								is_someone_here = 1;
-							}
-						}
-						
-						//현재 위치 표시 + 이동 가능한 방 표시
-						//draw_sprite_ext(spr_arrow_ui,0,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,angle,(is_someone_here == 1) ? #46376A : #3B3447,global.show_map_data);
-					}*/
 					
 
+					if (global.room_connected_to_xx[dy][dx] != -4)
+					{
+						var tmp_xx_sign = sign(global.room_connected_to_xx[dy][dx]-dx);
+						var tmp_yy_sign = sign(global.room_connected_to_yy[dy][dx]-dy);
+						var tmp_val1 = tmp_xx_sign*27*ui_scale;
+						var tmp_val2 = tmp_yy_sign*27*ui_scale;
+						var tmp_line_xx_start = tmp_ui_xx + tmp_val1;
+						var tmp_line_yy_start = tmp_ui_yy + tmp_val2;
+						var tmp_line_xx_end = tmp_ui_xx + tmp_xx_sign*real_scale - tmp_val1;
+						var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
+						draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,4*ui_scale);
+					}
+					if (global.room_connected_to_xx_sec[dy][dx] != -4)
+					{
+						var tmp_xx_sign = sign(global.room_connected_to_xx_sec[dy][dx]-dx);
+						var tmp_yy_sign = sign(global.room_connected_to_yy_sec[dy][dx]-dy);
+						var tmp_val1 = tmp_xx_sign*27*ui_scale;
+						var tmp_val2 = tmp_yy_sign*27*ui_scale;
+						var tmp_line_xx_start = tmp_ui_xx + tmp_val1;
+						var tmp_line_yy_start = tmp_ui_yy + tmp_val2;
+						var tmp_line_xx_end = tmp_ui_xx + tmp_xx_sign*real_scale - tmp_val1;
+						var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
+						draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,4*ui_scale);
+					}
 					
-					//if (global.room_connected_to_xx_sec[i][ii] != -4)
-					//{
-						//var tmp_str_2 = "("+string(global.room_connected_to_xx_sec[i][ii])+", "+string(global.room_connected_to_yy_sec[i][ii])+")";
-						//draw_text_kl_scale(draw_xx,draw_yy,tmp_str_2,64,-1,global.show_map_data,c_white,0,0,font_light,tmp_c_x*room_ui_scale*0.3,tmp_c_x*room_ui_scale*0.3,0);
-					//}
 					
-					//show_debug_message("drawing_map ("+string(tmp_xx)+", "+string(tmp_yy)+")   /   "+string(xx))
+					draw_sprite_ext(spr_map_ui_room,tmp_img_ind,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
 				}
-				//else
-				//{
-				//	draw_sprite_ext(tmp_sprite,1,draw_xx,draw_yy,tmp_c_x*room_ui_scale,tmp_c_x*room_ui_scale,0,merge_color(c_black,c_white,0.1),global.show_map_data);
-				//}
 			}
 		}
+		
+		surface_reset_target();
+		
+		draw_surface(global.map_ui_surf,xx_center - (1+tmp_size)*real_scale,yy_center - (1+tmp_size)*real_scale);
+	}
+	else
+	{
+		//지도용 서피스
+		global.map_ui_surf = surface_create(real_scale*(1+tmp_size)*2,real_scale*(1+tmp_size)*2);
 	}
 }

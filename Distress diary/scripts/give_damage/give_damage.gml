@@ -11,24 +11,14 @@
 function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6)
 {
 	var tmp_ins = argument0;
-	if (instance_exists(tmp_ins) && ((variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0) || (argument2 && variable_instance_exists(tmp_ins,"hp"))))
+	if (instance_exists(tmp_ins))
 	{
-		var tmp_dmg = argument1;
-		tmp_ins.hp -= tmp_dmg;
-		tmp_ins.dmg_cooltime = argument6;
-		if (tmp_ins.hp < 0)
-		{
-			tmp_ins.hp = 0;
-		}
-
-		
-		//디버그용 메시지
-		show_message_log(tmp_ins.hp);
-		
 		//넉백
 		var knockback_speed = argument3;
+		var is_dmg_cooltime_exists = argument2 || (variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0);
+		var is_hp_exists = variable_instance_exists(tmp_ins,"hp");
 		var is_speed_exists = variable_instance_exists(tmp_ins,"_speed");
-		if (is_speed_exists)
+		if (is_speed_exists && ((is_hp_exists && is_dmg_cooltime_exists) || !is_hp_exists))
 		{
 			var attacker_xx = argument4;
 			var attacker_yy = argument5;
@@ -36,32 +26,47 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			tmp_ins._speed += knockback_speed;
 			tmp_ins.direction = dir_;
 		}
-		
-		//데이터 값 전송
-		var tmp_var_name = "x,y,direction,hp,dmg_cooltime";
-		var tmp_var = string(tmp_ins.x)+","+string(tmp_ins.y)+","+string(tmp_ins.direction)+","+string(tmp_ins.hp)+","+string(tmp_ins.dmg_cooltime);
-		if (is_speed_exists)
+	
+		if ((argument2 && is_hp_exists) || is_dmg_cooltime_exists)
 		{
-			tmp_var = string(tmp_var)+","+string(tmp_ins._speed);
-			tmp_var_name = string(tmp_var_name)+",_speed";
-		}
-		send_InstanceMuchVariableData(tmp_ins,tmp_var_name,tmp_var);
+			var tmp_dmg = argument1;
+			tmp_ins.hp -= tmp_dmg;
+			tmp_ins.dmg_cooltime = argument6;
+			if (tmp_ins.hp < 0)
+			{
+				tmp_ins.hp = 0;
+			}
+
+		
+			//디버그용 메시지
+			show_message_log(tmp_ins.hp);
+
+			//데이터 값 전송
+			var tmp_var_name = "x,y,direction,hp,dmg_cooltime";
+			var tmp_var = string(tmp_ins.x)+","+string(tmp_ins.y)+","+string(tmp_ins.direction)+","+string(tmp_ins.hp)+","+string(tmp_ins.dmg_cooltime);
+			if (is_speed_exists)
+			{
+				tmp_var = string(tmp_var)+","+string(tmp_ins._speed);
+				tmp_var_name = string(tmp_var_name)+",_speed";
+			}
+			send_InstanceMuchVariableData(tmp_ins,tmp_var_name,tmp_var);
 		
 		
 		
-		//혈흔 이펙트 생성
-		var tmp_depth = obj_map_texture_draw.depth-4;
-		var tmp_ins = instance_create_multiplayer(obj_blood_effect,tmp_ins.x,tmp_ins.y,global.object_id_ind,0,true,-4,-4);
+			//혈흔 이펙트 생성
+			var tmp_depth = obj_map_texture_draw.depth-4;
+			var tmp_ins = instance_create_multiplayer(obj_blood_effect,tmp_ins.x,tmp_ins.y,global.object_id_ind,0,true,-4,-4);
 		
 		
-		//피격음
-		play_sound_pos(hit_sfx,false,0.1,obj_camera.x,obj_camera.y,960,false,-4,-4);
+			//피격음
+			play_sound_pos(hit_sfx,false,0.1,obj_camera.x,obj_camera.y,960,false,-4,-4);
 		
 
-		//데미지 정보 표기
-		var tmp_yy = (tmp_ins.y-128);
-		tmp_yy -= (variable_instance_exists(tmp_ins,"z")) ? tmp_ins.z : 0;
+			//데미지 정보 표기
+			var tmp_yy = (tmp_ins.y-128);
+			tmp_yy -= (variable_instance_exists(tmp_ins,"z")) ? tmp_ins.z : 0;
 		
-		damage_display(tmp_ins.x,tmp_yy,#7A213A,tmp_ins,string(tmp_dmg));
+			damage_display(tmp_ins.x,tmp_yy,#7A213A,tmp_ins,string(tmp_dmg));
+		}
 	}
 }

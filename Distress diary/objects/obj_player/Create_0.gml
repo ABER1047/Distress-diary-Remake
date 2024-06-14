@@ -36,6 +36,7 @@ global.n_running = false;
 
 //이동키 안먹히도록 설정 (UI같은거 열려있을때)
 global.prohibit_movement_input = false;
+b_prohibit_movement_input = false;
 
 
 //z축

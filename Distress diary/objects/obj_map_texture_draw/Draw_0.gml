@@ -71,39 +71,38 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 {
 	surface_set_target(global.liquid_on_floor_surf);
 	draw_clear_alpha(c_black,0);
-
-		with(obj_floor_effect_parents)
+	with(obj_floor_effect_parents)
+	{
+		if (id != other.id && object_index != obj_explosion_effect_on_ground && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
 		{
-			if (id != other.id && object_index != obj_explosion_effect_on_ground && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
+			var tmp_color = #7A213A;
+			if (object_index == obj_poison_effect)
 			{
-				var tmp_color = #7A213A;
-				if (object_index == obj_poison_effect)
+				tmp_color = #44A978;
+			}
+				
+				
+			for(var i = 0; i < array_length(rd_xx); i++)
+			{
+				var tmp_xx = rd_xx[i];
+				var tmp_yy = rd_yy[i];
+				var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
+		
+				//10초 뒤에 알파값이 점점 작아지면서 삭제
+				var tmp_scale = 0.5/(1+tmp_dis/24);
+		
+		
+				//가장 가까운 액체부터 순차적으로 드로우 (= 바닥에 고여서 흐르는 효과)
+				if (animation_timer > tmp_dis*0.7)
 				{
-					tmp_color = #44A978;
+					blood_scale[i] += (tmp_scale - blood_scale[i])*0.1;
 				}
-				
-				
-				for(var i = 0; i < array_length(rd_xx); i++)
-				{
-					var tmp_xx = rd_xx[i];
-					var tmp_yy = rd_yy[i];
-					var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
-		
-					//10초 뒤에 알파값이 점점 작아지면서 삭제
-					var tmp_scale = 0.5/(1+tmp_dis/24);
-		
-		
-					//가장 가까운 액체부터 순차적으로 드로우 (= 바닥에 고여서 흐르는 효과)
-					if (animation_timer > tmp_dis*0.7)
-					{
-						blood_scale[i] += (tmp_scale - blood_scale[i])*0.1;
-					}
 					
 
-					draw_sprite_ext(spr_circle,0,tmp_xx-xx,tmp_yy-yy,blood_scale[i],blood_scale[i]*0.42,0,#7A213A,image_alpha);
-				}
+				draw_sprite_ext(spr_circle,0,tmp_xx-xx,tmp_yy-yy,blood_scale[i],blood_scale[i]*0.42,0,#7A213A,image_alpha);
 			}
 		}
+	}
 	surface_reset_target();
 
 
@@ -141,50 +140,6 @@ with(obj_floor_button)
 //모든 그림자 그리기
 if (surface_exists(global.shadow_surf))
 {
-	surface_set_target(global.shadow_surf);
-	gpu_set_blendmode(bm_normal);
-	draw_clear_alpha(c_black,0);
-	draw_sprite_ext(spr_tiles_walls,1,tmp_room_xx-xx,y-yy,tmp_wall_scale*global.n_room_width*1.2,-tmp_wall_scale*0.85,image_angle,c_white,1);
-	with(obj_wall_nearby_door)
-	{
-		draw_sprite_ext(spr_tiles_walls,1,x-xx,y-yy,tmp_wall_scale,-tmp_wall_scale*0.85,image_angle,c_white,1);
-	}
-
-	with(obj_parents)
-	{
-		if (!stop_cal_by_pos_statement && object_index != obj_spike_trap)
-		{
-			draw_sprite_ext(sprite_index,image_index,x-xx,y-48-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
-		}
-	}
-
-	with(obj_mob_parents)
-	{
-		if (!stop_cal_by_pos_statement)
-		{
-			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
-		}
-	}
-	
-	with(obj_projectile_parents)
-	{
-		if (!stop_cal_by_pos_statement && ((object_index == obj_projectile && !stop_animation) || object_index != obj_projectile))
-		{
-			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
-		}
-	}
-
-	with(obj_dropped_item_box)
-	{
-		if (!stop_cal_by_pos_statement)
-		{
-			draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1)
-		}
-	}
-	surface_reset_target();
-
-
-
 	draw_surface_ext(global.shadow_surf,xx,yy,1,1,0,c_black,0.3);
 }
 

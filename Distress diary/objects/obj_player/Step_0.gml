@@ -68,6 +68,20 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	{
 		send_InstanceVariableData(id,"hp");
 		b_hp = hp;
+		
+		//사망시 이동 불가능하게
+		if (hp <= 0)
+		{
+			b_prohibit_movement_input = global.prohibit_movement_input;
+			global.prohibit_movement_input = true;
+		}
+		else
+		{
+			if (!b_prohibit_movement_input)
+			{
+				global.prohibit_movement_input = false;
+			}
+		}
 	}
 	
 	
@@ -174,6 +188,27 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			global.max_movement_speed = 7*speed_by_weight;
 			global.n_running = false;
 		}
+		
+		
+		//점프 관련
+		if (z == 0)
+		{
+			if (played_jump_sfx)
+			{
+				//점프 효과음
+				play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1600,false,-4,-4);
+				played_jump_sfx = false;
+			}
+		
+			if (keyboard_check_pressed(vk_space))
+			{
+				zspeed = -8;
+		
+				//점프 효과음
+				play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false,-4,-4);
+				played_jump_sfx = true;
+			}
+		}
 	}
 	else
 	{
@@ -187,25 +222,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 
 	
 
-	//점프 관련
-	if (z == 0)
-	{
-		if (played_jump_sfx)
-		{
-			//점프 효과음
-			play_sound_pos(choose(footstep1_sfx,footstep2_sfx,footstep3_sfx),false,0.1,x,y,1600,false,-4,-4);
-			played_jump_sfx = false;
-		}
-		
-		if (keyboard_check_pressed(vk_space))
-		{
-			zspeed = -8;
-		
-			//점프 효과음
-			play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false,-4,-4);
-			played_jump_sfx = true;
-		}
-	}
+	
 
 	z_axis_gravity();
 
@@ -426,6 +443,9 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	
+	
+	
+	
 	//다른 죽은 플레이어 루팅하기
 	var is_lootable = "";
 	var tmp_ins = instance_nearest_notme(x,y,obj_player);
@@ -435,43 +455,48 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	}
 	else
 	{
-		//오브젝트 상호작용 하기
-		tmp_ins = -4;
-		with(obj_parents)
+		tmp_ins = instance_nearest_notme(x,y,obj_dropped_item_box);
+		if (instance_exists(tmp_ins) && !tmp_ins.stop_cal_by_pos_statement && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
 		{
-			if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 96)
-			{
-				tmp_ins = id;
-				break;
-			}
+			is_lootable = "버려진 아이템";
 		}
-		
-		if (instance_exists(tmp_ins))
+		else
 		{
-			switch(tmp_ins.object_index)
+			//오브젝트 상호작용 하기
+			tmp_ins = -4;
+			with(obj_parents)
 			{
-				case obj_loots:
-					is_lootable = string(tmp_ins.loots_name);
-				break;
+				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 96)
+				{
+					tmp_ins = id;
+					break;
+				}
+			}
+		
+			if (instance_exists(tmp_ins))
+			{
+				switch(tmp_ins.object_index)
+				{
+					case obj_loots:
+						is_lootable = string(tmp_ins.loots_name);
+					break;
 				
-				case obj_dropped_item_box:
-					is_lootable = "버려진 아이템";
-				break;
+					case obj_vending_machine:
+						is_lootable = "자동판매기";
+					break;
 				
-				case obj_vending_machine:
-					is_lootable = "자동판매기";
-				break;
+					case obj_arcade_pc:
+						is_lootable = "PC";
+					break;
 				
-				case obj_arcade_pc:
-					is_lootable = "PC";
-				break;
-				
-				case obj_ineractable_fire:
-					is_lootable = "Fire";
-				break;
+					case obj_ineractable_fire:
+						is_lootable = "Fire";
+					break;
+				}
 			}
 		}
 	}
+	
 
 	
 	
@@ -503,27 +528,36 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		
 		if (tmp_key != -4 && !instance_exists(n_looting_inv_id))
 		{
+			//상호작용 후에도 계속 키를 꾹 눌렀을때 계속 상호작용 되는거 방지
+			if (global.interaction_hold_time == -1 && keyboard_check_pressed(ord(tmp_key)))
+			{
+				global.interaction_hold_time = 0;
+			}
+			
 			if (keyboard_check(ord(tmp_key)))
 			{
-				global.interaction_hold_time_max = 30;
-				global.interaction_hold_time ++;
-				
-				if (global.interaction_hold_time > global.interaction_hold_time_max)
+				if (global.interaction_hold_time != -1)
 				{
-					if (tmp_ins.interaction_message == "루팅")
+					global.interaction_hold_time_max = 30;
+					global.interaction_hold_time ++;
+				
+					if (global.interaction_hold_time > global.interaction_hold_time_max)
 					{
-						n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
-						tmp_ins.is_opened = n_looting_inv_id;
+						if (tmp_ins.interaction_message == "루팅")
+						{
+							n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
+							tmp_ins.is_opened = n_looting_inv_id;
+						}
+						else if (tmp_ins.interaction_message == "상호작용")
+						{
+							tmp_ins.is_opened = id;
+						}
+						else if (tmp_ins.interaction_message == "불 켜기/끄기")
+						{
+							tmp_ins.is_activated = !tmp_ins.is_activated;
+						}
+						global.interaction_hold_time = -1;
 					}
-					else if (tmp_ins.interaction_message == "상호작용")
-					{
-						tmp_ins.is_opened = id;
-					}
-					else if (tmp_ins.interaction_message == "불 켜기/끄기")
-					{
-						tmp_ins.is_activated = !tmp_ins.is_activated;
-					}
-					global.interaction_hold_time = 0;
 				}
 			}
 			else

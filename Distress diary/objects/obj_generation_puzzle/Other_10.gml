@@ -15,7 +15,8 @@ for(var i = -3; i <= 3; i++)
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,supporter_arr[1]))
 		{
-			instance_create_multiplayer(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,0,true,xpos,ypos);
+			var tmp_img_ind = 2;
+			instance_create_multiplayer_ext(obj_floor_button,tmp_xx,tmp_yy + 96,global.object_id_ind,tmp_img_ind,true,xpos,ypos,"s_img_ind",string(tmp_img_ind));
 		}
 		else if (position_meeting(tmp_xx,tmp_yy,supporter_arr[2]))
 		{

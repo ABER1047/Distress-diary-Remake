@@ -7,5 +7,4 @@ if (global.show_wall_hitbox)
 	{
 		draw_sprite_ext(mask_index,0,x,y,image_xscale,image_yscale,image_angle,c_white,0.2);
 	}
-	draw_text(x,y+128,"_speed : "+string(_speed)+" / _vspeed : "+string(_vspeed)+" / _hspeed : "+string(_hspeed))
 }
