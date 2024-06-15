@@ -365,11 +365,11 @@ if (global.dev_mode == 1)
 
 
 //맵 드로우 코드 && 맵이 존재하는 경우
-if (global.show_map_data == 1 && global.is_map_exists != -4)
+if (global.is_map_exists != -4)
 {
 	//플레이어 위치를 중심으로 좌우 총 합 5칸씩 표시
-	var tmp_size = 2; //플레이어 중심으로 좌우로 몇칸까지 표시할지 (양옆으로 2칸씩 = 총 5칸)
-	var ui_scale = 1; //지도 UI사이즈 지정용
+	var tmp_size = 3; //플레이어 중심으로 좌우로 몇칸까지 표시할지 (양옆으로 2칸씩 = 총 5칸)
+	var ui_scale = 0.5; //지도 UI사이즈 지정용
 	var real_scale = ui_scale*64; // 얘는 건들지 마셈
 	if (surface_exists(global.map_ui_surf))
 	{
@@ -387,56 +387,75 @@ if (global.show_map_data == 1 && global.is_map_exists != -4)
 			for(var ii = -tmp_size; ii <= tmp_size; ii++)
 			{
 				var dx = tmp_my_p_pos_xx + ii, dy = tmp_my_p_pos_yy + i;
+				
 				//배열 크기를 벗어나지 않는 경우
-				if (is_inside_rectangle(dx,dy,-1,-1,global.map_width,global.map_height) && global.map_arr[dy][dx] != 0)
+				if (is_inside_rectangle(dx,dy,-1,-1,global.map_width,global.map_height))
 				{
-					var tmp_ui_xx = (1+tmp_size+ii)*real_scale;
-					var tmp_ui_yy = (1+tmp_size+i)*real_scale;
-					var tmp_img_ind = 0;
-					if (dx == tmp_my_p_pos_xx && dy == tmp_my_p_pos_yy)
+					//이미 발견한 방이나 현재 방과 연결된 바로 옆방만 드로우
+					var tmp_connected_xx1 = global.room_connected_to_xx[dy][dx];
+					var tmp_connected_yy1 = global.room_connected_to_yy[dy][dx];
+					var tmp_connected_xx2 = global.room_connected_to_xx_sec[dy][dx];
+					var tmp_connected_yy2 = global.room_connected_to_yy_sec[dy][dx];
+					
+					var is_room_connected = (tmp_connected_xx1 == tmp_my_p_pos_xx && tmp_connected_yy1 == tmp_my_p_pos_yy) || (tmp_connected_xx2 == tmp_my_p_pos_xx && tmp_connected_yy2 == tmp_my_p_pos_yy);
+					var is_drawable = (global.map_arr[dy][dx] > 1) || (global.map_arr[dy][dx] == 1 && abs(ii)+abs(i) <= 1 && is_room_connected);
+					if (is_drawable)
 					{
-						tmp_img_ind = 2;
-					}
-					else if (global.map_arr[dy][dx] != 1)
-					{
-						tmp_img_ind = 1;
-					}
+						var tmp_ui_xx = (1+tmp_size+ii)*real_scale;
+						var tmp_ui_yy = (1+tmp_size+i)*real_scale;
+						var tmp_img_ind = 0;
+						if (dx == tmp_my_p_pos_xx && dy == tmp_my_p_pos_yy)
+						{
+							tmp_img_ind = 2;
+						}
+						else if (global.map_arr[dy][dx] != 1)
+						{
+							tmp_img_ind = 1;
+						}
 					
 
-					if (global.room_connected_to_xx[dy][dx] != -4)
-					{
-						var tmp_xx_sign = sign(global.room_connected_to_xx[dy][dx]-dx);
-						var tmp_yy_sign = sign(global.room_connected_to_yy[dy][dx]-dy);
-						var tmp_val1 = tmp_xx_sign*27*ui_scale;
-						var tmp_val2 = tmp_yy_sign*27*ui_scale;
-						var tmp_line_xx_start = tmp_ui_xx + tmp_val1;
-						var tmp_line_yy_start = tmp_ui_yy + tmp_val2;
-						var tmp_line_xx_end = tmp_ui_xx + tmp_xx_sign*real_scale - tmp_val1;
-						var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
-						draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,4*ui_scale);
-					}
-					if (global.room_connected_to_xx_sec[dy][dx] != -4)
-					{
-						var tmp_xx_sign = sign(global.room_connected_to_xx_sec[dy][dx]-dx);
-						var tmp_yy_sign = sign(global.room_connected_to_yy_sec[dy][dx]-dy);
-						var tmp_val1 = tmp_xx_sign*27*ui_scale;
-						var tmp_val2 = tmp_yy_sign*27*ui_scale;
-						var tmp_line_xx_start = tmp_ui_xx + tmp_val1;
-						var tmp_line_yy_start = tmp_ui_yy + tmp_val2;
-						var tmp_line_xx_end = tmp_ui_xx + tmp_xx_sign*real_scale - tmp_val1;
-						var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
-						draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,4*ui_scale);
-					}
+						if (tmp_connected_xx1 != -4)
+						{
+							var tmp_xx_sign = sign(global.room_connected_to_xx[dy][dx]-dx);
+							var tmp_yy_sign = sign(global.room_connected_to_yy[dy][dx]-dy);
+							var tmp_val1 = tmp_xx_sign*27*ui_scale;
+							var tmp_val2 = tmp_yy_sign*27*ui_scale;
+							var tmp_line_xx_start = tmp_ui_xx + tmp_val1;
+							var tmp_line_yy_start = tmp_ui_yy + tmp_val2;
+							var tmp_line_xx_end = tmp_ui_xx + tmp_xx_sign*real_scale - tmp_val1;
+							var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
+							draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,6*ui_scale);
+						}
+						if (tmp_connected_xx2 != -4)
+						{
+							var tmp_xx_sign = sign(global.room_connected_to_xx_sec[dy][dx]-dx);
+							var tmp_yy_sign = sign(global.room_connected_to_yy_sec[dy][dx]-dy);
+							var tmp_val1 = tmp_xx_sign*27*ui_scale;
+							var tmp_val2 = tmp_yy_sign*27*ui_scale;
+							var tmp_line_xx_start = tmp_ui_xx + tmp_val1;
+							var tmp_line_yy_start = tmp_ui_yy + tmp_val2;
+							var tmp_line_xx_end = tmp_ui_xx + tmp_xx_sign*real_scale - tmp_val1;
+							var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
+							draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,6*ui_scale);
+						}
 					
 					
-					draw_sprite_ext(spr_map_ui_room,tmp_img_ind,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
+						draw_sprite_ext(spr_map_ui_room,tmp_img_ind,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
+					}
 				}
 			}
 		}
 		
+		if (global.graphics_quality > 0)
+		{
+			var outline_textrue_scale = (1/31)*tmp_size*real_scale*2;
+			draw_sprite_ext(spr_map_outline,0,real_scale,real_scale,outline_textrue_scale,outline_textrue_scale,0,c_white,1);
+		}
+		
 		surface_reset_target();
 		
-		draw_surface(global.map_ui_surf,xx_center - (1+tmp_size)*real_scale,yy_center - (1+tmp_size)*real_scale);
+		var map_width = real_scale*tmp_size*2;
+		draw_surface_part_ext(global.map_ui_surf,real_scale,real_scale,map_width,map_width,xx+xx_w - (1+tmp_size)*real_scale*2,yy+yy_h - (1+tmp_size)*real_scale*2,1,1,c_white,1);
 	}
 	else
 	{

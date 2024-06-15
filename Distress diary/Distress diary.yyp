@@ -316,6 +316,7 @@
     {"id":{"name":"spr_hp_bar","path":"sprites/spr_hp_bar/spr_hp_bar.yy",},},
     {"id":{"name":"spr_key_ui","path":"sprites/spr_key_ui/spr_key_ui.yy",},},
     {"id":{"name":"spr_mace","path":"sprites/spr_mace/spr_mace.yy",},},
+    {"id":{"name":"spr_map_outline","path":"sprites/spr_map_outline/spr_map_outline.yy",},},
     {"id":{"name":"spr_map_ui_room","path":"sprites/spr_map_ui_room/spr_map_ui_room.yy",},},
     {"id":{"name":"spr_none","path":"sprites/spr_none/spr_none.yy",},},
     {"id":{"name":"spr_objects_bottles","path":"sprites/spr_objects_bottles/spr_objects_bottles.yy",},},

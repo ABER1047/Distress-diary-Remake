@@ -10,7 +10,7 @@ function load_room(argument0,argument1)
 	//현재 룸 가로/세로 넓이
 	global.n_room_width = global.map_room_width[argument1][argument0];
 	global.n_room_height = global.map_room_height[argument1][argument0];
-	show_message_log("현재 룸 사이즈 (가로 x 세로) : "+string(global.n_room_width)+" x "+string(global.n_room_height));
+	show_debug_message("현재 룸 사이즈 (가로 x 세로) : "+string(global.n_room_width)+" x "+string(global.n_room_height));
 	
 	
 

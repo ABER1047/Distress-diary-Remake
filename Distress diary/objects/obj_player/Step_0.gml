@@ -419,7 +419,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			
 			
 							//룸 이동
-							show_message_log("룸 이동 : ("+string(n_xx)+", "+string(n_yy)+") -> ("+string(t_xx)+", "+string(t_yy)+")");
+							show_debug_message("룸 이동 : ("+string(n_xx)+", "+string(n_yy)+") -> ("+string(t_xx)+", "+string(t_yy)+")");
 				
 							//지도상의 위치 설정
 							global.n_player_room_xx[global.my_player_id] = t_xx;
@@ -435,7 +435,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			else
 			{
 				//룸 이동 실패
-				show_message_log("룸 이동 실패 [문 닫힘] : ("+string(global.map_arr[n_yy][n_xx])+") -> ("+string(global.map_arr[t_yy][t_xx])+")");
+				show_debug_message("룸 이동 실패 [문 닫힘] : ("+string(global.map_arr[n_yy][n_xx])+") -> ("+string(global.map_arr[t_yy][t_xx])+")");
 				move_to_other_room = -5;
 			}
 		}

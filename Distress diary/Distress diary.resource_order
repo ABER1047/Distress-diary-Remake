@@ -257,6 +257,7 @@
     {"name":"spr_hp_bar","order":5,"path":"sprites/spr_hp_bar/spr_hp_bar.yy",},
     {"name":"spr_key_ui","order":2,"path":"sprites/spr_key_ui/spr_key_ui.yy",},
     {"name":"spr_mace","order":31,"path":"sprites/spr_mace/spr_mace.yy",},
+    {"name":"spr_map_outline","order":17,"path":"sprites/spr_map_outline/spr_map_outline.yy",},
     {"name":"spr_map_ui_room","order":13,"path":"sprites/spr_map_ui_room/spr_map_ui_room.yy",},
     {"name":"spr_none","order":12,"path":"sprites/spr_none/spr_none.yy",},
     {"name":"spr_objects_bottles","order":18,"path":"sprites/spr_objects_bottles/spr_objects_bottles.yy",},
