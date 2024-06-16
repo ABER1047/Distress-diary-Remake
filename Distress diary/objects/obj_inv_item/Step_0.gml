@@ -87,14 +87,10 @@ if (instance_exists(parents_id))
 			var tmp_i = y_pos;
 			var tmp_ii = x_pos;
 			origin_img = variable_owner_ins.inv_info_img_ind[tmp_i][tmp_ii];
-			origin_name = variable_owner_ins.inv_info_name[tmp_i][tmp_ii];
-			origin_name_compressed = variable_owner_ins.inv_info_name_compressed[tmp_i][tmp_ii];
 			origin_stack_num = variable_owner_ins.inv_info_stack_num[tmp_i][tmp_ii];
-			origin_max_stack_num = variable_owner_ins.inv_info_max_stack_num[tmp_i][tmp_ii];
 			origin_item_width = variable_owner_ins.inv_info_width[tmp_i][tmp_ii];
 			origin_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
 			origin_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
-			origin_item_weight = variable_owner_ins.inv_info_weight[tmp_i][tmp_ii];
 			origin_item_searched = variable_owner_ins.inv_info_searched[tmp_i][tmp_ii];
 			
 					
@@ -103,15 +99,8 @@ if (instance_exists(parents_id))
 			var tmp_ii = new_x_pos;
 			new_spr = nearsest_inv_variable_owner_ins.inv_info_spr_ind[tmp_i][tmp_ii];
 			new_img = nearsest_inv_variable_owner_ins.inv_info_img_ind[tmp_i][tmp_ii];
-			new_name = nearsest_inv_variable_owner_ins.inv_info_name[tmp_i][tmp_ii];
-			//new_name_compressed = nearsest_inv_variable_owner_ins.inv_info_name_compressed[tmp_i][tmp_ii];
 			new_stack_num = nearsest_inv_variable_owner_ins.inv_info_stack_num[tmp_i][tmp_ii];
 			new_max_stack_num = nearsest_inv_variable_owner_ins.inv_info_max_stack_num[tmp_i][tmp_ii];
-			new_item_width = variable_owner_ins.inv_info_width[tmp_i][tmp_ii]; //nearsest_inv_variable_owner_ins로 바꾸지 말것.
-			new_item_height = variable_owner_ins.inv_info_height[tmp_i][tmp_ii];
-			new_item_rorated = variable_owner_ins.inv_info_rotated[tmp_i][tmp_ii];
-			new_item_weight = variable_owner_ins.inv_info_weight[tmp_i][tmp_ii];
-			new_item_searched = variable_owner_ins.inv_info_searched[tmp_i][tmp_ii];
 	
 	
 	
@@ -153,7 +142,7 @@ if (instance_exists(parents_id))
 					is_moveable_pos = 1;
 				}
 			}
-			else if (!keyboard_check(vk_shift) && new_spr != -4 && new_stack_num != -4 && origin_stack_num != -4 && new_spr == origin_spr && new_img == origin_img && new_name == origin_name)
+			else if (!keyboard_check(vk_shift) && new_spr != -4 && new_stack_num != -4 && origin_stack_num != -4 && new_spr == origin_spr && new_img == origin_img)
 			{
 				//만약 스택 최대 갯수를 초과했을 경우
 				if (new_stack_num >= new_max_stack_num) //이미 옮기려던 자리에 있던 아이템이 스택 갯수 max치인 경우

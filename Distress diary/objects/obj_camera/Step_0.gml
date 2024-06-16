@@ -11,6 +11,15 @@ camera_set_view_size(view_camera[0],tmp_v_w,tmp_v_h);
 
 
 
+//카메라 줌 사이즈에 반비례하여 값도 바뀌는 변수 (특정값*global.ratio_by_camera => 1로 보정됨)
+global.ratio_by_camera = camera_get_view_width(view_camera[0])/1280;
+
+//카메라 줌 사이즈에 비례하여 값도 변수
+//[화면 사이즈가 작아져도 실제 사람 눈에 보이는 크기는 전체화면일때랑 똑같은 사이즈로 조정하는 용도]
+global.reverse_ratio_by_camera = 1/global.w_ratio_by_window;
+
+
+
 //카메라 관련
 v_x += (tv_x - v_x)*0.1;
 v_y += (tv_y - v_y)*0.1;

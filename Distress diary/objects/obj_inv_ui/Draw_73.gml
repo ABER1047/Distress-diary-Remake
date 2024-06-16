@@ -11,10 +11,11 @@ if (instance_exists(variable_owner))
 
 	var xx_w = camera_get_view_width(view_camera[0]);
 	var yy_h = camera_get_view_height(view_camera[0]);
-
-	var slot_size = 160*global.n_camera_zoom/global.w_ratio_by_window; //1칸당 픽셀 사이즈
-	var window_weight = 64*global.n_camera_zoom/global.h_ratio_by_window; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
-	var outline_weight = 4/global.w_ratio_by_window; //테두리 두께
+	
+	var text_ratio = global.reverse_ratio_by_camera;
+	var slot_size = 40*text_ratio; //1칸당 픽셀 사이즈
+	var window_weight = 16*text_ratio; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
+	var outline_weight = 2*text_ratio; //테두리 두께
 
 	//해당 인벤토리 변수를 가진 인스턴스한테서 width, height 받아오기
 	var inv_width = variable_owner.inv_width;
@@ -129,13 +130,7 @@ if (instance_exists(variable_owner))
 	{
 		//닫기 버튼 그리기 (테두리 구분선)
 		draw_line(endx-i-window_weight,w_starty,endx-i-window_weight,starty);
-		
-		//닫기 버튼 그리기 (X버튼 테두리)
-		/*draw_sprite_ext(spr_X,0,endx-window_weight*0.5-i,w_starty+window_weight*0.5,0.15*global.n_camera_zoom,0.15*global.n_camera_zoom,0,c_white,image_alpha*0.7);
-		draw_sprite_ext(spr_X,0,endx-window_weight*0.5,w_starty+window_weight*0.5-i,0.15*global.n_camera_zoom,0.15*global.n_camera_zoom,0,c_white,image_alpha*0.7);
-		draw_sprite_ext(spr_X,0,endx-window_weight*0.5+i,w_starty+window_weight*0.5,0.15*global.n_camera_zoom,0.15*global.n_camera_zoom,0,c_white,image_alpha*0.7);
-		draw_sprite_ext(spr_X,0,endx-window_weight*0.5,w_starty+window_weight*0.5+i,0.15*global.n_camera_zoom,0.15*global.n_camera_zoom,0,c_white,image_alpha*0.7);*/
-		
+
 		//흰색 테두리 그리기
 		draw_line(startx,starty,endx,starty);
 		draw_rectangle(startx-i,w_starty-i,endx+i,endy+i,true);
@@ -148,7 +143,7 @@ if (instance_exists(variable_owner))
 	
 
 	//인벤토리 이름
-	draw_text_kl_scale(startx+8,w_starty-24*global.n_camera_zoom,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.63*global.n_camera_zoom,0.63*global.n_camera_zoom,0);
+	draw_text_kl_scale(startx+8,w_starty-27*text_ratio,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.3,0.3,0);
 }
 else
 {

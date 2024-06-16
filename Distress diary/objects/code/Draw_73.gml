@@ -100,102 +100,105 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	draw_set_font(font_normal);
-	draw_set_alpha(1);
-	
-	draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n지도 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]\n\n인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,0,-1,font_normal,0.5,0.5,0);
-	
-	var tmp_my_player_id = 0;
-	if (global.my_player_id >= 0 && global.my_player_id < array_length(global.my_player_ins_id))
+	if (!global.chat_activated)
 	{
-		tmp_my_player_id = global.my_player_id;
-	}
-	var tmp_my_p = global.my_player_ins_id[tmp_my_player_id];
-	var tmp_xx = global.n_player_room_xx[tmp_my_player_id];
-	var tmp_yy = global.n_player_room_yy[tmp_my_player_id];
-	var tmp_str = "no room";
-	if (tmp_xx >= 0)
-	{
-		tmp_str = global.map_arr[tmp_xx][tmp_yy];
-	}
-	var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
-	var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
-	
-	var in_room_obj_num = 0;
-	with(obj_parents)
-	{
-		if (!stop_cal_by_pos_statement)
-		{
-			in_room_obj_num ++;
-		}
-	}
-	draw_text_k_scale(xx+xx_w-8,yy+32,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed)+"\n현재 룸 정보 : "+string(tmp_str)+"\n오브젝트 갯수 : "+string(instance_number(all))+" / effects : "+string(instance_number(obj_effect_parents))+" / in_room : "+string(in_room_obj_num),64,-1,1,c_white,0,1,font_normal,0.5,0.5,0);
-	
-	//맵 드로우
-	global.show_map_data = keyboard_check(222) || keyboard_check(192) || keyboard_check(ord("`"));
-	
-	//랜덤 닉네임
-	if (keyboard_check_pressed(ord("Q")))
-	{
-		global.nickname = randomized_nickname();
-		show_message_log("- 변경된 닉네임 : "+string(global.nickname));
-
-		tmp_my_p.nickname = global.nickname;
-		send_InstanceVariableData(tmp_my_p,"nickname");
-	}
-	
-	
-	
-	
-	
-	
-	//접속인원
-	if (keyboard_check(20))
-	{
-		var tmp_yy = yy+yy_h*0.3;
-		var tmp_width = 320*global.n_camera_zoom/global.w_ratio_by_window;
-		var outline_weight = 3*global.n_camera_zoom/global.w_ratio_by_window;
-		var tmp_player_num = ds_list_size(global.client_num);
-		
-		draw_text_kl_scale(xx_center,tmp_yy-tmp_player_num*64-128,"접속 인원",64,-1,1,c_white,-1,0,font_normal,0.75*global.n_camera_zoom,0.75*global.n_camera_zoom,0);
-		
-		
-		//전체 내부 배경
-		draw_set_alpha(0.9);
-		draw_set_color(merge_color(#17111A,c_black,0.5));
-		draw_rectangle(xx_center-tmp_width,tmp_yy-tmp_player_num*64,xx_center+tmp_width,tmp_yy+tmp_player_num*64,false);
-		
-		//전체 외곽선
+		draw_set_font(font_normal);
 		draw_set_alpha(1);
-		draw_set_color(c_white);
-		for(var i = 0; i < outline_weight; i++)
+	
+		draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n지도 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]\n\n인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,1,-1,font_normal,0.3,0.3,0);
+	
+		var tmp_my_player_id = 0;
+		if (global.my_player_id >= 0 && global.my_player_id < array_length(global.my_player_ins_id))
 		{
-			draw_rectangle(xx_center-tmp_width-i,tmp_yy-tmp_player_num*64-i,xx_center+tmp_width+i,tmp_yy+tmp_player_num*64+i,true);
+			tmp_my_player_id = global.my_player_id;
 		}
-		
-		for(var i = 0; i <= tmp_player_num; i++)
+		var tmp_my_p = global.my_player_ins_id[tmp_my_player_id];
+		var tmp_xx = global.n_player_room_xx[tmp_my_player_id];
+		var tmp_yy = global.n_player_room_yy[tmp_my_player_id];
+		var tmp_str = "no room";
+		if (tmp_xx >= 0)
 		{
-			var tmp_player_id = fix_to_zero(ds_list_find_value(global.client_num,i));
-			var tmp_yy2 = (tmp_yy-tmp_player_num*64) + ((i+1)*64);
-			if (i != tmp_player_num)
+			tmp_str = global.map_arr[tmp_xx][tmp_yy];
+		}
+		var tmp_guide_txt1 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n온라인 서버 생성 [F12]\n온라인 서버 접속 [F11]\n디버그 창 열기/닫기 [F10]\n접속 인원 보기 [Capslock]\n현재 시간 : "+string(global.time_display)+" ["+string((global.time_is_day) ? "Day" : "Night")+"]";
+		var tmp_guide_txt2 = "초당 평균 프레임 : "+string(global.average_fps_for_draw)+"\n초대 코드 : "+string(global.invite_code)+"\n"+string(keyboard_check(ord("I")) ? "내 아이피 : "+string(global.my_ip) : "아이피 보기[I]")+"\nglobal.is_server : "+string(global.is_server)+"\nTickRate : "+string(global.tickrate)+"\n최대 허용 핑 : "+string(global.maximum_ping_acception);
+	
+		var in_room_obj_num = 0;
+		with(obj_parents)
+		{
+			if (!stop_cal_by_pos_statement)
 			{
-				//플레이어 칸 나누는 선
-				draw_set_alpha(0.7);
-				draw_line_width(xx_center-tmp_width,tmp_yy2,xx_center+tmp_width,tmp_yy2,outline_weight);
-			
-				//플레이어 이름
-				draw_text_kl_scale(xx_center-tmp_width+outline_weight*4,tmp_yy2-64,string(global.my_player_ins_id[tmp_player_id].nickname),64,-1,1,c_white,-1,-1,font_normal,0.7*global.n_camera_zoom,0.7*global.n_camera_zoom,0);
-			
-				//핑
-				var tmp_ping_real = (tmp_player_id < 1) ? 0 : global.users_ping_display[tmp_player_id-1];
-				var tmp_img_ind = fix_num_inside(round(256-tmp_ping_real)/45,0,5);
-				draw_sprite_ext(spr_ping_state,tmp_img_ind,xx_center+tmp_width-outline_weight*16,tmp_yy2-32,global.n_camera_zoom*1.25,global.n_camera_zoom*1.25,0,c_white,1);
-				draw_text_kl_scale(xx_center+tmp_width-outline_weight*32,tmp_yy2-48,"["+string(tmp_ping_real)+"ms]",64,-1,1,c_white,-1,1,font_normal,0.5*global.n_camera_zoom,0.5*global.n_camera_zoom,0);
+				in_room_obj_num ++;
 			}
-			else
+		}
+		draw_text_k_scale(xx+xx_w-8,yy+yy_h-640,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed)+"\n현재 룸 정보 : "+string(tmp_str)+"\n오브젝트 갯수 : "+string(instance_number(all))+" / effects : "+string(instance_number(obj_effect_parents))+" / in_room : "+string(in_room_obj_num),64,-1,1,c_white,1,1,font_normal,0.3,0.3,0);
+	
+		//맵 드로우
+		global.show_map_data = keyboard_check(222) || keyboard_check(192) || keyboard_check(ord("`"));
+	
+		//랜덤 닉네임
+		if (keyboard_check_pressed(ord("Q")))
+		{
+			global.nickname = randomized_nickname();
+			show_message_log("- 변경된 닉네임 : "+string(global.nickname));
+
+			tmp_my_p.nickname = global.nickname;
+			send_InstanceVariableData(tmp_my_p,"nickname");
+		}
+	
+	
+	
+	
+	
+	
+		//접속인원
+		if (keyboard_check(20))
+		{
+			var tmp_yy = yy+yy_h*0.3;
+			var tmp_width = 320*(1920/xx_w);
+			var outline_weight = 3*(1920/xx_w);
+			var tmp_player_num = ds_list_size(global.client_num);
+		
+			draw_text_kl_scale(xx_center,tmp_yy-tmp_player_num*48-128,"접속 인원",64,-1,1,c_white,-1,0,font_normal,0.3,0.3,0);
+		
+		
+			//전체 내부 배경
+			draw_set_alpha(0.9);
+			draw_set_color(c_black);
+			draw_rectangle(xx_center-tmp_width,tmp_yy-tmp_player_num*48,xx_center+tmp_width,tmp_yy+tmp_player_num*64,false);
+		
+			//전체 외곽선
+			draw_set_alpha(1);
+			draw_set_color(c_white);
+			for(var i = 0; i < outline_weight; i++)
 			{
-				//플레이어 이름
-				draw_text_kl_scale(xx_center,tmp_yy2-64,"...",64,-1,1,c_white,-1,0,font_normal,0.7*global.n_camera_zoom,0.7*global.n_camera_zoom,0);
+				draw_rectangle(xx_center-tmp_width-i,tmp_yy-tmp_player_num*48-i,xx_center+tmp_width+i,tmp_yy+tmp_player_num*64+i,true);
+			}
+		
+			for(var i = 0; i <= tmp_player_num; i++)
+			{
+				var tmp_player_id = fix_to_zero(ds_list_find_value(global.client_num,i));
+				var tmp_yy2 = (tmp_yy-tmp_player_num*48) + ((i+1)*32);
+				if (i != tmp_player_num)
+				{
+					//플레이어 칸 나누는 선
+					draw_set_alpha(0.7);
+					draw_line_width(xx_center-tmp_width,tmp_yy2,xx_center+tmp_width,tmp_yy2,outline_weight);
+			
+					//플레이어 이름
+					draw_text_kl_scale(xx_center-tmp_width+outline_weight*4,tmp_yy2-48,string(global.my_player_ins_id[tmp_player_id].nickname),64,-1,1,c_white,-1,-1,font_normal,0.3,0.3,0);
+			
+					//핑
+					var tmp_ping_real = (tmp_player_id < 1) ? 0 : global.users_ping_display[tmp_player_id-1];
+					var tmp_img_ind = fix_num_inside(round(256-tmp_ping_real)/45,0,5);
+					draw_sprite_ext(spr_ping_state,tmp_img_ind,xx_center+tmp_width-outline_weight*16,tmp_yy2-16,1.25*(1920/xx_w),1.25*(1920/xx_w),0,c_white,1);
+					draw_text_kl_scale(xx_center+tmp_width-outline_weight*32,tmp_yy2-32,"["+string(tmp_ping_real)+"ms]",64,-1,1,c_white,-1,1,font_normal,0.25,0.25,0);
+				}
+				else
+				{
+					//플레이어 이름
+					draw_text_kl_scale(xx_center,tmp_yy2-60,"...",64,-1,1,c_white,-1,0,font_normal,0.3,0.3,0);
+				}
 			}
 		}
 	}
@@ -378,6 +381,13 @@ if (global.is_map_exists != -4)
 		
 		//플레이어 현재 위치 참조용 임시 변수
 		var tmp_my_p_pos_xx = global.n_player_room_xx[global.my_player_id], tmp_my_p_pos_yy = global.n_player_room_yy[global.my_player_id];
+		var check_gq = (global.graphics_quality > 0);
+		if (check_gq)
+		{
+			var outline_textrue_scale = (1/31)*tmp_size*real_scale*2;
+			//뒷 배경
+			draw_sprite_ext(spr_map_outline,1,real_scale,real_scale,outline_textrue_scale,outline_textrue_scale,0,c_black,0.7);
+		}
 		
 		//선 색 지정
 		draw_set_color(#333333);
@@ -401,14 +411,30 @@ if (global.is_map_exists != -4)
 					var is_drawable = (global.map_arr[dy][dx] > 1) || (global.map_arr[dy][dx] == 1 && abs(ii)+abs(i) <= 1 && is_room_connected);
 					if (is_drawable)
 					{
-						var tmp_ui_xx = (1+tmp_size+ii)*real_scale;
-						var tmp_ui_yy = (1+tmp_size+i)*real_scale;
-						var tmp_img_ind = 0;
-						if (dx == tmp_my_p_pos_xx && dy == tmp_my_p_pos_yy)
+						var tmp_ui_xx = (1+tmp_size+ii)*real_scale; //서피스에 드로우 될 지도의 x좌표 위치
+						var tmp_ui_yy = (1+tmp_size+i)*real_scale; //서피스에 드로우 될 지도의 y좌표 위치
+						var tmp_img_ind = 0; //지도에 표기되는 spr_map_ui_room의 이미지 인덱스
+						var tmp_arr_length = array_length(global.n_player_room_xx); //어레이 길이 저장용 임시 변수
+
+
+
+						//모든 플레이어 위치를 점 ui로 표시
+						for(var k = 0, tmp_index = 0; k < tmp_arr_length; k++)
 						{
-							tmp_img_ind = 2;
+							//해당 칸에 플레이어가 존재하는지 체크 (나 자신 및 다른 플레이어 모두 포함)
+							var tmp_player_xx_pos = global.n_player_room_xx[k], tmp_player_yy_pos = global.n_player_room_yy[k];
+							if (tmp_player_xx_pos >= 0 && tmp_player_xx_pos == dx && tmp_player_yy_pos == dy)
+							{
+								//존재하는 경우 위치 표시
+								tmp_index ++;
+							}
 						}
-						else if (global.map_arr[dy][dx] != 1)
+						
+						if (tmp_index >= 1)
+						{
+							tmp_img_ind = 1+tmp_index;
+						}
+						else if (global.map_arr[dy][dx] == 2)
 						{
 							tmp_img_ind = 1;
 						}
@@ -438,24 +464,21 @@ if (global.is_map_exists != -4)
 							var tmp_line_yy_end = tmp_ui_yy + tmp_yy_sign*real_scale - tmp_val2;
 							draw_line_width(tmp_line_xx_start,tmp_line_yy_start,tmp_line_xx_end,tmp_line_yy_end,6*ui_scale);
 						}
-					
-					
 						draw_sprite_ext(spr_map_ui_room,tmp_img_ind,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
 					}
 				}
 			}
 		}
 		
-		if (global.graphics_quality > 0)
+		if (check_gq)
 		{
-			var outline_textrue_scale = (1/31)*tmp_size*real_scale*2;
+			//테두리
 			draw_sprite_ext(spr_map_outline,0,real_scale,real_scale,outline_textrue_scale,outline_textrue_scale,0,c_white,1);
 		}
-		
 		surface_reset_target();
 		
 		var map_width = real_scale*tmp_size*2;
-		draw_surface_part_ext(global.map_ui_surf,real_scale,real_scale,map_width,map_width,xx+xx_w - (1+tmp_size)*real_scale*2,yy+yy_h - (1+tmp_size)*real_scale*2,1,1,c_white,1);
+		draw_surface_part_ext(global.map_ui_surf,real_scale,real_scale,map_width,map_width,xx+xx_w - (1+tmp_size)*real_scale*2,yy + (1+tmp_size)*real_scale*2,1,1,c_white,1);
 	}
 	else
 	{

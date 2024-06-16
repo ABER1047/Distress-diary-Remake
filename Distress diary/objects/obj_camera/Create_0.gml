@@ -24,6 +24,13 @@ global.camera_target = -4;
 
 global.n_camera_zoom = 0.7;
 
+//카메라 줌 사이즈에 반비례하여 값도 바뀌는 변수 (특정값*global.ratio_by_camera => 1로 보정됨)
+global.ratio_by_camera = 1;
+
+//카메라 줌 사이즈에 비례하여 값도 변수
+//[화면 사이즈가 작아져도 실제 사람 눈에 보이는 크기는 전체화면일때랑 똑같은 사이즈로 조정하는 용도]
+global.reverse_ratio_by_camera = 1;
+
 depth = -99999;
 
 

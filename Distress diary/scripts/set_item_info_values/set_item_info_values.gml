@@ -15,7 +15,7 @@ function set_item_info_values(argument0,argument1)
 	var item_height = 1;
 	if (argument0 == spr_backpack)
 	{
-		switch(image_index)
+		switch(argument1)
 		{
 			case 0:
 				tmp_name = "Sling bag";
@@ -69,7 +69,7 @@ function set_item_info_values(argument0,argument1)
 	}
 	else if (argument0 == spr_comp)
 	{
-		switch(image_index)
+		switch(argument1)
 		{
 			case 0:
 				tmp_name = "Bolt";
@@ -266,7 +266,7 @@ function set_item_info_values(argument0,argument1)
 	}
 	else if (argument0 == spr_drink)
 	{
-		switch(image_index)
+		switch(argument1)
 		{
 			case 0:
 				tmp_name = "Coke";
@@ -357,7 +357,7 @@ function set_item_info_values(argument0,argument1)
 	}
 	else if (argument0 == spr_healings)
 	{
-		switch(image_index)
+		switch(argument1)
 		{
 			case 0:
 				tmp_name = "Bandage";
@@ -397,7 +397,7 @@ function set_item_info_values(argument0,argument1)
 	}
 	else if (argument0 == spr_stackables)
 	{
-		switch(image_index)
+		switch(argument1)
 		{
 			case 0:
 				tmp_short_name = "Coin";
@@ -442,7 +442,7 @@ function set_item_info_values(argument0,argument1)
 	}
 	else if (argument0 == spr_foods)
 	{
-		switch(image_index)
+		switch(argument1)
 		{
 			case 0:
 				tmp_short_name = "Energy";

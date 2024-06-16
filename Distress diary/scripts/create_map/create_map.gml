@@ -8,6 +8,7 @@ function create_map(argument0)
 {
 	//맵에 있는 모든 오브젝트 삭제
 	instance_destroy(obj_parents);
+	instance_destroy(obj_floor_button);
 
 	random_set_seed(argument0);
 	var tmp_width = floor(9*(0.5+instance_number(obj_player)*0.5));
@@ -49,7 +50,7 @@ function create_map(argument0)
 	global.n_player_room_yy[global.my_player_id] = global.map_start_pos_yy;
 	
 	//모든 플레이어의 위치정보를 스타트 지점으로 초기화
-	for(var i = 0; i < array_length(global.n_player_room_xx); i++)
+	for(var i = 0; i < instance_number(obj_player); i++)
 	{
 		global.n_player_room_xx[i] = global.map_start_pos_xx;
 		global.n_player_room_yy[i] = global.map_start_pos_yy;

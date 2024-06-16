@@ -5,7 +5,7 @@ var yy = camera_get_view_y(view_camera[0]);
 
 var xx_w = camera_get_view_width(view_camera[0]);
 var yy_h = camera_get_view_height(view_camera[0]);
-var c_x = global.n_camera_zoom*4;
+var c_x = global.ratio_by_camera;
 var text_size = power(1+global.n_camera_zoom,2);
 
 
@@ -20,7 +20,7 @@ if (chat_alpha > 0)
 	var tmp_text_xx = xx+xx_w-c_x*442;
 	if (global.chat_activated)
 	{
-		draw_text_kl_scale(tmp_text_xx,yy+yy_h-c_x*64,string(chat_entering)+"|",64,9999,chat_alpha,c_white,0,-1,font_normal,text_size*0.2,text_size*0.2,0);
+		draw_text_kl_scale(tmp_text_xx,yy+yy_h-c_x*64,string(chat_entering)+"|",64,9999,chat_alpha,c_white,0,-1,font_normal,0.3,0.3,0);
 	}
 
 
@@ -30,7 +30,7 @@ if (chat_alpha > 0)
 	{
 		tmp_chat_to_draw = string(global.chat[i+global.chating_scroll])+"\n"+string(tmp_chat_to_draw);
 	}
-	draw_text_kl_scale(tmp_text_xx,yy+yy_h-c_x*280,tmp_chat_to_draw,64,9999,chat_alpha,c_white,0,-1,font_normal,text_size*0.2,text_size*0.2,0);
+	draw_text_kl_scale(tmp_text_xx,yy+yy_h-c_x*280,tmp_chat_to_draw,64,9999,chat_alpha,c_white,0,-1,font_normal,0.3,0.3,0);
 	
 	
 	
