@@ -1,0 +1,25 @@
+{
+  "$GMSound":"",
+  "%Name":"spike_trap_sfx",
+  "audioGroupId":{
+    "name":"audiogroup_default",
+    "path":"audiogroups/audiogroup_default",
+  },
+  "bitDepth":1,
+  "bitRate":512,
+  "compression":0,
+  "conversionMode":0,
+  "duration":0.444082,
+  "name":"spike_trap_sfx",
+  "parent":{
+    "name":"Action_sfx",
+    "path":"folders/사운드/Action_sfx.yy",
+  },
+  "preload":false,
+  "resourceType":"GMSound",
+  "resourceVersion":"2.0",
+  "sampleRate":48000,
+  "soundFile":"spike_trap_sfx.mp3",
+  "type":1,
+  "volume":1.0,
+}

@@ -10,10 +10,10 @@ if (show_interaction_key > 0)
 	//인터렉션 이름 드로우
 	var txt_scale = 0.25;
 	var str_width = string_width(interaction_name_for_draw)*global.reversed_ratio_by_camera;
-	draw_text_kl_scale(x-str_width*txt_scale*0.5,tmp_yy,string(interaction_name_for_draw),64,-1,1,c_white,0,-1,font_normal,txt_scale,txt_scale,0,true);
+	draw_text_kl_scale(x-str_width*txt_scale*0.4,tmp_yy,string(interaction_name_for_draw),64,-1,1,c_white,0,-1,font_normal,txt_scale,txt_scale,0,true);
 	
 	//인테렉션 원형 게이지 바 드로우
-	var tmp_key_xx = x-str_width*txt_scale;
+	var tmp_key_xx = x-str_width*txt_scale*0.7;
 	var tmp_key_yy = tmp_yy+128*txt_scale*global.reversed_ratio_by_camera;
 	
 	if (global.interaction_hold_time > 0 && global.interaction_hold_time < global.interaction_hold_time_max)

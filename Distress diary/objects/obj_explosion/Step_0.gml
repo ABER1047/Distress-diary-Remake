@@ -7,7 +7,7 @@ fire_ef_timer ++;
 if (effect_applied)
 {
 	//불꽃 이펙트 
-	if (fire_ef_timer < 60)
+	if (global.graphics_quality > 1 && fire_ef_timer < 60)
 	{
 		var rd_ind = irandom_range(0,effect_ins_arr_ind-1);
 		var tmp_ef_ins = effect_ins_arr[rd_ind];
@@ -28,7 +28,7 @@ if (effect_applied)
 	
 	
 	//시간 지나면 자동 삭제 
-	if (bubble_ef_ins.child_num == 0)
+	if (instance_exists(bubble_ef_ins) && bubble_ef_ins.child_num == 0)
 	{
 		show_debug_message("dest");
 		instance_destroy();

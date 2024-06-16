@@ -12,7 +12,7 @@ show_debug_overlay(global.dev_mode,true);
 
 
 //랜덤 이름 생성
-global.nickname = randomized_nickname();
+global.nickname = randomized_nickname(irandom_range(3,6));
 
 //내 플레이어 아이디
 global.my_player_id = 0;

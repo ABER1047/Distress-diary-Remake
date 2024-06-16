@@ -122,6 +122,8 @@ y = floor(y)
 
 
 
+//화면 흰색으로 덮기
+global.w_alpha += (global.t_w_alpha - global.w_alpha)*0.3;
 
 
 

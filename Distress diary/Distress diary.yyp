@@ -277,6 +277,7 @@
     {"id":{"name":"quake_sfx","path":"sounds/quake_sfx/quake_sfx.yy",},},
     {"id":{"name":"slime_jump_sfx","path":"sounds/slime_jump_sfx/slime_jump_sfx.yy",},},
     {"id":{"name":"slime_land_sfx","path":"sounds/slime_land_sfx/slime_land_sfx.yy",},},
+    {"id":{"name":"spike_trap_sfx","path":"sounds/spike_trap_sfx/spike_trap_sfx.yy",},},
     {"id":{"name":"swing_1_sfx","path":"sounds/swing_1_sfx/swing_1_sfx.yy",},},
     {"id":{"name":"swing_2_sfx","path":"sounds/swing_2_sfx/swing_2_sfx.yy",},},
     {"id":{"name":"swing_3_sfx","path":"sounds/swing_3_sfx/swing_3_sfx.yy",},},

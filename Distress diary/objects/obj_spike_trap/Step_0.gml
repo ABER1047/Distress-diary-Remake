@@ -23,6 +23,11 @@ if (!stop_cal_by_pos_statement)
 	//트랩 작동됨
 	if (is_nearest_player_exists)
 	{
+		if (image_index == 0)
+		{
+			play_sound_pos(spike_trap_sfx,false,0.03,x,y,128,true,my_pos_xx,my_pos_yy);
+		}
+		
 		if (image_index < 2)
 		{
 			image_index += 0.4;

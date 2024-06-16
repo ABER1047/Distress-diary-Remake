@@ -33,7 +33,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 			draw_clear_alpha(c_black,0);
 		
 			//게이지 바 뒷 배경
-			if (argument8 != -4)
+			if (global.graphics_quality > 1 && argument8 != -4)
 			{
 				draw_primitive_begin(pr_trianglefan);
 				draw_set_color(argument8);

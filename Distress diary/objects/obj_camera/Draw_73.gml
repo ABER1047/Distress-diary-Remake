@@ -83,6 +83,12 @@ if (instance_exists(obj_ui_parents))
 	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
 }
 
+//화면 전체 흰색
+draw_set_alpha(global.w_alpha);
+draw_set_color(c_white);
+draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+
+
 
 
 

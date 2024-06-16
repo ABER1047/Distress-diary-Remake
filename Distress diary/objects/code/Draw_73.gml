@@ -139,7 +139,7 @@ if (global.dev_mode == 1)
 		//랜덤 닉네임
 		if (keyboard_check_pressed(ord("Q")))
 		{
-			global.nickname = randomized_nickname();
+			global.nickname = randomized_nickname(irandom_range(3,6));
 			show_message_log("- 변경된 닉네임 : "+string(global.nickname));
 
 			tmp_my_p.nickname = global.nickname;

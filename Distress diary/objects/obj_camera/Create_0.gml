@@ -8,6 +8,8 @@ tv_y = 2016
 view_shake_xx = 0
 view_shake_yy = 0
 
+global.w_alpha = 0;
+global.t_w_alpha = -0.01;
 global.view_angle_ = 0
 global.shake_x = 0
 global.shake_y = 0

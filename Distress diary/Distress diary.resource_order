@@ -222,6 +222,7 @@
     {"name":"quake_sfx","order":7,"path":"sounds/quake_sfx/quake_sfx.yy",},
     {"name":"slime_jump_sfx","order":6,"path":"sounds/slime_jump_sfx/slime_jump_sfx.yy",},
     {"name":"slime_land_sfx","order":7,"path":"sounds/slime_land_sfx/slime_land_sfx.yy",},
+    {"name":"spike_trap_sfx","order":12,"path":"sounds/spike_trap_sfx/spike_trap_sfx.yy",},
     {"name":"swing_1_sfx","order":8,"path":"sounds/swing_1_sfx/swing_1_sfx.yy",},
     {"name":"swing_2_sfx","order":9,"path":"sounds/swing_2_sfx/swing_2_sfx.yy",},
     {"name":"swing_3_sfx","order":10,"path":"sounds/swing_3_sfx/swing_3_sfx.yy",},
