@@ -669,8 +669,8 @@ var tmp_name = set_item_info_values(tmp_spr_ind,tmp_img_ind); //생성할 아이
 var tmp_max_stack = global.item_max_stack_num; //생성할 아이템 max_stack
 var tmp_weight = global.item_weight; //생성할 아이템 name
 var tmp_name_compressed = global.short_name; //생성할 아이템 name_compressed
-var tmp_width = global.short_width; //생성할 아이템 width
-var tmp_height = global.short_height; //생성할 아이템 height
+var tmp_width = global.item_width; //생성할 아이템 width
+var tmp_height = global.item_height; //생성할 아이템 height
 	
 var has_empty_pos = find_empty_pos(tmp_spr_ind,tmp_img_ind,tmp_width,tmp_height,tmp_stack,id); //상자 안의 빈자리 찾기
 if (has_empty_pos == true)

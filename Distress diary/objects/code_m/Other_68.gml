@@ -240,7 +240,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						
 						//핑 계산
 						var cal_ping = global.users_ping[tmp_p_id]-(tmp_obj_id_player_only*5 + 1);
-						cal_ping = ((cal_ping/60)*1000)/2; //fps to ms
+						cal_ping = ((cal_ping/60)*1000)/2/global.tickrate; //fps to ms
 						//(나누기 2하는거는 왔다->가는 시간이기 때문)
 						show_debug_message("player id - "+string(tmp_obj_id_player_only)+"의 ping : "+string(cal_ping)+"ms / "+string(global.users_ping[tmp_p_id]))
 						global.users_ping_display[tmp_p_id] = cal_ping;

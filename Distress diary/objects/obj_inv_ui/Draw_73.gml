@@ -12,7 +12,7 @@ if (instance_exists(variable_owner))
 	var xx_w = camera_get_view_width(view_camera[0]);
 	var yy_h = camera_get_view_height(view_camera[0]);
 	
-	var text_ratio = global.reverse_ratio_by_camera;
+	var text_ratio = global.reversed_ratio_by_camera;
 	var slot_size = 40*text_ratio; //1칸당 픽셀 사이즈
 	var window_weight = 16*text_ratio; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
 	var outline_weight = 2*text_ratio; //테두리 두께
@@ -143,7 +143,7 @@ if (instance_exists(variable_owner))
 	
 
 	//인벤토리 이름
-	draw_text_kl_scale(startx+8,w_starty-27*text_ratio,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.3,0.3,0);
+	draw_text_kl_scale(startx+8,w_starty-27*text_ratio,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.3,0.3,0,true);
 }
 else
 {

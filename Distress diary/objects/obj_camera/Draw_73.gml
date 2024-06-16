@@ -9,7 +9,7 @@ var yy_h = camera_get_view_height(view_camera[0]);
 
 
 //임시 체력바 및 스태미나 바 그리기
-var scale = global.n_camera_zoom*2;
+var scale = global.reversed_ratio_by_camera*0.5;
 
 //체력바 UI
 var hp_bar_ui_xx = xx+(16*scale);
@@ -58,7 +58,7 @@ for(var i = 0; i < 3; i++)
 	}
 	draw_sprite_ext(spr_ui,i,xx+(scale*(48+78*i)),yy+yy_h-(144*scale),scale*0.9,scale*0.9,0,c_white,1);
 	
-	draw_text_kl_scale(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),string(tmp_values_for_display[i])+string(tmp_unit[i]),64,-1,1,c_white,0,0,font_normal,0.4,0.4,0);
+	draw_text_kl_scale(xx+(scale*(48+78*i)),yy+yy_h-(172*scale),string(tmp_values_for_display[i])+string(tmp_unit[i]),64,-1,1,c_white,0,0,font_normal,0.25,0.25,0,true);
 }
 
 

@@ -18,14 +18,15 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 		// there is no draw_get_circle_precision() else I would use that here
 		var numberofsections = 60;
 		var sizeofsection = 6;
-
-		val = (argument2/argument3)*numberofsections 
+		
+		val = (argument3 > 0) ? (argument2/argument3)*numberofsections : numberofsections; 
 
 
 		if (val > 1 || argument8 != -4) 
 		{
+			var tmp_surf_size = ceil(argument5*2);
 			// HTML5 version doesnt like triangle with only 2 sides 
-			piesurface = surface_create(argument5*2,argument5*2);
+			piesurface = surface_create(tmp_surf_size,tmp_surf_size);
 
 
 			surface_set_target(piesurface);

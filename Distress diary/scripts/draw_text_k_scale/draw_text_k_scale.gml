@@ -1,5 +1,6 @@
 ///@description draw_text_kl_scale(x, y, string, sep, w, alpha, color, valign, halign, font, xscale, yscale, angle)
-function draw_text_k_scale(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10, argument11, argument12) {
+function draw_text_k_scale(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10, argument11, argument12, argument13) 
+{
 	//draw_text_kl_scale(x, y, string, sep, w, alpha, color, valign, halign, font, xscale, yscale, angle)
 	///@param x
 	///@param y
@@ -17,8 +18,12 @@ function draw_text_k_scale(argument0, argument1, argument2, argument3, argument4
 
 	////////////////////////////////////////////////////////////////
 	var tmp_scale = global.ratio_by_camera;
-	var w_ratio = global.w_ratio_by_window;
-	var h_ratio = global.h_ratio_by_window;
+	if (argument13 != undefined)
+	{
+		tmp_scale = global.reversed_ratio_by_camera;
+	}
+
+	
 	var text_scale_real = tmp_scale;
 	var txt_xscale = argument10*tmp_scale;
 	var txt_yscale = argument11*tmp_scale;

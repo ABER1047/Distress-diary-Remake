@@ -1,6 +1,6 @@
 /// @description Auto fix window pos
 // You can write your code in this editor
-var text_ratio = global.reverse_ratio_by_camera;
+var text_ratio = global.reversed_ratio_by_camera;
 var slot_size = 40*text_ratio; //1칸당 픽셀 사이즈
 var window_weight = 16*text_ratio; //윈도우 창 두께 (드래그 클릭으로 옮기는 그 윈도우 창)
 var outline_weight = 2*text_ratio; //테두리 두께

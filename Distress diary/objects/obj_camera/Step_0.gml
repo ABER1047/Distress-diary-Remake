@@ -3,9 +3,6 @@
 var tmp_room_w_center = room_width*0.5, tmp_room_h_center = room_height*0.5;
 
 global.view_angle_ += (0 - global.view_angle_)*0.1;
-
-global.w_ratio_by_window = floor(sqrt(window_get_width()/1280)*10)/10;
-global.h_ratio_by_window = floor(sqrt(window_get_height()/720)*10)/10;
 var tmp_v_w = floor(v_x*global.n_camera_zoom*global.w_ratio_by_window), tmp_v_h = floor(v_y*global.n_camera_zoom*global.h_ratio_by_window);
 camera_set_view_size(view_camera[0],tmp_v_w,tmp_v_h);
 
@@ -13,10 +10,23 @@ camera_set_view_size(view_camera[0],tmp_v_w,tmp_v_h);
 
 //카메라 줌 사이즈에 반비례하여 값도 바뀌는 변수 (특정값*global.ratio_by_camera => 1로 보정됨)
 global.ratio_by_camera = camera_get_view_width(view_camera[0])/1280;
+if (global.ratio_by_camera <= 0.1 || global.ratio_by_camera == infinity)
+{
+	global.ratio_by_camera = 1;
+}
 
 //카메라 줌 사이즈에 비례하여 값도 변수
 //[화면 사이즈가 작아져도 실제 사람 눈에 보이는 크기는 전체화면일때랑 똑같은 사이즈로 조정하는 용도]
-global.reverse_ratio_by_camera = 1/global.w_ratio_by_window;
+global.reversed_ratio_by_camera = (1920/window_get_width())*global.ratio_by_camera;
+if (global.reversed_ratio_by_camera == infinity || global.reversed_ratio_by_camera <= 0.1)
+{
+	global.reversed_ratio_by_camera = 1;
+}
+
+
+
+global.w_ratio_by_window = floor(sqrt(window_get_width()/1280)*10)/10;
+global.h_ratio_by_window = floor(sqrt(window_get_height()/720)*10)/10;
 
 
 

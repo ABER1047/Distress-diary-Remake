@@ -36,10 +36,7 @@ instance_destroy(obj_inv_ui);
 
 
 //CRT효과 서피스
-var whole_scale = global.n_camera_zoom/0.7;
-var xx_w = camera_get_view_width(view_camera[0]);
-var tmp_scale = xx_w/1280;
-crt_surf = surface_create(320*5.5*tmp_scale/whole_scale,256*2.56*tmp_scale/whole_scale);
+event_user(2);
 crt_yy = 0;
 
 
