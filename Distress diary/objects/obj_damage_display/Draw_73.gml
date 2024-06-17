@@ -15,4 +15,4 @@ if (animation > 90)
 }
 
 
-draw_text_kl_scale(x,y-text_yy,string(text),64,-1,image_alpha,image_blend,0,0,font_normal,0.52,0.52,0);
+draw_text_kl_scale(x,y-text_yy,string(text),64,-1,image_alpha,image_blend,0,0,font_normal,0.3,0.3,0);

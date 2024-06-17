@@ -29,7 +29,7 @@ draw_set_color(#D5B6FF);
 draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_for_draw/max_stamina)*scale),stamina_bar_ui_end_yy,false);
 
 
-//버프-디버프 UI
+//HP 및 스테이터스 창
 if (global.graphics_quality > 0)
 {
 	var tmp_values = [ fix_num_inside(weight_for_draw,0,10), hydro_for_draw, hunger_for_draw ];
@@ -62,8 +62,16 @@ for(var i = 0; i < 3; i++)
 }
 
 
-
-
+// 버프/디버프 UI
+var tmp_icon_scale = 0.4*global.ratio_by_camera;
+for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
+{
+	if (global.apply_buff_effect[i])
+	{
+		draw_sprite_ext(spr_buff_ui,i,xx+xx_w-32*(global.ratio_by_camera+tmp_index*1.5),yy+196*global.ratio_by_camera,tmp_icon_scale,tmp_icon_scale,0,c_white,1);
+		tmp_index ++;
+	}
+}
 
 
 

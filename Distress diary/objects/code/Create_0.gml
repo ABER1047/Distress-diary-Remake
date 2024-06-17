@@ -198,3 +198,6 @@ global.outside_of_map_wall = array_create(4,-4);
 //지도용 서피스
 global.map_ui_surf = -4;
 
+
+//버프/디버프 효과 적용 (효과 순서는 이미지 순서대로)
+global.apply_buff_effect = array_create(sprite_get_number(spr_buff_ui),false);

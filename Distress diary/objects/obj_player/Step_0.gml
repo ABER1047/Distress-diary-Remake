@@ -118,6 +118,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			global.n_dir = (global.fixed_dir == 0) ? 3 : global.n_dir;
 			global.movement_vspeed += (tmp_max_vspeed - global.movement_vspeed)*0.1;
 		}
+		else
+		{
+			global.movement_vspeed += (0 - global.movement_vspeed)*((z > 0) ? 0.05 : 0.3);
+			if (abs(global.movement_vspeed) < 0.5)
+			{
+				global.movement_vspeed = 0;
+			}
+		}
 
 		if (keyboard_check(ord("D")))
 		{
@@ -129,17 +137,15 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			global.n_dir = (global.fixed_dir == 0) ? 2 : global.n_dir;
 			global.movement_hspeed += (-tmp_max_hspeed - global.movement_hspeed)*0.1;
 		}
-
-
-		if (keyboard_check_released(ord("A")) || keyboard_check_released(ord("D")))
+		else
 		{
-			global.movement_hspeed = 0;
+			global.movement_hspeed += (0 - global.movement_hspeed)*((z > 0) ? 0.05 : 0.3);
+			if (abs(global.movement_hspeed) < 0.5)
+			{
+				global.movement_hspeed = 0;
+			}
 		}
 
-		if (keyboard_check_released(ord("W")) || keyboard_check_released(ord("S")))
-		{
-			global.movement_vspeed = 0;
-		}
 	
 	
 	
@@ -156,7 +162,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		if (abs(global.movement_hspeed)+abs(global.movement_vspeed) > 0 && stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
 		{
 			//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
-			global.max_movement_speed = 9*speed_by_weight;
+			global.max_movement_speed = 9*speed_by_weight + ((global.apply_buff_effect[2]) ? 2 : 0);
 		
 			//달리기 도중 쉬프트에서 손 때면 그만 달리기
 			global.n_running = keyboard_check(vk_shift);
@@ -185,7 +191,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			{
 				stamina_cooltime --;
 			}
-			global.max_movement_speed = 7*speed_by_weight;
+			global.max_movement_speed = 7*speed_by_weight + ((global.apply_buff_effect[2]) ? 2 : 0);
 			global.n_running = false;
 		}
 		

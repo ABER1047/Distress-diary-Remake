@@ -126,7 +126,8 @@ if (instance_exists(variable_owner))
 	//흰색 테두리 그리기
 	draw_set_alpha(image_alpha);
 	draw_set_color(c_white);
-	for(var i = 0; i < outline_weight; i++)
+	var line_correction = 1/(global.graphics_quality*0.25+1);
+	for(var i = 0; i < outline_weight; i += line_correction)
 	{
 		//닫기 버튼 그리기 (테두리 구분선)
 		draw_line(endx-i-window_weight,w_starty,endx-i-window_weight,starty);

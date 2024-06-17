@@ -60,7 +60,7 @@ with(obj_explosion_effect_on_ground)
 			var tmp_xx = x+rd_xx[i];
 			var tmp_yy = y+rd_yy[i];
 			var tmp_scale = (1-point_distance(x,y,tmp_xx,tmp_yy)/320);
-			draw_sprite_ext(spr_circle,0,tmp_xx,tmp_yy,tmp_scale*image_xscale,tmp_scale*0.48*image_xscale,0,$FF1C171A,tmp_scale*0.08);
+			draw_sprite_ext(spr_circle,0,tmp_xx,tmp_yy,tmp_scale*image_xscale,tmp_scale*0.48*image_xscale,0,#1A171C,tmp_scale*0.08);
 		}
 	}
 }
@@ -80,6 +80,10 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 			{
 				tmp_color = #44A978;
 			}
+			else if (object_index == obj_mucus_effect)
+			{
+				tmp_color = #16A700;
+			}
 				
 				
 			for(var i = 0; i < array_length(rd_xx); i++)
@@ -89,7 +93,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 				var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
 		
 				//10초 뒤에 알파값이 점점 작아지면서 삭제
-				var tmp_scale = 0.5/(1+tmp_dis/24);
+				var tmp_scale = (image_xscale*0.5)/(1+tmp_dis/24);
 		
 		
 				//가장 가까운 액체부터 순차적으로 드로우 (= 바닥에 고여서 흐르는 효과)
@@ -99,7 +103,7 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 				}
 					
 
-				draw_sprite_ext(spr_circle,0,tmp_xx-xx,tmp_yy-yy,blood_scale[i],blood_scale[i]*0.42,0,#7A213A,image_alpha);
+				draw_sprite_ext(spr_circle,0,tmp_xx-xx,tmp_yy-yy,blood_scale[i],blood_scale[i]*0.42,0,tmp_color,1);
 			}
 		}
 	}
@@ -111,13 +115,15 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 	
 	
 	
-	
-	var dx = [ 0, -3, 0, 3 ];
-	var dy = [ -3, 0, 3, 0 ];
-	for(var i = 0; i < 4; i++)
+	if (global.graphics_quality > 1)
 	{
-		draw_surface_ext(global.liquid_on_floor_surf,xx+dx[i],yy+dy[i],1,1,0,#17111A,1);
-	}	
+		var dx = [ 0, -3, 0, 3 ];
+		var dy = [ -3, 0, 3, 0 ];
+		for(var i = 0; i < 4; i++)
+		{
+			draw_surface_ext(global.liquid_on_floor_surf,xx+dx[i],yy+dy[i],1,1,0,#17111A,1);
+		}	
+	}
 
 	draw_surface_ext(global.liquid_on_floor_surf,xx,yy,1,1,0,c_white,1);
 }
@@ -142,6 +148,3 @@ if (surface_exists(global.shadow_surf))
 {
 	draw_surface_ext(global.shadow_surf,xx,yy,1,1,0,c_black,0.3);
 }
-
-
-

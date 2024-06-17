@@ -3,7 +3,7 @@
 
 
 //깊이 설정
-depth = -y;
+depth = -(y+floor(sprite_height*0.25));
 
 //서서히 속도 감소
 _speed += (0 - _speed)*0.01;

@@ -2,6 +2,30 @@
 // You can write your code in this editor
 if (global.is_server && !stop_cal_by_pos_statement)
 {
+	//사망 이벤트
+	if (hp <= 0)
+	{
+		for(var i = 0; i < 360; i += 45)
+		{
+			var tmp_hspeed = lengthdir_x(16,i);
+			var tmp_vspeed = lengthdir_y(16,i);
+			var tmp_ins = create_bubble_effect(x,y,-z,c_white,c_black,0.1,tmp_vspeed*0.48,tmp_hspeed,0.1,0,false);
+			tmp_ins.image_xscale = 1.6;
+			tmp_ins.image_yscale = 1.6;
+		}
+		
+		repeat(irandom_range(4,5))
+		{
+			create_bounce_object(x,y,z+irandom_range(0,64),_speed,direction+irandom_range(-60,60),0,spr_deadmob_debris,4,image_yscale*0.75,irandom_range(240,360));
+		}
+		
+		play_sound_pos(ghost_disappear_sfx,false,0.3,x,y,1280,true,my_pos_xx,my_pos_yy);
+		instance_destroy();
+	}
+	
+	
+	
+	//매 80프레임마다 점프 공격 애니메이션 재생
 	if (tracking_timer >= 80)
 	{
 		switch(tracking_timer)

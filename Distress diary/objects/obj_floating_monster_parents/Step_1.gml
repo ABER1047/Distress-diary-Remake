@@ -6,4 +6,3 @@
 statement_by_pos();
 
 
-

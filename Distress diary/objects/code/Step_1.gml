@@ -49,3 +49,54 @@ if (global.time_increment < global.time_increment_timer)
 		global.time -= 60*24;
 	}
 }
+
+
+
+
+
+
+
+
+
+
+// 버프/디버프 시스템
+if (global.apply_buff_effect[0]) //속도 저하 (속도 증가 효과는 플레이어 오브젝트에서 따로 처리)
+{
+	global.movement_vspeed += (0 - global.movement_vspeed)*0.2;
+	global.movement_hspeed += (0 - global.movement_hspeed)*0.2;
+	global.apply_buff_effect[0] = false;
+}
+
+if (global.apply_buff_effect[2]) //공격력 감소
+{
+}
+if (global.apply_buff_effect[3]) //공격력 증가
+{
+}
+
+//과적
+global.apply_buff_effect[3] = (global.my_weight > 10);
+
+if (global.apply_buff_effect[5]) //골절
+{
+}
+if (global.apply_buff_effect[6]) //출혈
+{
+}
+if (global.apply_buff_effect[7]) //배고픔
+{
+}
+
+//슬라임 점액질 충돌 판정
+with(obj_mob_parents)
+{
+	if (z <= 0 && place_meeting(x,y,obj_mucus_effect))
+	{
+		_speed += (0 - _speed)*0.2;
+		
+		if (id == global.my_player_ins_id[global.my_player_id])
+		{
+			global.apply_buff_effect[0] = true;
+		}
+	}
+}

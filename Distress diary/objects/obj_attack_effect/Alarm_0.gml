@@ -47,7 +47,7 @@ visible = true;
 //몬스터 공격 판정
 with(obj_monster_parents)
 {
-	if (id != other.id && place_meeting(x,y,other.id))
+	if (id != other.id && place_meeting(x,y,other.id) && z-32 <= other.z)
 	{
 		give_damage(id,attack_dmg,true,16,other.x,other.y,25);
 	}

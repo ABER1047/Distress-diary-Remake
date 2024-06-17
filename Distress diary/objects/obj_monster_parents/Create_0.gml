@@ -62,3 +62,7 @@ tmp_value2 = 0;
 
 //공격 사이클 타이머
 attack_timer = 0;
+
+
+//버블 이펙트 외곽선 효과용 오브젝트
+bubble_ef_ins = -4;
