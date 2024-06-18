@@ -53,6 +53,11 @@ if (stop_flying > 0)
 }
 
 
+if (stop_animation && is_on_mob == -4 && !place_meeting(x,y,obj_wall_parents))
+{
+	instance_destroy();
+}
+
 
 
 

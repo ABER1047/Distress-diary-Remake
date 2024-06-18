@@ -49,8 +49,10 @@ with(obj_monster_parents)
 {
 	if (id != other.id && place_meeting(x,y,other.id) && z-32 <= other.z)
 	{
-		give_damage(id,attack_dmg,true,16,other.x,other.y,25);
+		give_damage(id,other.attack_dmg,true,global.knockback_power,other.x,other.y,25);
 	}
 }
 
 alarm[1] = 2;
+
+

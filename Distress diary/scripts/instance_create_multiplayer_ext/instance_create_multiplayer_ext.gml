@@ -33,7 +33,7 @@ function instance_create_multiplayer_ext(argument0,argument1,argument2,argument3
 			}
 		
 			
-			
+			show_debug_message(string(tmp_var_name[i])+" : "+string(tmp_var[i]));
 			variable_instance_set(tmp_ins,string_trim(tmp_var_name[i]),tmp_var[i]);
 		}
 	}

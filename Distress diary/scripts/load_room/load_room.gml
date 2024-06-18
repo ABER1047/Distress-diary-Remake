@@ -26,9 +26,12 @@ function load_room(argument0,argument1)
 	
 	//모든 룸 이동 포탈 삭제
 	instance_destroy(obj_nextroom);
+
+	//모든 디버프 바닥 이펙트 삭제
+	instance_destroy(obj_mucus_effect);
 	
-	//모든 발판 버튼 삭제
-	//instance_destroy(obj_floor_button);
+	//데미지 로그 ui지우기
+	instance_destroy(obj_damage_display);
 	
 	
 

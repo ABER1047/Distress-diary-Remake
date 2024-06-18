@@ -115,6 +115,7 @@
     {"name":"camera_set_t_pos","order":8,"path":"scripts/camera_set_t_pos/camera_set_t_pos.yy",},
     {"name":"check_is_room_cleared","order":14,"path":"scripts/check_is_room_cleared/check_is_room_cleared.yy",},
     {"name":"clean_message_log","order":4,"path":"scripts/clean_message_log/clean_message_log.yy",},
+    {"name":"convert_to_time","order":3,"path":"scripts/convert_to_time/convert_to_time.yy",},
     {"name":"create_attack_effect","order":2,"path":"scripts/create_attack_effect/create_attack_effect.yy",},
     {"name":"create_bounce_object","order":4,"path":"scripts/create_bounce_object/create_bounce_object.yy",},
     {"name":"create_bubble_effect","order":3,"path":"scripts/create_bubble_effect/create_bubble_effect.yy",},

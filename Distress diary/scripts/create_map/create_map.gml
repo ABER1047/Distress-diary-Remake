@@ -8,7 +8,10 @@ function create_map(argument0)
 {
 	//맵에 있는 모든 오브젝트 삭제
 	instance_destroy(obj_parents);
+	
+	//모든 발판 버튼 삭제
 	instance_destroy(obj_floor_button);
+
 
 	random_set_seed(argument0);
 	var tmp_width = floor(9*(0.5+instance_number(obj_player)*0.5));

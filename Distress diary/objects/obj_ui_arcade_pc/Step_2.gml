@@ -27,7 +27,7 @@ if (surface_exists(crt_surf))
 	var txt_scale = 0.3;
 	draw_text_k_scale(tmp_xx,tmp_yy-52*whole_scale,"선택한 주사위",64,-1,1,#83E04C,0,0,font_normal,txt_scale,txt_scale,0,true);
 	draw_sprite_ext(spr_pc_ui_state,4+my_bet_dice,tmp_xx,tmp_yy+24*whole_scale,6,6,0,c_white,1);
-	draw_text_k_scale(tmp_xx,tmp_yy+16*whole_scale,"x"+string(my_bet_dice+2),64,-1,1,#83E04C,0,0,font_normal,txt_scale,txt_scale,0,true);
+	draw_text_k_scale(tmp_xx,tmp_yy+20*whole_scale,"x"+string(my_bet_dice+2),64,-1,1,#83E04C,0,0,font_normal,txt_scale,txt_scale,0,true);
 
 	tmp_yy += 88*whole_scale;
 	draw_text_k_scale(tmp_xx,tmp_yy-32*whole_scale,"베팅할 골드",64,-1,1,#83E04C,0,0,font_normal,txt_scale,txt_scale,0,true);

@@ -18,7 +18,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 		var is_dmg_cooltime_exists = argument2 || (variable_instance_exists(tmp_ins,"dmg_cooltime") && tmp_ins.dmg_cooltime == 0);
 		var is_hp_exists = variable_instance_exists(tmp_ins,"hp");
 		var is_speed_exists = variable_instance_exists(tmp_ins,"_speed");
-		if (is_speed_exists && ((is_hp_exists && is_dmg_cooltime_exists) || !is_hp_exists))
+		if (knockback_speed > 0 && is_speed_exists && ((is_hp_exists && is_dmg_cooltime_exists) || !is_hp_exists))
 		{
 			var attacker_xx = argument4;
 			var attacker_yy = argument5;
@@ -29,7 +29,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 	
 		if ((argument2 && is_hp_exists) || is_dmg_cooltime_exists)
 		{
-			var tmp_dmg = argument1;
+			var tmp_dmg = (tmp_ins != global.my_player_ins_id[global.my_player_id]) ? argument1 : argument1*(1-global.defence_power*0.01);
 			tmp_ins.hp -= tmp_dmg;
 			tmp_ins.dmg_cooltime = argument6;
 			if (tmp_ins.hp < 0)

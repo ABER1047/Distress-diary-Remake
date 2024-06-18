@@ -75,15 +75,12 @@ if (pusher != -4)
 	
 	
 				//사용한 스테미나 일부 회복
-				var tmp_recovery = 25;
-				if (tmp_ins.stamina < (tmp_ins.max_stamina)-tmp_recovery)
+				var tmp_recovery = 25 - ((global.hydration <= 10) ? (26-global.hydration*2.5) : 0);
+				if (tmp_recovery > 0 && tmp_ins.stamina < (global.max_stamina)-tmp_recovery)
 				{
 					tmp_ins.stamina += tmp_recovery;
 				}
-				else
-				{
-					tmp_ins.stamina = tmp_ins.max_stamina;
-				}
+
 			
 			
 				//블럭 이동 애니메이션 재생 시작

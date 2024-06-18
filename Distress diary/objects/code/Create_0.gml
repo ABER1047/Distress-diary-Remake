@@ -201,3 +201,22 @@ global.map_ui_surf = -4;
 
 //버프/디버프 효과 적용 (효과 순서는 이미지 순서대로)
 global.apply_buff_effect = array_create(sprite_get_number(spr_buff_ui),false);
+hp_recovery_timer = 0;
+hunger_timer = 0;
+hydration_timer = 0;
+bleeding_timer = 0;
+poisoning_timer = 0;
+
+//플레이어 스테이터스
+global.attack_damage = 3;
+global.attack_speed = 60; //60프레임마다 공격 가능
+global.defence_power = 0; //방어력 (n%데미지 감소)
+global.knockback_power = 0; //넉백 파워
+global.over_weight = 10; //과적 판정 kg수
+global.max_hp = 100; //최대 체력
+global.max_stamina = 100; //최대 스태미나
+global.my_gold = 0; //내 보유 골드
+global.hunger = 100; //배고픔
+global.hydration = 100; //목마름
+global.my_weight = 0; //내 무게
+global.max_movement_speed = 8; //최대 이속

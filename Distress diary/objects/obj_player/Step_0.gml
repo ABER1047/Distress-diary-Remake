@@ -152,7 +152,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 		//무게 시스템
 		//무게에 의한 이동속도
-		var tmp_weight_ratio = fix_to_zero(global.my_weight-10)/90;
+		var tmp_weight_ratio = fix_to_zero(global.my_weight-global.over_weight)/90;
 		speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
 	
 	
@@ -178,13 +178,13 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			//스테미나 자동 회복
 			if (stamina_cooltime <= 0)
 			{
-				if (stamina < max_stamina)
+				if (stamina < global.max_stamina)
 				{
 					stamina += 0.5*(1-tmp_weight_ratio);
 				}
 				else
 				{
-					stamina = max_stamina;
+					stamina = global.max_stamina;
 				}
 			}
 			else
@@ -208,7 +208,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		
 			if (keyboard_check_pressed(vk_space))
 			{
-				zspeed = -8;
+				zspeed = -8*speed_by_weight; //무게에 따른 점프력 감소
 		
 				//점프 효과음
 				play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false,-4,-4);
@@ -383,7 +383,12 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				//룸 이동 애니메이션 (카메라 이동 효과)
 				var tmp_camera_xx = move_to_other_room.x+tmp_xx[tmp_tp_to]*xx_w*0.5;
 				var tmp_camera_yy = move_to_other_room.y+tmp_yy[tmp_tp_to]*yy_h*0.5;
-				camera_set_t_pos(tmp_camera_xx,tmp_camera_yy);
+				if (global.camera_target != -4)
+				{
+					camera_set_t_pos(tmp_camera_xx,tmp_camera_yy);
+					b_prohibit_movement_input = global.prohibit_movement_input;
+					global.prohibit_movement_input = true;
+				}
 			
 			
 				//카메라 이동이 끝난 경우 실제로 룸 이동
@@ -434,6 +439,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 						
 			
 							load_room(t_xx,t_yy);
+							global.prohibit_movement_input = b_prohibit_movement_input;
 						}
 					}
 				}

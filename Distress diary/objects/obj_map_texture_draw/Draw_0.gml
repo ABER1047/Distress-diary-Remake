@@ -90,16 +90,15 @@ if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
 			{
 				var tmp_xx = rd_xx[i];
 				var tmp_yy = rd_yy[i];
-				var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
-		
-				//10초 뒤에 알파값이 점점 작아지면서 삭제
-				var tmp_scale = (image_xscale*0.5)/(1+tmp_dis/24);
-		
-		
 				//가장 가까운 액체부터 순차적으로 드로우 (= 바닥에 고여서 흐르는 효과)
-				if (animation_timer > tmp_dis*0.7)
+				if (des_timer == 0)
 				{
-					blood_scale[i] += (tmp_scale - blood_scale[i])*0.1;
+					var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
+					if (animation_timer > tmp_dis*0.7)
+					{
+						var tmp_scale = (image_xscale*0.5)/(1+tmp_dis/24);
+						blood_scale[i] += (tmp_scale - blood_scale[i])*0.1;
+					}
 				}
 					
 

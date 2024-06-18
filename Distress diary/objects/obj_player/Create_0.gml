@@ -27,7 +27,6 @@ global.fixed_dir = false;
 global.b_fixed_dir = false;
 
 //이동 관련 변수
-global.max_movement_speed = 8;
 global.movement_hspeed = 0;
 global.movement_vspeed = 0;
 
@@ -101,26 +100,16 @@ set_inv_variable(id,4,0,spr_comp,23,-4,0,0);
 
 //체력
 hp = 100;
-max_hp = 100;
 b_hp = -4;
 
 //스테미나
 stamina = 100;
-max_stamina = 100;
 stamina_cooltime = 0;
 
-//내 무게
-global.my_weight = 0;
+
+//무게
 speed_by_weight = 0;
 
-//내 보유 골드
-global.my_gold = 0;
-
-//배고픔
-global.hunger = 100;
-
-//목마름
-global.hydration = 100;
 
 
 //인터렉션 키 드로우 용

@@ -153,6 +153,7 @@
     {"id":{"name":"chat_up","path":"scripts/chat_up/chat_up.yy",},},
     {"id":{"name":"check_is_room_cleared","path":"scripts/check_is_room_cleared/check_is_room_cleared.yy",},},
     {"id":{"name":"clean_message_log","path":"scripts/clean_message_log/clean_message_log.yy",},},
+    {"id":{"name":"convert_to_time","path":"scripts/convert_to_time/convert_to_time.yy",},},
     {"id":{"name":"create_attack_effect","path":"scripts/create_attack_effect/create_attack_effect.yy",},},
     {"id":{"name":"create_bounce_object","path":"scripts/create_bounce_object/create_bounce_object.yy",},},
     {"id":{"name":"create_bubble_effect","path":"scripts/create_bubble_effect/create_bubble_effect.yy",},},

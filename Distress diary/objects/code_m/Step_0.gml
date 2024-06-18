@@ -300,12 +300,24 @@ if (global.chat_activated)
 						{
 							var tmp_arr_length = array_length(global.apply_buff_effect)-1;
 							tmp_parameter = (tmp_arr_length < tmp_parameter) ? tmp_arr_length : tmp_parameter;
-							global.apply_buff_effect[tmp_parameter] = !global.apply_buff_effect[tmp_parameter];
+							
+							if (tmp_parameter < 0)
+							{
+								for(k = 0; k <= tmp_arr_length; k++)
+								{
+									global.apply_buff_effect[k] = !global.apply_buff_effect[k];
+								}
+							}
+							else
+							{
+								global.apply_buff_effect[tmp_parameter] = !global.apply_buff_effect[tmp_parameter];
+							}
 						}
 						
 						
 						is_command = true;
 						global.chat_activated = false;
+						global.prohibit_movement_input = b_prohibit_movement_input;
 					}
 				}
 			}
@@ -349,6 +361,7 @@ if (global.chat_activated)
 		{
 			clean_message_log();
 			global.chat_activated = !global.chat_activated;
+			global.prohibit_movement_input = b_prohibit_movement_input;
 		}
 	}
 }
@@ -358,6 +371,9 @@ else
 	{
 		global.chat_activated = !global.chat_activated;
 		keyboard_string = "";
+		
+		b_prohibit_movement_input = global.prohibit_movement_input;
+		global.prohibit_movement_input = true;
 	}
 	chat_alpha += (-0.01 - chat_alpha)*0.3;
 }

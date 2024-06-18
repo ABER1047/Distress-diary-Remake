@@ -206,7 +206,7 @@ if (instance_exists(parents_id))
 		var tmp_info_length = 2+floor(string_length(item_info)/(tmp_txt_width/32));
 		var tmp_win_width = (tmp_txt_width*0.3+8)*text_ratio;
 		var tmp_win_height = (84+24*tmp_info_length)*text_ratio;
-		draw_set_alpha(0.6);
+		draw_set_alpha(0.9);
 		draw_set_color(c_black);
 		draw_rectangle(mouse_x,mouse_y,mouse_x+tmp_win_width,mouse_y+tmp_win_height,false);
 		
@@ -227,7 +227,7 @@ if (instance_exists(parents_id))
 		
 		
 		//아이템명-아이템 정보 사이의 라인 그리기
-		var tmp_name_width = string_width(item_name)+16;
+		var tmp_name_width = string_width(item_name)*0.5+48;
 		draw_set_color(c_white);
 		draw_set_alpha(1);
 		draw_line_width(tmp_text_startx,tmp_text_starty+(36*text_ratio),tmp_text_startx+(tmp_name_width-96)*text_ratio,tmp_text_starty+(36*text_ratio),1.5*text_ratio);

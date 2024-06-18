@@ -12,3 +12,7 @@ for(var i = 0; i < 3*image_xscale; i++)
 	rd_yy[i] = -4;
 	blood_scale[i] = 0;
 }
+
+
+//삭제 타이머
+des_timer = 0;

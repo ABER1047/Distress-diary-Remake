@@ -5,4 +5,9 @@
 if (surface_exists(global.liquid_on_floor_surf))
 {
 	animation_timer ++;
+	
+	if (animation_timer > 200)
+	{
+		des_timer = true;
+	}
 }
