@@ -376,7 +376,7 @@ if (global.is_map_exists != -4)
 		var check_gq = (global.graphics_quality > 0);
 		if (check_gq)
 		{
-			var outline_textrue_scale = (1/31)*tmp_size*real_scale*2;
+			var outline_textrue_scale = (1/31)*tmp_size*real_scale*2/2.03225;
 			//뒷 배경
 			draw_sprite_ext(spr_map_outline,1,real_scale,real_scale,outline_textrue_scale,outline_textrue_scale,0,c_black,0.7);
 		}

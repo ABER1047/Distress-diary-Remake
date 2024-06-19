@@ -47,6 +47,8 @@ is_moveable_pos = -4;
 //아이템 이름 (번역명)
 //item_name_translated = "";
 
+//아이템 스프라이트 인덱스
+//sprite_index = -4;
 
 
 //아이템 정보창 표기 시간

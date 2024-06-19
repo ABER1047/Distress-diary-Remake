@@ -208,8 +208,8 @@ bleeding_timer = 0;
 poisoning_timer = 0;
 
 //플레이어 스테이터스
-global.attack_damage = 3;
-global.attack_speed = 60; //60프레임마다 공격 가능
+global.attack_damage = 3; //공격력
+global.attack_speed = 20; //n프레임마다 공격 가능
 global.defence_power = 0; //방어력 (n%데미지 감소)
 global.knockback_power = 0; //넉백 파워
 global.over_weight = 10; //과적 판정 kg수
@@ -220,3 +220,37 @@ global.hunger = 100; //배고픔
 global.hydration = 100; //목마름
 global.my_weight = 0; //내 무게
 global.max_movement_speed = 8; //최대 이속
+global.critical_chance = 5; //크리티컬 데미지 확률
+global.critical_dmg_magnification = 0.5; //크리티컬 데미지 배율
+
+
+//퀵슬롯
+global.quickslot_index = 0; //선택된 퀵 슬롯
+global.quickslot_spr_ind = array_create(9,-4);//spr_ind값 보유
+global.quickslot_img_ind = array_create(9,-4);//img_ind값 보유
+global.quickslot_stack_num = array_create(9,-4);//아이템의 갯수 값 보유
+
+
+//플레이어가 바라보는 방향을 마우스 방향으로 고정
+global.fixed_dir = false;
+global.b_fixed_dir = false;
+
+//이동 관련 변수
+global.movement_hspeed = 0;
+global.movement_vspeed = 0;
+
+//달리기 체크
+global.n_running = false;
+
+//이동키 안먹히도록 설정 (UI같은거 열려있을때)
+global.prohibit_movement_input = false;
+
+//방향 관련 변수
+global.n_dir = 2; //*90하면 바라보는 각도 값 나옴
+
+//공격 쿨타임
+global.attack_cooldown_timer = 0;
+global.gage_bar_shine_animation = 0; //쿨타임 게이지 바 번쩍거림 효과 애니메이션
+
+//카메라 타깃 설정
+global.camera_target = -4;

@@ -7,7 +7,7 @@
 ///@param radius
 ///@param alpha
 ///@param width
-///@param background
+///@param [background]
 function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8)
 {
 	if (argument6 > 0) 
@@ -22,7 +22,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 		val = (argument3 > 0) ? (argument2/argument3)*numberofsections : numberofsections; 
 
 
-		if (val > 1 || argument8 != -4) 
+		if (val > 1 || argument8 != undefined) 
 		{
 			var tmp_surf_size = ceil(argument5*2);
 			// HTML5 version doesnt like triangle with only 2 sides 
@@ -33,7 +33,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 			draw_clear_alpha(c_black,0);
 		
 			//게이지 바 뒷 배경
-			if (global.graphics_quality > 1 && argument8 != -4)
+			if (global.graphics_quality > 1 && argument8 != undefined)
 			{
 				draw_primitive_begin(pr_trianglefan);
 				draw_set_color(argument8);
@@ -53,7 +53,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 			{
 				//게이지 바 그리기
 				draw_primitive_begin(pr_trianglefan);
-				draw_set_color(c_white);
+				draw_set_color(argument4);
 				draw_vertex(argument5, argument5);
 				for(i = 0; i <= val; i++) 
 				{

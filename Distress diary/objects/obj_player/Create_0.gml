@@ -18,23 +18,11 @@ my_pos_yy = -4;
 //방향 관련 변수
 my_n_dir = 0;
 b_n_dir = 2;
-global.n_dir = 2; //*90하면 바라보는 각도 값 나옴
 my_backpack = 0;
 b_my_backpack = -4;
 
-//플레이어가 바라보는 방향을 마우스 방향으로 고정
-global.fixed_dir = false;
-global.b_fixed_dir = false;
-
-//이동 관련 변수
-global.movement_hspeed = 0;
-global.movement_vspeed = 0;
-
-//달리기 체크
-global.n_running = false;
 
 //이동키 안먹히도록 설정 (UI같은거 열려있을때)
-global.prohibit_movement_input = false;
 b_prohibit_movement_input = false;
 
 
@@ -50,9 +38,12 @@ nickname = -4;
 //image_alpha값이랑 똑같은데 draw_sprite에서만 드로우 되지 않게 해주는 alpha값
 draw_alpha = 1;
 
+//쿨타임 게이지 바 번쩍거림 효과
+global.gage_bar_shine_animation = 0;
+
 
 //카메라 타깃 설정
-global.camera_target = id;
+global.camera_target = (global.camera_target == -4) ? id : global.camera_target;
 
 
 
@@ -91,9 +82,14 @@ set_inv_variable(id,1,0,spr_stackables,3,irandom_range(3,4),0,0);
 set_inv_variable(id,2,0,spr_drink,0,-4,0,0);
 
 set_inv_variable(id,0,1,spr_backpack,0,-4,0,0);
-set_inv_variable(id,2,1,spr_comp,8,-4,0,0);
+set_inv_variable(id,3,1,spr_comp,8,-4,0,0);
 set_inv_variable(id,4,0,spr_comp,23,-4,0,0);
 
+set_quickslot_variable(0,spr_weapon,0,-4);
+set_quickslot_variable(1,spr_weapon,1,-4);
+set_quickslot_variable(2,spr_weapon,2,-4);
+set_quickslot_variable(3,spr_weapon,3,-4);
+set_quickslot_variable(4,spr_weapon,4,-4);
 
 
 

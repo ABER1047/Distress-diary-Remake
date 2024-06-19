@@ -8,7 +8,9 @@
 ///@param attacker_xx
 ///@param attacker_yy
 ///@param dmg_cooltime
-function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6)
+///@param [critical_chance]
+///@param [magnification]
+function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8)
 {
 	var tmp_ins = argument0;
 	if (instance_exists(tmp_ins))
@@ -27,9 +29,15 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			tmp_ins.direction = dir_;
 		}
 	
-		if ((argument2 && is_hp_exists) || is_dmg_cooltime_exists)
+		if (is_hp_exists && (argument2 || is_dmg_cooltime_exists))
 		{
 			var tmp_dmg = (tmp_ins != global.my_player_ins_id[global.my_player_id]) ? argument1 : argument1*(1-global.defence_power*0.01);
+			
+			//크리티컬 확률이랑 크리티컬 데미지 배율이 정의된 경우
+			if (argument7 != undefined && argument8 != undefined && percentage_k(argument7))
+			{
+				tmp_dmg *= (1+argument8);
+			}
 			tmp_ins.hp -= tmp_dmg;
 			tmp_ins.dmg_cooltime = argument6;
 			if (tmp_ins.hp < 0)

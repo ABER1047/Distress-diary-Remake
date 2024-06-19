@@ -69,6 +69,17 @@ if (global.dev_mode == 1)
 
 
 
+//공격 속도 적용
+if (global.attack_cooldown_timer > 0)
+{
+	global.attack_cooldown_timer ++;
+	if (global.attack_cooldown_timer > global.attack_speed)
+	{
+		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제
+		global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
+		global.attack_cooldown_timer = 0;
+	}
+}
 
 
 

@@ -1,12 +1,13 @@
 /// @description Insert description here
+var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+
 
 //사운드 볼륨 조절용 거리 값
 if (array_length(global.my_player_ins_id) > global.my_player_id)
 {
-	var tmp_ins = global.my_player_ins_id[global.my_player_id];
-	if (instance_exists(tmp_ins))
+	if (instance_exists(tmp_my_p))
 	{
-		audio_listener_position(-tmp_ins.x,-tmp_ins.y,tmp_ins.z);
+		audio_listener_position(-tmp_my_p.x,-tmp_my_p.y,tmp_my_p.z);
 		//show_debug_message("listener_pos_set");
 	}
 }
@@ -61,7 +62,7 @@ global.defence_power = (global.apply_buff_effect[9] - global.apply_buff_effect[1
 global.over_weight = 10 + (global.apply_buff_effect[11]*10); //최대 중량
 
 //체력 및 스테미나가 최대치를 넘지 않도록 조정
-with(global.my_player_ins_id[global.my_player_id])
+with(tmp_my_p)
 {
 	if (stamina > global.max_stamina)
 	{
@@ -89,13 +90,22 @@ global.apply_buff_effect[4] = (global.my_weight > 10);
 
 if (global.apply_buff_effect[5]) //골절
 {
+	if ((tmp_my_p.zspeed > 0 && tmp_my_p.z == 0) || (global.n_running && abs(global.movement_vspeed)+abs(global.movement_hspeed) >= global.max_movement_speed*0.91))
+	{
+		global.movement_hspeed *= 0.75;
+		global.movement_vspeed *= 0.75;
+		give_damage(tmp_my_p,3,true,0,x,y,10);
+	}
+	
+	global.movement_vspeed += (0 - global.movement_vspeed)*0.01;
+	global.movement_hspeed += (0 - global.movement_hspeed)*0.01;
 }
 if (global.apply_buff_effect[6]) //출혈
 {
 	bleeding_timer ++;
 	if (bleeding_timer > 180) //3초당 -1.5씩 체력 감소 (초당 0.5)
 	{
-		give_damage(global.my_player_ins_id[global.my_player_id],1.5,true,0,x,y,10);
+		give_damage(tmp_my_p,1.5,true,0,x,y,10);
 		bleeding_timer = 0;
 	}
 }
@@ -107,7 +117,7 @@ if (global.apply_buff_effect[7])
 	hunger_timer ++;
 	if (hunger_timer > 600) //매 10초마다 배고픔에 비례하여 체력 감소 (최대 10초당 6씩 = 초당 0.6)
 	{
-		global.my_player_ins_id[global.my_player_id].hp -= (6-global.hunger*0.5);
+		tmp_my_p.hp -= (6-global.hunger*0.5);
 		hunger_timer = 0;
 	}
 }
@@ -119,7 +129,7 @@ if (global.apply_buff_effect[8])
 	hydration_timer ++;
 	if (hydration_timer > 600) //매 10초마다 목마름에 비례하여 체력 감소 (최대 10초당 2씩 = 초당 0.2)
 	{
-		global.my_player_ins_id[global.my_player_id].hp -= (2-global.hydration*0.1);
+		tmp_my_p.hp -= (2-global.hydration*0.1);
 		hydration_timer = 0;
 	}
 }
@@ -131,7 +141,7 @@ if (global.apply_buff_effect[12])
 	hp_recovery_timer ++;
 	if (hp_recovery_timer > 300) //매 5초마다 +2씩 체력 재생 (초당 0.4)
 	{
-		global.my_player_ins_id[global.my_player_id].hp += 2;
+		tmp_my_p.hp += 2;
 		hp_recovery_timer = 0;
 	}
 }
@@ -146,7 +156,7 @@ if (global.apply_buff_effect[15])
 	poisoning_timer ++;
 	if (poisoning_timer > 180) //매 3초마다 -1씩 체력 감소 (초당 0.33...)
 	{
-		global.my_player_ins_id[global.my_player_id].hp -= 1;
+		tmp_my_p.hp -= 1;
 		poisoning_timer = 0;
 	}
 }
@@ -160,7 +170,7 @@ with(obj_mob_parents)
 	{
 		_speed += (0 - _speed)*0.2;
 		
-		if (id == global.my_player_ins_id[global.my_player_id])
+		if (id == tmp_my_p)
 		{
 			global.apply_buff_effect[0] = true;
 		}

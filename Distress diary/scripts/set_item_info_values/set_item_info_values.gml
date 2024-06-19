@@ -84,11 +84,15 @@ function set_item_info_values(argument0,argument1)
 			case 2:
 				tmp_name = "Crude Oil";
 				item_weight = 15;
+				item_width = 2;
+				item_height = 3;
 			break;
 			
 			case 3:
 				tmp_name = "Refined Oil";
 				item_weight = 15;
+				item_width = 2;
+				item_height = 3;
 			break;
 			
 			case 4:

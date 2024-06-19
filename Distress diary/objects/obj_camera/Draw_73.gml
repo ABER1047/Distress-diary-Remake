@@ -88,7 +88,7 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 			var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Disresistance", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning" ];
 			var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "과적", "골절", "출혈", "굶주림", "탈수", "저항", "비저항", "근력", "재생", "불운", "행운", "중독" ];
 			var tmp_my_p = global.my_player_ins_id[global.my_player_id];
-			var tmp_buff_info = [ "이동 속도 저하", "이동 속도 +2 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력"+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리기 불가", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 감소", "행운 증가", "3초마다 -1 HP 감소" ];
+			var tmp_buff_info = [ "이동 속도 저하", "이동 속도 +2 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력"+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 감소", "행운 증가", "3초마다 -1 HP 감소" ];
 			var tmp_buff_time = [ -4, -4, -4, -4, -4, -4, floor((180-code.bleeding_timer)/60), floor((600-code.hunger_timer)/60), floor((600-code.hydration_timer)/60), -4, -4, -4, floor((300-code.hp_recovery_timer)/60), -4, -4, floor((180-code.poisoning_timer)/60) ];
 			var tmp_name_to_draw = string(tmp_buff_name[i]); //아이템명
 			var text_ratio = global.reversed_ratio_by_camera;
@@ -143,6 +143,56 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 
 
 
+//퀵 슬롯 창 그리기
+var ui_scale = global.reversed_ratio_by_camera*0.5;
+var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = -4;
+if (!global.prohibit_movement_input)
+{
+	if (keyboard_check_pressed(vk_anykey)) //퀵 슬롯 키보드 선택 판정
+	{
+		var tmp_val = string_digits(keyboard_lastchar);
+		if (tmp_val != 0 && keyboard_check_pressed(ord(tmp_val)))
+		{
+			global.quickslot_index = tmp_val-1;
+		}
+	}
+	else if (mouse_check_button_released(mb_left)) //퀵 슬롯 클릭 선택 판정
+	{
+		tmp_slot_half_width = ui_scale*282;
+		tmp_slot_half_height = ui_scale*31.5;
+		if (abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height)
+		{
+			for(var i = 0; i < 9; i++)
+			{
+				var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
+				if (abs(mouse_x-tmp_slot_xx) < tmp_slot_half_height)
+				{
+					global.quickslot_index = i;
+				}
+		
+				if (global.show_wall_hitbox)
+				{
+					draw_set_color(c_red);
+					draw_set_alpha(1);
+					draw_circle(tmp_slot_xx,tmp_ui_yy-tmp_slot_half_height,4,false);
+				}
+			}
+		}
+	}
+}
+
+
+draw_sprite_ext(spr_quickslot,global.quickslot_index,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
+for(var i = 0; i < 9; i++)
+{
+	if (sprite_exists(global.quickslot_spr_ind[i]))
+	{
+		tmp_slot_half_width = (tmp_slot_half_width == -4) ? ui_scale*282 : tmp_slot_half_width;
+		tmp_slot_half_height = (tmp_slot_half_height == -4) ? ui_scale*31.5 : tmp_slot_half_height;
+		var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
+		draw_sprite_ext(global.quickslot_spr_ind[i],global.quickslot_img_ind[i],tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,1);
+	}
+}
 
 
 
@@ -159,9 +209,12 @@ if (instance_exists(obj_ui_parents))
 }
 
 //화면 전체 흰색
-draw_set_alpha(global.w_alpha);
-draw_set_color(c_white);
-draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+if (global.w_alpha > 0)
+{
+	draw_set_alpha(global.w_alpha);
+	draw_set_color(c_white);
+	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+}
 
 
 

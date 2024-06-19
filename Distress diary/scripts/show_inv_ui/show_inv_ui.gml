@@ -30,9 +30,10 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 		{
 			for(var ii = 0; ii < tmp_owner.inv_width; ii++)
 			{
-				if (sprite_exists(tmp_owner.inv_info_spr_ind[i][ii]))
+				var tmp_spr_ind_real = tmp_owner.inv_info_spr_ind[i][ii];
+				if (sprite_exists(tmp_spr_ind_real))
 				{
-					create_inv_item(tmp_owner.inv_info_spr_ind[i][ii],tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_name_compressed[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],tmp_ins,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_owner.inv_info_weight[i][ii],tmp_owner.inv_info_searched[i][ii]);
+					create_inv_item(tmp_spr_ind_real,tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_name_compressed[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],tmp_ins,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_owner.inv_info_weight[i][ii],tmp_owner.inv_info_searched[i][ii]);
 				}
 			}
 		}

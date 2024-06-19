@@ -47,10 +47,9 @@ function send_AllObjectData()
 						//inv_info_spr_ind가
 						//-4일때 = 비어있음
 						//-3일때 = 아이템 크기때문에 같은 종류 아이템이 있는 상태 (빈 건 아님)
-						
 						//문자열로 데이터 압축 후 보내기
-						var tmp_spr_name = (sprite_exists(inv_info_spr_ind[i][ii])) ? sprite_get_name(inv_info_spr_ind[i][ii]) : inv_info_spr_ind[i][ii];
-						var tmp_str = string(tmp_spr_name)+"#"+string(inv_info_img_ind[i][ii])+"#"+string(inv_info_name[i][ii])+"#"+string(inv_info_name_compressed[i][ii])+"#"+string(inv_info_stack_num[i][ii])+"#"+string(inv_info_max_stack_num[i][ii])+"#"+string(inv_info_width[i][ii])+"#"+string(inv_info_height[i][ii])+"#"+string(inv_info_rotated[i][ii])+"#"+string(inv_info_weight[i][ii]);
+						var tmp_spr_name = sprite_get_name_inv(inv_info_spr_ind[i][ii]);
+						var tmp_str = string(inv_info_spr_ind[i][ii])+"#"+string(inv_info_img_ind[i][ii])+"#"+string(inv_info_name[i][ii])+"#"+string(inv_info_name_compressed[i][ii])+"#"+string(inv_info_stack_num[i][ii])+"#"+string(inv_info_max_stack_num[i][ii])+"#"+string(inv_info_width[i][ii])+"#"+string(inv_info_height[i][ii])+"#"+string(inv_info_rotated[i][ii])+"#"+string(inv_info_weight[i][ii]);
 						buffer_write(global.obj_data_buffer, buffer_string, tmp_str);
 						show_debug_message(tmp_str);
 					}

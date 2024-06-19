@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"asset_get_index_inv",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"asset_get_index_inv",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

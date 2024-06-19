@@ -1,7 +1,7 @@
 /// @description width/height/rorated setting
 // You can write your code in this editor
 
-if (instance_exists(parents_id))
+if (sprite_exists(sprite_index) && instance_exists(parents_id))
 {
 	//아이템 회전 된 경우
 	var tmp_xscale = item_width;

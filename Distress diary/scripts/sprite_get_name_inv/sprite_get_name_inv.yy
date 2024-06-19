@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"sprite_get_name_inv",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"sprite_get_name_inv",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

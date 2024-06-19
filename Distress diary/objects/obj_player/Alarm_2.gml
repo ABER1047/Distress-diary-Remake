@@ -10,4 +10,3 @@ if (instance_exists(b_attack_ins))
 b_attack_ins = create_attack_effect(x,y,z,tmp_dir,global.n_dir*90,128,global.attack_damage);
 
 
-global.fixed_dir = global.b_fixed_dir;
