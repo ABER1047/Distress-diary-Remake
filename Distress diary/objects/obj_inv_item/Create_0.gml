@@ -44,6 +44,9 @@ is_moveable_pos = -4;
 //아이템 서치됨
 //item_searched = 0;
 
+//아이템 갯수
+//stack_num = -4;
+
 //아이템 이름 (번역명)
 //item_name_translated = "";
 

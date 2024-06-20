@@ -8,6 +8,15 @@ var xx_w = camera_get_view_width(view_camera[0]);
 var yy_h = camera_get_view_height(view_camera[0]);
 
 
+//UI창이 열려있을때 뒷 배경 까맣게 칠하기
+if (instance_exists(obj_ui_parents))
+{
+	draw_set_alpha(0.9);
+	draw_set_color(c_black);
+	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+}
+
+
 //임시 체력바 및 스태미나 바 그리기
 var scale = global.reversed_ratio_by_camera*0.5;
 
@@ -143,8 +152,9 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 
 
 
+
 //퀵 슬롯 창 그리기
-var ui_scale = global.reversed_ratio_by_camera*0.5;
+var ui_scale = global.reversed_ratio_by_camera*0.5, item_move_to = 9;
 var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = -4;
 if (!global.prohibit_movement_input)
 {
@@ -156,7 +166,7 @@ if (!global.prohibit_movement_input)
 			global.quickslot_index = tmp_val-1;
 		}
 	}
-	else if (mouse_check_button_released(mb_left)) //퀵 슬롯 클릭 선택 판정
+	else if ((global.is_moving_item_now == -4 && mouse_check_button_released(mb_left)) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
 	{
 		tmp_slot_half_width = ui_scale*282;
 		tmp_slot_half_height = ui_scale*31.5;
@@ -167,7 +177,29 @@ if (!global.prohibit_movement_input)
 				var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
 				if (abs(mouse_x-tmp_slot_xx) < tmp_slot_half_height)
 				{
-					global.quickslot_index = i;
+					item_move_to = i;
+					if (mouse_check_button_released(mb_left))
+					{
+						//인벤토리 아이템을 드래그 중 아닐때
+						if (global.is_moving_item_now == -4)
+						{
+							global.quickslot_index = i;
+						}
+					
+						
+						
+						//해당 코드 좀 손봐야됨
+						if (instance_exists(global.is_moving_item_now))
+						{
+							show_message_log("item_added_on_slot");
+							var tmp_ins = global.is_moving_item_now;
+							set_quickslot_variable(item_move_to,tmp_ins.sprite_index,tmp_ins.image_index,tmp_ins.stack_num);
+							var tmp_inv_val_owner = tmp_ins.variable_owner_ins;
+							tmp_inv_val_owner.inv_info_spr_ind[tmp_ins.y_pos][tmp_ins.x_pos] = -4;
+							instance_destroy(tmp_ins);
+							//global.is_moving_item_placed_on_quickslot = false;
+						}
+					}
 				}
 		
 				if (global.show_wall_hitbox)
@@ -179,10 +211,32 @@ if (!global.prohibit_movement_input)
 			}
 		}
 	}
+	else if (mouse_wheel_down())
+	{
+		//마우스 휠로 제어
+		global.quickslot_index ++;
+		if (global.quickslot_index > 8)
+		{
+			global.quickslot_index = 0;
+		}
+	}
+	else if (mouse_wheel_up())
+	{
+		//마우스 휠로 제어
+		global.quickslot_index --
+		if (global.quickslot_index < 0)
+		{
+			global.quickslot_index = 8;
+		}
+	}
 }
 
+//인벤토리 아이템을 드래그 중일때/아닐때 구분
+draw_sprite_ext(spr_quickslot,(global.is_moving_item_now == -4) ? global.quickslot_index : item_move_to,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
 
-draw_sprite_ext(spr_quickslot,global.quickslot_index,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
+
+
+
 for(var i = 0; i < 9; i++)
 {
 	if (sprite_exists(global.quickslot_spr_ind[i]))
@@ -190,7 +244,19 @@ for(var i = 0; i < 9; i++)
 		tmp_slot_half_width = (tmp_slot_half_width == -4) ? ui_scale*282 : tmp_slot_half_width;
 		tmp_slot_half_height = (tmp_slot_half_height == -4) ? ui_scale*31.5 : tmp_slot_half_height;
 		var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
-		draw_sprite_ext(global.quickslot_spr_ind[i],global.quickslot_img_ind[i],tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,1);
+		
+		var tmp_check = (global.quickslot_stack_num[i] == -4);
+		if (tmp_check || global.quickslot_stack_num[i] > 0)
+		{
+			//아이템 아이콘 그리기
+			draw_sprite_ext(global.quickslot_spr_ind[i],global.quickslot_img_ind[i],tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,1);
+		
+			//아이템 갯수 그리기
+			if (!tmp_check)
+			{
+				draw_text_k_scale(tmp_slot_xx+ui_scale*24,tmp_ui_yy-ui_scale*8,string(global.quickslot_stack_num[i]),64,-1,1,c_white,0,1,font_normal,0.25,0.25,0,true);
+			}
+		}
 	}
 }
 
@@ -200,13 +266,7 @@ for(var i = 0; i < 9; i++)
 
 
 
-//UI창이 열려있을때 뒷 배경 까맣게 칠하기
-if (instance_exists(obj_ui_parents))
-{
-	draw_set_alpha(0.9);
-	draw_set_color(c_black);
-	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
-}
+
 
 //화면 전체 흰색
 if (global.w_alpha > 0)

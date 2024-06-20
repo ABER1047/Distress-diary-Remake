@@ -177,7 +177,7 @@ if (instance_exists(parents_id))
 			}
 		}
 	}
-	else if (mouse_check_button_released(mb_left))
+	else if (!global.is_moving_item_placed_on_quickslot && mouse_check_button_released(mb_left))
 	{
 		if (moving_now == 1)
 		{

@@ -15,6 +15,7 @@ function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument
 	///@param xscale
 	///@param yscale
 	///@param angle
+	///@param [reversed_ratio]
 	
 	if (global.graphics_quality > 0)
 	{

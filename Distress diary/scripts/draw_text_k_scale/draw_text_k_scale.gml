@@ -15,6 +15,7 @@ function draw_text_k_scale(argument0, argument1, argument2, argument3, argument4
 	///@param xscale
 	///@param yscale
 	///@param angle
+	///@param [reversed_ratio]
 
 	////////////////////////////////////////////////////////////////
 	var tmp_scale = global.ratio_by_camera;
