@@ -33,6 +33,9 @@ global.ratio_by_camera = 1;
 //[화면 사이즈가 작아져도 실제 사람 눈에 보이는 크기는 전체화면일때랑 똑같은 사이즈로 조정하는 용도]
 global.reversed_ratio_by_camera = 1;
 
+//퀵 슬롯 칸에 마우스가 들어가있는 경우
+global.is_mouse_on_quickslot = -4;
+
 depth = -99999;
 
 

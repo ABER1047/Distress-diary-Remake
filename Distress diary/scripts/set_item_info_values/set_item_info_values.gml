@@ -495,6 +495,45 @@ function set_item_info_values(argument0,argument1)
 			break;
 		}
 	}
+	else if (argument0 == spr_weapon)
+	{
+		switch(argument1)
+		{
+			case 0:
+				tmp_short_name = "Sword";
+				tmp_name = "Copper Sword";
+				item_weight = 2.3;
+				item_height = 2;
+			break;
+			
+			case 1:
+				tmp_short_name = "Dagger";
+				tmp_name = "Dagger";
+				item_weight = 1.2;
+			break;
+			
+			case 2:
+				tmp_short_name = "Sword";
+				tmp_name = "Golden Sword";
+				item_weight = 2;
+				item_height = 2;
+			break;
+			
+			case 3:
+				tmp_short_name = "Knife";
+				tmp_name = "Throwing Knife";
+				item_weight = 0.8;
+				max_stack_num = 8;
+			break;
+			
+			case 4:
+				tmp_short_name = "Knife";
+				tmp_name = "Poisoned Throwing Knife";
+				item_weight = 0.8;
+				max_stack_num = 8;
+			break;
+		}
+	}
 	
 	
 	global.short_name = (tmp_short_name == "") ? tmp_name : tmp_short_name;

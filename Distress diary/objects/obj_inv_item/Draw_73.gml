@@ -228,9 +228,14 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		
 		//아이템명-아이템 정보 사이의 라인 그리기
 		var tmp_name_width = string_width(item_name)*0.5+48;
+		var tmp_line_length = tmp_name_width-96;
+		if (tmp_line_length < 48)
+		{
+			tmp_line_length = 48;
+		}
 		draw_set_color(c_white);
 		draw_set_alpha(1);
-		draw_line_width(tmp_text_startx,tmp_text_starty+(36*text_ratio),tmp_text_startx+(tmp_name_width-96)*text_ratio,tmp_text_starty+(36*text_ratio),1.5*text_ratio);
+		draw_line_width(tmp_text_startx,tmp_text_starty+(36*text_ratio),tmp_text_startx+tmp_line_length*text_ratio,tmp_text_starty+(36*text_ratio),1.5*text_ratio);
 		
 		
 		var tmp_txt_col = merge_color(c_white,c_black,0.3);

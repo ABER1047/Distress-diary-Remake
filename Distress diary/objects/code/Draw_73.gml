@@ -100,7 +100,7 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 //개발자 모드 디버그 용
 if (global.dev_mode == 1)
 {
-	if (!global.chat_activated)
+	if (!global.chat_activated && !instance_exists(obj_message_log))
 	{
 		draw_set_font(font_normal);
 		draw_set_alpha(1);

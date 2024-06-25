@@ -154,7 +154,7 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 
 
 //퀵 슬롯 창 그리기
-var ui_scale = global.reversed_ratio_by_camera*0.5, item_move_to = 9;
+var ui_scale = global.reversed_ratio_by_camera*0.5, global.is_mouse_on_quickslot = 9;
 var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = -4;
 if (!global.prohibit_movement_input)
 {
@@ -170,6 +170,7 @@ if (!global.prohibit_movement_input)
 	{
 		tmp_slot_half_width = ui_scale*282;
 		tmp_slot_half_height = ui_scale*31.5;
+		var is_mouse_inside_quickslot = false;
 		if (abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height)
 		{
 			for(var i = 0; i < 9; i++)
@@ -177,28 +178,16 @@ if (!global.prohibit_movement_input)
 				var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
 				if (abs(mouse_x-tmp_slot_xx) < tmp_slot_half_height)
 				{
-					item_move_to = i;
-					if (mouse_check_button_released(mb_left))
+					if (mouse_check_button(mb_left))
+					{
+						global.is_mouse_on_quickslot = i;
+						is_mouse_inside_quickslot = true;
+					}
+					else if (mouse_check_button_released(mb_left) && global.is_moving_item_now == -4)
 					{
 						//인벤토리 아이템을 드래그 중 아닐때
-						if (global.is_moving_item_now == -4)
-						{
-							global.quickslot_index = i;
-						}
-					
-						
-						
-						//해당 코드 좀 손봐야됨
-						if (instance_exists(global.is_moving_item_now))
-						{
-							show_message_log("item_added_on_slot");
-							var tmp_ins = global.is_moving_item_now;
-							set_quickslot_variable(item_move_to,tmp_ins.sprite_index,tmp_ins.image_index,tmp_ins.stack_num);
-							var tmp_inv_val_owner = tmp_ins.variable_owner_ins;
-							tmp_inv_val_owner.inv_info_spr_ind[tmp_ins.y_pos][tmp_ins.x_pos] = -4;
-							instance_destroy(tmp_ins);
-							//global.is_moving_item_placed_on_quickslot = false;
-						}
+						global.quickslot_index = i;
+						global.is_mouse_on_quickslot = -4;
 					}
 				}
 		
@@ -209,6 +198,11 @@ if (!global.prohibit_movement_input)
 					draw_circle(tmp_slot_xx,tmp_ui_yy-tmp_slot_half_height,4,false);
 				}
 			}
+		}
+		
+		if (!is_mouse_inside_quickslot)
+		{
+			global.is_mouse_on_quickslot = -4;
 		}
 	}
 	else if (mouse_wheel_down())
@@ -232,7 +226,9 @@ if (!global.prohibit_movement_input)
 }
 
 //인벤토리 아이템을 드래그 중일때/아닐때 구분
-draw_sprite_ext(spr_quickslot,(global.is_moving_item_now == -4) ? global.quickslot_index : item_move_to,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
+var tmp_img_ind = (global.is_moving_item_now == -4) ? global.quickslot_index : global.is_mouse_on_quickslot;
+draw_sprite_ext(spr_quickslot,(tmp_img_ind >= 0) ? tmp_img_ind : 9,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
+
 
 
 

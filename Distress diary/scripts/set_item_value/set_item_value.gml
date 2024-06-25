@@ -367,6 +367,33 @@ function set_item_value(argument0,argument1)
 				item_name_translated = "전술용 가방";
 				return 20;
 			break;
+			
+			
+			//무기류
+			case "Copper Sword":
+				item_name_translated = "구리 검";
+				return 10;
+			break;
+			
+			case "Dagger":
+				item_name_translated = "단검";
+				return 10;
+			break;
+			
+			case "Golden Sword":
+				item_name_translated = "황금 검";
+				return 10;
+			break;
+			
+			case "Throwing Knife":
+				item_name_translated = "투척용 단검";
+				return 10;
+			break;
+			
+			case "Poisoned Throwing Knife":
+				item_name_translated = "독발린 투척용 단검";
+				return 10;
+			break;
 		}
 	}
 }

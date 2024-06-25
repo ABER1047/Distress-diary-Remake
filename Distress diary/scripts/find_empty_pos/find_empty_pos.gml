@@ -62,11 +62,11 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 					}
 					
 					
-					var has_empty_pos = true, k = 0, kk = 0; //자리가 있는지 없는지를 반환해주는 임시 변수
+					var has_empty_pos = true; //자리가 있는지 없는지를 반환해주는 임시 변수
 					//회전상태 적용된 상태로 칸 체크
-					for(; k < tmp_item_height; k++)
+					for(var k = 0; k < tmp_item_height; k++)
 					{
-						for(kk = 0; kk < tmp_item_width; kk++)
+						for(var kk = 0; kk < tmp_item_width; kk++)
 						{
 							var target_pos_xx = ii+kk;
 							var target_pos_yy = i+k;
