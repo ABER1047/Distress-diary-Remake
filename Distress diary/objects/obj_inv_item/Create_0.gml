@@ -12,11 +12,16 @@ image_speed = 0;
 //x_pos = 0;
 //y_pos = 0;
 
-//아이템 위에 마우스 올려둠
-mouse_on = 0;
 
-//아이템 위치 옮기는 중
-moving_now = 0;
+
+
+if (!variable_instance_exists(id,"moving_now"))
+{
+	//아이템 위에 마우스 올려둠
+	mouse_on = 0;
+	//아이템 위치 옮기는 중
+	moving_now = 0;
+}
 moving_item_x_pos = 0;
 moving_item_y_pos = 0;
 is_moving_item_outside = 0;
@@ -53,6 +58,11 @@ is_moveable_pos = -4;
 //아이템 스프라이트 인덱스
 //sprite_index = -4;
 
+//아이템 레어도
+//rare_rate = 0;
+
+//스타 태그
+//startag = 0;
 
 //아이템 정보창 표기 시간
 item_info_window_timer = 0;

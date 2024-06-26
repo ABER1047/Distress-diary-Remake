@@ -7,8 +7,8 @@
 draw_primitive_begin(pr_trianglestrip);
 for(var i = 0; i < animation_frame; i++)
 {
-	draw_vertex_texture_color(xx1[i],yy1[i]-z,0,0,c_white,0.4*image_alpha);
-	draw_vertex_texture_color(xx2[i],yy2[i]-z,1,1,c_white,image_alpha*2);
+	draw_vertex_texture_color(xx1[i],yy1[i]-z,0,0,c_white,image_alpha);
+	draw_vertex_texture_color(xx2[i],yy2[i]-z,1,1,#B2BCC2,image_alpha*2);
 }
 draw_primitive_end();
 

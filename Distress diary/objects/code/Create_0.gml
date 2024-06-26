@@ -229,6 +229,8 @@ global.quickslot_index = 0; //선택된 퀵 슬롯
 global.quickslot_spr_ind = array_create(9,-4);//spr_ind값 보유
 global.quickslot_img_ind = array_create(9,-4);//img_ind값 보유
 global.quickslot_stack_num = array_create(9,-4);//아이템의 갯수 값 보유
+global.quickslot_rare = array_create(9,-4);//아이템의 가격에 따른 뒷 배경 색
+global.quickslot_startag = array_create(9,-4);//아이템 스타태그
 
 
 //플레이어가 바라보는 방향을 마우스 방향으로 고정

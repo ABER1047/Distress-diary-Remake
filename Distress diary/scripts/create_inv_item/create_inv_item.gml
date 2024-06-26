@@ -14,7 +14,8 @@
 ///@param height
 ///@param rotated
 ///@param searched
-function create_inv_item(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13)
+///@param StarTag
+function create_inv_item(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13,argument14)
 {
 	var tmp_parents_id = argument6;
 	var tmp_item_name = argument2;
@@ -35,6 +36,7 @@ function create_inv_item(argument0,argument1,argument2,argument3,argument4,argum
 	tmp_ins.item_weight = argument12;
 	tmp_ins.item_searched = argument13;
 	tmp_ins.item_value = set_item_value(tmp_item_name,tmp_ins);
+	tmp_ins.startag = argument14;
 	
 	
 	show_debug_message("create_inv_item : "+string(argument3));

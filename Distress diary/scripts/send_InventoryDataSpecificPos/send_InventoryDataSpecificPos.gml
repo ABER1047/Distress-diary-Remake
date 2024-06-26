@@ -40,7 +40,7 @@ function send_InventoryDataSpecificPos(argument0,argument1,argument2,argument3)
 			
 			//문자열로 데이터 압축 후 보내기
 			var tmp_spr_name = sprite_get_name_inv(inv_info_spr_ind[i][ii]);
-			var tmp_str = string(i)+"#"+string(ii)+"#"+string(tmp_spr_name)+"#"+string(inv_info_img_ind[i][ii])+"#"+string(inv_info_name[i][ii])+"#"+string(inv_info_name_compressed[i][ii])+"#"+string(inv_info_stack_num[i][ii])+"#"+string(inv_info_max_stack_num[i][ii])+"#"+string(inv_info_width[i][ii])+"#"+string(inv_info_height[i][ii])+"#"+string(inv_info_rotated[i][ii])+"#"+string(inv_info_weight[i][ii]);
+			var tmp_str = string(i)+"#"+string(ii)+"#"+string(tmp_spr_name)+"#"+string(inv_info_img_ind[i][ii])+"#"+string(inv_info_name[i][ii])+"#"+string(inv_info_name_compressed[i][ii])+"#"+string(inv_info_stack_num[i][ii])+"#"+string(inv_info_max_stack_num[i][ii])+"#"+string(inv_info_width[i][ii])+"#"+string(inv_info_height[i][ii])+"#"+string(inv_info_rotated[i][ii])+"#"+string(inv_info_weight[i][ii])+"#"+string(inv_info_startag[i][ii]);
 			buffer_write(global.inv_data_buffer, buffer_string, tmp_str); 
 			
 			send_all(global.inv_data_buffer);

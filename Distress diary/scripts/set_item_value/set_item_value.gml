@@ -71,6 +71,11 @@ function set_item_value(argument0,argument1)
 				item_name_translated = "수상한 액체";
 				return 3;
 			break;
+			
+			case "Purified Water":
+				item_name_translated = "정제된 물";
+				return 9;
+			break;
 		
 			case "Poison":
 				item_name_translated = "독극물";

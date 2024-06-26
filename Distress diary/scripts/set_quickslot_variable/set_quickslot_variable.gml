@@ -5,12 +5,15 @@
 ///@param spr_ind
 ///@param img_ind
 ///@param stacks
-function set_quickslot_variable(argument0,argument1,argument2,argument3)
+///@param rare
+///@param StarTag
+function set_quickslot_variable(argument0,argument1,argument2,argument3,argument4,argument5)
 {
 	var tmp_ind = argument0;
 	global.quickslot_spr_ind[tmp_ind] = argument1;//spr_ind값 보유
 	global.quickslot_img_ind[tmp_ind] = argument2;//img_ind값 보유
 	global.quickslot_stack_num[tmp_ind] = argument3;//아이템의 갯수 값 보유
-	
+	global.quickslot_rare[tmp_ind] = argument4; //아이템 가치에 의한 뒷 배경 색
+	global.quickslot_startag[tmp_ind] = argument5; //스타 태그
 	return tmp_ind;
 }

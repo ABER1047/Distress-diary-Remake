@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"send_InventoryDataSpecificPos",
   "parent":{
-    "name":"Multiplayer",
-    "path":"folders/스크립트/Multiplayer.yy",
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

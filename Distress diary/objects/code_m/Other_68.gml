@@ -509,8 +509,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 								inv_info_width[i][ii] = real(tmp_str[6]);//아이템 가로 길이
 								inv_info_height[i][ii] = real(tmp_str[7]);//아이템 세로 길이
 								inv_info_rotated[i][ii] = real(tmp_str[8]);//아이템 회전 유무
-								inv_info_weight[i][ii] = real(tmp_str[9]);//아이템 회전 유무
+								inv_info_weight[i][ii] = real(tmp_str[9]);//아이템 무게
 								inv_info_searched[i][ii] = 0;//아이템 서치됨
+								inv_info_startag[i][ii] = real(tmp_str[10]);//아이템 스타 태그
 							}
 						}
 					}
@@ -562,8 +563,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							inv_info_width[i][ii] = real(tmp_str[8]);//아이템 가로 길이
 							inv_info_height[i][ii] = real(tmp_str[9]);//아이템 세로 길이
 							inv_info_rotated[i][ii] = real(tmp_str[10]);//아이템 회전 유무
-							inv_info_weight[i][ii] = real(tmp_str[11]);//아이템 회전 유무
+							inv_info_weight[i][ii] = real(tmp_str[11]);//아이템 무게
 							inv_info_searched[i][ii] = 0;//아이템 서치됨
+							inv_info_startag[i][ii] = real(tmp_str[12]);//아이템 스타 태그
 						}
 					}
 					
@@ -683,6 +685,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 													inv_info_rotated[i][ii] = real(tmp_str[8]);//아이템 회전 유무
 													inv_info_weight[i][ii] = real(tmp_str[9]);//아이템 회전 유무
 													inv_info_searched[i][ii] = 0;//아이템 서치됨
+													inv_info_startag[i][ii] = real(tmp_str[10]);//아이템 서치됨
 												}
 											}
 										}

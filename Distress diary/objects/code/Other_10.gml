@@ -52,9 +52,11 @@ with(tmp_bubble_outline_effect)
 
 
 
-
-
-
+//인벤토리 창 ui사이즈 리셋
+with(obj_inv_ui)
+{
+	reload_inv = 1;
+}
 
 
 

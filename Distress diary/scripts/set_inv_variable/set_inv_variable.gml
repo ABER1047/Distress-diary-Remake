@@ -9,7 +9,8 @@
 ///@param stack_num
 ///@param rotated
 ///@param searched 
-function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7)
+///@param StarTag
+function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8)
 {
 	var item_rotated = argument6;
 	var tmp_spr_ind = argument3;
@@ -17,6 +18,31 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 	var item_name = set_item_info_values(tmp_spr_ind,tmp_img_ind);
 	var tmp_item_width = global.item_width;
 	var tmp_item_height = global.item_height;
+	var tmp_startag = argument8;
+	if (tmp_startag == undefined || tmp_startag < 0)
+	{
+		var tmp_rd_startag = irandom_range(1,100);
+		if (tmp_rd_startag <= 1)
+		{
+			tmp_startag = 4;
+		}
+		else if (tmp_rd_startag <= 3)
+		{
+			tmp_startag = 3;
+		}
+		else if (tmp_rd_startag <= 10)
+		{
+			tmp_startag = 2;
+		}
+		else if (tmp_rd_startag <= 35)
+		{
+			tmp_startag = 1;
+		}
+		else
+		{
+			tmp_startag = 0;
+		}
+	}
 
 	var tmp_ins = argument0;
 	var i = argument2;
@@ -52,6 +78,7 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 			inv_info_rotated[i][ii] = item_rotated; //아이템 회전 유무
 			inv_info_weight[i][ii] = global.item_weight; //아이템 무게
 			inv_info_searched[i][ii] = argument7; //아이템 서치됨
+			inv_info_startag[i][ii] = (global.item_max_stack_num == -4) ? tmp_startag : 0; //스타 태그 (스택이 가능한 아이템은 태그가 붙지 않음)
 		}
 	}
 	

@@ -18,7 +18,8 @@ if (instance_exists(obj_ui_parents))
 
 
 //임시 체력바 및 스태미나 바 그리기
-var scale = global.reversed_ratio_by_camera*0.5;
+var text_ratio = global.reversed_ratio_by_camera;
+var scale = text_ratio*0.5;
 
 //체력바 UI
 var hp_bar_ui_xx = xx+(16*scale);
@@ -74,11 +75,32 @@ for(var i = 0; i < 3; i++)
 
 // 버프/디버프 UI
 var tmp_icon_scale = 0.4*global.ratio_by_camera;
+var tmp_buff_max_time = [ -4, -4, -4, -4, -4, -4, 3, 10, 10, -4, -4, -4, 5, -4, -4, 3 ];
+var tmp_buff_time = [ -4, -4, -4, -4, -4, -4, (180-code.bleeding_timer)/60, (600-code.hunger_timer)/60, (600-code.hydration_timer)/60, -4, -4, -4, (300-code.hp_recovery_timer)/60, -4, -4, (180-code.poisoning_timer)/60 ];
+var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Powerless", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning" ];
+var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "과적", "골절", "출혈", "굶주림", "탈수", "저항", "무력함", "근력", "재생", "불운", "행운", "중독" ];
+var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+var tmp_buff_info = [ "이동 속도 저하", "이동 속도 +2 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력 "+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 감소", "행운 증가", "3초마다 -1 HP 감소" ];
+var tmp_info_length = 1;
+var tmp_real_width = tmp_icon_scale*20;
+var tmp_win_height = 60*text_ratio;
+var tmp_txt_size = 0.25;
+
 for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 {
 	if (global.apply_buff_effect[i])
 	{
 		var tmp_ui_xx = xx+xx_w-32*(global.ratio_by_camera+tmp_index*1.5), tmp_ui_yy = yy+196*global.ratio_by_camera;
+		var tmp_cal = 63*tmp_icon_scale*0.5;
+		var tmp_buff_timer_line_xx = tmp_ui_xx-tmp_cal, tmp_buff_timer_line_yy = tmp_ui_yy+30*tmp_icon_scale+1;
+		
+		//남은 시간 게이지 바 그리기
+		if (tmp_buff_time[i] != -4)
+		{
+			draw_line_width(tmp_buff_timer_line_xx,tmp_buff_timer_line_yy,tmp_buff_timer_line_xx+tmp_cal*2*(tmp_buff_time[i]/tmp_buff_max_time[i]),tmp_buff_timer_line_yy,tmp_icon_scale*4);
+		}
+		
+		//아이콘 그리기
 		draw_sprite_ext(spr_buff_ui,i,tmp_ui_xx,tmp_ui_yy,tmp_icon_scale,tmp_icon_scale,0,c_white,1);
 		tmp_index ++;
 	}
@@ -90,26 +112,16 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 	if (global.apply_buff_effect[i])
 	{
 		var tmp_ui_xx = xx+xx_w-32*(global.ratio_by_camera+tmp_index*1.5), tmp_ui_yy = yy+196*global.ratio_by_camera;
-		var tmp_real_width = tmp_icon_scale*20;
 		if (point_in_rectangle(mouse_x,mouse_y,tmp_ui_xx-tmp_real_width,tmp_ui_yy-tmp_real_width,tmp_ui_xx+tmp_real_width,tmp_ui_yy+tmp_real_width))
 		{
 			//뒷 배경 그리기
-			var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Disresistance", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning" ];
-			var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "과적", "골절", "출혈", "굶주림", "탈수", "저항", "비저항", "근력", "재생", "불운", "행운", "중독" ];
-			var tmp_my_p = global.my_player_ins_id[global.my_player_id];
-			var tmp_buff_info = [ "이동 속도 저하", "이동 속도 +2 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력"+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 감소", "행운 증가", "3초마다 -1 HP 감소" ];
-			var tmp_buff_time = [ -4, -4, -4, -4, -4, -4, floor((180-code.bleeding_timer)/60), floor((600-code.hunger_timer)/60), floor((600-code.hydration_timer)/60), -4, -4, -4, floor((300-code.hp_recovery_timer)/60), -4, -4, floor((180-code.poisoning_timer)/60) ];
 			var tmp_name_to_draw = string(tmp_buff_name[i]); //아이템명
-			var text_ratio = global.reversed_ratio_by_camera;
 			if (tmp_buff_name[i] != tmp_buff_name_translated[i])
 			{
 				tmp_name_to_draw = tmp_name_to_draw+" ("+string(tmp_buff_name_translated[i])+")";
 			}
 			var tmp_txt_width = max(string_width(tmp_buff_info[i]),string_width(tmp_name_to_draw))+2;
-			var tmp_info_length = 1;
 			var tmp_win_width = (tmp_txt_width*0.3+8)*text_ratio;
-			var tmp_win_height = 60*text_ratio;
-			var tmp_txt_size = 0.25;
 			draw_set_alpha(0.9);
 			draw_set_color(c_black);
 			draw_rectangle(mouse_x,mouse_y,mouse_x-tmp_win_width,mouse_y+tmp_win_height,false);
@@ -143,7 +155,7 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 			draw_sprite_ext(spr_ui,15,tmp_text_startx+8*text_ratio,tmp_slot_size_txt_yy+28*text_ratio,tmp_icon_size,tmp_icon_size,0,tmp_txt_col,1);
 		
 			//남은 시간
-			draw_text_kl_scale(tmp_text_startx+24*text_ratio,tmp_slot_size_txt_yy,convert_to_time(tmp_buff_time[i]),64,480,1,tmp_txt_col,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+			draw_text_kl_scale(tmp_text_startx+24*text_ratio,tmp_slot_size_txt_yy,convert_to_time(floor(tmp_buff_time[i])),64,480,1,tmp_txt_col,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 		}
 		
 		tmp_index ++;
@@ -154,7 +166,7 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 
 
 //퀵 슬롯 창 그리기
-var ui_scale = global.reversed_ratio_by_camera*0.5, global.is_mouse_on_quickslot = 9;
+var ui_scale = global.reversed_ratio_by_camera*0.5;
 var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = -4;
 if (!global.prohibit_movement_input)
 {
@@ -166,7 +178,7 @@ if (!global.prohibit_movement_input)
 			global.quickslot_index = tmp_val-1;
 		}
 	}
-	else if ((global.is_moving_item_now == -4 && mouse_check_button_released(mb_left)) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
+	else if ((global.is_moving_item_now == -4 && (mouse_check_button_released(mb_left) || mouse_check_button_pressed(mb_left))) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
 	{
 		tmp_slot_half_width = ui_scale*282;
 		tmp_slot_half_height = ui_scale*31.5;
@@ -180,22 +192,55 @@ if (!global.prohibit_movement_input)
 				{
 					if (mouse_check_button(mb_left))
 					{
+						//인벤에 있는 아이템 퀵 슬롯으로 옮기기
 						global.is_mouse_on_quickslot = i;
 						is_mouse_inside_quickslot = true;
 					}
-					else if (mouse_check_button_released(mb_left) && global.is_moving_item_now == -4)
+					
+					if (global.is_moving_item_now == -4)
 					{
-						//인벤토리 아이템을 드래그 중 아닐때
-						global.quickslot_index = i;
-						global.is_mouse_on_quickslot = -4;
+						var tmp_quickslot_spr = global.quickslot_spr_ind[i];
+						if (tmp_quickslot_spr != -4 && mouse_check_button_pressed(mb_left) && instance_exists(global.showing_inv))
+						{
+							//퀵 슬롯에 있는 아이템 인벤으로 옮기기
+							var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+							var tmp_quickslot_img = global.quickslot_img_ind[i], tmp_quickslot_stacks = global.quickslot_stack_num[i], tmp_quickslot_startag = global.quickslot_startag[i];
+							var tmp_item_name = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img);
+							var has_empty_pos = find_empty_pos(tmp_quickslot_spr,tmp_quickslot_img,global.item_width,global.item_height,tmp_quickslot_stacks,tmp_my_p);
+							
+							if (has_empty_pos == true) //인벤에 칸이 있는 경우
+							{
+								set_inv_variable(global.my_player_ins_id[global.my_player_id],global.inv_empty_xpos,global.inv_empty_ypos,tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.inv_empty_rotated,1,tmp_quickslot_startag);
+								
+								with(obj_inv_ui)
+								{
+									reload_inv = 1;
+								}
+							}
+							else
+							{
+								//아이템 떨구기
+								drop_item(tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.item_width,global.item_height,tmp_quickslot_startag);
+							}
+							
+							//퀵 슬롯 아이템 삭제
+							global.quickslot_spr_ind[i] = -4;
+							show_message_log("item_destroyed");
+								
+							//효과음
+							play_sound(draging_item,false,0.03);
+								
+							//후 처리
+							global.quickslot_index = i;
+							global.is_mouse_on_quickslot = -4;	
+						}
+						else if (mouse_check_button_released(mb_left))
+						{
+							//인벤토리 아이템을 드래그 중 아닐때
+							global.quickslot_index = i;
+							global.is_mouse_on_quickslot = -4;	
+						}
 					}
-				}
-		
-				if (global.show_wall_hitbox)
-				{
-					draw_set_color(c_red);
-					draw_set_alpha(1);
-					draw_circle(tmp_slot_xx,tmp_ui_yy-tmp_slot_half_height,4,false);
 				}
 			}
 		}
@@ -246,7 +291,19 @@ for(var i = 0; i < 9; i++)
 		{
 			//아이템 아이콘 그리기
 			draw_sprite_ext(global.quickslot_spr_ind[i],global.quickslot_img_ind[i],tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,1);
-		
+			
+			//스타 태그 그리기
+			if (global.quickslot_startag[i] > 0)
+			{
+				draw_sprite_ext(spr_rare_tag,global.quickslot_startag[i]-1,tmp_slot_xx-tmp_slot_half_height*0.6,tmp_ui_yy+tmp_slot_half_height*1.6,ui_scale*0.5,ui_scale*0.5,0,c_white,1);
+			}
+			
+			//퀵 슬롯 창 테두리 그리기
+			if (i != tmp_img_ind && global.quickslot_rare[i] > 0)
+			{
+				draw_sprite_ext(spr_quickslot_outline,global.quickslot_rare[i]-1.5,tmp_slot_xx-1,tmp_ui_yy,ui_scale,ui_scale,0,c_white,0.6);
+			}
+			
 			//아이템 갯수 그리기
 			if (!tmp_check)
 			{

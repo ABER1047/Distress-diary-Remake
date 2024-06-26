@@ -21,7 +21,7 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 	var real_startx = xx+(parents_id.x_pos);
 	var real_starty = yy+(parents_id.y_pos);
 	var startx = real_startx+(x_pos*slot_size);
-	var starty = real_starty+(y_pos*slot_size);
+	var starty = real_starty+(y_pos*slot_size), endy = real_starty+(y_pos+tmp_item_height)*slot_size;
 	
 	//해당 인벤토리의 변수들을 보유하고 있는 실제 인스턴스
 	var variable_owner_ins = parents_id.variable_owner;
@@ -34,18 +34,22 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		if (item_value < 10)
 		{
 			tmp_bg_color = c_white;
+			rare_rate = 0;
 		}
 		else if (item_value < 15)
 		{
 			tmp_bg_color = #3898FF;
+			rare_rate = 1;
 		}
 		else if (item_value < 28)
 		{
 			tmp_bg_color = #8C52A8;
+			rare_rate = 2;
 		}
 		else
 		{
 			tmp_bg_color = #FFBF36;
+			rare_rate = 3;
 		}
 	}
 	draw_set_alpha(parents_id.image_alpha*0.15*(1+mouse_on));
@@ -68,17 +72,25 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		}
 		
 		//아이템 이미지 그리기
+		var item_icon_xx = startx+(slot_size*tmp_item_width*0.5), item_icon_yy = starty+(slot_size*tmp_item_height*0.5);
 		var img_icon_scale = (image_xscale < image_yscale) ? image_xscale : image_yscale;
-		draw_sprite_ext(sprite_index,image_index,startx+(slot_size*tmp_item_width*0.5),starty+(slot_size*tmp_item_height*0.5),img_icon_scale,img_icon_scale,-90*item_rotated,image_blend,parents_id.image_alpha);
+		draw_sprite_ext(sprite_index,image_index,item_icon_xx,item_icon_yy,img_icon_scale,img_icon_scale,-90*item_rotated,image_blend,parents_id.image_alpha);
 		
 		//아이템 이름
-		draw_text_kl_scale(startx+4*text_ratio,starty-24*text_ratio,string(item_name_compressed),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.275,0.275,0,true);
+		var tmp_item_name_xx = startx+4*text_ratio;
+		draw_text_kl_scale(tmp_item_name_xx,starty-24*text_ratio,string(item_name_compressed),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.275,0.275,0,true);
 		
 		//아이템 스택 갯수 표기
 		if (max_stack_num > 1)
 		{
 			var txt_max_stack = (max_stack_num != 9999) ? "/"+string(max_stack_num) : "";
 			draw_text_kl_scale(startx+(slot_size)-(4*text_ratio),starty+(slot_size)-(36*text_ratio),string(stack_num)+string(txt_max_stack),64,-1,parents_id.image_alpha,c_white,0,1,font_normal,0.25,0.25,0,true);
+		}
+		
+		//아이템 스타 태그 표시
+		if (startag > 0)
+		{
+			draw_sprite_ext(spr_rare_tag,startag-1,tmp_item_name_xx+4*text_ratio,endy-6*text_ratio,text_ratio*0.3,text_ratio*0.3,0,c_white,1);
 		}
 	}
 	else
@@ -288,7 +300,24 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		}
 		
 		//아이템 가치
-		draw_text_kl_scale(tmp_text_startx+tmp_win_width-8*text_ratio,tmp_slot_size_txt_yy,"가치 : "+string(item_value),64,480,1,tmp_txt_col,-1,1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+		var additional_value_by_startag = item_value;
+		if (startag == 1)
+		{
+			additional_value_by_startag = string(additional_value_by_startag)+"(+"+string(floor(item_value*0.2))+")";
+		}
+		else if (startag == 2)
+		{
+			additional_value_by_startag = string(additional_value_by_startag)+"(+"+string(floor(item_value*0.5))+")";
+		}
+		else if (startag == 3)
+		{
+			additional_value_by_startag = string(additional_value_by_startag)+"(+"+string(item_value)+")";
+		}
+		else if (startag == 4)
+		{
+			additional_value_by_startag = string(additional_value_by_startag)+"(+"+string(item_value*2)+")";
+		}
+		draw_text_kl_scale(tmp_text_startx+tmp_win_width-8*text_ratio,tmp_slot_size_txt_yy+28*text_ratio,"가치 : "+string(additional_value_by_startag),64,480,1,tmp_txt_col,-1,1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 
 		
 		//아이템 무게 (아이콘)

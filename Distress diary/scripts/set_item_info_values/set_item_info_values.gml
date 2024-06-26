@@ -465,12 +465,10 @@ function set_item_info_values(argument0,argument1)
 			case 2:
 				tmp_name = "Chips";
 				item_weight = 0.007;
-				item_width = 2;
-				item_height = 2;
 			break;
 			
 			case 3:
-				tmp_short_name = "Saus";
+				tmp_short_name = "Meat";
 				tmp_name = "Sausage";
 				item_weight = 0.25;
 				item_height = 2;
