@@ -20,7 +20,7 @@ function find_item_pos(argument0,argument1)
 		{
 			for(var ii = 0; ii < tmp_inv_width; ii++) //width (x)
 			{			
-				var tmp_spr_ind_real = tmp_owner.inv_info_spr_ind[i][ii];
+				var tmp_spr_ind_real = tmp_variable_owner.inv_info_spr_ind[i][ii];
 				if (tmp_spr_ind_real != -4 && tmp_item_name == tmp_variable_owner.inv_info_name[i][ii])
 				{
 					global.inv_empty_xpos = ii;
