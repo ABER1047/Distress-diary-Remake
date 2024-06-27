@@ -51,20 +51,22 @@ if (pusher != -4)
 			//일정 시간 이상 밀었을 때
 			if (tmp_is_my_player_pushing && pushing_timer > 30 && pushing_timer < 999)
 			{
-				//이동할 칸이 있는 경우
-				if (abs(tmp_xx) > abs(tmp_yy))
+				//이동할 칸이 있는 경우 이동
+				var tmp_val = four_of_angle(point_direction(x,y-64,tmp_ins.x,tmp_ins.y))-2;
+				tmp_val += (tmp_val < 0) ? 4 : 0;
+				
+
+				if (tmp_val == global.n_dir)
 				{
-					var tmp_cal = tmp_scale*sign(tmp_xx);
-					var tmp_chk_xx = x+tmp_cal;
-					origin_xx += (!place_meeting(tmp_chk_xx,y,obj_nextroom) && !place_meeting(tmp_chk_xx,y,obj_wall_parents) && !place_meeting(tmp_chk_xx,y,obj_mob_parents)) ? tmp_cal : 0;
-					send_InstanceMuchVariableData(id,"origin_xx,pushing_timer",string(origin_xx)+",999");
-				}
-				else
-				{
-					var tmp_cal = tmp_scale*sign(tmp_yy);
-					var tmp_chk_yy = y+tmp_cal;
-					origin_yy += (!place_meeting(x,tmp_chk_yy,obj_nextroom) && !place_meeting(x,tmp_chk_yy,obj_wall_parents)  && !place_meeting(x,tmp_chk_yy,obj_mob_parents)) ? tmp_cal : 0;
-					send_InstanceMuchVariableData(id,"origin_yy,pushing_timer",string(origin_yy)+",999");
+					var tmp_dir = tmp_val*90;
+					var tmp_to_move_xx = lengthdir_x(tmp_scale,tmp_dir), tmp_to_move_yy = lengthdir_y(tmp_scale,tmp_dir);
+					var tmp_chk_xx = x+lengthdir_x(tmp_scale,tmp_dir), tmp_chk_yy = y+lengthdir_y(tmp_scale,tmp_dir);
+					if (!place_meeting(tmp_chk_xx,tmp_chk_yy,obj_nextroom) && !place_meeting(tmp_chk_xx,tmp_chk_yy,obj_wall_parents)  && !place_meeting(tmp_chk_xx,tmp_chk_yy,obj_mob_parents))
+					{
+						origin_xx += tmp_to_move_xx;
+						origin_yy += tmp_to_move_yy;
+						send_InstanceMuchVariableData(id,"origin_xx,origin_yy,pushing_timer",string(origin_xx)+","+string(origin_yy)+",999");
+					}
 				}
 	
 	
@@ -72,16 +74,8 @@ if (pusher != -4)
 				//블럭 이동 효과음
 				play_sound_pos(move_block_sfx,false,0.1,x,y,1280,false,-4,-4);
 				play_sound_pos(choose(jump_start1_sfx,jump_start2_sfx),false,0.1,x,y,1280,false,-4,-4);
-	
-	
-				//사용한 스테미나 일부 회복
-				var tmp_recovery = 25 - ((global.hydration <= 10) ? (26-global.hydration*2.5) : 0);
-				if (tmp_recovery > 0 && tmp_ins.stamina < (global.max_stamina)-tmp_recovery)
-				{
-					tmp_ins.stamina += tmp_recovery;
-				}
 
-			
+
 			
 				//블럭 이동 애니메이션 재생 시작
 				pushing_timer = 999;
@@ -111,6 +105,8 @@ if (pusher != -4)
 				
 				//좌우로 흔들림 애니메이션 종료
 				pushing_animation = false;
+				draw_xx = 0;
+				draw_yy = 0;
 			}
 			else
 			{

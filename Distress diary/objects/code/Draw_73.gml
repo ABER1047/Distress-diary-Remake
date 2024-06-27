@@ -36,6 +36,20 @@ if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(glo
 	surface_reset_target();
 
 	draw_surface_ext(global.outter_room_surf,xx,yy,1,1,0,c_black,1);
+	
+	if (global.graphics_quality > 1)
+	{
+		with(obj_bubble_effect)
+		{
+			if (id != other.id && y+image_xscale*32 <= tmp_yy2_surf)
+			{
+				stop_draw_event = true;
+				draw_set_color(image_blend);
+				draw_set_alpha(image_alpha);
+				draw_circle(x,y,image_xscale*32,false);
+			}
+		}
+	}
 }
 
 
@@ -76,6 +90,39 @@ for(var i = -1; i < floor((global.n_room_height-1)*0.5); i++)
 
 
 
+//불꽃-스파크용 서피스
+if (surface_exists(global.fire_line_surf) && surface_exists(global.light_surf))
+{
+	surface_set_target(global.fire_line_surf);
+	draw_clear_alpha(c_black,0);
+	draw_set_alpha(1);
+	with(obj_fire_line_effect)
+	{
+		if (id != other.id)
+		{
+			for(var i = 0; i < 7; i++)
+			{
+				//선 그리기
+				draw_set_color(image_blend);
+				draw_line_width(line_xx[i]-xx,line_yy[i]-yy,line_xx[i+1]-xx,line_yy[i+1]-yy,3);
+				draw_set_color(merge_color(image_blend,c_white,0.7));
+				draw_line_width(line_xx[i]-xx,line_yy[i]-yy,line_xx[i+1]-xx,line_yy[i+1]-yy,1);
+			}
+		}
+	}
+	surface_reset_target();
+	
+	surface_set_target(global.light_surf);
+	gpu_set_blendmode(bm_subtract);
+	draw_surface_ext(global.fire_line_surf,0,0,1,1,0,c_white,1);
+	gpu_set_blendmode(bm_normal);
+	surface_reset_target();
+
+	draw_surface_ext(global.fire_line_surf,xx,yy,1,1,0,c_white,1);
+}
+
+
+
 
 
 //라이트 서피스 그리기
@@ -85,11 +132,6 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	draw_surface_ext(global.light_surf,xx,yy,1,1,0,c_white,1);
 	gpu_set_blendmode(bm_normal);
 }
-
-
-
-
-
 
 
 
@@ -303,7 +345,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				var rd_choose = choose(0,4,5,5,2,2,2);
+				var rd_choose = choose(0,4,4,4,5,2);
 				if (rd_choose == 0)
 				{
 					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,9,false,-4,-4);

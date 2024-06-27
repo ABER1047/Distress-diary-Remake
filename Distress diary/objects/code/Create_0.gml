@@ -182,6 +182,9 @@ global.time_is_day = true;
 //바닥 액체 그리기용 서피스
 global.liquid_on_floor_surf = surface_create(3840,2160);
 
+//불꽃-스파크용 서피스
+global.fire_line_surf = surface_create(3840,2160);
+
 
 //그래픽 퀄리티
 global.graphics_quality = 2; // 2 == 최고품질 / 1 == 보통 / 0 == 최고 성능

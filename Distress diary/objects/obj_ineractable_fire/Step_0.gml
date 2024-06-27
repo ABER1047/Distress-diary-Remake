@@ -59,12 +59,25 @@ if (!stop_cal_by_pos_statement)
 		
 		
 		//불 이펙트 생성
-		if (global.graphics_quality >= 2 && percentage_k(5))
+		if (global.graphics_quality >= 1)
 		{
 			var tmp_color = [ #DD4C4C,#FFAC4B, #0BE5C4,#D9FFDE ];
-			var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-fire_yy[image_index]-32,1,tmp_color[fire_type*2],tmp_color[fire_type*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
-			tmp_ins.image_xscale = 0.7*fire_scale[image_index];
-			tmp_ins.image_yscale = 0.7*fire_scale[image_index];
+			if (global.graphics_quality >= 2 && percentage_k(5))
+			{
+				var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-fire_yy[image_index]-32,1,tmp_color[fire_type*2],tmp_color[fire_type*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
+				tmp_ins.image_xscale = 0.5*fire_scale[image_index];
+				tmp_ins.image_yscale = 0.5*fire_scale[image_index];
+			}
+			
+			if (percentage_k(1))
+			{
+				var tmp_ins = instance_create_depth(x,y-fire_yy[image_index]-32,-1,obj_fire_line_effect);
+				tmp_ins.image_blend = tmp_color[fire_type*2+1];
+				tmp_ins.direction = 90;
+				tmp_ins.rd_dir_increasement = 90;
+				tmp_ins.start_dir = 90;
+				tmp_ins.speed = irandom_range(20,30)/10;
+			}
 		}
 	}
 	else

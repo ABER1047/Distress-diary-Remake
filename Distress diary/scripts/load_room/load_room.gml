@@ -33,6 +33,9 @@ function load_room(argument0,argument1)
 	//데미지 로그 ui지우기
 	instance_destroy(obj_damage_display);
 	
+	//모든 이펙트 삭제
+	instance_destroy(obj_effect_parents);
+	
 	
 
 	//바닥 타일 이미지 재랜덤화
@@ -51,12 +54,12 @@ function load_room(argument0,argument1)
 	
 	
 	//가로 벽 2개 생성
-	global.outside_of_map_wall[0] = instance_create_depth(tmp_xx-48,tmp_yy-global.n_room_height*0.5*tmp_sprite_size,0,obj_wall_parents);
+	global.outside_of_map_wall[0] = instance_create_depth(tmp_xx-48,tmp_yy-global.n_room_height*0.5*tmp_sprite_size,-9999,obj_wall_parents);
 	global.outside_of_map_wall[0].sprite_index = spr_wall_mask_upper;
 	global.outside_of_map_wall[0].image_xscale = (global.n_room_width+2)*tmp_scale;
 	global.outside_of_map_wall[0].image_yscale = tmp_scale;
 	
-	global.outside_of_map_wall[1] = instance_create_depth(tmp_xx-48,tmp_yy+(global.n_room_height*0.5+0.5)*tmp_sprite_size,0,obj_wall_parents);
+	global.outside_of_map_wall[1] = instance_create_depth(tmp_xx-48,tmp_yy+(global.n_room_height*0.5+0.5)*tmp_sprite_size,-9999,obj_wall_parents);
 	global.outside_of_map_wall[1].sprite_index = spr_wall_mask_bottom;
 	global.outside_of_map_wall[1].image_xscale = (global.n_room_width+2)*tmp_scale;
 	global.outside_of_map_wall[1].image_yscale = tmp_scale;
@@ -64,12 +67,12 @@ function load_room(argument0,argument1)
 	
 	
 	//세로 벽 2개 생성
-	global.outside_of_map_wall[2] = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-128,tmp_yy,0,obj_wall_parents);
+	global.outside_of_map_wall[2] = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-128,tmp_yy,-9999,obj_wall_parents);
 	global.outside_of_map_wall[2].sprite_index = spr_wall_mask_left;
 	global.outside_of_map_wall[2].image_xscale = tmp_scale;
 	global.outside_of_map_wall[2].image_yscale = (global.n_room_height+2)*tmp_scale;
 	
-	global.outside_of_map_wall[3] = instance_create_depth(tmp_xx+global.n_room_width*0.5*tmp_sprite_size+32,tmp_yy,0,obj_wall_parents);
+	global.outside_of_map_wall[3] = instance_create_depth(tmp_xx+global.n_room_width*0.5*tmp_sprite_size+32,tmp_yy,-9999,obj_wall_parents);
 	global.outside_of_map_wall[3].sprite_index = spr_wall_mask_right;
 	global.outside_of_map_wall[3].image_xscale = tmp_scale;
 	global.outside_of_map_wall[3].image_yscale = (global.n_room_height+2)*tmp_scale;

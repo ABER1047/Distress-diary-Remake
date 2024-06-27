@@ -24,8 +24,11 @@ global.bubble_surf = surface_create(tmp_w,tmp_h);
 //바닥 액체 그리기용 서피스
 global.liquid_on_floor_surf = surface_create(tmp_w,tmp_h);
 
-
+//룸 바깥 가림막 서피스
 global.outter_room_surf = surface_create(tmp_w,tmp_h);
+
+//불꽃-스파크용 서피스
+global.fire_line_surf = surface_create(tmp_w,tmp_h);
 
 
 if (surface_exists(application_surface))

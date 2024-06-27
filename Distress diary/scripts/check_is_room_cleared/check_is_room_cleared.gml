@@ -40,7 +40,7 @@ function check_is_room_cleared()
 		{
 			if (!stop_cal_by_pos_statement)
 			{
-				is_cleared = true;
+				keep_activate = true;
 			}
 		}
 	}

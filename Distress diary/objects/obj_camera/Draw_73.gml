@@ -149,13 +149,13 @@ for(var i = 0, tmp_index = 0; i < array_length(global.apply_buff_effect); i++)
 		
 			var tmp_txt_col = merge_color(c_white,c_black,0.3);
 			var tmp_icon_size = text_ratio*0.25;
-			var tmp_slot_size_txt_yy = tmp_text_starty+tmp_info_length*25*text_ratio;
+			var tmp_slot_size_txt_yy = tmp_text_starty+tmp_info_length*28*text_ratio;
 
 			//남은 시간 (아이콘)
-			draw_sprite_ext(spr_ui,15,tmp_text_startx+8*text_ratio,tmp_slot_size_txt_yy+28*text_ratio,tmp_icon_size,tmp_icon_size,0,tmp_txt_col,1);
+			draw_sprite_ext(spr_ui,15,tmp_text_startx+8*text_ratio,tmp_slot_size_txt_yy+29*text_ratio,tmp_icon_size,tmp_icon_size,0,tmp_txt_col,1);
 		
 			//남은 시간
-			draw_text_kl_scale(tmp_text_startx+24*text_ratio,tmp_slot_size_txt_yy,convert_to_time(floor(tmp_buff_time[i])),64,480,1,tmp_txt_col,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+			draw_text_kl_scale(tmp_text_startx+20*text_ratio,tmp_slot_size_txt_yy,convert_to_time(floor(tmp_buff_time[i])),64,480,1,tmp_txt_col,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 		}
 		
 		tmp_index ++;

@@ -18,19 +18,19 @@ for(var i = 0; i < global.n_room_width; i++)
 {
 	for(var ii = 0; ii < global.n_room_height; ii++)
 	{
-		//바닥 타일 그리기
-		draw_sprite_ext(spr_tiles,n_wall_type,tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,0,c_white,1);
-		
 		//타일 깨진 효과
-		if (rd_tile_break_ef[i][ii] >= 0)
+		if (global.graphics_quality > 0)
 		{
-			draw_sprite_ext(spr_tiles_breaks,rd_tile_break_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_break_ef_ang[i][ii],c_white,0.35);
-		}
+			if (rd_tile_break_ef[i][ii] >= 0)
+			{
+				draw_sprite_ext(spr_tiles_breaks,rd_tile_break_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_break_ef_ang[i][ii],c_white,0.35);
+			}
 		
-		//타일 이끼 효과
-		if (rd_tile_other_ef[i][ii] >= 0)
-		{
-			draw_sprite_ext(spr_tiles_grass,rd_tile_other_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_other_ef_ang[i][ii],c_white,1);
+			//타일 이끼 효과
+			if (global.graphics_quality > 1 && rd_tile_other_ef[i][ii] >= 0)
+			{
+				draw_sprite_ext(spr_tiles_grass,rd_tile_other_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_other_ef_ang[i][ii],c_white,1);
+			}
 		}
 	}
 	
@@ -67,13 +67,13 @@ with(obj_explosion_effect_on_ground)
 
 
 //바닥 액체 그리기
-if (global.graphics_quality > 0 && surface_exists(global.liquid_on_floor_surf))
+if (surface_exists(global.liquid_on_floor_surf))
 {
 	surface_set_target(global.liquid_on_floor_surf);
 	draw_clear_alpha(c_black,0);
 	with(obj_floor_effect_parents)
 	{
-		if (id != other.id && object_index != obj_explosion_effect_on_ground && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
+		if ((global.graphics_quality > 0 || object_index != obj_blood_effect) && id != other.id && object_index != obj_explosion_effect_on_ground && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
 		{
 			var tmp_color = #7A213A;
 			if (object_index == obj_poison_effect)

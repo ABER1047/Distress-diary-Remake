@@ -138,6 +138,11 @@ if (global.chat_activated)
 						else if (i == 4) //hitbox on-off
 						{
 							global.show_wall_hitbox = !global.show_wall_hitbox;
+							for(var i = 0; i < 4; i++)
+							{
+								global.outside_of_map_wall[i].visible = global.show_wall_hitbox;
+								global.outside_of_map_wall[i].image_alpha = 0.1;
+							}
 							show_message_log("- 벽 히트박스 표시 : "+string(global.show_wall_hitbox));
 						}
 						else if (i == 5) //틱레이트 설정

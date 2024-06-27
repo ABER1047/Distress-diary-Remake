@@ -1,20 +1,23 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if (sprite_exists(sprite_index))
+if (!stop_draw_event)
 {
-	draw_self();
-	if (image_index > 8)
+	if (sprite_exists(sprite_index))
 	{
-		instance_destroy();
-	}
+		draw_self();
+		if (image_index > 8)
+		{
+			instance_destroy();
+		}
 	
-	image_angle -= hspeed*1.5;
-}
-else
-{
-	draw_set_color(image_blend);
-	draw_set_alpha(image_alpha);
-	draw_circle(x,y,image_xscale*32,false);
+		image_angle -= hspeed*1.5;
+	}
+	else
+	{
+		draw_set_color(image_blend);
+		draw_set_alpha(image_alpha);
+		draw_circle(x,y,image_xscale*32,false);
+	}
 }
 

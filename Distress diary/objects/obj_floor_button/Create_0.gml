@@ -13,3 +13,4 @@ image_speed = 0;
 
 
 
+keep_activate = false;
