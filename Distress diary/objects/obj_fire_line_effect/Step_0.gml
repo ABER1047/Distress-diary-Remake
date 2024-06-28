@@ -24,6 +24,6 @@ direction += angle_difference(rd_dir_increasement,direction)*0.1;
 rd_dir_increasement_timer ++;
 if (rd_dir_increasement_timer > 60)
 {
-	rd_dir_increasement = start_dir+irandom_range(-35,35);
+	rd_dir_increasement = start_dir+irandom_range(-65,65);
 	rd_dir_increasement_timer -= irandom_range(60,90);
 }

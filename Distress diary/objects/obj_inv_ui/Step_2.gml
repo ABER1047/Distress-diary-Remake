@@ -24,7 +24,7 @@ if (search_item)
 						searching_sfx = play_sound(item_searching_sfx,true,0.1);
 					}
 				
-					tmp_owner.inv_info_searched[i][ii] += 1/global.searching_time;
+					tmp_owner.inv_info_searched[i][ii] += 1/global.searching_speed;
 					repeat_for = 1;
 				}
 				else

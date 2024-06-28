@@ -20,3 +20,10 @@ with(tmp_bubble_outline_effect)
 		surface_free(bubble_surf);
 	}
 }
+
+
+//draw_circular_bar()함수용 서피스
+for(var i = 0; i < array_length(global.circular_bar_surf); i++)
+{
+	surface_free(global.circular_bar_surf[i]);
+}

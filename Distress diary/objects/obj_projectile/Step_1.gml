@@ -67,8 +67,5 @@ if (global.graphics_quality > 0)
 		//깊이 설정
 		var tmp_depth = y+lengthdir_y(40,direction+180);
 		depth = (y > tmp_depth) ? -floor(y) : -tmp_depth;
-		
-		//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
-		statement_by_pos();
 	}
 }

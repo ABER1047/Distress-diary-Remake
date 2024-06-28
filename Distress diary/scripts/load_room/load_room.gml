@@ -104,6 +104,11 @@ function load_room(argument0,argument1)
 	
 	//내 방 위치정보 전송
 	send_MyRoomPos();
+	with(global.my_player_ins_id[global.my_player_id])
+	{
+		my_pos_xx = global.n_player_room_xx[obj_id_player_only];
+		my_pos_yy = global.n_player_room_yy[obj_id_player_only];
+	}
 	
 	
 	for(var i = 0; i < 4; i++)
@@ -145,5 +150,9 @@ function load_room(argument0,argument1)
 				tmp_ins.ins_wall[tmp_ind] = instance_create_depth(tmp_portal_xx+tmp_comp_xx+lengthdir_x(ii*144,tmp_img_ang),tmp_portal_yy+48+lengthdir_y(ii*144,tmp_img_ang),depth,obj_wall_nearby_door);
 			}
 		}
-	}	
+	}
+	
+	
+	//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+	load_object_by_pos(60);
 }

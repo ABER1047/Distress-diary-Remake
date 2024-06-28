@@ -1,5 +1,5 @@
 /// @description Insert description here
-var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+var tmp_my_p = (global.my_player_id < array_length(global.my_player_ins_id)) ? global.my_player_ins_id[global.my_player_id] : global.my_player_ins_id[0];
 
 
 //사운드 볼륨 조절용 거리 값
@@ -18,6 +18,24 @@ if (array_length(global.my_player_ins_id) > global.my_player_id)
 if (array_length(global.my_player_ins_id) < instance_number(obj_player))
 {
 	get_all_players_ins_id();
+}
+
+
+//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+if (global.load_map_repeater > 0)
+{
+	var tmp_obj_ind = string_split(global.add_my_pos_statement_obj_ind_list,"#");
+	for(var i = 0; i < array_length(tmp_obj_ind); i++)
+	{
+		with(asset_get_index(tmp_obj_ind[i]))
+		{
+			if (id != other.id)
+			{
+				statement_by_pos();
+			}
+		}
+	}
+	global.load_map_repeater --;
 }
 
 
@@ -56,10 +74,8 @@ if (global.time_increment < global.time_increment_timer)
 
 
 //스테이터스 시스템
-global.attack_damage = (3)*(1+global.apply_buff_effect[3]*0.25-global.apply_buff_effect[2]*0.25); //데미지 계산
-global.knockback_power = (16); //넉백 파워
-global.defence_power = (global.apply_buff_effect[9] - global.apply_buff_effect[10])*2.5; //방어력
-global.over_weight = 10 + (global.apply_buff_effect[11]*10); //최대 중량
+global.defence_power = (sign(global.buff_left_time[9]) - sign(global.buff_left_time[10]))*2.5; //방어력
+global.over_weight = 10 + (sign(global.buff_left_time[11])*10); //최대 중량
 
 //체력 및 스테미나가 최대치를 넘지 않도록 조정
 with(tmp_my_p)
@@ -78,17 +94,39 @@ with(tmp_my_p)
 
 
 // 버프/디버프 시스템
-if (global.apply_buff_effect[0]) //속도 저하 (속도 증가 효과는 플레이어 오브젝트에서 따로 처리)
+for(var i = 0; i < array_length(global.buff_left_time); i++)
 {
-	global.movement_vspeed += (0 - global.movement_vspeed)*0.2;
-	global.movement_hspeed += (0 - global.movement_hspeed)*0.2;
-	global.apply_buff_effect[0] = false;
+	if (global.buff_left_time[i] > 0)
+	{
+		global.buff_timer[i] ++;
+		global.buff_left_time[i] --;
+		if (global.buff_left_time[i] <= 1)
+		{
+			global.buff_timer[i] = 0;
+			global.buff_max_left_time[i] = 1;
+		}
+	}
 }
 
-//과적
-global.apply_buff_effect[4] = (global.my_weight > 10);
+//이속 저하 - 슬라임 점액질 충돌 판정
+with(obj_mob_parents)
+{
+	if (z <= 0 && place_meeting(x,y,obj_mucus_effect))
+	{
+		_speed += (0 - _speed)*0.2;
+		
+		if (id == tmp_my_p)
+		{
+			buff_activate(0,60);
+		}
+	}
+}
 
-if (global.apply_buff_effect[5]) //골절
+
+//과적
+global.buff_left_time[4] = (global.my_weight > 10);
+
+if (global.buff_left_time[5] > 0) //골절
 {
 	if ((tmp_my_p.zspeed > 0 && tmp_my_p.z == 0) || (global.n_running && abs(global.movement_vspeed)+abs(global.movement_hspeed) >= global.max_movement_speed*0.91))
 	{
@@ -100,79 +138,53 @@ if (global.apply_buff_effect[5]) //골절
 	global.movement_vspeed += (0 - global.movement_vspeed)*0.01;
 	global.movement_hspeed += (0 - global.movement_hspeed)*0.01;
 }
-if (global.apply_buff_effect[6]) //출혈
+
+if (global.buff_timer[6] > 180) //3초당 -1.5씩 체력 감소 (초당 0.5)
 {
-	bleeding_timer ++;
-	if (bleeding_timer > 180) //3초당 -1.5씩 체력 감소 (초당 0.5)
-	{
-		give_damage(tmp_my_p,1.5,true,0,x,y,10);
-		bleeding_timer = 0;
-	}
+	give_damage(tmp_my_p,1.5,true,0,x,y,10);
+	global.buff_timer[6] = 0;
 }
+
 
 //배고픔
-global.apply_buff_effect[7] = (global.hunger <= 10);
-if (global.apply_buff_effect[7])
+global.buff_left_time[7] = (global.hunger <= 10);
+if (global.buff_timer[7] > 600) //매 10초마다 배고픔에 비례하여 체력 감소 (최대 10초당 6씩 = 초당 0.6)
 {
-	hunger_timer ++;
-	if (hunger_timer > 600) //매 10초마다 배고픔에 비례하여 체력 감소 (최대 10초당 6씩 = 초당 0.6)
-	{
-		tmp_my_p.hp -= (6-global.hunger*0.5);
-		hunger_timer = 0;
-	}
+	tmp_my_p.hp -= (6-global.hunger*0.5);
+	global.buff_timer[7] = 0;
 }
 
+
 //목마름
-global.apply_buff_effect[8] = (global.hydration <= 10);
-if (global.apply_buff_effect[8])
+global.buff_left_time[8] = (global.hydration <= 10);
+if (global.buff_timer[8] > 600) //매 10초마다 목마름에 비례하여 체력 감소 (최대 10초당 2씩 = 초당 0.2)
 {
-	hydration_timer ++;
-	if (hydration_timer > 600) //매 10초마다 목마름에 비례하여 체력 감소 (최대 10초당 2씩 = 초당 0.2)
-	{
-		tmp_my_p.hp -= (2-global.hydration*0.1);
-		hydration_timer = 0;
-	}
+	tmp_my_p.hp -= (2-global.hydration*0.1);
+	global.buff_timer[8] = 0;
 }
+
 
 
 //체력 재생
-if (global.apply_buff_effect[12])
+if (global.buff_timer[12] > 300) //매 5초마다 +2씩 체력 재생 (초당 0.4)
 {
-	hp_recovery_timer ++;
-	if (hp_recovery_timer > 300) //매 5초마다 +2씩 체력 재생 (초당 0.4)
-	{
-		tmp_my_p.hp += 2;
-		hp_recovery_timer = 0;
-	}
+	tmp_my_p.hp += 2;
+	global.buff_timer[12] = 0;
 }
-else
-{
-	hp_recovery_timer = 0;
-}
+
+//행운
+global.luck = (sign(global.buff_left_time[14])-sign(global.buff_left_time[13]))*2;
+
+
 
 //중독
-if (global.apply_buff_effect[15])
+if (global.buff_timer[15] > 180) //매 3초마다 -1씩 체력 감소 (초당 0.33...)
 {
-	poisoning_timer ++;
-	if (poisoning_timer > 180) //매 3초마다 -1씩 체력 감소 (초당 0.33...)
-	{
-		tmp_my_p.hp -= 1;
-		poisoning_timer = 0;
-	}
+	tmp_my_p.hp -= 1;
+	global.buff_timer[15] = 0;
 }
 
 
+//아이템 서칭
+global.searching_speed = 100*(1-sign(global.buff_left_time[16])*0.3);
 
-//슬라임 점액질 충돌 판정
-with(obj_mob_parents)
-{
-	if (z <= 0 && place_meeting(x,y,obj_mucus_effect))
-	{
-		_speed += (0 - _speed)*0.2;
-		
-		if (id == tmp_my_p)
-		{
-			global.apply_buff_effect[0] = true;
-		}
-	}
-}

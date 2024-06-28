@@ -33,7 +33,5 @@ if (is_opened != b_is_opened)
 
 
 
-//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
-statement_by_pos();
 my_pos_xx = global.n_player_room_xx[obj_id_player_only];
 my_pos_yy = global.n_player_room_yy[obj_id_player_only];

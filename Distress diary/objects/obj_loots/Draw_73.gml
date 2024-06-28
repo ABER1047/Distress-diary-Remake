@@ -18,7 +18,7 @@ if (show_interaction_key > 0)
 	
 	if (global.interaction_hold_time > 0 && global.interaction_hold_time < global.interaction_hold_time_max)
 	{
-		draw_circular_bar(tmp_key_xx+2*txt_scale*global.reversed_ratio_by_camera,tmp_key_yy-4*global.reversed_ratio_by_camera,global.interaction_hold_time,global.interaction_hold_time_max,c_white,12*global.reversed_ratio_by_camera,1,6*global.reversed_ratio_by_camera,#17111A);
+		draw_circular_bar(tmp_key_xx+2*txt_scale*global.reversed_ratio_by_camera,tmp_key_yy-4*global.reversed_ratio_by_camera,global.interaction_hold_time,global.interaction_hold_time_max,c_white,12*global.reversed_ratio_by_camera,1,6*global.reversed_ratio_by_camera,1,#17111A);
 	}
 	
 	//인터렉션 키 드로우

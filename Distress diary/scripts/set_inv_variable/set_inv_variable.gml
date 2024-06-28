@@ -21,7 +21,7 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 	var tmp_startag = argument8;
 	if (tmp_startag == undefined || tmp_startag < 0)
 	{
-		var tmp_rd_startag = irandom_range(1,100);
+		var tmp_rd_startag = irandom_range(1,100)-global.luck*5;
 		if (tmp_rd_startag <= 1)
 		{
 			tmp_startag = 4;

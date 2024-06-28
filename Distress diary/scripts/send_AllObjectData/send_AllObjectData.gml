@@ -60,7 +60,7 @@ function send_AllObjectData()
 				//일반 오브젝트 정보만 전송
 				buffer_write(global.obj_data_buffer, buffer_string, tmp_str);
 			}
-			show_message_log("- ["+string(obj_id)+"] 오브젝트 데이터 전송 완료");
+			show_debug_message("- ["+string(obj_id)+"] 오브젝트 데이터 전송 완료");
 		}
 	}
 	

@@ -147,7 +147,7 @@ if (global.dev_mode == 1)
 		draw_set_font(font_normal);
 		draw_set_alpha(1);
 	
-		draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC]\n지도 보기 [`]\n채팅창 [U/Enter]\n닉네임 변경 [Q]\n스킨 변경 [Y]\n가방 변경 [T]\n명령어 가이드 [/help]\n\n인벤토리 열기/닫기 [Tab]\n아이템 회전 [R]\n아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,1,-1,font_normal,0.3,0.3,0,true);
+		draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC] 지도 보기 [`]\n채팅창 [U/Enter] 명령어 가이드 [/help]\n닉네임 변경 [Q] 스킨 변경 [Y] 가방 변경 [T]\n인벤토리 열기/닫기 [Tab] 아이템 회전 [R] 아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,1,-1,font_normal,0.3,0.3,0,true);
 	
 		var tmp_my_player_id = 0;
 		if (global.my_player_id >= 0 && global.my_player_id < array_length(global.my_player_ins_id))
@@ -168,7 +168,7 @@ if (global.dev_mode == 1)
 				in_room_obj_num ++;
 			}
 		}
-		draw_text_k_scale(xx+xx_w-8,yy+yy_h-720,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed)+"\n공격력"+string(global.attack_damage)+"\n오브젝트 갯수 : "+string(instance_number(all))+" / effects : "+string(instance_number(obj_effect_parents))+" / in_room : "+string(in_room_obj_num),64,-1,1,c_white,1,1,font_normal,0.3,0.3,0,true);
+		draw_text_k_scale(xx+xx_w-8,yy+yy_h-720,string((code_m.server == -4) ? tmp_guide_txt1 : tmp_guide_txt2)+"\n\n닉네임 : "+string(global.nickname)+"\n\n내 플레이어 id : "+string(global.my_player_id)+"\n플레이어 위치 :\nx "+string(global.n_player_room_xx)+"\ny "+string(global.n_player_room_yy)+"\nweight : "+string(global.my_weight)+"\nhspeed : "+string(global.movement_hspeed)+" _vspeed : "+string(global.movement_vspeed)+"\n오브젝트 갯수 : "+string(instance_number(all))+" / effects : "+string(instance_number(obj_effect_parents))+" / in_room : "+string(in_room_obj_num),64,-1,1,c_white,1,1,font_normal,0.3,0.3,0,true);
 	
 		//맵 드로우
 		global.show_map_data = keyboard_check(222) || keyboard_check(192) || keyboard_check(ord("`"));
@@ -386,12 +386,12 @@ if (global.dev_mode == 1)
 }
 
 
-//인벤토리
+//인벤토리 열기
 if (keyboard_check_pressed(vk_tab))
 {
 	if (!instance_exists(global.showing_inv))
 	{
-		global.showing_inv = show_inv_ui(400,320,"인벤토리",global.my_player_ins_id[global.my_player_id],-4);
+		global.showing_inv = show_inv_ui(400,320,"인벤토리",global.my_player_ins_id[global.my_player_id],-4,1);
 	}
 	else
 	{

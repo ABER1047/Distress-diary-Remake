@@ -8,4 +8,4 @@ for(var i = 0; i < 8; i++)
 }
 
 
-rd_dir_increasement_timer = irandom_range(0,30);
+rd_dir_increasement_timer = irandom_range(0,60);

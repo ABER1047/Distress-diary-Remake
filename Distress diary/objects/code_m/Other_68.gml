@@ -438,6 +438,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			{
 				global.n_player_room_xx[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
 				global.n_player_room_yy[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
+				global.my_player_ins_id[tmp_my_player_id].x = -4;
+				global.my_player_ins_id[tmp_my_player_id].y = -4;
+				load_object_by_pos(10);
 			}
 		break;
 		
@@ -632,7 +635,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 						if (object_exists(tmp_obj_ind))
 						{
-							show_message_log("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
+							show_debug_message("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
 					
 							//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
 							/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고

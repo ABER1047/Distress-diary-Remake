@@ -303,19 +303,26 @@ if (global.chat_activated)
 						}
 						else if (i == 29) //버프 적용
 						{
-							var tmp_arr_length = array_length(global.apply_buff_effect)-1;
+							var tmp_arr_length = array_length(global.buff_left_time)-1;
 							tmp_parameter = (tmp_arr_length < tmp_parameter) ? tmp_arr_length : tmp_parameter;
 							
 							if (tmp_parameter < 0)
 							{
-								for(k = 0; k <= tmp_arr_length; k++)
+								for(var k = 0; k <= tmp_arr_length; k++)
 								{
-									global.apply_buff_effect[k] = !global.apply_buff_effect[k];
+									buff_activate(k,3600);
 								}
 							}
 							else
 							{
-								global.apply_buff_effect[tmp_parameter] = !global.apply_buff_effect[tmp_parameter];
+								if (global.buff_left_time[tmp_parameter] <= 0)
+								{
+									buff_activate(tmp_parameter,3600);
+								}
+								else
+								{
+									buff_activate(tmp_parameter,0);
+								}
 							}
 						}
 						
@@ -372,7 +379,7 @@ if (global.chat_activated)
 }
 else
 {
-	if (keyboard_check_pressed(ord("U")) || keyboard_check_pressed(vk_enter))
+	if (keyboard_check_pressed(ord("U")) || keyboard_check_pressed(vk_enter) || keyboard_check_pressed(ord("/")))
 	{
 		global.chat_activated = !global.chat_activated;
 		keyboard_string = "";

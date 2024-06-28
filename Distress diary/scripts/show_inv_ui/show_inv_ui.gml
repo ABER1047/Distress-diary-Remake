@@ -7,8 +7,9 @@
 ///@param inv_name
 ///@param variable_owner
 ///@param max_distance
+///@param [reload_inv]
 
-function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
+function show_inv_ui(argument0,argument1,argument2,argument3,argument4,argument5)
 {
 	//인벤토리 관련 변수를 가진 인스턴스 (= variable_owner) 가 존재하는 경우
 	var tmp_owner = argument3;
@@ -20,6 +21,8 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4)
 		tmp_ins.inv_name = argument2;
 		tmp_ins.variable_owner = tmp_owner;
 		tmp_ins.max_distance = argument4;
+		//해당 인벤토리 ui 리로드
+		tmp_ins.reload_inv = (argument5 != undefined);
 		
 		//인벤토리 효과음
 		var target_ins_for_sfx = (object_index == code) ? obj_player : self;

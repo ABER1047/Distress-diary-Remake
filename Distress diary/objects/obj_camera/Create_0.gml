@@ -47,3 +47,7 @@ stamina_for_draw = 0;
 weight_for_draw = 0;
 hydro_for_draw = 0;
 hunger_for_draw = 0;
+
+
+//setup_circular_bar
+setup_circular_bar();

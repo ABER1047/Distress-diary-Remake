@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"set_status_by_weapon",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"set_status_by_weapon",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

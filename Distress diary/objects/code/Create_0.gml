@@ -71,6 +71,10 @@ global.n_room_num = 0;
 global.map_creation_falied = 0;
 global.create_only_one_enterance = false;
 
+//add_my_pos_statement용 변수 (add_my_pos_statement를 사용하는 모든 오브젝트 인덱스 저장용)
+global.add_my_pos_statement_obj_ind_list = "";
+global.load_map_repeater = 0;
+
 
 //새로운 방 방문 (= 플레이어가 적정 선 이상 이동시 방 문 닫기)
 global.visited_new_room = false;
@@ -161,10 +165,6 @@ global.interaction_hold_time = 0;
 global.interaction_hold_time_max = 0;
 
 
-//아이템 서칭 속도 (몇 프레임 후 아이템 하나가 서칭 완료되는지)
-global.searching_time = 100;
-
-
 //사운드 볼륨
 global.master_volume = 2;
 global.sfx_volume = 1;
@@ -203,12 +203,13 @@ global.map_ui_surf = -4;
 
 
 //버프/디버프 효과 적용 (효과 순서는 이미지 순서대로)
-global.apply_buff_effect = array_create(sprite_get_number(spr_buff_ui),false);
-hp_recovery_timer = 0;
-hunger_timer = 0;
-hydration_timer = 0;
-bleeding_timer = 0;
-poisoning_timer = 0;
+for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
+{
+	global.buff_timer[i] = 0; //버프 주기 (출혈, 독데미지 등등...)
+	global.buff_left_time[i] = 0; //남은 버프 시간
+	global.buff_max_left_time[i] = 0; //남은 버프 시간
+}
+
 
 //플레이어 스테이터스
 global.attack_damage = 3; //공격력
@@ -222,18 +223,23 @@ global.my_gold = 0; //내 보유 골드
 global.hunger = 100; //배고픔
 global.hydration = 100; //목마름
 global.my_weight = 0; //내 무게
-global.max_movement_speed = 8; //최대 이속
-global.critical_chance = 5; //크리티컬 데미지 확률
+global.max_movement_speed = 0; //최대 이속
+global.critical_chance = 0; //크리티컬 데미지 확률
 global.critical_dmg_magnification = 0.5; //크리티컬 데미지 배율
+global.luck = 0;
+global.searching_speed = 100; //아이템 서칭 속도 (몇 프레임 후 아이템 하나가 서칭 완료되는지)
 
 
 //퀵슬롯
 global.quickslot_index = 0; //선택된 퀵 슬롯
-global.quickslot_spr_ind = array_create(9,-4);//spr_ind값 보유
-global.quickslot_img_ind = array_create(9,-4);//img_ind값 보유
-global.quickslot_stack_num = array_create(9,-4);//아이템의 갯수 값 보유
-global.quickslot_rare = array_create(9,-4);//아이템의 가격에 따른 뒷 배경 색
-global.quickslot_startag = array_create(9,-4);//아이템 스타태그
+for(var i = 0; i < 9; i++)
+{
+	global.quickslot_spr_ind[i] = -4;//spr_ind값 보유
+	global.quickslot_img_ind[i] = -4;//img_ind값 보유
+	global.quickslot_stack_num[i] = -4;//아이템의 갯수 값 보유
+	global.quickslot_rare[i] = -4;//아이템의 가격에 따른 뒷 배경 색
+	global.quickslot_startag[i] = -4;//아이템 스타태그
+}
 
 
 //플레이어가 바라보는 방향을 마우스 방향으로 고정

@@ -41,5 +41,7 @@ function instance_create_multiplayer(argument0,argument1,argument2,argument3,arg
 	
 	
 	global.object_id_ind ++;
+	
+	load_object_by_pos(60);
 	return tmp_ins;
 }

@@ -13,12 +13,12 @@ function instance_create_or_delete(argument0)
 	//is_destroy가 1인 경우 해당 obj_id에 부합하는 인스턴스 삭제
 	if (is_destroy == 1)
 	{
-		show_message_log("- 오브젝트 삭제 요청 ["+string(tmp_obj_ind_name)+", obj_id : "+string(tmp_obj_id)+"]");
+		show_debug_message("- 오브젝트 삭제 요청 ["+string(tmp_obj_ind_name)+", obj_id : "+string(tmp_obj_id)+"]");
 		with(tmp_obj_ind)
 		{
 			if (obj_id == tmp_obj_id)
 			{
-				show_message_log("- 오브젝트 삭제 [obj_id : "+string(obj_id)+"]");
+				show_debug_message("- 오브젝트 삭제 [obj_id : "+string(obj_id)+"]");
 				instance_destroy();
 			}
 		}
@@ -26,7 +26,7 @@ function instance_create_or_delete(argument0)
 	else
 	{
 		//디버그용 메시지
-		show_message_log("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
+		show_debug_message("- ["+string(tmp_obj_id)+"] 오브젝트 데이터 수신 완료");
 					
 		//이미 해당 obj_id를 가진 오브젝트가 존재하는지 체크
 		/*새로운 플레이어가 중도 참여시 기존에 있던 유저들한테도 전부 다 오브젝트 생성하라고

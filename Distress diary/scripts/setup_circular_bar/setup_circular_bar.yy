@@ -1,0 +1,13 @@
+{
+  "$GMScript":"",
+  "%Name":"setup_circular_bar",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"setup_circular_bar",
+  "parent":{
+    "name":"UI&Camera",
+    "path":"folders/스크립트/UI&Camera.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

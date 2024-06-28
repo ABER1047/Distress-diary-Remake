@@ -1,12 +1,13 @@
 /// @description Insert description here
 // You can write your code in this editor
 
+var tmp_my_p = (global.my_player_id < array_length(global.my_player_ins_id)) ? global.my_player_ins_id[global.my_player_id] : global.my_player_ins_id[0];
+
 //라이트 서피스 (광원)
 if (global.enable_light_surf && surface_exists(global.light_surf))
 {
 	var xx = camera_get_view_x(view_camera[0]);
 	var yy = camera_get_view_y(view_camera[0]);
-	var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 	
 	//플래시라이트
 	surface_set_target(global.flashlight_surf);
@@ -122,7 +123,6 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 //새로운 방 방문 (= 플레이어가 적정 선 이상 이동시 방 문 닫기)
 if (global.can_check_room_cleared)
 {
-	var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 	if (instance_exists(tmp_my_p))
 	{
 		var tmp_xx = global.n_player_room_xx[global.my_player_id];

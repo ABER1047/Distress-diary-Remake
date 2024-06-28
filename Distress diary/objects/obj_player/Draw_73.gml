@@ -21,7 +21,7 @@ if (draw_alpha > 0)
 	
 		if (global.interaction_hold_time > 0 && global.interaction_hold_time < global.interaction_hold_time_max)
 		{
-			draw_circular_bar(tmp_key_xx+2*txt_scale*tmp_scale,tmp_key_yy-4*tmp_scale,global.interaction_hold_time,global.interaction_hold_time_max,c_white,12*tmp_scale,1,6*tmp_scale,#17111A);
+			draw_circular_bar(tmp_key_xx+2*txt_scale*tmp_scale,tmp_key_yy-4*tmp_scale,global.interaction_hold_time,global.interaction_hold_time_max,c_white,12*tmp_scale,1,6*tmp_scale,1,#17111A);
 		}
 	
 		//인터렉션 키 드로우
@@ -50,7 +50,7 @@ if (draw_alpha > 0)
 			draw_sprite_ext(charging_gage_bar,0,tmp_ui_xx,tmp_ui_yy,tmp_ui_scale,tmp_ui_scale,0,#332439,1);
 		
 			//게이지 바 그리기
-			draw_circular_bar(tmp_ui_xx,tmp_ui_yy,global.attack_cooldown_timer,global.attack_speed,tmp_col,10*tmp_scale,1,3.8*tmp_scale);
+			draw_circular_bar(tmp_ui_xx,tmp_ui_yy,global.attack_cooldown_timer,global.attack_speed,tmp_col,10*tmp_scale,1,3.8*tmp_scale,2);
 		
 			//테두리 그리기
 			draw_sprite_ext(charging_gage_bar,1,tmp_ui_xx,tmp_ui_yy,tmp_ui_scale,tmp_ui_scale,0,#332439,1);
