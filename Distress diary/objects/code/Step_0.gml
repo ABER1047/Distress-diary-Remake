@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-var tmp_my_p = (global.my_player_id < array_length(global.my_player_ins_id)) ? global.my_player_ins_id[global.my_player_id] : global.my_player_ins_id[0];
+var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 
 //라이트 서피스 (광원)
 if (global.enable_light_surf && surface_exists(global.light_surf))

@@ -10,7 +10,6 @@ if (!stop_draw_event)
 		{
 			instance_destroy();
 		}
-	
 		image_angle -= hspeed*1.5;
 	}
 	else
@@ -20,4 +19,5 @@ if (!stop_draw_event)
 		draw_circle(x,y,image_xscale*32,false);
 	}
 }
+
 

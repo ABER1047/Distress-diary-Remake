@@ -1,5 +1,5 @@
 /// @description Insert description here
-var tmp_my_p = (global.my_player_id < array_length(global.my_player_ins_id)) ? global.my_player_ins_id[global.my_player_id] : global.my_player_ins_id[0];
+var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 
 
 //사운드 볼륨 조절용 거리 값
@@ -188,3 +188,6 @@ if (global.buff_timer[15] > 180) //매 3초마다 -1씩 체력 감소 (초당 0.
 //아이템 서칭
 global.searching_speed = 100*(1-sign(global.buff_left_time[16])*0.3);
 
+
+//크리티컬 데미지 배율
+global.critical_dmg_magnification = 0.5*(1+sign(global.buff_left_time[18]));

@@ -41,7 +41,7 @@ if (global.enable_light_surf && global.is_map_exists != -4 && surface_exists(glo
 	{
 		with(obj_bubble_effect)
 		{
-			if (id != other.id && y+image_xscale*32 <= tmp_yy2_surf)
+			if (id != other.id && !sprite_exists(sprite_index) && y+image_xscale*32 <= tmp_yy2_surf)
 			{
 				stop_draw_event = true;
 				draw_set_color(image_blend);

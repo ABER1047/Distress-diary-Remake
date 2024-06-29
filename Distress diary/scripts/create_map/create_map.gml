@@ -11,6 +11,9 @@ function create_map(argument0)
 	
 	//모든 발판 버튼 삭제
 	instance_destroy(obj_floor_button);
+	
+	//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+	load_object_by_pos(360);
 
 
 	random_set_seed(argument0);

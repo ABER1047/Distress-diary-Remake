@@ -146,6 +146,8 @@ move_to_other_room = -4;
 if (instance_number(obj_player) == 1)
 {
 	global.my_player_ins_id[0] = id;
+	x = room_width*0.5;
+	y = room_height*0.5;
 }
 
 //공격 이펙트 방향 저장용

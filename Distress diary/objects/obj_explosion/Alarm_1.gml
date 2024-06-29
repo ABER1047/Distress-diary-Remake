@@ -28,17 +28,6 @@ with(obj_mob_parents)
 	
 		var knockback_speed = (real_dis > tmp_dmg_decrease_dis) ? 32/(real_dis-tmp_dmg_decrease_dis) : 32;
 		give_damage(id,(tmp_real_dmg > tmp_dmg) ? tmp_dmg : tmp_real_dmg,false,knockback_speed,other.x,other.y,60);
-		
-		
-		//폭탄이 폭탄 근처에서 터지면 연쇄적으로 터지는 효과 적용
-		if (object_index == obj_bomb)
-		{
-			timer += 100;
-		}
-		else if (object_index == obj_cherry_bomb)
-		{
-			z = 0;
-		}
 	}
 }
 
@@ -55,9 +44,9 @@ if (global.graphics_quality > 1)
 		var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
 		var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
 		var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,-1,c_white,c_white,0,irandom_range(-2,2)*0.42,irandom_range(-2,2),0,0.8,true,-9999);
+		tmp_ins.sprite_index = spr_explosion;
 		tmp_ins.image_xscale = 10/((1+tmp_dis/128));
 		tmp_ins.image_yscale = 10/((1+tmp_dis/128));
-		tmp_ins.sprite_index = spr_explosion;
 	}
 }
 

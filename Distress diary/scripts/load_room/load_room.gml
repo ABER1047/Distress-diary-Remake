@@ -154,5 +154,5 @@ function load_room(argument0,argument1)
 	
 	
 	//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
-	load_object_by_pos(60);
+	load_object_by_pos(30);
 }

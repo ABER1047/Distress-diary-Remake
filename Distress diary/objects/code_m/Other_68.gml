@@ -111,11 +111,14 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//나 이외의 모든 플레이어 기본 정보 값 세팅
 				for(i = 0; i < tmp_player_num; i++)
 				{
-					var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
+					var obj = instance_create_depth(-4,-4,0,obj_player);
 					obj.obj_id = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
 					obj.obj_id_player_only = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
 					obj.soc = buffer_read(buffer, buffer_u8); //소켓
 					obj.nickname = buffer_read(buffer, buffer_string); //닉네임
+					
+					//오브젝트 인스턴스 아이디 저장
+					global.my_player_ins_id[obj.obj_id_player_only] = obj;
 				}
 			
 
@@ -148,11 +151,14 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			if (global.my_player_id != tmp_object_id_ind_player_only)
 			{
 				//서버쪽에 새로 접속한 클라이언트 플레이어 생성
-				var obj = instance_create_depth(room_width*0.5+irandom_range(-640,640), room_height*0.5+irandom_range(-640,640), 0, obj_player);
+				var obj = instance_create_depth(-4,-4,0,obj_player);
 				obj.obj_id = tmp_object_id_ind;
 				obj.obj_id_player_only = tmp_object_id_ind_player_only;
 				obj.soc = buffer_read(buffer, buffer_u8);
 				obj.nickname = tmp_nickname;
+				
+				//오브젝트 인스턴스 아이디 저장
+				global.my_player_ins_id[tmp_object_id_ind_player_only] = obj;
 
 				show_message_log("'"+string(tmp_nickname)+"'가 왔습니다.");
 				

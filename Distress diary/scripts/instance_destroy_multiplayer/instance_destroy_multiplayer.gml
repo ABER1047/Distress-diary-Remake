@@ -5,7 +5,7 @@
 function instance_destroy_multiplayer(argument0)
 {
 	var tmp_ins = argument0;
-	load_object_by_pos(60);
+	load_object_by_pos(30);
 	if (instance_exists(tmp_ins))
 	{
 		//삭제될 오브젝트의 obj_id값

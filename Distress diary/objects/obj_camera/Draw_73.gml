@@ -8,7 +8,7 @@ var xx_w = camera_get_view_width(view_camera[0]);
 var yy_h = camera_get_view_height(view_camera[0]);
 
 
-var tmp_my_p = (global.my_player_id < array_length(global.my_player_ins_id)) ? global.my_player_ins_id[global.my_player_id] : global.my_player_ins_id[0];
+var tmp_my_p = global.my_player_ins_id[global.my_player_id];
 
 //UI창이 열려있을때 뒷 배경 까맣게 칠하기
 if (instance_exists(obj_ui_parents))
@@ -90,9 +90,9 @@ for(var i = 0; i < 3; i++)
 
 // 버프/디버프 UI
 var tmp_icon_scale = 0.4*global.ratio_by_camera;
-var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Powerless", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning", "Search", "Fear" ];
-var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "과적", "골절", "출혈", "굶주림", "탈수", "저항", "무력함", "근력", "재생", "불운", "행운", "중독", "탐색", "두려움" ];
-var tmp_buff_info = [ "이동 속도 저하", "이동 속도 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력 "+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 -2 감소", "행운 +2 증가", "3초마다 -1 HP 감소", "아이템 서칭 속도 30% 증가", "누군가가 쫒아오는 느낌이 듭니다..." ];
+var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Powerless", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning", "Search", "Fear", "Smite" ];
+var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "과적", "골절", "출혈", "굶주림", "탈수", "저항", "무력함", "근력", "재생", "불운", "행운", "중독", "탐색", "두려움", "강타" ];
+var tmp_buff_info = [ "이동 속도 저하", "이동 속도 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력 "+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 -2 감소", "행운 +2 증가", "3초마다 -1 HP 감소", "아이템 서칭 속도 30% 증가", "누군가가 쫒아오는 느낌이 듭니다...", "크리티컬 데미지 200%" ];
 var tmp_info_length = 1;
 var tmp_real_width = tmp_icon_scale*20;
 var tmp_win_height = 60*text_ratio;
@@ -150,10 +150,10 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 
 		
 			//아이템명-아이템 정보 사이의 라인 그리기
-			var tmp_name_width = string_width(tmp_buff_name[i])*0.5+48;
+			var tmp_name_width = (string_width(tmp_buff_name[i])*0.5-48);
 			draw_set_color(c_white);
 			draw_set_alpha(1);
-			draw_line_width(tmp_text_startx,tmp_text_starty+(23*text_ratio),tmp_text_startx+(tmp_name_width-96)*text_ratio,tmp_text_starty+(23*text_ratio),text_ratio);
+			draw_line_width(tmp_text_startx,tmp_text_starty+(23*text_ratio),tmp_text_startx+((tmp_name_width < 32) ? 32*text_ratio : tmp_name_width*text_ratio),tmp_text_starty+(23*text_ratio),text_ratio);
 		
 		
 			var tmp_txt_col = merge_color(c_white,c_black,0.3);
