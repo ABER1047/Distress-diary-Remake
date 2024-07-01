@@ -236,9 +236,10 @@ for(var i = 0; i < 9; i++)
 {
 	global.quickslot_spr_ind[i] = -4;//spr_ind값 보유
 	global.quickslot_img_ind[i] = -4;//img_ind값 보유
-	global.quickslot_stack_num[i] = -4;//아이템의 갯수 값 보유
+	global.quickslot_stack_num[i] = -4;//아이템 갯수
 	global.quickslot_rare[i] = -4;//아이템의 가격에 따른 뒷 배경 색
 	global.quickslot_startag[i] = -4;//아이템 스타태그
+	global.quickslot_weight[i] = -4;//아이템 무게
 }
 
 

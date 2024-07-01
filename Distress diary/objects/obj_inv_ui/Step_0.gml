@@ -18,8 +18,8 @@ if (reload_inv == 1)
 
 
 	//무게-골드 갯수를 다시 재기 위해 초기화
-	inv_weight = 0;
-	var inv_gold_num = 0;
+	var inv_weight = 0; //해당 인벤토리에 들어있는 모든 아이템 무게 총합 저장용
+	var inv_gold_num = 0; //해당 인벤토리에 들어있는 모든 골드 갯수 저장용
 	for(var i = 0; i < tmp_owner.inv_height; i++)
 	{
 		for(var ii = 0; ii < tmp_owner.inv_width; ii++)
@@ -43,6 +43,15 @@ if (reload_inv == 1)
 	
 	if (global.showing_inv == id)
 	{
+		for(var i = 0; i < 9; i++)
+		{
+			inv_weight += (global.quickslot_spr_ind[i] != -4 && global.quickslot_weight[i] > 0) ? global.quickslot_weight[i] : 0;
+			if (global.quickslot_spr_ind[i] == spr_stackables && global.quickslot_img_ind[i] == 0)
+			{
+				inv_gold_num += global.quickslot_stack_num[i];
+			}
+		}
+		
 		//내 무게 설정
 		var my_p = global.my_player_ins_id[global.my_player_id];
 		global.my_weight = inv_weight;

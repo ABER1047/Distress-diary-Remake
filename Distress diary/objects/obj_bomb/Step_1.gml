@@ -28,6 +28,12 @@ if (!stop_cal_by_pos_statement)
 
 if (timer > 150)
 {
+	//화면 흔들림 
+	view_shake(0.1,16,0.1,0);
+	
+	//효과음 재생
+	play_sound_pos(bomb_sfx,false,0.1,x,y,1300,false,my_pos_xx,my_pos_yy);
+	
 	instance_destroy();
 }
 

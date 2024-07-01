@@ -244,7 +244,7 @@ if (instance_exists(parents_id))
 				}
 				
 				//후처리
-				set_quickslot_variable(tmp_index,tmp_origin_spr,tmp_origin_img,tmp_origin_stacks,rare_rate,startag);
+				set_quickslot_variable(tmp_index,tmp_origin_spr,tmp_origin_img,tmp_origin_stacks,rare_rate,startag,item_weight);
 				global.is_mouse_on_quickslot = -4;
 				alarm[0] = 1; //instance_destroy();
 			}

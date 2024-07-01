@@ -9,8 +9,6 @@ send_InstanceVariableData(id,"explo_dmg",explo_dmg);
 send_ImgData(obj_id,id,sprite_index,image_index,x,y,z,image_xscale,image_yscale,0,0,1);
 
 
-//효과음 재생
-play_sound_pos(bomb_sfx,false,0.1,x,y,2600,false,my_pos_xx,my_pos_yy);
 
 
 
@@ -112,6 +110,3 @@ if (global.graphics_quality <= 1)
 //폭발 이펙트 적용됨 
 effect_applied = true;
 
-
-//화면 흔들림 
-view_shake(0.1,16,0.1,0);
