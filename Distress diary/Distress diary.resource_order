@@ -260,6 +260,7 @@
     {"name":"spr_deadmob_debris","order":11,"path":"sprites/spr_deadmob_debris/spr_deadmob_debris.yy",},
     {"name":"spr_drink","order":5,"path":"sprites/spr_drink/spr_drink.yy",},
     {"name":"spr_droped_item","order":27,"path":"sprites/spr_droped_item/spr_droped_item.yy",},
+    {"name":"spr_equipments","order":8,"path":"sprites/spr_equipments/spr_equipments.yy",},
     {"name":"spr_exit_guide_arrow","order":15,"path":"sprites/spr_exit_guide_arrow/spr_exit_guide_arrow.yy",},
     {"name":"spr_exit","order":14,"path":"sprites/spr_exit/spr_exit.yy",},
     {"name":"spr_explosion","order":7,"path":"sprites/spr_explosion/spr_explosion.yy",},

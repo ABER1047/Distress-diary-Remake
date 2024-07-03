@@ -317,6 +317,7 @@
     {"id":{"name":"spr_deadmob_debris","path":"sprites/spr_deadmob_debris/spr_deadmob_debris.yy",},},
     {"id":{"name":"spr_drink","path":"sprites/spr_drink/spr_drink.yy",},},
     {"id":{"name":"spr_droped_item","path":"sprites/spr_droped_item/spr_droped_item.yy",},},
+    {"id":{"name":"spr_equipments","path":"sprites/spr_equipments/spr_equipments.yy",},},
     {"id":{"name":"spr_exit_guide_arrow","path":"sprites/spr_exit_guide_arrow/spr_exit_guide_arrow.yy",},},
     {"id":{"name":"spr_exit","path":"sprites/spr_exit/spr_exit.yy",},},
     {"id":{"name":"spr_explosion","path":"sprites/spr_explosion/spr_explosion.yy",},},

@@ -167,12 +167,6 @@ function set_item_info_values(argument0,argument1)
 			break;
 			
 			case 16:
-				tmp_short_name = "Cards";
-				tmp_name = "Pack of Cards";
-				item_weight = 0.1;
-			break;
-			
-			case 17:
 				tmp_short_name = "Paint";
 				tmp_name = "White Paint";
 				item_weight = 10;
@@ -180,7 +174,7 @@ function set_item_info_values(argument0,argument1)
 				item_height = 2;
 			break;
 			
-			case 18:
+			case 17:
 				tmp_short_name = "Paint";
 				tmp_name = "Red Paint";
 				item_weight = 10;
@@ -188,83 +182,58 @@ function set_item_info_values(argument0,argument1)
 				item_height = 2;
 			break;
 			
-			case 19:
+			case 18:
 				tmp_short_name = "Metal";
 				tmp_name = "Metal ingot";
 				item_weight = 5;
 				item_width = 2;
 			break;
 			
-			case 20:
+			case 19:
 				tmp_short_name = "HQM";
 				tmp_name = "High Quality Metal ingot";
 				item_weight = 5;
 				item_width = 2;
 			break;
 			
-			case 21:
+			case 20:
 				tmp_short_name = "Gold";
 				tmp_name = "Golden Bar";
 				item_weight = 3;
 				item_width = 2;
 			break;
 			
-			case 22:
+			case 21:
 				tmp_name = "Syringe";
 				item_weight = 0.05;
 			break;
 			
-			case 23:
+			case 22:
 				tmp_short_name = "Pipe";
 				tmp_name = "Metal Pipe";
 				item_weight = 3;
 				item_height = 2;
 			break;
 			
-			case 24:
+			case 23:
 				tmp_short_name = "Wood";
 				tmp_name = "Wooden Stick";
 				item_weight = 0.7;
 				item_height = 2;
 			break;
 			
-			case 25:
+			case 24:
 				tmp_short_name = "Bottle";
 				tmp_name = "Empty Bottle";
 				item_weight = 0.1;
 				item_height = 2;
 			break;
 			
-			case 26:
-				tmp_short_name = "Cross";
-				tmp_name = "Metal Cross";
-				item_weight = 0.1;
-				
-			break;
-			
-			case 27:
-				tmp_short_name = "Cross";
-				tmp_name = "Golden Cross";
-				item_weight = 0.1;
-			break;
-			
-			case 28:
+			case 25:
 				tmp_name = "PSU";
 				item_weight = 2;
 				item_width = 2;
 				item_height = 2;
-			break;
-			
-			case 29:
-				tmp_short_name = "Skull";
-				tmp_name = "Golden skull";
-				item_weight = 0.4;
-			break;
-			
-			case 30:
-				tmp_short_name = "Ring";
-				tmp_name = "Golden ring";
-				item_weight = 0.002;
 			break;
 		}
 	}
@@ -529,6 +498,132 @@ function set_item_info_values(argument0,argument1)
 				tmp_name = "Poisoned Throwing Knife";
 				item_weight = 0.8;
 				max_stack_num = 8;
+			break;
+		}
+	}
+	else if (argument0 == spr_equipments)
+	{
+		switch(argument1)
+		{
+			case 0:
+				tmp_short_name = "Cards";
+				tmp_name = "Pack of Cards";
+				item_weight = 0.1;
+			break;
+			
+			case 1:
+				tmp_short_name = "Cross";
+				tmp_name = "Metal Cross";
+				item_weight = 0.1;
+				
+			break;
+			
+			case 2:
+				tmp_short_name = "Cross";
+				tmp_name = "Golden Cross";
+				item_weight = 0.1;
+			break;
+			
+			case 3:
+				tmp_short_name = "Skull";
+				tmp_name = "Golden skull";
+				item_weight = 0.4;
+			break;
+			
+			case 4:
+				tmp_short_name = "Skull";
+				tmp_name = "Metal skull";
+				item_weight = 0.4;
+			break;
+			
+			case 5:
+				tmp_short_name = "Ring";
+				tmp_name = "Golden Ruby ring";
+				item_weight = 0.002;
+			break;
+			
+			case 6:
+				tmp_short_name = "Ring";
+				tmp_name = "Metal Ruby ring";
+				item_weight = 0.002;
+			break;
+			
+			case 7:
+				tmp_short_name = "Ring";
+				tmp_name = "Golden Lapis ring";
+				item_weight = 0.002;
+			break;
+			
+			case 8:
+				tmp_short_name = "Ring";
+				tmp_name = "Metal Lapis ring";
+				item_weight = 0.002;
+			break;
+			
+			case 9:
+				tmp_short_name = "Ring";
+				tmp_name = "Golden ring";
+				item_weight = 0.002;
+			break;
+			
+			case 10:
+				tmp_short_name = "Ring";
+				tmp_name = "Metal ring";
+				item_weight = 0.002;
+			break;
+			
+			case 11:
+				tmp_short_name = "Ring";
+				tmp_name = "Frozen ring";
+				item_weight = 0.002;
+			break;
+			
+			case 12:
+				tmp_short_name = "Ring";
+				tmp_name = "Volcano ring";
+				item_weight = 0.002;
+			break;
+			
+			case 13:
+				tmp_short_name = "Ring";
+				tmp_name = "Corruption ring";
+				item_weight = 0.002;
+			break;
+			
+			case 14:
+				tmp_short_name = "Ring";
+				tmp_name = "Aqua ring";
+				item_weight = 0.002;
+			break;
+			
+			case 15:
+				tmp_short_name = "Ring";
+				tmp_name = "Aqua ring";
+				item_weight = 0.002;
+			break;
+			
+			case 16:
+				tmp_short_name = "Gloves";
+				tmp_name = "Work Gloves";
+				item_weight = 0.002;
+			break;
+			
+			case 17:
+				tmp_short_name = "Clover";
+				tmp_name = "Clover";
+				item_weight = 0.002;
+			break;
+			
+			case 18:
+				tmp_short_name = "Holy water";
+				tmp_name = "Holy water";
+				item_weight = 0.002;
+			break;
+			
+			case 19:
+				tmp_short_name = "Crystal ball";
+				tmp_name = "Crystal ball";
+				item_weight = 0.002;
 			break;
 		}
 	}

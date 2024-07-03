@@ -59,8 +59,8 @@ switch(loots_name)
 		}
 		else if (tmp_chances < 5510) //1%확률로 골든 해골
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 29; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 3; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 6010) //5%확률로 골든 코인 (1~15개)
 		{
@@ -70,13 +70,13 @@ switch(loots_name)
 		}
 		else if (tmp_chances < 6110) //1%확률로 골든 십자가
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 27; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 2; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 6610) //5%확률로 주사기
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 22; //생성할 아이템 image_index
+			tmp_img_ind = 21; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 7110) //5%확률로 플라스틱 덩어리
 		{
@@ -91,12 +91,12 @@ switch(loots_name)
 		else if (tmp_chances < 7910) //4%확률로 빈 병
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 25; //생성할 아이템 image_index
+			tmp_img_ind = 24; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 8210) //3%확률로 파워서플라이어
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 28; //생성할 아이템 image_index
+			tmp_img_ind = 25; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 9010) //8%확률로 종이 클립
 		{
@@ -128,13 +128,13 @@ switch(loots_name)
 		}
 		else if (tmp_chances < 9970) //1.6%확률로 카드팩
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 16; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 0; //생성할 아이템 image_index
 		}
 		else //0.3%확률로 골드 바
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 21; //생성할 아이템 image_index
+			tmp_img_ind = 20; //생성할 아이템 image_index
 		}
 	break;
 		
@@ -142,12 +142,12 @@ switch(loots_name)
 		if (tmp_chances < 1200) //12%확률로 나무 막대
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 24; //생성할 아이템 image_index
+			tmp_img_ind = 23; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 2300) //11%확률로 빈 병
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 25; //생성할 아이템 image_index
+			tmp_img_ind = 24; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 2700) //4%확률로 콜라
 		{
@@ -308,7 +308,7 @@ switch(loots_name)
 		else if (tmp_chances < 9500) //10%확률로 주사기
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 22; //생성할 아이템 image_index
+			tmp_img_ind = 21; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 9800) //3%확률로 수상한 액체
 		{
@@ -462,12 +462,12 @@ switch(loots_name)
 		if (tmp_chances < 2500) //25%확률로 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 19; //생성할 아이템 image_index
+			tmp_img_ind = 18; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 3500) //10%확률로 고품질 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 20; //생성할 아이템 image_index
+			tmp_img_ind = 19; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 6000) //25%확률로 전선
 		{
@@ -487,7 +487,7 @@ switch(loots_name)
 		else //17%확률로 금속 막대
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 23; //생성할 아이템 image_index
+			tmp_img_ind = 22; //생성할 아이템 image_index
 		}
 	break;
 		
@@ -530,7 +530,7 @@ switch(loots_name)
 		else if (tmp_chances < 9500) //5%확률로 고품질 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 20; //생성할 아이템 image_index
+			tmp_img_ind = 19; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 9600) //1%확률로 천 조각
 		{
@@ -540,7 +540,7 @@ switch(loots_name)
 		else //4%확률로 금속 막대
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 23; //생성할 아이템 image_index
+			tmp_img_ind = 22; //생성할 아이템 image_index
 		}
 	break;
 		
@@ -583,12 +583,12 @@ switch(loots_name)
 		else if (tmp_chances < 8500) //18%확률로 흰색 페인트
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 17; //생성할 아이템 image_index
+			tmp_img_ind = 16; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 9000) //5%확률로 붉은색 페인트
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 18; //생성할 아이템 image_index
+			tmp_img_ind = 17; //생성할 아이템 image_index
 		}
 		else //10%확률로 열쇠
 		{
@@ -602,12 +602,12 @@ switch(loots_name)
 		if (tmp_chances < 1000) //10%확률로 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 19; //생성할 아이템 image_index
+			tmp_img_ind = 18; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 2500) //20%확률로 고품질 금속 주괴
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 20; //생성할 아이템 image_index
+			tmp_img_ind = 19; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 3200) //7%확률로 해골 동상
 		{
@@ -622,22 +622,22 @@ switch(loots_name)
 		else if (tmp_chances < 4400) //5%확률로 골드 바
 		{
 			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 21; //생성할 아이템 image_index
+			tmp_img_ind = 20; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 5400) //10%확률로 금속 십자가
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 26; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 1; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 6100) //7%확률로 골든 십자가
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 27; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 2; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 6800) //7%확률로 골든 해골
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 29; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 3; //생성할 아이템 image_index
 		}
 		else if (tmp_chances < 8600) //18%확률로 골든 코인 (1~15개)
 		{
@@ -658,8 +658,8 @@ switch(loots_name)
 		}
 		else //5%확률로 골든 링
 		{
-			tmp_spr_ind = spr_comp; //생성할 아이템 sprite_index
-			tmp_img_ind = 30; //생성할 아이템 image_index
+			tmp_spr_ind = spr_equipments; //생성할 아이템 sprite_index
+			tmp_img_ind = 4; //생성할 아이템 image_index
 		}
 	break;
 }
