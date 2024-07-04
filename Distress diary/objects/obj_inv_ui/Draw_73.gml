@@ -152,7 +152,10 @@ else
 }
 
 
-
+if (global.dev_mode && is_dragging_window)
+{
+	draw_text_k_scale(startx,w_starty-256,string(x_pos)+", "+string(y_pos),64,-1,1,c_white,0,0,font_normal,0.3,0.3,0,false);
+}
 
 
 

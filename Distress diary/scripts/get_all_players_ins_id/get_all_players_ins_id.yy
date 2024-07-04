@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"get_all_players_ins_id",
   "isCompatibility":false,
   "isDnD":false,

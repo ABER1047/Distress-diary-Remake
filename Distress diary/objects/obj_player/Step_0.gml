@@ -557,8 +557,13 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 					{
 						if (tmp_ins.interaction_message == "루팅")
 						{
-							n_looting_inv_id = show_inv_ui(1000,300,is_lootable,tmp_ins,128);
+							n_looting_inv_id = show_inv_ui(1644,566,is_lootable,tmp_ins,128);
 							tmp_ins.is_opened = n_looting_inv_id;
+							
+							if (!instance_exists(global.showing_inv))
+							{
+								global.showing_inv = show_inv_ui(894,566,"인벤토리",global.my_player_ins_id[global.my_player_id],-4,1);
+							}
 						}
 						else if (tmp_ins.interaction_message == "상호작용")
 						{

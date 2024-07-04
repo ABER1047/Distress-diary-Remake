@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"flashlight_toggle",
   "isCompatibility":false,
   "isDnD":false,

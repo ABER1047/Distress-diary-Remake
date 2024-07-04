@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"asset_get_index_inv",
   "isCompatibility":false,
   "isDnD":false,

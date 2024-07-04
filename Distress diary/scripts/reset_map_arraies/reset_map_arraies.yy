@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"reset_map_arraies",
   "isCompatibility":false,
   "isDnD":false,

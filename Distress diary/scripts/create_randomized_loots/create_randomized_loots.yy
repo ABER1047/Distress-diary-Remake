@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_randomized_loots",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"ini_open_protect",
   "isCompatibility":false,
   "isDnD":false,

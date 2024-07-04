@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_text_kl_scale",
   "isCompatibility":false,
   "isDnD":false,

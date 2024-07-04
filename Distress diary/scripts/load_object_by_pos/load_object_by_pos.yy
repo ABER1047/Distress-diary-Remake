@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"load_object_by_pos",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_invite_code",
   "isCompatibility":false,
   "isDnD":false,

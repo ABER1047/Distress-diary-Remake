@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"add_speed_valuables",
   "isCompatibility":false,
   "isDnD":false,

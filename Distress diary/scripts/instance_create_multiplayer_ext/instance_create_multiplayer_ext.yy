@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"instance_create_multiplayer_ext",
   "isCompatibility":false,
   "isDnD":false,

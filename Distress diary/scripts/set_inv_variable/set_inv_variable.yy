@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"set_inv_variable",
   "isCompatibility":false,
   "isDnD":false,

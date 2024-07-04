@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"send_GlobalVariableData",
   "isCompatibility":false,
   "isDnD":false,

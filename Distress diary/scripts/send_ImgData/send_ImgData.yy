@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"send_ImgData",
   "isCompatibility":false,
   "isDnD":false,

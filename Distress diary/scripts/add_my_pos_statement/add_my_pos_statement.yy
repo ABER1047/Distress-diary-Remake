@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"add_my_pos_statement",
   "isCompatibility":false,
   "isDnD":false,

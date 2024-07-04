@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_map_room",
   "isCompatibility":false,
   "isDnD":false,

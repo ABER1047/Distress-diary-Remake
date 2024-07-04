@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"camera_set_pos_by_ins",
   "isCompatibility":false,
   "isDnD":false,

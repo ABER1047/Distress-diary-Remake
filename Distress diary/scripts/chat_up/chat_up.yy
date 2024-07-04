@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"chat_up",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"setup_circular_bar",
   "isCompatibility":false,
   "isDnD":false,

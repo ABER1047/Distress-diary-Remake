@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"http_ip_get",
   "isCompatibility":false,
   "isDnD":false,

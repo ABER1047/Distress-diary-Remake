@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"view_shake",
   "isCompatibility":false,
   "isDnD":false,

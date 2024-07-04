@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_voiceserver_userdisconnect",
   "isCompatibility":false,
   "isDnD":false,

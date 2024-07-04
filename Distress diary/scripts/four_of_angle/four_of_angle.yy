@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"four_of_angle",
   "isCompatibility":false,
   "isDnD":false,

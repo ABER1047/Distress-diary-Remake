@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"draw_interaction_key",
   "isCompatibility":false,
   "isDnD":false,

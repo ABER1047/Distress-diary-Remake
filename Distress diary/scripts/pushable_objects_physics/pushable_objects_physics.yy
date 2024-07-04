@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"pushable_objects_physics",
   "isCompatibility":false,
   "isDnD":false,

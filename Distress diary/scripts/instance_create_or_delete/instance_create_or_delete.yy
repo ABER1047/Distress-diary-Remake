@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"instance_create_or_delete",
   "isCompatibility":false,
   "isDnD":false,

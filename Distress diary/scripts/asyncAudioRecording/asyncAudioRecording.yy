@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"asyncAudioRecording",
   "isCompatibility":false,
   "isDnD":false,

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"failed_map_creation",
   "isCompatibility":false,
   "isDnD":false,

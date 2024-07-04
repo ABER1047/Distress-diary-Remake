@@ -185,8 +185,6 @@ if (!global.prohibit_movement_input)
 		if (tmp_val != 0 && keyboard_check_pressed(ord(tmp_val)))
 		{
 			global.quickslot_index = tmp_val-1;
-			
-			set_status_by_weapon((global.quickslot_spr_ind[global.quickslot_index] == spr_weapon) ? global.quickslot_img_ind[global.quickslot_index] : -1);
 		}
 	}
 	else if ((global.is_moving_item_now == -4 && (mouse_check_button_released(mb_left) || mouse_check_button_pressed(mb_left))) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
@@ -278,6 +276,7 @@ if (!global.prohibit_movement_input)
 			global.quickslot_index = 8;
 		}
 	}
+	set_status_by_weapon((global.quickslot_spr_ind[global.quickslot_index] == spr_weapon) ? global.quickslot_img_ind[global.quickslot_index] : -1);
 }
 
 //인벤토리 아이템을 드래그 중일때/아닐때 구분

@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"add_z_axis",
   "isCompatibility":false,
   "isDnD":false,

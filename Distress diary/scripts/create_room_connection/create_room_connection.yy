@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_room_connection",
   "isCompatibility":false,
   "isDnD":false,

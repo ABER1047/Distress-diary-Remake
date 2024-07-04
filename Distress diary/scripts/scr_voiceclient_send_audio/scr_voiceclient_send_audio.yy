@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_voiceclient_send_audio",
   "isCompatibility":false,
   "isDnD":false,

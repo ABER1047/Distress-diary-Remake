@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"set_quickslot_variable",
   "isCompatibility":false,
   "isDnD":false,

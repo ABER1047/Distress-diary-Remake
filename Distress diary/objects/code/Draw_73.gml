@@ -391,11 +391,11 @@ if (keyboard_check_pressed(vk_tab))
 {
 	if (!instance_exists(global.showing_inv))
 	{
-		global.showing_inv = show_inv_ui(400,320,"인벤토리",global.my_player_ins_id[global.my_player_id],-4,1);
+		global.showing_inv = show_inv_ui(894,566,"인벤토리",global.my_player_ins_id[global.my_player_id],-4,1);
 	}
 	else
 	{
-		instance_destroy(global.showing_inv);
+		instance_destroy(obj_inv_ui);
 	}
 	show_message_log("- 인벤토리 열기/닫기 ["+string(global.showing_inv)+"]");
 }

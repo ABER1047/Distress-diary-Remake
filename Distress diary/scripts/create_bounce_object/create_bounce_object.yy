@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_bounce_object",
   "isCompatibility":false,
   "isDnD":false,

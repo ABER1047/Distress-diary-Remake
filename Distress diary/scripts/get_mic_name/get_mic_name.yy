@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"get_mic_name",
   "isCompatibility":false,
   "isDnD":false,

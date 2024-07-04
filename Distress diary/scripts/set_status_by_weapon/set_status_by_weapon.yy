@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"set_status_by_weapon",
   "isCompatibility":false,
   "isDnD":false,

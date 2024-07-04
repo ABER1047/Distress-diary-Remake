@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"send_SpecificPosRoomData",
   "isCompatibility":false,
   "isDnD":false,

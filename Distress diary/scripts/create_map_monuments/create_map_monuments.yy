@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"create_map_monuments",
   "isCompatibility":false,
   "isDnD":false,

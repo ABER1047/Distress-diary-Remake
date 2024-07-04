@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"find_empty_pos",
   "isCompatibility":false,
   "isDnD":false,

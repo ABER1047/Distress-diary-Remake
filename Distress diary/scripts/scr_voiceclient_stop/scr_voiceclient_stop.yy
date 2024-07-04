@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"scr_voiceclient_stop",
   "isCompatibility":false,
   "isDnD":false,

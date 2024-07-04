@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"fix_num_inside",
   "isCompatibility":false,
   "isDnD":false,

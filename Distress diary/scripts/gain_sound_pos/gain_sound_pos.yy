@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"gain_sound_pos",
   "isCompatibility":false,
   "isDnD":false,

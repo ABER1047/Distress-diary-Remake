@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"clean_message_log",
   "isCompatibility":false,
   "isDnD":false,

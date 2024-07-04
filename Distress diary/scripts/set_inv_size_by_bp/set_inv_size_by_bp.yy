@@ -1,5 +1,5 @@
 {
-  "$GMScript":"",
+  "$GMScript":"v1",
   "%Name":"set_inv_size_by_bp",
   "isCompatibility":false,
   "isDnD":false,
