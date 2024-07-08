@@ -12,11 +12,4 @@ function add_my_pos_statement()
 	origin_x_axis = -4;
 	origin_y_axis = -4;
 	stop_cal_by_pos_statement = false;
-	
-	
-	var tmp_obj_name = object_get_name(object_index);
-	if (string_pos(tmp_obj_name,global.add_my_pos_statement_obj_ind_list) == 0)
-	{
-		global.add_my_pos_statement_obj_ind_list = string(global.add_my_pos_statement_obj_ind_list)+"#"+string(tmp_obj_name);
-	}
 }

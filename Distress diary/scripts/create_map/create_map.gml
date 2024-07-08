@@ -11,9 +11,6 @@ function create_map(argument0)
 	
 	//모든 발판 버튼 삭제
 	instance_destroy(obj_floor_button);
-	
-	//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
-	load_object_by_pos(360);
 
 
 	random_set_seed(argument0);
@@ -138,5 +135,9 @@ function create_map(argument0)
 		
 		//라이트 서피스 설정
 		global.enable_light_surf = true;
+		
+		//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+		load_object_by_pos(120);
+		show_message_log(global.add_my_pos_statement_obj_ind_list);
 	}
 }

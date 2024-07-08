@@ -24,10 +24,9 @@ if (array_length(global.my_player_ins_id) < instance_number(obj_player))
 //룸 포지션에 따른 오브젝트 숨기기/표시 시스템
 if (global.load_map_repeater > 0)
 {
-	var tmp_obj_ind = string_split(global.add_my_pos_statement_obj_ind_list,"#");
-	for(var i = 0; i < array_length(tmp_obj_ind); i++)
+	for(var i = 0; i < array_length(global.add_my_pos_statement_obj_ind_list); i++)
 	{
-		with(asset_get_index(tmp_obj_ind[i]))
+		with(asset_get_index(global.add_my_pos_statement_obj_ind_list[i]))
 		{
 			if (id != other.id)
 			{

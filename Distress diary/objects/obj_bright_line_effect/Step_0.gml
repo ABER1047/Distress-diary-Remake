@@ -21,7 +21,7 @@ if (speed < 1)
 direction += angle_difference(rd_dir_increasement,direction)*0.1;
 
 
-rd_dir_increasement_timer ++;
+rd_dir_increasement_timer += rd_dir_timer_increasement;
 if (rd_dir_increasement_timer > 60)
 {
 	rd_dir_increasement = start_dir+irandom_range(-65,65);

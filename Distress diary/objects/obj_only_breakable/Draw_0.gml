@@ -4,6 +4,16 @@
 //오브젝트 그리기
 if (image_alpha > 0)
 {
-	draw_sprite_ext(sprite_index,image_index,x+draw_xx,y+draw_yy,image_xscale,image_yscale,image_angle,image_blend,image_alpha)
+	draw_sprite_ext(sprite_index,image_index,x+draw_xx,y+draw_yy,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
+	
+	if (global.show_wall_hitbox)
+	{
+		if (point_distance(x,y,mouse_x,mouse_y) < 64)
+		{
+			draw_set_color(c_white);
+			draw_set_alpha(1);
+			draw_text(x,y,string(my_pos_xx)+", "+string(my_pos_yy));
+		}
+	}
 }
 

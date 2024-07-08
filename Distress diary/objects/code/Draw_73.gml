@@ -96,7 +96,7 @@ if (surface_exists(global.fire_line_surf) && surface_exists(global.light_surf))
 	surface_set_target(global.fire_line_surf);
 	draw_clear_alpha(c_black,0);
 	draw_set_alpha(1);
-	with(obj_fire_line_effect)
+	with(obj_bright_line_effect)
 	{
 		if (id != other.id)
 		{

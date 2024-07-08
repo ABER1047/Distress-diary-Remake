@@ -7,5 +7,5 @@ for(var i = 0; i < 8; i++)
 	line_yy[i] = y+i;
 }
 
-
+//rd_dir_timer_increasement = 1;
 rd_dir_increasement_timer = irandom_range(0,60);

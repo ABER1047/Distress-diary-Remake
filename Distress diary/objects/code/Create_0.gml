@@ -72,7 +72,7 @@ global.map_creation_falied = 0;
 global.create_only_one_enterance = false;
 
 //add_my_pos_statement용 변수 (add_my_pos_statement를 사용하는 모든 오브젝트 인덱스 저장용)
-global.add_my_pos_statement_obj_ind_list = "";
+global.add_my_pos_statement_obj_ind_list = [ "obj_mob_parents", "obj_parents", "obj_floor_button" ];
 global.load_map_repeater = 0;
 
 

@@ -71,12 +71,13 @@ if (!stop_cal_by_pos_statement)
 			
 			if (percentage_k(1))
 			{
-				var tmp_ins = instance_create_depth(x,y-fire_yy[image_index]-32,-1,obj_fire_line_effect);
+				var tmp_ins = instance_create_depth(x,y-fire_yy[image_index]-32,-1,obj_bright_line_effect);
 				tmp_ins.image_blend = tmp_color[fire_type*2+1];
 				tmp_ins.direction = 90;
 				tmp_ins.rd_dir_increasement = 90;
 				tmp_ins.start_dir = 90;
 				tmp_ins.speed = irandom_range(20,30)/10;
+				tmp_ins.rd_dir_timer_increasement = 1;
 			}
 		}
 	}
