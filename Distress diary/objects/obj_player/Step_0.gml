@@ -37,21 +37,23 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//폭탄 던지기
 	if (!global.chat_activated && keyboard_check_pressed(ord("G")))
 	{
+		var m_speed = abs(global.movement_hspeed)+abs(global.movement_vspeed);
+		var tmp_dir = (m_speed == 0) ? global.n_dir*90 : point_direction(0,0,global.movement_hspeed,global.movement_vspeed);
 		var rd_bomb = choose(false,true);
 		if (rd_bomb)
 		{
-			var tmp_ins = instance_create_multiplayer(obj_bomb,x,y,global.object_id_ind,0,false,-4,-4);
+			var tmp_ins = instance_create_multiplayer(obj_bomb,x,y+12,global.object_id_ind,0,false,-4,-4);
 			tmp_ins.zspeed = zspeed*1.5;
-			tmp_ins._hspeed = lengthdir_x(64,global.n_dir*90)+(global.movement_hspeed+_hspeed)*6;
-			tmp_ins._vspeed = lengthdir_y(64*0.48,global.n_dir*90)+(global.movement_vspeed+_vspeed)*6*0.48;
+			tmp_ins._hspeed = lengthdir_x(54+m_speed,tmp_dir);
+			tmp_ins._vspeed = lengthdir_y((64+m_speed)*0.48,tmp_dir);
 			tmp_ins.z = z;
 		}
 		else
 		{
-			var tmp_ins = instance_create_multiplayer(obj_cherry_bomb,x,y,global.object_id_ind,0,false,-4,-4);
+			var tmp_ins = instance_create_multiplayer(obj_cherry_bomb,x,y+12,global.object_id_ind,0,false,-4,-4);
 			tmp_ins.zspeed = -8;
-			tmp_ins._hspeed = (global.movement_hspeed == 0) ? lengthdir_x(72,global.n_dir*90) : sign(global.movement_hspeed)*96;
-			tmp_ins._vspeed = (global.movement_vspeed == 0) ? lengthdir_y(72*0.55,global.n_dir*90) : sign(global.movement_vspeed)*96*0.55;
+			tmp_ins._hspeed = lengthdir_x(76+m_speed,tmp_dir);
+			tmp_ins._vspeed = lengthdir_y((96+m_speed)*0.55,tmp_dir);
 			tmp_ins.z = z+1;
 		}
 	}

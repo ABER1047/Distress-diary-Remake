@@ -16,7 +16,7 @@ var res = network_connect(server, server_ip, server_port);
 if (res < 0) 
 {
 	event_user(3);
-	show_message_log("해당 서버에 접속할 수 없습니다 ["+string(tmp_ip)+"]");
+	show_message_log("해당 서버에 접속할 수 없습니다 [에러 코드 "+string(res)+"]");
 	
 	//VC system
 	//scr_voiceclient_stop();

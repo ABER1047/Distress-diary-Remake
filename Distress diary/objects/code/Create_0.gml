@@ -101,9 +101,16 @@ global.enable_shadow_surf = true;
 global.enable_flashlight = false;
 
 
+//총 플레이 가능 인원수 (서버 포함)
+global.maximum_player_num = 7;
+
+
 //현재 모든 플레이어 위치 (룸) [인덱스는 플레이어 obj_id 값을 의미함]
-global.n_player_room_xx = [ -4, -4, -4, -4, -4, -4 ];
-global.n_player_room_yy = [ -4, -4, -4, -4, -4, -4 ];
+for(var i = 0; i < global.maximum_player_num; i++)
+{
+	global.n_player_room_xx[i] = -4;
+	global.n_player_room_yy[i] = -4;
+}
 
 
 //현재 불러온 룸 정보

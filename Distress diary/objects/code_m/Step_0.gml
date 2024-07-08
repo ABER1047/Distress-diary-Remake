@@ -18,7 +18,7 @@ if (server == -4)
 	//서버 생성
 	if (keyboard_check_pressed(vk_f12)) 
 	{
-		server = network_create_server(network_socket_tcp, server_port, 3);
+		server = network_create_server(network_socket_tcp, server_port, global.maximum_player_num-1);
 
 		
 		if (server < 0) 

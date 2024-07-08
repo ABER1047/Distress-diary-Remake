@@ -96,6 +96,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						soc = tmp_soc;
 						obj_id = global.object_id_ind;
 						obj_id_player_only = global.object_id_player_only;
+						
+						//오브젝트 인스턴스 아이디 저장
+						global.my_player_ins_id[obj_id_player_only] = id;
 					}
 				}
 				
@@ -497,9 +500,9 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//위에서 찾은 상자류 오브젝트 정보값 받아오기
 				with(tmp_real_ins_id)
 				{
-					for(var i = 0; i < inv_height; i++)
+					for(var i = 0; i < real(tmp_args[4]); i++)
 					{
-						for(var ii = 0; ii < inv_width; ii++)
+						for(var ii = 0; ii < real(tmp_args[3]); ii++)
 						{
 							if (buffer_get_size(buffer) > 0)
 							{
