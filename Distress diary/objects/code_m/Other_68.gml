@@ -132,17 +132,15 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					{
 						tmp_obj_id = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
 						all_player_id[i] = real(buffer_read(buffer, buffer_string)); //고유 obj_id_player_only값 부여
-						if (i == all_player_id[i])
-						{
-							var obj = instance_create_depth(-4,-4,0,obj_player);
-							obj.obj_id = tmp_obj_id; //고유 obj_id값 부여
-							obj.obj_id_player_only = all_player_id[i]; //고유 obj_id_player_only값 부여
-							obj.soc = buffer_read(buffer, buffer_u8); //소켓
-							obj.nickname = buffer_read(buffer, buffer_string); //닉네임
+						var obj = instance_create_depth(-4,-4,0,obj_player);
+						obj.obj_id = tmp_obj_id; //고유 obj_id값 부여
+						obj.obj_id_player_only = all_player_id[i]; //고유 obj_id_player_only값 부여
+						obj.soc = buffer_read(buffer, buffer_u8); //소켓
+						obj.nickname = buffer_read(buffer, buffer_string); //닉네임
 					
-							//오브젝트 인스턴스 아이디 저장
-							global.my_player_ins_id[all_player_id[i]] = obj;
-						}
+						//오브젝트 인스턴스 아이디 저장
+						global.my_player_ins_id[all_player_id[i]] = obj;
+						
 						i ++;
 					}
 					catch(e)
@@ -218,20 +216,23 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			show_message_log("tmp_obj_id_player_only : "+string(tmp_obj_id_player_only));
 			
 			//만약 대답이 늦어서 튕겼다고 판단되어 내보내진 경우
-			if (global.my_player_id == tmp_obj_id_player_only)
+			if (tmp_obj_id_player_only != 0)
 			{
-				//핑차이가 너무 심하거나, 연결 상태가 좋지 못한 경우라서 그냥 내보내버림
-				event_user(0);
-			}
-			else //진짜로 튕겨서 대답이 안 간 경우 그냥 내보내버리기
-			{
-				with(obj_player) 
+				if (global.my_player_id == tmp_obj_id_player_only)
 				{
-					if (obj_id_player_only == tmp_obj_id_player_only) 
+					//핑차이가 너무 심하거나, 연결 상태가 좋지 못한 경우라서 그냥 내보내버림
+					event_user(0);
+				}
+				else //진짜로 튕겨서 대답이 안 간 경우 그냥 내보내버리기
+				{
+					with(obj_player) 
 					{
-						//나간 플레이어가 해당 플레이어인 경우
-						show_message_log("'"+string(nickname)+"'가 나갔습니다.");
-						instance_destroy();
+						if (obj_id_player_only == tmp_obj_id_player_only) 
+						{
+							//나간 플레이어가 해당 플레이어인 경우
+							show_message_log("'"+string(nickname)+"'가 나갔습니다.");
+							instance_destroy();
+						}
 					}
 				}
 			}
