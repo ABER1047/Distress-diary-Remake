@@ -9,6 +9,10 @@ var yy_h = camera_get_view_height(view_camera[0]);
 
 
 var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+if (!instance_exists(tmp_my_p))
+{
+	tmp_my_p = obj_player.id;
+}
 
 //UI창이 열려있을때 뒷 배경 까맣게 칠하기
 if (instance_exists(obj_ui_parents))

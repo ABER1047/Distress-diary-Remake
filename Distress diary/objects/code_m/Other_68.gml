@@ -10,7 +10,21 @@ if (type == network_type_connect)
 	
 
 	//object_id_player_only 할당용 변수
-	global.object_id_player_only ++;
+	var found_empty_slot = false, tmp_arr_length = array_length(global.my_player_ins_id);
+	for(var i = 0; i < tmp_arr_length; i++)
+	{
+		if (!instance_exists(global.my_player_ins_id[i]))
+		{
+			global.object_id_player_only = i;
+			found_empty_slot = true;
+			break;
+		}
+	}
+	
+	if (!found_empty_slot)
+	{
+		global.object_id_player_only = tmp_arr_length;
+	}
 	
 	
 	//핑 저장용 변수
@@ -110,18 +124,32 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//뭔가 문제가 생겨서 제대로 연결이 되지 못한 경우 체크
 				alarm[3] = 180;
 				
-
+				var all_player_id = -4, tmp_obj_id = -4, i = 0, loop = true;
 				//나 이외의 모든 플레이어 기본 정보 값 세팅
-				for(i = 0; i < tmp_player_num; i++)
+				while(loop)
 				{
-					var obj = instance_create_depth(-4,-4,0,obj_player);
-					obj.obj_id = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
-					obj.obj_id_player_only = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
-					obj.soc = buffer_read(buffer, buffer_u8); //소켓
-					obj.nickname = buffer_read(buffer, buffer_string); //닉네임
+					try
+					{
+						tmp_obj_id = real(buffer_read(buffer, buffer_string)); //고유 obj_id값 부여
+						all_player_id[i] = real(buffer_read(buffer, buffer_string)); //고유 obj_id_player_only값 부여
+						if (i == all_player_id[i])
+						{
+							var obj = instance_create_depth(-4,-4,0,obj_player);
+							obj.obj_id = tmp_obj_id; //고유 obj_id값 부여
+							obj.obj_id_player_only = all_player_id[i]; //고유 obj_id_player_only값 부여
+							obj.soc = buffer_read(buffer, buffer_u8); //소켓
+							obj.nickname = buffer_read(buffer, buffer_string); //닉네임
 					
-					//오브젝트 인스턴스 아이디 저장
-					global.my_player_ins_id[obj.obj_id_player_only] = obj;
+							//오브젝트 인스턴스 아이디 저장
+							global.my_player_ins_id[all_player_id[i]] = obj;
+						}
+						i ++;
+					}
+					catch(e)
+					{
+						loop = false;
+						break;
+					}
 				}
 			
 
@@ -142,7 +170,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				//접속 메세지 표기
-				show_message_log("채팅방에 들어왔습니다.");
+				show_message_log("서버에 참가했습니다. ["+string(global.my_player_id)+" / "+string(all_player_id)+"]");
 			}
 		break;
 		
@@ -163,7 +191,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				//오브젝트 인스턴스 아이디 저장
 				global.my_player_ins_id[tmp_object_id_ind_player_only] = obj;
 
-				show_message_log("'"+string(tmp_nickname)+"'가 왔습니다.");
+				show_message_log("'"+string(tmp_nickname)+"'가 왔습니다. ["+string(tmp_object_id_ind_player_only)+"]");
 				
 				
 				//플레이어 인스턴스 아이디 저장해두기 (최적화 용도로 사용)
