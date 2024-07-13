@@ -176,8 +176,8 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 
 //퀵 슬롯 창 그리기
 var ui_scale = global.reversed_ratio_by_camera*0.5;
-var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = -4;
-if (!global.prohibit_movement_input)
+var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = ui_scale*31.5;
+if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
 {
 	if (keyboard_check_pressed(vk_anykey)) //퀵 슬롯 키보드 선택 판정
 	{
@@ -190,7 +190,6 @@ if (!global.prohibit_movement_input)
 	else if ((global.is_moving_item_now == -4 && (mouse_check_button_released(mb_left) || mouse_check_button_pressed(mb_left))) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
 	{
 		tmp_slot_half_width = ui_scale*282;
-		tmp_slot_half_height = ui_scale*31.5;
 		var is_mouse_inside_quickslot = false;
 		if (abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height)
 		{
@@ -281,9 +280,7 @@ if (!global.prohibit_movement_input)
 
 //인벤토리 아이템을 드래그 중일때/아닐때 구분
 var tmp_img_ind = (global.is_moving_item_now == -4) ? global.quickslot_index : global.is_mouse_on_quickslot;
-draw_sprite_ext(spr_quickslot,(tmp_img_ind >= 0) ? tmp_img_ind : 9,tmp_ui_xx,tmp_ui_yy,ui_scale,ui_scale,0,c_white,1);
-
-
+draw_sprite_ext(spr_quickslot,(tmp_img_ind >= 0) ? tmp_img_ind : 9,tmp_ui_xx,tmp_ui_yy+tmp_slot_half_height*2,ui_scale,ui_scale,0,c_white,1);
 
 
 
@@ -292,7 +289,6 @@ for(var i = 0; i < 9; i++)
 	if (sprite_exists(global.quickslot_spr_ind[i]))
 	{
 		tmp_slot_half_width = (tmp_slot_half_width == -4) ? ui_scale*282 : tmp_slot_half_width;
-		tmp_slot_half_height = (tmp_slot_half_height == -4) ? ui_scale*31.5 : tmp_slot_half_height;
 		var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
 		
 		var tmp_check = (global.quickslot_stack_num[i] == -4);
@@ -322,7 +318,11 @@ for(var i = 0; i < 9; i++)
 	}
 }
 
-
+//공격 쿨타임 있는 경우 표기
+if (global.attack_cooldown_timer > 0)
+{
+	draw_sprite_ext(spr_quickslot,10,tmp_ui_xx,tmp_ui_yy+tmp_slot_half_height*2,ui_scale,ui_scale*(1-global.attack_cooldown_timer/global.attack_speed),0,c_white,0.4);
+}
 
 
 

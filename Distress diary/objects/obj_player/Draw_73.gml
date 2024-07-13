@@ -41,19 +41,24 @@ if (draw_alpha > 0)
 	{
 		var tmp_ui_xx = x+32*tmp_scale, tmp_ui_yy = y-54*tmp_scale-z;
 		var tmp_ui_scale = tmp_scale*0.7;
-		if (global.attack_cooldown_timer > 0)
+		if (gage_bar_charged > 0)
 		{
 			//공격 쿨타임 게이지바 드로우
-			var tmp_col = merge_color(#E14141,#DCFF70,global.attack_cooldown_timer/global.attack_speed);
+			var tmp_col = merge_color(#DCFF70,#E14141,gage_bar_charged);
 		
 			//뒷 배경 그리기
 			draw_sprite_ext(charging_gage_bar,0,tmp_ui_xx,tmp_ui_yy,tmp_ui_scale,tmp_ui_scale,0,#332439,1);
 		
 			//게이지 바 그리기
-			draw_circular_bar(tmp_ui_xx,tmp_ui_yy,global.attack_cooldown_timer,global.attack_speed,tmp_col,10*tmp_scale,1,3.8*tmp_scale,2);
+			draw_circular_bar(tmp_ui_xx,tmp_ui_yy,gage_bar_charged,1,tmp_col,10*tmp_scale,1,3.8*tmp_scale,2);
 		
 			//테두리 그리기
 			draw_sprite_ext(charging_gage_bar,1,tmp_ui_xx,tmp_ui_yy,tmp_ui_scale,tmp_ui_scale,0,#332439,1);
+			
+			if (gage_bar_charged >= 1 && global.gage_bar_shine_animation <= 0)
+			{
+				global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
+			}
 		}
 		
 		if (global.gage_bar_shine_animation > 0)

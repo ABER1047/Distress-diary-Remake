@@ -49,7 +49,7 @@ with(obj_mob_parents)
 {
 	if (object_index != obj_player && id != other.id && place_meeting(x,y,other.id) && z-32 <= other.z)
 	{
-		give_damage(id,other.attack_dmg,true,global.knockback_power,other.x,other.y,25,global.critical_chance,global.critical_dmg_magnification);
+		give_damage(id,other.attack_dmg,true,global.knockback_power,other.x,other.y,25);
 	}
 }
 

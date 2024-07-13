@@ -76,9 +76,11 @@ if (global.attack_cooldown_timer > 0)
 	if (global.attack_cooldown_timer > global.attack_speed)
 	{
 		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제
-		global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
 		global.attack_cooldown_timer = 0;
 	}
+	
+	//공격 쿨타임 게이지
+	//global.my_player_ins_id[global.my_player_id].gage_bar_charged = global.attack_cooldown_timer/global.attack_speed;
 }
 
 

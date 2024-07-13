@@ -4,3 +4,4 @@ if (global.my_player_id == obj_id_player_only && global.quickslot_spr_ind[global
 {
 	event_user(0);
 }
+

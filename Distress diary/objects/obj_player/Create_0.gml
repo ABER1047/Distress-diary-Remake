@@ -153,3 +153,8 @@ if (instance_number(obj_player) == 1)
 //공격 이펙트 방향 저장용
 b_attack_ins = -4;
 a_timer = 0;
+
+
+//게이지 바 차징 정도
+gage_bar_charged = 0;
+tmp_dmg_cal = 0; //데미지 계산용 임시 변수
