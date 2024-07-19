@@ -8,7 +8,7 @@ function set_status_by_weapon(argument0,argument1)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
-	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, auto_attack = false;
+	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, auto_attack = false, tmp_range = 128;
 	
 	if (tmp_spr_ind == spr_weapon)
 	{
@@ -26,6 +26,7 @@ function set_status_by_weapon(argument0,argument1)
 				atk_sp = 35;
 				crit_chance = 16;
 				knockback = 1;
+				tmp_range = 78;
 			break;
 		
 			case 2:
@@ -41,12 +42,13 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 10;
 				knockback = 16;
 			break;
-		
+			
 			case 4:
 				dmg = 4;
 				atk_sp = 35;
 				crit_chance = 16;
 				knockback = 3;
+				tmp_range = 78;
 			break;
 			
 			case 5:
@@ -57,36 +59,106 @@ function set_status_by_weapon(argument0,argument1)
 			break;
 			
 			case 6:
+				dmg = 8;
+				atk_sp = 25;
+				crit_chance = 10;
+				knockback = 1;
+				tmp_range = 64;
+			break;
+			
+			case 7:
+				dmg = 6;
+				atk_sp = 25;
+				crit_chance = 5;
+				knockback = 1;
+				tmp_range = 64;
+			break;
+			
+			case 8:
+				dmg = 8;
+				atk_sp = 40;
+				crit_chance = 15;
+				knockback = 16;
+			break;
+			
+			case 9:
+				dmg = 7;
+				atk_sp = 35;
+				crit_chance = 20;
+				knockback = 4;
+				tmp_range = 78;
+			break;
+			
+			case 10:
+				dmg = 12;
+				atk_sp = 60;
+				crit_chance = 30;
+				knockback = 24;
+			break;
+			
+			case 11:
+				dmg = 5;
+				atk_sp = 35;
+				crit_chance = 10;
+				knockback = 16;
+			break;
+			
+			case 12:
+				dmg = 4;
+				atk_sp = 30;
+				crit_chance = 16;
+				knockback = 3;
+				tmp_range = 78;
+			break;
+			
+			case 13:
+				dmg = 8;
+				atk_sp = 65;
+				crit_chance = 30;
+				knockback = 24;
+			break;
+			
+			case 14:
+				dmg = 8;
+				atk_sp = 40;
+				crit_chance = 15;
+				knockback = 10;
+			break;
+			
+			case 15:
 				dmg = 7;
 				atk_sp = 35;
 				crit_chance = 20;
 				knockback = 1;
+				tmp_range = 78;
 			break;
 			
-			case 8:
+			case 16:
 				dmg = 12;
 				atk_sp = 60;
 				crit_chance = 30;
 				knockback = 12;
 			break;
 			
-			case 9:
+			case 17:
 				dmg = 4;
 				atk_sp = 30;
 				crit_chance = 35;
 				knockback = 16;
 			break;
 			
-			case 10:
+			case 18:
 				dmg = 3;
 				atk_sp = 25;
 				crit_chance = 40;
 				knockback = 4;
+				tmp_range = 78;
 			break;
 		}
 	}
 	else if (tmp_spr_ind == spr_pickaxe)
 	{
+		tmp_range = 64;
 		auto_attack = true;
 		switch(tmp_img_ind)
 		{
@@ -111,9 +183,9 @@ function set_status_by_weapon(argument0,argument1)
 				knockback = 3;
 			break;
 			
-			case 3: //180
-				dmg = -50;
-				atk_sp = 90;
+			case 3: //240
+				dmg = -12.5;
+				atk_sp = 30;
 				crit_chance = 0;
 				knockback = 3;
 			break;
@@ -139,7 +211,7 @@ function set_status_by_weapon(argument0,argument1)
 		}
 	}
 
-	
+	global.attack_range = tmp_range;
 	global.automatic_attack_enable = auto_attack;
 	global.attack_damage = (dmg)*(1+sign(global.buff_left_time[3])*0.25-sign(global.buff_left_time[2])*0.25); //데미지 계산
 	global.attack_speed = atk_sp;

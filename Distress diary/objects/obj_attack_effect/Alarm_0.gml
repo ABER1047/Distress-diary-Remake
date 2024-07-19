@@ -54,7 +54,8 @@ with(obj_mob_parents)
 }
 
 //채굴 판정 (데미지가 마이너스 = 광질)
-with(obj_only_minable)
+var tmp_ins = instance_nearest(x,y+32,obj_only_minable);
+with(tmp_ins)
 {
 	if (id != other.id && place_meeting(x,y,other.id))
 	{
@@ -88,7 +89,6 @@ with(obj_only_minable)
 				instance_destroy();
 			}
 		}
-		break;
 	}
 }
 

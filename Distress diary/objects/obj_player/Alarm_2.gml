@@ -5,6 +5,6 @@ if (instance_exists(b_attack_ins))
 	tmp_dir = -1*b_attack_ins.dir;
 }
 
-b_attack_ins = create_attack_effect(x,y,z,tmp_dir,global.n_dir*90,128,tmp_dmg_cal);
+b_attack_ins = create_attack_effect(x,y,z,tmp_dir,global.n_dir*90,global.attack_range,tmp_dmg_cal);
 
 

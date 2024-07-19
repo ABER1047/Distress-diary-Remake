@@ -374,7 +374,7 @@ if (global.dev_mode == 1)
 				}
 				else if (rd_choose == 6)
 				{
-					var tmp_ins = instance_create_multiplayer(obj_only_minable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(0,11),false,-4,-4);
+					var tmp_ins = instance_create_multiplayer(obj_only_minable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(0,15),false,-4,-4);
 				}
 			}
 		}

@@ -219,6 +219,7 @@ for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
 
 
 //플레이어 스테이터스
+global.attack_range = 128; //공격범위
 global.attack_damage = 3; //공격력
 global.attack_speed = 20; //n프레임마다 공격 가능
 global.defence_power = 0; //방어력 (n%데미지 감소)

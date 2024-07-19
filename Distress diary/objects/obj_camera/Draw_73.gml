@@ -47,12 +47,18 @@ draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_f
 
 //플레이어 현재 스테이터스 창 (공격력, 방어력 등등)
 var tmp_xx = xx+text_ratio*16;
-var tmp_values = [ valToStrWithPoint(global.attack_damage,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck) ];
+var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck) ];
 var to_draw_values = [ string(tmp_values[0])+"(+"+string(tmp_values[1])+")", tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6] ];
 for(var i = 0; i < 6; i++)
 {
 	var tmp_yy = yy+(256+i*24)*text_ratio;
-	draw_sprite_ext(spr_status_ui,i,tmp_xx,tmp_yy,scale,scale,0,c_white,0.5);
+	
+	var tmp_img_ind = i;
+	if (tmp_img_ind == 0 && global.attack_damage < 0)
+	{
+		tmp_img_ind = 6;
+	}
+	draw_sprite_ext(spr_status_ui,tmp_img_ind,tmp_xx,tmp_yy,scale,scale,0,c_white,0.5);
 	draw_text_kl_scale(tmp_xx+text_ratio*16,tmp_yy-text_ratio*28,to_draw_values[i],64,-1,0.5,c_white,0,-1,font_normal,0.25,0.25,0,true);
 }
 
@@ -86,6 +92,7 @@ for(var i = 0; i < 3; i++)
 	{
 		draw_circular_bar(xx+(scale*(48+78*i)),yy+yy_h-(144*scale),tmp_values[i],tmp_values_max[i],tmp_color[i],32*scale,1,scale*6,0,#17111A);
 	}
+	
 	draw_sprite_ext(spr_ui,i,xx+(scale*(48+78*i)),yy+yy_h-(144*scale),scale*0.9,scale*0.9,0,c_white,1);
 	
 	draw_text_kl_scale(xx+(scale*(48+78*i)),yy+yy_h-(172*scale),string(tmp_values_for_display[i])+string(tmp_unit[i]),64,-1,1,c_white,0,0,font_normal,0.25,0.25,0,true);
