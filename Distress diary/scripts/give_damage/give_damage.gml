@@ -32,22 +32,25 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 		if (is_hp_exists && (argument2 || is_dmg_cooltime_exists))
 		{
 			var tmp_dmg = (tmp_ins != global.my_player_ins_id[global.my_player_id]) ? argument1 : argument1*(1-global.defence_power*0.01);
+			if (tmp_dmg > 0)
+			{
+				//크리티컬 확률이랑 크리티컬 데미지 배율이 정의된 경우
+				if (argument7 != undefined && argument8 != undefined && percentage_k(argument7))
+				{
+					tmp_dmg *= (1+argument8);
+				}
+				tmp_ins.hp -= tmp_dmg;
+				tmp_ins.dmg_cooltime = argument6;
+				if (tmp_ins.hp < 0)
+				{
+					tmp_ins.hp = 0;
+				}
 			
-			//크리티컬 확률이랑 크리티컬 데미지 배율이 정의된 경우
-			if (argument7 != undefined && argument8 != undefined && percentage_k(argument7))
-			{
-				tmp_dmg *= (1+argument8);
-			}
-			tmp_ins.hp -= tmp_dmg;
-			tmp_ins.dmg_cooltime = argument6;
-			if (tmp_ins.hp < 0)
-			{
-				tmp_ins.hp = 0;
-			}
 
 		
-			//디버그용 메시지
-			show_message_log(tmp_ins.hp);
+				//디버그용 메시지
+				show_message_log(tmp_ins.hp);
+			}
 
 			//데이터 값 전송
 			var tmp_var_name = "x,y,direction,hp,dmg_cooltime";

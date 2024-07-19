@@ -47,7 +47,7 @@ draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_f
 
 //플레이어 현재 스테이터스 창 (공격력, 방어력 등등)
 var tmp_xx = xx+text_ratio*16;
-var tmp_values = [ valToStrWithPoint(global.attack_damage), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck) ];
+var tmp_values = [ valToStrWithPoint(global.attack_damage,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck) ];
 var to_draw_values = [ string(tmp_values[0])+"(+"+string(tmp_values[1])+")", tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6] ];
 for(var i = 0; i < 6; i++)
 {
@@ -279,7 +279,7 @@ if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
 			global.quickslot_index = 8;
 		}
 	}
-	set_status_by_weapon((global.quickslot_spr_ind[global.quickslot_index] == spr_weapon) ? global.quickslot_img_ind[global.quickslot_index] : -1);
+	set_status_by_weapon(global.quickslot_spr_ind[global.quickslot_index],global.quickslot_img_ind[global.quickslot_index]);
 }
 
 //인벤토리 아이템을 드래그 중일때/아닐때 구분

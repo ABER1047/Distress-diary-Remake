@@ -419,9 +419,9 @@ function set_item_info_values(argument0,argument1)
 		{
 			case 0:
 				tmp_short_name = "Energy";
-				tmp_name = "Energy Bar";
+				tmp_name = "Energy bar";
 				item_weight = 0.2;
-				item_height = 2;
+				item_width = 2;
 			break;
 			
 			case 1:
@@ -470,32 +470,144 @@ function set_item_info_values(argument0,argument1)
 				tmp_short_name = "Sword";
 				tmp_name = "Copper Sword";
 				item_weight = 2.3;
-				item_height = 2;
+				item_height = 3;
 			break;
 			
 			case 1:
 				tmp_short_name = "Dagger";
-				tmp_name = "Dagger";
+				tmp_name = "Copper Dagger";
+				item_weight = 1.2;
+				item_height = 2;
+			break;
+			
+			case 2:
+				tmp_short_name = "Hammer";
+				tmp_name = "Copper Hammer";
+				item_weight = 4;
+				item_width = 2;
+				item_height = 3;
+			break;
+			
+			case 3:
+				tmp_short_name = "Sword";
+				tmp_name = "Iron Sword";
+				item_weight = 2.3;
+				item_height = 3;
+			break;
+			
+			case 4:
+				tmp_short_name = "Dagger";
+				tmp_name = "Iron Dagger";
+				item_weight = 1.2;
+				item_height = 2;
+			break;
+			
+			case 5:
+				tmp_short_name = "Hammer";
+				tmp_name = "Iron Hammer";
+				item_weight = 4;
+				item_width = 2;
+				item_height = 3;
+			break;
+			
+			case 6:
+				tmp_short_name = "Knife";
+				tmp_name = "Poisoned Throwing Knife";
+				item_weight = 0.3;
+			break;
+			
+			case 7:
+				tmp_short_name = "Knife";
+				tmp_name = "Throwing Knife";
+				item_weight = 0.3;
+			break;
+			
+			case 8:
+				tmp_short_name = "Sword";
+				tmp_name = "High Quality Metal Sword";
+				item_weight = 2.3;
+				item_height = 3;
+			break;
+			
+			case 9:
+				tmp_short_name = "Dagger";
+				tmp_name = "High Quality Metal Dagger";
+				item_weight = 1.2;
+				item_height = 2;
+			break;
+			
+			case 10:
+				tmp_short_name = "Hammer";
+				tmp_name = "High Quality Metal Hammer";
+				item_weight = 4;
+				item_width = 2;
+				item_height = 3;
+			break;
+			
+			case 11:
+				tmp_short_name = "Sword";
+				tmp_name = "Slime Sword";
+				item_weight = 1.3;
+				item_height = 3;
+			break;
+			
+			case 12:
+				tmp_short_name = "Dagger";
+				tmp_name = "Slime Dagger";
+				item_weight = 0.2;
+				item_height = 2;
+			break;
+			
+			case 13:
+				tmp_short_name = "Hammer";
+				tmp_name = "Slime Hammer";
+				item_weight = 2;
+				item_width = 2;
+				item_height = 3;
+			break;
+			
+			case 14:
+				tmp_short_name = "Sword";
+				tmp_name = "Bone Sword";
+				item_weight = 1.3;
+				item_height = 3;
+			break;
+			
+			case 15:
+				tmp_short_name = "Dagger";
+				tmp_name = "Bone Dagger";
+				item_weight = 0.2;
+				item_height = 2;
+			break;
+		}
+	}
+	else if (argument0 == spr_pickaxe)
+	{
+		switch(argument1)
+		{
+			case 0:
+				tmp_short_name = "Pickaxe";
+				tmp_name = "Copper Pickaxe";
+				item_weight = 2.3;
+				item_height = 2;
+			break;
+			
+			case 1:
+				tmp_short_name = "Pickaxe";
+				tmp_name = "Iron Pickaxe";
 				item_weight = 1.2;
 			break;
 			
 			case 2:
-				tmp_short_name = "Sword";
-				tmp_name = "Golden Sword";
+				tmp_short_name = "Pickaxe";
+				tmp_name = "Slime Pickaxe";
 				item_weight = 2;
 				item_height = 2;
 			break;
 			
 			case 3:
-				tmp_short_name = "Knife";
-				tmp_name = "Throwing Knife";
-				item_weight = 0.8;
-				max_stack_num = 8;
-			break;
-			
-			case 4:
-				tmp_short_name = "Knife";
-				tmp_name = "Poisoned Throwing Knife";
+				tmp_short_name = "Pickaxe";
+				tmp_name = "Bone Pickaxe";
 				item_weight = 0.8;
 				max_stack_num = 8;
 			break;

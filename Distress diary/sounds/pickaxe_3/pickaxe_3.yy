@@ -9,7 +9,7 @@
   "bitRate":512,
   "compression":0,
   "conversionMode":0,
-  "duration":0.313036,
+  "duration":0.417959,
   "name":"pickaxe_3",
   "parent":{
     "name":"Object_sfx",
@@ -19,7 +19,7 @@
   "resourceType":"GMSound",
   "resourceVersion":"2.0",
   "sampleRate":48000,
-  "soundFile":"pickaxe_3",
+  "soundFile":"pickaxe_3.mp3",
   "type":1,
   "volume":1.0,
 }

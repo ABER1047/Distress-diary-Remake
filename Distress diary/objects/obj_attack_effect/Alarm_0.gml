@@ -54,11 +54,41 @@ with(obj_mob_parents)
 }
 
 //채굴 판정 (데미지가 마이너스 = 광질)
-if (attack_dmg < 0)
+with(obj_only_minable)
 {
-	with(obj_only_minable)
+	if (id != other.id && place_meeting(x,y,other.id))
 	{
-		hp -= abs(other.attack_dmg);
+		repeat(irandom_range(1,3))
+		{
+			//폭발 잔해 이펙트 
+			var tmp_xx = x + (other.x-x)*0.5;
+			var tmp_yy = y + (other.y-y)*0.5;
+			var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
+			var tmp_scale = irandom_range(10,20)*0.1;
+			create_bounce_object(tmp_xx,tmp_yy,irandom_range(0,64),irandom_range(0,16),irandom_range(0,359),-irandom_range(2,8),spr_stone_flake,irandom_range(0,3),tmp_scale,irandom_range(120,240));
+		}
+		
+		play_sound_pos(choose(pickaxe_1,pickaxe_2,pickaxe_3),false,0.3,x,y,1200,true,-4,-4);
+		if (other.attack_dmg < 0)
+		{
+			var tmp_dmg = other.attack_dmg;
+			hp -= abs(tmp_dmg);
+			
+			if (hp <= 0)
+			{
+				repeat(irandom_range(1,3))
+				{
+					//폭발 잔해 이펙트 
+					var tmp_xx = x + (other.x-x)*0.5;
+					var tmp_yy = y + (other.y-y)*0.5;
+					var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
+					var tmp_scale = irandom_range(10,20)*0.1;
+					create_bounce_object(tmp_xx,tmp_yy,irandom_range(0,64),irandom_range(4,9),irandom_range(0,359),-irandom_range(2,8),spr_stone_flake,irandom_range(0,3),tmp_scale,irandom_range(120,240));
+				}
+				instance_destroy();
+			}
+		}
+		break;
 	}
 }
 
