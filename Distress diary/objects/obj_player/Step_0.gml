@@ -42,19 +42,15 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		var rd_bomb = choose(false,true);
 		if (rd_bomb)
 		{
-			var tmp_ins = instance_create_multiplayer(obj_bomb,x,y+12,global.object_id_ind,0,false,-4,-4);
-			tmp_ins.zspeed = zspeed*1.5;
-			tmp_ins._hspeed = lengthdir_x(54+m_speed,tmp_dir);
-			tmp_ins._vspeed = lengthdir_y((64+m_speed)*0.48,tmp_dir);
-			tmp_ins.z = z;
+			var tmp_val_name = "zspeed,_hspeed,_vspeed,z";
+			var tmp_val = string(zspeed*1.5)+","+string(lengthdir_x(54+m_speed,tmp_dir))+","+string(lengthdir_y((64+m_speed)*0.48,tmp_dir))+","+string(z);
+			var tmp_ins = instance_create_multiplayer_ext(obj_bomb,x,y+12,global.object_id_ind,0,false,-4,-4,tmp_val_name,tmp_val);
 		}
 		else
 		{
-			var tmp_ins = instance_create_multiplayer(obj_cherry_bomb,x,y+12,global.object_id_ind,0,false,-4,-4);
-			tmp_ins.zspeed = -8;
-			tmp_ins._hspeed = lengthdir_x(76+m_speed,tmp_dir);
-			tmp_ins._vspeed = lengthdir_y((96+m_speed)*0.55,tmp_dir);
-			tmp_ins.z = z+1;
+			var tmp_val_name = "zspeed,_hspeed,_vspeed,z";
+			var tmp_val = "-8,"+string(lengthdir_x(76+m_speed,tmp_dir))+","+string(lengthdir_y((96+m_speed)*0.55,tmp_dir))+","+string(z+1);
+			var tmp_ins = instance_create_multiplayer_ext(obj_cherry_bomb,x,y+12,global.object_id_ind,0,false,-4,-4,tmp_val_name,tmp_val);
 		}
 	}
 	

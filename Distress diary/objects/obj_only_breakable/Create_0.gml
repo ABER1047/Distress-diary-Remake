@@ -10,14 +10,7 @@ image_xscale = 2.5;
 image_yscale = 2.5;
 image_speed = 0;
 
-//블럭 밀기 시스템
-pushing_animation = false;
-pushing_timer = 0;
-origin_xx = xstart;
-origin_yy = ystart;
-draw_xx = 0;
-draw_yy = 0;
-pusher = -4;
+
 
 
 //인터렉션 가능한지 여부

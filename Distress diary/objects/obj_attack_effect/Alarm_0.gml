@@ -53,6 +53,16 @@ with(obj_mob_parents)
 	}
 }
 
+//채굴 판정 (데미지가 마이너스 = 광질)
+if (attack_dmg < 0)
+{
+	with(obj_only_minable)
+	{
+		hp -= abs(other.attack_dmg);
+	}
+}
+
+
 alarm[1] = 2;
 
 
