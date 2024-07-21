@@ -8,9 +8,12 @@ if (!global.prohibit_movement_input)
 	}
 	else
 	{
-		if (global.attack_cooldown_timer <= 0 && gage_bar_charged < 1)
+		if (global.attack_cooldown_timer <= 0)
 		{
-			gage_bar_charged += 0.025;
+			if (gage_bar_charged < 1)
+			{
+				gage_bar_charged += 0.025;
+			}
 	
 			var tmp_cal = global.max_movement_speed*0.7;
 			if (tmp_cal < abs(global.movement_hspeed)+abs(global.movement_vspeed))

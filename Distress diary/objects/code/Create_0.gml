@@ -1,5 +1,8 @@
 /// @description Insert description here
 // You can write your code in this editor
+//커서 설정
+instance_create_depth(x,y,depth,obj_cursor);
+
 randomize();
 event_user(1);
 depth = -102;
