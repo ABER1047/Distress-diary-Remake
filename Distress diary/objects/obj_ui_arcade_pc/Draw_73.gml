@@ -27,19 +27,19 @@ if (play_result_animation <= 1)
 	var tmp_xx = xx_center+420*global.ratio_by_camera;
 	var tmp_yy = yy_center+128*global.ratio_by_camera;
 	var tmp_yy2 = tmp_yy-40*whole_scale;
-	draw_sprite_ext(spr_key_ui,10,tmp_xx,tmp_yy,img_scale,img_scale,0,c_white,1);
-	draw_sprite_ext(spr_key_ui,11,tmp_xx+24*whole_scale,tmp_yy,img_scale,img_scale,0,c_white,1);
+	draw_sprite_ext(spr_key_ui,9,tmp_xx,tmp_yy,img_scale,img_scale,0,c_white,1);
+	draw_sprite_ext(spr_key_ui,10,tmp_xx+24*whole_scale,tmp_yy,img_scale,img_scale,0,c_white,1);
 	draw_text_kl_scale(tmp_xx+44*whole_scale,tmp_yy2,"주사위 선택",64,-1,1,c_white,0,-1,font_normal,txt_scale,txt_scale,0,true);
 	
 	var tmp_xx2 = tmp_xx+16*whole_scale;
 	tmp_yy += 32*whole_scale;
 	tmp_yy2 = tmp_yy-40*whole_scale;
-	draw_sprite_ext(spr_key_ui,7,tmp_xx,tmp_yy,img_scale,img_scale,0,c_white,1);
+	draw_sprite_ext(spr_key_ui,11,tmp_xx,tmp_yy,img_scale,img_scale,0,c_white,1);
 	draw_text_kl_scale(tmp_xx2,tmp_yy2,"레이즈 업",64,-1,1,c_white,0,-1,font_normal,txt_scale,txt_scale,0,true);
 
 	tmp_yy += 32*whole_scale;
 	tmp_yy2 = tmp_yy-40*whole_scale;
-	draw_sprite_ext(spr_key_ui,8,tmp_xx,tmp_yy,img_scale,img_scale,0,c_white,1);
+	draw_sprite_ext(spr_key_ui,12,tmp_xx,tmp_yy,img_scale,img_scale,0,c_white,1);
 	draw_text_kl_scale(tmp_xx2,tmp_yy2,"드롭",64,-1,1,c_white,0,-1,font_normal,txt_scale,txt_scale,0,true);
 
 	tmp_yy += 32*whole_scale;
@@ -50,7 +50,7 @@ if (play_result_animation <= 1)
 	tmp_yy += 32*whole_scale;
 	tmp_yy2 = tmp_yy-40*whole_scale;
 	tmp_xx2 += 16*whole_scale;
-	draw_sprite_ext(spr_key_ui,9,tmp_xx+8*whole_scale,tmp_yy,img_scale,img_scale,0,c_white,1);
+	draw_sprite_ext(spr_key_ui,7,tmp_xx+8*whole_scale,tmp_yy,img_scale,img_scale,0,c_white,1);
 	draw_text_kl_scale(tmp_xx2,tmp_yy2,"나가기",64,-1,1,c_white,0,-1,font_normal,txt_scale,txt_scale,0,true);
 }
 
