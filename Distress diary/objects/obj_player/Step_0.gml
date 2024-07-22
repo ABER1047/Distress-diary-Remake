@@ -459,14 +459,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//다른 죽은 플레이어 루팅하기
 	var is_lootable = "";
 	var tmp_ins = instance_nearest_notme(x,y,obj_player);
-	if (instance_exists(tmp_ins) && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
+	if (instance_exists(tmp_ins) && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 108)
 	{
 		is_lootable = string(tmp_ins.nickname)+"'의 인벤토리";
 	}
 	else
 	{
 		tmp_ins = instance_nearest_notme(x,y,obj_dropped_item_box);
-		if (instance_exists(tmp_ins) && !tmp_ins.stop_cal_by_pos_statement && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 96)
+		if (instance_exists(tmp_ins) && !tmp_ins.stop_cal_by_pos_statement && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 108)
 		{
 			is_lootable = "버려진 아이템";
 		}
@@ -476,7 +476,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			tmp_ins = -4;
 			with(obj_parents)
 			{
-				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 96)
+				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 108)
 				{
 					tmp_ins = id;
 					break;
@@ -511,9 +511,9 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	//아이템 상호작용 키 표시 및 게이지 차는 로직
-	if (is_lootable != "")
+	if (is_lootable != "" && place_meeting(mouse_x,mouse_y,tmp_ins))
 	{
-		var tmp_key;
+		var tmp_key = "mb_r";
 		if (tmp_ins.interaction_message != "불 켜기/끄기")
 		{
 			if (tmp_ins.is_opened != -4)
@@ -523,13 +523,11 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			}
 			else
 			{
-				tmp_key = "F";
 				draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message)+" 하기");
 			}
 		}
 		else
 		{
-			tmp_key = "F";
 			draw_interaction_key(tmp_ins,tmp_key,string(tmp_ins.interaction_message));
 		}
 
@@ -544,7 +542,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				global.interaction_hold_time = 0;
 			}
 			
-			if (keyboard_check(ord(tmp_key)))
+			if (mouse_check_button(mb_right))
 			{
 				if (global.interaction_hold_time != -1)
 				{

@@ -12,7 +12,7 @@ if (!global.prohibit_movement_input)
 		{
 			if (gage_bar_charged < 1)
 			{
-				gage_bar_charged += 0.025;
+				gage_bar_charged += (80/global.attack_speed)*0.01;
 			}
 	
 			var tmp_cal = global.max_movement_speed*0.7;

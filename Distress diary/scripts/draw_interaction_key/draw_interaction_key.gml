@@ -11,6 +11,7 @@ function draw_interaction_key(argument0,argument1,argument2)
 	var tmp_interaction_name = argument2;
 	if (instance_exists(tmp_ins))
 	{
+		obj_cursor.interacion_ins_exists = tmp_ins;
 		with(tmp_ins)
 		{
 			if (id == tmp_ins)
@@ -25,6 +26,14 @@ function draw_interaction_key(argument0,argument1,argument2)
 				else if (tmp_interaction_key == "Shift")
 				{
 					interaction_key_real_ind_for_draw = 4;
+				}
+				else if (tmp_interaction_key == "ESC")
+				{
+					interaction_key_real_ind_for_draw = 7;
+				}
+				else if (tmp_interaction_key == "mb_r")
+				{
+					interaction_key_real_ind_for_draw = 8;
 				}
 				else
 				{

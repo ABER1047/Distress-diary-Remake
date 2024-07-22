@@ -8,3 +8,4 @@ image_alpha = 0.6;
 window_set_cursor(cr_none);
 
 tmp_cursor_sec = -4;
+interacion_ins_exists = -4;

@@ -7,19 +7,33 @@ var tmp_cursor_exists = instance_exists(tmp_cursor_sec);
 tmp_check = instance_exists(obj_ui_parents);
 if (!tmp_check)
 {
-	image_xscale = 1.5;
-	image_yscale = 1.5;
-	depth = -y;
-	image_alpha = 0.6;
-	if (!tmp_cursor_exists)
+	var ins_exists = instance_exists(interacion_ins_exists);
+	if (ins_exists && interacion_ins_exists.show_interaction_key > 0)
 	{
-		tmp_cursor_sec = instance_create_depth(x,y,depth,obj_cursor_sec);
+		depth = interacion_ins_exists.depth+0.1;
+		
+		if (tmp_cursor_exists)
+		{
+			instance_destroy(tmp_cursor_sec)
+		}
+	}
+	else
+	{
+		interacion_ins_exists = -4;
+		image_xscale = 1.5;
+		image_yscale = 1.5;
+		depth = -y;
+		image_alpha = 0.6;
+		if (!tmp_cursor_exists)
+		{
+			tmp_cursor_sec = instance_create_depth(x,y,depth,obj_cursor_sec);
+		}
 	}
 }
 else
 {
-	image_xscale = 0.9;
-	image_yscale = 0.9;
+	image_xscale = 1.5;
+	image_yscale = 1.5;
 	depth = global.min_depth-32;
 	image_alpha = 1;
 	if (tmp_cursor_exists)

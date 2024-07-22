@@ -103,7 +103,7 @@ function create_map_monuments(argument0)
 					var tmp_sprite_size = 48*tmp_scale; //obj_wall_parents의 스프라이트 사이즈
 					var tmp_r_w = global.map_room_width[i][ii]*0.5*tmp_sprite_size, tmp_r_h = global.map_room_height[i][ii]*0.5*tmp_sprite_size;
 					var dx = [ tmp_r_w-120, 0, -tmp_r_w+120, 0 ];
-					var dy = [ 16, -tmp_r_h+48, 16, tmp_r_h ];
+					var dy = [ 16, -tmp_r_h+50, 16, tmp_r_h ];
 					var tmp_img_ang = k*90;
 					
 					for(var kk = 0; kk < 2; kk++)
