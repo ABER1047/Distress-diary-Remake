@@ -20,8 +20,6 @@ if (!tmp_check)
 	else
 	{
 		interacion_ins_exists = -4;
-		image_xscale = 1.5;
-		image_yscale = 1.5;
 		depth = -y;
 		image_alpha = 0.6;
 		if (!tmp_cursor_exists)
@@ -32,8 +30,6 @@ if (!tmp_check)
 }
 else
 {
-	image_xscale = 1.5;
-	image_yscale = 1.5;
 	depth = global.min_depth-32;
 	image_alpha = 1;
 	if (tmp_cursor_exists)

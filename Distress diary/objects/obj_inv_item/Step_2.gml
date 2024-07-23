@@ -10,6 +10,7 @@ if (mouse_on == 1 && moving_now == 0)
 	if (item_info_window_timer > 20)
 	{
 		show_item_info = true;
+		obj_cursor.hide_cursor = true;
 	}
 }
 else

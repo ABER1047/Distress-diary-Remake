@@ -8,7 +8,7 @@ function set_status_by_weapon(argument0,argument1)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
-	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, auto_attack = false, tmp_range = 128;
+	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128;
 	
 	if (tmp_spr_ind == spr_weapon)
 	{
@@ -27,6 +27,7 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 16;
 				knockback = 1;
 				tmp_range = 78;
+				tmp_attack_type = 2;
 			break;
 		
 			case 2:
@@ -49,6 +50,7 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 16;
 				knockback = 3;
 				tmp_range = 78;
+				tmp_attack_type = 2;
 			break;
 			
 			case 5:
@@ -87,6 +89,7 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 20;
 				knockback = 4;
 				tmp_range = 78;
+				tmp_attack_type = 2;
 			break;
 			
 			case 10:
@@ -109,6 +112,7 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 16;
 				knockback = 3;
 				tmp_range = 78;
+				tmp_attack_type = 2;
 			break;
 			
 			case 13:
@@ -131,6 +135,7 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 20;
 				knockback = 1;
 				tmp_range = 78;
+				tmp_attack_type = 2;
 			break;
 			
 			case 16:
@@ -153,13 +158,14 @@ function set_status_by_weapon(argument0,argument1)
 				crit_chance = 40;
 				knockback = 4;
 				tmp_range = 78;
+				tmp_attack_type = 2;
 			break;
 		}
 	}
 	else if (tmp_spr_ind == spr_pickaxe)
 	{
 		tmp_range = 64;
-		auto_attack = true;
+		tmp_attack_type = 1;
 		switch(tmp_img_ind)
 		{
 			case 0: //300
@@ -212,7 +218,7 @@ function set_status_by_weapon(argument0,argument1)
 	}
 
 	global.attack_range = tmp_range;
-	global.automatic_attack_enable = auto_attack;
+	global.attack_type = tmp_attack_type;
 	global.attack_damage = (dmg)*(1+sign(global.buff_left_time[3])*0.25-sign(global.buff_left_time[2])*0.25); //데미지 계산
 	global.attack_speed = atk_sp;
 	global.critical_chance = crit_chance;

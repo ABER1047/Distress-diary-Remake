@@ -2,15 +2,23 @@
 if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp > 0 && !instance_exists(obj_ui_parents))
 {
 	var tmp_charging_dmg_bonus = floor(gage_bar_charged*10)/10; //차징 데미지 보너스
-	if (tmp_charging_dmg_bonus < 0.25)
+	if (tmp_charging_dmg_bonus < 0.25 || global.attack_type == 2)
 	{
 		tmp_charging_dmg_bonus = 0;
 	}
 	tmp_dmg_cal = global.attack_damage*(1 + percentage_k(global.critical_chance)*global.critical_dmg_magnification + tmp_charging_dmg_bonus);
-	global.attack_cooldown_timer ++;
 	global.b_fixed_dir = global.fixed_dir;
 	global.fixed_dir = true;
-	gage_bar_charged = 0;
+	if (global.attack_type == 2)
+	{
+		gage_bar_charged -= 0.025;
+		alarm[3] = 1;
+	}
+	else
+	{
+		gage_bar_charged = 0;
+	}
+	global.attack_cooldown_timer = 1;
 	alarm[2] = 1;
 	
 	//투척용 칼 던지기

@@ -274,7 +274,7 @@ global.n_dir = 2; //*90하면 바라보는 각도 값 나옴
 //공격 쿨타임
 global.attack_cooldown_timer = 0;
 global.gage_bar_shine_animation = 0; //쿨타임 게이지 바 번쩍거림 효과 애니메이션
-global.automatic_attack_enable = false; //자동 공격
+global.attack_type = 0; //0 - 수동 공격 / 1 - 자동 공격 / 2 - 차징 후 차징 게이지 만큼 자동 공격
 
 //카메라 타깃 설정
 global.camera_target = -4;

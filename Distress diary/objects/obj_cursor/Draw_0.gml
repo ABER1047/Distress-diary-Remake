@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-if (!tmp_check)
+if (!hide_cursor && !tmp_check)
 {
 	var tmp_ins = interacion_ins_exists;
 	if (instance_exists(tmp_ins))
