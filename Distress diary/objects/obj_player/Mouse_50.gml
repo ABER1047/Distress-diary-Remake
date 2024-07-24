@@ -6,7 +6,7 @@ if (!global.prohibit_movement_input)
 	{
 		event_user(0);
 	}
-	else if (global.attack_type == 0 || global.attack_type == 2)
+	else if (global.attack_type == 0 || global.attack_type == 2 || global.attack_type == 3)
 	{
 		if (global.attack_cooldown_timer <= 0)
 		{

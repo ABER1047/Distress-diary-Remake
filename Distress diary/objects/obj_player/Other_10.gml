@@ -6,7 +6,11 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 	{
 		tmp_charging_dmg_bonus = 0;
 	}
-	tmp_dmg_cal = global.attack_damage*(1 + percentage_k(global.critical_chance)*global.critical_dmg_magnification + tmp_charging_dmg_bonus);
+	else if (global.attack_type == 3 && tmp_charging_dmg_bonus >= 1)
+	{
+		tmp_charging_dmg_bonus = 2;
+	}
+	tmp_dmg_cal = global.attack_damage*(1 + (percentage_k(global.critical_chance)*global.critical_dmg_magnification) + tmp_charging_dmg_bonus);
 	global.b_fixed_dir = global.fixed_dir;
 	global.fixed_dir = true;
 	if (global.attack_type == 2)

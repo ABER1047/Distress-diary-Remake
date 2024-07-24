@@ -35,6 +35,7 @@ function set_status_by_weapon(argument0,argument1)
 				atk_sp = 70;
 				crit_chance = 30;
 				knockback = 24;
+				tmp_attack_type = 3;
 			break;
 		
 			case 3:
@@ -58,6 +59,7 @@ function set_status_by_weapon(argument0,argument1)
 				atk_sp = 70;
 				crit_chance = 30;
 				knockback = 24;
+				tmp_attack_type = 3;
 			break;
 			
 			case 6:
@@ -97,6 +99,7 @@ function set_status_by_weapon(argument0,argument1)
 				atk_sp = 60;
 				crit_chance = 30;
 				knockback = 24;
+				tmp_attack_type = 3;
 			break;
 			
 			case 11:
@@ -120,6 +123,7 @@ function set_status_by_weapon(argument0,argument1)
 				atk_sp = 65;
 				crit_chance = 30;
 				knockback = 24;
+				tmp_attack_type = 3;
 			break;
 			
 			case 14:
@@ -143,6 +147,7 @@ function set_status_by_weapon(argument0,argument1)
 				atk_sp = 60;
 				crit_chance = 30;
 				knockback = 12;
+				tmp_attack_type = 3;
 			break;
 			
 			case 17:
