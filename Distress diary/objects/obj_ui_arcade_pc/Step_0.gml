@@ -40,7 +40,7 @@ if (play_result_animation > 0)
 			result_animation_timer = 0;
 		}
 	}
-	else if (play_result_animation <= 60) // 주사위 돌아가는 애니메이션
+	else if (play_result_animation <= 160) // 주사위 돌아가는 애니메이션
 	{
 		if (result_animation_timer > play_result_animation)
 		{
@@ -51,9 +51,13 @@ if (play_result_animation > 0)
 				event_user(0);
 			} 
 			until(tmp_result_img_ind != result_img_ind);
+			
+			tmp_result_arr[2] = tmp_result_arr[1];
+			tmp_result_arr[1] = tmp_result_arr[0];
+			tmp_result_arr[0] = result_img_ind;
 
 			play_sound_pos(arcade_bet_sfx,false,0.07,parent_id.x,parent_id.y,640,false,-4,-4);
-			play_result_animation ++;
+			play_result_animation += sqrt(play_result_animation*0.1)+1;
 			result_animation_timer = 0;
 		}
 	}
@@ -73,7 +77,7 @@ if (play_result_animation > 0)
 			result_animation_timer = 0;
 			play_result_animation ++;
 			
-			if (play_result_animation > 66)
+			if (play_result_animation > 166)
 			{
 				result_img_ind = tmp_result_img_ind;
 				play_result_animation = 0;
@@ -92,11 +96,11 @@ if (play_result_animation > 0)
 			event_user(0);
 			
 			//주사위 깜빡거리는 애니메이션 재생
-			play_result_animation = 61;
+			play_result_animation = 161;
 			result_animation_timer_sec = 0;
 			
 			//이겼는지 졌는지 체크
-			if (my_bet_dice == result_img_ind-4)
+			if (my_bet_dice == tmp_result_arr[1]-4)
 			{
 				//이김
 				show_message_log("승리!");

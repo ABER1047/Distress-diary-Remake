@@ -26,6 +26,7 @@ function load_room(argument0,argument1)
 	
 	//모든 룸 이동 포탈 삭제
 	instance_destroy(obj_nextroom);
+	instance_destroy(obj_breakable_wall);
 
 	//모든 디버프 바닥 이펙트 삭제
 	instance_destroy(obj_mucus_effect);
@@ -117,7 +118,8 @@ function load_room(argument0,argument1)
 		var t_yy = global.n_player_room_yy[global.my_player_id]+dy[i];
 
 		var is_connected = 0;
-		if (is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,t_yy))
+		var outer_array_check = is_inside_array(global.map_width,t_xx) && is_inside_array(global.map_height,t_yy);
+		if (outer_array_check)
 		{
 			//이동 예정인 룸이 현재 룸과 연결되어 있는지 체크
 			var is_connected = 0;
@@ -148,6 +150,17 @@ function load_room(argument0,argument1)
 				var tmp_ind = (ii == -1) ? 0 : 1;
 				var tmp_comp_xx = (i%2 != 0) ? 0 : 44*sign(i-1);
 				tmp_ins.ins_wall[tmp_ind] = instance_create_depth(tmp_portal_xx+tmp_comp_xx+lengthdir_x(ii*144,tmp_img_ang),tmp_portal_yy+48+lengthdir_y(ii*144,tmp_img_ang),depth,obj_wall_nearby_door);
+			}
+		}
+		else
+		{
+			show_message_log(string(argument0)+", "+string(argument1-1)+" / "+string(global.map_room_type[argument1-1][argument0]));
+			if (outer_array_check && global.map_room_type[t_yy][t_xx] == 5)
+			{
+				var tmp_img_ang = (i-1)*90;
+				var tmp_portal_xx = tmp_xx+tp_xx[i];
+				var tmp_portal_yy = tmp_yy+tp_yy[i]*tmp_sprite_size;
+				var tmp_ins = instance_create_depth(tmp_portal_xx,tmp_portal_yy,0,obj_breakable_wall);
 			}
 		}
 	}

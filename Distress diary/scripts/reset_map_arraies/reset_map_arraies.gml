@@ -10,7 +10,7 @@ function reset_map_arraies()
 			global.map_arr[i][ii] = 0;
 			
 			//방 종류
-			//0 - 빈방 / 1 - 퍼즐방 / 2 - 습격방 / 3 - 세이프존 / 4 - 아케이드방
+			//0 - 빈방 / 1 - 퍼즐방 / 2 - 습격방 / 3 - 세이프존 / 4 - 아케이드방 / 5 - 시크릿 방
 			global.map_room_type[i][ii] = 0;
 			
 			

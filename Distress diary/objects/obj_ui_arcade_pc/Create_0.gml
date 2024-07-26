@@ -6,6 +6,9 @@ depth = obj_camera.depth - 16;
 global.prohibit_movement_input = true;
 
 
+//이전 및 나중 결과 저장용 array
+tmp_result_arr = array_create(3,-4);
+
 face_img_ind = 1;
 play_face_animation = 3; //이모지 얼굴 애니메이션 플레이 (해당 값 만큼 반복)
 face_animation_timer = 0;

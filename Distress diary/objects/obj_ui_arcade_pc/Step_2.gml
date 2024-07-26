@@ -19,7 +19,24 @@ if (surface_exists(crt_surf))
 	draw_sprite_ext(spr_pc_ui_state,9+face_img_ind,xx_center,yy_h*0.3,10*whole_scale,10*whole_scale,0,c_white,1);
 
 	//결과창
-	draw_sprite_ext(spr_pc_ui_state,result_img_ind,xx_center,yy_h*0.6,7*whole_scale,7*whole_scale,0,c_white,1);
+	for(var i = -1; i <= 1; i++)
+	{
+		if (tmp_result_arr[1-i] != -4)
+		{
+			var tmp_dice_scale = 7*whole_scale/(abs(i)*0.5+1);
+			draw_sprite_ext(spr_pc_ui_state,tmp_result_arr[1-i],xx_center+(i*whole_scale*128),yy_h*0.6,tmp_dice_scale,tmp_dice_scale,0,c_white,1);
+			
+			if (i == 0)
+			{
+				draw_sprite_ext(spr_arrow_ui,tmp_result_arr[1-i],xx_center,yy_h*0.6-whole_scale*72,tmp_dice_scale*0.1,tmp_dice_scale*0.1,0,#83E04C,1);
+			}
+			else
+			{
+				var tmp_str = (i == 1) ? "next" : "previous";
+				draw_text_kl_scale(xx_center+(i*whole_scale*128),yy_h*0.6-whole_scale*96,tmp_str,64,-1,1,#83E04C,0,0,font_normal,0.33,0.33,0,false);
+		}
+		}
+	}
 		
 	//내 베팅 정보
 	var tmp_xx = xx_center+320*global.ratio_by_camera;

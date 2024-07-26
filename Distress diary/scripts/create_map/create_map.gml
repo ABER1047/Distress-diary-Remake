@@ -91,6 +91,66 @@ function create_map(argument0)
 	create_room_connection();
 	
 	
+	//추가 룸 생성
+	for(var k = 0; k < global.map_height; k++;)
+	{
+		for(var kk = 0; kk < global.map_width; kk++;)
+		{
+			if (global.map_arr[k][kk] == 1 && percentage_k(15))
+			{
+				//룸 타입 설정
+				var additinal_room_type = percentage_k(90);
+		
+				if (additinal_room_type && k >= 1 && global.map_arr[k-1][kk] == 0)
+				{
+					//시크릿 룸 생성
+					var tmp_dy = k-1;
+					show_message_log("secret room created ["+string(kk)+", "+string(tmp_dy)+"]");
+					global.map_arr[tmp_dy][kk] = 1;
+					tmp_room_width = irandom_range(global.min_room_width,global.max_room_width);
+					tmp_room_height = irandom_range(global.min_room_height,global.max_room_height);
+			
+					//방 사이즈 설정
+					global.map_room_width[tmp_dy][kk] = tmp_room_width;
+					global.map_room_height[tmp_dy][kk] = tmp_room_height;
+			
+					//방 종류 지정
+					global.map_room_type[tmp_dy][kk] = 5;
+				}
+				else
+				{
+					var dx = [ -1, 0, 1, 0 ], dy = [ 0, -1, 0, 1 ];
+					for(var i = 0; i < 4; i++)
+					{
+						var tmp_dy = k+dy[i], tmp_dx = kk+dx[i];
+						if (is_inside_rectangle(tmp_dx,tmp_dy,-1,-1,global.map_width,global.map_height) && global.map_arr[tmp_dy][tmp_dx] == 0)
+						{
+							//일반 룸 생성
+							global.map_arr[tmp_dy][tmp_dx] = 1;
+							
+							//방 종류 지정
+							global.map_room_type[tmp_dy][tmp_dx] = choose(0,0,0,0,0,0,1,2,3,4);
+	
+							//방 사이즈 설정
+							var tmp_room_width = irandom_range(global.min_room_width,global.max_room_width);
+							var tmp_room_height = irandom_range(global.min_room_height,global.max_room_height);
+							global.map_room_width[tmp_dy][tmp_dx] = tmp_room_width;
+							global.map_room_height[tmp_dy][tmp_dx] = tmp_room_height;
+							
+							//룸 연결
+							global.room_connected_to_xx[tmp_dy][tmp_dx] = kk;
+							global.room_connected_to_yy[tmp_dy][tmp_dx] = k;
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	
+	
+	
 	//맵 생성 실패 감지
 	if (global.n_room_num <= 1)
 	{
