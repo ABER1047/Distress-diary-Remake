@@ -345,7 +345,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				var rd_choose = choose(0,4,6,6,6,5,2);
+				var rd_choose = choose(0,4,6,6,6,5,2,7,7,7,7,7,7);
 				if (rd_choose == 0)
 				{
 					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,9,false,-4,-4);
@@ -375,6 +375,10 @@ if (global.dev_mode == 1)
 				else if (rd_choose == 6)
 				{
 					var tmp_ins = instance_create_multiplayer(obj_only_minable,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(0,15),false,-4,-4);
+				}
+				else if (rd_choose == 7)
+				{
+					var tmp_ins = instance_create_multiplayer(obj_cliff,tmp_xx,tmp_yy,global.object_id_ind,1,false,-4,-4);
 				}
 			}
 		}
