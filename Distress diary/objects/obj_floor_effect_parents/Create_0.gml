@@ -16,3 +16,4 @@ for(var i = 0; i < 3*image_xscale; i++)
 
 //삭제 타이머
 des_timer = 0;
+

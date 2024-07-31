@@ -4,7 +4,7 @@
 
 
 //화살 이동 및 히트 판정
-for(var i = 0; i < _speed; i++)
+for(var i = 0; i < fix_num_inside(_speed,0,128); i++)
 {
 	x += lengthdir_x(1,direction);
 	y += lengthdir_y(1,direction);

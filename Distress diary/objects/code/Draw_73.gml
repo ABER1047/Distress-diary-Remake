@@ -289,7 +289,7 @@ if (global.dev_mode == 1)
 	
 		//랜덤 상자 생성
 		var tmp_img = choose(0,2,4,6,8,10,12,14,16,18,24,26)
-		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
+		var tmp_xx = room_width*0.5+48+round((mouse_x-room_width*0.5)/96)*96;
 		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
 		var tmp_ins = instance_place(mouse_x,mouse_y,obj_parents);
 		if (keyboard_check(ord("P")))
@@ -321,7 +321,7 @@ if (global.dev_mode == 1)
 	
 		//블럭 생성
 		var tmp_img = 0;
-		var tmp_xx = room_width*0.5+round((mouse_x-room_width*0.5)/96)*96;
+		var tmp_xx = room_width*0.5+48+round((mouse_x-room_width*0.5)/96)*96;
 		var tmp_yy = room_height*0.5+round((mouse_y-room_height*0.5)/96)*96;
 		var tmp_ins = instance_place(mouse_x,mouse_y,obj_parents);
 		if (keyboard_check(ord("O")))
@@ -345,7 +345,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				var rd_choose = choose(0,4,6,6,6,5,2,7,7,7,7,7,7);
+				var rd_choose = choose(0,4,6,5,2,7,7,7,7);
 				if (rd_choose == 0)
 				{
 					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,9,false,-4,-4);
@@ -366,7 +366,7 @@ if (global.dev_mode == 1)
 				{
 					var tmp_ins = instance_create_multiplayer(obj_ineractable_fire,tmp_xx,tmp_yy,global.object_id_ind,irandom_range(0,3),false,-4,-4);
 					tmp_ins.is_opened = choose(true,false);
-					tmp_ins.fire_type = choose(0,1);
+					tmp_ins.fire_type = choose(0,1,2,2,2);
 				}
 				else if (rd_choose == 5)
 				{
@@ -378,7 +378,9 @@ if (global.dev_mode == 1)
 				}
 				else if (rd_choose == 7)
 				{
-					var tmp_ins = instance_create_multiplayer(obj_cliff,tmp_xx,tmp_yy,global.object_id_ind,1,false,-4,-4);
+					var tmp_ins = instance_create_multiplayer(obj_cliff,tmp_xx-48,tmp_yy,global.object_id_ind,1,false,-4,-4);
+					tmp_ins.image_xscale = irandom_range(1,5)*2;
+					tmp_ins.image_yscale = irandom_range(1,5)*2;
 				}
 			}
 		}

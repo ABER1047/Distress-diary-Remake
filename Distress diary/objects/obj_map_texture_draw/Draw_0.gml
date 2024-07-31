@@ -2,6 +2,8 @@
 // You can write your code in this editor
 var xx = camera_get_view_x(view_camera[0]);
 var yy = camera_get_view_y(view_camera[0]);
+var v_w = camera_get_view_width(view_camera[0]);
+var v_h = camera_get_view_height(view_camera[0]);
 
 
 
@@ -107,7 +109,7 @@ if (surface_exists(global.liquid_on_floor_surf))
 		}
 	}
 	surface_reset_target();
-
+	
 
 
 	
@@ -126,9 +128,6 @@ if (surface_exists(global.liquid_on_floor_surf))
 
 	draw_surface_ext(global.liquid_on_floor_surf,xx,yy,1,1,0,c_white,1);
 }
-
-
-
 
 
 //버튼 그리기

@@ -6,3 +6,7 @@
 event_user(0);
 
 
+//물 효과용
+global.water_effect_timer = 0;
+global.water_effect_xx = 0;
+global.water_effect_yy = 0;

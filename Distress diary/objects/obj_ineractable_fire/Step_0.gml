@@ -61,7 +61,7 @@ if (!stop_cal_by_pos_statement)
 		//불 이펙트 생성
 		if (global.graphics_quality >= 1)
 		{
-			var tmp_color = [ #DD4C4C,#FFAC4B, #0BE5C4,#D9FFDE ];
+			var tmp_color = [ #DD4C4C,#FFAC4B, #0BE5C4,#D9FFDE, #E395F8,#F2DFF8 ];
 			if (global.graphics_quality >= 2 && percentage_k(5))
 			{
 				var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-fire_yy[image_index]-32,1,tmp_color[fire_type*2],tmp_color[fire_type*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);

@@ -8,6 +8,7 @@ camera_set_view_size(view_camera[0],tmp_v_w,tmp_v_h);
 
 
 
+
 //카메라 줌 사이즈에 반비례하여 값도 바뀌는 변수 (특정값*global.ratio_by_camera => 1로 보정됨)
 global.ratio_by_camera = camera_get_view_width(view_camera[0])/1280;
 if (global.ratio_by_camera <= 0.1 || global.ratio_by_camera == infinity)

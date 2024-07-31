@@ -8,3 +8,8 @@ if (!global.is_check_me)
 	//연결 끊기
 	event_user(0);
 }
+
+
+//서버 자체가 닫힌 경우를 대비해 항상 주기적으로 체크
+global.is_check_me = false;
+alarm[3] = floor(global.maximum_ping_acception/5*4)*2;

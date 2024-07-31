@@ -10,8 +10,9 @@ y = tmp_room_yy-global.n_room_height*0.5*tmp_wall_sprite_size-8;
 depth = -floor(y);
 
 
-
-
+global.water_effect_timer += 0.0005;
+global.water_effect_xx = cos(global.water_effect_timer)*128;
+global.water_effect_yy = sin(global.water_effect_timer)*128;
 
 
 

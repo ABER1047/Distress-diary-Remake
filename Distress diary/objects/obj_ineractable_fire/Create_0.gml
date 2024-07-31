@@ -46,7 +46,7 @@ sfx_idle = -4;
 
 
 //라이트 관련 세팅
-light_col = [ #FFAC4B, #0BE5C4 ];
+light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
 light_scale = 1;
 light_alpha = 1;
 light_timer = 0;
@@ -55,7 +55,7 @@ light_timer = 0;
 
 //불꽃 애니메이션 관련 세팅
 //fire_type = choose(0,1);
-fire_yy = [ 76, 102, 100, 28, 76, 76 ];
+fire_yy = [ 76, 102, 102, 28, 76, 76 ];
 fire_scale = [ 1, 0.75, 1, 1, 1, 1 ];
 
 

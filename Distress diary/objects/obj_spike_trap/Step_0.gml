@@ -8,14 +8,14 @@ if (!stop_cal_by_pos_statement)
 	var is_nearest_player_exists = false;
 	with(obj_player)
 	{
-		if (!stop_cal_by_pos_statement && point_distance(other.x,other.y-48,x,y) <= 60)
+		if (!stop_cal_by_pos_statement && point_distance(other.x,other.y-56,x,y) <= 60)
 		{
 			is_nearest_player_exists = true;
 			
 			//데미지 입히기
 			if (other.image_index > 1 && z == 0)
 			{
-				give_damage(id,9,false,4,x,y-48,60);
+				give_damage(id,9,false,4,other.x,other.y-56,60);
 			}
 		}
 	}

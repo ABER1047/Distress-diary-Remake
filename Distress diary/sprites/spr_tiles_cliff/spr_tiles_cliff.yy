@@ -15,7 +15,8 @@
     {"$GMSpriteFrame":"","%Name":"c1b78afe-4103-43e2-a848-7e828f54b442","name":"c1b78afe-4103-43e2-a848-7e828f54b442","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"4129fd53-8901-4839-8e69-8fff1f9832b6","name":"4129fd53-8901-4839-8e69-8fff1f9832b6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
     {"$GMSpriteFrame":"","%Name":"a518c002-faf8-4374-b398-5c2bb571959e","name":"a518c002-faf8-4374-b398-5c2bb571959e","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
-    {"$GMSpriteFrame":"","%Name":"d1b6d328-ba44-4ae6-bd3a-e378a5fdeec6","name":"d1b6d328-ba44-4ae6-bd3a-e378a5fdeec6","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"5d528c7a-8bdd-4a85-9606-4de0670d3a3c","name":"5d528c7a-8bdd-4a85-9606-4de0670d3a3c","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
+    {"$GMSpriteFrame":"","%Name":"d3c94abb-d140-4ab1-bab6-6967e2536231","name":"d3c94abb-d140-4ab1-bab6-6967e2536231","resourceType":"GMSpriteFrame","resourceVersion":"2.0",},
   ],
   "gridX":2,
   "gridY":2,
@@ -52,7 +53,7 @@
     },
     "eventStubScript":null,
     "eventToFunction":{},
-    "length":4.0,
+    "length":5.0,
     "lockOrigin":false,
     "moments":{
       "$KeyframeStore<MomentsEventKeyframe>":"",
@@ -81,8 +82,11 @@
                 "0":{"$SpriteFrameKeyframe":"","Id":{"name":"a518c002-faf8-4374-b398-5c2bb571959e","path":"sprites/spr_tiles_cliff/spr_tiles_cliff.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
               },"Disabled":false,"id":"350023d9-ed7f-4354-b1fd-a8b92b830935","IsCreationKey":false,"Key":2.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
             {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
-                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d1b6d328-ba44-4ae6-bd3a-e378a5fdeec6","path":"sprites/spr_tiles_cliff/spr_tiles_cliff.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
-              },"Disabled":false,"id":"80933d9e-8080-495a-8159-f36d309b5f92","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"5d528c7a-8bdd-4a85-9606-4de0670d3a3c","path":"sprites/spr_tiles_cliff/spr_tiles_cliff.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"d8d3a813-1b2a-445f-9246-f3f7442d9dae","IsCreationKey":false,"Key":3.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
+            {"$Keyframe<SpriteFrameKeyframe>":"","Channels":{
+                "0":{"$SpriteFrameKeyframe":"","Id":{"name":"d3c94abb-d140-4ab1-bab6-6967e2536231","path":"sprites/spr_tiles_cliff/spr_tiles_cliff.yy",},"resourceType":"SpriteFrameKeyframe","resourceVersion":"2.0",},
+              },"Disabled":false,"id":"c0d3855e-d9af-4958-b302-798ee877109b","IsCreationKey":false,"Key":4.0,"Length":1.0,"resourceType":"Keyframe<SpriteFrameKeyframe>","resourceVersion":"2.0","Stretch":false,},
           ],"resourceType":"KeyframeStore<SpriteFrameKeyframe>","resourceVersion":"2.0",},"modifiers":[],"name":"frames","resourceType":"GMSpriteFramesTrack","resourceVersion":"2.0","spriteId":null,"trackColour":0,"tracks":[],"traits":0,},
     ],
     "visibleRange":null,

@@ -2,4 +2,4 @@
 
 event_user(2);
 alarm[6] = 1;
-show_message_log("연결 상태가 좋지 않아 연결이 끊어졌습니다.");
+show_message_log("서버로부터 연결이 끊어졌습니다.");

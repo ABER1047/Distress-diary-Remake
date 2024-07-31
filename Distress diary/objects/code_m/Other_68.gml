@@ -223,7 +223,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					//핑차이가 너무 심하거나, 연결 상태가 좋지 못한 경우라서 그냥 내보내버림
 					event_user(0);
 				}
-				else //진짜로 튕겨서 대답이 안 간 경우 그냥 내보내버리기
+				else //진짜로 튕겨서 수신이 안 된 경우 그냥 내보내버리기
 				{
 					with(obj_player) 
 					{
@@ -240,7 +240,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		
 		case DATA.CHECK_PLAYING_NOW:
 			show_debug_message("- 서버측에서 연결 상태 체크하는 중...");
-			//서버측에서 튕겼나 아닌가 체크하는거에 대답하는 코드
+			//서버측에서 튕겼나 아닌가 체크하는거에 수신하는 코드
 			if (!global.is_server)
 			{
 				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
@@ -263,7 +263,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		break;
 		
 		case DATA.REPLY_STILL_PLAYING:
-			//서버 측 에서만 튕겼다고 판단한 플레이어가 대답이 온거를 받음
+			//서버 측 에서만 튕겼다고 판단한 플레이어가 수신함
 			if (global.is_server)
 			{
 				var tmp_obj_id_player_only = real(buffer_read(buffer, buffer_string));
