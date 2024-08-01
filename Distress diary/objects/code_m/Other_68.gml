@@ -650,8 +650,10 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				}
 				
 				
+				var tmp_force_break = 0;
 				while(true)
 				{
+					tmp_force_break ++;
 					var tmp_str_data = buffer_read(buffer, buffer_string);
 					var tmp_str = string_split(tmp_str_data,"#");
 					show_debug_message("tmp_str : "+string(tmp_str)+" / "+string(array_length(tmp_str)));

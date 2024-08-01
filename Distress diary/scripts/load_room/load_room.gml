@@ -40,7 +40,7 @@ function load_room(argument0,argument1)
 	
 
 	//바닥 타일 이미지 재랜덤화
-	with(obj_map_texture_draw)
+	with(obj_map_texture_floor)
 	{
 		event_user(0);
 	}

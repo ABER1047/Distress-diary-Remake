@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-var tmp_surf = [ global.outter_room_surf, global.light_surf, global.flashlight_surf, global.shadow_surf, global.liquid_on_floor_surf, global.fire_line_surf, global.map_ui_surf ];
+var tmp_surf = [ global.outter_room_surf, global.light_surf, global.flashlight_surf, global.shadow_surf, global.liquid_on_floor_surf, global.reflection_surf, global.water_effect_surf, global.fire_line_surf, global.map_ui_surf ];
 
 for(var i = 0; i < array_length(tmp_surf); i++)
 {

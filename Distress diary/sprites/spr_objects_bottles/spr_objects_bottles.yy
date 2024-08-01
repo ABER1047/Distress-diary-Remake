@@ -25,7 +25,7 @@
   ],
   "name":"spr_objects_bottles",
   "nineSlice":null,
-  "origin":7,
+  "origin":9,
   "parent":{
     "name":"Sprite_map",
     "path":"folders/스프라이트/Sprite_map.yy",
@@ -84,7 +84,7 @@
     "visibleRange":null,
     "volume":1.0,
     "xorigin":48,
-    "yorigin":96,
+    "yorigin":86,
   },
   "swatchColours":null,
   "swfPrecision":2.525,

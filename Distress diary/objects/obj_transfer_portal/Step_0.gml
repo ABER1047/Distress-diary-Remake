@@ -10,7 +10,7 @@ image_alpha = 0.7+tmp_sin*0.2;
 
 
 //깊이 설정
-depth = obj_map_texture_draw.depth-8;
+depth = obj_map_texture_floor.depth-8;
 
 
 if (global.graphics_quality >= 1 && tmp_sin > 0.5 && percentage_k(2))

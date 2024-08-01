@@ -191,6 +191,8 @@ global.time_is_day = true;
 
 //바닥 액체 그리기용 서피스
 global.liquid_on_floor_surf = surface_create(3840,2160);
+global.reflection_surf = surface_create(3840,2160);
+global.water_effect_surf = surface_create(3840,2160);
 
 //불꽃-스파크용 서피스
 global.fire_line_surf = surface_create(3840,2160);

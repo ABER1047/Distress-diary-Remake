@@ -23,6 +23,8 @@ global.bubble_surf = surface_create(tmp_w,tmp_h);
 	
 //바닥 액체 그리기용 서피스
 global.liquid_on_floor_surf = surface_create(tmp_w,tmp_h);
+global.reflection_surf = surface_create(tmp_w,tmp_h);
+global.water_effect_surf = surface_create(tmp_w,tmp_h);
 
 //룸 바깥 가림막 서피스
 global.outter_room_surf = surface_create(tmp_w,tmp_h);

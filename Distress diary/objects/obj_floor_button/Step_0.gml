@@ -3,7 +3,7 @@
 
 
 //깊이값 설정
-depth = obj_map_texture_draw.depth-16;
+depth = obj_map_texture_floor.depth-16;
 
 
 

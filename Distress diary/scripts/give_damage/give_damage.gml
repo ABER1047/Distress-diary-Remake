@@ -65,7 +65,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 		
 		
 			//혈흔 이펙트 생성
-			var tmp_depth = obj_map_texture_draw.depth-4;
+			var tmp_depth = obj_map_texture_floor.depth-4;
 			var tmp_ins = instance_create_multiplayer(obj_blood_effect,tmp_ins.x,tmp_ins.y,global.object_id_ind,0,true,-4,-4);
 		
 		

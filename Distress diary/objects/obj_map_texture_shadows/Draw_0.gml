@@ -5,14 +5,17 @@ var tmp_room_yy = room_height*0.5;
 var tmp_wall_scale = 2;
 var tmp_wall_sprite_size = tmp_wall_scale*48;
 var n_wall_type = global.n_room_tileset;
+var xx = camera_get_view_x(view_camera[0]);
+var yy = camera_get_view_y(view_camera[0]);
 
-y = tmp_room_yy-global.n_room_height*0.5*tmp_wall_sprite_size-8;
-depth = -floor(y);
-
-
-global.water_effect_timer += 0.0005;
-global.water_effect_xx = cos(global.water_effect_timer)*128;
-global.water_effect_yy = sin(global.water_effect_timer)*128;
+//버튼 그리기
+with(obj_floor_button)
+{
+	if (!stop_cal_by_pos_statement)
+	{
+		draw_self();
+	}
+}
 
 
 
@@ -63,4 +66,10 @@ if (surface_exists(global.shadow_surf))
 		}
 	}
 	surface_reset_target();
+}
+
+//모든 그림자 그리기
+if (surface_exists(global.shadow_surf))
+{
+	draw_surface_ext(global.shadow_surf,xx,yy,1,1,0,c_black,0.3);
 }

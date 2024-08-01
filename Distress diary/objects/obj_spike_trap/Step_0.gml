@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-depth = obj_map_texture_draw.depth-8;
+depth = obj_map_texture_floor.depth-8;
 
 
 if (!stop_cal_by_pos_statement)
