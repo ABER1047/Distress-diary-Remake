@@ -70,7 +70,14 @@ if (surface_exists(global.liquid_on_floor_surf))
 			}
 			else if (object_index == obj_mucus_effect)
 			{
-				tmp_color = #16A700;
+				if (image_blend == #BD430B)
+				{
+					tmp_color = image_blend;
+				}
+				else
+				{
+					tmp_color = #16A700;
+				}
 			}
 				
 				
@@ -103,7 +110,9 @@ if (surface_exists(global.liquid_on_floor_surf))
 		
 	draw_surface(global.liquid_on_floor_surf,0,0);
 	gpu_set_colorwriteenable(1, 1, 1, 0);
+	draw_set_alpha(1);
 	draw_surface_ext(global.reflection_surf,0,0,1,1,0,c_white,0.05);
+	draw_set_alpha(1);
 	gpu_set_colorwriteenable(1, 1, 1, 1);
 	surface_reset_target();
 }

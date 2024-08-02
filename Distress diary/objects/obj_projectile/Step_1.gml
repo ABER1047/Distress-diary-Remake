@@ -11,14 +11,19 @@ image_angle = direction-45+angle_comp;
 if (global.graphics_quality > 0)
 {
 	//화살 궤적 애니메이션
-	if (!stop_animation)
+	if (xx[0] != xx[7])
 	{
 		if (animation_timer%2 == 0)
 		{
-			var tmp_ind = animation_timer/2;
-			xx[tmp_ind] = x;
-			yy[tmp_ind] = y-z;
+			xx[0] = x;
+			yy[0] = y-z;
+			for(var i = 7; i > 0; i--)
+			{
+				xx[i] = xx[i-1];
+				yy[i] = yy[i-1];
+			}
 		}
+		
 
 		if (animation_timer >= 8*2)
 		{

@@ -16,13 +16,19 @@ for(var i = 0; i < _speed; i++)
 	}
 	else
 	{
-		var tmp_ins = instance_place(x,y,obj_monster_parents);
+		var tmp_ins = instance_place(x,y-z,obj_monster_parents);
 		if (instance_exists(tmp_ins))
 		{
-			var tmp_z_val = z-tmp_ins.z;
-			var hitbox_check = (abs(tmp_z_val) <= 4) || (tmp_z_val > 0 && tmp_z_val < (tmp_ins.bbox_bottom - tmp_ins.bbox_top)+4);
-			if (hitbox_check)
+			var tmp_ch = abs(tmp_ins.z - z);
+			show_message_log(tmp_ch);
+			if (tmp_ch <= 96)
 			{
+				for(var i = 0; i < 8; i++)
+				{
+					xx[i] = 0;
+					yy[i] = 0;
+				}
+				
 				is_on_mob = tmp_ins;
 				stop_flying = 16;
 				_speed = 0;
