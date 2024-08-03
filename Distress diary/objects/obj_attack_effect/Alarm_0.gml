@@ -47,7 +47,7 @@ visible = true;
 //몬스터 공격 판정
 with(obj_mob_parents)
 {
-	if (object_index != obj_player && id != other.id && place_meeting(x,y,other.id) && z-32 <= other.z)
+	if (object_index != obj_player && id != other.id && place_meeting(x,y,other.id) && abs(z-other.z) <= 96)
 	{
 		give_damage(id,other.attack_dmg,true,global.knockback_power,other.x,other.y,25);
 	}
