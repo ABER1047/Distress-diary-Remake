@@ -78,7 +78,7 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 			inv_info_rotated[i][ii] = item_rotated; //아이템 회전 유무
 			inv_info_weight[i][ii] = global.item_weight; //아이템 무게
 			inv_info_searched[i][ii] = argument7; //아이템 서치됨
-			inv_info_startag[i][ii] = (global.item_max_stack_num == -4) ? tmp_startag : 0; //스타 태그 (스택이 가능한 아이템은 태그가 붙지 않음)
+			inv_info_startag[i][ii] = (global.item_max_stack_num == -4 || tmp_spr_ind == spr_backpack) ? tmp_startag : 0; //스타 태그 (스택이 가능하거나, 백팩 아이템은 태그가 붙지 않음)
 		}
 	}
 	

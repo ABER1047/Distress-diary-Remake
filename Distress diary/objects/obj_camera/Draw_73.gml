@@ -198,12 +198,13 @@ if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
 			global.quickslot_index = tmp_val-1;
 		}
 	}
-	else if ((global.is_moving_item_now == -4 && (mouse_check_button_released(mb_left) || mouse_check_button_pressed(mb_left))) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
+	else if ((global.is_moving_item_now == -4 && (mouse_check_button_released(mb_left) || mouse_check_button_pressed(mb_right))) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
 	{
 		tmp_slot_half_width = ui_scale*282;
 		var is_mouse_inside_quickslot = false;
 		if (abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height)
 		{
+			//1~9번 숫자칸
 			for(var i = 0; i < 9; i++)
 			{
 				var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
@@ -219,7 +220,7 @@ if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
 					if (global.is_moving_item_now == -4)
 					{
 						var tmp_quickslot_spr = global.quickslot_spr_ind[i];
-						if (tmp_quickslot_spr != -4 && mouse_check_button_pressed(mb_left) && instance_exists(global.showing_inv))
+						if (tmp_quickslot_spr != -4 && mouse_check_button_pressed(mb_right) && instance_exists(global.showing_inv))
 						{
 							//퀵 슬롯에 있는 아이템 인벤으로 옮기기
 							var tmp_quickslot_img = global.quickslot_img_ind[i], tmp_quickslot_stacks = global.quickslot_stack_num[i], tmp_quickslot_startag = global.quickslot_startag[i];
