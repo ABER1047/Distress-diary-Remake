@@ -401,7 +401,7 @@ if (keyboard_check_pressed(vk_tab))
 {
 	if (!instance_exists(global.showing_inv))
 	{
-		global.showing_inv = show_inv_ui(894,566,"인벤토리",global.my_player_ins_id[global.my_player_id],-4,1);
+		global.showing_inv = show_inv_ui("center",640,"인벤토리",global.my_player_ins_id[global.my_player_id],-4,1);
 	}
 	else
 	{

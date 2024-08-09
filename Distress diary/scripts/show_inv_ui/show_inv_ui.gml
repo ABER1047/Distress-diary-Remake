@@ -15,9 +15,13 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4,argument5
 	var tmp_owner = argument3;
 	if (instance_exists(tmp_owner))
 	{
+		var text_ratio = global.reversed_ratio_by_camera;
+		var slot_size = 40*text_ratio; //1칸당 픽셀 사이즈
+		var tmp_width = tmp_owner.inv_width, tmp_height = tmp_owner.inv_height;
+		var xx_w = camera_get_view_width(view_camera[0]), yy_h = camera_get_view_height(view_camera[0]);
 		var tmp_ins = instance_create_depth(-999,-999,global.min_depth,obj_inv_ui);
-		tmp_ins.x_pos = argument0;
-		tmp_ins.y_pos = argument1;
+		tmp_ins.x_pos = ((argument0 == "center") ? xx_w*0.5 : argument0) - slot_size*tmp_width*0.5;
+		tmp_ins.y_pos = ((argument1 == "center") ? yy_h*0.5 : argument1) - slot_size*tmp_height*0.5;
 		tmp_ins.inv_name = argument2;
 		tmp_ins.variable_owner = tmp_owner;
 		tmp_ins.max_distance = argument4;
@@ -29,9 +33,9 @@ function show_inv_ui(argument0,argument1,argument2,argument3,argument4,argument5
 		play_sound_pos(inventory1_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160,false,-4,-4);
 		play_sound_pos(inventory2_sfx,false,0.1,target_ins_for_sfx.x,target_ins_for_sfx.y,160,false,-4,-4);
 		
-		for(var i = 0; i < tmp_owner.inv_height; i++)
+		for(var i = 0; i < tmp_height; i++)
 		{
-			for(var ii = 0; ii < tmp_owner.inv_width; ii++)
+			for(var ii = 0; ii < tmp_width; ii++)
 			{
 				var tmp_spr_ind_real = tmp_owner.inv_info_spr_ind[i][ii];
 				if (sprite_exists(tmp_spr_ind_real))
