@@ -12,47 +12,50 @@ depth = obj_map_texture_floor.depth-1;
 if (surface_exists(global.liquid_on_floor_surf))
 {
 	//반사 효과 적용
-	surface_set_target(global.reflection_surf);
-	draw_clear_alpha(c_black,0);
-	// you can add water reflection effect when you add certain objects as child on object_parents
-	// all of object sprite x-offset, y-offset positions all must be center bottom of mask_index
-	with(obj_wall_nearby_door)
+	if (global.graphics_quality > 0)
 	{
-		var tmp_xx = x - xx;
-		var tmp_yy = y - yy;
-		draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
-	}
-		
-	with(obj_parents)
-	{
-		if (!stop_cal_by_pos_statement && object_index != obj_spike_trap && object_index != obj_cliff)
+		surface_set_target(global.reflection_surf);
+		draw_clear_alpha(c_black,0);
+		// you can add water reflection effect when you add certain objects as child on object_parents
+		// all of object sprite x-offset, y-offset positions all must be center bottom of mask_index
+		with(obj_wall_nearby_door)
 		{
 			var tmp_xx = x - xx;
 			var tmp_yy = y - yy;
 			draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
 		}
-	}
 		
-	with(obj_mob_parents)
-	{
-		if (!stop_cal_by_pos_statement)
+		with(obj_parents)
 		{
-			var tmp_xx = x - xx;
-			var tmp_yy = y+z - yy;
-			draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
+			if (!stop_cal_by_pos_statement && object_index != obj_spike_trap && object_index != obj_cliff)
+			{
+				var tmp_xx = x - xx;
+				var tmp_yy = y - yy;
+				draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
+			}
 		}
-	}
 		
-	with(obj_bouncing_object)
-	{
-		if (sprite_exists(sprite_index))
+		with(obj_mob_parents)
 		{
-			var tmp_xx = x - xx;
-			var tmp_yy = y+z - yy;
-			draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
+			if (!stop_cal_by_pos_statement)
+			{
+				var tmp_xx = x - xx;
+				var tmp_yy = y+z - yy;
+				draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
+			}
 		}
+		
+		with(obj_bouncing_object)
+		{
+			if (sprite_exists(sprite_index))
+			{
+				var tmp_xx = x - xx;
+				var tmp_yy = y+z - yy;
+				draw_sprite_ext(sprite_index,image_index,tmp_xx,tmp_yy,image_xscale,-image_yscale,image_angle,image_blend,image_alpha);
+			}
+		}
+		surface_reset_target();
 	}
-	surface_reset_target();
 	
 	
 	
@@ -111,8 +114,11 @@ if (surface_exists(global.liquid_on_floor_surf))
 	draw_surface(global.liquid_on_floor_surf,0,0);
 	gpu_set_colorwriteenable(1, 1, 1, 0);
 	draw_set_alpha(1);
-	draw_surface_ext(global.reflection_surf,0,0,1,1,0,c_white,0.05);
-	draw_set_alpha(1);
+	if (global.graphics_quality > 0)
+	{
+		draw_surface_ext(global.reflection_surf,0,0,1,1,0,c_white,0.05);
+		draw_set_alpha(1);
+	}
 	gpu_set_colorwriteenable(1, 1, 1, 1);
 	surface_reset_target();
 }

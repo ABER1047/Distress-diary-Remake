@@ -181,6 +181,7 @@
     {"id":{"name":"create_room_specific_pos","path":"scripts/create_room_specific_pos/create_room_specific_pos.yy",},},
     {"id":{"name":"damage_display","path":"scripts/damage_display/damage_display.yy",},},
     {"id":{"name":"decode_invite_code","path":"scripts/decode_invite_code/decode_invite_code.yy",},},
+    {"id":{"name":"delete_inv_item","path":"scripts/delete_inv_item/delete_inv_item.yy",},},
     {"id":{"name":"draw_circular_bar","path":"scripts/draw_circular_bar/draw_circular_bar.yy",},},
     {"id":{"name":"draw_interaction_key","path":"scripts/draw_interaction_key/draw_interaction_key.yy",},},
     {"id":{"name":"draw_text_k_scale","path":"scripts/draw_text_k_scale/draw_text_k_scale.yy",},},

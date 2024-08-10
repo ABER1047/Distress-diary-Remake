@@ -204,6 +204,7 @@ if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
 		var is_mouse_inside_quickslot = false;
 		if (abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height)
 		{
+			show_debug_message("sdd");
 			//1~9번 숫자칸
 			for(var i = 0; i < 9; i++)
 			{
@@ -296,11 +297,28 @@ draw_sprite_ext(spr_quickslot,(tmp_img_ind >= 0) ? tmp_img_ind : 9,tmp_ui_xx,tmp
 
 
 
+
+
+//가방 칸
+tmp_slot_half_width = (tmp_slot_half_width == -4) ? ui_scale*282 : tmp_slot_half_width;
+var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(9.5*tmp_slot_half_height*2);
+var tmp_bp_spr = spr_ui, tmp_bp_img_ind = 0, tmp_bp_alpha = 0.4;
+if (global.n_backpack != 0)
+{
+	tmp_bp_spr = spr_backpack;
+	tmp_bp_img_ind = global.n_backpack-1;
+	tmp_bp_alpha = 1;
+}
+//백팩 아이템 아이콘 그리기
+draw_sprite_ext(tmp_bp_spr,tmp_bp_img_ind,tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,tmp_bp_alpha);
+
+
+
+//일반 슬롯 칸
 for(var i = 0; i < 9; i++)
 {
 	if (sprite_exists(global.quickslot_spr_ind[i]))
 	{
-		tmp_slot_half_width = (tmp_slot_half_width == -4) ? ui_scale*282 : tmp_slot_half_width;
 		var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
 		
 		var tmp_check = (global.quickslot_stack_num[i] == -4);
@@ -329,6 +347,14 @@ for(var i = 0; i < 9; i++)
 		}
 	}
 }
+
+
+
+
+
+
+
+
 
 //공격 쿨타임 있는 경우 표기
 if (global.attack_cooldown_timer > 0)

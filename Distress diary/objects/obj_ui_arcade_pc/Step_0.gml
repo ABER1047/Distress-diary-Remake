@@ -196,7 +196,7 @@ if (play_result_animation <= 1)
 			}
 			else if (tmp_owner.inv_info_stack_num[i][ii] == bet_amount) //해당 칸에 있는 돈이 딱 맞는 경우
 			{
-				tmp_owner.inv_info_spr_ind[i][ii] = -4;
+				delete_inv_item(tmp_owner,ii,i,1,1,0);
 			}
 			else //돈이 흩어져있는 상태여서 여러개 합쳐서 금액을 차감가능한 경우
 			{
@@ -207,7 +207,7 @@ if (play_result_animation <= 1)
 					chk_decrease_amount++;
 					if (tmp_owner.inv_info_stack_num[i][ii] == 0)
 					{
-						tmp_owner.inv_info_spr_ind[i][ii] = -4;
+						delete_inv_item(tmp_owner,ii,i,1,1,0);
 					}
 				
 					//모두 차감 완료한 경우 while문 종료

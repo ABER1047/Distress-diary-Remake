@@ -62,20 +62,11 @@ if (instance_exists(parents_id))
 			//효과음
 			play_sound(draging_item,false,0.03);
 			
-			//아이템 회전 적용
-			var tmp_origin_item_width = (item_rotated == 0) ? item_width : item_height;
-			var tmp_origin_item_height = (item_rotated == 0) ? item_height : item_width;
-			
-			//옮기려는 아이템이 차지하는 공간은 일단 지움
 			var tmp_spr_ind = variable_owner_ins.inv_info_spr_ind[y_pos][x_pos];
 			origin_spr = tmp_spr_ind;
-			for(var i = 0; i < tmp_origin_item_height; i++) //height
-			{
-				for(var ii = 0; ii < tmp_origin_item_width; ii++) //width
-				{
-					variable_owner_ins.inv_info_spr_ind[y_pos+i][x_pos+ii] = -4;
-				}
-			}
+			
+			//옮기려는 아이템이 차지하는 공간은 일단 지움
+			delete_inv_item(variable_owner_ins,x_pos,y_pos,item_width,item_height,item_rotated);
 		}
 		
 
@@ -198,18 +189,9 @@ if (instance_exists(parents_id))
 				show_message_log("item_added_on_slot");
 				if (global.quickslot_spr_ind[tmp_index] != -4) //이미 아이템이 있는 퀵 슬롯에 아이템 넣기
 				{
-					//회전 및 아이템 가로/세로 길이만큼 칸 차지하는 거 적용
-					var visual_width = (item_rotated == 0) ? item_width : item_height;
-					var visual_height = (item_rotated == 0) ? item_height : item_width;
-	
-					for(var k = 0; k < visual_height; k++)
-					{
-						for(var kk = 0; kk < visual_width; kk++)
-						{
-							//기존에 있던 아이템은 삭제(내부 변수 숫자값으로만)
-							variable_owner_ins.inv_info_spr_ind[tmp_k+k][tmp_kk+kk] = -4; //아이템 삭제는 inv_info_spr_ind값만 -4로 해주면 됨
-						}
-					}
+					//아이템 삭제
+					delete_inv_item(variable_owner_ins,tmp_kk,tmp_k,item_width,item_height,item_rotated);
+
 					
 					var tmp_quickslot_spr = global.quickslot_spr_ind[tmp_index], tmp_quickslot_img = global.quickslot_img_ind[tmp_index], tmp_quickslot_stacks = global.quickslot_stack_num[tmp_index], tmp_quickslot_startag = global.quickslot_startag[tmp_index];
 					set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img); //아이템 데이터 불러오기
@@ -261,18 +243,8 @@ if (instance_exists(parents_id))
 			
 				if ((is_moveable_pos > 0 && is_moveable_pos != 3 && is_moveable_pos != 4) || is_moving_item_outside != 0)
 				{
-					//회전 및 아이템 가로/세로 길이만큼 칸 차지하는 거 적용
-					var visual_width = (item_rotated == 0) ? item_width : item_height;
-					var visual_height = (item_rotated == 0) ? item_height : item_width;
-	
-					for(var k = 0; k < visual_height; k++)
-					{
-						for(var kk = 0; kk < visual_width; kk++)
-						{
-							//기존에 있던 아이템은 삭제(내부 변수 숫자값으로만)
-							variable_owner_ins.inv_info_spr_ind[tmp_k+k][tmp_kk+kk] = -4; //아이템 삭제는 inv_info_spr_ind값만 -4로 해주면 됨
-						}
-					}
+					//아이템 삭제
+					delete_inv_item(variable_owner_ins,tmp_kk,tmp_k,item_width,item_height,item_rotated);
 					
 					//기존에 있던 아이템은 삭제 (obj_inv_item 인스턴스)
 					alarm[0] = 1; //instance_destroy();

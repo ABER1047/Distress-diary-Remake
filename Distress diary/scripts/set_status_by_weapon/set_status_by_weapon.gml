@@ -207,7 +207,7 @@ function set_status_by_weapon(argument0,argument1)
 		switch(tmp_img_ind)
 		{
 			case 23:
-				dmg = 1;
+				dmg = 0.5;
 				atk_sp = 10;
 				crit_chance = 10;
 				knockback = 0;

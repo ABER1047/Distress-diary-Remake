@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"delete_inv_item",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"delete_inv_item",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
