@@ -51,13 +51,11 @@ if (item_searched == 1 && mouse_on == 1 && mouse_check_button_pressed(mb_right))
 			var tmp_inv_width = inv_owner.inv_width, tmp_inv_height = inv_owner.inv_height;
 		
 			//교체 가능 체크용 임시 변수
-			var tmp_width_range_min = min(tmp_inv_width,tmp_bp_size[0]), tmp_width_range_max = max(tmp_inv_width,tmp_bp_size[0]);
-			var tmp_height_range_min = min(tmp_inv_height,tmp_bp_size[1]), tmp_height_range_max = max(tmp_inv_height,tmp_bp_size[1]);
-			for(var i = tmp_height_range_min; i < tmp_height_range_max; i++)
+			for(var i = 0; i < tmp_inv_height; i++)
 			{
-				for(var ii = tmp_width_range_min; ii < tmp_width_range_max; ii++)
+				for(var ii = 0; ii < tmp_inv_width; ii++)
 				{
-					if (inv_owner.inv_info_spr_ind[i][ii] != -4)
+					if (inv_owner.inv_info_spr_ind[i][ii] >= 0)
 					{
 						chk_can_change_bp = false;
 						break;
@@ -67,25 +65,25 @@ if (item_searched == 1 && mouse_on == 1 && mouse_check_button_pressed(mb_right))
 			}
 			
 			
+			
 			if (chk_can_change_bp)
 			{
+				with(inv_owner)
+				{
+					if (id == inv_owner)
+					{
+						set_inv_size_by_bp(global.n_backpack);
+					}
+				}
 				show_debug_message("right clicked - spr_backpack");
 				var img_ind = global.n_backpack-1;
 				set_item_info_values(sprite_index,image_index);
-				var has_empty_pos = find_empty_pos(sprite_index,img_ind,global.item_width,global.item_height,-4,inv_owner);
-				if (has_empty_pos == true)
-				{
-					set_inv_variable(inv_owner,global.inv_empty_xpos,global.inv_empty_ypos,sprite_index,img_ind,-4,global.inv_empty_rotated,1,0);
-				}
-				else
-				{
-					drop_item(sprite_index,img_ind,-4,global.item_width,global.item_height,0);
-				}
+				drop_item(sprite_index,img_ind,-4,global.item_width,global.item_height,0);
 			}
 			else
 			{
 				bp_changed = false;
-				show_message_log("가방 공간이 부족합니다");
+				show_message_log("가방이 비어있지 않습니다");
 			}
 		}
 		
