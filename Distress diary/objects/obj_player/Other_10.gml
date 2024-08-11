@@ -42,7 +42,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 			tmp_img_ind = 4;
 		}
 		
-		create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal,32+z,13,point_direction(x,y,mouse_x,mouse_y));
+		create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal,32+z,(100-global.accurate)*0.3,point_direction(x,y,mouse_x,mouse_y));
 	}
 }
 

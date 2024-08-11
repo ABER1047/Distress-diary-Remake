@@ -4,7 +4,8 @@
 
 ///@param sprite_index
 ///@param image_index
-function set_status_by_weapon(argument0,argument1)
+///@param [onlyReturn]
+function set_status_by_weapon(argument0,argument1,argument2)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
@@ -221,11 +222,17 @@ function set_status_by_weapon(argument0,argument1)
 			break;
 		}
 	}
-
-	global.attack_range = tmp_range;
-	global.attack_type = tmp_attack_type;
-	global.attack_damage = (dmg)*(1+sign(global.buff_left_time[3])*0.25-sign(global.buff_left_time[2])*0.25); //데미지 계산
-	global.attack_speed = atk_sp;
-	global.critical_chance = crit_chance;
-	global.knockback_power = knockback; //넉백 파워
+	
+	
+	if (argument2 == undefined || argument2 == false)
+	{
+		global.attack_range = tmp_range;
+		global.attack_type = tmp_attack_type;
+		global.attack_damage = (dmg)*(1+sign(global.buff_left_time[3])*0.25-sign(global.buff_left_time[2])*0.25); //데미지 계산
+		global.attack_speed = atk_sp;
+		global.critical_chance = crit_chance;
+		global.knockback_power = knockback; //넉백 파워
+	}
+	
+	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type);
 }

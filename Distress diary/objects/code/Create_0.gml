@@ -7,6 +7,7 @@ randomize();
 event_user(1);
 depth = -102;
 
+
 //디버그 용
 global.show_map_data = -1;
 global.dev_mode = 1;
@@ -241,6 +242,7 @@ global.critical_chance = 0; //크리티컬 데미지 확률
 global.critical_dmg_magnification = 0.5; //크리티컬 데미지 배율
 global.luck = 0;
 global.searching_speed = 100; //아이템 서칭 속도 (몇 프레임 후 아이템 하나가 서칭 완료되는지)
+global.accurate = 0; //투척류/발사류 무기 정확도
 
 
 //퀵슬롯

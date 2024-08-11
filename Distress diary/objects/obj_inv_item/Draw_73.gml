@@ -214,7 +214,7 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		var tmp_name_to_draw = string(item_name); //아이템명
 		var tmp_txt_width = string_width(tmp_name_to_draw)*2;
 		tmp_txt_width = (tmp_txt_width > 640) ? tmp_txt_width : 640;
-		var item_info = "테스트용 아이템 정보 테스트용 아이템 정보 테스트용 아이템 정보 테스트용 아이템 정보";
+		var item_info = string(item_effect_desc)+string(item_desc);
 		var tmp_info_length = 2+floor(string_length(item_info)/(tmp_txt_width/32));
 		var tmp_win_width = (tmp_txt_width*0.3+8)*text_ratio;
 		var tmp_win_height = (84+24*tmp_info_length)*text_ratio;
@@ -231,11 +231,12 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		{
 			tmp_name_to_draw = tmp_name_to_draw+" ("+string(item_name_translated)+")";
 		}
-		draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(16*text_ratio),string(tmp_name_to_draw),64,-1,1,c_white,0,-1,font_normal,0.33,0.33,0,true);
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(16*text_ratio),string(tmp_name_to_draw),64,-1,1,tmp_bg_color,0,-1,font_normal,0.33,0.33,0,true);
 		
 		
 		//아이템 정보 그리기
-		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(32*text_ratio),string(item_info),64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.3,0.3,0,true);
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio),string(item_effect_desc),64,tmp_txt_width,1,c_white,0,-1,font_normal,0.26,0.26,0,true);
+		draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio)+string_height_ext(item_effect_desc,64,9999),string(item_desc),64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.26,0.26,0,true);
 		
 		
 		//아이템명-아이템 정보 사이의 라인 그리기

@@ -37,6 +37,42 @@ function create_inv_item(argument0,argument1,argument2,argument3,argument4,argum
 	tmp_ins.item_searched = argument13;
 	tmp_ins.item_value = set_item_value(tmp_item_name,tmp_ins);
 	tmp_ins.startag = argument14;
+
+	//무기-장비류 아이템의 경우, 아이템 효과 설명 추가
+	var tmp_str = string_split(set_status_by_weapon(argument0,argument1),",");
+	if (tmp_str[1] != 0)
+	{
+		if (tmp_str[0] > 0)
+		{
+			if (tmp_str[5] == 3)
+			{
+				tmp_ins.item_effect_desc = string(tmp_str[0])+"-"+string(real(tmp_str[0])*3)+" 데미지\n";
+			}
+			else if (tmp_str[5] == 0)
+			{
+				tmp_ins.item_effect_desc = string(tmp_str[0])+"-"+string(real(tmp_str[0])*2)+" 데미지\n";
+			}
+			else
+			{
+				tmp_ins.item_effect_desc = string(tmp_str[0])+" 데미지\n";
+			}
+		}
+		else
+		{
+			tmp_ins.item_effect_desc = string(abs(tmp_str[0]))+" 곡괭이 파워\n";
+		}
+		
+		if (tmp_str[2] != 0)
+		{
+			tmp_ins.item_effect_desc = string(tmp_ins.item_effect_desc)+string(tmp_str[2])+"% 크리티컬 찬스\n";
+		}
+		
+		if (tmp_str[3] != 0)
+		{
+			tmp_ins.item_effect_desc = string(tmp_ins.item_effect_desc)+string(tmp_str[3])+" 넉백\n";
+		}
+	}
+	
 	
 	
 	show_debug_message("create_inv_item : "+string(argument3));

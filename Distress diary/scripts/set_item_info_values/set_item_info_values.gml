@@ -596,6 +596,7 @@ function set_item_info_values(argument0,argument1)
 				tmp_short_name = "Pickaxe";
 				tmp_name = "Iron Pickaxe";
 				item_weight = 1.2;
+				item_height = 2;
 			break;
 			
 			case 2:
@@ -609,7 +610,7 @@ function set_item_info_values(argument0,argument1)
 				tmp_short_name = "Pickaxe";
 				tmp_name = "Bone Pickaxe";
 				item_weight = 0.8;
-				max_stack_num = 8;
+				item_height = 2;
 			break;
 		}
 	}

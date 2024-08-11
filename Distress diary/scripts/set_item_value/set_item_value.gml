@@ -9,6 +9,9 @@ function set_item_value(argument0,argument1)
 {
 	with(argument1)
 	{
+		item_name_translated = "";
+		item_effect_desc = "";
+		item_desc = "";
 		switch(argument0)
 		{
 			//음식류
@@ -274,6 +277,7 @@ function set_item_value(argument0,argument1)
 		
 			case "Golden Coin":
 				item_name_translated = "골든 코인";
+				item_desc = "황금으로 이루어진 코인";
 				return 1;
 			break;
 			
@@ -377,27 +381,108 @@ function set_item_value(argument0,argument1)
 			//무기류
 			case "Copper Sword":
 				item_name_translated = "구리 검";
-				return 10;
+				return 2;
 			break;
 			
-			case "Dagger":
-				item_name_translated = "단검";
-				return 10;
+			case "Copper Dagger":
+				item_name_translated = "구리 단검";
+				return 2;
 			break;
 			
-			case "Golden Sword":
-				item_name_translated = "황금 검";
-				return 10;
+			case "Copper Hammer":
+				item_name_translated = "구리 망치";
+				return 2;
+			break;
+			
+			case "Iron Sword":
+				item_name_translated = "철 검";
+				return 2;
+			break;
+			
+			case "Iron Dagger":
+				item_name_translated = "철 단검";
+				return 2;
+			break;
+			
+			case "Iron Hammer":
+				item_name_translated = "철 망치";
+				return 2;
+			break;
+			
+			case "Poisoned Throwing Knife":
+				item_name_translated = "독 발린 투척용 단검";
+				return 1;
 			break;
 			
 			case "Throwing Knife":
 				item_name_translated = "투척용 단검";
-				return 10;
+				return 1;
 			break;
 			
-			case "Poisoned Throwing Knife":
-				item_name_translated = "독발린 투척용 단검";
-				return 10;
+			case "High Quality Metal Sword":
+				item_name_translated = "고품질 철 검";
+				return 3;
+			break;
+			
+			case "High Quality Metal Dagger":
+				item_name_translated = "고품질 철 단검";
+				return 3;
+			break;
+			
+			case "High Quality Metal Hammer":
+				item_name_translated = "고품질 철 망치";
+				return 3;
+			break;
+			
+			case "Slime Sword":
+				item_name_translated = "슬라임 검";
+				return 4;
+			break;
+			
+			case "Slime Dagger":
+				item_name_translated = "슬라임 단검";
+				return 4;
+			break;
+			
+			case "Slime Hammer":
+				item_name_translated = "슬라임 망치";
+				return 4;
+			break;
+			
+			case "Bone Sword":
+				item_name_translated = "뼈 칼";
+				return 4;
+			break;
+			
+			case "Bone Dagger":
+				item_name_translated = "뼈 단검";
+				return 4;
+			break;
+			
+			
+			//도구류
+			case "Copper Pickaxe":
+				item_name_translated = "구리 곡괭이";
+				return 2;
+			break;
+			
+			case "Iron Pickaxe":
+				item_name_translated = "철 곡괭이";
+				return 2;
+			break;
+			
+			case "Slime Pickaxe":
+				item_name_translated = "슬라임 곡괭이";
+				return 3;
+			break;
+			
+			case "Bone Pickaxe":
+				item_name_translated = "뼈 곡괭이";
+				return 3;
+			break;
+			
+			default:
+				return 0;
 			break;
 		}
 	}
