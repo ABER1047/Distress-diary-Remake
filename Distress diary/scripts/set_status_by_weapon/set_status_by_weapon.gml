@@ -9,7 +9,7 @@ function set_status_by_weapon(argument0,argument1,argument2)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
-	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128;
+	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0;
 	
 	if (tmp_spr_ind == spr_weapon)
 	{
@@ -69,6 +69,7 @@ function set_status_by_weapon(argument0,argument1,argument2)
 				crit_chance = 10;
 				knockback = 1;
 				tmp_range = 64;
+				tmp_accurate = 10;
 			break;
 			
 			case 7:
@@ -77,6 +78,7 @@ function set_status_by_weapon(argument0,argument1,argument2)
 				crit_chance = 5;
 				knockback = 1;
 				tmp_range = 64;
+				tmp_accurate = 10;
 			break;
 			
 			case 8:
@@ -232,7 +234,8 @@ function set_status_by_weapon(argument0,argument1,argument2)
 		global.attack_speed = atk_sp;
 		global.critical_chance = crit_chance;
 		global.knockback_power = knockback; //넉백 파워
+		global.accurate = tmp_accurate;
 	}
 	
-	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type);
+	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate);
 }

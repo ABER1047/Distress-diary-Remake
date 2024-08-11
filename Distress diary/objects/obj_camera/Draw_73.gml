@@ -48,7 +48,7 @@ draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_f
 //플레이어 현재 스테이터스 창 (공격력, 방어력 등등)
 var tmp_xx = xx+text_ratio*16;
 var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck), valToStrWithPoint(global.accurate) ];
-var to_draw_values = [ string(tmp_values[0])+"(+"+string(tmp_values[1])+")", tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[6])+"%" ];
+var to_draw_values = [ string(tmp_values[0])+"(+"+string(tmp_values[1])+")", tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[7])+"%" ];
 for(var i = 0; i < 7; i++)
 {
 	var tmp_yy = yy+(256+i*24)*text_ratio;

@@ -23,3 +23,12 @@ if (show_interaction_key > 0)
 	//인터렉션 키 드로우
 	draw_sprite_ext(spr_key_ui,interaction_key_real_ind_for_draw,tmp_key_xx,tmp_key_yy,txt_scale*global.reversed_ratio_by_camera*1.5,txt_scale*global.reversed_ratio_by_camera*1.5,0,c_white,1);
 }
+
+
+if (global.show_wall_hitbox)
+{
+	if (sprite_exists(mask_index))
+	{
+		draw_sprite_ext(mask_index,0,x,y,image_xscale,image_yscale,image_angle,c_white,0.2);
+	}
+}

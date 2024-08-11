@@ -71,6 +71,11 @@ function create_inv_item(argument0,argument1,argument2,argument3,argument4,argum
 		{
 			tmp_ins.item_effect_desc = string(tmp_ins.item_effect_desc)+string(tmp_str[3])+" 넉백\n";
 		}
+		
+		if (tmp_str[6] != 0)
+		{
+			tmp_ins.item_effect_desc = string(tmp_ins.item_effect_desc)+string(tmp_str[6])+"% 정확도\n";
+		}
 	}
 	
 	

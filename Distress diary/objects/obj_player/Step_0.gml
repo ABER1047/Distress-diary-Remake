@@ -476,7 +476,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			tmp_ins = -4;
 			with(obj_parents)
 			{
-				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 108)
+				if (!stop_cal_by_pos_statement && place_meeting(x,y,obj_cursor) && point_distance(x,y-48,other.x,other.y) <= 128)
 				{
 					tmp_ins = id;
 					break;
@@ -511,7 +511,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	//아이템 상호작용 키 표시 및 게이지 차는 로직
-	if (is_lootable != "" && place_meeting(mouse_x,mouse_y,tmp_ins))
+	if (is_lootable != "")
 	{
 		var tmp_key = "mb_r";
 		if (tmp_ins.interaction_message != "불 켜기/끄기")
