@@ -29,6 +29,11 @@ if (!stop_cal_by_pos_statement && z == 0 && sprite_exists(sprite_index))
 			if (is_empty)
 			{
 				set_inv_variable(tmp_ins,global.inv_empty_xpos,global.inv_empty_ypos,sprite_index,image_index,stack_num,global.inv_empty_rotated,1,startag);
+				
+				with(obj_inv_ui)
+				{
+					reload_inv = 1;
+				}
 				instance_destroy_multiplayer(id);
 			}
 			else if (tmp_ins == global.my_player_ins_id[global.my_player_id])
