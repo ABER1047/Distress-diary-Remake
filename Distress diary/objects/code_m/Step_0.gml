@@ -84,8 +84,8 @@ if (global.chat_activated)
 			var is_command = false;
 			if (global.is_server || chat_entering == "/disconnect")
 			{
-				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob", "/ef", "/arr", "/gq", "/vom", "/cp", "/invite", "/disconnect", "/connect", "/ds", "/explo", "/give", "/camera", "/hp", "/buff", "/np", "/roomall", "/pk" ];
-				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성", "이펙트 생성", "화살 생성", "그래픽 퀄리티 설정", "몹 시점 표시", "퍼즐방 생성", "초대코드 복사", "서버 연결 해제", "서버 접속", "현재 룸의 모든 문 열기/닫기", "폭발 이펙트 생성", "아이템 생성", "카메라 위치 표시", "나 자신의 hp값 설정", "나 자신에게 버프/디버프 적용", "현재 내 위치 표시", "모든 룸 전부 지도에 표시", "팀킬 허용" ];
+				var commands = [ "/kill", "/dev", "/cm", "/debug", "/hitbox", "/tickrate", "/time", "/help", "/zoom", "/shadow", "/light", "/dmg", "/hunger", "/hydro", "/ts", "/mob", "/ef", "/arr", "/gq", "/vom", "/cp", "/invite", "/disconnect", "/connect", "/ds", "/explo", "/give", "/camera", "/hp", "/buff", "/np", "/roomall", "/pk", "/healall" ];
+				var command_desc = [ "자살하기", "개발자 모드 활성화/비활성화", "새로운 맵 생성", "디버그 모드 활성화/비활성화", "히트박스 활성화/비활성화", "지정된 수치만큼 틱레이트 설정", "지정된 수치만큼 시간 설정 (단위 : minute)", "명령어 가이드 표기", "카메라 줌 정도를 지정된 수차만큼 설정", "그림자 활성화/비활성화", "광원 활성화/비활성화", "내 플레이어에 지정된 수차만큼 데미지 입히기", "배고픔 게이지 소모", "수분 게이지 소모", "타일셋 변경", "몬스터 생성", "이펙트 생성", "화살 생성", "그래픽 퀄리티 설정", "몹 시점 표시", "퍼즐방 생성", "초대코드 복사", "서버 연결 해제", "서버 접속", "현재 룸의 모든 문 열기/닫기", "폭발 이펙트 생성", "아이템 생성", "카메라 위치 표시", "나 자신의 hp값 설정", "나 자신에게 버프/디버프 적용", "현재 내 위치 표시", "모든 룸 전부 지도에 표시", "팀킬 허용", "모든 플레이어 100% 회복" ];
 				for(var i = 0; i < array_length(commands); i++)
 				{
 					if (string_pos(commands[i],chat_entering))
@@ -286,14 +286,13 @@ if (global.chat_activated)
 						}
 						else if (i == 26) //아이템 생성
 						{
+							var tmp_spr_ind = [ spr_backpack, spr_comp, spr_foods, spr_healings, spr_stackables, spr_drink, spr_weapon, spr_equipments, spr_pickaxe ];
 							var tmp_xx = global.my_player_ins_id[global.my_player_id].x;
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
-							var tmp_spr_ind = [ spr_backpack, spr_comp, spr_foods, spr_healings, spr_stackables, spr_drink ];
 							tmp_parameter = (tmp_parameter < array_length(tmp_spr_ind)) ? tmp_parameter : array_length(tmp_spr_ind)-1;
 							var tmp_img_ind = irandom_range(0,sprite_get_number(tmp_spr_ind[tmp_parameter])-1);
 							
-							var tmp_ins = instance_create_multiplayer(obj_dropped_item,tmp_xx,tmp_yy,global.object_id_ind,tmp_img_ind,false,-4,-4);
-							tmp_ins.sprite_index = tmp_spr_ind[tmp_parameter];
+							drop_item(tmp_parameter,tmp_img_ind,1,1,1,1,true,tmp_xx,tmp_yy);
 						}
 						else if (i == 27) //카메라 위치 표시
 						{
@@ -351,6 +350,19 @@ if (global.chat_activated)
 							chat_up_multiplayer("- pvp 허용 여부 : "+string(tmp_boolean)+" [기존 : "+string(global.pvpable)+"]",false);
 							global.pvpable = tmp_boolean;
 							send_GlobalVariableData("pvpable");
+						}
+						else if (i == 33) //모든 플레이어 힐
+						{
+							for(var k = 0; k < array_length(global.my_player_ins_id); k++)
+							{
+								var tmp_ins = global.my_player_ins_id[k];
+								if (instance_exists(tmp_ins))
+								{
+									tmp_ins.hp = 100;
+									send_InstanceVariableData(tmp_ins,"hp",100);
+								}
+							}
+							chat_up_multiplayer("- 모든 플레이어 100% 회복",false);
 						}
 						
 						

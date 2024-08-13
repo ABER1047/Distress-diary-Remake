@@ -10,7 +10,6 @@ image_alpha = 1;
 //z축 추가
 add_z_axis();
 
-
 //속도 관련 변수
 add_speed_valuables();
 

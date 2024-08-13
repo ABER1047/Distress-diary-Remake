@@ -59,22 +59,30 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//hp정보 보내기 (멀티플레이)
 	if (hp != b_hp)
 	{
-		if (hp-b_hp < 0)
-		{
-			//데미지 입었을 때, 화면 흔들림 이펙트
-			view_shake(2,2,2,2);
-		}
-		b_hp = hp;
-		
 		//사망시 이동 불가능하게
 		if (hp <= 0)
 		{
-			b_prohibit_movement_input = global.prohibit_movement_input;
-			global.prohibit_movement_input = true;
-			global.n_dir = (sign(image_xscale) > 0) ? 2 : 0;
+			if (b_hp != -4)
+			{
+				b_hp = -4; //아래 코드들이 1번만 실행되도록
+				b_prohibit_movement_input = global.prohibit_movement_input;
+				global.prohibit_movement_input = true;
+				global.n_dir = (sign(image_xscale) > 0) ? 2 : 0;
+			
+				//퀵슬롯 내의 모든 아이템 드랍
+				drop_index = 0;
+				alarm[0] = 1;
+			}
 		}
 		else
 		{
+			if (hp-b_hp < 0)
+			{
+				//데미지 입었을 때, 화면 흔들림 이펙트
+				view_shake(2,2,2,2);
+			}
+		
+			b_hp = hp;
 			if (!b_prohibit_movement_input)
 			{
 				global.prohibit_movement_input = false;
@@ -459,14 +467,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	//다른 죽은 플레이어 루팅하기
 	var is_lootable = "";
 	var tmp_ins = instance_nearest_notme(x,y,obj_player);
-	if (instance_exists(tmp_ins) && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 108)
+	if (instance_exists(tmp_ins) && tmp_ins.hp == 0 && tmp_ins.draw_alpha > 0 && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
 	{
 		is_lootable = string(tmp_ins.nickname)+"'의 인벤토리";
 	}
 	else
 	{
 		tmp_ins = instance_nearest_notme(x,y,obj_dropped_item_box);
-		if (instance_exists(tmp_ins) && !tmp_ins.stop_cal_by_pos_statement && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 108)
+		if (instance_exists(tmp_ins) && !tmp_ins.stop_cal_by_pos_statement && point_distance(x,y,tmp_ins.x,tmp_ins.y) <= 128)
 		{
 			is_lootable = "버려진 아이템";
 		}
@@ -476,7 +484,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			tmp_ins = -4;
 			with(obj_parents)
 			{
-				if (!stop_cal_by_pos_statement && place_meeting(x,y,obj_cursor) && point_distance(x,y-48,other.x,other.y) <= 128)
+				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 128)
 				{
 					tmp_ins = id;
 					break;
@@ -511,7 +519,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	//아이템 상호작용 키 표시 및 게이지 차는 로직
-	if (is_lootable != "")
+	if (is_lootable != "" && place_meeting(tmp_ins.x,tmp_ins.y,obj_cursor))
 	{
 		var tmp_key = "mb_r";
 		if (tmp_ins.interaction_message != "불 켜기/끄기")

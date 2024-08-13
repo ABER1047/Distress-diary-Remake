@@ -14,8 +14,8 @@
   "name":"obj_dropped_item_box",
   "overriddenProperties":[],
   "parent":{
-    "name":"map_objects",
-    "path":"folders/오브젝트/map_objects.yy",
+    "name":"mob",
+    "path":"folders/오브젝트/mob.yy",
   },
   "parentObjectId":{
     "name":"obj_mob_pushable_object",

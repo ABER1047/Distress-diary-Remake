@@ -17,8 +17,6 @@ if (global.is_server)
 	with(obj_player)
 	{
 		var tmp_target_obj_id = obj_id_player_only-1;
-
-		
 		if (obj_id_player_only != 0) //서버 자신은 제외
 		{
 			//각 플레이어의 핑 계산용 변수
