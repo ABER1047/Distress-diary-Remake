@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"chat_up",
   "parent":{
-    "name":"Multiplayer",
-    "path":"folders/스크립트/Multiplayer.yy",
+    "name":"UI&Camera",
+    "path":"folders/스크립트/UI&Camera.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

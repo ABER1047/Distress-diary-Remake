@@ -36,6 +36,9 @@ global.tickrate = 6;
 //최대 핑 허용치 (허용치를 벗어난 핑은 그냥 내보내버림)
 global.maximum_ping_acception = 256;
 
+//팀킬 가능 여부
+global.pvpable = false;
+
 
 
 //플레이어 스킨
@@ -243,6 +246,8 @@ global.critical_dmg_magnification = 0.5; //크리티컬 데미지 배율
 global.luck = 0;
 global.searching_speed = 100; //아이템 서칭 속도 (몇 프레임 후 아이템 하나가 서칭 완료되는지)
 global.accurate = 0; //투척류/발사류 무기 정확도
+global.hp_recovery_time = 0; //hp 재생 시간
+global.hp_recovery_degree = 1; //hp 재생 정도
 
 
 //퀵슬롯

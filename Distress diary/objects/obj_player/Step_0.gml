@@ -56,15 +56,14 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	
-	//pushable_objects끼리 밀리는 효과
-	pushable_objects_physics();
-	
-	
-	
 	//hp정보 보내기 (멀티플레이)
 	if (hp != b_hp)
 	{
-		send_InstanceVariableData(id,"hp");
+		if (hp-b_hp < 0)
+		{
+			//데미지 입었을 때, 화면 흔들림 이펙트
+			view_shake(2,2,2,2);
+		}
 		b_hp = hp;
 		
 		//사망시 이동 불가능하게
@@ -72,6 +71,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			b_prohibit_movement_input = global.prohibit_movement_input;
 			global.prohibit_movement_input = true;
+			global.n_dir = (sign(image_xscale) > 0) ? 2 : 0;
 		}
 		else
 		{

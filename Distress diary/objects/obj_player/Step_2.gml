@@ -6,6 +6,10 @@
 depth = -floor(y);
 
 
+//pushable_objects끼리 밀리는 효과
+pushable_objects_physics();
+
+
 //인터렉션 키 드로우 용
 if (show_interaction_key > 0)
 {

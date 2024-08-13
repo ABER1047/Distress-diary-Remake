@@ -12,7 +12,7 @@ if (global.is_server)
 	}
 
 	var need_to_check_ping = true;
-	var is_there_any_player_need_to_check = 60+global.tickrate*60; //다시 한 번 체크하는 시간이 저장됨
+	var is_there_any_player_need_to_check = floor(global.maximum_ping_acception/5*4); //다시 한 번 체크하는 시간이 저장됨
 	var tmp_buffer = dis_buffer;
 	with(obj_player)
 	{

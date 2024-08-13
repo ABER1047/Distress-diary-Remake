@@ -47,9 +47,24 @@ visible = true;
 //몬스터 공격 판정
 with(obj_mob_parents)
 {
-	if (object_index != obj_player && id != other.id && place_meeting(x,y,other.id) && abs(z-other.z) <= 96)
+	//팀킬 가능 여부 체크
+	var tmp_str = other.already_attacked;
+	var chk_teammate_attackable = (object_index == obj_player && global.pvpable && other.owner_player_id != obj_id_player_only && string_pos("/"+string(obj_id_player_only)+"/",tmp_str) == 0) || object_index != obj_player;
+	if (chk_teammate_attackable && id != other.id && place_meeting(x,y,other.id) && abs(z-other.z) <= 96)
 	{
-		give_damage(id,other.attack_dmg,true,global.knockback_power,other.x,other.y,25);
+		//팀킬 가능시, 공격 쿨타임이 없어 여러번 공격이 중첩 되지 않도록 수정
+		if (chk_teammate_attackable)
+		{
+			other.already_attacked = string(tmp_str)+"/"+string(obj_id_player_only)+"/";
+		}
+		
+		if (other.owner_player_id == global.my_player_id)
+		{
+			give_damage(id,other.attack_dmg,true,other.knockback,other.x,other.y,25);
+			
+			//화면흔들림 효과
+			view_shake(1+floor(other.attack_dmg/5)*1.5,1+floor(other.attack_dmg/5),1,2);
+		}
 	}
 }
 

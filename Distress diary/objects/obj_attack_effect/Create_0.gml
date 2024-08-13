@@ -8,6 +8,8 @@ line_width = 1;
 //max_line_width = 128;
 //dir = choose(-1,1);
 //attack_dmg = 0;
+//owner_player_id = global.my_player_id;
+already_attacked = "";
 alarm[0] = 1;
 
 

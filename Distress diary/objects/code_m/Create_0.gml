@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-window()
+window();
 server_ip = "";
 server_port = 35221; 
 global.is_server = true;
@@ -16,9 +16,14 @@ global.invite_code_seed = -4; //랜덤 초대 코드 생성용 시드
 //아이피 받아오기 용
 send_request = http_ip_get("");
 
+//채팅창 컬러 테이블
+global.chat_color_table = [ #494E92, #682B82, #FF6C5C, #953C4E, #0C8F0A ];
 
 
+//접속 대기/응답 시간
 network_set_config(network_config_connect_timeout,4000);
+
+
 
 
 
@@ -98,7 +103,7 @@ chat_buffer = buffer_create(2, buffer_grow, 1);
 
 
 //자동으로 튕긴 사람 혹은 강제종료 한사람 감지후 내보내기
-alarm[0] = global.tickrate*20;
+alarm[0] = floor(global.maximum_ping_acception/5*4);
 global.is_check_me = false;
 
 //감지용 위치 저장 변수

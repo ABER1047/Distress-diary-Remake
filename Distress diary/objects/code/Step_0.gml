@@ -20,7 +20,7 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	var tmp_light_yy_surf = tmp_player_yy-tmp_my_p.z-yy;
 	var light_ang = point_direction(tmp_player_xx,tmp_player_yy,mouse_x,mouse_y);
 	//플레이어가 바라보는 방향을 마우스 방향으로 고정
-	if (global.fixed_dir == 1)
+	if (global.fixed_dir == 1 && !global.prohibit_movement_input)
 	{
 		if (light_ang <= 50 || light_ang >= 310)
 		{

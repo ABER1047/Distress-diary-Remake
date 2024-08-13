@@ -5,6 +5,7 @@
 //인터렉션 키 드로우 용
 if (draw_alpha > 0)
 {
+	var is_this_my_player = (global.my_player_id == obj_id_player_only);
 	var tmp_scale = global.reversed_ratio_by_camera;
 	var tmp_yy = y-(90*tmp_scale+z);
 	//인터렉션 키 드로우 용
@@ -29,7 +30,9 @@ if (draw_alpha > 0)
 	}
 	else
 	{
-		draw_text_k_scale(x,tmp_yy,string(nickname),64,-1,1,c_white,0,0,font_normal,0.275,0.275,0,true);
+		//닉네임 드로우
+		var tmp_nickname_color = (is_this_my_player) ? c_white : merge_color(global.chat_color_table[obj_id_player_only%5],c_white,floor(obj_id_player_only/5)*0.25);
+		draw_text_k_scale(x,tmp_yy,string(nickname),64,-1,1,tmp_nickname_color,0,0,font_normal,0.275,0.275,0,true);
 		if (global.show_wall_hitbox)
 		{
 			draw_text_k_scale(x,y+32/global.h_ratio_by_window,"obj_id : "+string(obj_id)+"\nobj_id_player_only : "+string(obj_id_player_only),64,-1,1,c_white,0,0,font_normal,0.3,0.3,0);
@@ -37,7 +40,7 @@ if (draw_alpha > 0)
 	}
 	
 	//캐릭터가 본인의 캐릭터거나, 서버 자체를 열지 않은 경우
-	if (((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == obj_id_player_only))
+	if (((instance_exists(code_m) && code_m.server == -4) || is_this_my_player))
 	{
 		var tmp_ui_xx = x+32*tmp_scale, tmp_ui_yy = y-54*tmp_scale-z;
 		var tmp_ui_scale = tmp_scale*0.7;

@@ -27,6 +27,8 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			var dir_ = point_direction(attacker_xx,attacker_yy,tmp_ins.x,tmp_ins.y);
 			tmp_ins._speed += knockback_speed;
 			tmp_ins.direction = dir_;
+			
+			//show_message_log(string(tmp_ins._speed)+" / "+string(tmp_ins._hspeed)+" / "+string(tmp_ins._vspeed))
 		}
 	
 		if (is_hp_exists && (argument2 || is_dmg_cooltime_exists))
@@ -49,7 +51,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 
 		
 				//디버그용 메시지
-				show_message_log(tmp_ins.hp);
+				show_debug_message(tmp_ins.hp);
 			}
 
 			//데이터 값 전송

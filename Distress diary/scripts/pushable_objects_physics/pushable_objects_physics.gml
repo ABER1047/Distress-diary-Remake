@@ -29,7 +29,8 @@ function pushable_objects_physics()
 	
 	
 	//_speed를 _vspeed-_hspeed로 변환
-	if (abs(_speed) > 0)
+	var tmp_abs_speed = abs(_speed);
+	if (tmp_abs_speed > 0)
 	{
 		_hspeed = lengthdir_x(_speed,direction);
 		_vspeed = lengthdir_y(_speed,direction);
@@ -44,6 +45,8 @@ function pushable_objects_physics()
 	{
 		_vspeed = 0;
 	}
+	
+	
 
 	
 	
@@ -82,9 +85,10 @@ function pushable_objects_physics()
 	
 	if (z <= 0) //땅 바닥에 있어야 속도 감소 효과 먹음 (= 마찰력)
 	{
-		if (abs(_speed) > 0)
+		if (tmp_abs_speed > 0)
 		{
 			_speed += (0 - _speed)*0.15;
+			show_debug_message(_speed);
 		}
 		else
 		{
@@ -95,9 +99,10 @@ function pushable_objects_physics()
 	else
 	{
 		//공중에 있어야 속도 감소 효과 먹음 (= 공기저항)
-		if (abs(_speed) > 0)
+		if (tmp_abs_speed > 0)
 		{
 			_speed += (0 - _speed)*0.015;
+			show_debug_message(_speed);
 		}
 		else
 		{

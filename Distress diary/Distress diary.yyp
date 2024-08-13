@@ -161,6 +161,7 @@
     {"id":{"name":"camera_set_pos_by_ins","path":"scripts/camera_set_pos_by_ins/camera_set_pos_by_ins.yy",},},
     {"id":{"name":"camera_set_pos","path":"scripts/camera_set_pos/camera_set_pos.yy",},},
     {"id":{"name":"camera_set_t_pos","path":"scripts/camera_set_t_pos/camera_set_t_pos.yy",},},
+    {"id":{"name":"chat_up_multiplayer","path":"scripts/chat_up_multiplayer/chat_up_multiplayer.yy",},},
     {"id":{"name":"chat_up","path":"scripts/chat_up/chat_up.yy",},},
     {"id":{"name":"check_is_room_cleared","path":"scripts/check_is_room_cleared/check_is_room_cleared.yy",},},
     {"id":{"name":"clean_message_log","path":"scripts/clean_message_log/clean_message_log.yy",},},

@@ -21,7 +21,7 @@ function instance_destroy_multiplayer(argument0)
 		send_all(global.obj_data_buffer);
 		
 		
-		show_message_log("- 오브젝트 삭제 [obj_id : "+string(tmp_obj_id)+"]");
+		show_debug_message("- 오브젝트 삭제 [obj_id : "+string(tmp_obj_id)+"]");
 		
 		//내쪽에서 삭제
 		instance_destroy(tmp_ins);

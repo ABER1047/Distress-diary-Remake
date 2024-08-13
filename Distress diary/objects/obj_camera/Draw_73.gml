@@ -245,7 +245,7 @@ if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
 							
 							//퀵 슬롯 아이템 삭제
 							global.quickslot_spr_ind[i] = -4;
-							show_message_log("item_destroyed");
+							show_debug_message("item_destroyed");
 								
 							//효과음
 							play_sound(draging_item,false,0.03);
