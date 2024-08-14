@@ -20,7 +20,7 @@ if (!stop_cal_by_pos_statement && z == 0 && sprite_exists(sprite_index))
 	floating_animation += 0.03;
 	
 	var tmp_ins = instance_place(x,y,obj_player);
-	if (instance_exists(tmp_ins) && tmp_ins.z == 0)
+	if (instance_exists(tmp_ins) && tmp_ins.hp > 0 && tmp_ins.z == 0 && tmp_ins == global.my_player_ins_id[global.my_player_id])
 	{
 		if (touched == -4)
 		{
@@ -36,9 +36,18 @@ if (!stop_cal_by_pos_statement && z == 0 && sprite_exists(sprite_index))
 				}
 				instance_destroy_multiplayer(id);
 			}
-			else if (tmp_ins == global.my_player_ins_id[global.my_player_id])
+			else
 			{
-				show_message_log("자리가 부족합니다!");
+				var tmp_chk = find_empty_pos_quickslot();
+				if (tmp_chk != -4)
+				{
+					set_quickslot_variable(tmp_chk,sprite_index,image_index,stack_num,get_rare_rate(id),startag);
+					instance_destroy_multiplayer(id);
+				}
+				else
+				{
+					show_message_log("자리가 부족합니다!");
+				}
 			}
 		}
 	}

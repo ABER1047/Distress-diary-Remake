@@ -9,7 +9,7 @@ var yy_h = camera_get_view_height(view_camera[0]);
 var xx_center = xx+xx_w*0.5;
 var yy_center = yy+yy_h*0.5;
 
-var tmp_c_x = 0.5//global.n_camera_zoom;
+var tmp_c_x = 0.5; //global.n_camera_zoom;
 
 
 var tmp_room_xx = room_width*0.5;

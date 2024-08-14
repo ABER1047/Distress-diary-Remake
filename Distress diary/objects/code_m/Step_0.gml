@@ -196,7 +196,9 @@ if (global.chat_activated)
 						}
 						else if (i == 14) //타일셋 변경
 						{
+							chat_up_multiplayer("- 타일셋 변경 : "+string(tmp_parameter)+" [기존 : "+string(global.n_room_tileset)+"]",false);
 							global.n_room_tileset = tmp_parameter;
+							send_GlobalVariableData("n_room_tileset");
 						}
 						else if (i == 15) //몬스터 생성
 						{

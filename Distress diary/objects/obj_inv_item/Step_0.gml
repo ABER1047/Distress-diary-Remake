@@ -322,8 +322,16 @@ if (instance_exists(parents_id))
 						}
 						else if (has_empty_pos == false)
 						{
-							//자리가 없으면 삭제한 아이템 복구
-							set_inv_variable(variable_owner_ins,tmp_kk,tmp_k,origin_spr,origin_img,origin_stack_num,origin_item_rorated,origin_item_searched,origin_startag);
+							var quickslot_has_empty_pos = find_empty_pos_quickslot();
+							if (quickslot_has_empty_pos != -4)
+							{
+								set_quickslot_variable(quickslot_has_empty_pos,origin_spr,origin_img,origin_stack_num,rare_rate,origin_startag,item_weight);
+							}
+							else
+							{
+								//자리가 없으면 삭제한 아이템 복구
+								set_inv_variable(variable_owner_ins,tmp_kk,tmp_k,origin_spr,origin_img,origin_stack_num,origin_item_rorated,origin_item_searched,origin_startag);
+							}
 						}
 					}
 				}

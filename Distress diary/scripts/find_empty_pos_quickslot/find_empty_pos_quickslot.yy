@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"find_empty_pos_quickslot",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"find_empty_pos_quickslot",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -188,7 +188,7 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 //퀵 슬롯 창 그리기
 var ui_scale = global.reversed_ratio_by_camera*0.5;
 var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = ui_scale*31.5;
-if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0)
+if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0 && tmp_my_p.gage_bar_charged <= 0)
 {
 	if (keyboard_check_pressed(vk_anykey)) //퀵 슬롯 키보드 선택 판정
 	{

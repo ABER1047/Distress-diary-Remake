@@ -64,6 +64,8 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			if (b_hp != -4)
 			{
+				zspeed = -10;
+				
 				b_hp = -4; //아래 코드들이 1번만 실행되도록
 				b_prohibit_movement_input = global.prohibit_movement_input;
 				global.prohibit_movement_input = true;
@@ -484,7 +486,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			tmp_ins = -4;
 			with(obj_parents)
 			{
-				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 128)
+				if (!stop_cal_by_pos_statement && point_distance(x,y-48,other.x,other.y) <= 132)
 				{
 					tmp_ins = id;
 					break;

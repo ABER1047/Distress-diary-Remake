@@ -31,7 +31,7 @@ for(var i = 0; i < global.n_room_width; i++)
 			//타일 이끼 효과
 			if (global.graphics_quality > 1 && rd_tile_other_ef[i][ii] >= 0)
 			{
-				draw_sprite_ext(spr_tiles_grass,rd_tile_other_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_other_ef_ang[i][ii],c_white,1);
+				draw_sprite_ext(spr_tiles_other_effects,rd_tile_other_ef[i][ii],tmp_room_xx+(-global.n_room_width*0.5+i)*tmp_wall_sprite_size,y+(ii+0.5)*tmp_wall_sprite_size,tmp_wall_scale,tmp_wall_scale,rd_tile_other_ef_ang[i][ii],c_white,1);
 			}
 		}
 	}
