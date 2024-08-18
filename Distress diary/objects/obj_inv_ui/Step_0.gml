@@ -30,7 +30,7 @@ if (reload_inv == 1)
 				var tmp_weight = tmp_owner.inv_info_weight[i][ii];
 				inv_weight += (tmp_weight > 0) ? tmp_weight : 0;
 				inv_gold_num += (tmp_spr_ind_real == spr_stackables && tmp_owner.inv_info_img_ind[i][ii] == 0) ? tmp_owner.inv_info_stack_num[i][ii] : 0;
-				create_inv_item(tmp_spr_ind_real,tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_name[i][ii],tmp_owner.inv_info_name_compressed[i][ii],tmp_owner.inv_info_stack_num[i][ii],tmp_owner.inv_info_max_stack_num[i][ii],id,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_weight,tmp_owner.inv_info_searched[i][ii],tmp_owner.inv_info_startag[i][ii]);
+				create_inv_item(tmp_spr_ind_real,tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_stack_num[i][ii],id,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_owner.inv_info_searched[i][ii],tmp_owner.inv_info_startag[i][ii]);
 			}
 		}
 	}

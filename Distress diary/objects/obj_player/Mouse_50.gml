@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-if (!instance_exists(obj_ui_parents) && global.attack_speed > 0)
+if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mouse_inside_quickslot)
 {
 	if (!global.prohibit_movement_input)
 	{

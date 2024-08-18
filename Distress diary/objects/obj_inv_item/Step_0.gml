@@ -7,12 +7,18 @@ if (instance_exists(parents_id))
 	if (moving_now == 0)
 	{
 		depth = parents_id.depth-5;
+		
+		//인벤토리 아이템 옮기는 중
+		if (!global.is_mouse_inside_quickslot)
+		{
+			global.is_moving_item_now = -4;
+			global.is_mouse_on_quickslot = -4;
+		}
 	}
 	else
 	{
 		depth = global.min_depth-15;
 	}
-	
 	
 	if ((!instance_exists(global.is_moving_item_now) || global.is_moving_item_now == id) && (mouse_on == 1 || moving_now == 1) && mouse_check_button(mb_left))
 	{
@@ -227,6 +233,7 @@ if (instance_exists(parents_id))
 				
 				//후처리
 				set_quickslot_variable(tmp_index,tmp_origin_spr,tmp_origin_img,tmp_origin_stacks,rare_rate,startag,item_weight);
+				global.is_moving_item_now = -4;
 				global.is_mouse_on_quickslot = -4;
 				alarm[0] = 1; //instance_destroy();
 			}
@@ -360,9 +367,6 @@ if (instance_exists(parents_id))
 				}
 			}
 		}
-			
-		//인벤토리 아이템 옮기는 중
-		global.is_moving_item_now = -4;
 	}
 }
 else

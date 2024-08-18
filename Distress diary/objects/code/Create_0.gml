@@ -157,6 +157,19 @@ global.item_width = 1;
 //아이템 세로 저장용 변수(set_item_info_values 함수 리턴용)
 global.item_height = 1;
 
+//아이템 벨류 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_value = 0;
+
+//아이템 번역명 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_translated_name = "";
+
+//아이템 설명 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_description = "";
+
+//아이템 효과 설명 저장용 변수(set_item_info_values 함수 리턴용)
+global.item_ef_desc = "";
+
+
 
 //인벤토리 아이템 옮기는 중
 global.is_moving_item_now = -4;

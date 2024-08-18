@@ -9,7 +9,7 @@ function get_rare_rate(argument0,argument1)
 	var tmp_ins = argument0;
 	var tmp_item_name = (argument1 == undefined) ? set_item_info_values(tmp_ins.sprite_index,tmp_ins.image_index) : argument1;
 	
-	var tmp_value = set_item_value(tmp_item_name,tmp_ins);
+	var tmp_value = global.item_value;
 	if (tmp_value < 10)
 	{
 		return 0;

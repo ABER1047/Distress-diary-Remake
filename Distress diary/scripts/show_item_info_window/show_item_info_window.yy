@@ -1,12 +1,12 @@
 {
   "$GMScript":"v1",
-  "%Name":"set_item_value",
+  "%Name":"show_item_info_window",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"set_item_value",
+  "name":"show_item_info_window",
   "parent":{
-    "name":"System",
-    "path":"folders/스크립트/Inventory/System.yy",
+    "name":"UI&Camera",
+    "path":"folders/스크립트/UI&Camera.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

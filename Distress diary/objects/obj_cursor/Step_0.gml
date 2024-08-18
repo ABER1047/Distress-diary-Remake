@@ -4,7 +4,7 @@ x = mouse_x;
 y = mouse_y;
 
 var tmp_cursor_exists = instance_exists(tmp_cursor_sec);
-tmp_check = instance_exists(obj_ui_parents);
+tmp_check = instance_exists(obj_ui_parents) || global.is_mouse_inside_quickslot;
 if (!tmp_check)
 {
 	var ins_exists = instance_exists(interacion_ins_exists);

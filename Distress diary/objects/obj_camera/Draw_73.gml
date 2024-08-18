@@ -51,7 +51,7 @@ var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrW
 var to_draw_values = [ string(tmp_values[0])+"(+"+string(tmp_values[1])+")", tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[7])+"%" ];
 for(var i = 0; i < 7; i++)
 {
-	var tmp_yy = yy+(256+i*24)*text_ratio;
+	var tmp_yy = yy+(196+i*24)*text_ratio;
 	
 	var tmp_img_ind = i;
 	if (tmp_img_ind == 0 && global.attack_damage < 0)
@@ -187,8 +187,9 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 
 //퀵 슬롯 창 그리기
 var ui_scale = global.reversed_ratio_by_camera*0.5;
-var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = -4, tmp_slot_half_height = ui_scale*31.5;
-if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0 && tmp_my_p.gage_bar_charged <= 0)
+var tmp_ui_xx = xx+xx_w*0.5, tmp_ui_yy = yy+yy_h-global.reversed_ratio_by_camera*48, tmp_slot_half_width = ui_scale*282, tmp_slot_half_height = ui_scale*31.5;
+var chk_can_switch_quickslot_index = (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0 && tmp_my_p.gage_bar_charged <= 0);
+if (chk_can_switch_quickslot_index)
 {
 	if (keyboard_check_pressed(vk_anykey)) //퀵 슬롯 키보드 선택 판정
 	{
@@ -196,78 +197,6 @@ if (!global.prohibit_movement_input && global.attack_cooldown_timer <= 0 && tmp_
 		if (tmp_val != 0 && keyboard_check_pressed(ord(tmp_val)))
 		{
 			global.quickslot_index = tmp_val-1;
-		}
-	}
-	else if ((global.is_moving_item_now == -4 && (mouse_check_button_released(mb_left) || mouse_check_button_pressed(mb_right))) || (global.is_moving_item_now != -4 && mouse_check_button(mb_left))) //퀵 슬롯 클릭 선택 판정
-	{
-		tmp_slot_half_width = ui_scale*282;
-		var is_mouse_inside_quickslot = false;
-		if (abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height)
-		{
-			show_debug_message("sdd");
-			//1~9번 숫자칸
-			for(var i = 0; i < 9; i++)
-			{
-				var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
-				if (abs(mouse_x-tmp_slot_xx) < tmp_slot_half_height)
-				{
-					if (mouse_check_button(mb_left))
-					{
-						//인벤에 있는 아이템 퀵 슬롯으로 옮기기
-						global.is_mouse_on_quickslot = i;
-						is_mouse_inside_quickslot = true;
-					}
-					
-					if (global.is_moving_item_now == -4)
-					{
-						var tmp_quickslot_spr = global.quickslot_spr_ind[i];
-						if (tmp_quickslot_spr != -4 && mouse_check_button_pressed(mb_right) && instance_exists(global.showing_inv))
-						{
-							//퀵 슬롯에 있는 아이템 인벤으로 옮기기
-							var tmp_quickslot_img = global.quickslot_img_ind[i], tmp_quickslot_stacks = global.quickslot_stack_num[i], tmp_quickslot_startag = global.quickslot_startag[i];
-							var tmp_item_name = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img);
-							var has_empty_pos = find_empty_pos(tmp_quickslot_spr,tmp_quickslot_img,global.item_width,global.item_height,tmp_quickslot_stacks,tmp_my_p);
-							
-							if (has_empty_pos == true) //인벤에 칸이 있는 경우
-							{
-								set_inv_variable(global.my_player_ins_id[global.my_player_id],global.inv_empty_xpos,global.inv_empty_ypos,tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.inv_empty_rotated,1,tmp_quickslot_startag);
-								
-								with(obj_inv_ui)
-								{
-									reload_inv = 1;
-								}
-							}
-							else
-							{
-								//아이템 떨구기
-								drop_item(tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.item_width,global.item_height,tmp_quickslot_startag);
-							}
-							
-							//퀵 슬롯 아이템 삭제
-							global.quickslot_spr_ind[i] = -4;
-							show_debug_message("item_destroyed");
-								
-							//효과음
-							play_sound(draging_item,false,0.03);
-								
-							//후 처리
-							global.quickslot_index = i;
-							global.is_mouse_on_quickslot = -4;	
-						}
-						else if (mouse_check_button_released(mb_left))
-						{
-							//인벤토리 아이템을 드래그 중 아닐때
-							global.quickslot_index = i;
-							global.is_mouse_on_quickslot = -4;	
-						}
-					}
-				}
-			}
-		}
-		
-		if (!is_mouse_inside_quickslot)
-		{
-			global.is_mouse_on_quickslot = -4;
 		}
 	}
 	else if (mouse_wheel_down())
@@ -300,7 +229,6 @@ draw_sprite_ext(spr_quickslot,(tmp_img_ind >= 0) ? tmp_img_ind : 9,tmp_ui_xx,tmp
 
 
 //가방 칸
-tmp_slot_half_width = (tmp_slot_half_width == -4) ? ui_scale*282 : tmp_slot_half_width;
 var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(9.5*tmp_slot_half_height*2);
 var tmp_bp_spr = spr_ui, tmp_bp_img_ind = 0, tmp_bp_alpha = 0.4;
 if (global.n_backpack != 0)
@@ -315,9 +243,11 @@ draw_sprite_ext(tmp_bp_spr,tmp_bp_img_ind,tmp_slot_xx,tmp_ui_yy+tmp_slot_half_he
 
 
 //일반 슬롯 칸
-for(var i = 0; i < 9; i++)
+var tmp_chk_y_pos = abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height;
+for(var i = 8; i >= 0; i--)
 {
-	if (sprite_exists(global.quickslot_spr_ind[i]))
+	var tmp_quickslot_spr = global.quickslot_spr_ind[i], tmp_quickslot_img = global.quickslot_img_ind[i], tmp_quickslot_stacks = global.quickslot_stack_num[i], tmp_quickslot_startag = global.quickslot_startag[i];
+	if (sprite_exists(tmp_quickslot_spr))
 	{
 		var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
 		
@@ -325,7 +255,7 @@ for(var i = 0; i < 9; i++)
 		if (tmp_check || global.quickslot_stack_num[i] > 0)
 		{
 			//아이템 아이콘 그리기
-			draw_sprite_ext(global.quickslot_spr_ind[i],global.quickslot_img_ind[i],tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,1);
+			draw_sprite_ext(tmp_quickslot_spr,tmp_quickslot_img,tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,1);
 			
 			//스타 태그 그리기
 			if (global.quickslot_startag[i] > 0)
@@ -346,7 +276,75 @@ for(var i = 0; i < 9; i++)
 			}
 		}
 	}
+	
+	
+	//1~9번 숫자칸
+	var tmp_slot_xx = (tmp_ui_xx-tmp_slot_half_width) + tmp_slot_half_height+(i*tmp_slot_half_height*2);
+	var is_mouse_inside_certain_quickslot_pos = tmp_chk_y_pos && abs(mouse_x-tmp_slot_xx) < tmp_slot_half_height;
+
+	if (is_mouse_inside_certain_quickslot_pos && chk_can_switch_quickslot_index)
+	{
+		//아이템 정보창 표기
+		if (sprite_exists(tmp_quickslot_spr))
+		{
+			var tmp_get_item_info = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img,true);
+			var tmp_bg_color = [c_white, #3898FF, #8C52A8, #FFBF36];
+			show_item_info_window(tmp_get_item_info[0],tmp_get_item_info[6],tmp_get_item_info[9],tmp_get_item_info[8],tmp_bg_color[global.quickslot_rare[i]],tmp_get_item_info[7],global.quickslot_stack_num[i],tmp_get_item_info[3],global.quickslot_startag[i]);
+		}
+	
+		var mb_chk_ = mouse_check_button(mb_left);
+		//퀵 슬롯 칸 클릭했을때
+		if (global.is_moving_item_now != -4)
+		{
+			if (mb_chk_)
+			{
+				global.is_mouse_on_quickslot = i;
+			}
+		}
+		else
+		{
+			var _chk1 = mouse_check_button_released(mb_left), _chk2 = mouse_check_button_pressed(mb_right);
+			if (_chk2 && tmp_quickslot_spr != -4 && instance_exists(global.showing_inv))
+			{
+				//퀵 슬롯에 있는 아이템 인벤으로 옮기기
+				var tmp_item_name = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img);
+				var has_empty_pos = find_empty_pos(tmp_quickslot_spr,tmp_quickslot_img,global.item_width,global.item_height,tmp_quickslot_stacks,tmp_my_p);
+							
+				if (has_empty_pos == true) //인벤에 칸이 있는 경우
+				{
+					set_inv_variable(global.my_player_ins_id[global.my_player_id],global.inv_empty_xpos,global.inv_empty_ypos,tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.inv_empty_rotated,1,tmp_quickslot_startag);
+								
+					with(obj_inv_ui)
+					{
+						reload_inv = 1;
+					}
+				}
+				else
+				{
+					//아이템 떨구기
+					drop_item(tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.item_width,global.item_height,tmp_quickslot_startag);
+				}
+							
+				//퀵 슬롯 아이템 삭제
+				global.quickslot_spr_ind[i] = -4;
+				show_debug_message("item_destroyed");
+								
+				//효과음
+				play_sound(draging_item,false,0.03);
+								
+				//후 처리
+				global.quickslot_index = i;
+			}
+			else if (_chk1)
+			{
+				//인벤토리 아이템을 드래그 중 아닐때
+				global.quickslot_index = i;
+			}
+		}
+	}
 }
+
+global.is_mouse_inside_quickslot = (tmp_chk_y_pos && abs(mouse_x-(xx+xx_w*0.5)) < tmp_slot_half_width);
 
 
 
