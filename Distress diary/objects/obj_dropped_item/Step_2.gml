@@ -15,7 +15,7 @@ else
 
 
 //아이템 획득
-if (!stop_cal_by_pos_statement && z == 0 && sprite_exists(sprite_index))
+if (!stop_cal_by_pos_statement && z == 0 && sprite_index != spr_none)
 {
 	floating_animation += 0.03;
 	

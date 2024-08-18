@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-if (sprite_exists(sprite_index))
+if (sprite_exists(sprite_index) && sprite_index != spr_none)
 {
 	var tmp_scale = image_xscale*0.5;
 	var tmp_yy = y-(16*image_yscale) - z-cos(floating_animation)*16;
