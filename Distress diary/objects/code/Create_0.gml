@@ -300,3 +300,6 @@ global.attack_type = 0; //0 - 수동 공격 / 1 - 자동 공격 / 2 - 차징 후
 
 //카메라 타깃 설정
 global.camera_target = -4;
+
+//슬로우 스텝
+alarm[1] = 15;

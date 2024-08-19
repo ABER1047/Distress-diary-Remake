@@ -27,38 +27,12 @@ if (reload_inv == 1)
 			var tmp_spr_ind_real = tmp_owner.inv_info_spr_ind[i][ii];
 			if (tmp_spr_ind_real != -4)
 			{
-				var tmp_weight = tmp_owner.inv_info_weight[i][ii];
-				inv_weight += (tmp_weight > 0) ? tmp_weight : 0;
-				inv_gold_num += (tmp_spr_ind_real == spr_stackables && tmp_owner.inv_info_img_ind[i][ii] == 0) ? tmp_owner.inv_info_stack_num[i][ii] : 0;
 				create_inv_item(tmp_spr_ind_real,tmp_owner.inv_info_img_ind[i][ii],tmp_owner.inv_info_stack_num[i][ii],id,ii,i,tmp_owner.inv_info_width[i][ii],tmp_owner.inv_info_height[i][ii],tmp_owner.inv_info_rotated[i][ii],tmp_owner.inv_info_searched[i][ii],tmp_owner.inv_info_startag[i][ii]);
 			}
 		}
 	}
 	
 	reload_inv = -4;
-	
-	//인벤토리 무게 띄워주기
-	show_message_log("- 인벤토리 내 아이템 무게 총합 : "+string(inv_weight)+"kg");
-	
-	
-	if (global.showing_inv == id)
-	{
-		for(var i = 0; i < 9; i++)
-		{
-			inv_weight += (global.quickslot_spr_ind[i] != -4 && global.quickslot_weight[i] > 0) ? global.quickslot_weight[i] : 0;
-			if (global.quickslot_spr_ind[i] == spr_stackables && global.quickslot_img_ind[i] == 0)
-			{
-				inv_gold_num += global.quickslot_stack_num[i];
-			}
-		}
-		
-		//내 무게 설정
-		var my_p = global.my_player_ins_id[global.my_player_id];
-		global.my_weight = inv_weight;
-		
-		//내 보유 골드 설정
-		global.my_gold = inv_gold_num;
-	}
 }
 
 
