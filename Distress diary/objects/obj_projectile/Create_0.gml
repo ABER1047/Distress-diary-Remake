@@ -29,6 +29,10 @@ stop_flying = -4;
 
 
 
+//공격한 플레이어 id
+//attacker_id = -4;
+
+
 //화살 데미지
 //attack_dmg = 0;
 

@@ -230,7 +230,7 @@ if (global.dev_mode == 1)
 					draw_text_kl_scale(xx_center-tmp_width+outline_weight*8,tmp_yy2-48*global.reversed_ratio_by_camera,string(global.my_player_ins_id[tmp_player_id].nickname),64,-1,1,c_white,-1,-1,font_normal,0.3,0.3,0,true);
 			
 					//핑
-					var tmp_ping_real = (tmp_player_id < 1) ? 0 : global.users_ping_display[tmp_player_id-1];
+					var tmp_ping_real = (tmp_player_id < 1) ? 0 : ceil(global.users_ping_display[tmp_player_id-1]);
 					var tmp_img_ind = fix_num_inside(round(256-tmp_ping_real)/45,0,5);
 					draw_sprite_ext(spr_ping_state,tmp_img_ind,xx_center+tmp_width-outline_weight*16,tmp_yy2-12*global.reversed_ratio_by_camera,global.reversed_ratio_by_camera*0.4,global.reversed_ratio_by_camera*0.4,0,c_white,1);
 					draw_text_kl_scale(xx_center+tmp_width-outline_weight*24,tmp_yy2-32*global.reversed_ratio_by_camera,"["+string(tmp_ping_real)+"ms]",64,-1,1,c_white,-1,1,font_normal,0.2,0.2,0,true);

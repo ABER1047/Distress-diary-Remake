@@ -16,28 +16,32 @@ for(var i = 0; i < _speed; i++)
 	}
 	else
 	{
-		var tmp_ins = instance_place(x,y-z,obj_monster_parents);
+		var tmp_ins = instance_place(x,y-z,obj_mob_parents);
 		if (instance_exists(tmp_ins))
 		{
-			var tmp_ch = abs(tmp_ins.z - z);
-			show_message_log(tmp_ch);
-			if (tmp_ch <= 96)
+			var chk_pvpable = (tmp_ins.object_index != obj_player || (global.pvpable && tmp_ins.object_index == obj_player && tmp_ins.obj_id_player_only != attacker_id));
+			if (chk_pvpable)
 			{
-				for(var i = 0; i < 8; i++)
+				var tmp_ch = abs(tmp_ins.z - z);
+				show_message_log(tmp_ch);
+				if (tmp_ch <= 96)
 				{
-					xx[i] = 0;
-					yy[i] = 0;
-				}
+					for(var i = 0; i < 8; i++)
+					{
+						xx[i] = 0;
+						yy[i] = 0;
+					}
 				
-				is_on_mob = tmp_ins;
-				stop_flying = 16;
-				_speed = 0;
-				//데미지
-				if (saved_xscale == -4)
-				{
-					saved_xscale = sign(tmp_ins.image_xscale);
-					give_damage(tmp_ins,attack_dmg,true,16,x,y,60);
-					send_InstanceMuchVariableData(id,"x,y,saved_xscale",string(x)+","+string(y)+","+string(saved_xscale));
+					is_on_mob = tmp_ins;
+					stop_flying = 16;
+					_speed = 0;
+					//데미지
+					if (saved_xscale == -4)
+					{
+						saved_xscale = sign(tmp_ins.image_xscale);
+						give_damage(tmp_ins,attack_dmg,true,16,x,y,60);
+						send_InstanceMuchVariableData(id,"x,y,saved_xscale",string(x)+","+string(y)+","+string(saved_xscale));
+					}
 				}
 			}
 		}

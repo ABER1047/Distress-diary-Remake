@@ -272,7 +272,7 @@ for(var i = 8; i >= 0; i--)
 			//아이템 갯수 그리기
 			if (!tmp_check)
 			{
-				draw_text_k_scale(tmp_slot_xx+ui_scale*24,tmp_ui_yy-ui_scale*8,string(global.quickslot_stack_num[i]),64,-1,1,c_white,0,1,font_normal,0.25,0.25,0,true);
+				draw_text_k_scale(tmp_slot_xx+ui_scale*24,tmp_ui_yy,"x"+string(global.quickslot_stack_num[i]),64,-1,1,c_white,0,1,font_normal,0.21,0.21,0,true);
 			}
 		}
 	}
