@@ -112,11 +112,13 @@ with(obj_mob_parents)
 {
 	if (z <= 0 && place_meeting(x,y,obj_mucus_effect))
 	{
-		_speed += (0 - _speed)*0.2;
-		
 		if (id == tmp_my_p)
 		{
 			buff_activate(0,60);
+		}
+		else
+		{
+			_speed += (0 - _speed)*0.2;
 		}
 	}
 }

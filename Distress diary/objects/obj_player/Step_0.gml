@@ -170,7 +170,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		if (abs(global.movement_hspeed)+abs(global.movement_vspeed) > 0 && stamina >= stamina_decreasement && (stamina >= 10 && keyboard_check_pressed(vk_shift) || global.n_running))
 		{
 			//스태미나 10 이상인 상태에서 쉬프트 누르고 있으면 달리기
-			global.max_movement_speed = 9*speed_by_weight + (sign(global.buff_left_time[1])*4 - sign(global.buff_left_time[0])*5);
+			global.max_movement_speed = 9*speed_by_weight*(1+(sign(global.buff_left_time[1])*0.15 - sign(global.buff_left_time[0])*0.65));
 		
 			//달리기 도중 쉬프트에서 손 때면 그만 달리기
 			global.n_running = keyboard_check(vk_shift);
@@ -199,7 +199,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 			{
 				stamina_cooltime --;
 			}
-			global.max_movement_speed = 7*speed_by_weight + (sign(global.buff_left_time[1])*4 - sign(global.buff_left_time[0])*5);
+			global.max_movement_speed = 7*speed_by_weight*(1+(sign(global.buff_left_time[1])*0.15 - sign(global.buff_left_time[0])*0.65));
 			global.n_running = false;
 		}
 		

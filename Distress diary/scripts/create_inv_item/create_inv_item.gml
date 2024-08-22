@@ -16,7 +16,7 @@ function create_inv_item(argument0,argument1,argument2,argument3,argument4,argum
 {
 	var tmp_parents_id = argument3;
 	
-	var tmp_get_item_info = set_item_info_values(argument0,argument1);
+	var tmp_get_item_info = set_item_info_values(argument0,argument1,false,argument10);
 	var tmp_ins = instance_create_depth(-999,-999,tmp_parents_id.depth-10,obj_inv_item);
 	tmp_ins.sprite_index = argument0;
 	tmp_ins.image_index = argument1;

@@ -5,7 +5,8 @@
 ///@param spr_ind
 ///@param img_ind
 ///@param [returnOnly]
-function set_item_info_values(argument0,argument1,argument2)
+///@param [StarTag]
+function set_item_info_values(argument0,argument1,argument2,argument3)
 {
 	var max_stack_num = -4;
 	var tmp_name = "Unknown";
@@ -951,12 +952,27 @@ function set_item_info_values(argument0,argument1,argument2)
 		}
 		else
 		{
-			item_effect_desc = string(abs(real(tmp_str[0])))+" 곡괭이 파워\n";
+			if (argument3 == undefined || argument3 == 0)
+			{
+				item_effect_desc = string(abs(real(tmp_str[0])))+" 곡괭이 파워\n";
+			}
+			else
+			{
+				item_effect_desc = string(abs(real(tmp_str[0])))+"(+"+string(argument3*1.5)+") 곡괭이 파워\n";
+			}
 		}
 		
 		if (tmp_str[2] != 0)
 		{
-			item_effect_desc = string(item_effect_desc)+string(tmp_str[2])+"% 크리티컬 찬스\n";
+			if (argument3 == undefined || argument3 == 0)
+			{
+				item_effect_desc = string(item_effect_desc)+string(tmp_str[2])+"% 크리티컬 찬스\n";
+			}
+			else
+			{
+				var tmp_additional = 5+argument3*2;
+				item_effect_desc = string(item_effect_desc)+string(tmp_str[2])+"% (+"+string(tmp_additional)+"%) 크리티컬 찬스\n";
+			}
 		}
 		
 		if (tmp_str[3] != 0)

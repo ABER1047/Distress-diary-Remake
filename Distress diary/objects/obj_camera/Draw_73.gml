@@ -48,7 +48,8 @@ draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_f
 //플레이어 현재 스테이터스 창 (공격력, 방어력 등등)
 var tmp_xx = xx+text_ratio*16;
 var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck), valToStrWithPoint(global.accurate) ];
-var to_draw_values = [ string(tmp_values[0])+"(+"+string(tmp_values[1])+")", tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[7])+"%" ];
+var tmp_dmg_str = (global.attack_damage > 0) ? string(tmp_values[0])+"(+"+string(tmp_values[1])+")" : tmp_values[0];
+var to_draw_values = [ tmp_dmg_str, tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[7])+"%" ];
 for(var i = 0; i < 7; i++)
 {
 	var tmp_yy = yy+(196+i*24)*text_ratio;
@@ -103,7 +104,7 @@ for(var i = 0; i < 3; i++)
 var tmp_icon_scale = 0.4*global.ratio_by_camera;
 var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Powerless", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning", "Search", "Fear", "Smite" ];
 var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "과적", "골절", "출혈", "굶주림", "탈수", "저항", "무력함", "근력", "재생", "불운", "행운", "중독", "탐색", "두려움", "강타" ];
-var tmp_buff_info = [ "이동 속도 저하", "이동 속도 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력 "+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 -2 감소", "행운 +2 증가", "3초마다 -1 HP 감소", "아이템 서칭 속도 30% 증가", "누군가가 쫒아오는 느낌이 듭니다...", "크리티컬 데미지 200%" ];
+var tmp_buff_info = [ "이동 속도 65% 저하", "이동 속도 15% 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력 "+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 -2 감소", "행운 +2 증가", "3초마다 -1 HP 감소", "아이템 서칭 속도 30% 증가", "누군가가 쫒아오는 느낌이 듭니다...", "크리티컬 데미지 200%" ];
 var tmp_info_length = 1;
 var tmp_real_width = tmp_icon_scale*20;
 var tmp_win_height = 60*text_ratio;
@@ -217,7 +218,7 @@ if (chk_can_switch_quickslot_index)
 			global.quickslot_index = 8;
 		}
 	}
-	set_status_by_weapon(global.quickslot_spr_ind[global.quickslot_index],global.quickslot_img_ind[global.quickslot_index]);
+	set_status_by_weapon(global.quickslot_spr_ind[global.quickslot_index],global.quickslot_img_ind[global.quickslot_index],false,global.quickslot_startag[global.quickslot_index]);
 }
 
 //인벤토리 아이템을 드래그 중일때/아닐때 구분
@@ -287,7 +288,7 @@ for(var i = 8; i >= 0; i--)
 		//아이템 정보창 표기
 		if (sprite_exists(tmp_quickslot_spr))
 		{
-			var tmp_get_item_info = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img,true);
+			var tmp_get_item_info = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img,true,global.quickslot_startag[i]);
 			var tmp_bg_color = [c_white, #3898FF, #8C52A8, #FFBF36];
 			show_item_info_window(tmp_get_item_info[0],tmp_get_item_info[6],tmp_get_item_info[9],tmp_get_item_info[8],tmp_bg_color[global.quickslot_rare[i]],tmp_get_item_info[7],global.quickslot_stack_num[i],tmp_get_item_info[3],global.quickslot_startag[i]);
 		}

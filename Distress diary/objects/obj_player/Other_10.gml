@@ -10,7 +10,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 	{
 		tmp_charging_dmg_bonus = 2;
 	}
-	tmp_dmg_cal = global.attack_damage*(1 + (percentage_k(global.critical_chance)*global.critical_dmg_magnification) + tmp_charging_dmg_bonus);
+	tmp_dmg_cal = global.attack_damage*(1 + tmp_charging_dmg_bonus);
 	global.b_fixed_dir = global.fixed_dir;
 	global.fixed_dir = true;
 	if (global.attack_type == 2)
@@ -42,7 +42,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 			tmp_img_ind = 4;
 		}
 		
-		create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal,32+z,(100-global.accurate)*0.3,point_direction(x,y,mouse_x,mouse_y));
+		create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal+(percentage_k(global.critical_chance)*global.critical_dmg_magnification),32+z,(100-global.accurate)*0.3,point_direction(x,y,mouse_x,mouse_y));
 	}
 }
 
