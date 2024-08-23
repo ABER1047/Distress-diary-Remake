@@ -70,7 +70,8 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				crit_chance = 10;
 				knockback = 1;
 				tmp_range = 64;
-				tmp_accurate = 10;
+				tmp_accurate = 75;
+				tmp_attack_type = 4;
 			break;
 			
 			case 7:
@@ -79,7 +80,8 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				crit_chance = 5;
 				knockback = 1;
 				tmp_range = 64;
-				tmp_accurate = 10;
+				tmp_accurate = 75;
+				tmp_attack_type = 4;
 			break;
 			
 			case 8:

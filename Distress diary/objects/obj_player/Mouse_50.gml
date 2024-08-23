@@ -9,7 +9,7 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 		{
 			event_user(0);
 		}
-		else if (global.attack_type == 0 || global.attack_type == 2 || global.attack_type == 3)
+		else
 		{
 			//차징 공격
 			if (global.attack_cooldown_timer <= 0)

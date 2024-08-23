@@ -662,7 +662,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			case 6:
 				tmp_short_name = "Knife";
 				tmp_name = "Poisoned Throwing Knife";
-				item_weight = 0.3;
+				item_weight = 0.2;
 				max_stack_num = 10;
 				item_name_translated = "독 발린 투척용 단검";
 				item_value = 1;
@@ -671,7 +671,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			case 7:
 				tmp_short_name = "Knife";
 				tmp_name = "Throwing Knife";
-				item_weight = 0.3;
+				item_weight = 0.2;
 				max_stack_num = 10;
 				item_name_translated = "투척용 단검";
 				item_value = 1;
@@ -935,7 +935,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 	var tmp_str = string_split(set_status_by_weapon(argument0,argument1,true),",");
 	if (tmp_str[1] != 0 && tmp_str[0] != "")
 	{
-		if (tmp_str[0] > 0)
+		if (tmp_str[0] >= 0)
 		{
 			if (tmp_str[5] == 3)
 			{
