@@ -17,7 +17,7 @@ else
 //아이템 획득
 if (!stop_cal_by_pos_statement && z == 0 && sprite_index != spr_none)
 {
-	floating_animation += 0.03;
+	floating_animation += 0.05;
 	
 	var tmp_ins = instance_place(x,y,obj_player);
 	if (instance_exists(tmp_ins) && tmp_ins.hp > 0 && tmp_ins.z == 0 && tmp_ins == global.my_player_ins_id[global.my_player_id])

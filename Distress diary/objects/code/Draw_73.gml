@@ -349,7 +349,7 @@ if (global.dev_mode == 1)
 			}
 			else
 			{
-				var rd_choose = choose(0,4,6,5,2,7,4,4);
+				var rd_choose = choose(0,8);
 				if (rd_choose == 0)
 				{
 					instance_create_multiplayer(obj_vending_machine,tmp_xx,tmp_yy,global.object_id_ind,9,false,-4,-4);
@@ -385,6 +385,10 @@ if (global.dev_mode == 1)
 					var tmp_ins = instance_create_multiplayer(obj_cliff,tmp_xx-48,tmp_yy,global.object_id_ind,1,false,-4,-4);
 					tmp_ins.image_xscale = irandom_range(1,5)*2;
 					tmp_ins.image_yscale = irandom_range(1,5)*2;
+				}
+				else if (rd_choose == 8)
+				{
+					var tmp_ins = instance_create_multiplayer(obj_spike_block,tmp_xx,tmp_yy,global.object_id_ind,0,false,-4,-4);
 				}
 			}
 		}

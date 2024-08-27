@@ -376,7 +376,13 @@ if (global.w_alpha > 0)
 }
 
 
-
+//화면 포커스 안됐을때 맵 밖에 보이는거 방지로 화면 까맣게 칠하기
+if (!window_has_focus())
+{
+	draw_set_alpha(1);
+	draw_set_color(c_black);
+	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+}
 
 
 

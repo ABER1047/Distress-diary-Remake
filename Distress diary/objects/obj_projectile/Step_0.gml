@@ -17,7 +17,7 @@ for(var i = 0; i < _speed; i++)
 	else
 	{
 		var tmp_ins = instance_place(x,y-z,obj_mob_parents);
-		if (instance_exists(tmp_ins))
+		if (instance_exists(tmp_ins) && tmp_ins.object_index != obj_dropped_item && tmp_ins.object_index != obj_dropped_item_box)
 		{
 			var chk_pvpable = (tmp_ins.object_index != obj_player || (global.pvpable && tmp_ins.object_index == obj_player && tmp_ins.obj_id_player_only != attacker_id));
 			if (chk_pvpable)
