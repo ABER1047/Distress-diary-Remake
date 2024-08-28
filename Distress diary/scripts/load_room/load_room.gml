@@ -60,7 +60,7 @@ function load_room(argument0,argument1)
 	global.outside_of_map_wall[0].image_xscale = (global.n_room_width+2)*tmp_scale;
 	global.outside_of_map_wall[0].image_yscale = tmp_scale;
 	
-	global.outside_of_map_wall[1] = instance_create_depth(tmp_xx-48,tmp_yy+(global.n_room_height*0.5+0.5)*tmp_sprite_size,-9999,obj_wall_parents);
+	global.outside_of_map_wall[1] = instance_create_depth(tmp_xx-48,tmp_yy+(global.n_room_height*0.5+0.2)*tmp_sprite_size,-9999,obj_wall_parents);
 	global.outside_of_map_wall[1].sprite_index = spr_wall_mask_bottom;
 	global.outside_of_map_wall[1].image_xscale = (global.n_room_width+2)*tmp_scale;
 	global.outside_of_map_wall[1].image_yscale = tmp_scale;
@@ -68,12 +68,12 @@ function load_room(argument0,argument1)
 	
 	
 	//세로 벽 2개 생성
-	global.outside_of_map_wall[2] = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-128,tmp_yy,-9999,obj_wall_parents);
+	global.outside_of_map_wall[2] = instance_create_depth(tmp_xx-global.n_room_width*0.5*tmp_sprite_size-132,tmp_yy,-9999,obj_wall_parents);
 	global.outside_of_map_wall[2].sprite_index = spr_wall_mask_left;
 	global.outside_of_map_wall[2].image_xscale = tmp_scale;
 	global.outside_of_map_wall[2].image_yscale = (global.n_room_height+2)*tmp_scale;
 	
-	global.outside_of_map_wall[3] = instance_create_depth(tmp_xx+global.n_room_width*0.5*tmp_sprite_size+32,tmp_yy,-9999,obj_wall_parents);
+	global.outside_of_map_wall[3] = instance_create_depth(tmp_xx+global.n_room_width*0.5*tmp_sprite_size+38,tmp_yy,-9999,obj_wall_parents);
 	global.outside_of_map_wall[3].sprite_index = spr_wall_mask_right;
 	global.outside_of_map_wall[3].image_xscale = tmp_scale;
 	global.outside_of_map_wall[3].image_yscale = (global.n_room_height+2)*tmp_scale;
@@ -84,7 +84,7 @@ function load_room(argument0,argument1)
 	
 	//다음 방으로 이동하는 포탈 생성
 	var tp_xx = [ global.n_room_width*0.5*tmp_sprite_size-64, -48, -global.n_room_width*0.5*tmp_sprite_size-32, -48 ];
-	var tp_yy = [ 0, -global.n_room_height*0.5, 0, global.n_room_height*0.5+0.5 ];
+	var tp_yy = [ 0, -global.n_room_height*0.5, 0, global.n_room_height*0.5+0.2 ];
 	var dx = [ 1, 0, -1, 0 ];
 	var dy = [ 0, -1, 0, 1 ];
 	var n_xx = global.n_player_room_xx[global.my_player_id];

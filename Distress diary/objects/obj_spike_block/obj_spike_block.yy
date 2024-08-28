@@ -40,8 +40,8 @@
     "path":"sprites/spr_block/spr_block.yy",
   },
   "spriteMaskId":{
-    "name":"spr_player_hitbox",
-    "path":"sprites/spr_player_hitbox/spr_player_hitbox.yy",
+    "name":"spr_block_hitbox",
+    "path":"sprites/spr_block_hitbox/spr_block_hitbox.yy",
   },
   "visible":true,
 }

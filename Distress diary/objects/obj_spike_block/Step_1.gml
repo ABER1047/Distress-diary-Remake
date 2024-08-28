@@ -36,7 +36,7 @@ if (delay_timer == 0)
 		}
 	}
 }
-else if (_speed == 0)
+else if (dash_speed == 0)
 {
 	delay_timer ++;
 	if (delay_timer > 60)
@@ -45,11 +45,11 @@ else if (_speed == 0)
 	}
 }
 
-if (instance_exists(tmp_ins) || _speed > 0)
+if (instance_exists(tmp_ins) || dash_speed > 0)
 {
 	delay_timer = 1;
-	_speed += (32 - _speed)*0.1;
-	for(var i = 0; i < _speed; i++)
+	dash_speed += (32 - dash_speed)*0.05;
+	for(var i = 0; i < dash_speed; i++)
 	{
 		var tmp_signx = sign(signx), tmp_signy = sign(signy);
 		x += tmp_signx;
@@ -60,11 +60,12 @@ if (instance_exists(tmp_ins) || _speed > 0)
 		{
 			tmp_chk_yy = 16;
 		}
-		if (place_meeting(x+tmp_signx*16,y+tmp_chk_yy,obj_wall_parents))
+		
+		if (place_meeting(x+tmp_signx*16,y+tmp_chk_yy,obj_wall_parents) || place_meeting(x+tmp_signx*16,y+tmp_chk_yy,obj_spike_block))
 		{
 			view_shake(2,5,2,0);
 			comp_pos_grid(x,y+48);
-			_speed = 0;
+			dash_speed = 0;
 			break;
 		}
 	}
@@ -73,5 +74,5 @@ if (instance_exists(tmp_ins) || _speed > 0)
 var tmp_placed_mob = instance_place(x,y,obj_mob_parents);
 if (instance_exists(tmp_placed_mob))
 {
-	give_damage(tmp_placed_mob,20,false,_speed,x,y,60);
+	give_damage(tmp_placed_mob,18,false,dash_speed,x,y-32,60);
 }

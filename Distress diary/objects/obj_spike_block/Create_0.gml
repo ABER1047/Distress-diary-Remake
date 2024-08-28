@@ -19,7 +19,7 @@ is_interactable = false;
 
 
 //스피드
-_speed = 0;
+dash_speed = 0;
 delay_timer = 0;
 
 //패턴용 임시 변수

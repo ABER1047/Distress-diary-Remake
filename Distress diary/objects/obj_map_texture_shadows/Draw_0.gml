@@ -46,7 +46,14 @@ if (surface_exists(global.shadow_surf))
 	{
 		if (!stop_cal_by_pos_statement)
 		{
-			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
+			if (object_index == obj_spike_block || object_index == obj_dropped_item_box)
+			{
+				draw_sprite_ext(sprite_index,image_index,x-xx,y-32-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1);
+			}
+			else
+			{
+				draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
+			}
 		}
 	}
 	
@@ -58,13 +65,6 @@ if (surface_exists(global.shadow_surf))
 		}
 	}
 
-	with(obj_dropped_item_box)
-	{
-		if (!stop_cal_by_pos_statement)
-		{
-			draw_sprite_ext(sprite_index,image_index,x-xx,y-yy,image_xscale,-image_yscale*0.85,image_angle,c_white,1)
-		}
-	}
 	surface_reset_target();
 }
 
