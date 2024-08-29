@@ -274,6 +274,7 @@
     {"name":"spr_comp","order":1,"path":"sprites/spr_comp/spr_comp.yy",},
     {"name":"spr_corruption_slime","order":6,"path":"sprites/spr_corruption_slime/spr_corruption_slime.yy",},
     {"name":"spr_crimson_slime","order":7,"path":"sprites/spr_crimson_slime/spr_crimson_slime.yy",},
+    {"name":"spr_crosshair","order":24,"path":"sprites/spr_crosshair/spr_crosshair.yy",},
     {"name":"spr_crt_effect","order":16,"path":"sprites/spr_crt_effect/spr_crt_effect.yy",},
     {"name":"spr_cursor","order":23,"path":"sprites/spr_cursor/spr_cursor.yy",},
     {"name":"spr_deadmob_debris","order":13,"path":"sprites/spr_deadmob_debris/spr_deadmob_debris.yy",},
