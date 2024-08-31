@@ -17,7 +17,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		switch(tmp_img_ind)
 		{
 			case 0:
-				dmg = 3;
+				dmg = 3.8;
 				atk_sp = 40;
 				crit_chance = 10;
 				knockback = 16;
@@ -41,7 +41,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			break;
 		
 			case 3:
-				dmg = 5;
+				dmg = 5.8;
 				atk_sp = 40;
 				crit_chance = 10;
 				knockback = 16;
@@ -85,7 +85,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			break;
 			
 			case 8:
-				dmg = 8;
+				dmg = 9;
 				atk_sp = 40;
 				crit_chance = 15;
 				knockback = 16;
@@ -109,7 +109,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			break;
 			
 			case 11:
-				dmg = 5;
+				dmg = 6;
 				atk_sp = 35;
 				crit_chance = 10;
 				knockback = 16;
@@ -133,7 +133,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			break;
 			
 			case 14:
-				dmg = 8;
+				dmg = 9;
 				atk_sp = 40;
 				crit_chance = 15;
 				knockback = 10;
@@ -157,7 +157,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			break;
 			
 			case 17:
-				dmg = 4;
+				dmg = 5;
 				atk_sp = 30;
 				crit_chance = 35;
 				knockback = 16;
