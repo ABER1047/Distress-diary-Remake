@@ -227,6 +227,18 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			break;
 		}
 	}
+	else if (tmp_spr_ind == spr_others)
+	{
+		switch(tmp_img_ind)
+		{
+			case 0:
+				dmg = 1.2;
+				atk_sp = 10;
+				crit_chance = 10;
+				knockback = 0;
+			break;
+		}
+	}
 	
 	
 	if (argument2 == undefined || argument2 == false)

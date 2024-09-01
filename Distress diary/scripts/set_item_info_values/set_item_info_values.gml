@@ -929,6 +929,32 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			break;
 		}
 	}
+	else if (argument0 == spr_others)
+	{
+		switch(argument1)
+		{
+			case 0:
+				tmp_name = "Torch";
+				item_weight = 0.2;
+				item_name_translated = "횃불";
+				item_value = 1;
+			break;
+			
+			case 1:
+				tmp_name = "Soul torch";
+				item_weight = 0.2;
+				item_name_translated = "영혼 횃불";
+				item_value = 1;
+			break;
+			
+			case 1:
+				tmp_name = "Demon torch";
+				item_weight = 0.2;
+				item_name_translated = "악마의 횃불";
+				item_value = 1;
+			break;
+		}
+	}
 	
 	
 	//무기-장비류 아이템의 경우, 아이템 효과 설명 추가
