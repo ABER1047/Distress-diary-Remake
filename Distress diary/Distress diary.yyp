@@ -442,6 +442,7 @@
     {"id":{"name":"spr_tileset_1","path":"sprites/spr_tileset_1/spr_tileset_1.yy",},},
     {"id":{"name":"spr_tileset_2","path":"sprites/spr_tileset_2/spr_tileset_2.yy",},},
     {"id":{"name":"spr_tileset_3","path":"sprites/spr_tileset_3/spr_tileset_3.yy",},},
+    {"id":{"name":"spr_torch","path":"sprites/spr_torch/spr_torch.yy",},},
     {"id":{"name":"spr_ui","path":"sprites/spr_ui/spr_ui.yy",},},
     {"id":{"name":"spr_vending_machine","path":"sprites/spr_vending_machine/spr_vending_machine.yy",},},
     {"id":{"name":"spr_wall_mask_bottom","path":"sprites/spr_wall_mask_bottom/spr_wall_mask_bottom.yy",},},

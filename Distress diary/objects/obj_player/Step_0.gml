@@ -408,7 +408,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 					var tmp_n_room_width = global.map_room_width[t_yy][t_xx]*0.5*tmp_sprite_size;
 					var tmp_n_room_height = global.map_room_height[t_yy][t_xx]*0.5*tmp_sprite_size;
 					var p_xx = [ -tmp_n_room_width+4, -48, tmp_n_room_width-100, -48 ];
-					var p_yy = [ 0, tmp_n_room_height+32, 0, -tmp_n_room_height+32 ];
+					var p_yy = [ 0, tmp_n_room_height, 0, -tmp_n_room_height+32 ];
 
 	
 					//이동 예정인 룸이 배열 밖인지 체크

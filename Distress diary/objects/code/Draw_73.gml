@@ -129,7 +129,7 @@ if (surface_exists(global.fire_line_surf) && surface_exists(global.light_surf))
 if (global.enable_light_surf && surface_exists(global.light_surf))
 {
 	gpu_set_blendmode(bm_subtract);
-	draw_surface_ext(global.light_surf,xx,yy,1,1,0,c_white,1);
+	draw_surface_ext(global.light_surf,xx,yy,1,1,0,c_white,0.6);
 	gpu_set_blendmode(bm_normal);
 }
 

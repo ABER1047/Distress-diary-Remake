@@ -64,6 +64,16 @@ if (surface_exists(global.shadow_surf))
 			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,2,2,0,c_white,1);
 		}
 	}
+	
+	with(obj_bouncing_object)
+	{
+		if (!stop_cal_by_pos_statement)
+		{
+			var tmp_dis = sqrt(1+fix_to_zero(z)*0.05);
+			var tmp_scale = tmp_dis;
+			draw_sprite_ext(spr_shadow,0,x-xx,y-yy,tmp_scale,tmp_scale,0,c_white,1/tmp_dis);
+		}
+	}
 
 	surface_reset_target();
 }

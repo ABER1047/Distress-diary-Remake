@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"create_bounce_object",
   "parent":{
-    "name":"Other functions",
-    "path":"folders/스크립트/Other functions.yy",
+    "name":"Multiplayer",
+    "path":"folders/스크립트/Multiplayer.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",

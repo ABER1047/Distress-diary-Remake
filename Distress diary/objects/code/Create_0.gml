@@ -12,6 +12,7 @@ depth = -102;
 global.show_map_data = -1;
 global.dev_mode = 1;
 global.show_wall_hitbox = false;
+global.ignore_non_focused = false;
 show_debug_overlay(global.dev_mode,true);
 
 
@@ -79,7 +80,7 @@ global.map_creation_falied = 0;
 global.create_only_one_enterance = false;
 
 //add_my_pos_statement용 변수 (add_my_pos_statement를 사용하는 모든 오브젝트 인덱스 저장용)
-global.add_my_pos_statement_obj_ind_list = [ "obj_mob_parents", "obj_parents", "obj_floor_button" ];
+global.add_my_pos_statement_obj_ind_list = [ "obj_mob_parents", "obj_parents", "obj_floor_button", "obj_bouncing_object" ];
 global.load_map_repeater = 0;
 
 

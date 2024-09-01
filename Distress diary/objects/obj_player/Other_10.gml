@@ -25,7 +25,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 	global.attack_cooldown_timer = 1;
 	alarm[2] = 1;
 	
-	//투척용 칼 던지기
+	//투척용 무기/도구 던지기
 	var tmp_val = global.quickslot_stack_num[global.quickslot_index];
 	if (tmp_val > 0)
 	{
@@ -43,7 +43,20 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		}
 		
 		var tmp_cal_accurate = (2-gage_bar_charged)*(150-global.accurate)*0.15;
-		create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal+(percentage_k(global.critical_chance)*global.critical_dmg_magnification),32+z,tmp_cal_accurate,point_direction(x,y,mouse_x,mouse_y));
+		var tmp_m_dir = point_direction(x,y,mouse_x,mouse_y);
+		if (global.quickslot_spr_ind[global.quickslot_index] == spr_weapon)
+		{
+			create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal+(percentage_k(global.critical_chance)*global.critical_dmg_magnification),32+z,tmp_cal_accurate,tmp_m_dir);
+		}
+		else
+		{
+			//토치 던지기
+			var tmp_sp = 16*(0.3+tmp_charging_dmg_bonus)+abs(_speed)+abs(global.movement_vspeed)+abs(global.movement_hspeed);
+			create_bounce_object(x,y-16+lengthdir_y(48,tmp_m_dir),z+32,tmp_sp,tmp_m_dir,irandom_range(-8,-12),spr_torch,global.quickslot_img_ind[global.quickslot_index],1.5,18000,-4,-4,false);
+			
+			//효과음 재생
+			play_sound_pos(fire_ignition_sfx,false,0.1,x,y-32,640,false,-4,-4);
+		}
 	}
 }
 

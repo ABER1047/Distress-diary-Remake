@@ -19,22 +19,32 @@ function instance_create_multiplayer_ext(argument0,argument1,argument2,argument3
 		var tmp_var = string_split(argument9,",");
 		for(var i = 0; i < array_length(tmp_var); i++)
 		{
-			try
+			//sprite_index값은 따로 처리
+			if (tmp_var_name[i] != "sprite_index")
 			{
-				tmp_var[i] = real(tmp_var[i]);
-			} 
-			catch(e) 
-			{ 
-				var tmp_asset = asset_get_index(tmp_var[i]);
-				if (tmp_asset != -1)
+				try
 				{
-					tmp_var[i] = tmp_asset;
+					tmp_var[i] = real(tmp_var[i]);
+				} 
+				catch(e) 
+				{ 
+					var tmp_asset = asset_get_index(tmp_var[i]);
+					if (tmp_asset != -1)
+					{
+						tmp_var[i] = tmp_asset;
+					}
 				}
+				
+				//값 적용
+				variable_instance_set(tmp_ins,string_trim(tmp_var_name[i]),tmp_var[i]);
 			}
-		
-			
-			show_debug_message(string(tmp_var_name[i])+" : "+string(tmp_var[i]));
-			variable_instance_set(tmp_ins,string_trim(tmp_var_name[i]),tmp_var[i]);
+			else
+			{
+				var tmp_spr_asset = asset_get_index(tmp_var[i]);
+				
+				//값 적용
+				tmp_ins.sprite_index = tmp_spr_asset;
+			}
 		}
 	}
 	
