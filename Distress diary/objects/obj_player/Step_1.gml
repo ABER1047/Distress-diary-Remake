@@ -360,11 +360,13 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		{
 			var tmp_skin_spr = [ spr_original_p1, spr_original_b1, spr_original_d1, spr_original_r1, spr_original_m1, spr_original_h1 ];
 			sprite_index = tmp_skin_spr[global.player_skin];
+			image_xscale = -abs(image_xscale);
 		}
 		else
 		{
 			var tmp_skin_spr = [ spr_original_p2, spr_original_b2, spr_original_d2, spr_original_r2, spr_original_m2, spr_original_h2 ];
 			sprite_index = tmp_skin_spr[global.player_skin];
+			image_xscale = abs(image_xscale);
 		}
 	}
 	else

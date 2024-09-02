@@ -9,14 +9,34 @@ if (draw_alpha > 0)
 	
 
 	//들고 있는 아이템 이미지 그리기
-	if (sprite_exists(holding_item_spr_ind) && tmp_chk && tmp_chk2)
+	if (sprite_exists(holding_item_spr_ind))
 	{
 		var tmp_signed_xscale = -sign(image_xscale);
-		var tmp_xpos = [ 44, 52, 44, 36 ];
-		var tmp_ypos = [ 36, 44, 36, 44 ];
-		var tmp_cal_xx = lengthdir_x(tmp_signed_xscale*tmp_xpos[image_index],holding_item_angle);
-		var tmp_cal_yy = -tmp_ypos[image_index]+lengthdir_y(tmp_signed_xscale*tmp_xpos[image_index],holding_item_angle);
-		draw_sprite_ext(holding_item_spr_ind,holding_item_img_ind,x+tmp_cal_xx,y-z+tmp_cal_yy,tmp_signed_xscale*1.5,1.5,holding_item_angle,c_white,1);
+		var tmp_yscale = 1.55;
+		if (tmp_chk2)
+		{
+			if (tmp_chk)
+			{
+				//좌-우
+				var tmp_angle = holding_item_angle;
+				var tmp_xpos = [ 44, 52, 44, 36 ];
+				var tmp_ypos = [ 36, 52, 36, 48 ];
+				var tmp_cal_xx = x+lengthdir_x(tmp_signed_xscale*tmp_xpos[image_index],tmp_angle);
+				var tmp_cal_yy = y-z+lengthdir_y(tmp_signed_xscale*tmp_xpos[image_index],tmp_angle)-tmp_ypos[image_index];
+			}
+			else
+			{
+				//상
+				tmp_signed_xscale = 1;
+				var tmp_angle = -holding_item_angle+45;
+				var tmp_xpos = [ 24, 22, 24, 28 ];
+				var tmp_ypos = [ 42, 50, 42, 54 ];
+				var tmp_cal_xx = x+lengthdir_x(tmp_xpos[image_index],tmp_angle);
+				var tmp_cal_yy = y-z+lengthdir_y(20,tmp_angle)-tmp_ypos[image_index];
+			}
+			
+			draw_sprite_ext(holding_item_spr_ind,holding_item_img_ind,tmp_cal_xx,tmp_cal_yy,tmp_signed_xscale*1.55,tmp_yscale,tmp_angle,c_white,1);
+		}
 	}
 
 	//백팩 그리기
@@ -31,6 +51,21 @@ if (draw_alpha > 0)
 	draw_sprite_ext(sprite_index,image_index,x,y-z,image_xscale,image_yscale,image_angle,image_blend,tmp_alpha);
 	
 	
+	if (sprite_exists(holding_item_spr_ind))
+	{
+		if (!tmp_chk2)
+		{
+			//하
+			tmp_signed_xscale = -1;
+			var tmp_xpos = [ 32, 26, 32, 34 ];
+			var tmp_ypos = [ 46, 62, 46, 58 ];
+			var chk_is_attacking = (abs(holding_item_angle) < 5);
+			var tmp_angle = (chk_is_attacking) ? holding_item_angle-30 : holding_item_angle+90;
+			var tmp_cal_xx = x-lengthdir_x(tmp_xpos[image_index],tmp_angle) - (chk_is_attacking ? 0 : 32);
+			var tmp_cal_yy = y-z+lengthdir_y(20,tmp_angle)-tmp_ypos[image_index] + (chk_is_attacking ? 0 : 68);
+			draw_sprite_ext(holding_item_spr_ind,holding_item_img_ind,tmp_cal_xx,tmp_cal_yy,-1.55,1.55,tmp_angle,c_white,1);
+		}
+	}
 
 	
 	
