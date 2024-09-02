@@ -1,7 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
 
-
+var tmp_chk = (global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy);
 startx = x+lengthdir_x(32,direction);
 starty = y+lengthdir_y(32,direction);
 
@@ -39,9 +39,11 @@ yy2[0] = y+lengthdir_y(line_width*2,direction);
 
 
 //효과음 재생
-play_sound_pos(choose(swing_1_sfx,swing_2_sfx,swing_3_sfx),false,0.2,x,y,640,true,-4,-4);
-
-visible = true;
+if (tmp_chk)
+{
+	play_sound_pos(choose(swing_1_sfx,swing_2_sfx,swing_3_sfx),false,0.2,x,y,640,true,my_pos_xx,my_pos_yy);
+}
+visible = tmp_chk;
 
 
 //몬스터 공격 판정
@@ -110,7 +112,7 @@ with(tmp_ins)
 	}
 }
 
-
+animation_played = true;
 alarm[1] = 2;
 
 

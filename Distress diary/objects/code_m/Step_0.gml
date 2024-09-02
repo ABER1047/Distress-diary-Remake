@@ -383,7 +383,7 @@ if (global.chat_activated)
 
 			
 			
-			if (!is_command && global.is_server) 
+			if (!is_command) 
 			{
 				if (string_pos("/",chat_entering))
 				{

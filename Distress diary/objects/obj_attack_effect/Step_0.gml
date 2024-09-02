@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 
-if (visible)
+if (animation_played)
 {
 	if (timer < animation_frame)
 	{

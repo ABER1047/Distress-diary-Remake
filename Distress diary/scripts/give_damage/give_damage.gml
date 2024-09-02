@@ -78,7 +78,6 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			//데미지 정보 표기
 			var tmp_yy = (tmp_ins.y-128);
 			tmp_yy -= (variable_instance_exists(tmp_ins,"z")) ? tmp_ins.z : 0;
-		
 			damage_display(tmp_ins.x,tmp_yy,#7A213A,tmp_ins,string(fix_to_zero(tmp_dmg)));
 		}
 	}

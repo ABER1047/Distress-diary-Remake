@@ -292,8 +292,14 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 		break;
 		
 		case DATA.CHAT:
-			var str = buffer_read(buffer, buffer_string);
-			show_message_log(str);
+			var tmp_my_player_id = real(buffer_read(buffer, buffer_string));
+			
+			//보낸 나 자신 제외
+			if (global.my_player_id != tmp_my_player_id)
+			{
+				var str = buffer_read(buffer, buffer_string);
+				show_message_log(str);
+			}
 		break;
 		
 		case DATA.INS_VAR_DATA:
@@ -341,9 +347,14 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							tmp_splited_val[i] = (tmp_splited_val[i] != -4) ? -3 : tmp_splited_val[i]; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
 							variable_instance_set(tmp_id_real,"b_is_opened",tmp_splited_val[i]);
 						}
-						else if (tmp_name == "is_activated")
+						else if (tmp_name == "is_activated") //만약 받아온 변수가 is_activated인경우
 						{
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
+						}
+						else if (tmp_name == "sprite_index") //만약 받아온 변수가 sprite_index인경우
+						{
+							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+							tmp_splited_val[i] = asset_get_index(tmp_splited_val[i]);
 						}
 				
 						variable_instance_set(tmp_id_real,string(tmp_splited_varname[i]),tmp_splited_val[i]);
@@ -370,6 +381,11 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						else if (tmp_name == "is_activated")
 						{
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
+						}
+						else if (tmp_name == "sprite_index") //만약 받아온 변수가 sprite_index인경우
+						{
+							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+							tmp_splited_val[i] = asset_get_index(tmp_splited_val[i]);
 						}
 				
 						variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
@@ -474,10 +490,12 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 			//보낸 나 자신 제외
 			if (global.my_player_id != tmp_my_player_id)
 			{
-				global.n_player_room_xx[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
-				global.n_player_room_yy[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
 				global.my_player_ins_id[tmp_my_player_id].x = -4;
 				global.my_player_ins_id[tmp_my_player_id].y = -4;
+				global.n_player_room_xx[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
+				global.n_player_room_yy[tmp_my_player_id] = real(buffer_read(buffer, buffer_string));
+				global.my_player_ins_id[tmp_my_player_id].my_pos_xx = global.n_player_room_xx[tmp_my_player_id];
+				global.my_player_ins_id[tmp_my_player_id].my_pos_yy = global.n_player_room_yy[tmp_my_player_id];
 				load_object_by_pos(10);
 			}
 		break;

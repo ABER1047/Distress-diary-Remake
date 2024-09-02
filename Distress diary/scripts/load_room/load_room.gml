@@ -104,12 +104,12 @@ function load_room(argument0,argument1)
 	
 	
 	//내 방 위치정보 전송
-	send_MyRoomPos();
 	with(global.my_player_ins_id[global.my_player_id])
 	{
 		my_pos_xx = global.n_player_room_xx[obj_id_player_only];
 		my_pos_yy = global.n_player_room_yy[obj_id_player_only];
 	}
+	send_MyRoomPos();
 	
 	
 	for(var i = 0; i < 4; i++)
@@ -154,7 +154,7 @@ function load_room(argument0,argument1)
 		}
 		else
 		{
-			show_message_log(string(argument0)+", "+string(argument1-1)+" / "+string(global.map_room_type[argument1-1][argument0]));
+			//show_message_log(string(argument0)+", "+string(argument1-1)+" / "+string(global.map_room_type[argument1-1][argument0]));
 			if (outer_array_check && global.map_room_type[t_yy][t_xx] == 5)
 			{
 				var tmp_img_ang = (i-1)*90;

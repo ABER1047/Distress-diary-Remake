@@ -152,6 +152,10 @@ if (instance_number(obj_player) == 1)
 	global.my_player_ins_id[0] = id;
 	x = room_width*0.5;
 	y = room_height*0.5;
+	obj_id = 0;
+	soc = 0;
+	nickname = global.nickname;
+	obj_id_player_only = 0;
 }
 
 //공격 이펙트 방향 저장용
@@ -167,3 +171,16 @@ tmp_dmg_cal = 0; //데미지 계산용 임시 변수
 
 //사망시 퀵 슬롯 아이템 드랍
 drop_index = 0;
+
+
+
+//토치 애니메이션 전용
+light_scale = 0.3;
+light_alpha = 0.3;
+light_timer = 0;
+
+
+//들고 있는 아이템 이미지 관련
+holding_item_spr_ind = -4;
+holding_item_img_ind = -4;
+holding_item_angle = 0;

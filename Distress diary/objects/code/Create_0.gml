@@ -260,7 +260,7 @@ global.critical_dmg_magnification = 0.5; //크리티컬 데미지 배율
 global.luck = 0;
 global.searching_speed = 100; //아이템 서칭 속도 (몇 프레임 후 아이템 하나가 서칭 완료되는지)
 global.accurate = 0; //투척류/발사류 무기 정확도
-global.hp_recovery_time = 0; //hp 재생 시간
+global.hp_recovery_time = 0; //hp 재생 타이머
 global.hp_recovery_degree = 1; //hp 재생 정도
 
 

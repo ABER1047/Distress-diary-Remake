@@ -57,4 +57,26 @@ global.my_weight = inv_weight;
 //내 보유 골드 설정
 global.my_gold = inv_gold_num;
 
+
+
+
+
+
+//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+if (global.load_map_repeater <= 0)
+{
+	with(obj_mob_parents)
+	{
+		statement_by_pos();
+	}
+}
+
+
+
+
+
+
+//step
 alarm[1] = 15;
+
+

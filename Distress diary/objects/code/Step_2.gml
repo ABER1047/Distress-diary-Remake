@@ -69,20 +69,6 @@ if (global.dev_mode == 1)
 
 
 
-//공격 속도 적용
-if (global.attack_cooldown_timer > 0)
-{
-	global.attack_cooldown_timer ++;
-	if (global.attack_cooldown_timer > global.attack_speed)
-	{
-		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제
-		global.attack_cooldown_timer = 0;
-	}
-	
-	//공격 쿨타임 게이지
-	//global.my_player_ins_id[global.my_player_id].gage_bar_charged = global.attack_cooldown_timer/global.attack_speed;
-}
-
 
 
 

@@ -2,7 +2,7 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 
-///@param ins(id)
+///@param ins_id
 ///@param [variables_name]
 ///@param [variables]
 function send_InstanceData(tmp_ins,variables_name = "",variables = "")

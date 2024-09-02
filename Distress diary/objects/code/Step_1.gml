@@ -192,3 +192,60 @@ global.searching_speed = 100*(1-sign(global.buff_left_time[16])*0.3);
 
 //크리티컬 데미지 배율
 global.critical_dmg_magnification = 0.5*(1+sign(global.buff_left_time[18]));
+
+
+//공격 속도 적용
+if (global.attack_cooldown_timer > 0)
+{
+	global.attack_cooldown_timer ++;
+	if (global.attack_cooldown_timer > global.attack_speed)
+	{
+		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제
+		global.attack_cooldown_timer = 0;
+	}
+	
+	//공격 쿨타임 게이지
+	//global.my_player_ins_id[global.my_player_id].gage_bar_charged = global.attack_cooldown_timer/global.attack_speed;
+}
+
+
+
+//현재 들고 있는 아이템 정보 전송
+var tmp_spr_ind = global.quickslot_spr_ind[global.quickslot_index];
+var tmp_img_ind = global.quickslot_img_ind[global.quickslot_index];
+if (instance_exists(tmp_my_p) && sprite_exists(tmp_spr_ind))
+{
+	if (tmp_my_p.holding_item_spr_ind != tmp_spr_ind || tmp_my_p.holding_item_img_ind != tmp_img_ind)
+	{
+		var tmp_var_name = "holding_item_spr_ind, holding_item_img_ind";
+		var tmp_var = string(sprite_get_name(tmp_spr_ind))+","+string(tmp_img_ind);
+		tmp_my_p.holding_item_spr_ind = tmp_spr_ind;
+		tmp_my_p.holding_item_img_ind = tmp_img_ind;
+		
+		
+		//토치 아이템을 들고 있는 경우
+		if (tmp_spr_ind == spr_others)
+		{
+			tmp_my_p.light_scale = 0.3;
+			tmp_my_p.light_alpha = 0.3;
+			
+			tmp_var_name = string(tmp_var_name)+",light_scale,light_alpha";
+			tmp_var = string(tmp_var)+",0.3,0.3";
+			
+			//효과음 재생
+			play_sound_pos(fire_ignition_sfx,false,0.1,x,y-32,640,false,-4,-4);
+		}
+		
+		
+		//들고 있는 아이템 정보 보내기
+		send_InstanceMuchVariableData(tmp_my_p,tmp_var_name,tmp_var);
+	}
+}
+else
+{
+	if (tmp_my_p.holding_item_spr_ind != -4)
+	{
+		send_InstanceVariableData(tmp_my_p,"holding_item_spr_ind",-4);
+		tmp_my_p.holding_item_spr_ind = -4;
+	}
+}

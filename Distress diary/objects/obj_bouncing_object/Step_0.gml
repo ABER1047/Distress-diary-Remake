@@ -84,6 +84,9 @@ if (des_timer > t_des_time)
 }
 
 
+
+
+
 //토치인 경우
 if (!stop_cal_by_pos_statement && sprite_index == spr_torch)
 {
@@ -121,11 +124,10 @@ if (!stop_cal_by_pos_statement && sprite_index == spr_torch)
 	//불 이펙트 생성
 	if (global.graphics_quality >= 1)
 	{
-		var tmp_color = [ #DD4C4C,#FFAC4B, #0BE5C4,#D9FFDE, #E395F8,#F2DFF8 ];
 		if (percentage_k(1))
 		{
 			var tmp_ins = instance_create_depth(x+lengthdir_x(tmp_len*1.4,image_angle),tmp_yy,-1,obj_bright_line_effect);
-			tmp_ins.image_blend = tmp_color[image_index*2+1];
+			tmp_ins.image_blend = light_col[image_index];
 			tmp_ins.direction = 90;
 			tmp_ins.rd_dir_increasement = 90;
 			tmp_ins.start_dir = 90;

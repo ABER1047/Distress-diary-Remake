@@ -3,6 +3,7 @@
 animation_frame = 8;
 timer = 2;
 line_width = 1;
+animation_played = false;
 
 //z = 0;
 //max_line_width = 128;

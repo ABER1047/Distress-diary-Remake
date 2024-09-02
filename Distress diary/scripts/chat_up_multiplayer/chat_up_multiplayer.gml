@@ -21,6 +21,7 @@ function chat_up_multiplayer(argument0,argument1,argument2)
 		//채팅 전송
 		buffer_seek(chat_buffer, buffer_seek_start, 0);
 		buffer_write(chat_buffer, buffer_u8, DATA.CHAT);
+		buffer_write(chat_buffer, buffer_string, global.my_player_id);
 		buffer_write(chat_buffer, buffer_string, tmp_str);
 		send_all(chat_buffer);
 	}
