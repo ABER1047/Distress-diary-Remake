@@ -10,12 +10,12 @@
 ///@param y2
 function is_inside_rectangle(argument0,argument1,argument2,argument3,argument4,argument5)
 {
-	if (argument0 > argument2 && argument0 < argument4 && argument1 > argument3 && argument1 < argument5)
+	if (argument0 <= argument2 || argument0 >= argument4 || argument1 <= argument3 || argument1 >= argument5)
 	{
-		return true;
+		return false;
 	}
 	else
 	{
-		return false;
+		return true;
 	}
 }

@@ -9,7 +9,7 @@ var c_x = global.reversed_ratio_by_camera;
 var tmp_yy = yy+yy_h-(64+real_pos*24)*c_x;
 
 
-draw_text_k_scale(xx+xx_w-8*c_x,tmp_yy,string(text),64,-1,image_alpha,c_white,0,1,font_normal,0.3,0.3,0,true);
+draw_text_k_scale(xx+xx_w-8*c_x,tmp_yy,text,64,-1,image_alpha,c_white,0,1,font_normal,0.3,0.3,0,true);
 
 
 

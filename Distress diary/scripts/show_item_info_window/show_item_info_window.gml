@@ -41,12 +41,12 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 	{
 		tmp_name_to_draw = tmp_name_to_draw+" ("+string(item_name_translated)+")";
 	}
-	draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(16*text_ratio),string(tmp_name_to_draw),64,-1,1,tmp_bg_color,0,-1,font_normal,0.33,0.33,0,true);
+	draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(16*text_ratio),tmp_name_to_draw,64,-1,1,tmp_bg_color,0,-1,font_normal,0.33,0.33,0,true);
 		
 		
 	//아이템 정보 그리기
-	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio),string(item_effect_desc),64,tmp_txt_width,1,c_white,0,-1,font_normal,0.26,0.26,0,true);
-	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio)+string_height_ext(item_effect_desc,64,9999),string(item_desc),64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.26,0.26,0,true);
+	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio),item_effect_desc,64,tmp_txt_width,1,c_white,0,-1,font_normal,0.26,0.26,0,true);
+	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio)+string_height_ext(item_effect_desc,64,9999),item_desc,64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.26,0.26,0,true);
 		
 		
 	//아이템명-아이템 정보 사이의 라인 그리기

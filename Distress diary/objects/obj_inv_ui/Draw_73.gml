@@ -144,7 +144,7 @@ if (instance_exists(variable_owner))
 	
 
 	//인벤토리 이름
-	draw_text_kl_scale(startx+8,w_starty-27*text_ratio,string(inv_name),64,-1,image_alpha,c_white,0,-1,font_normal,0.3,0.3,0,true);
+	draw_text_kl_scale(startx+8,w_starty-27*text_ratio,inv_name,64,-1,image_alpha,c_white,0,-1,font_normal,0.3,0.3,0,true);
 }
 else
 {

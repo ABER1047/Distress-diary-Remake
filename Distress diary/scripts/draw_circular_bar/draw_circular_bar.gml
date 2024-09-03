@@ -43,7 +43,7 @@ function draw_circular_bar(argument0,argument1,argument2,argument3,argument4,arg
 			{
 				draw_primitive_begin(pr_trianglefan);
 				draw_set_color(tmp_bg);
-				for(i = val+1; i <= numberofsections; i++) 
+				for(i = val+1; i <= numberofsections; i += (global.graphics_quality/1.5)) 
 				{
 					len = (i*sizeofsection)+90; // the 90 here is the starting angle
 					tx = lengthdir_x(radius,len);

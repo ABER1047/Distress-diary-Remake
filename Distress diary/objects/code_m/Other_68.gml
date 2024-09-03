@@ -358,7 +358,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
 						}
 				
-						variable_instance_set(tmp_id_real,string(tmp_splited_varname[i]),tmp_splited_val[i]);
+						variable_instance_set(tmp_id_real,tmp_splited_varname[i],tmp_splited_val[i]);
 					}
 				}
 				else
@@ -390,7 +390,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
 						}
 				
-						variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
+						variable_instance_set(tmp_id_real,tmp_name,tmp_val);
 					}
 				}
 			}
@@ -415,7 +415,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					tmp_val = (tmp_converted == -1) ? tmp_val : tmp_converted;
 				}
 				
-				variable_global_set(string(tmp_name),tmp_val);
+				variable_global_set(tmp_name,tmp_val);
 			}
 		break;
 		

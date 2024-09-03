@@ -50,6 +50,7 @@ var tmp_xx = xx+text_ratio*16;
 var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck), valToStrWithPoint(global.accurate) ];
 var tmp_dmg_str = (global.attack_damage > 0) ? string(tmp_values[0])+"(+"+string(tmp_values[1])+")" : tmp_values[0];
 var to_draw_values = [ tmp_dmg_str, tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[7])+"%" ];
+var tmp_to_draw_str = "";
 for(var i = 0; i < 7; i++)
 {
 	var tmp_yy = yy+(196+i*24)*text_ratio;
@@ -60,8 +61,9 @@ for(var i = 0; i < 7; i++)
 		tmp_img_ind = 7;
 	}
 	draw_sprite_ext(spr_status_ui,tmp_img_ind,tmp_xx,tmp_yy,scale,scale,0,c_white,0.5);
-	draw_text_kl_scale(tmp_xx+text_ratio*16,tmp_yy-text_ratio*28,to_draw_values[i],64,-1,0.5,c_white,0,-1,font_normal,0.25,0.25,0,true);
+	tmp_to_draw_str = string(tmp_to_draw_str)+"\n"+string(to_draw_values[i]);
 }
+draw_text_kl_scale(tmp_xx+text_ratio*16,yy+144*text_ratio,tmp_to_draw_str,95,-1,0.5,c_white,0,-1,font_normal,0.25,0.25,0,true);
 
 
 
@@ -154,11 +156,11 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 			//아이템명 그리기
 			var tmp_text_startx = mouse_x-tmp_win_width+4*text_ratio;
 			var tmp_text_starty = mouse_y-8*text_ratio;
-			draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(14*text_ratio),string(tmp_name_to_draw),64,-1,1,c_white,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+			draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(14*text_ratio),tmp_name_to_draw,64,-1,1,c_white,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 		
 		
 			//버프 정보 그리기
-			draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(4*text_ratio),string(tmp_buff_info[i]),64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+			draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(4*text_ratio),tmp_buff_info[i],64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 
 		
 			//아이템명-아이템 정보 사이의 라인 그리기

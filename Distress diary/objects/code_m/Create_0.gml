@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-window();
+//window();
 server_ip = "";
 server_port = 35221; 
 global.is_server = true;

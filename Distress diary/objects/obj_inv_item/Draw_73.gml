@@ -78,7 +78,7 @@ if (sprite_exists(sprite_index) && instance_exists(parents_id))
 		
 		//아이템 이름
 		var tmp_item_name_xx = startx+4*text_ratio;
-		draw_text_kl_scale(tmp_item_name_xx,starty-24*text_ratio,string(item_name_compressed),64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.275,0.275,0,true);
+		draw_text_kl_scale(tmp_item_name_xx,starty-24*text_ratio,item_name_compressed,64,-1,parents_id.image_alpha,c_white,0,-1,font_normal,0.275,0.275,0,true);
 		
 		//아이템 스택 갯수 표기
 		if (max_stack_num > 1)

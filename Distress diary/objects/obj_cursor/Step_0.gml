@@ -12,7 +12,7 @@ var tmp_xx1_surf = tmp_room_xx-global.n_room_width*0.5*tmp_wall_sprite_size-48;
 var tmp_yy1_surf = tmp_room_yy-global.n_room_height*0.5*tmp_wall_sprite_size;
 var tmp_xx2_surf = tmp_room_xx+global.n_room_width*0.5*tmp_wall_sprite_size-48;
 var tmp_yy2_surf = tmp_room_yy+global.n_room_height*0.5*tmp_wall_sprite_size;
-var is_mouse_outside_room = (mouse_x >= tmp_xx2_surf || mouse_x <= tmp_xx1_surf || mouse_y >= tmp_yy2_surf || mouse_y <= tmp_yy1_surf)
+var is_mouse_outside_room = (mouse_x >= tmp_xx2_surf || mouse_x <= tmp_xx1_surf || mouse_y >= tmp_yy2_surf || mouse_y <= tmp_yy1_surf);
 tmp_check = instance_exists(obj_ui_parents) || global.is_mouse_inside_quickslot || is_mouse_outside_room;
 if (!tmp_check)
 {

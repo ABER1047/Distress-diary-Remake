@@ -15,4 +15,4 @@ if (animation > 90)
 }
 
 
-draw_text_kl_scale(x,y-text_yy*64*global.reversed_ratio_by_camera,string(text),64,-1,image_alpha,image_blend,0,0,font_normal,0.3,0.3,0,true);
+draw_text_kl_scale(x,y-text_yy*64*global.reversed_ratio_by_camera,text,64,-1,image_alpha,image_blend,0,0,font_normal,0.3,0.3,0,true);
