@@ -88,7 +88,7 @@ if (des_timer > t_des_time)
 
 
 //토치인 경우
-if (!stop_cal_by_pos_statement && sprite_index == spr_torch)
+if (!stop_cal_by_pos_statement && (sprite_index == spr_animated_torch || sprite_index == spr_animated_soul_torch || sprite_index == spr_animated_demon_torch))
 {
 	if (z <= 15)
 	{

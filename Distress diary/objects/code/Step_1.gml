@@ -215,6 +215,8 @@ var tmp_spr_ind = global.quickslot_spr_ind[global.quickslot_index];
 var tmp_img_ind = global.quickslot_img_ind[global.quickslot_index];
 if (instance_exists(tmp_my_p) && sprite_exists(tmp_spr_ind))
 {
+	var tmp_torch_spr = [ spr_animated_torch, spr_animated_soul_torch, spr_animated_demon_torch ];
+	tmp_spr_ind = (tmp_spr_ind == spr_others) ? tmp_torch_spr[tmp_img_ind] : tmp_spr_ind;
 	if (tmp_my_p.holding_item_spr_ind != tmp_spr_ind || tmp_my_p.holding_item_img_ind != tmp_img_ind)
 	{
 		var tmp_var_name = "holding_item_spr_ind, holding_item_img_ind";

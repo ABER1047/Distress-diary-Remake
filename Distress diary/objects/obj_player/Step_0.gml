@@ -46,7 +46,7 @@ my_pos_yy = global.n_player_room_yy[obj_id_player_only];
 
 
 //라이트 효과
-if (!stop_cal_by_pos_statement && holding_item_spr_ind == spr_others)
+if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch || holding_item_spr_ind == spr_animated_soul_torch || holding_item_spr_ind == spr_animated_demon_torch))
 {
 	var tmp_yy = y-32-z*0.8;
 	var light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];

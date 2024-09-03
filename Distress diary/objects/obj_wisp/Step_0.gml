@@ -63,7 +63,7 @@ if (!stop_cal_by_pos_statement)
 			for(var i = 0; i < 3; i++)
 			{
 				var tmp_var_name = "type,sprite_index,image_xscale,image_yscale,direction,z,dmg";
-				var tmp_var = "2,spr_ghost_fire_animation,0,0,"+string(i*120)+","+string(z)+",24";
+				var tmp_var = "2,spr_soul_fire_animation,0,0,"+string(i*120)+","+string(z)+",24";
 				var tmp_projectile = instance_create_multiplayer_ext(obj_projectile_monster,x,y,obj_id+(i/10),0,true,my_pos_xx,my_pos_yy,tmp_var_name,tmp_var);
 			}
 			

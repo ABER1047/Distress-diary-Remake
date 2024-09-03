@@ -52,7 +52,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		{
 			//토치 던지기
 			var tmp_sp = 16*(0.3+tmp_charging_dmg_bonus)+abs(_speed)+abs(global.movement_vspeed)+abs(global.movement_hspeed);
-			create_bounce_object(x,y-16+lengthdir_y(48,tmp_m_dir),z+32,tmp_sp,tmp_m_dir,irandom_range(-8,-12),spr_torch,global.quickslot_img_ind[global.quickslot_index],1.5,18000,-4,-4,false);
+			create_bounce_object(x,y-16+lengthdir_y(48,tmp_m_dir),z+32,tmp_sp,tmp_m_dir,irandom_range(-8,-12),holding_item_spr_ind,holding_item_img_ind,1.5,18000,-4,-4,false);
 			
 			//효과음 재생
 			play_sound_pos(fire_ignition_sfx,false,0.1,x,y-32,640,false,-4,-4);
