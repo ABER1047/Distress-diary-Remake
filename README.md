@@ -17,7 +17,7 @@
 <details> <summary> <b> <img width = "28px" src = "https://github.com/ABER1047/ABER1047/blob/main/imgs/icon_1.gif"></img>  Devlog [개발 일지] </b> </summary>
 
   
-  ### ✔️2024-01-22 [click]
+  ### ✔️2024-01-22
 
 
 #### Remaking randomized map algorithm
@@ -44,7 +44,7 @@
 
 
   
-  ### ✔️2024-01-26 [click]
+  ### ✔️2024-01-26
 
 
 #### Online Multiplayer basic foundation code made (Tickrate, Player movement...)
@@ -60,7 +60,7 @@
 
 
 
-  ### ✔️2024-01-30 [click]
+  ### ✔️2024-01-30
 
 
 #### Multi-cell inventory system added
@@ -77,7 +77,7 @@
 
 
   
-  ### ✔️2024-02-09 ~ 2024-02-18 [click]
+  ### ✔️2024-02-09 ~ 2024-02-18
 
 
 #### New inventory system(Rotating/Stacking/Various size of items...etc) And lootable objects added
@@ -95,7 +95,7 @@
 
 
 
-  ### ✔️2024-03-27 ~ 2024-03-28 [click]
+  ### ✔️2024-03-27 ~ 2024-03-28
 
 
 #### searching system of unsearched items added
@@ -114,7 +114,7 @@
 
 
 
-### ✔️2024-03-xx ~ 2024-09-03 [click]
+### ✔️2024-03-xx ~ 2024-09-03
 
 
 #### Dungeon/Battle System added
