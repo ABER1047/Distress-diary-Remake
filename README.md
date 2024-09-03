@@ -98,11 +98,9 @@
   ### ✔️2024-03-27 ~ 2024-03-28
 
 
-#### searching system of unsearched items added
 
-#### 미발견 아이템 서칭 시스템 추가
 
-||
+|searching system of unsearched items added </br> 미발견 아이템 서칭 시스템 추가|
 |---|
 |<img src = "imgs/searching_system.gif">|
 
@@ -117,17 +115,13 @@
 ### ✔️2024-03-xx ~ 2024-09-03
 
 
-#### Dungeon/Battle System added
+#### 던전 구조 및 몬스터, 아이템, 인벤토리, 오브젝트 등등 여러가지를 추가하면서 기존 코드 일부를 최적화 작업을 하거나, 리메이크 함
 
-#### 던전 및 전투 시스템 추가
+#### 이외에도 여러 새로운 애니메이션들이나, 이펙트들이 다수 추가됨
 
-던전 구조 및 몬스터, 아이템, 인벤토리, 오브젝트 등등 여러가지를 추가하면서 기존 코드 일부를 최적화 작업을 하거나, 리메이크 함
-
-이외에도 여러 새로운 애니메이션들이나, 이펙트들이 다수 추가됨
-
-|||
-|---|---|
-|<img src = "imgs/dungeon fight1.gif">|<img src = "imgs/dungeon fight2.gif">|
+|Dungeon/Battle System added </br> 던전 및 전투 시스템 추가|
+|---|
+|<div align = "center"> <img src = "imgs/dungeon fight1.gif"> <img src = "imgs/dungeon fight2.gif"> </div>|
 
 </details>
 
