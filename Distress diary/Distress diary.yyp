@@ -210,6 +210,7 @@
     {"id":{"name":"instance_create_multiplayer","path":"scripts/instance_create_multiplayer/instance_create_multiplayer.yy",},},
     {"id":{"name":"instance_create_or_delete","path":"scripts/instance_create_or_delete/instance_create_or_delete.yy",},},
     {"id":{"name":"instance_destroy_multiplayer","path":"scripts/instance_destroy_multiplayer/instance_destroy_multiplayer.yy",},},
+    {"id":{"name":"instance_nearest_by_pos","path":"scripts/instance_nearest_by_pos/instance_nearest_by_pos.yy",},},
     {"id":{"name":"instance_nearest_notme","path":"scripts/instance_nearest_notme/instance_nearest_notme.yy",},},
     {"id":{"name":"is_inside_array","path":"scripts/is_inside_array/is_inside_array.yy",},},
     {"id":{"name":"is_inside_rectangle","path":"scripts/is_inside_rectangle/is_inside_rectangle.yy",},},

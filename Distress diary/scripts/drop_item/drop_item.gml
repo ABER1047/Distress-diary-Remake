@@ -21,8 +21,10 @@ function drop_item(argument0,argument1,argument2,argument3,argument4,argument5,a
 		var tmp_my_p_xx = tmp_my_p.x;
 		var tmp_my_p_yy = tmp_my_p.y;
 		var create_new_box = false; //새로운 박스 생성 유무
-				
-		var tmp_nearest_dropped_item = instance_nearest(tmp_my_p_xx,tmp_my_p_yy,obj_dropped_item_box);
+		
+		
+		
+		var tmp_nearest_dropped_item = instance_nearest_by_pos(tmp_my_p_xx,tmp_my_p_yy,obj_dropped_item_box);
 		if (instance_exists(tmp_nearest_dropped_item) && point_distance(tmp_my_p_xx,tmp_my_p_yy,tmp_nearest_dropped_item.x,tmp_nearest_dropped_item.y) < 160)
 		{
 			//근처에 떨궈진 아이템 보관중인 박스가 있는 경우

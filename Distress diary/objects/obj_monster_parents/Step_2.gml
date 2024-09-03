@@ -23,7 +23,7 @@ if (instance_exists(targeted) && point_distance(x,y,targeted.x,targeted.y) < 960
 else
 {
 	//타깃팅 완료
-	targeted = instance_nearest(x,y,obj_player);
+	targeted = instance_nearest_by_pos(x,y,obj_player);
 	
 	//멀티플레이어 측은 타깃정보 리셋후 리타겟팅
 	send_InstanceVariableData(id,"targeted",-4);

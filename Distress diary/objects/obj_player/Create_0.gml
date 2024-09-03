@@ -26,6 +26,7 @@ b_my_backpack = -4;
 b_prohibit_movement_input = false;
 
 
+
 //z축
 add_z_axis();
 
@@ -184,3 +185,7 @@ light_timer = 0;
 holding_item_spr_ind = -4;
 holding_item_img_ind = -4;
 holding_item_angle = 0;
+
+
+//버블 이펙트 외곽선 효과용 오브젝트
+bubble_ef_ins = -4;

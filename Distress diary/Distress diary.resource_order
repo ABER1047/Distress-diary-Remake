@@ -168,6 +168,7 @@
     {"name":"instance_create_multiplayer","order":17,"path":"scripts/instance_create_multiplayer/instance_create_multiplayer.yy",},
     {"name":"instance_create_or_delete","order":3,"path":"scripts/instance_create_or_delete/instance_create_or_delete.yy",},
     {"name":"instance_destroy_multiplayer","order":19,"path":"scripts/instance_destroy_multiplayer/instance_destroy_multiplayer.yy",},
+    {"name":"instance_nearest_by_pos","order":2,"path":"scripts/instance_nearest_by_pos/instance_nearest_by_pos.yy",},
     {"name":"is_inside_array","order":4,"path":"scripts/is_inside_array/is_inside_array.yy",},
     {"name":"is_inside_rectangle","order":5,"path":"scripts/is_inside_rectangle/is_inside_rectangle.yy",},
     {"name":"load_object_by_pos","order":21,"path":"scripts/load_object_by_pos/load_object_by_pos.yy",},

@@ -71,18 +71,27 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 	//불 이펙트 생성
 	if (global.graphics_quality >= 1)
 	{
+		var tmp_signed_xscale = -sign(image_xscale);
+		var tmp_xpos = [ 48, 56, 48, 40 ];
+		var tmp_ypos = [ 36, 44, 36, 44 ];
+		var tmp_cal_xx = x+tmp_signed_xscale*tmp_xpos[image_index];
+		var tmp_cal_yy = tmp_yy-16-tmp_ypos[image_index];
 		if (percentage_k(1))
 		{
-			var tmp_signed_xscale = -sign(image_xscale);
-			var tmp_xpos = [ 48, 56, 48, 40 ];
-			var tmp_ypos = [ 36, 44, 36, 44 ];
-			var tmp_ins = instance_create_depth(x+tmp_signed_xscale*tmp_xpos[image_index],tmp_yy-16-tmp_ypos[image_index],-1,obj_bright_line_effect);
+			var tmp_ins = instance_create_depth(tmp_cal_xx,tmp_cal_yy,-1,obj_bright_line_effect);
 			tmp_ins.image_blend = light_col[holding_item_img_ind];
 			tmp_ins.direction = 90;
 			tmp_ins.rd_dir_increasement = 90+tmp_signed_xscale*30+global.movement_hspeed*20;
 			tmp_ins.start_dir = 90;
 			tmp_ins.speed = irandom_range(20,30)/15+abs(global.movement_hspeed*0.1);
 			tmp_ins.rd_dir_timer_increasement = 1;
+		}
+		
+		if (global.graphics_quality >= 2 && percentage_k(5))
+		{
+			var tmp_ins = create_bubble_effect(tmp_cal_xx,tmp_cal_yy,1,merge_color(light_col[holding_item_img_ind],c_black,0.1),light_col[holding_item_img_ind],0.08,-irandom_range(6,12)-global.movement_vspeed,irandom_range(-2,2)-global.movement_hspeed,0.03,0,true,-y-1);
+			tmp_ins.image_xscale = 0.5;
+			tmp_ins.image_yscale = 0.5;
 		}
 	}
 }
