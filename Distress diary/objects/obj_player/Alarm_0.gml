@@ -9,7 +9,7 @@ if (global.quickslot_spr_ind[i] != -4)
 	set_item_info_values(global.quickslot_spr_ind[i],global.quickslot_img_ind[i]);
 						
 	//아이템 드랍
-	var tmp_spr_ind = [ spr_backpack, spr_comp, spr_foods, spr_healings, spr_stackables, spr_drink, spr_weapon, spr_equipments, spr_pickaxe ];
+	var tmp_spr_ind = [ spr_backpack, spr_comp, spr_foods, spr_healings, spr_stackables, spr_drink, spr_weapon, spr_equipments, spr_pickaxe, spr_others ];
 	var tmp_get_index = 0;
 	for(var ii = 0; ii < array_length(tmp_spr_ind); ii++)
 	{

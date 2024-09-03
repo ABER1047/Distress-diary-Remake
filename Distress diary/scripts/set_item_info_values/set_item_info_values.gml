@@ -943,6 +943,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			
 			case 1:
 				tmp_name = "Soul torch";
+				tmp_short_name = "Torch";
 				item_weight = 0.2;
 				item_name_translated = "영혼 횃불";
 				item_value = 1;
@@ -951,6 +952,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			
 			case 2:
 				tmp_name = "Demon torch";
+				tmp_short_name = "Torch";
 				item_weight = 0.2;
 				item_name_translated = "악마의 횃불";
 				item_value = 1;

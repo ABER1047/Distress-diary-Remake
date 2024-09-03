@@ -338,7 +338,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						try
 						{
 							tmp_splited_val[i] = real(tmp_splited_val[i]);
-						} catch(e) {}
+						}
+						catch(e) 
+						{
+							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+							var tmp_converted = asset_get_index(tmp_splited_val[i]);
+							tmp_splited_val[i] = (tmp_converted == -1) ? tmp_splited_val[i] : tmp_converted;
+						}
 						
 						
 						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
@@ -350,11 +356,6 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						else if (tmp_name == "is_activated") //만약 받아온 변수가 is_activated인경우
 						{
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
-						}
-						else if (tmp_name == "sprite_index") //만약 받아온 변수가 sprite_index인경우
-						{
-							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
-							tmp_splited_val[i] = asset_get_index(tmp_splited_val[i]);
 						}
 				
 						variable_instance_set(tmp_id_real,string(tmp_splited_varname[i]),tmp_splited_val[i]);
@@ -369,7 +370,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						try
 						{
 							tmp_val = real(tmp_val);
-						} catch(e) {}
+						} 
+						catch(e) 
+						{
+							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+							var tmp_converted = asset_get_index(tmp_val);
+							tmp_val = (tmp_converted == -1) ? tmp_val : tmp_converted;
+						}
 						
 						
 						//만약 받아온 변수가 is_opened인경우 (= 상자 및 플레이어 루팅 관련 변수)
@@ -381,11 +388,6 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						else if (tmp_name == "is_activated")
 						{
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
-						}
-						else if (tmp_name == "sprite_index") //만약 받아온 변수가 sprite_index인경우
-						{
-							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
-							tmp_splited_val[i] = asset_get_index(tmp_splited_val[i]);
 						}
 				
 						variable_instance_set(tmp_id_real,string(tmp_name),tmp_val);
@@ -405,7 +407,13 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				try
 				{
 					tmp_val = real(tmp_val);
-				} catch(e) {}
+				} 
+				catch(e) 
+				{
+					//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+					var tmp_converted = asset_get_index(tmp_val);
+					tmp_val = (tmp_converted == -1) ? tmp_val : tmp_converted;
+				}
 				
 				variable_global_set(string(tmp_name),tmp_val);
 			}

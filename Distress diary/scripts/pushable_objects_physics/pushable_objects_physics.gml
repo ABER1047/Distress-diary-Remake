@@ -3,7 +3,7 @@
 function pushable_objects_physics()
 {
 	var tmp_ins = instance_place(x,y,obj_mob_parents);
-	if (instance_exists(tmp_ins) && (tmp_ins.my_pos_xx == my_pos_xx && tmp_ins.my_pos_yy == my_pos_yy) && (tmp_ins.image_alpha > 0 && abs(z-tmp_ins.z) <= sprite_height*0.7)) //z축도 같은지 체크
+	if (instance_exists(tmp_ins) && (object_index == obj_dropped_item || tmp_ins.object_index != obj_dropped_item) && !stop_cal_by_pos_statement && abs(z-tmp_ins.z) <= sprite_height*0.7) //z축도 같은지 체크
 	{
 		var tmp_xx = (x - tmp_ins.x)/32;
 		var tmp_yy = (y - tmp_ins.y)/32;

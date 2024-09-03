@@ -288,7 +288,7 @@ if (global.chat_activated)
 						}
 						else if (i == 26) //아이템 생성
 						{
-							var tmp_spr_ind = [ spr_backpack, spr_comp, spr_foods, spr_healings, spr_stackables, spr_drink, spr_weapon, spr_equipments, spr_pickaxe ];
+							var tmp_spr_ind = [ spr_backpack, spr_comp, spr_foods, spr_healings, spr_stackables, spr_drink, spr_weapon, spr_equipments, spr_pickaxe, spr_others ];
 							var tmp_xx = global.my_player_ins_id[global.my_player_id].x;
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							tmp_parameter = (tmp_parameter < array_length(tmp_spr_ind)) ? tmp_parameter : array_length(tmp_spr_ind)-1;

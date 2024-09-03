@@ -203,7 +203,7 @@
     {"name":"set_inv_size_by_bp","order":1,"path":"scripts/set_inv_size_by_bp/set_inv_size_by_bp.yy",},
     {"name":"set_inv_size","order":2,"path":"scripts/set_inv_size/set_inv_size.yy",},
     {"name":"set_inv_variable","order":4,"path":"scripts/set_inv_variable/set_inv_variable.yy",},
-    {"name":"set_item_info_values","order":7,"path":"scripts/set_item_info_values/set_item_info_values.yy",},
+    {"name":"set_item_info_values","order":17,"path":"scripts/set_item_info_values/set_item_info_values.yy",},
     {"name":"set_quickslot_variable","order":10,"path":"scripts/set_quickslot_variable/set_quickslot_variable.yy",},
     {"name":"set_status_by_weapon","order":16,"path":"scripts/set_status_by_weapon/set_status_by_weapon.yy",},
     {"name":"show_item_info_window","order":13,"path":"scripts/show_item_info_window/show_item_info_window.yy",},
