@@ -10,33 +10,6 @@ image_angle = direction-45+angle_comp;
 
 if (global.graphics_quality > 0)
 {
-	//화살 궤적 애니메이션
-	if (xx[0] != xx[7])
-	{
-		if (animation_timer%2 == 0)
-		{
-			xx[0] = x;
-			yy[0] = y-z;
-			for(var i = 7; i > 0; i--)
-			{
-				xx[i] = xx[i-1];
-				yy[i] = yy[i-1];
-			}
-		}
-		
-
-		if (animation_timer >= 8*2)
-		{
-			animation_timer = 0;
-		}
-		else
-		{
-			animation_timer ++;
-		}
-	}
-	
-	
-	
 	//화살 꽂힘 효과
 	if (is_on_mob != -4)
 	{
@@ -72,5 +45,30 @@ if (global.graphics_quality > 0)
 		//깊이 설정
 		var tmp_depth = y+lengthdir_y(40,direction+180);
 		depth = (y > tmp_depth) ? -floor(y) : -tmp_depth;
+		
+		//화살 궤적 애니메이션
+		if (xx[0] != xx[7])
+		{
+			if (animation_timer%2 == 0)
+			{
+				xx[0] = x;
+				yy[0] = y-z;
+				for(var i = 7; i > 0; i--)
+				{
+					xx[i] = xx[i-1];
+					yy[i] = yy[i-1];
+				}
+			}
+		
+
+			if (animation_timer >= 8*2)
+			{
+				animation_timer = 0;
+			}
+			else
+			{
+				animation_timer ++;
+			}
+		}
 	}
 }

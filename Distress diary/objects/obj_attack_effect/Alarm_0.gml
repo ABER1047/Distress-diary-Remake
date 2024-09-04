@@ -62,7 +62,7 @@ with(obj_mob_parents)
 		
 		if (other.owner_player_id == global.my_player_id)
 		{
-			give_damage(id,other.attack_dmg,true,other.knockback,other.x,other.y,25);
+			give_damage(id,other.attack_dmg,true,other.knockback,other.x,other.y,25,other.critical_chance,other.magnification,other.bleeding_chance,other.poisoning_chance);
 			
 			//화면흔들림 효과
 			if (variable_instance_exists(id,"hp"))

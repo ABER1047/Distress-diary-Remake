@@ -107,9 +107,19 @@ b_hp = -4;
 stamina = 100;
 stamina_cooltime = 0;
 
-
 //무게
 speed_by_weight = 0;
+
+
+
+
+//출혈 디버프
+bleeding_timer = 0;
+
+//독 디버프
+poisoning_timer = 0;
+
+
 
 
 

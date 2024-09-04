@@ -50,6 +50,15 @@ attack_dmg = 15;
 dmg_cooltime = 0;
 
 
+
+//출혈 디버프
+bleeding_timer = 0;
+
+//독 디버프
+poisoning_timer = 0;
+
+
+
 //적 트래킹
 tracking_timer = 0;
 tracking_dir = 0;

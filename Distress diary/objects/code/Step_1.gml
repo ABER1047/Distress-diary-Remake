@@ -140,6 +140,7 @@ if (global.buff_left_time[5] > 0) //골절
 	global.movement_hspeed += (0 - global.movement_hspeed)*0.01;
 }
 
+//출혈
 if (global.buff_timer[6] > 180) //3초당 -1.5씩 체력 감소 (초당 0.5)
 {
 	give_damage(tmp_my_p,1.5,true,0,x,y,10);
@@ -181,7 +182,7 @@ global.luck = (sign(global.buff_left_time[14])-sign(global.buff_left_time[13]))*
 //중독
 if (global.buff_timer[15] > 180) //매 3초마다 -1씩 체력 감소 (초당 0.33...)
 {
-	tmp_my_p.hp -= 1;
+	give_damage(tmp_my_p,1,true,0,x,y,10);
 	global.buff_timer[15] = 0;
 }
 
@@ -210,11 +211,19 @@ if (global.attack_cooldown_timer > 0)
 
 
 
+
+
+
+
+
+
+
 //현재 들고 있는 아이템 정보 전송
 var tmp_spr_ind = global.quickslot_spr_ind[global.quickslot_index];
 var tmp_img_ind = global.quickslot_img_ind[global.quickslot_index];
 if (instance_exists(tmp_my_p) && sprite_exists(tmp_spr_ind))
 {
+	var tmp_real_spr_ind = tmp_spr_ind;
 	var tmp_torch_spr = [ spr_animated_torch, spr_animated_soul_torch, spr_animated_demon_torch ];
 	tmp_spr_ind = (tmp_spr_ind == spr_others) ? tmp_torch_spr[tmp_img_ind] : tmp_spr_ind;
 	if (tmp_my_p.holding_item_spr_ind != tmp_spr_ind || tmp_my_p.holding_item_img_ind != tmp_img_ind)
@@ -226,7 +235,7 @@ if (instance_exists(tmp_my_p) && sprite_exists(tmp_spr_ind))
 		
 		
 		//토치 아이템을 들고 있는 경우
-		if (tmp_spr_ind == spr_others)
+		if (tmp_real_spr_ind == spr_others)
 		{
 			tmp_my_p.light_scale = 0.3;
 			tmp_my_p.light_alpha = 0.3;

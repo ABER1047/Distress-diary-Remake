@@ -1,6 +1,7 @@
 /// @description 클라이언트 영향 없는 스텝 이벤트
 // You can write your code in this editor
 
+var chk_is_my_player = (global.my_player_id == obj_id_player_only);
 
 //위치 (y축에 따라 depth 설정)
 depth = -floor(y);
@@ -99,3 +100,24 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 
 //현재 들고 있는 아이템 휘두르기 애니메이션
 holding_item_angle += (0 - holding_item_angle)*0.2;
+
+
+//출혈 디버프
+if (bleeding_timer > 0)
+{
+	bleeding_timer --;
+	if (chk_is_my_player)
+	{
+		global.buff_left_time[6] = bleeding_timer;
+	}
+}
+
+//독 디버프
+if (poisoning_timer > 0)
+{
+	poisoning_timer --;
+	if (chk_is_my_player)
+	{
+		global.buff_left_time[15] = poisoning_timer;
+	}
+}

@@ -10,7 +10,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
-	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0;
+	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0, tmp_bleeding = 0, tmp_poisoning = 0;
 	
 	if (tmp_spr_ind == spr_weapon)
 	{
@@ -21,6 +21,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				atk_sp = 40;
 				crit_chance = 10;
 				knockback = 16;
+				tmp_bleeding = 10;
 			break;
 		
 			case 1:
@@ -45,6 +46,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				atk_sp = 40;
 				crit_chance = 10;
 				knockback = 16;
+				tmp_bleeding = 15;
 			break;
 			
 			case 4:
@@ -72,6 +74,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				tmp_range = 64;
 				tmp_accurate = 75;
 				tmp_attack_type = 4;
+				tmp_poisoning = 40;
 			break;
 			
 			case 7:
@@ -82,6 +85,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				tmp_range = 64;
 				tmp_accurate = 75;
 				tmp_attack_type = 4;
+				tmp_bleeding = 15;
 			break;
 			
 			case 8:
@@ -89,6 +93,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				atk_sp = 40;
 				crit_chance = 15;
 				knockback = 16;
+				tmp_bleeding = 18;
 			break;
 			
 			case 9:
@@ -113,6 +118,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				atk_sp = 35;
 				crit_chance = 10;
 				knockback = 16;
+				tmp_bleeding = 15;
 			break;
 			
 			case 12:
@@ -137,6 +143,8 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				atk_sp = 40;
 				crit_chance = 15;
 				knockback = 10;
+				tmp_bleeding = 10;
+				tmp_poisoning = 60;
 			break;
 			
 			case 15:
@@ -146,6 +154,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				knockback = 1;
 				tmp_range = 78;
 				tmp_attack_type = 2;
+				tmp_poisoning = 15;
 			break;
 			
 			case 16:
@@ -154,6 +163,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				crit_chance = 30;
 				knockback = 12;
 				tmp_attack_type = 3;
+				tmp_poisoning = 70;
 			break;
 			
 			case 17:
@@ -161,6 +171,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				atk_sp = 30;
 				crit_chance = 35;
 				knockback = 16;
+				tmp_bleeding = 16;
 			break;
 			
 			case 18:
@@ -264,7 +275,9 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		global.critical_chance = tmp_cal_crit;
 		global.knockback_power = knockback; //넉백 파워
 		global.accurate = tmp_accurate;
+		global.bleeding_chance = tmp_bleeding;
+		global.poisoing_chance = tmp_poisoning;
 	}
 	
-	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate);
+	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate)+","+string(tmp_bleeding)+","+string(tmp_poisoning);
 }

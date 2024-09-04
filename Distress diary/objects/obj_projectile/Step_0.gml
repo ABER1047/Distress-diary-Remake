@@ -39,7 +39,7 @@ for(var i = 0; i < _speed; i++)
 					if (saved_xscale == -4)
 					{
 						saved_xscale = sign(tmp_ins.image_xscale);
-						give_damage(tmp_ins,attack_dmg,true,16,x,y,60);
+						give_damage(tmp_ins,attack_dmg,true,knockback,x,y,60,critical_chance,magnification,bleeding_chance,poisoning_chance);
 						send_InstanceMuchVariableData(id,"x,y,saved_xscale",string(x)+","+string(y)+","+string(saved_xscale));
 					}
 				}

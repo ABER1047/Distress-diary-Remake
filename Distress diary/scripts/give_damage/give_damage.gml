@@ -10,7 +10,9 @@
 ///@param dmg_cooltime
 ///@param [critical_chance]
 ///@param [magnification]
-function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8)
+///@param [bleeding_chance]
+///@param [poisoning_chance]
+function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
 {
 	var tmp_ins = argument0;
 	if (instance_exists(tmp_ins))
@@ -41,6 +43,19 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 				{
 					tmp_dmg *= (1+argument8);
 				}
+				
+				//출혈 디버프 적용
+				if (argument9 != undefined && percentage_k(argument9))
+				{
+					tmp_ins.bleeding_timer += 360;
+				}
+				
+				//독 디버프 적용
+				if (argument10 != undefined && percentage_k(argument10))
+				{
+					tmp_ins.poisoning_timer += 360;
+				}
+				
 				tmp_ins.hp -= tmp_dmg;
 				tmp_ins.dmg_cooltime = argument6;
 				if (tmp_ins.hp < 0)
@@ -55,8 +70,8 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			}
 
 			//데이터 값 전송
-			var tmp_var_name = "x,y,direction,hp,dmg_cooltime";
-			var tmp_var = string(tmp_ins.x)+","+string(tmp_ins.y)+","+string(tmp_ins.direction)+","+string(tmp_ins.hp)+","+string(tmp_ins.dmg_cooltime);
+			var tmp_var_name = "x,y,direction,hp,dmg_cooltime,bleeding_timer,poisoning_timer";
+			var tmp_var = string(tmp_ins.x)+","+string(tmp_ins.y)+","+string(tmp_ins.direction)+","+string(tmp_ins.hp)+","+string(tmp_ins.dmg_cooltime)+","+string(tmp_ins.bleeding_timer)+","+string(tmp_ins.poisoning_timer);
 			if (is_speed_exists)
 			{
 				tmp_var = string(tmp_var)+","+string(tmp_ins._speed);

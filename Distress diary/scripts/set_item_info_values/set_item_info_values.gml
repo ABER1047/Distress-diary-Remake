@@ -1015,6 +1015,16 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 		{
 			item_effect_desc = string(item_effect_desc)+string(tmp_str[6])+"% 정확도\n";
 		}
+		
+		if (tmp_str[7] != 0)
+		{
+			item_effect_desc = string(item_effect_desc)+string(tmp_str[7])+"% 출혈 찬스\n";
+		}
+		
+		if (tmp_str[8] != 0)
+		{
+			item_effect_desc = string(item_effect_desc)+string(tmp_str[8])+"% 독 찬스\n";
+		}
 	}
 	
 	if (argument2 == undefined || argument2 == false)
