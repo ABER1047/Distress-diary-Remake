@@ -45,7 +45,7 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 		
 		
 	//아이템 정보 그리기
-	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio),item_effect_desc,64,tmp_txt_width,1,c_white,0,-1,font_normal,0.26,0.26,0,true);
+	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio),item_effect_desc,64,tmp_txt_width,1,#7884AB,0,-1,font_normal,0.26,0.26,0,true);
 	draw_text_kl_scale(tmp_text_startx,tmp_text_starty+(24*text_ratio)+string_height_ext(item_effect_desc,64,9999),item_desc,64,tmp_txt_width,1,merge_color(c_white,c_black,0.3),0,-1,font_normal,0.26,0.26,0,true);
 		
 		
@@ -61,7 +61,7 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 	draw_line_width(tmp_text_startx,tmp_text_starty+(36*text_ratio),tmp_text_startx+tmp_line_length*text_ratio,tmp_text_starty+(36*text_ratio),1.5*text_ratio);
 		
 		
-	var tmp_txt_col = merge_color(c_white,c_black,0.3);
+	var tmp_txt_col = #B2BCC2;
 	var tmp_txt_str = "";
 	var tmp_txt_size = 0.25;
 	var tmp_icon_size = text_ratio*0.3;
@@ -107,7 +107,7 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 		//가방 칸수 (아이콘)
 		draw_sprite_ext(spr_ui,0,tmp_text_startx+8*text_ratio,tmp_slot_size_txt_yy+28*text_ratio,tmp_icon_size*1.05,tmp_icon_size*1.05,0,tmp_txt_col,1);
 		//칸수 텍스트
-		draw_text_kl_scale(tmp_text_startx+18*text_ratio,tmp_slot_size_txt_yy,string(tmp_txt_str),64,480,1,tmp_txt_col,-1,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+		draw_text_kl_scale(tmp_text_startx+18*text_ratio,tmp_slot_size_txt_yy,string(tmp_txt_str),64,480,1,#7884AB,-1,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 	}
 		
 	//아이템 가치
@@ -128,7 +128,7 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 	{
 		additional_value_by_startag = string(additional_value_by_startag)+"(+"+string(item_value*2)+")";
 	}
-	draw_text_kl_scale(tmp_text_startx+tmp_win_width-8*text_ratio,tmp_slot_size_txt_yy+28*text_ratio,"가치 : "+string(additional_value_by_startag),64,480,1,tmp_txt_col,-1,1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+	draw_text_kl_scale(tmp_text_startx+tmp_win_width-8*text_ratio,tmp_slot_size_txt_yy+28*text_ratio,"가치 : "+string(additional_value_by_startag),64,480,1,#FFAC4B,-1,1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 
 		
 	//아이템 무게 (아이콘)
@@ -136,5 +136,5 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 		
 	//아이템 무게
 	var tmp_cal_weight = (stack_num != -4) ? stack_num*item_weight : item_weight;
-	draw_text_kl_scale(tmp_text_startx+18*text_ratio,tmp_weight_txt_yy,string(tmp_cal_weight)+"kg",64,480,1,tmp_txt_col,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+	draw_text_kl_scale(tmp_text_startx+18*text_ratio,tmp_weight_txt_yy,string(tmp_cal_weight)+"kg",64,480,1,#A991CC,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
 }

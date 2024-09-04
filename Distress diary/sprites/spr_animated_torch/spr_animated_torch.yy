@@ -30,8 +30,8 @@
   "nineSlice":null,
   "origin":4,
   "parent":{
-    "name":"Sprite_items",
-    "path":"folders/스프라이트/Sprite_items.yy",
+    "name":"Sprite_effect",
+    "path":"folders/스프라이트/Sprite_effect.yy",
   },
   "preMultiplyAlpha":false,
   "resourceType":"GMSprite",

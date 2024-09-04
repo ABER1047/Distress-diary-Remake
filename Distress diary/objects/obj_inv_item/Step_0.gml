@@ -175,7 +175,7 @@ if (instance_exists(parents_id))
 			}
 		}
 	}
-	else if (mouse_check_button_released(mb_left))
+	else if (mouse_check_button_released(mb_left) && origin_startag != -4)
 	{
 		if (moving_now == 1)
 		{

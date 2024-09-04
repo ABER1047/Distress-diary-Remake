@@ -12,8 +12,13 @@ image_speed = 0;
 //x_pos = 0;
 //y_pos = 0;
 
-
-
+origin_img = -4;
+origin_stack_num = -4;
+origin_item_width = -4;
+origin_item_height = -4;
+origin_item_rorated = -4;
+origin_item_searched = -4;
+origin_startag = -4;
 
 if (!variable_instance_exists(id,"moving_now"))
 {

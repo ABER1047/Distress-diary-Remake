@@ -277,7 +277,7 @@ if (global.chat_activated)
 						{
 							var n_xx = global.n_player_room_xx[global.my_player_id];
 							var n_yy = global.n_player_room_yy[global.my_player_id];
-							global.map_arr[n_yy][n_xx] = (tmp_parameter_str > 0) ? 3 : 1;
+							global.map_arr[n_yy][n_xx] = (tmp_parameter > 0) ? 3 : 1;
 						}
 						else if (i == 25) //폭발 이펙트 생성
 						{
