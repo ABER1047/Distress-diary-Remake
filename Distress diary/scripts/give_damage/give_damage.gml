@@ -79,6 +79,16 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 				tmp_var = string(tmp_var)+","+string(tmp_ins._speed);
 				tmp_var_name = string(tmp_var_name)+",_speed";
 			}
+			
+			
+			//공격당한 경우 어그로 끌리는 판정
+			var tmp_parents = object_get_parent(tmp_ins);
+			if (percentage_k(50) && (tmp_parents == obj_monster_parents || tmp_parents == obj_floating_monster_parents))
+			{
+				tmp_var_name = string(tmp_var_name)+",targeted";
+				tmp_var = string(tmp_var)+",-4";
+			}
+			
 			send_InstanceMuchVariableData(tmp_ins,tmp_var_name,tmp_var);
 		
 		

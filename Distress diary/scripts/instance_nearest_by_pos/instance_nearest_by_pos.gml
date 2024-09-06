@@ -11,7 +11,7 @@ function instance_nearest_by_pos(argument0,argument1,argument2)
 	{
 		if (!stop_cal_by_pos_statement)
 		{
-			var tmp_cal_dis = point_distance(argument0,argument1,other.x,other.y);
+			var tmp_cal_dis = point_distance(argument0,argument1,x,y);
 			if (tmp_nearest_dis > tmp_cal_dis)
 			{
 				tmp_nearest_dis = tmp_cal_dis;
