@@ -314,18 +314,18 @@ if (global.chat_activated)
 							{
 								for(var k = 0; k <= tmp_arr_length; k++)
 								{
-									buff_activate(k,3600);
+									apply_buff(global.my_player_ins_id[global.my_player_id],k,3600);
 								}
 							}
 							else
 							{
 								if (global.buff_left_time[tmp_parameter] <= 0)
 								{
-									buff_activate(tmp_parameter,3600);
+									apply_buff(global.my_player_ins_id[global.my_player_id],tmp_parameter,3600);
 								}
 								else
 								{
-									buff_activate(tmp_parameter,0);
+									apply_buff(global.my_player_ins_id[global.my_player_id],tmp_parameter,0);
 								}
 							}
 						}

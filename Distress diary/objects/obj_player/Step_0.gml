@@ -102,22 +102,4 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 holding_item_angle += (0 - holding_item_angle)*0.2;
 
 
-//출혈 디버프
-if (bleeding_timer > 0)
-{
-	bleeding_timer --;
-	if (chk_is_my_player)
-	{
-		global.buff_left_time[6] = bleeding_timer;
-	}
-}
 
-//독 디버프
-if (poisoning_timer > 0)
-{
-	poisoning_timer --;
-	if (chk_is_my_player)
-	{
-		global.buff_left_time[15] = poisoning_timer;
-	}
-}

@@ -58,20 +58,20 @@ if (dmg_cooltime > 0)
 
 
 //출혈 디버프
-if (bleeding_timer > 0)
+if (buff_left_time[6] > 0)
 {
-	bleeding_timer --;
-	if (bleeding_timer%180 == 0)
+	buff_left_time[6] --;
+	if (buff_left_time[6]%180 == 0)
 	{
 		give_damage(id,1.5,true,0,x,y,10);
 	}
 }
 
 //독 디버프
-if (poisoning_timer > 0)
+if (buff_left_time[15] > 0)
 {
-	poisoning_timer --;
-	if (poisoning_timer%180 == 0)
+	buff_left_time[15] --;
+	if (buff_left_time[15]%180 == 0)
 	{
 		give_damage(id,1,true,0,x,y,10);
 	}

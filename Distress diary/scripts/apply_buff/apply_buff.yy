@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"buff_activate",
+  "%Name":"apply_buff",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"buff_activate",
+  "name":"apply_buff",
   "parent":{
     "name":"PlayerActions",
     "path":"folders/스크립트/PlayerActions.yy",

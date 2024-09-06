@@ -30,6 +30,14 @@ alarm[1] = 1;
 idle_animation = 0;
 
 
+
+//버프/디버프 효과 적용 (효과 순서는 이미지 순서대로)
+for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
+{
+	buff_left_time[i] = 0; //남은 버프 시간
+}
+
+
 //image_alpha값이랑 똑같은데 draw_sprite에서만 드로우 되지 않게 해주는 alpha값
 draw_alpha = 1;
 

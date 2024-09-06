@@ -111,13 +111,11 @@ stamina_cooltime = 0;
 speed_by_weight = 0;
 
 
-
-
-//출혈 디버프
-bleeding_timer = 0;
-
-//독 디버프
-poisoning_timer = 0;
+//버프/디버프 효과 적용 (효과 순서는 이미지 순서대로)
+for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
+{
+	buff_left_time[i] = 0; //남은 버프 시간
+}
 
 
 

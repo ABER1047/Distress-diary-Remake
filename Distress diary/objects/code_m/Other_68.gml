@@ -353,12 +353,32 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 							tmp_splited_val[i] = (tmp_splited_val[i] != -4) ? -3 : tmp_splited_val[i]; //그냥 -3값으로 적용 (= 다른사람이 열고 있는 상태 라는 뜻)
 							variable_instance_set(tmp_id_real,"b_is_opened",tmp_splited_val[i]);
 						}
-						else if (tmp_name == "is_activated") //만약 받아온 변수가 is_activated인경우
+						else if (tmp_splited_varname[i] == "is_activated") //만약 받아온 변수가 is_activated인경우
 						{
-							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
+							variable_instance_set(tmp_id_real,"b_is_activated",tmp_splited_val[i]);
 						}
 				
-						variable_instance_set(tmp_id_real,tmp_splited_varname[i],tmp_splited_val[i]);
+				
+						var tmp_string_pos = string_pos("[",tmp_splited_varname[i]);
+						if (tmp_string_pos != 0) //변수가 배열인 경우
+						{
+							var tmp_arr_ind = string_char_at(tmp_splited_varname[i],tmp_string_pos+1);
+							var tmp_string_pos_end = string_pos("]",tmp_splited_varname[i]);
+							tmp_splited_varname[i] = string_delete(tmp_splited_varname[i],tmp_string_pos,tmp_string_pos_end-tmp_string_pos+1);
+							
+							with(tmp_id_real)
+							{
+								if (id == tmp_id_real)
+								{
+									var tmp_arr = variable_instance_get(id,tmp_splited_varname[i]);
+									array_set(tmp_arr,tmp_arr_ind,tmp_splited_val[i]);
+								}
+							}
+						}
+						else //배열이 아닌 경우 
+						{
+							variable_instance_set(tmp_id_real,tmp_splited_varname[i],tmp_splited_val[i]);
+						}
 					}
 				}
 				else
@@ -389,8 +409,27 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 						{
 							variable_instance_set(tmp_id_real,"b_is_activated",tmp_val);
 						}
-				
-						variable_instance_set(tmp_id_real,tmp_name,tmp_val);
+						
+						var tmp_string_pos = string_pos("[",tmp_name);
+						if (tmp_string_pos != 0) //변수가 배열인 경우
+						{
+							var tmp_arr_ind = string_char_at(tmp_name,tmp_string_pos+1);
+							var tmp_string_pos_end = string_pos("]",tmp_name);
+							tmp_name = string_delete(tmp_name,tmp_string_pos,tmp_string_pos_end-tmp_string_pos+1);
+							
+							with(tmp_id_real)
+							{
+								if (id == tmp_id_real)
+								{
+									var tmp_arr = variable_instance_get(id,tmp_name);
+									array_set(tmp_arr,tmp_arr_ind,tmp_val);
+								}
+							}
+						}
+						else //배열이 아닌 경우 
+						{
+							variable_instance_set(tmp_id_real,tmp_name,tmp_val);
+						}
 					}
 				}
 			}
@@ -415,7 +454,21 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					tmp_val = (tmp_converted == -1) ? tmp_val : tmp_converted;
 				}
 				
-				variable_global_set(tmp_name,tmp_val);
+				
+				var tmp_string_pos = string_pos("[",tmp_name);
+				if (tmp_string_pos != 0) //변수가 배열인 경우
+				{
+					var tmp_arr_ind = string_char_at(tmp_name,tmp_string_pos+1);
+					var tmp_string_pos_end = string_pos("]",tmp_name);
+					tmp_name = string_delete(tmp_name,tmp_string_pos,tmp_string_pos_end-tmp_string_pos+1);
+
+					var tmp_arr = variable_global_get(tmp_name);
+					array_set(tmp_arr,tmp_arr_ind,tmp_val);
+				}
+				else //배열이 아닌 경우 
+				{
+					variable_global_set(tmp_name,tmp_val);
+				}
 			}
 		break;
 		

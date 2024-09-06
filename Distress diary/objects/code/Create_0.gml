@@ -241,6 +241,8 @@ for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
 }
 
 
+//show_debug_message("-----"+string(global.buff_timer));
+
 //플레이어 스테이터스
 global.attack_range = 128; //공격범위
 global.attack_damage = 3; //공격력

@@ -101,7 +101,7 @@ for(var i = 0; i < array_length(global.buff_left_time); i++)
 		global.buff_left_time[i] --;
 		if (global.buff_left_time[i] <= 1)
 		{
-			global.buff_timer[i] = 0;
+			apply_buff(tmp_my_p,i,0);
 			global.buff_max_left_time[i] = 1;
 		}
 	}
@@ -114,7 +114,7 @@ with(obj_mob_parents)
 	{
 		if (id == tmp_my_p)
 		{
-			buff_activate(0,60);
+			apply_buff(id,0,60);
 		}
 		else
 		{
@@ -125,7 +125,10 @@ with(obj_mob_parents)
 
 
 //과적
-global.buff_left_time[4] = (global.my_weight > 10);
+if (global.my_weight > global.over_weight)
+{
+	apply_buff(tmp_my_p,4,5);
+}
 
 if (global.buff_left_time[5] > 0) //골절
 {
@@ -208,8 +211,6 @@ if (global.attack_cooldown_timer > 0)
 	//공격 쿨타임 게이지
 	//global.my_player_ins_id[global.my_player_id].gage_bar_charged = global.attack_cooldown_timer/global.attack_speed;
 }
-
-
 
 
 
