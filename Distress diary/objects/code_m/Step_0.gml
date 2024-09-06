@@ -204,7 +204,7 @@ if (global.chat_activated)
 						{
 							var tmp_mob_obj_ind = [ obj_fireball, obj_wisp, obj_skull_head, obj_skeleton, obj_green_slime, obj_corruption_slime ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
-							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[(array_length(tmp_mob_obj_ind) <= rd_select) ? array_length(tmp_mob_obj_ind)-1 : rd_select],global.my_player_ins_id[global.my_player_id].x,global.my_player_ins_id[global.my_player_id].y,global.object_id_ind,0,false,-4,4);
+							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[(array_length(tmp_mob_obj_ind) <= rd_select) ? array_length(tmp_mob_obj_ind)-1 : rd_select],mouse_x,mouse_y,global.object_id_ind,0,false,-4,4);
 							
 							give_damage(global.my_player_ins_id[global.my_player_id],0,true,0,other.x,other.y,60);
 						}

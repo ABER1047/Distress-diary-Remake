@@ -46,7 +46,7 @@ function apply_buff(argument0,argument1,argument2,argument3)
 		//적용된 버프 효과를 네트워크 전송
 		if (chk_applied)
 		{
-			send_InstanceVariableData(tmp_ins,"buff_left_time["+string(tmp_index)+"]",tmp_ins.buff_left_time[tmp_index]);
+			send_InstanceVariableData(tmp_ins,"buff_left_time["+string(tmp_index)+"]",string(tmp_ins.buff_left_time[tmp_index]));
 		}
 	}
 	

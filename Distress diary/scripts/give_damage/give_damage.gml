@@ -82,7 +82,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 			
 			
 			//공격당한 경우 어그로 끌리는 판정
-			var tmp_parents = object_get_parent(tmp_ins);
+			var tmp_parents = object_get_parent(tmp_ins.object_index);
 			if (percentage_k(50) && (tmp_parents == obj_monster_parents || tmp_parents == obj_floating_monster_parents))
 			{
 				tmp_var_name = string(tmp_var_name)+",targeted";
