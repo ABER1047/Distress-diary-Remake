@@ -127,7 +127,11 @@ with(obj_mob_parents)
 //과적
 if (global.my_weight > global.over_weight)
 {
-	apply_buff(tmp_my_p,4,5);
+	if (global.buff_left_time[4] <= 5)
+	{
+		apply_buff(tmp_my_p,4,10,false);
+	}
+	global.buff_left_time[4] = 10;
 }
 
 if (global.buff_left_time[5] > 0) //골절
@@ -152,7 +156,14 @@ if (global.buff_timer[6] > 180) //3초당 -1.5씩 체력 감소 (초당 0.5)
 
 
 //배고픔
-global.buff_left_time[7] = (global.hunger <= 10);
+if (global.hunger <= 10)
+{
+	if (global.buff_left_time[7] <= 5)
+	{
+		apply_buff(tmp_my_p,7,10);
+	}
+	global.buff_left_time[7] = 10;
+}
 if (global.buff_timer[7] > 600) //매 10초마다 배고픔에 비례하여 체력 감소 (최대 10초당 6씩 = 초당 0.6)
 {
 	tmp_my_p.hp -= (6-global.hunger*0.5);
@@ -161,8 +172,15 @@ if (global.buff_timer[7] > 600) //매 10초마다 배고픔에 비례하여 체�
 
 
 //목마름
-global.buff_left_time[8] = (global.hydration <= 10);
-if (global.buff_timer[8] > 600) //매 10초마다 목마름에 비례하여 체력 감소 (최대 10초당 2씩 = 초당 0.2)
+if (global.hydration <= 10)
+{
+	if (global.buff_left_time[8] <= 5)
+	{
+		apply_buff(tmp_my_p,8,10);
+	}
+	global.buff_left_time[8] = 10;
+}
+else if (global.buff_timer[8] > 600) //매 10초마다 목마름에 비례하여 체력 감소 (최대 10초당 2씩 = 초당 0.2)
 {
 	tmp_my_p.hp -= (2-global.hydration*0.1);
 	global.buff_timer[8] = 0;

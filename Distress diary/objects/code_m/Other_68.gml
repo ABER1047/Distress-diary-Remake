@@ -315,7 +315,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				
 				
 				//디버그 메세지로 받아온 값 출력
-				show_debug_message("send data [obj : "+string(tmp_obj_id)+" / var : "+string(tmp_name)+"] : "+string(tmp_val));
+				show_debug_message("data received [obj : "+string(tmp_obj_id)+" / var : "+string(tmp_name)+"] : "+string(tmp_val));
 				
 				//값이 적용될 인스턴스 찾기
 				var tmp_id_real = -4;
@@ -455,6 +455,7 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 				}
 				
 				
+				show_debug_message("data received [var : "+string(tmp_name)+"] : "+string(tmp_val));
 				var tmp_string_pos = string_pos("[",tmp_name);
 				if (tmp_string_pos != 0) //변수가 배열인 경우
 				{

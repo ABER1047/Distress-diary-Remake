@@ -36,6 +36,7 @@ for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
 {
 	buff_left_time[i] = 0; //남은 버프 시간
 }
+buff_applied_index = -4;
 
 
 //image_alpha값이랑 똑같은데 draw_sprite에서만 드로우 되지 않게 해주는 alpha값

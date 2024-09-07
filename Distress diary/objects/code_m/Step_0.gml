@@ -42,6 +42,12 @@ if (server == -4)
 	}
 }
 
+
+if (keyboard_check_pressed(vk_f10))
+{
+	global.ignore_non_focused = !global.ignore_non_focused;
+}
+
 ////////////////////////////////////////////////////////////////////////////////////////////
 
 if (global.chat_activated)

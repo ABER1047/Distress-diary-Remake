@@ -88,7 +88,7 @@ function pushable_objects_physics()
 		if (tmp_abs_speed > 0)
 		{
 			_speed += (0 - _speed)*0.15;
-			show_debug_message(_speed);
+			//show_debug_message(_speed);
 		}
 		else
 		{
@@ -102,7 +102,7 @@ function pushable_objects_physics()
 		if (tmp_abs_speed > 0)
 		{
 			_speed += (0 - _speed)*0.015;
-			show_debug_message(_speed);
+			//show_debug_message(_speed);
 		}
 		else
 		{

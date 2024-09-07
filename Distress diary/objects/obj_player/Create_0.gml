@@ -116,6 +116,7 @@ for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)
 {
 	buff_left_time[i] = 0; //남은 버프 시간
 }
+buff_applied_index = -4;
 
 
 

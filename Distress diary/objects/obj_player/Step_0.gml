@@ -43,8 +43,27 @@ my_pos_yy = global.n_player_room_yy[obj_id_player_only];
 
 
 
-
-
+//버프 효과 적용
+if (buff_applied_index >= 0)
+{
+	var i = buff_applied_index;
+	if (chk_is_my_player)
+	{
+		if (buff_left_time[i] > global.buff_left_time[i])
+		{
+			var get_max_time = max(global.buff_max_left_time[i],buff_left_time[i]);
+			global.buff_left_time[i] = buff_left_time[i];
+			global.buff_max_left_time[i] = get_max_time;
+			buff_left_time[i] = 0;
+		}
+	}
+	else
+	{
+		send_InstanceMuchVariableData(id,"buff_left_time["+string(i)+"],buff_applied_index",string(floor(buff_left_time[i]))+","+string(buff_applied_index));
+		buff_left_time[i] = 0.1;
+	}
+	buff_applied_index = -4;
+}
 
 //라이트 효과
 if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch || holding_item_spr_ind == spr_animated_soul_torch || holding_item_spr_ind == spr_animated_demon_torch))

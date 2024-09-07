@@ -6,7 +6,7 @@
 //화살 이동 및 히트 판정
 for(var i = 0; i < _speed; i++)
 {
-	show_debug_message("flying");
+	//show_debug_message("flying");
 	x += lengthdir_x(1,direction);
 	y += lengthdir_y(1,direction);
 	
@@ -26,12 +26,6 @@ for(var i = 0; i < _speed; i++)
 				show_message_log(tmp_ch);
 				if (tmp_ch <= 96)
 				{
-					for(var i = 0; i < 8; i++)
-					{
-						xx[i] = 0;
-						yy[i] = 0;
-					}
-				
 					is_on_mob = tmp_ins;
 					stop_flying = 16;
 					_speed = 0;
@@ -40,7 +34,7 @@ for(var i = 0; i < _speed; i++)
 					{
 						saved_xscale = sign(tmp_ins.image_xscale);
 						give_damage(tmp_ins,attack_dmg,true,knockback,x,y,60,critical_chance,magnification,bleeding_chance,poisoning_chance);
-						send_InstanceMuchVariableData(id,"x,y,saved_xscale",string(x)+","+string(y)+","+string(saved_xscale));
+						send_InstanceMuchVariableData(id,"x,y,saved_xscale",string(tmp_ins.x)+","+string(tmp_ins.y)+","+string(saved_xscale));
 					}
 				}
 			}

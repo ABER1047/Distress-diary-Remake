@@ -6,10 +6,10 @@
 ///@param name
 function send_GlobalVariableData(argument0)
 {
-	buffer_seek(global.variable_data_buffer, buffer_seek_start, 0);
-	buffer_write(global.variable_data_buffer, buffer_u8, global.DATA_GL_VAR_DATA);
-	buffer_write(global.variable_data_buffer, buffer_string, global.my_player_id);
-	buffer_write(global.variable_data_buffer, buffer_string, argument0);
-	buffer_write(global.variable_data_buffer, buffer_string, variable_global_get(argument0));
-	send_all(global.variable_data_buffer);
+	buffer_seek(global.variable_global_data_buffer, buffer_seek_start, 0);
+	buffer_write(global.variable_global_data_buffer, buffer_u8, global.DATA_GL_VAR_DATA);
+	buffer_write(global.variable_global_data_buffer, buffer_string, global.my_player_id);
+	buffer_write(global.variable_global_data_buffer, buffer_string, argument0);
+	buffer_write(global.variable_global_data_buffer, buffer_string, variable_global_get(argument0));
+	send_all(global.variable_global_data_buffer);
 }

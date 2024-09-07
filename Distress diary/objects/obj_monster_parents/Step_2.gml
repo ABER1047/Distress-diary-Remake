@@ -80,3 +80,12 @@ if (buff_left_time[15] > 0)
 		give_damage(id,1,true,0,x,y,10);
 	}
 }
+
+
+//버프 효과 적용
+if (buff_applied_index >= 0)
+{
+	var i = buff_applied_index;
+	send_InstanceMuchVariableData(id,"buff_left_time["+string(i)+"],buff_applied_index",string(floor(buff_left_time[i]))+","+string(buff_applied_index));
+	buff_applied_index = -4;
+}

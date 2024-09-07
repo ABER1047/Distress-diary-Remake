@@ -47,7 +47,7 @@ if (global.graphics_quality > 0)
 		depth = (y > tmp_depth) ? -floor(y) : -tmp_depth;
 		
 		//화살 궤적 애니메이션
-		if (xx[0] != xx[7])
+		if (_speed > 0)
 		{
 			if (animation_timer%2 == 0)
 			{

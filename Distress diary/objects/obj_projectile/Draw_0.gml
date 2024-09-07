@@ -4,7 +4,7 @@
 
 
 //화살 궤적 그리기
-if (global.graphics_quality > 0 && xx[0] != xx[7])
+if (global.graphics_quality > 0 && _speed > 0)
 {
 	var tmp_xx = lengthdir_x(3,image_angle);
 	var tmp_yy = lengthdir_y(3,image_angle);

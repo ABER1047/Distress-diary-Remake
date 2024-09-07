@@ -73,6 +73,8 @@ much_buffer = buffer_create(16384, buffer_grow, 1);
 
 //변수 전송용 버퍼
 global.variable_data_buffer = buffer_create(2048,buffer_grow,1);
+global.variable_single_data_buffer = buffer_create(2048,buffer_grow,1);
+global.variable_global_data_buffer = buffer_create(2048,buffer_grow,1);
 
 //맵 데이터 전송용 버퍼
 global.map_data_buffer = buffer_create(16384*4,buffer_grow,1);
