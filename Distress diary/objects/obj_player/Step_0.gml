@@ -49,21 +49,39 @@ if (buff_applied_index >= 0)
 	var i = buff_applied_index;
 	if (chk_is_my_player)
 	{
-		if (buff_left_time[i] > global.buff_left_time[i])
-		{
-			var get_max_time = max(global.buff_max_left_time[i],buff_left_time[i]);
-			global.buff_left_time[i] = buff_left_time[i];
-			global.buff_max_left_time[i] = get_max_time;
-			buff_left_time[i] = 0;
-		}
+		var get_max_time = max(global.buff_max_left_time[i],buff_left_time[i]);
+		global.buff_left_time[i] = buff_left_time[i];
+		global.buff_max_left_time[i] = get_max_time;
+		show_message_log("buff_applied_index : "+string(buff_applied_index)+" | buff_left_time :"+string(global.buff_left_time[i])+" / "+string(buff_left_time[i]));
+		buff_left_time[i] = 0.1;
 	}
 	else
 	{
-		send_InstanceMuchVariableData(id,"buff_left_time["+string(i)+"],buff_applied_index",string(floor(buff_left_time[i]))+","+string(buff_applied_index));
-		buff_left_time[i] = 0.1;
+		if (buff_left_time[i] >= 1)
+		{
+			send_InstanceMuchVariableData(id,"buff_left_time["+string(i)+"],buff_applied_index",string(floor(buff_left_time[i]))+","+string(i));
+			buff_left_time[i] = 0.1;
+		}
 	}
 	buff_applied_index = -4;
 }
+
+//화염 디버프 이펙트
+if (buff_left_time[19] > 0 && global.graphics_quality >= 2)
+{
+	repeat(irandom_range(1,3))
+	{
+		if (percentage_k(10))
+		{
+			var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
+			tmp_ins.image_xscale = 0.5;
+			tmp_ins.image_yscale = 0.5;
+		}
+	}
+}
+
+
+
 
 //라이트 효과
 if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch || holding_item_spr_ind == spr_animated_soul_torch || holding_item_spr_ind == spr_animated_demon_torch))

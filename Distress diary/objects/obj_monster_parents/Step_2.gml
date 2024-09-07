@@ -60,49 +60,52 @@ if (dmg_cooltime > 0)
 
 
 
-if (global.is_server)
+//출혈 디버프
+if (buff_left_time[6] > 0)
 {
-	//출혈 디버프
-	if (buff_left_time[6] > 0)
+	buff_left_time[6] --;
+	if (global.is_server && buff_left_time[6]%180 == 0)
 	{
-		buff_left_time[6] --;
-		if (buff_left_time[6]%180 == 0)
-		{
-			give_damage(id,1.5,true,0,x,y,10);
-		}
+		give_damage(id,1.5,true,0,x,y,10);
 	}
+}
 
-	//독 디버프
-	if (buff_left_time[15] > 0)
+//독 디버프
+if (buff_left_time[15] > 0)
+{
+	buff_left_time[15] --;
+	if (global.is_server && buff_left_time[15]%180 == 0)
 	{
-		buff_left_time[15] --;
-		if (buff_left_time[15]%180 == 0)
+		give_damage(id,1,true,0,x,y,10);
+	}
+}
+	
+//화염 디버프
+if (buff_left_time[19] > 0)
+{
+	buff_left_time[19] --;
+	if (buff_left_time[19]%180 == 0)
+	{
+		if (global.is_server)
 		{
 			give_damage(id,1,true,0,x,y,10);
 		}
 	}
-	
-	//화염 디버프
-	if (buff_left_time[19] > 0)
+	else if (buff_left_time[19]%5 == 0)
 	{
-		buff_left_time[19] --;
-		if (buff_left_time[19]%180 == 0)
-		{
-			give_damage(id,1,true,0,x,y,10);
-		}
-		else if (buff_left_time[19]%5 == 0)
+		if (global.is_server)
 		{
 			hp -= 0.1;
-			if (global.graphics_quality >= 2)
+		}
+		if (global.graphics_quality >= 2)
+		{
+			repeat(irandom_range(1,3))
 			{
-				repeat(irandom_range(1,3))
+				if (percentage_k(50))
 				{
-					if (percentage_k(50))
-					{
-						var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
-						tmp_ins.image_xscale = 0.5;
-						tmp_ins.image_yscale = 0.5;
-					}
+					var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
+					tmp_ins.image_xscale = 0.5;
+					tmp_ins.image_yscale = 0.5;
 				}
 			}
 		}

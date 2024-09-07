@@ -99,10 +99,10 @@ for(var i = 0; i < array_length(global.buff_left_time); i++)
 	{
 		global.buff_timer[i] ++;
 		global.buff_left_time[i] --;
-		if (global.buff_left_time[i] <= 1)
+		if (global.buff_left_time[i] <= 0)
 		{
-			apply_buff(tmp_my_p,i,0);
-			global.buff_max_left_time[i] = 1;
+			tmp_my_p.buff_left_time[19] = 0;
+			send_InstanceMuchVariableData(tmp_my_p,"buff_left_time["+string(i)+"],buff_applied_index","0,"+string(i));
 		}
 	}
 }
