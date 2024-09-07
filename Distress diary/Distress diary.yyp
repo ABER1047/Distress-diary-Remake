@@ -438,7 +438,6 @@
     {"id":{"name":"spr_stone_flake","path":"sprites/spr_stone_flake/spr_stone_flake.yy",},},
     {"id":{"name":"spr_stone","path":"sprites/spr_stone/spr_stone.yy",},},
     {"id":{"name":"spr_stripe","path":"sprites/spr_stripe/spr_stripe.yy",},},
-    {"id":{"name":"spr_swing_effect","path":"sprites/spr_swing_effect/spr_swing_effect.yy",},},
     {"id":{"name":"spr_tiles_breaks","path":"sprites/spr_tiles_breaks/spr_tiles_breaks.yy",},},
     {"id":{"name":"spr_tiles_cliff","path":"sprites/spr_tiles_cliff/spr_tiles_cliff.yy",},},
     {"id":{"name":"spr_tiles_other_effects","path":"sprites/spr_tiles_other_effects/spr_tiles_other_effects.yy",},},

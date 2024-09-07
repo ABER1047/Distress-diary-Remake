@@ -140,7 +140,7 @@ if (global.buff_left_time[5] > 0) //골절
 	{
 		global.movement_hspeed *= 0.75;
 		global.movement_vspeed *= 0.75;
-		give_damage(tmp_my_p,3,true,0,x,y,10);
+		give_damage(tmp_my_p,3,true,0,tmp_my_p.x,tmp_my_p.y,10);
 	}
 	
 	global.movement_vspeed += (0 - global.movement_vspeed)*0.01;
@@ -150,7 +150,7 @@ if (global.buff_left_time[5] > 0) //골절
 //출혈
 if (global.buff_timer[6] > 180) //3초당 -1.5씩 체력 감소 (초당 0.5)
 {
-	give_damage(tmp_my_p,1.5,true,0,x,y,10);
+	give_damage(tmp_my_p,1.5,true,0,tmp_my_p.x,tmp_my_p.y,10);
 	global.buff_timer[6] = 0;
 }
 
@@ -203,7 +203,7 @@ global.luck = (sign(global.buff_left_time[14])-sign(global.buff_left_time[13]))*
 //중독
 if (global.buff_timer[15] > 180) //매 3초마다 -1씩 체력 감소 (초당 0.33...)
 {
-	give_damage(tmp_my_p,1,true,0,x,y,10);
+	give_damage(tmp_my_p,1,true,0,tmp_my_p.x,tmp_my_p.y,10);
 	global.buff_timer[15] = 0;
 }
 
@@ -214,6 +214,36 @@ global.searching_speed = 100*(1-sign(global.buff_left_time[16])*0.3);
 
 //크리티컬 데미지 배율
 global.critical_dmg_magnification = 0.5*(1+sign(global.buff_left_time[18]));
+
+
+//화염
+if (global.buff_left_time[19] > 0)
+{
+	if (global.buff_left_time[19]%180 == 0)
+	{
+		give_damage(tmp_my_p,1,true,0,tmp_my_p.x,tmp_my_p.y,10);
+	}
+	else if (global.buff_left_time[19]%5 == 0)
+	{
+		tmp_my_p.hp -= 0.1;
+		if (global.graphics_quality >= 2)
+		{
+			repeat(irandom_range(1,3))
+			{
+				with(tmp_my_p)
+				{
+					if (id != other.id && percentage_k(50))
+					{
+						var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
+						tmp_ins.image_xscale = 0.5;
+						tmp_ins.image_yscale = 0.5;
+					}
+				}
+			}
+		}
+	}
+}
+
 
 
 //공격 속도 적용

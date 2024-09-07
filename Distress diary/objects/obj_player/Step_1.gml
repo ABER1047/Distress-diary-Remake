@@ -57,7 +57,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	//hp정보 보내기 (멀티플레이)
-	if (hp != b_hp)
+	if (floor(hp) != b_hp)
 	{
 		//사망시 이동 불가능하게
 		if (hp <= 0)
@@ -87,7 +87,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 				global.hp_recovery_time = 0;
 			}
 		
-			b_hp = hp;
+			b_hp = floor(hp);
 			if (!b_prohibit_movement_input)
 			{
 				global.prohibit_movement_input = false;

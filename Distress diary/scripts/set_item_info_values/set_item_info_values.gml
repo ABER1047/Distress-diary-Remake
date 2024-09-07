@@ -997,7 +997,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 		{
 			if (argument3 == undefined || argument3 == 0)
 			{
-				item_effect_desc = string(item_effect_desc)+string(tmp_str[2])+"% 크리티컬 찬스\n";
+				item_effect_desc = string(item_effect_desc)+string(tmp_str[2])+"% 크리티컬 데미지 찬스\n";
 			}
 			else
 			{
@@ -1018,12 +1018,17 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 		
 		if (tmp_str[7] != 0)
 		{
-			item_effect_desc = string(item_effect_desc)+string(tmp_str[7])+"% 출혈 찬스\n";
+			item_effect_desc = string(item_effect_desc)+string(tmp_str[7])+"% 출혈 효과 찬스\n";
 		}
 		
 		if (tmp_str[8] != 0)
 		{
-			item_effect_desc = string(item_effect_desc)+string(tmp_str[8])+"% 독 찬스\n";
+			item_effect_desc = string(item_effect_desc)+string(tmp_str[8])+"% 독 효과 찬스\n";
+		}
+		
+		if (tmp_str[9] != 0)
+		{
+			item_effect_desc = string(item_effect_desc)+string(tmp_str[9])+"% 화염 효과 찬스\n";
 		}
 	}
 	

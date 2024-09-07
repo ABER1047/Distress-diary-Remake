@@ -12,7 +12,8 @@
 ///@param [magnification]
 ///@param [bleeding_chance]
 ///@param [poisoning_chance]
-function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10)
+///@param [burning_chance]
+function give_damage(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11)
 {
 	var tmp_ins = argument0;
 	if (instance_exists(tmp_ins))
@@ -56,6 +57,12 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 				if (argument10 != undefined && percentage_k(argument10))
 				{
 					apply_buff(tmp_ins,15,360,true);
+				}
+				
+				//화염 디버프 적용
+				if (argument11 != undefined && percentage_k(argument11))
+				{
+					apply_buff(tmp_ins,19,600,false);
 				}
 				
 				tmp_ins.hp -= tmp_dmg;

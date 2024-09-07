@@ -10,7 +10,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
-	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0, tmp_bleeding = 0, tmp_poisoning = 0;
+	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0, tmp_bleeding = 0, tmp_poisoning = 0, tmp_burn = 0;
 	
 	if (tmp_spr_ind == spr_weapon)
 	{
@@ -251,6 +251,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				knockback = 0;
 				tmp_accurate = 70;
 				tmp_attack_type = 4;
+				tmp_burn = 90;
 			break;
 		}
 	}
@@ -277,7 +278,8 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		global.accurate = tmp_accurate;
 		global.bleeding_chance = tmp_bleeding;
 		global.poisoing_chance = tmp_poisoning;
+		global.burning_chance = tmp_burn;
 	}
 	
-	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate)+","+string(tmp_bleeding)+","+string(tmp_poisoning);
+	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate)+","+string(tmp_bleeding)+","+string(tmp_poisoning)+","+string(tmp_burn);
 }

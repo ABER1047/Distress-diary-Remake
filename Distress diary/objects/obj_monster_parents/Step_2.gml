@@ -16,7 +16,7 @@ depth = -floor(y);
 
 
 //플레이어 타깃팅
-if (instance_exists(targeted) && point_distance(x,y,targeted.x,targeted.y) < 960)
+if (instance_exists(targeted) && point_distance(x,y,targeted.x,targeted.y) < 1280)
 {
 	image_xscale = sign_nonzero(x - targeted.x)*abs(image_xscale);
 }
@@ -60,24 +60,52 @@ if (dmg_cooltime > 0)
 
 
 
-
-//출혈 디버프
-if (buff_left_time[6] > 0)
+if (global.is_server)
 {
-	buff_left_time[6] --;
-	if (buff_left_time[6]%180 == 0)
+	//출혈 디버프
+	if (buff_left_time[6] > 0)
 	{
-		give_damage(id,1.5,true,0,x,y,10);
+		buff_left_time[6] --;
+		if (buff_left_time[6]%180 == 0)
+		{
+			give_damage(id,1.5,true,0,x,y,10);
+		}
 	}
-}
 
-//독 디버프
-if (buff_left_time[15] > 0)
-{
-	buff_left_time[15] --;
-	if (buff_left_time[15]%180 == 0)
+	//독 디버프
+	if (buff_left_time[15] > 0)
 	{
-		give_damage(id,1,true,0,x,y,10);
+		buff_left_time[15] --;
+		if (buff_left_time[15]%180 == 0)
+		{
+			give_damage(id,1,true,0,x,y,10);
+		}
+	}
+	
+	//화염 디버프
+	if (buff_left_time[19] > 0)
+	{
+		buff_left_time[19] --;
+		if (buff_left_time[19]%180 == 0)
+		{
+			give_damage(id,1,true,0,x,y,10);
+		}
+		else if (buff_left_time[19]%5 == 0)
+		{
+			hp -= 0.1;
+			if (global.graphics_quality >= 2)
+			{
+				repeat(irandom_range(1,3))
+				{
+					if (percentage_k(50))
+					{
+						var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
+						tmp_ins.image_xscale = 0.5;
+						tmp_ins.image_yscale = 0.5;
+					}
+				}
+			}
+		}
 	}
 }
 
