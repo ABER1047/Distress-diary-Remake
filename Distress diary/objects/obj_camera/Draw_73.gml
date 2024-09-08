@@ -45,6 +45,7 @@ draw_set_color(#494E92);
 draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_for_draw/global.max_stamina)*scale),stamina_bar_ui_end_yy,false);
 
 
+
 //플레이어 현재 스테이터스 창 (공격력, 방어력 등등)
 var tmp_xx = xx+text_ratio*16;
 var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck), valToStrWithPoint(global.accurate) ];
@@ -67,7 +68,6 @@ draw_text_kl_scale(tmp_xx+text_ratio*16,yy+144*text_ratio,tmp_to_draw_str,95,-1,
 
 
 
-
 //HP 및 스테이터스 창
 if (global.graphics_quality > 0)
 {
@@ -86,7 +86,6 @@ if (global.graphics_quality > 0)
 	}
 }
 
-
 var tmp_values_for_display = [ global.my_weight, global.hydration, global.hunger ];
 var tmp_unit = [ "kg", "%", "%" ];
 for(var i = 0; i < 3; i++)
@@ -102,6 +101,31 @@ for(var i = 0; i < 3; i++)
 }
 
 
+
+
+
+//HP-Stamina정보창 띄우기
+var tmp_win_height = 40*text_ratio;
+var tmp_txt_size = 0.25;
+if (mouse_y > hp_bar_ui_yy && mouse_y < stamina_bar_ui_start_yy+scale*28 && mouse_x < hp_bar_ui_xx+scale*1.15*288)
+{
+	//뒷 배경 그리기
+	var tmp_str = "HP : "+string(tmp_my_p.hp)+"/"+string(global.max_hp)+"\nStamina : "+string(tmp_my_p.stamina)+"/"+string(global.max_stamina);
+	var tmp_name_to_draw = string(tmp_str); //아이템명
+	var tmp_txt_width = string_width(tmp_str)+2;
+	var tmp_win_width = (tmp_txt_width*0.3+2)*text_ratio;
+	draw_set_alpha(0.9);
+	draw_set_color(c_black);
+	draw_rectangle(mouse_x,mouse_y,mouse_x+tmp_win_width,mouse_y-tmp_win_height,false);
+			
+	//아이템명 그리기
+	var tmp_text_startx = mouse_x+4*text_ratio;
+	var tmp_text_starty = mouse_y-tmp_win_height-4*text_ratio;
+	draw_text_kl_scale(tmp_text_startx,tmp_text_starty-(14*text_ratio),tmp_name_to_draw,64,-1,1,c_white,0,-1,font_normal,tmp_txt_size,tmp_txt_size,0,true);
+}
+
+
+
 // 버프/디버프 UI
 var tmp_icon_scale = 0.4*global.ratio_by_camera;
 var tmp_buff_name = [ "Slowness", "Speed", "Weakness", "Strength", "Overweight", "Fractured", "Bleeding", "Starving", "Dehydrated", "Resistance", "Powerless", "Muscular", "Recovery", "Unlucky", "Lucky", "Poisoning", "Search", "Fear", "Smite", "Burn" ];
@@ -109,8 +133,6 @@ var tmp_buff_name_translated = [ "느림", "빠름", "나약함", "강인함", "
 var tmp_buff_info = [ "이동 속도 65% 저하", "이동 속도 15% 증가", "공격력 25% 감소", "공격력 25% 증가", "이동 속도 및 점프력 "+string((1-tmp_my_p.speed_by_weight)*100)+"% 감소", "달리거나 점프 시 -3 HP 감소 및 이동 속도 저하", "3초마다 -1.5 HP 감소", "10초마다 -"+string(6-global.hunger*0.5)+" HP 감소", "10초마다 -"+string(2-global.hydration*0.1)+" HP 감소", "방어력 25% 증가", "방어력 25% 감소", "최대 중량 10kg 증가", "5초마다 +2 HP 회복", "행운 -2 감소", "행운 +2 증가", "3초마다 -1 HP 감소", "아이템 서칭 속도 30% 증가", "누군가가 쫒아오는 느낌이 듭니다...", "크리티컬 데미지 200%", "HP 감소" ];
 var tmp_info_length = 1;
 var tmp_real_width = tmp_icon_scale*20;
-var tmp_win_height = 60*text_ratio;
-var tmp_txt_size = 0.25;
 
 for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 {
