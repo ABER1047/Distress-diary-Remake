@@ -71,7 +71,7 @@ if (buff_left_time[19] > 0 && global.graphics_quality >= 2)
 {
 	repeat(irandom_range(1,3))
 	{
-		if (percentage_k(10))
+		if (percentage_k(7))
 		{
 			var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
 			tmp_ins.image_xscale = 0.5;
