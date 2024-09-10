@@ -110,7 +110,7 @@ var tmp_txt_size = 0.25;
 if (mouse_y > hp_bar_ui_yy && mouse_y < stamina_bar_ui_start_yy+scale*28 && mouse_x < hp_bar_ui_xx+scale*1.15*288)
 {
 	//뒷 배경 그리기
-	var tmp_str = "HP : "+string(tmp_my_p.hp)+"/"+string(global.max_hp)+"\nStamina : "+string(tmp_my_p.stamina)+"/"+string(global.max_stamina);
+	var tmp_str = "HP : "+string(floor(tmp_my_p.hp))+"/"+string(global.max_hp)+"\nStamina : "+string(floor(tmp_my_p.stamina))+"/"+string(global.max_stamina);
 	var tmp_name_to_draw = string(tmp_str); //아이템명
 	var tmp_txt_width = string_width(tmp_str)+2;
 	var tmp_win_width = (tmp_txt_width*0.3+2)*text_ratio;
