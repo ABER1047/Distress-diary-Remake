@@ -36,23 +36,23 @@ if (!stop_cal_by_pos_statement && z == 0 && sprite_index != spr_none)
 		if (touched != tmp_ins)
 		{
 			touched = tmp_ins;
-			var is_empty = find_empty_pos(sprite_index,image_index,item_width,item_height,stack_num,tmp_ins);
-			if (is_empty)
+			var tmp_chk = find_empty_pos_quickslot(sprite_index,image_index,stack_num);
+			if (tmp_chk != -4)
 			{
-				set_inv_variable(tmp_ins,global.inv_empty_xpos,global.inv_empty_ypos,sprite_index,image_index,stack_num,global.inv_empty_rotated,1,startag);
-				
-				with(obj_inv_ui)
-				{
-					reload_inv = 1;
-				}
+				set_quickslot_variable(tmp_chk[0],sprite_index,image_index,tmp_chk[1],get_rare_rate(id),startag);
 				instance_destroy_multiplayer(id);
 			}
 			else
 			{
-				var tmp_chk = find_empty_pos_quickslot();
-				if (tmp_chk != -4)
+				var has_empty_pos = find_empty_pos(sprite_index,image_index,item_width,item_height,stack_num,tmp_ins);
+				if (has_empty_pos == true)
 				{
-					set_quickslot_variable(tmp_chk,sprite_index,image_index,stack_num,get_rare_rate(id),startag);
+					set_inv_variable(tmp_ins,global.inv_empty_xpos,global.inv_empty_ypos,sprite_index,image_index,stack_num,global.inv_empty_rotated,1,startag);
+				
+					with(obj_inv_ui)
+					{
+						reload_inv = 1;
+					}
 					instance_destroy_multiplayer(id);
 				}
 				else

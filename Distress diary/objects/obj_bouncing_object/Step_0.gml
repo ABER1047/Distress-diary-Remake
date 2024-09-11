@@ -70,25 +70,14 @@ else
 
 
 
-//n프레임 뒤 자동 삭제
-des_timer ++;
-if (des_timer > t_des_time)
-{
-	image_xscale += (-0.01 - image_xscale)*0.2;
-	image_yscale += (-0.01 - image_yscale)*0.2;
-	
-	if (image_xscale <= 0)
-	{
-		instance_destroy();
-	}
-}
 
 
 
 
 
 //토치인 경우
-if (!stop_cal_by_pos_statement && (sprite_index == spr_animated_torch || sprite_index == spr_animated_soul_torch || sprite_index == spr_animated_demon_torch))
+var chk_torch = (sprite_index == spr_animated_torch || sprite_index == spr_animated_soul_torch || sprite_index == spr_animated_demon_torch);
+if (!stop_cal_by_pos_statement && chk_torch)
 {
 	if (z <= 15)
 	{
@@ -137,3 +126,32 @@ if (!stop_cal_by_pos_statement && (sprite_index == spr_animated_torch || sprite_
 	}
 }
 
+
+
+
+
+
+
+//n프레임 뒤 자동 삭제
+des_timer ++;
+if (des_timer > t_des_time)
+{
+	image_xscale += (-0.01 - image_xscale)*0.2;
+	image_yscale += (-0.01 - image_yscale)*0.2;
+	
+	if (image_xscale <= 0)
+	{
+		if (chk_torch && percentage_k(40))
+		{
+			var tmp_spr = [ spr_animated_torch, spr_animated_soul_torch, spr_animated_demon_torch ];
+			for(var i = 0; i < 3; i++)
+			{
+				if (sprite_index == tmp_spr[i])
+				{
+					drop_item(9,i,1,1,1,0,true,x,y);
+				}
+			}
+		}
+		instance_destroy();
+	}
+}

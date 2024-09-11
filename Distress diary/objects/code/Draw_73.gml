@@ -415,7 +415,7 @@ if (keyboard_check_pressed(vk_tab))
 	{
 		instance_destroy(obj_inv_ui);
 	}
-	show_message_log("- 인벤토리 열기/닫기 ["+string(global.showing_inv)+"]");
+	//show_message_log("- 인벤토리 열기/닫기 ["+string(global.showing_inv)+"]");
 }
 
 

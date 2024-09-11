@@ -321,20 +321,20 @@ if (instance_exists(parents_id))
 						nearsest_inv_variable_owner_ins = tmp_nearest_inv_ui.variable_owner; //아이템이 옮겨질 자리
 					
 						//빈 자리 찾기 알고리즘 실행
-						var has_empty_pos = find_empty_pos(origin_spr,origin_img,origin_item_width,origin_item_height,origin_stack_num,nearsest_inv_variable_owner_ins);
-						if (has_empty_pos == true)
+						var quickslot_has_empty_pos = find_empty_pos_quickslot(origin_spr,origin_img,origin_stack_num);
+						if (quickslot_has_empty_pos != -4)
 						{
-							//새로운 자리에 아이템 정보 배열에 저장
-							set_inv_variable(nearsest_inv_variable_owner_ins,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_stack_num,global.inv_empty_rotated,origin_item_searched,origin_startag);
+							set_quickslot_variable(quickslot_has_empty_pos[0],origin_spr,origin_img,quickslot_has_empty_pos[1],rare_rate,origin_startag,item_weight);
 						}
-						else if (has_empty_pos == false)
+						else
 						{
-							var quickslot_has_empty_pos = find_empty_pos_quickslot();
-							if (quickslot_has_empty_pos != -4)
+							var has_empty_pos = find_empty_pos(origin_spr,origin_img,origin_item_width,origin_item_height,origin_stack_num,nearsest_inv_variable_owner_ins);
+							if (has_empty_pos == true)
 							{
-								set_quickslot_variable(quickslot_has_empty_pos,origin_spr,origin_img,origin_stack_num,rare_rate,origin_startag,item_weight);
+								//새로운 자리에 아이템 정보 배열에 저장
+								set_inv_variable(nearsest_inv_variable_owner_ins,global.inv_empty_xpos,global.inv_empty_ypos,origin_spr,origin_img,origin_stack_num,global.inv_empty_rotated,origin_item_searched,origin_startag);
 							}
-							else
+							else if (has_empty_pos == false)
 							{
 								//자리가 없으면 삭제한 아이템 복구
 								set_inv_variable(variable_owner_ins,tmp_kk,tmp_k,origin_spr,origin_img,origin_stack_num,origin_item_rorated,origin_item_searched,origin_startag);
