@@ -123,6 +123,19 @@ with(obj_mob_parents)
 	}
 }
 
+//독 효과 - 슬라임 점액질 충돌 판정
+with(obj_mob_parents)
+{
+	if (z <= 0 && place_meeting(x,y,obj_poison_effect))
+	{
+		other.tmp_timer_poisoning_effect ++;
+		if (other.tmp_timer_poisoning_effect%180 == 0 && id == tmp_my_p)
+		{
+			apply_buff(id,15,other.tmp_timer_poisoning_effect/3);
+		}
+	}
+}
+
 
 //과적
 if (global.my_weight > global.over_weight)

@@ -25,7 +25,9 @@ if (!stop_cal_by_pos_statement)
 	
 	//라이트 효과
 	var tmp_value = sin((idle_animation/180)*pi);
-	c_light(#3E375C,(0.3+abs(tmp_value))*0.75,0.2+tmp_value*0.1,x,y-z);
+	var tmp_alpha_b = (0.3+abs(tmp_value))*0.75;
+	var tmp_alpha = (attack_timer > 180) ? tmp_alpha_b*image_alpha : tmp_alpha_b;
+	c_light(#3E375C,tmp_alpha,0.2+tmp_value*0.1,x,y-z);
 	
 	
 	//idle animation
@@ -44,6 +46,28 @@ if (!stop_cal_by_pos_statement)
 	}
 
 
+
+
+	//패턴
+	if (dmg_cooltime > 0)
+	{
+		attack_timer = 0;
+	}
+	
+	if (attack_timer > 180)
+	{
+		image_alpha += (-0.01 - image_alpha)*0.05;
+		
+		if (image_alpha < 0)
+		{
+			_speed += (6 - _speed)*0.1;
+			direction += angle_difference(point_direction(x,y,targeted.x,targeted.y),direction)*0.3;
+		}
+	}
+	else
+	{
+		attack_timer ++;
+	}
 
 
 

@@ -309,3 +309,6 @@ global.camera_target = -4;
 
 //슬로우 스텝
 alarm[1] = 15;
+
+//임시 변수
+tmp_timer_poisoning_effect = 0;

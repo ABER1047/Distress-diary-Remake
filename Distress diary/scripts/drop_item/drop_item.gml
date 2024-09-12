@@ -34,7 +34,7 @@ function drop_item(argument0,argument1,argument2,argument3,argument4,argument5,a
 			tmp_nearest_dropped_item.inv_width = 9; //빈공간 검사 알고리즘 때문에 임시적으로 칸 수 늘려줬음
 			tmp_nearest_dropped_item.inv_height = 9;
 			var has_empty_pos = find_empty_pos(tmp_spr_ind,tmp_img_ind,tmp_width,tmp_height,tmp_stacks,tmp_nearest_dropped_item);
-			if (has_empty_pos == true)
+			if (has_empty_pos != false)
 			{
 				show_message_log("- 아이템 떨어뜨림 [빈칸에 아이템 집어넣기]");
 						

@@ -40,7 +40,7 @@ if (!stop_cal_by_pos_statement)
 	
 		if (tracking_timer > 15)
 		{
-			var tmp_dir = point_direction(x,y,targeted.x,targeted.y);
+			var tmp_dir = point_direction(x,y,targeted.x,targeted.y)+choose(-1,1);
 			var tmp_cal = tmp_dir - direction;
 			var tmp_scale = abs(image_xscale);
 			tracking_dir = angle_difference(direction,tmp_dir);

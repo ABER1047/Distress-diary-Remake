@@ -96,11 +96,12 @@ function find_empty_pos(argument0,argument1,argument2,argument3,argument4,argume
 												//갯수 초과가 안 나면 아이템 겹치기
 												tmp_variable_owner.inv_info_stack_num[target_pos_yy][target_pos_xx] = tmp_total_stack;
 												
+												show_message_log("stacking : "+string(tmp_item_stacks)+" / "+string(var_owner_stacks)+" / "+string(tmp_total_stack));
 												//초과 안해도 해당 자리에 아이템을 배치하는 것이 아닌
 												//스택 값만 좀 수정해주면 되서, 배치 안하는걸로 함
 												global.inv_empty_xpos = ii;
 												global.inv_empty_ypos = i;
-												return -4; //-4는 아이템 복구 없이 그냥 삭제만 한다는 뜻
+												return tmp_total_stack+1; //총 스택 갯수 반환
 											}
 										}
 									}

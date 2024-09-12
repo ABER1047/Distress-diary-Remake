@@ -82,5 +82,10 @@ function set_inv_variable(argument0,argument1,argument2,argument3,argument4,argu
 		}
 	}
 	
+	with(obj_inv_ui)
+	{
+		reload_inv = 1; //인벤토리 ui정보 리로드
+	}
+	
 	//show_debug_message("set_inv_variable : "+string(tmp_ins)+" / "+string(tmp_ins.inv_info_name_compressed));
 }

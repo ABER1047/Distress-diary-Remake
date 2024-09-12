@@ -208,7 +208,7 @@ if (global.chat_activated)
 						}
 						else if (i == 15) //몬스터 생성
 						{
-							var tmp_mob_obj_ind = [ obj_fireball, obj_wisp, obj_skull_head, obj_skeleton, obj_green_slime, obj_corruption_slime ];
+							var tmp_mob_obj_ind = [ obj_fireball, obj_wisp, obj_skull_head, obj_skeleton, obj_green_slime, obj_corruption_slime, obj_crimson_slime ];
 							var rd_select = (tmp_parameter == 0) ? irandom_range(0,array_length(tmp_mob_obj_ind)-1) : tmp_parameter-1;
 							var tmp_ins = instance_create_multiplayer(tmp_mob_obj_ind[(array_length(tmp_mob_obj_ind) <= rd_select) ? array_length(tmp_mob_obj_ind)-1 : rd_select],mouse_x,mouse_y,global.object_id_ind,0,false,-4,4);
 							

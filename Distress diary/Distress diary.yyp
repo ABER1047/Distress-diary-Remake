@@ -92,6 +92,7 @@
     {"id":{"name":"obj_cherry_bomb","path":"objects/obj_cherry_bomb/obj_cherry_bomb.yy",},},
     {"id":{"name":"obj_cliff","path":"objects/obj_cliff/obj_cliff.yy",},},
     {"id":{"name":"obj_corruption_slime","path":"objects/obj_corruption_slime/obj_corruption_slime.yy",},},
+    {"id":{"name":"obj_crimson_slime","path":"objects/obj_crimson_slime/obj_crimson_slime.yy",},},
     {"id":{"name":"obj_cursor_sec","path":"objects/obj_cursor_sec/obj_cursor_sec.yy",},},
     {"id":{"name":"obj_cursor","path":"objects/obj_cursor/obj_cursor.yy",},},
     {"id":{"name":"obj_damage_display","path":"objects/obj_damage_display/obj_damage_display.yy",},},

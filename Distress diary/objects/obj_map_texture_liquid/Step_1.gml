@@ -67,20 +67,9 @@ if (surface_exists(global.liquid_on_floor_surf))
 		if ((global.graphics_quality > 0 || object_index != obj_blood_effect) && id != other.id && object_index != obj_explosion_effect_on_ground && global.n_player_room_xx[global.my_player_id] == my_pos_xx && global.n_player_room_yy[global.my_player_id] == my_pos_yy)
 		{
 			var tmp_color = #7A213A;
-			if (object_index == obj_poison_effect)
+			if (object_index != obj_blood_effect)
 			{
-				tmp_color = #44A978;
-			}
-			else if (object_index == obj_mucus_effect)
-			{
-				if (image_blend == #BD430B)
-				{
-					tmp_color = image_blend;
-				}
-				else
-				{
-					tmp_color = #16A700;
-				}
+				tmp_color = image_blend;
 			}
 				
 				

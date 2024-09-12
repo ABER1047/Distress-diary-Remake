@@ -22,14 +22,14 @@ if (instance_exists(targeted))
 		//타깃팅된 플레이어 따라가기
 		var max_speed = 2;
 		_speed += (max_speed - _speed)*0.1;
-		direction += angle_difference(point_direction(targeted.x,targeted.y,x,y),direction)*0.1;
+		direction += angle_difference(point_direction(targeted.x,targeted.y,x,y)+choose(-1,1),direction)*0.1;
 	}
 	else if (tmp_dis < 640)
 	{
 		//타깃팅된 플레이어 따라가기
 		var max_speed = 2;
 		_speed += (max_speed - _speed)*0.1;
-		direction += angle_difference(point_direction(x,y,targeted.x,targeted.y),direction)*0.1;
+		direction += angle_difference(point_direction(x,y,targeted.x,targeted.y)+choose(-1,1),direction)*0.1;
 	}
 	else
 	{
@@ -136,7 +136,7 @@ if (buff_left_time[19] > 0)
 		{
 			hp -= 0.1;
 		}
-		if (global.graphics_quality >= 2)
+		if (image_alpha > 0 && global.graphics_quality >= 2)
 		{
 			repeat(irandom_range(1,3))
 			{

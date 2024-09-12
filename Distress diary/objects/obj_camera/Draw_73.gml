@@ -328,21 +328,15 @@ for(var i = 8; i >= 0; i--)
 		}
 		else
 		{
-			var _chk1 = mouse_check_button_released(mb_left), _chk2 = mouse_check_button_pressed(mb_right);
-			if (_chk2 && tmp_quickslot_spr != -4 && instance_exists(global.showing_inv))
+			if (mouse_check_button_released(mb_right) && tmp_quickslot_spr != -4 && instance_exists(global.showing_inv))
 			{
 				//퀵 슬롯에 있는 아이템 인벤으로 옮기기
 				var tmp_item_name = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img);
 				var has_empty_pos = find_empty_pos(tmp_quickslot_spr,tmp_quickslot_img,global.item_width,global.item_height,tmp_quickslot_stacks,tmp_my_p);
-							
-				if (has_empty_pos == true) //인벤에 칸이 있는 경우
+				if (has_empty_pos != false) //인벤에 칸이 있는 경우
 				{
-					set_inv_variable(global.my_player_ins_id[global.my_player_id],global.inv_empty_xpos,global.inv_empty_ypos,tmp_quickslot_spr,tmp_quickslot_img,tmp_quickslot_stacks,global.inv_empty_rotated,1,tmp_quickslot_startag);
-								
-					with(obj_inv_ui)
-					{
-						reload_inv = 1;
-					}
+					set_inv_variable(global.my_player_ins_id[global.my_player_id],global.inv_empty_xpos,global.inv_empty_ypos,tmp_quickslot_spr,tmp_quickslot_img,(has_empty_pos == true) ? tmp_quickslot_stacks : has_empty_pos-1,global.inv_empty_rotated,1,tmp_quickslot_startag);
+					show_message_log(tmp_my_p.inv_info_stack_num[global.inv_empty_ypos][global.inv_empty_xpos]);
 				}
 				else
 				{
@@ -360,7 +354,7 @@ for(var i = 8; i >= 0; i--)
 				//후 처리
 				global.quickslot_index = i;
 			}
-			else if (_chk1)
+			else if (mouse_check_button_released(mb_left))
 			{
 				//인벤토리 아이템을 드래그 중 아닐때
 				global.quickslot_index = i;

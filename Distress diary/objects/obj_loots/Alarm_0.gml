@@ -673,7 +673,7 @@ var tmp_width = global.item_width; //생성할 아이템 width
 var tmp_height = global.item_height; //생성할 아이템 height
 	
 var has_empty_pos = find_empty_pos(tmp_spr_ind,tmp_img_ind,tmp_width,tmp_height,tmp_stack,id); //상자 안의 빈자리 찾기
-if (has_empty_pos == true)
+if (has_empty_pos != false)
 {
 	set_inv_variable(id,global.inv_empty_xpos,global.inv_empty_ypos,tmp_spr_ind,tmp_img_ind,tmp_stack,global.inv_empty_rotated,0);
 	if (item_num_to_create > 0)
