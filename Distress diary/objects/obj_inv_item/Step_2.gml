@@ -46,29 +46,9 @@ if (item_searched == 1 && mouse_on == 1 && mouse_check_button_pressed(mb_right))
 			tmp_bp_size[0] = real(tmp_bp_size[0]);
 			tmp_bp_size[1] = real(tmp_bp_size[1]);
 		
-			//백팩 교체 가능한지 체크
-			var chk_can_change_bp = true;
-		
-			//내 플레이어 관련 임시 변수
-			var tmp_inv_width = tmp_my_p.inv_width, tmp_inv_height = tmp_my_p.inv_height;
-		
-			//교체 가능 체크용 임시 변수
-			for(var i = 0; i < tmp_inv_height; i++)
-			{
-				for(var ii = 0; ii < tmp_inv_width; ii++)
-				{
-					if (inv_owner.inv_info_spr_ind[i][ii] >= 0)
-					{
-						chk_can_change_bp = false;
-						break;
-						break;
-					}
-				}
-			}
 			
-			
-			
-			if (chk_can_change_bp)
+			//교체 가능한지 체크
+			if (is_fully_empty(tmp_my_p))
 			{
 				with(tmp_my_p)
 				{
@@ -100,7 +80,7 @@ if (item_searched == 1 && mouse_on == 1 && mouse_check_button_pressed(mb_right))
 		else
 		{
 			//가방 장착 못하면 인벤에 넣기
-			var has_empty_pos = find_empty_pos(sprite_index,image_index,item_width,item_height,stack_num,tmp_my_p);
+			var has_empty_pos = (tmp_my_p != tmp_ins) ? find_empty_pos(sprite_index,image_index,item_width,item_height,stack_num,tmp_my_p) : false;
 			if (has_empty_pos != false)
 			{
 				set_inv_variable(tmp_my_p,global.inv_empty_xpos,global.inv_empty_ypos,sprite_index,image_index,(has_empty_pos == true) ? stack_num : has_empty_pos-1,global.inv_empty_rotated,1,startag);
@@ -133,7 +113,7 @@ if (item_searched == 1 && mouse_on == 1 && mouse_check_button_pressed(mb_right))
 		else
 		{
 			//퀵 슬롯 공간 없으면 인벤에 넣기
-			var has_empty_pos = find_empty_pos(sprite_index,image_index,item_width,item_height,stack_num,tmp_my_p);
+			var has_empty_pos = (tmp_my_p != tmp_ins) ? find_empty_pos(sprite_index,image_index,item_width,item_height,stack_num,tmp_my_p) : false;
 			if (has_empty_pos != false)
 			{
 				set_inv_variable(tmp_my_p,global.inv_empty_xpos,global.inv_empty_ypos,sprite_index,image_index,(has_empty_pos == true) ? stack_num : has_empty_pos-1,global.inv_empty_rotated,1,startag);

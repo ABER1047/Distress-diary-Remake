@@ -265,6 +265,31 @@ if (global.n_backpack != 0)
 //백팩 아이템 아이콘 그리기
 draw_sprite_ext(tmp_bp_spr,tmp_bp_img_ind,tmp_slot_xx,tmp_ui_yy+tmp_slot_half_height,ui_scale,ui_scale,0,c_white,tmp_bp_alpha);
 
+var tmp_chk_y_pos = abs(mouse_y-tmp_ui_yy-tmp_slot_half_height) < tmp_slot_half_height;
+var is_mouse_inside_certain_quickslot_pos = tmp_chk_y_pos && abs(mouse_x-tmp_slot_xx) < tmp_slot_half_height;
+if (is_mouse_inside_certain_quickslot_pos && tmp_bp_spr != spr_ui && chk_can_switch_quickslot_index)
+{
+	//아이템 정보창 표기
+	var tmp_get_item_info = set_item_info_values(tmp_bp_spr,tmp_bp_img_ind,true,0);
+	var tmp_bg_color = [c_white, #3898FF, #8C52A8, #FFBF36];
+	show_item_info_window(tmp_get_item_info[0],tmp_get_item_info[6],tmp_get_item_info[9],tmp_get_item_info[8],tmp_bg_color[get_rare_rate(tmp_bp_spr,tmp_bp_img_ind)],tmp_get_item_info[7],-4,tmp_get_item_info[3],0,tmp_bp_spr,tmp_bp_img_ind);
+	
+	
+	if (mouse_check_button_released(mb_right) && instance_exists(global.showing_inv) && is_fully_empty(tmp_my_p))
+	{
+		//아이템 떨구기
+		drop_item(tmp_bp_spr,tmp_bp_img_ind,-4,global.item_width,global.item_height,0);
+							
+		//퀵 슬롯 아이템 삭제
+		global.n_backpack = 0;
+		show_debug_message("item_destroyed");
+								
+		//효과음
+		play_sound(draging_item,false,0.03);
+	}
+}
+
+
 
 
 //일반 슬롯 칸
@@ -314,7 +339,7 @@ for(var i = 8; i >= 0; i--)
 		{
 			var tmp_get_item_info = set_item_info_values(tmp_quickslot_spr,tmp_quickslot_img,true,global.quickslot_startag[i]);
 			var tmp_bg_color = [c_white, #3898FF, #8C52A8, #FFBF36];
-			show_item_info_window(tmp_get_item_info[0],tmp_get_item_info[6],tmp_get_item_info[9],tmp_get_item_info[8],tmp_bg_color[global.quickslot_rare[i]],tmp_get_item_info[7],global.quickslot_stack_num[i],tmp_get_item_info[3],global.quickslot_startag[i]);
+			show_item_info_window(tmp_get_item_info[0],tmp_get_item_info[6],tmp_get_item_info[9],tmp_get_item_info[8],tmp_bg_color[global.quickslot_rare[i]],tmp_get_item_info[7],global.quickslot_stack_num[i],tmp_get_item_info[3],global.quickslot_startag[i],global.quickslot_spr_ind[i],global.quickslot_img_ind[i]);
 		}
 	
 		var mb_chk_ = mouse_check_button(mb_left);
@@ -336,7 +361,6 @@ for(var i = 8; i >= 0; i--)
 				if (has_empty_pos != false) //인벤에 칸이 있는 경우
 				{
 					set_inv_variable(global.my_player_ins_id[global.my_player_id],global.inv_empty_xpos,global.inv_empty_ypos,tmp_quickslot_spr,tmp_quickslot_img,(has_empty_pos == true) ? tmp_quickslot_stacks : has_empty_pos-1,global.inv_empty_rotated,1,tmp_quickslot_startag);
-					show_message_log(tmp_my_p.inv_info_stack_num[global.inv_empty_ypos][global.inv_empty_xpos]);
 				}
 				else
 				{

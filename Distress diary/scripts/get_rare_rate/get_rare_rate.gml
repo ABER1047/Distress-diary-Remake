@@ -2,23 +2,21 @@
 // https://help.yoyogames.com/hc/en-us/articles/360005277377 for more information
 
 
-///@param item_obj_ins
-///@param [item_name]
+///@param spr_ind
+///@param img_ind
 function get_rare_rate(argument0,argument1)
 {
-	var tmp_ins = argument0;
-	var tmp_item_name = (argument1 == undefined) ? set_item_info_values(tmp_ins.sprite_index,tmp_ins.image_index) : argument1;
-	
-	var tmp_value = global.item_value;
-	if (tmp_value < 10)
+	var tmp_spr = argument0, tmp_img = argument1;
+	var tmp_value = set_item_info_values(tmp_spr,tmp_img,true);
+	if (tmp_value[7] < 10)
 	{
 		return 0;
 	}
-	else if (tmp_value < 15)
+	else if (tmp_value[7] < 15)
 	{
 		return 1;
 	}
-	else if (tmp_value < 28)
+	else if (tmp_value[7] < 28)
 	{
 		return 2;
 	}

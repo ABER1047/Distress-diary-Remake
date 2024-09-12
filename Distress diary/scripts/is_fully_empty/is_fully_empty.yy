@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"is_fully_empty",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"is_fully_empty",
+  "parent":{
+    "name":"Inventory",
+    "path":"folders/스크립트/Inventory.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

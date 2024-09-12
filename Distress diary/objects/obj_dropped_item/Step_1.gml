@@ -39,7 +39,7 @@ if (!stop_cal_by_pos_statement && z == 0 && sprite_index != spr_none)
 			var tmp_chk = find_empty_pos_quickslot(sprite_index,image_index,stack_num);
 			if (tmp_chk != -4)
 			{
-				set_quickslot_variable(tmp_chk[0],sprite_index,image_index,tmp_chk[1],get_rare_rate(id),startag);
+				set_quickslot_variable(tmp_chk[0],sprite_index,image_index,tmp_chk[1],get_rare_rate(sprite_index,image_index),startag);
 				instance_destroy_multiplayer(id);
 			}
 			else

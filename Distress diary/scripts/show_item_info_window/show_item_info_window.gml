@@ -12,7 +12,9 @@
 ///@param stack_num
 ///@param item_weight
 ///@param startag
-function show_item_info_window(item_name,item_name_translated,item_effect_desc,item_desc,tmp_bg_color,item_value,stack_num,item_weight,startag)
+///@param [spr_ind]
+///@param [img_ind]
+function show_item_info_window(item_name,item_name_translated,item_effect_desc,item_desc,tmp_bg_color,item_value,stack_num,item_weight,startag,spr_ind = sprite_index,img_ind = image_index)
 {
 	//뒷 배경 그리기
 	var h_yy = camera_get_view_height(view_camera[0]);
@@ -69,9 +71,9 @@ function show_item_info_window(item_name,item_name_translated,item_effect_desc,i
 	var tmp_weight_txt_yy = tmp_slot_size_txt_yy+24*text_ratio;
 		
 	//가방 칸수
-	if (sprite_index == spr_backpack)
+	if (spr_ind == spr_backpack)
 	{
-		switch(image_index)
+		switch(img_ind)
 		{
 			case 0:
 				tmp_txt_str = "4x4 사이즈";
