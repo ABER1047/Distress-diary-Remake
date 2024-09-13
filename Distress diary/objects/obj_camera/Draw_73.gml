@@ -278,7 +278,7 @@ if (is_mouse_inside_certain_quickslot_pos && tmp_bp_spr != spr_ui && chk_can_swi
 	if (mouse_check_button_released(mb_right) && instance_exists(global.showing_inv) && is_fully_empty(tmp_my_p))
 	{
 		//아이템 떨구기
-		drop_item(tmp_bp_spr,tmp_bp_img_ind,-4,global.item_width,global.item_height,0);
+		drop_item(0,tmp_bp_img_ind,-4,global.item_width,global.item_height,0,true,tmp_my_p.x,tmp_my_p.y,true);
 							
 		//퀵 슬롯 아이템 삭제
 		global.n_backpack = 0;

@@ -11,7 +11,8 @@
 ///@param [singleInstance]
 ///@param [x-drop_pos]
 ///@param [y-drop_pos]
-function drop_item(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8)
+///@param [random_speed]
+function drop_item(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9)
 {
 	var tmp_spr_ind = argument0, tmp_img_ind = argument1, tmp_stacks = argument2, tmp_width = argument3, tmp_height = argument4, tmp_startag = argument5;
 	
@@ -132,6 +133,11 @@ function drop_item(argument0,argument1,argument2,argument3,argument4,argument5,a
 	{
 		var tmp_val_name = "spr_ind, stack_num, startag, item_width, item_height, img_ind";
 		var tmp_val = string(tmp_spr_ind)+","+string(tmp_stacks)+","+string(tmp_startag)+","+string(tmp_width)+","+string(tmp_height)+","+string(tmp_img_ind);
+		if (argument9 == true)
+		{
+			tmp_val_name = string(tmp_val_name)+", _hspeed, _vspeed";
+			tmp_val = string(tmp_val)+","+string(irandom_range(-10,10))+","+string(irandom_range(-10,10));
+		}
 		var tmp_ins = instance_create_multiplayer_ext(obj_dropped_item,argument7,argument8,global.object_id_ind,tmp_img_ind,false,-4,-4,tmp_val_name,tmp_val);
 		return tmp_ins;
 	}
