@@ -426,6 +426,14 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_name_translated = "독극물";
 				item_value = 3;
 			break;
+			
+			case 14:
+				tmp_short_name = "Beer";
+				tmp_name = "Bottle of Beer";
+				item_weight = 0.4;
+				item_name_translated = "맥주";
+				item_value = 12;
+			break;
 		}
 	}
 	else if (argument0 == spr_healings)

@@ -152,6 +152,7 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 }
 
 //버프 정보창 표기
+var tmp_win_height = 60*text_ratio;
 for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 {
 	if (global.buff_left_time[i] > 0)
@@ -406,7 +407,14 @@ if (global.attack_cooldown_timer > 0)
 
 
 
-
+//스모크 효과
+if (global.smoke_alpha > 0)
+{
+	draw_set_alpha(global.smoke_alpha*0.1);
+	draw_set_color(global.smoke_color);
+	draw_rectangle(xx,yy,xx+xx_w,yy+yy_h,false);
+	global.smoke_alpha -= 0.01;
+}
 
 
 //화면 전체 흰색

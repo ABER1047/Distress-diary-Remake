@@ -114,7 +114,14 @@ with(obj_mob_parents)
 	{
 		if (id == tmp_my_p)
 		{
-			apply_buff(id,0,60);
+			if (global.buff_left_time[0] <= 0)
+			{
+				apply_buff(id,0,30);
+			}
+			else
+			{
+				global.buff_left_time[0] = 30;
+			}
 		}
 		else
 		{

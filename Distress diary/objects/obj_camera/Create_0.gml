@@ -39,6 +39,10 @@ global.is_mouse_on_quickslot = -4;
 
 depth = -99999;
 
+//스모크 관련
+global.smoke_alpha = 0;
+global.smoke_color = 0;
+
 
 //체력바 및 스테미나 UI 드로우 관련 변수
 hp_for_draw = 0;

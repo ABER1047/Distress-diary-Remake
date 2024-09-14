@@ -60,7 +60,7 @@ if (!stop_cal_by_pos_statement)
 		
 		if (image_alpha < 0)
 		{
-			_speed += (6 - _speed)*0.1;
+			_speed += (12 - _speed)*0.1;
 			direction += angle_difference(point_direction(x,y,targeted.x,targeted.y),direction)*0.3;
 		}
 	}
