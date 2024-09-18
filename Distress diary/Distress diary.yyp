@@ -205,6 +205,7 @@
     {"id":{"name":"get_mic_name","path":"scripts/get_mic_name/get_mic_name.yy",},},
     {"id":{"name":"get_rare_rate","path":"scripts/get_rare_rate/get_rare_rate.yy",},},
     {"id":{"name":"give_damage","path":"scripts/give_damage/give_damage.yy",},},
+    {"id":{"name":"hex_to_color","path":"scripts/hex_to_color/hex_to_color.yy",},},
     {"id":{"name":"http_ip_get","path":"scripts/http_ip_get/http_ip_get.yy",},},
     {"id":{"name":"ini_close_protect","path":"scripts/ini_close_protect/ini_close_protect.yy",},},
     {"id":{"name":"ini_open_protect","path":"scripts/ini_open_protect/ini_open_protect.yy",},},

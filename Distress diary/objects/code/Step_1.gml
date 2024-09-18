@@ -107,41 +107,58 @@ for(var i = 0; i < array_length(global.buff_left_time); i++)
 	}
 }
 
-//이속 저하 - 슬라임 점액질 충돌 판정
 with(obj_mob_parents)
 {
-	if (z <= 0 && place_meeting(x,y,obj_mucus_effect))
+	if (z <= 0)
 	{
-		if (id == tmp_my_p)
+		//이속 저하 - 슬라임 점액질 충돌 판정
+		if (place_meeting(x,y,obj_mucus_effect))
 		{
-			if (global.buff_left_time[0] <= 0)
+			if (id == tmp_my_p)
 			{
-				apply_buff(id,0,30);
+				if (global.buff_left_time[0] <= 0)
+				{
+					apply_buff(id,0,30);
+				}
+				else
+				{
+					global.buff_left_time[0] = 30;
+				}
 			}
 			else
 			{
-				global.buff_left_time[0] = 30;
+				_speed += (0 - _speed)*0.2;
 			}
 		}
-		else
+		
+		//독 효과 - 슬라임 점액질 충돌 판정
+		if (place_meeting(x,y,obj_poison_effect))
 		{
-			_speed += (0 - _speed)*0.2;
+			other.tmp_timer_poisoning_effect ++;
+			if (other.tmp_timer_poisoning_effect%180 == 0 && id == tmp_my_p)
+			{
+				apply_buff(id,15,other.tmp_timer_poisoning_effect/3);
+			}
+		}
+	}
+	
+	//연막-가스 충돌 판정
+	if (id == tmp_my_p)
+	{
+		var tmp_placed_ins = instance_place(x,y,obj_smoke_effect);
+		if (instance_exists(tmp_placed_ins))
+		{
+			global.smoke_color = merge_color(tmp_placed_ins.image_blend,c_black,0.3);
+			global.smoke_alpha += (1 - global.smoke_alpha)*0.03;
+			
+			if (tmp_placed_ins.buff_index >= 0 && tmp_placed_ins.tmp_buff_timer%180 == 0)
+			{
+				apply_buff(id,tmp_placed_ins.buff_index,tmp_placed_ins.tmp_buff_timer+10,true);
+			}
 		}
 	}
 }
 
-//독 효과 - 슬라임 점액질 충돌 판정
-with(obj_mob_parents)
-{
-	if (z <= 0 && place_meeting(x,y,obj_poison_effect))
-	{
-		other.tmp_timer_poisoning_effect ++;
-		if (other.tmp_timer_poisoning_effect%180 == 0 && id == tmp_my_p)
-		{
-			apply_buff(id,15,other.tmp_timer_poisoning_effect/3);
-		}
-	}
-}
 
 
 //과적

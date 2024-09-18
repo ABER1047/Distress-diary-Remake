@@ -16,3 +16,14 @@ for(var i = 0; i < sqrt(image_xscale)*16; i++)
 	_dir[i] = 0;
 	_alpha[i] = 0;
 }
+
+
+//버프 효과 타이머
+tmp_buff_timer = 0;
+
+//버프 효과
+//buff_index = -4;
+
+//삭제 타이머
+des_timer = 0;
+//des_time = 0;

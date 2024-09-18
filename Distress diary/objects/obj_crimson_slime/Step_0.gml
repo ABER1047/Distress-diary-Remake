@@ -20,6 +20,10 @@ if (global.is_server && !stop_cal_by_pos_statement)
 		}
 		
 		play_sound_pos(ghost_disappear_sfx,false,0.3,x,y,1280,true,my_pos_xx,my_pos_yy);
+		
+		//독 가스
+		instance_create_multiplayer_ext(obj_smoke_effect,x,y,global.object_id_ind,0,false,my_pos_xx,my_pos_yy,"buff_index, des_time, image_blend","15, 600, #CC4141");
+		
 		instance_destroy();
 	}
 	

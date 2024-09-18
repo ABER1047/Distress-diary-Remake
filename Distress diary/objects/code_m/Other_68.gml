@@ -334,16 +334,24 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					var tmp_splited_varname = string_split(tmp_name,",");
 					for(var i = 0; i < array_length(tmp_splited_val); i++)
 					{
-						//string화 된 실수를 진짜 실수로
-						try
+						//색깔 값은 따로 적용
+						if (string_pos("#",tmp_splited_val[i]) != 0)
 						{
-							tmp_splited_val[i] = real(tmp_splited_val[i]);
+							tmp_splited_val[i] = hex_to_color(tmp_splited_val[i]);
 						}
-						catch(e) 
+						else
 						{
-							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
-							var tmp_converted = asset_get_index(tmp_splited_val[i]);
-							tmp_splited_val[i] = (tmp_converted == -1) ? tmp_splited_val[i] : tmp_converted;
+							try
+							{
+								//string화 된 실수를 진짜 실수로
+								tmp_splited_val[i] = real(tmp_splited_val[i]);
+							}
+							catch(e) 
+							{
+								//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+								var tmp_converted = asset_get_index(tmp_splited_val[i]);
+								tmp_splited_val[i] = (tmp_converted == -1) ? tmp_splited_val[i] : tmp_converted;
+							}
 						}
 						
 						
@@ -383,16 +391,24 @@ else if (type == network_type_data) //클라이언트/서버 양쪽에서 발생
 					//값이 한 개만 온 경우
 					if (string_trim(tmp_val) != "")
 					{
-						//string화 된 실수를 진짜 실수로
-						try
+						//색깔 값은 따로 적용
+						if (string_pos("#",tmp_val) != 0)
 						{
-							tmp_val = real(tmp_val);
-						} 
-						catch(e) 
+							tmp_val = hex_to_color(tmp_val);
+						}
+						else
 						{
-							//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
-							var tmp_converted = asset_get_index(tmp_val);
-							tmp_val = (tmp_converted == -1) ? tmp_val : tmp_converted;
+							try
+							{
+								//string화 된 실수를 진짜 실수로
+								tmp_val = real(tmp_val);
+							} 
+							catch(e) 
+							{
+								//string구조로 되어 있는 sprite_index를 sprite_index형으로 변환
+								var tmp_converted = asset_get_index(tmp_val);
+								tmp_val = (tmp_converted == -1) ? tmp_val : tmp_converted;
+							}
 						}
 						
 						
