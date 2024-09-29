@@ -17,7 +17,7 @@ for(var i = 0; i < array_length(xx); i++)
 		var tmp_scale = tmp_distance*tmp_sqrt_scale;
 		xx[i] += lengthdir_x(_speed[i],_dir[i]);
 		yy[i] += lengthdir_y(_speed[i],_dir[i]);
-		draw_sprite_ext(spr_circle,0,xx[i],yy[i],tmp_scale,tmp_scale,0,image_blend,_alpha[i]*0.03);
+		draw_sprite_ext(spr_circle,0,xx[i],yy[i],tmp_scale,tmp_scale,0,image_blend,_alpha[i]*0.05);
 	}
 	else
 	{

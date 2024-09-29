@@ -71,6 +71,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 				{
 					tmp_ins.hp = 0;
 				}
+				global.enemy_hp_bar = tmp_ins;
 			
 
 		

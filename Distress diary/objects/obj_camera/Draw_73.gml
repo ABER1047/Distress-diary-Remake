@@ -208,7 +208,26 @@ for(var i = 0, tmp_index = 0; i < array_length(global.buff_left_time); i++)
 	}
 }
 
-
+//몬스터 체력 바
+var tmp_enemy_ins = global.enemy_hp_bar;
+if (instance_exists(tmp_enemy_ins))
+{
+	if (global.b_enemy_hp_bar != global.enemy_hp_bar)
+	{
+		enemy_hp_bar_for_draw = tmp_enemy_ins.hp + ((tmp_enemy_ins.hp == tmp_enemy_ins.max_hp) ? 0 : (tmp_enemy_ins.max_hp-tmp_enemy_ins.hp)*0.5);
+		global.b_enemy_hp_bar = global.enemy_hp_bar;
+	}
+	else
+	{
+		enemy_hp_bar_for_draw += (tmp_enemy_ins.hp - enemy_hp_bar_for_draw)*0.1;
+	}
+	var tmp_scale = text_ratio*0.4;
+	var tmp_width = tmp_scale*288;
+	var tmp_hp_bar_xx = xx+xx_w-tmp_width-16*text_ratio, tmp_hp_bar_yy = yy+289*global.ratio_by_camera;
+	draw_sprite_ext(spr_hp_bar_remake,6,tmp_hp_bar_xx,tmp_hp_bar_yy,tmp_scale,tmp_scale*0.6,0,c_white,1);
+	draw_sprite_part_ext(spr_hp_bar_remake,7,0,0,fix_num_inside(enemy_hp_bar_for_draw/tmp_enemy_ins.max_hp,0,1)*288,32,tmp_hp_bar_xx,tmp_hp_bar_yy,tmp_scale,tmp_scale*0.6,c_white,1);
+	draw_sprite_ext(spr_ui,16,tmp_hp_bar_xx+tmp_width-4*text_ratio,tmp_hp_bar_yy-12*text_ratio,tmp_scale*1.1,tmp_scale*1.1,0,c_white,1);
+}
 
 
 //퀵 슬롯 창 그리기

@@ -101,6 +101,7 @@ set_quickslot_variable(0,spr_others,1,32,0,4);
 
 //체력
 hp = 100;
+max_hp = 100;
 b_hp = -4;
 
 //스테미나

@@ -95,6 +95,12 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		}
 	}
 	
+	if (max_hp != global.max_hp)
+	{
+		send_InstanceVariableData(id,"max_hp",global.max_hp);
+		max_hp = global.max_hp;
+	}
+	
 	
 	//HP 재생
 	if (hp > 0 && hp < global.max_hp)

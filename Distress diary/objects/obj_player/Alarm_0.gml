@@ -23,6 +23,7 @@ if (global.quickslot_spr_ind[i] != -4)
 						
 	//퀵슬롯 내의 아이템은 삭제
 	global.quickslot_spr_ind[i] = -4;
+	set_status_by_weapon(-4,-4);
 }
 
 drop_index ++;
