@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"show_enemy_hp_bar",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"show_enemy_hp_bar",
+  "parent":{
+    "name":"UI&Camera",
+    "path":"folders/스크립트/UI&Camera.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}

@@ -214,7 +214,7 @@ if (instance_exists(tmp_enemy_ins))
 {
 	if (global.b_enemy_hp_bar != global.enemy_hp_bar)
 	{
-		enemy_hp_bar_for_draw = tmp_enemy_ins.hp + ((tmp_enemy_ins.hp == tmp_enemy_ins.max_hp) ? 0 : (tmp_enemy_ins.max_hp-tmp_enemy_ins.hp)*0.5);
+		enemy_hp_bar_for_draw = tmp_enemy_ins.hp;
 		global.b_enemy_hp_bar = global.enemy_hp_bar;
 	}
 	else
@@ -226,7 +226,8 @@ if (instance_exists(tmp_enemy_ins))
 	var tmp_hp_bar_xx = xx+xx_w-tmp_width-16*text_ratio, tmp_hp_bar_yy = yy+289*global.ratio_by_camera;
 	draw_sprite_ext(spr_hp_bar_remake,6,tmp_hp_bar_xx,tmp_hp_bar_yy,tmp_scale,tmp_scale*0.6,0,c_white,1);
 	draw_sprite_part_ext(spr_hp_bar_remake,7,0,0,fix_num_inside(enemy_hp_bar_for_draw/tmp_enemy_ins.max_hp,0,1)*288,32,tmp_hp_bar_xx,tmp_hp_bar_yy,tmp_scale,tmp_scale*0.6,c_white,1);
-	draw_sprite_ext(spr_ui,16,tmp_hp_bar_xx+tmp_width-4*text_ratio,tmp_hp_bar_yy-12*text_ratio,tmp_scale*1.1,tmp_scale*1.1,0,c_white,1);
+	draw_sprite_ext(spr_ui,16,tmp_hp_bar_xx+tmp_width-8*text_ratio,tmp_hp_bar_yy+16*text_ratio,tmp_scale*0.8,tmp_scale*0.8,0,c_white,1);
+	draw_text_k_scale(tmp_hp_bar_xx+tmp_width-16*text_ratio,tmp_hp_bar_yy-10*text_ratio,string(global.enemy_hp_bar_nametag),64,-1,1,c_white,0,1,font_normal,0.23,0.23,0,true);
 }
 
 

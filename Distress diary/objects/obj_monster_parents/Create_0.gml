@@ -35,8 +35,7 @@ command_buffer = buffer_create(1024,buffer_grow,1);
 
 
 //체력
-hp = 100;
-max_hp = 100;
+set_monster_hp_variable(id);
 
 
 //타겟팅 된 플레이어

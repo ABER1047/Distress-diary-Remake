@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_green_slime",
+  "%Name":"obj_orange_slime",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_green_slime",
+  "name":"obj_orange_slime",
   "overriddenProperties":[],
   "parent":{
     "name":"mob",
@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_green_slime",
-    "path":"sprites/spr_green_slime/spr_green_slime.yy",
+    "name":"spr_corruption_slime",
+    "path":"sprites/spr_corruption_slime/spr_corruption_slime.yy",
   },
   "spriteMaskId":{
     "name":"spr_player_hitbox",

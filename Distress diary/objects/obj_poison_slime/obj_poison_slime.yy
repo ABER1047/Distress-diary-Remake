@@ -1,11 +1,11 @@
 {
   "$GMObject":"",
-  "%Name":"obj_corruption_slime",
+  "%Name":"obj_poison_slime",
   "eventList":[
     {"$GMEvent":"v1","%Name":"","collisionObjectId":null,"eventNum":0,"eventType":3,"isDnD":false,"name":"","resourceType":"GMEvent","resourceVersion":"2.0",},
   ],
   "managed":true,
-  "name":"obj_corruption_slime",
+  "name":"obj_poison_slime",
   "overriddenProperties":[],
   "parent":{
     "name":"mob",
@@ -33,8 +33,8 @@
   "resourceVersion":"2.0",
   "solid":false,
   "spriteId":{
-    "name":"spr_corruption_slime",
-    "path":"sprites/spr_corruption_slime/spr_corruption_slime.yy",
+    "name":"spr_green_slime",
+    "path":"sprites/spr_green_slime/spr_green_slime.yy",
   },
   "spriteMaskId":{
     "name":"spr_player_hitbox",

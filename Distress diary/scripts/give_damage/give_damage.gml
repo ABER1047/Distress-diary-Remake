@@ -65,13 +65,17 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 					apply_buff(tmp_ins,19,600,false);
 				}
 				
+				
+				//적 체력바 UI
+				show_enemy_hp_bar(tmp_ins);
+
+
 				tmp_ins.hp -= tmp_dmg;
 				tmp_ins.dmg_cooltime = (tmp_ins.dmg_cooltime < argument6) ? argument6 : tmp_ins.dmg_cooltime;
 				if (tmp_ins.hp < 0)
 				{
 					tmp_ins.hp = 0;
 				}
-				global.enemy_hp_bar = tmp_ins;
 			
 
 		

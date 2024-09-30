@@ -44,8 +44,9 @@ global.smoke_alpha = 0;
 global.smoke_color = 0;
 
 //몬스터 체력바
-global.enemy_hp_bar = obj_player; //몬스터 instance id값
+global.enemy_hp_bar = -4; //몬스터 instance id값
 global.b_enemy_hp_bar = -4;
+global.enemy_hp_bar_nametag = "";
 enemy_hp_bar_for_draw = 0;
 
 //체력바 및 스테미나 UI 드로우 관련 변수
