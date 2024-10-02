@@ -139,4 +139,3 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 holding_item_angle += (0 - holding_item_angle)*0.2;
 
 
-

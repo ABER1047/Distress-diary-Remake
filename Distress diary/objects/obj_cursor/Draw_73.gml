@@ -12,7 +12,7 @@ if (tmp_check)
 	var tmp_ins_place = instance_place(x,y+16,obj_mob_parents);
 	if (instance_exists(tmp_ins_place) && variable_instance_exists(tmp_ins_place,"max_hp"))
 	{
-		draw_text_k_scale(x,y,string(show_enemy_hp_bar(tmp_ins_place,true))+"\n"+string(tmp_ins_place.hp)+"/"+string(tmp_ins_place.max_hp),64,-1,1,c_white,0,-1,font_normal,0.23,0.23,0,true);
+		draw_text_kl_scale(x,y,string(show_enemy_hp_bar(tmp_ins_place,true))+"\n"+string(tmp_ins_place.hp)+"/"+string(tmp_ins_place.max_hp),64,-1,1,c_white,0,-1,font_normal,0.23,0.23,0,true);
 	}
 }
 

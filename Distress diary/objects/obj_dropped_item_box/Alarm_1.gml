@@ -43,7 +43,7 @@ if (global.is_server)
 
 	if (changed)
 	{
-		send_InstanceMuchVariableData(id,"_zspeed, _vspeed, _hspeed");
+		send_InstanceMuchVariableData(id,"zspeed, _vspeed, _hspeed");
 		send_ImgData(obj_id,id,sprite_index,image_index,x,y,z,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
 	}
 	

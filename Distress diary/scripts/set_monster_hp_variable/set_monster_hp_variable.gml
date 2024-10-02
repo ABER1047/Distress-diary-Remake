@@ -39,6 +39,11 @@ function set_monster_hp_variable(argument0)
 		case obj_crimson_slime:
 			tmp_hp = 125;
 		break;
+		
+		case obj_infected_skeleton:
+			tmp_hp = 20;
+			tmp_def_pow = 2;
+		break;
 	}
 	
 	var tmp_cal = round(tmp_hp*(1+tmp_def_pow*0.01));

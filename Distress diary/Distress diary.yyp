@@ -107,6 +107,7 @@
     {"id":{"name":"obj_g_puzzle_parents","path":"objects/obj_g_puzzle_parents/obj_g_puzzle_parents.yy",},},
     {"id":{"name":"obj_generation_puzzle","path":"objects/obj_generation_puzzle/obj_generation_puzzle.yy",},},
     {"id":{"name":"obj_ineractable_fire","path":"objects/obj_ineractable_fire/obj_ineractable_fire.yy",},},
+    {"id":{"name":"obj_infected_skeleton","path":"objects/obj_infected_skeleton/obj_infected_skeleton.yy",},},
     {"id":{"name":"obj_inv_item","path":"objects/obj_inv_item/obj_inv_item.yy",},},
     {"id":{"name":"obj_inv_ui","path":"objects/obj_inv_ui/obj_inv_ui.yy",},},
     {"id":{"name":"obj_loots","path":"objects/obj_loots/obj_loots.yy",},},

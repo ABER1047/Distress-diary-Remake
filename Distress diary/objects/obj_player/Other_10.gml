@@ -10,7 +10,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 	{
 		tmp_charging_dmg_bonus = 2;
 	}
-	tmp_dmg_cal = global.attack_damage*(1 + tmp_charging_dmg_bonus);
+	tmp_dmg_cal = global.attack_damage*(1 + tmp_charging_dmg_bonus + (zspeed > 0 ? 0.1 : 0));
 	global.b_fixed_dir = global.fixed_dir;
 	global.fixed_dir = true;
 	if (global.attack_type == 2)

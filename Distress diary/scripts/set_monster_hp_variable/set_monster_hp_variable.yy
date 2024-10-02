@@ -5,8 +5,8 @@
   "isDnD":false,
   "name":"set_monster_hp_variable",
   "parent":{
-    "name":"MapSystem",
-    "path":"folders/스크립트/MapSystem.yy",
+    "name":"Other functions",
+    "path":"folders/스크립트/Other functions.yy",
   },
   "resourceType":"GMScript",
   "resourceVersion":"2.0",
