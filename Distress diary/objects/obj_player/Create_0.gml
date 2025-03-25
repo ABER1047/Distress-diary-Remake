@@ -1,5 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+
 image_speed = 0;
 image_xscale = 2;
 image_yscale = 2;
@@ -16,6 +18,7 @@ my_pos_yy = -4;
 
 
 //방향 관련 변수
+//player_look_dir = left
 my_n_dir = 0;
 b_n_dir = 2;
 my_backpack = 0;

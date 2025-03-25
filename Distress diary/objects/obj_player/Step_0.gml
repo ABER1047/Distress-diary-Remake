@@ -112,8 +112,9 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 		var tmp_signed_xscale = -sign(image_xscale);
 		var tmp_xpos = [ 48, 56, 48, 40 ];
 		var tmp_ypos = [ 36, 44, 36, 44 ];
-		var tmp_cal_xx = x+tmp_signed_xscale*tmp_xpos[image_index];
-		var tmp_cal_yy = tmp_yy-16-tmp_ypos[image_index];
+		var tmp_img_ind = (image_index >= 0) ? image_index : 0;
+		var tmp_cal_xx = x+tmp_signed_xscale*tmp_xpos[tmp_img_ind];
+		var tmp_cal_yy = tmp_yy-16-tmp_ypos[tmp_img_ind];
 		if (percentage_k(1))
 		{
 			var tmp_ins = instance_create_depth(tmp_cal_xx,tmp_cal_yy,-1,obj_bright_line_effect);
