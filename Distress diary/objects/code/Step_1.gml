@@ -1,5 +1,7 @@
 /// @description Insert description here
 var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+var tmp_weight_ratio = fix_to_zero(global.my_weight-global.over_weight)/90;
+var speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
 
 
 //사운드 볼륨 조절용 거리 값
@@ -73,7 +75,7 @@ if (global.time_increment < global.time_increment_timer)
 
 
 //스테이터스 시스템
-global.defence_power = (sign(global.buff_left_time[9]) - sign(global.buff_left_time[10]))*2.5; //방어력
+global.defence_power = (sign(global.buff_left_time[9]) - sign(global.buff_left_time[10]))*2.5 + power(1/speed_by_weight,3); //방어력
 global.over_weight = 10 + (sign(global.buff_left_time[11])*10); //최대 중량
 
 //체력 및 스테미나가 최대치를 넘지 않도록 조정
@@ -286,7 +288,7 @@ if (global.buff_left_time[19] > 0)
 //공격 속도 적용
 if (global.attack_cooldown_timer > 0)
 {
-	global.attack_cooldown_timer ++;
+	global.attack_cooldown_timer += 1*speed_by_weight;
 	if (global.attack_cooldown_timer > global.attack_speed)
 	{
 		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제

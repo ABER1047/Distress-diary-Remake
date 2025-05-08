@@ -46,11 +46,29 @@ draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_f
 
 
 
-//플레이어 현재 스테이터스 창 (공격력, 방어력 등등)
+//스테이터스 창 값 계산용 임시 변수
 var tmp_xx = xx+text_ratio*16;
-var tmp_values = [ valToStrWithPoint(global.attack_damage,false,true), valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true), valToStrWithPoint(60/global.attack_speed), valToStrWithPoint(global.critical_chance), valToStrWithPoint(global.max_movement_speed/7*100), valToStrWithPoint(global.defence_power), valToStrWithPoint(global.luck), valToStrWithPoint(global.accurate) ];
-var tmp_dmg_str = (global.attack_damage > 0) ? string(tmp_values[0])+"(+"+string(tmp_values[1])+")" : tmp_values[0];
-var to_draw_values = [ tmp_dmg_str, tmp_values[2], string(tmp_values[3])+"%", string(tmp_values[4])+"%", string(tmp_values[5])+"%", tmp_values[6], string(tmp_values[7])+"%" ];
+var tmp_weight_ratio = fix_to_zero(global.my_weight-global.over_weight)/90;
+var speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
+var additional_dmg = (global.attack_damage-global.attack_damage_origin);
+var critical_dmg = (global.attack_damage > 0) ? "(+"+string(valToStrWithPoint(global.critical_dmg_magnification*global.attack_damage,true))+")" : "";
+
+//플레이어 현재 스테이터스 창 (origin, addtional)
+//공격력 +추가 공격력 (크리티컬)
+var tmp_values = [ valToStrWithPoint(global.attack_damage_origin,false,true), valToStrWithPoint(additional_dmg,true,true,false,true), 
+//공속
+valToStrWithPoint(60/global.attack_speed,true,true,true), string(speed_by_weight-1)+"%", 
+//크리티컬 확률
+valToStrWithPoint(global.critical_chance), "0",
+//이속
+"7.00", valToStrWithPoint((global.max_movement_speed-7),false,false,false,true),
+//방어력
+"0.00", valToStrWithPoint(global.defence_power,true,true,false,true), 
+//행운
+"0.00", valToStrWithPoint(global.luck,true,true,false,true), 
+//정확도
+valToStrWithPoint(global.accurate), "0" ];
+
 var tmp_to_draw_str = "";
 for(var i = 0; i < 7; i++)
 {
@@ -62,9 +80,26 @@ for(var i = 0; i < 7; i++)
 		tmp_img_ind = 7;
 	}
 	draw_sprite_ext(spr_status_ui,tmp_img_ind,tmp_xx,tmp_yy,scale,scale,0,c_white,0.5);
-	tmp_to_draw_str = string(tmp_to_draw_str)+"\n"+string(to_draw_values[i]);
+	tmp_to_draw_str = string(tmp_to_draw_str)+"\n"+string(tmp_values[i*2]);
+	
+	var tmp_str_ = tmp_values[i*2];
+	if (i == 0)
+	{
+		tmp_to_draw_str = string(tmp_to_draw_str)+" "+string(critical_dmg);
+		tmp_str_ = string(tmp_str_)+" 000";
+	}
+	
+	//추가 숫자 표기
+	var tmp_point = tmp_values[i*2+1];
+	var tmp_addtional_stat = (tmp_point != "" && tmp_point != "--") ? real(tmp_point) : "";
+	if (is_real(tmp_addtional_stat) && tmp_addtional_stat != 0)
+	{
+		draw_text_kl_scale(tmp_xx+text_ratio*10+string_width(tmp_str_),yy+(169+24*i)*text_ratio,tmp_point,95,-1,0.5,(tmp_addtional_stat > 0) ? #4AD05A : #E64A4A,0,-1,font_normal,0.22,0.22,0,true);
+	}
 }
 draw_text_kl_scale(tmp_xx+text_ratio*16,yy+144*text_ratio,tmp_to_draw_str,95,-1,0.5,c_white,0,-1,font_normal,0.25,0.25,0,true);
+
+
 
 
 

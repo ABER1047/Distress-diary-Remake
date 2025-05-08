@@ -269,8 +269,12 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		{
 			tmp_cal_dmg -= argument3*1.5;
 		}
+		
+		var tmp_weight_ratio = fix_to_zero(global.my_weight-global.over_weight)/90;
+		var speed_by_weight = fix_to_zero(power(1-tmp_weight_ratio,2));
 		global.attack_range = tmp_range;
 		global.attack_type = tmp_attack_type;
+		global.attack_damage_origin = dmg;
 		global.attack_damage = (tmp_cal_dmg)*(1+sign(global.buff_left_time[3])*0.25-sign(global.buff_left_time[2])*0.25); //데미지 계산
 		global.attack_speed = atk_sp;
 		global.critical_chance = tmp_cal_crit;
