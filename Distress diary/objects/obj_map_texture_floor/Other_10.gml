@@ -18,6 +18,17 @@ if (global.n_room_width > 0)
 
 
 
+//기둥 텍스쳐 변경
+with(obj_pillar)
+{
+	image_index = global.n_room_tileset*5 + (image_index%5);
+}
+
+with(obj_pillar_with_crystal)
+{
+	image_index = global.n_room_tileset*5 + (image_index%5);
+}
+
 
 //랜덤한 바닥 타일 디자인
 for(var i = 0; i < global.n_room_width; i++)

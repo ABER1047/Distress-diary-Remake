@@ -98,6 +98,8 @@ set_quickslot_variable(5,spr_weapon,6,64,0,4);
 set_quickslot_variable(6,spr_weapon,7,32,0,4);
 set_quickslot_variable(7,spr_pickaxe,2,-4,0,4);
 set_quickslot_variable(0,spr_others,1,32,0,4);
+set_quickslot_variable(8,spr_others,0,32,0,4);
+set_quickslot_variable(9,spr_others,2,32,0,4);
 
 
 
