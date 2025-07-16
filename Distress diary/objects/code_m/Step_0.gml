@@ -381,8 +381,7 @@ if (global.chat_activated)
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
-							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,10,1.5,22,64,0,tmp_dir,1);
-							tmp_ins.sprite_index = spr_projectile_fireball;
+							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,10,2,43,64,0,tmp_dir,1,spr_projectile_fireball,25,1);
 						}
 						
 						

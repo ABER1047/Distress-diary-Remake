@@ -23,8 +23,8 @@ for(var i = 0; i < _speed; i++)
 			if (chk_pvpable)
 			{
 				var tmp_ch = abs(tmp_ins.z - z);
-				show_message_log(tmp_ch);
-				if (tmp_ch <= 96)
+				//show_message_log(tmp_ch);
+				if ((tmp_ch <= 96 && tmp_ins.zspeed >= 0) || tmp_ch <= 64)
 				{
 					is_on_mob = tmp_ins;
 					stop_flying = 16;

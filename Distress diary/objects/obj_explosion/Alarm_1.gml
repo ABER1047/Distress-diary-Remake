@@ -37,7 +37,7 @@ if (global.graphics_quality > 1)
 	var rd_val = irandom_range(1,3);
 	for(var i = 0; i < image_xscale*0.7+rd_val; i++)
 	{
-		var tmp_effect_dis = 96*image_xscale;
+		var tmp_effect_dis = 86*image_xscale;
 		var tmp_xx = x+irandom_range(-tmp_effect_dis,tmp_effect_dis);
 		var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
 		var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);

@@ -37,7 +37,7 @@ if (type == 0 && global.graphics_quality > 0)
 		}
 		else
 		{
-			instance_destroy();
+			instance_destroy_multiplayer(id);
 		}
 	}
 	else
@@ -79,4 +79,13 @@ if (type > 0)
 {
 	//애니메이션 재생
 	image_index += 0.175;
+	if (is_on_mob != -4)
+	{
+		direction = 0;
+		if (explosion_rad > 0)
+		{
+			create_explosion_effect(x,y,explosion_dmg,explosion_rad,-4,-4,true);
+		}
+		instance_destroy_multiplayer(id);
+	}
 }
