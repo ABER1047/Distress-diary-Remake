@@ -8,7 +8,7 @@ image_angle = direction-45+angle_comp;
 	
 	
 
-if (global.graphics_quality > 0)
+if (type == 0 && global.graphics_quality > 0)
 {
 	//화살 꽂힘 효과
 	if (is_on_mob != -4)
@@ -71,4 +71,12 @@ if (global.graphics_quality > 0)
 			}
 		}
 	}
+}
+
+
+//파이어볼인 경우
+if (type > 0)
+{
+	//애니메이션 재생
+	image_index += 0.175;
 }

@@ -40,7 +40,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		var tmp_m_dir = point_direction(x,y,mouse_x,mouse_y);
 		if (global.quickslot_spr_ind[global.quickslot_index] == spr_weapon)
 		{
-			create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal,32+z,tmp_cal_accurate,tmp_m_dir);
+			create_projectile(x,y,tmp_img_ind,48,2,tmp_dmg_cal,32+z,tmp_cal_accurate,tmp_m_dir,0);
 		}
 		else
 		{

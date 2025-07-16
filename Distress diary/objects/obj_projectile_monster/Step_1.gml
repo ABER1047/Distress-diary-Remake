@@ -16,7 +16,7 @@ if (instance_exists(tmp_ins))
 	{
 		var light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
 		var tmp_col = [ #DD4C4C, #FFAC4B, #0BE5C4, #D9FFDE ];
-		repeat(irandom_range(3,5))
+		repeat(irandom_range(4,7)*global.graphics_quality)
 		{
 			if (percentage_k(50))
 			{
