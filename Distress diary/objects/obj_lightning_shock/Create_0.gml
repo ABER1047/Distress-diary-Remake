@@ -1,0 +1,28 @@
+
+//z축
+add_z_axis();
+
+//룸 포지션에 따른 오브젝트 숨기기/표시 시스템
+add_my_pos_statement();
+
+//번개가 향하는 곳 (x -> tx, y -> ty) [자동 설정]
+//tx = x;
+//ty = y;
+visible = false;
+alarm[0] = 1;
+
+//번개 방향
+//image_angle = 0;
+
+//번개 길이
+//image_xscale = 128;
+
+//번개 두께
+//image_yscale = 32;
+
+//번개 반사 횟수
+//reflection_num = 0;
+
+//번개 연결 갯수 카운트용 (최적화 때문에)
+count_connection = 0;
+
