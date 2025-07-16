@@ -1,4 +1,4 @@
-image_alpha = 0.2;
+image_alpha = 1;
 
 
 //z축
@@ -23,7 +23,9 @@ alarm[0] = 1;
 //image_yscale = 32;
 
 //번개 반사 횟수
-//reflection_num = 0;
+//max_reflection_num = 0; (최대 반사 가능 횟수)
+//count_reflection = 0; (현재 반사 횟수)
+//reflected = false; (반사됨)
 
 //번개 연결 갯수 카운트용 (최적화 때문에)
 count_connection = 0;
