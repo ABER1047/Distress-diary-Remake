@@ -1,6 +1,7 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+image_angle = 0;
+direction = 0;
 
 //멀티플레이 용 버퍼
 command_buffer = buffer_create(1024,buffer_grow,1);
