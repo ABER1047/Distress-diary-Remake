@@ -79,12 +79,11 @@ if (type > 0)
 {
 	//애니메이션 재생
 	image_index += 0.175;
-	if (is_on_mob != -4)
+	if (is_on_mob != -4 || _speed == 0)
 	{
-		direction = 0;
 		if (explosion_rad > 0)
 		{
-			create_explosion_effect(x,y,explosion_dmg,explosion_rad,-4,-4,true);
+			create_explosion_effect(x,y,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
 		}
 		instance_destroy_multiplayer(id);
 	}

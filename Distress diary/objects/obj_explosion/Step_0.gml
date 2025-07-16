@@ -31,7 +31,7 @@ if (effect_applied)
 	if (instance_exists(bubble_ef_ins) && bubble_ef_ins.child_num == 0)
 	{
 		show_debug_message("dest");
-		instance_destroy();
+		//instance_destroy();
 	}
 }
 
