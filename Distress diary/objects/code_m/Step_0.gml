@@ -390,8 +390,8 @@ if (global.chat_activated)
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
-							var tmp_var_name = "image_xscale,image_yscale,image_angle,max_reflection_num,rd_snap_rad,image_blend,count_reflection,reflected";
-							var tmp_val = "320,8,"+string(tmp_dir)+","+string(tmp_parameter)+","+string(irandom_range(0,5)*10)+","+string(#3898FF)+",0,0";
+							var tmp_var_name = "image_xscale,image_yscale,image_angle,max_reflection_num,rd_snap_rad,image_blend,count_reflection";
+							var tmp_val = "320,8,"+string(tmp_dir)+","+string(tmp_parameter)+","+string(irandom_range(0,5)*10)+","+string(#3898FF)+",0";
 							var tmp_ins = instance_create_multiplayer_ext(obj_lightning_shock,tmp_xx,tmp_yy,global.object_id_ind,0,false,-4,-4,tmp_var_name,tmp_val);
 							chat_up_multiplayer("- 쇼크볼트 생성됨",false);
 						}
