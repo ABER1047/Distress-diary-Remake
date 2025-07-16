@@ -1,3 +1,5 @@
+image_alpha = 0.2;
+
 
 //z축
 add_z_axis();
@@ -6,8 +8,8 @@ add_z_axis();
 add_my_pos_statement();
 
 //번개가 향하는 곳 (x -> tx, y -> ty) [자동 설정]
-//tx = x;
-//ty = y;
+tx = -4;
+ty = -4;
 visible = false;
 alarm[0] = 1;
 

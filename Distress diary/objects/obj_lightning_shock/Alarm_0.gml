@@ -3,13 +3,13 @@
 var tmp_dis = 0;
 for(var i = 0; i < image_xscale; i += 4)
 {
+	tmp_dis = i;
 	tx = floor(x+lengthdir_x(i,image_angle));
 	ty = floor(y+lengthdir_y(i,image_angle));
 	
 	// 벽 충돌 체크
 	if (position_meeting(tx,ty,obj_wall_parents))
 	{
-		tmp_dis = i;
 		break;
 	}
 }
@@ -28,5 +28,5 @@ if (tmp_dis != 0 || count_connection > 64)
 }
 else
 {
-	show_message_log(count_connection);
+	chat_up_multiplayer(count_connection,false,true);
 }
