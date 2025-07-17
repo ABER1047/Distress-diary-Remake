@@ -39,6 +39,8 @@ if (tmp_dis != 0 && count_connection < (max_reflection_num+1)*32)
 	var rd_dir = image_angle + round(irandom_range(0,rd_snap_rad)*0.25) * choose(-4,4);
 
 	var tmp_val = string(tx)+","+string(ty)+","+string(tmp_dis)+","+string(image_yscale)+","+string(count_connection+1)+","+string(rd_dir)+","+string(rd_snap_rad)+","+string(image_blend)+","+string(max_reflection_num)+","+string(count_reflection)+","+string(length)+","+string(attacker_id);
+	tmp_var_name = string(tmp_var_name)+",attack_dmg,knockback,critical_chance,magnification,bleeding_chance,poisoning_chance,burning_chance";
+	tmp_val = string(tmp_val)+","+string(global.attack_damage)+","+string(global.knockback_power)+","+string(global.critical_chance)+","+string(global.critical_dmg_magnification)+","+string(global.bleeding_chance)+","+string(global.poisoing_chance)+","+string(global.burning_chance);
 	var tmp_ins = instance_create_multiplayer_ext(obj_lightning_shock,tx,ty,global.object_id_ind,0,false,my_pos_xx,my_pos_yy,tmp_var_name,tmp_val);
 }
 else
@@ -58,11 +60,15 @@ else
 		var tmp_var_name = "x,y,image_xscale,image_yscale,count_connection,image_angle,rd_snap_rad,image_blend,max_reflection_num,count_reflection,length,attacker_id";
 		var tmp_xx = x+lengthdir_x(image_xscale,rd_dir);
 		var tmp_yy = y+lengthdir_y(image_xscale,rd_dir);
-		var tmp_val = string(tmp_xx)+","+string(tmp_yy)+","+string(image_xscale)+","+string(image_yscale)+","+string(count_connection+2)+","+string(rd_dir)+","+string(rd_snap_rad)+","+string(image_blend)+","+string(max_reflection_num)+","+string(count_reflection)+","+string(length)+","+string(attacker_id);
+		var tmp_val = string(tmp_xx)+","+string(tmp_yy)+","+string(length)+","+string(image_yscale)+","+string(count_connection+2)+","+string(rd_dir)+","+string(rd_snap_rad)+","+string(image_blend)+","+string(max_reflection_num)+","+string(count_reflection)+","+string(length)+","+string(attacker_id);
+		tmp_var_name = string(tmp_var_name)+",attack_dmg,knockback,critical_chance,magnification,bleeding_chance,poisoning_chance,burning_chance";
+		tmp_val = string(tmp_val)+","+string(global.attack_damage)+","+string(global.knockback_power)+","+string(global.critical_chance)+","+string(global.critical_dmg_magnification)+","+string(global.bleeding_chance)+","+string(global.poisoing_chance)+","+string(global.burning_chance);
 		var tmp_ins = instance_create_multiplayer_ext(obj_lightning_shock,tx,ty,global.object_id_ind,0,false,my_pos_xx,my_pos_yy,tmp_var_name,tmp_val);
 		
 		var tmp_var_name = "x,y,tx,ty,image_xscale,image_yscale,count_connection,image_blend,length,count_reflection,max_reflection_num,attacker_id";
 		var tmp_val = string(x)+","+string(y)+","+string(tmp_xx)+","+string(tmp_yy)+","+string(image_xscale)+","+string(image_yscale)+","+string(count_connection+1)+","+string(image_blend)+",0,0,0,"+string(attacker_id);
+		tmp_var_name = string(tmp_var_name)+",attack_dmg,knockback,critical_chance,magnification,bleeding_chance,poisoning_chance,burning_chance";
+		tmp_val = string(tmp_val)+","+string(global.attack_damage)+","+string(global.knockback_power)+","+string(global.critical_chance)+","+string(global.critical_dmg_magnification)+","+string(global.bleeding_chance)+","+string(global.poisoing_chance)+","+string(global.burning_chance);
 		var tmp_ins = instance_create_multiplayer_ext(obj_lightning_shock,tx,ty,global.object_id_ind,0,false,my_pos_xx,my_pos_yy,tmp_var_name,tmp_val);
 	}
 }

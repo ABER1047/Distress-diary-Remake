@@ -44,6 +44,11 @@ function set_monster_hp_variable(argument0)
 			tmp_hp = 20;
 			tmp_def_pow = 2;
 		break;
+		
+		case obj_dummy:
+			tmp_hp = 1000;
+			tmp_def_pow = 0;
+		break;
 	}
 	
 	var tmp_cal = round(tmp_hp*(1+tmp_def_pow*0.01));

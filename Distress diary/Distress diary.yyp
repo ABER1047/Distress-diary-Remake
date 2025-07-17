@@ -98,6 +98,7 @@
     {"id":{"name":"obj_damage_display","path":"objects/obj_damage_display/obj_damage_display.yy",},},
     {"id":{"name":"obj_dropped_item_box","path":"objects/obj_dropped_item_box/obj_dropped_item_box.yy",},},
     {"id":{"name":"obj_dropped_item","path":"objects/obj_dropped_item/obj_dropped_item.yy",},},
+    {"id":{"name":"obj_dummy","path":"objects/obj_dummy/obj_dummy.yy",},},
     {"id":{"name":"obj_effect_parents","path":"objects/obj_effect_parents/obj_effect_parents.yy",},},
     {"id":{"name":"obj_explosion_effect_on_ground","path":"objects/obj_explosion_effect_on_ground/obj_explosion_effect_on_ground.yy",},},
     {"id":{"name":"obj_explosion","path":"objects/obj_explosion/obj_explosion.yy",},},
