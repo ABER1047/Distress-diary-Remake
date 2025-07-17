@@ -114,6 +114,29 @@ if (global.enable_light_surf && surface_exists(global.light_surf))
 	gpu_set_blendmode(bm_add);
 	draw_surface_ext(global.flashlight_surf,0,0,1,1,0,c_white,light_alpha);
 	gpu_set_blendmode(bm_normal);
+	
+	//번개 불빛
+	with(obj_lightning_shock)
+	{
+		if (id != other.id && visible)
+		{
+			var tmp_dis = 4;
+			var tmp_xdir = lengthdir_x(tmp_dis,image_angle);
+			var tmp_ydir = lengthdir_y(tmp_dis,image_angle);
+			var tmp_xx = x-tmp_xdir;
+			var tmp_yy = y-tmp_ydir-z;
+			var tmp_tx = tx+tmp_xdir;
+			var tmp_ty = ty+tmp_ydir-z;
+			
+			for(var i = 1; i < 6; i++)
+			{
+				//선 그리기
+				draw_set_color(merge_color(c_white,image_blend,1/i));
+				draw_set_alpha(i/5);
+				draw_line_width(tmp_xx-xx,tmp_yy-yy,tmp_tx-xx,tmp_ty-yy,(image_yscale+tmp_dis*power(i*0.2,2)));
+			}
+		}
+	}
 	surface_reset_target();
 	//draw_set_alpha(0.2);
 }

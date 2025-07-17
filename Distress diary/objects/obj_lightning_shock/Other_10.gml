@@ -1,4 +1,5 @@
 image_angle = angle_difference(image_angle%360,0);
+image_alpha = 1;
 
 if !variable_instance_exists(id,"tx")
 {

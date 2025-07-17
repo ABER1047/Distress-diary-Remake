@@ -391,7 +391,7 @@ if (global.chat_activated)
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
 							var dmg_info_arr = [ global.attack_damage, global.knockback_power, global.critical_chance, global.critical_dmg_magnification, global.bleeding_chance, global.poisoning_chance, global.burning_chance ];
-							create_shockbolt(tmp_xx,tmp_yy,0,8,tmp_dir,0,tmp_parameter,#3898FF,global.my_player_id,irandom_range(0,5)*10,dmg_info_arr);
+							create_shockbolt(tmp_xx,tmp_yy,0,4,tmp_dir,0,tmp_parameter,#3898FF,global.my_player_id,irandom_range(0,5)*10,dmg_info_arr);
 							chat_up_multiplayer("- 쇼크볼트 생성됨",false);
 						}
 						

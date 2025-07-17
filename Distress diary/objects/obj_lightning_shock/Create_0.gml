@@ -1,5 +1,5 @@
-image_alpha = 1;
 
+image_alpha = 0.9;
 
 //z축
 add_z_axis();
