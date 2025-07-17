@@ -94,7 +94,40 @@ if (type > 0)
 		//쇼크볼인 경우
 		if (type == 2)
 		{
-			
+			var tmp_max_dis = 1280;
+			//연결 가능한 쇼크볼이 있는 경우
+			if (instance_exists(nearest_shockball_ins))
+			{
+				//기존에 연결된 쇼크볼의 거리가 멀어져 끊어졌는지 체크
+				var tmp_dis = point_distance(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+				if (tmp_dis >= tmp_max_dis)
+				{
+					nearest_shockball_ins = -4;
+				}
+				else
+				{
+					var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+					var dmg_info_arr = [ attack_dmg, knockback, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
+					create_shockbolt(x,y,tmp_dis,4,tmp_dir,0,0,#3898FF,attacker_id,5,dmg_info_arr,my_pos_xx,my_pos_yy);
+				}
+			}
+			else
+			{
+				//주변에 있는 쇼크볼 1개 감지
+				var tmp_nearest_dis = tmp_max_dis;
+				with(obj_projectile)
+				{
+					if (type == 2)
+					{
+						var tmp_dis = point_distance(x,y,other.x,other.y);
+						if (!instance_exists(nearest_shockball_ins) && tmp_nearest_dis > tmp_dis)
+						{
+							nearest_shockball_ins = other.id;
+							tmp_nearest_dis = tmp_dis;
+						}
+					}
+				}
+			}
 		}
 		
 		instance_destroy_multiplayer(id);
