@@ -97,7 +97,7 @@ if (type > 0)
 	//쇼크볼인 경우
 	if (type == 2)
 	{
-		var tmp_max_dis = 320;
+		var tmp_max_dis = 420;
 		//연결 가능한 쇼크볼이 있는 경우
 		if (instance_exists(nearest_shockball_ins))
 		{
@@ -111,8 +111,9 @@ if (type > 0)
 			{
 				if (percentage_k(5))
 				{
+					//쇼크볼에서 생성된 쇼크 볼트는 데미지&넉백 0.2배
 					var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
-					var dmg_info_arr = [ attack_dmg, knockback, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
+					var dmg_info_arr = [ attack_dmg*0.2, knockback*0.2, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
 					create_shockbolt(x,y,z,0,4,0,0,0,#3898FF,attacker_id,0,dmg_info_arr,my_pos_xx,my_pos_yy,0,nearest_shockball_ins,true);
 				}
 			}
