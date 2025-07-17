@@ -74,7 +74,7 @@ if (type == 0 && global.graphics_quality > 0)
 }
 
 
-//파이어볼인 경우
+//특수 효과 적용된 투사체 (애니메이션, 폭발 ...)
 if (type > 0)
 {
 	//애니메이션 재생
@@ -89,6 +89,14 @@ if (type > 0)
 			//폭발 공격
 			create_explosion_effect(x,y,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
 		}
+		
+		
+		//쇼크볼인 경우
+		if (type == 2)
+		{
+			
+		}
+		
 		instance_destroy_multiplayer(id);
 	}
 }

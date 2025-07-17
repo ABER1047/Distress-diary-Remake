@@ -45,3 +45,6 @@ bubble_ef_ins = -4;
 
 //라이트 애니메이션
 light_animation_timer = 0;
+
+//가장 가까운 쇼크볼 찾기
+nearest_shockball_ins = -4;
