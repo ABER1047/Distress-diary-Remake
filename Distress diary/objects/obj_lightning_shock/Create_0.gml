@@ -10,7 +10,6 @@ add_my_pos_statement();
 //번개가 향하는 곳 (x -> tx, y -> ty) [자동 설정]
 //tx = -4;
 //ty = -4;
-visible = false;
 alarm[0] = 1;
 
 //번개 방향

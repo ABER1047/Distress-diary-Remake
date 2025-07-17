@@ -81,7 +81,7 @@ if (type > 0)
 	image_index += 0.175;
 	if (is_on_mob != -4 || _speed == 0)
 	{
-		if (explosion_rad > 0)
+		if (variable_instance_exists(id,"explosion_rad") && explosion_rad > 0)
 		{
 			//화면 흔들림 
 			view_shake(0.1,4,0.1,0);
@@ -97,7 +97,7 @@ if (type > 0)
 	//쇼크볼인 경우
 	if (type == 2)
 	{
-		var tmp_max_dis = 512;
+		var tmp_max_dis = 320;
 		//연결 가능한 쇼크볼이 있는 경우
 		if (instance_exists(nearest_shockball_ins))
 		{
@@ -109,9 +109,12 @@ if (type > 0)
 			}
 			else
 			{
-				var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
-				var dmg_info_arr = [ attack_dmg, knockback, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
-				create_shockbolt(x,y-z,tmp_dis,4,tmp_dir,0,0,#3898FF,attacker_id,5,dmg_info_arr,my_pos_xx,my_pos_yy,1);
+				if (percentage_k(5))
+				{
+					var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+					var dmg_info_arr = [ attack_dmg, knockback, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
+					create_shockbolt(x,y,z,0,4,0,0,0,#3898FF,attacker_id,0,dmg_info_arr,my_pos_xx,my_pos_yy,0,nearest_shockball_ins,true);
+				}
 			}
 		}
 		else

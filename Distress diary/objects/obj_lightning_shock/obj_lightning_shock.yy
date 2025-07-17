@@ -38,5 +38,5 @@
     "path":"sprites/spr_lightning_hitbox/spr_lightning_hitbox.yy",
   },
   "spriteMaskId":null,
-  "visible":true,
+  "visible":false,
 }

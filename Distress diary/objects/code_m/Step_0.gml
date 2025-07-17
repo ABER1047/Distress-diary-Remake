@@ -391,7 +391,7 @@ if (global.chat_activated)
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
 							var dmg_info_arr = [ global.attack_damage, global.knockback_power, global.critical_chance, global.critical_dmg_magnification, global.bleeding_chance, global.poisoning_chance, global.burning_chance ];
-							create_shockbolt(tmp_xx,tmp_yy,0,4,tmp_dir,0,tmp_parameter,#3898FF,global.my_player_id,irandom_range(0,5)*10,dmg_info_arr);
+							create_shockbolt(tmp_xx,tmp_yy,32,0,4,tmp_dir,0,tmp_parameter,#3898FF,global.my_player_id,irandom_range(0,5)*10,dmg_info_arr);
 							chat_up_multiplayer("- 쇼크볼트 생성됨",false);
 						}
 						else if (i == 37) //파이어볼 생성
@@ -400,7 +400,14 @@ if (global.chat_activated)
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
-							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,4,2,43,64,0,tmp_dir,2,spr_projectile_shockball);
+							for(var j = 0; j < tmp_parameter+1; j++)
+							{
+								if (j > 0)
+								{
+									tmp_dir += irandom_range(-45,45);
+								}
+								var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,4,2,43,64,0,tmp_dir,2,spr_projectile_shockball);
+							}
 							chat_up_multiplayer("- 쇼크볼 생성됨",false);
 						}
 						
