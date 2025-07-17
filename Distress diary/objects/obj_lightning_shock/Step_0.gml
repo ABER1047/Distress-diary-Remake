@@ -13,12 +13,12 @@ if (image_alpha >= 1)
 			//show_message_log(tmp_ch);
 			if (place_meeting(x,y,other.id) && ((tmp_ch <= 96 && zspeed >= 0) || tmp_ch <= 64))
 			{
-				give_damage(id,other.attack_dmg,true,other.knockback,other.x,other.y,25,other.critical_chance,other.magnification,other.bleeding_chance,other.poisoning_chance,other.burning_chance);
+				give_damage(id,other.attack_damage,true,other.knockback_power,other.x,other.y,25,other.critical_chance,other.critical_dmg_magnification,other.bleeding_chance,other.poisoning_chance,other.burning_chance);
 			
 				//화면흔들림 효과
 				if (variable_instance_exists(id,"hp"))
 				{
-					view_shake(1+floor(other.attack_dmg/5)*1.5,1+floor(other.attack_dmg/5),1,2);
+					view_shake(1+floor(other.attack_damage/5)*1.5,1+floor(other.attack_damage/5),1,2);
 				}
 			}
 		}

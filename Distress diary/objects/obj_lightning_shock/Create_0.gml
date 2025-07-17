@@ -17,7 +17,7 @@ alarm[0] = 1;
 //image_angle = 0;
 
 //번개 길이
-//length = 0; (origin)
+length = 320; //(max-origin)
 //image_xscale = 128; (current)
 
 //번개 두께

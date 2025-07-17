@@ -281,7 +281,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		global.knockback_power = knockback; //넉백 파워
 		global.accurate = tmp_accurate;
 		global.bleeding_chance = tmp_bleeding;
-		global.poisoing_chance = tmp_poisoning;
+		global.poisoning_chance = tmp_poisoning;
 		global.burning_chance = tmp_burn;
 	}
 	

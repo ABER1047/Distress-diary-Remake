@@ -390,11 +390,8 @@ if (global.chat_activated)
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
-							var tmp_var_name = "length,image_yscale,image_angle,max_reflection_num,rd_snap_rad,image_blend,count_reflection,attacker_id";
-							tmp_var_name = string(tmp_var_name)+",attack_dmg,knockback,critical_chance,magnification,bleeding_chance,poisoning_chance,burning_chance";
-							var tmp_val = "320,8,"+string(tmp_dir)+","+string(tmp_parameter)+","+string(irandom_range(0,5)*10)+","+string(#3898FF)+",0,"+string(global.my_player_id);
-							tmp_val = string(tmp_val)+","+string(global.attack_damage)+","+string(global.knockback_power)+","+string(global.critical_chance)+","+string(global.critical_dmg_magnification)+","+string(global.bleeding_chance)+","+string(global.poisoing_chance)+","+string(global.burning_chance);
-							var tmp_ins = instance_create_multiplayer_ext(obj_lightning_shock,tmp_xx,tmp_yy,global.object_id_ind,0,false,-4,-4,tmp_var_name,tmp_val);
+							var dmg_info_arr = [ global.attack_damage, global.knockback_power, global.critical_chance, global.critical_dmg_magnification, global.bleeding_chance, global.poisoning_chance, global.burning_chance ];
+							create_shockbolt(tmp_xx,tmp_yy,0,8,tmp_dir,0,tmp_parameter,#3898FF,global.my_player_id,irandom_range(0,5)*10,dmg_info_arr);
 							chat_up_multiplayer("- 쇼크볼트 생성됨",false);
 						}
 						

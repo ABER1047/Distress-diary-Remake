@@ -149,6 +149,7 @@
     {"name":"create_randomized_loots","order":12,"path":"scripts/create_randomized_loots/create_randomized_loots.yy",},
     {"name":"create_room_connection","order":3,"path":"scripts/create_room_connection/create_room_connection.yy",},
     {"name":"create_room_specific_pos","order":2,"path":"scripts/create_room_specific_pos/create_room_specific_pos.yy",},
+    {"name":"create_shockbolt","order":6,"path":"scripts/create_shockbolt/create_shockbolt.yy",},
     {"name":"damage_display","order":11,"path":"scripts/damage_display/damage_display.yy",},
     {"name":"decode_invite_code","order":2,"path":"scripts/decode_invite_code/decode_invite_code.yy",},
     {"name":"delete_inv_item","order":5,"path":"scripts/delete_inv_item/delete_inv_item.yy",},

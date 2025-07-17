@@ -190,6 +190,7 @@
     {"id":{"name":"create_randomized_loots","path":"scripts/create_randomized_loots/create_randomized_loots.yy",},},
     {"id":{"name":"create_room_connection","path":"scripts/create_room_connection/create_room_connection.yy",},},
     {"id":{"name":"create_room_specific_pos","path":"scripts/create_room_specific_pos/create_room_specific_pos.yy",},},
+    {"id":{"name":"create_shockbolt","path":"scripts/create_shockbolt/create_shockbolt.yy",},},
     {"id":{"name":"damage_display","path":"scripts/damage_display/damage_display.yy",},},
     {"id":{"name":"decode_invite_code","path":"scripts/decode_invite_code/decode_invite_code.yy",},},
     {"id":{"name":"delete_inv_item","path":"scripts/delete_inv_item/delete_inv_item.yy",},},

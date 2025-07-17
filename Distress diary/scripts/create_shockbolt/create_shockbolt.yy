@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"create_shockbolt",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"create_shockbolt",
+  "parent":{
+    "name":"PlayerActions",
+    "path":"folders/스크립트/PlayerActions.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
