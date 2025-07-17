@@ -41,3 +41,7 @@ add_my_pos_statement();
 
 //버블 이펙트 외곽선 효과용 오브젝트
 bubble_ef_ins = -4;
+
+
+//라이트 애니메이션
+light_animation_timer = 0;

@@ -35,14 +35,14 @@ for(var i = 0; i < _speed; i++)
 						//불꽃 튀는 이펙트
 						if (type > 0)
 						{
-							var light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
+							var tmp_light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
 							var tmp_col = [ #DD4C4C, #FFAC4B, #0BE5C4, #D9FFDE ];
 							repeat(irandom_range(4,7)*global.graphics_quality)
 							{
 								if (percentage_k(50))
 								{
 									var tmp_ins_effect = instance_create_depth(x,y,-1,obj_bright_line_effect);
-									tmp_ins_effect.image_blend = light_col[type-1];
+									tmp_ins_effect.image_blend = tmp_light_col[type-1];
 									tmp_ins_effect.direction = 90;
 									tmp_ins_effect.rd_dir_increasement = direction;
 									tmp_ins_effect.start_dir = 90;
@@ -112,5 +112,19 @@ if (instance_number(object_index) > global.graphics_quality*16)
 	instance_destroy(min_obj_id_owner);
 }
 
+
+
+
+
+
+
+//라이트 값이 정의된 경우, 투사체에 빛나는 효과 적용
+if (variable_instance_exists(id,"light_col"))
+{
+	light_animation_timer ++;
+	var tmp_value = sin((light_animation_timer/180)*pi);
+	var tmp_light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
+	c_light(tmp_light_col[light_col],(0.3+abs(tmp_value))*0.75,0.4*image_xscale+tmp_value*0.1,x,y-z);
+}
 
 

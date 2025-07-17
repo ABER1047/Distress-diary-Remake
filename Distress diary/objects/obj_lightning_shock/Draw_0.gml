@@ -10,9 +10,9 @@ else
 	var tmp_xdir = lengthdir_x(tmp_dis,image_angle);
 	var tmp_ydir = lengthdir_y(tmp_dis,image_angle);
 	var tmp_xx = x-tmp_xdir;
-	var tmp_yy = y-tmp_ydir;
+	var tmp_yy = y-tmp_ydir-z;
 	var tmp_tx = tx+tmp_xdir;
-	var tmp_ty = ty+tmp_ydir;
+	var tmp_ty = ty+tmp_ydir-z;
 
 	//바깥쪽
 	for(var i = 0; i < 16; i++)

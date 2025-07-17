@@ -51,11 +51,10 @@ else
 	else
 	{
 		//벽에 튕김
-		count_reflection ++;
 		var rd_dir = image_angle + 180 + irandom_range(-5,5);
 		var tmp_xx = x+lengthdir_x(image_xscale,rd_dir);
 		var tmp_yy = y+lengthdir_y(image_xscale,rd_dir);
-		create_shockbolt(tmp_xx,tmp_yy,length,image_yscale,rd_dir,count_reflection,max_reflection_num,image_blend,attacker_id,rd_snap_rad,dmg_info_arr,my_pos_xx,my_pos_yy,count_connection+2);
-		create_shockbolt(tmp_xx,tmp_yy,image_xscale,image_yscale,rd_dir,count_reflection,max_reflection_num,image_blend,attacker_id,rd_snap_rad,dmg_info_arr,my_pos_xx,my_pos_yy,count_connection+1);
+		create_shockbolt(tmp_xx,tmp_yy,image_xscale,image_yscale,rd_dir,count_reflection+1,max_reflection_num,image_blend,attacker_id,rd_snap_rad,dmg_info_arr,my_pos_xx,my_pos_yy,count_connection+2);
+		create_shockbolt(tmp_xx,tmp_yy,length,image_yscale,rd_dir,0,0,image_blend,attacker_id,rd_snap_rad,dmg_info_arr,my_pos_xx,my_pos_yy,count_connection+1);
 	}
 }

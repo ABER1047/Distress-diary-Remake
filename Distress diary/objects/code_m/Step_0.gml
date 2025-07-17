@@ -381,7 +381,7 @@ if (global.chat_activated)
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
-							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,17,2,43,64,0,tmp_dir,1,spr_projectile_fireball,25,2.25);
+							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,17,2,43,64,0,tmp_dir,1,spr_projectile_fireball,25,2.25,0);
 							chat_up_multiplayer("- 파이어볼 생성됨",false);
 						}
 						else if (i == 36) //쇼크볼트 생성

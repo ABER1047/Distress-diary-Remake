@@ -14,7 +14,8 @@
 ///@param [sprite_index]
 ///@param [exp_dmg]
 ///@param [exp_rad]
-function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12)
+///@param [light_col]
+function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13)
 {
 	var ErrorRange = irandom_range(0,argument7)*choose(-1,1)*0.5;
 	var tmp_dir = argument8 + ErrorRange;
@@ -25,15 +26,23 @@ function create_projectile(argument0,argument1,argument2,argument3,argument4,arg
 		tmp_var_name = string(tmp_var_name)+",sprite_index";
 		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument10));
 	}
+	
 	if (argument11 != undefined)
 	{
 		tmp_var_name = string(tmp_var_name)+",explosion_dmg";
 		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument11));
 	}
+	
 	if (argument12 != undefined)
 	{
 		tmp_var_name = string(tmp_var_name)+",explosion_rad";
 		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument12));
+	}
+	
+	if (argument13 != undefined) //light_col 변수가 선언 되어 있으면, 해당 투사체는 빛이 남
+	{
+		tmp_var_name = string(tmp_var_name)+",light_col";
+		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument13));
 	}
 	
 	

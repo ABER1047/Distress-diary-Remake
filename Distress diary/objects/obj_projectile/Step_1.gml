@@ -83,6 +83,10 @@ if (type > 0)
 	{
 		if (explosion_rad > 0)
 		{
+			//화면 흔들림 
+			view_shake(0.1,4,0.1,0);
+			
+			//폭발 공격
 			create_explosion_effect(x,y,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
 		}
 		instance_destroy_multiplayer(id);
