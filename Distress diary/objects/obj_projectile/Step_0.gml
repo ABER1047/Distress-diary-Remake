@@ -10,9 +10,10 @@ for(var i = 0; i < _speed; i++)
 	x += lengthdir_x(1,direction);
 	y += lengthdir_y(1,direction);
 	
-	if (place_meeting(x,y,obj_wall_parents))
+	if (position_meeting(x,y,obj_wall_parents))
 	{
 		stop_flying = 1;
+		break;
 	}
 	else
 	{
@@ -64,6 +65,7 @@ for(var i = 0; i < _speed; i++)
 						give_damage(tmp_ins,attack_dmg,true,knockback,x,y,60,critical_chance,magnification,bleeding_chance,poisoning_chance,burning_chance);
 						send_InstanceMuchVariableData(id,"x,y,saved_xscale",string(tmp_ins.x)+","+string(tmp_ins.y)+","+string(saved_xscale));
 					}
+					break;
 				}
 			}
 		}
@@ -76,12 +78,14 @@ for(var i = 0; i < _speed; i++)
 //화살 날아가는 이벤트 관련
 if (stop_flying > 0)
 {
+	var tmp_chk = (reflection_num == max_reflection_num);
 	stop_flying --;
 	
+
 	if (stop_flying == 0)
 	{
 		//미러볼인 경우
-		if (type != 3 || (reflection_num == max_reflection_num))
+		if (tmp_chk)
 		{
 			_speed = 0;
 			stop_animation = true;
@@ -89,9 +93,16 @@ if (stop_flying > 0)
 		else
 		{
 			reflection_num ++;
-			x += lengthdir_x(-4,direction);
-			y += lengthdir_y(-4,direction);
 			direction = get_reflection_angle(x,y,direction,_speed);
+			while(true)
+			{
+				x += lengthdir_x(1,direction);
+				y += lengthdir_y(1,direction);
+				if (!instance_position(x,y,obj_wall_parents))
+				{
+					break;
+				}
+			}
 		}
 	}
 }
@@ -106,7 +117,7 @@ if (stop_animation && is_on_mob == -4 && !place_meeting(x,y,obj_wall_parents))
 
 
 //화살 갯수가 일정량을 초과한 경우, 먼저 생성된 화살부터 순차적으로 제거
-if (instance_number(object_index) > global.graphics_quality*16)
+if (stop_animation && instance_number(object_index) > global.graphics_quality*16)
 {
 	var min_obj_id_owner = id;
 	var min_obj_id = obj_id;

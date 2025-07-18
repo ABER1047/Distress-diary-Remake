@@ -246,7 +246,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//리플렉트 볼
 			case 24:
 				dmg = 10;
-				atk_sp = 150;
+				atk_sp = 400;
 				knockback = 7;
 				tmp_accurate = 100;
 				tmp_attack_type = 5;

@@ -54,11 +54,9 @@ function create_projectile(argument0,argument1,argument2,argument3,argument4,arg
 		tmp_var = string(tmp_var)+","+string(argument13);
 	}
 	
-	if (argument14 != undefined) //반사 횟수
-	{
-		tmp_var_name = string(tmp_var_name)+",max_reflection_num";
-		tmp_var = string(tmp_var)+","+string(argument14);
-	}
+	//반사 횟수
+	tmp_var_name = string(tmp_var_name)+",max_reflection_num";
+	tmp_var = string(tmp_var)+","+string((argument14 != undefined) ? argument14 : 0);
 	
 	
 	var tmp_ins = instance_create_multiplayer_ext(obj_projectile,argument0,argument1,global.object_id_ind,argument2,false,-4,-4,tmp_var_name,tmp_var);

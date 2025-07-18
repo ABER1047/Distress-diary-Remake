@@ -6,15 +6,6 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 	global.attack_cooldown_timer = 1;
 	alarm[2] = 1;
 	
-	if (global.attack_type == 2) //단검 공격
-	{
-		gage_bar_charged -= 0.025;
-		alarm[3] = 1;
-	}
-	else
-	{
-		gage_bar_charged = 0;
-	}
 	
 	if (global.attack_type != 5)
 	{
@@ -70,7 +61,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		var dmg_info_arr = [ global.attack_damage, global.knockback_power, global.critical_chance, global.critical_dmg_magnification, global.bleeding_chance, global.poisoning_chance, global.burning_chance ];
 		var tmp_m_dir = point_direction(x,y,mouse_x,mouse_y);
 		var tmp_charging_num = 0;
-		for(var i = 0; i < global.charging_split; i++)
+		for(var i = 1; i <= global.charging_split; i++)
 		{
 			if (gage_bar_charged >= i/global.charging_split)
 			{
@@ -82,7 +73,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 			}
 		}
 		
-		
+		chat_up_multiplayer("tmp_charging_num : "+string(tmp_charging_num)+" / "+string(tmp_spell_type),false,true);
 		tmp_dmg_cal = (tmp_charging_num == 0) ? 1 : global.attack_damage;
 		
 		if (tmp_charging_num != 0)
@@ -90,35 +81,47 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 			var tmp_xx = x+lengthdir_x(16,tmp_m_dir), tmp_yy = y+8+lengthdir_y(16,tmp_m_dir);
 			switch(tmp_spell_type)
 			{
-				case 0:
+				case 19:
 					create_shockbolt(tmp_xx,tmp_yy,z+32,0,4,tmp_m_dir,0,0,#3898FF,global.my_player_id,tmp_cal_accurate,dmg_info_arr);
 				break;
 			
-				case 1:
+				case 20:
 					create_shockbolt(tmp_xx,tmp_yy,z+32,0,4,tmp_m_dir,0,tmp_charging_num,#3898FF,global.my_player_id,tmp_cal_accurate,dmg_info_arr);
 				break;
 				
-				case 2:
+				case 21:
 					create_shockbolt(tmp_xx,tmp_yy,z+32,0,4,tmp_m_dir,0,tmp_charging_num,#3898FF,global.my_player_id,tmp_cal_accurate,dmg_info_arr);
 				break;
 				
-				case 3:
+				case 22:
 					create_projectile(tmp_xx,tmp_yy,0,4,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1);
 				break;
 				
-				case 4:
+				case 23:
 					create_projectile(tmp_xx,tmp_yy,0,4,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1,tmp_charging_num);
 				break;
 				
-				case 5:
+				case 24:
 					create_projectile(tmp_xx,tmp_yy,0,12,2,global.attack_damage,z+16,0,tmp_m_dir,3,spr_projectile_mirrorball,,,2,tmp_charging_num);
 				break;
 				
-				case 6:
+				case 25:
 					create_projectile(tmp_xx,tmp_yy,0,17,2,global.attack_damage,z+16,0,tmp_m_dir,1,spr_projectile_fireball,25,2.25,0);
 				break;
 			}
 		}
+	}
+	
+	
+	
+	if (global.attack_type == 2) //단검 공격
+	{
+		gage_bar_charged -= 0.025;
+		alarm[3] = 1;
+	}
+	else
+	{
+		gage_bar_charged = 0;
 	}
 }
 
