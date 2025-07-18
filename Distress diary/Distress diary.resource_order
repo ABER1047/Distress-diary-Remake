@@ -169,6 +169,7 @@
     {"name":"get_all_players_ins_id","order":4,"path":"scripts/get_all_players_ins_id/get_all_players_ins_id.yy",},
     {"name":"get_mic_name","order":4,"path":"scripts/get_mic_name/get_mic_name.yy",},
     {"name":"get_rare_rate","order":15,"path":"scripts/get_rare_rate/get_rare_rate.yy",},
+    {"name":"get_reflection_angle","order":10,"path":"scripts/get_reflection_angle/get_reflection_angle.yy",},
     {"name":"give_damage","order":1,"path":"scripts/give_damage/give_damage.yy",},
     {"name":"hex_to_color","order":9,"path":"scripts/hex_to_color/hex_to_color.yy",},
     {"name":"http_ip_get","order":2,"path":"scripts/http_ip_get/http_ip_get.yy",},
