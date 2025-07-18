@@ -16,7 +16,11 @@
 ///@param [xpos]
 ///@param [ypos]
 ///@param [cnt_con]
+
+//target값에 instance의 id입력시 두 오브젝트 사이를 있는 번개 생성됨
 ///@param [target]
+
+
 ///@param [doNotSend]
 
 function create_shockbolt(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13,argument14,argument15,argument16)

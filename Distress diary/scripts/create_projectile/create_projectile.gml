@@ -11,11 +11,19 @@
 ///@param ErrorRange
 ///@param direction
 ///@param type[arrow/fireball...]
+
+//애니메이션이 있으면 값 지정
 ///@param [sprite_index]
+
+//폭발 효과 추가
 ///@param [exp_dmg]
 ///@param [exp_rad]
+
+//발광 효과 추가 
 ///@param [light_col]
-///@param [refl_num]
+
+//반사 가능 횟수
+///@param [max_refl_num]
 function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13,argument14)
 {
 	var ErrorRange = irandom_range(0,argument7)*choose(-1,1)*0.5;
