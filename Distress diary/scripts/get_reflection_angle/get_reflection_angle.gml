@@ -6,12 +6,8 @@ function get_reflection_angle(argument0, argument1, argument2, argument3)
 {
     var tmp_x = argument0;
     var tmp_y = argument1;
-    var tmp_speed = abs(argument3);
+    var tmp_speed = (argument3 < 1) ? 1 : argument3;
     var tmp_dir = argument2;
-    
-    if (tmp_speed < 1) {
-        return tmp_dir;
-    }
     
     // 단계적으로 충돌 검사
     var step_size = 1;
