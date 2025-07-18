@@ -15,7 +15,8 @@
 ///@param [exp_dmg]
 ///@param [exp_rad]
 ///@param [light_col]
-function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13)
+///@param [refl_num]
+function create_projectile(argument0,argument1,argument2,argument3,argument4,argument5,argument6,argument7,argument8,argument9,argument10,argument11,argument12,argument13,argument14)
 {
 	var ErrorRange = irandom_range(0,argument7)*choose(-1,1)*0.5;
 	var tmp_dir = argument8 + ErrorRange;
@@ -30,21 +31,26 @@ function create_projectile(argument0,argument1,argument2,argument3,argument4,arg
 	if (argument11 != undefined)
 	{
 		tmp_var_name = string(tmp_var_name)+",explosion_dmg";
-		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument11));
+		tmp_var = string(tmp_var)+","+string(argument11);
 	}
 	
 	if (argument12 != undefined)
 	{
 		tmp_var_name = string(tmp_var_name)+",explosion_rad";
-		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument12));
+		tmp_var = string(tmp_var)+","+string(argument12);
 	}
 	
 	if (argument13 != undefined) //light_col 변수가 선언 되어 있으면, 해당 투사체는 빛이 남
 	{
 		tmp_var_name = string(tmp_var_name)+",light_col";
-		tmp_var = string(tmp_var)+","+string(sprite_get_name(argument13));
+		tmp_var = string(tmp_var)+","+string(argument13);
 	}
 	
+	if (argument14 != undefined) //반사 횟수
+	{
+		tmp_var_name = string(tmp_var_name)+",max_reflection_num";
+		tmp_var = string(tmp_var)+","+string(argument14);
+	}
 	
 	
 	var tmp_ins = instance_create_multiplayer_ext(obj_projectile,argument0,argument1,global.object_id_ind,argument2,false,-4,-4,tmp_var_name,tmp_var);

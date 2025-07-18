@@ -94,7 +94,7 @@ if (type > 0)
 	}
 	
 	
-	//쇼크볼인 경우
+	//쇼크볼
 	if (type == 2)
 	{
 		var tmp_max_dis = 420;

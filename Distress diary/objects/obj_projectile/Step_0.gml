@@ -28,7 +28,6 @@ for(var i = 0; i < _speed; i++)
 				{
 					is_on_mob = tmp_ins;
 					stop_flying = 16;
-					_speed = 0;
 					//데미지
 					if (saved_xscale == -4)
 					{
@@ -81,8 +80,19 @@ if (stop_flying > 0)
 	
 	if (stop_flying == 0)
 	{
-		_speed = 0;
-		stop_animation = true;
+		//미러볼인 경우
+		if (type != 3 || (reflection_num == max_reflection_num))
+		{
+			_speed = 0;
+			stop_animation = true;
+		}
+		else
+		{
+			reflection_num ++;
+			x += lengthdir_x(-1,direction);
+			y += lengthdir_y(-1,direction);
+			direction = get_reflection_angle(x,y,direction,_speed);
+		}
 	}
 }
 

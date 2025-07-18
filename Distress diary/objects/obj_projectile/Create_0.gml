@@ -48,3 +48,7 @@ light_animation_timer = 0;
 
 //가장 가까운 쇼크볼 찾기
 nearest_shockball_ins = -4;
+
+//벽에 부딛힌 횟수
+reflection_num = 0;
+//max_reflection_num = 0;

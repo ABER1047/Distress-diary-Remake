@@ -1,40 +1,48 @@
 ///@param x
 ///@param y
 ///@param dir
-///@param projectile_size
-
-function get_reflection_angle(argument0,argument1,argument2,argument3)
+///@param speed
+function get_reflection_angle(argument0, argument1, argument2, argument3)
 {
-	var tmp_x = argument0, tmp_y = argument1;
-	var tmp_size = argument3;
-	var tmp_dir = argument2;
-	
-	
-	var tmp_angle1 = direction - 5, tmp_angle2 = direction + 5;
-	var tmp_get_x1 = -4, tmp_get_y1 = -4;
-	var tmp_get_x2 = -4, tmp_get_y2 = -4;
-	for(var i = 0; i < tmp_size; i++)
-	{
-		var tmp_x1 = tmp_x + lengthdir_x(tmp_size,tmp_angle1), tmp_y1 = tmp_y + lengthdir_y(tmp_size,tmp_angle1);
-		var tmp_x2 = tmp_x + lengthdir_x(tmp_size,tmp_angle2), tmp_y2 = tmp_y + lengthdir_y(tmp_size,tmp_angle2);
-		if (tmp_x1 == -4 && position_meeting(tmp_x1,tmp_y1,obj_wall_parents))
+    var tmp_x = argument0;
+    var tmp_y = argument1;
+    var tmp_speed = abs(argument3);
+    var tmp_dir = argument2;
+    
+    if (tmp_speed < 1) {
+        return tmp_dir;
+    }
+    
+    // 단계적으로 충돌 검사
+    var step_size = 1;
+    var steps = ceil(tmp_speed / step_size);
+    
+    for (var i = 1; i <= steps; i++) {
+        var check_x = tmp_x + lengthdir_x(i * step_size, tmp_dir);
+        var check_y = tmp_y + lengthdir_y(i * step_size, tmp_dir);
+        
+        if (position_meeting(check_x, check_y, obj_wall_parents)) 
 		{
-			tmp_get_x1 = tmp_x1;
-			tmp_get_y1 = tmp_y1;
-		}
-		
-		if (tmp_x2 == -4 && position_meeting(tmp_x2,tmp_y2,obj_wall_parents))
-		{
-			tmp_get_x2 = tmp_x2;
-			tmp_get_y2 = tmp_y2;
-		}
-		
-		if (tmp_get_x1 != -4 && tmp_get_x2 != -4)
-		{
-			break;
-		}
-	}
-	
-	var tmp_wall_angle = point_direction(tmp_get_x1,tmp_get_y1,tmp_get_x2,tmp_get_y2);
-	return angle_difference((tmp_wall_angle+tmp_dir)%360,180);
+            // 충돌 발생 - 이전 위치에서 반사 방향 계산
+            var prev_x = tmp_x + lengthdir_x((i-1) * step_size, tmp_dir);
+            var prev_y = tmp_y + lengthdir_y((i-1) * step_size, tmp_dir);
+            
+            // 수평/수직 충돌 구분
+            if (position_meeting(check_x, prev_y, obj_wall_parents)) 
+			{
+                return 180 - tmp_dir; // 수평 반사
+            } 
+			else if (position_meeting(prev_x, check_y, obj_wall_parents))
+			{
+                return -tmp_dir; // 수직 반사
+            } 
+			else 
+			{
+                return tmp_dir + 180; // 대각선 반사
+            }
+        }
+    }
+    
+    // 충돌 없음
+    return tmp_dir;
 }
