@@ -758,6 +758,96 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_name_translated = "뼈 단검";
 				item_value = 4;
 			break;
+			
+			case 16:
+				tmp_short_name = "Spell";
+				tmp_name = "Shockbolt";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "쇼크볼트";
+				item_value = 2;
+			break;
+			
+			case 17:
+				tmp_short_name = "Spell";
+				tmp_name = "Lightning bolt";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "라이트닝 볼트";
+				item_value = 3;
+			break;
+			
+			case 18:
+				tmp_short_name = "Spell";
+				tmp_name = "The holy lightning";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "더 홀리 라이트닝";
+				item_value = 4;
+			break;
+			
+			case 19:
+				tmp_short_name = "Spell";
+				tmp_name = "Shockball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "쇼크볼";
+				item_value = 2;
+			break;
+			
+			case 20:
+				tmp_short_name = "Spell";
+				tmp_name = "Reflect Shockball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "리플렉트 쇼크볼";
+				item_value = 4;
+			break;
+			
+			case 21:
+				tmp_short_name = "Spell";
+				tmp_name = "Reflect ball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "리플렉트볼";
+				item_value = 2;
+			break;
+			
+			case 22:
+				tmp_short_name = "Spell";
+				tmp_name = "Fire ball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "파이어볼";
+				item_value = 3;
+			break;
+			
+			case 23:
+				tmp_short_name = "Spell";
+				tmp_name = "Poison ball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "포이즌볼";
+				item_value = 3;
+			break;
+			
+			case 24:
+				tmp_short_name = "Spell";
+				tmp_name = "Water ball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "워터볼";
+				item_value = 3;
+			break;
+			
+			case 25:
+				tmp_short_name = "Spell";
+				tmp_name = "Ghost ball";
+				item_weight = 0.3;
+				item_height = 2;
+				item_name_translated = "고스트볼";
+				item_value = 3;
+			break;
 		}
 	}
 	else if (argument0 == spr_pickaxe)

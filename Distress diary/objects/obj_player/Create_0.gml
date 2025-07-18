@@ -92,14 +92,14 @@ set_inv_variable(id,4,0,spr_comp,23,-4,0,0);
 set_quickslot_variable(0,spr_weapon,0,-4,0,0);
 set_quickslot_variable(1,spr_weapon,1,-4,0,1);
 set_quickslot_variable(2,spr_weapon,2,-4,0,2);
-set_quickslot_variable(3,spr_weapon,3,-4,0,3);
-set_quickslot_variable(4,spr_weapon,4,-4,0,4);
+set_quickslot_variable(3,spr_weapon,23,-4,0,3);
+set_quickslot_variable(4,spr_weapon,20,-4,0,4);
 set_quickslot_variable(5,spr_weapon,6,64,0,4);
 set_quickslot_variable(6,spr_weapon,7,32,0,4);
 set_quickslot_variable(7,spr_pickaxe,2,-4,0,4);
 set_quickslot_variable(0,spr_others,1,32,0,4);
-set_quickslot_variable(8,spr_others,0,32,0,4);
-set_quickslot_variable(9,spr_others,2,32,0,4);
+set_quickslot_variable(8,spr_weapon,24,-4,0,4);
+set_quickslot_variable(9,spr_weapon,25,-4,0,4);
 
 
 
