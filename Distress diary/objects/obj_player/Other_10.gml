@@ -97,6 +97,26 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				case 1:
 					create_shockbolt(tmp_xx,tmp_yy,z+32,0,4,tmp_m_dir,0,tmp_charging_num,#3898FF,global.my_player_id,tmp_cal_accurate,dmg_info_arr);
 				break;
+				
+				case 2:
+					create_shockbolt(tmp_xx,tmp_yy,z+32,0,4,tmp_m_dir,0,tmp_charging_num,#3898FF,global.my_player_id,tmp_cal_accurate,dmg_info_arr);
+				break;
+				
+				case 3:
+					create_projectile(tmp_xx,tmp_yy,0,4,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1);
+				break;
+				
+				case 4:
+					create_projectile(tmp_xx,tmp_yy,0,4,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1,tmp_charging_num);
+				break;
+				
+				case 5:
+					create_projectile(tmp_xx,tmp_yy,0,12,2,global.attack_damage,z+16,0,tmp_m_dir,3,spr_projectile_mirrorball,,,2,tmp_charging_num);
+				break;
+				
+				case 6:
+					create_projectile(tmp_xx,tmp_yy,0,17,2,global.attack_damage,z+16,0,tmp_m_dir,1,spr_projectile_fireball,25,2.25,0);
+				break;
 			}
 		}
 	}
