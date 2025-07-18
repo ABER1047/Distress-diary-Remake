@@ -87,7 +87,7 @@ if (type > 0)
 			view_shake(0.1,4,0.1,0);
 			
 			//폭발 공격
-			create_explosion_effect(x,y,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
+			create_explosion_effect(x+(is_on_mob.x-x)*0.5,y+(is_on_mob.y-y)*0.5,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
 		}
 
 		instance_destroy_multiplayer(id);

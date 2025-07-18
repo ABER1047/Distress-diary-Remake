@@ -406,7 +406,7 @@ if (global.chat_activated)
 								{
 									tmp_dir += irandom_range(-45,45);
 								}
-								var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,4,2,43,64,0,tmp_dir,2,spr_projectile_shockball);
+								var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,4,2,43,16,0,tmp_dir,2,spr_projectile_shockball);
 							}
 							chat_up_multiplayer("- 쇼크볼 생성됨",false);
 						}
@@ -416,7 +416,7 @@ if (global.chat_activated)
 							var tmp_yy = global.my_player_ins_id[global.my_player_id].y;
 							var tmp_ = instance_nearest(tmp_xx,tmp_yy,obj_monster_parents);
 							var tmp_dir = (instance_exists(tmp_)) ? point_direction(tmp_xx,tmp_yy,tmp_.x,tmp_.y) : point_direction(tmp_xx,tmp_yy,mouse_x,mouse_y);
-							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,12,2,43,64,0,tmp_dir,3,spr_projectile_mirrorball,,,,tmp_parameter);
+							var tmp_ins = create_projectile(tmp_xx,tmp_yy,0,12,2,43,16,0,tmp_dir,3,spr_projectile_mirrorball,,,,tmp_parameter);
 							chat_up_multiplayer("- 미러볼 생성됨",false);
 						}
 						
