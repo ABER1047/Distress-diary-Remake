@@ -28,7 +28,7 @@ for(var i = 0; i < _speed; i++)
 				if ((tmp_ch <= 96 && tmp_ins.zspeed >= 0) || tmp_ch <= 64)
 				{
 					is_on_mob = tmp_ins;
-					stop_flying = 16;
+					stop_flying = 1;
 					//데미지
 					if (saved_xscale == -4)
 					{
@@ -75,17 +75,93 @@ for(var i = 0; i < _speed; i++)
 
 
 
+
+//특수 효과 적용된 투사체 (애니메이션, 폭발 ...)
+var tmp_chk_nomore_reflection = (reflection_num == max_reflection_num);
+if (type > 0)
+{
+	//애니메이션 재생
+	image_index += 0.175;
+	if (tmp_chk_nomore_reflection || instance_exists(is_on_mob))
+	{
+		if (variable_instance_exists(id,"explosion_rad") && explosion_rad > 0)
+		{
+			//화면 흔들림 
+			view_shake(0.1,4,0.1,0);
+			
+			//폭발 공격
+			create_explosion_effect(x+(is_on_mob.x-x)*0.5,y+(is_on_mob.y-y)*0.5,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
+		}
+
+		instance_destroy_multiplayer(id);
+	}
+	
+	
+	//쇼크볼
+	if (type == 2)
+	{
+		var tmp_max_dis = 420;
+		//연결 가능한 쇼크볼이 있는 경우
+		if (instance_exists(nearest_shockball_ins))
+		{
+			//기존에 연결된 쇼크볼의 거리가 멀어져 끊어졌는지 체크
+			var tmp_dis = point_distance(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+			if (tmp_dis >= tmp_max_dis)
+			{
+				nearest_shockball_ins = -4;
+			}
+			else
+			{
+				if (percentage_k(5))
+				{
+					//쇼크볼에서 생성된 쇼크 볼트는 데미지&넉백 0.2배
+					var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+					var dmg_info_arr = [ attack_dmg*0.2, knockback*0.2, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
+					create_shockbolt(x,y,z,0,4,0,0,0,#3898FF,attacker_id,0,dmg_info_arr,my_pos_xx,my_pos_yy,0,nearest_shockball_ins,true);
+				}
+			}
+		}
+		else
+		{
+			//주변에 있는 쇼크볼 1개 감지
+			var tmp_nearest_dis = tmp_max_dis;
+			with(obj_projectile)
+			{
+				if (my_pos_xx == other.my_pos_xx && my_pos_yy == other.my_pos_yy && type == 2 && id != other.id)
+				{
+					var tmp_dis = point_distance(x,y,other.x,other.y);
+					if (!instance_exists(nearest_shockball_ins) && tmp_nearest_dis > tmp_dis)
+					{
+						nearest_shockball_ins = other.id;
+						tmp_nearest_dis = tmp_dis;
+					}
+				}
+			}
+				
+			if (instance_exists(nearest_shockball_ins))
+			{
+				chat_up_multiplayer("connected! - shockball",false,true);
+			}
+		}
+	}
+}
+
+
+
+
+
+
+
 //화살 날아가는 이벤트 관련
 if (stop_flying > 0)
 {
-	var tmp_chk = (reflection_num == max_reflection_num);
 	stop_flying --;
 	
 
 	if (stop_flying == 0)
 	{
 		//미러볼인 경우
-		if (tmp_chk)
+		if (tmp_chk_nomore_reflection)
 		{
 			_speed = 0;
 			stop_animation = true;
@@ -93,25 +169,29 @@ if (stop_flying > 0)
 		else
 		{
 			reflection_num ++;
-			direction = get_reflection_angle(x,y,direction,_speed);
 			while(true)
 			{
-				x += lengthdir_x(1,direction);
-				y += lengthdir_y(1,direction);
+				x -= lengthdir_x(1,direction);
+				y -= lengthdir_y(1,direction);
+
 				if (!instance_position(x,y,obj_wall_parents))
 				{
 					break;
 				}
 			}
+			
+			direction = get_reflection_angle(x,y,direction,_speed);
 		}
 	}
 }
 
 
+//몹한테 박힌 것도 아닌 상태 + 벽에도 안 박힘 => 삭제
 if (stop_animation && is_on_mob == -4 && !place_meeting(x,y,obj_wall_parents))
 {
 	instance_destroy();
 }
+
 
 
 
