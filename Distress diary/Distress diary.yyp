@@ -440,6 +440,7 @@
     {"id":{"name":"spr_player_hitbox","path":"sprites/spr_player_hitbox/spr_player_hitbox.yy",},},
     {"id":{"name":"spr_portal","path":"sprites/spr_portal/spr_portal.yy",},},
     {"id":{"name":"spr_projectile_fireball","path":"sprites/spr_projectile_fireball/spr_projectile_fireball.yy",},},
+    {"id":{"name":"spr_projectile_mirrorball","path":"sprites/spr_projectile_mirrorball/spr_projectile_mirrorball.yy",},},
     {"id":{"name":"spr_projectile_shockball","path":"sprites/spr_projectile_shockball/spr_projectile_shockball.yy",},},
     {"id":{"name":"spr_projectiles","path":"sprites/spr_projectiles/spr_projectiles.yy",},},
     {"id":{"name":"spr_puzzle_tile","path":"sprites/spr_puzzle_tile/spr_puzzle_tile.yy",},},
