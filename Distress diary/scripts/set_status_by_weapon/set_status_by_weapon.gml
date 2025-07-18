@@ -10,7 +10,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 {
 	var tmp_spr_ind = argument0;
 	var tmp_img_ind = argument1;
-	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0, tmp_bleeding = 0, tmp_poisoning = 0, tmp_burn = 0;
+	var dmg = 0, atk_sp = 0, crit_chance = 0, knockback = 0, tmp_attack_type = 0, tmp_range = 128, tmp_accurate = 0, tmp_bleeding = 0, tmp_poisoning = 0, tmp_burn = 0, tmp_mana = 0, tmp_charging_split = 1;
 	
 	if (tmp_spr_ind == spr_weapon)
 	{
@@ -182,6 +182,125 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				tmp_range = 78;
 				tmp_attack_type = 2;
 			break;
+			
+			//쇼크볼트
+			case 19:
+				dmg = 48;
+				atk_sp = 180;
+				knockback = 2;
+				tmp_accurate = 80;
+				tmp_attack_type = 5;
+				tmp_mana = 10;
+				tmp_charging_split = 3;
+				tmp_burn = 15;
+			break;
+			
+			//라이트닝 볼트
+			case 20:
+				dmg = 48;
+				atk_sp = 144;
+				knockback = 2;
+				tmp_accurate = 80;
+				tmp_attack_type = 5;
+				tmp_mana = 10;
+				tmp_charging_split = 3;
+				tmp_burn = 15;
+			break;
+			
+			//홀리 라이트닝
+			case 21:
+				dmg = 28;
+				atk_sp = 240;
+				knockback = 3;
+				tmp_accurate = 95;
+				tmp_attack_type = 5;
+				tmp_mana = 50;
+				tmp_charging_split = 5;
+				tmp_burn = 15;
+			break;
+			
+			//쇼크볼
+			case 22:
+				dmg = 35;
+				atk_sp = 90;
+				knockback = 9;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 22;
+				tmp_charging_split = 1;
+				tmp_burn = 15;
+			break;
+			
+			//리플렉트 쇼크볼
+			case 23:
+				dmg = 30;
+				atk_sp = 255;
+				knockback = 7;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 30;
+				tmp_charging_split = 3;
+				tmp_burn = 15;
+			break;
+			
+			//리플렉트 볼
+			case 24:
+				dmg = 10;
+				atk_sp = 150;
+				knockback = 7;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 10;
+				tmp_charging_split = 5;
+				tmp_burn = 15;
+			break;
+			
+			//파이어볼
+			case 25:
+				dmg = 43;
+				atk_sp = 180;
+				knockback = 7;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 30;
+				tmp_charging_split = 3;
+				tmp_burn = 90;
+			break;
+			
+			//포이즌볼
+			case 26:
+				dmg = 43;
+				atk_sp = 180;
+				knockback = 7;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 30;
+				tmp_charging_split = 3;
+				tmp_poisoning = 90;
+			break;
+			
+			//워터볼
+			case 27:
+				dmg = 43;
+				atk_sp = 180;
+				knockback = 7;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 30;
+				tmp_charging_split = 3;
+			break;
+
+			//고스트 볼
+			case 28:
+				dmg = 43;
+				atk_sp = 180;
+				knockback = 7;
+				tmp_accurate = 100;
+				tmp_attack_type = 5;
+				tmp_mana = 30;
+				tmp_charging_split = 3;
+				tmp_poisoning = 50;
+			break;
 		}
 	}
 	else if (tmp_spr_ind == spr_pickaxe)
@@ -283,6 +402,8 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		global.bleeding_chance = tmp_bleeding;
 		global.poisoning_chance = tmp_poisoning;
 		global.burning_chance = tmp_burn;
+		global.mana_decreasement = tmp_mana;
+		global.charging_split = tmp_charging_split; //차징 단계 분리 정도
 	}
 	
 	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate)+","+string(tmp_bleeding)+","+string(tmp_poisoning)+","+string(tmp_burn);

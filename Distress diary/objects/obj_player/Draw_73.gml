@@ -57,11 +57,6 @@ if (draw_alpha > 0)
 		
 			//테두리 그리기
 			draw_sprite_ext(charging_gage_bar,1,tmp_ui_xx,tmp_ui_yy,tmp_ui_scale,tmp_ui_scale,0,#332439,1);
-			
-			if (gage_bar_charged >= 1 && global.gage_bar_shine_animation <= 0)
-			{
-				global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
-			}
 		}
 		
 		if (global.gage_bar_shine_animation > 0)

@@ -17,10 +17,22 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 				if (gage_bar_charged < 1)
 				{
 					gage_bar_charged += 60/power(global.attack_speed,2);
+					
+					for(var i = 0; i < global.charging_split; i++)
+					{
+						if (floor(100*gage_bar_charged/i) == floor(100/global.charging_split))
+						{
+							global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
+						}
+					}
 				}
 				else
 				{
 					gage_bar_charged = 1;
+					if (global.gage_bar_shine_animation <= 0)
+					{
+						global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
+					}
 				}
 	
 				var tmp_cal = global.max_movement_speed*0.7;
