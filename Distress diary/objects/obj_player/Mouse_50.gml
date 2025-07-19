@@ -43,10 +43,24 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 					global.movement_vspeed += (0 - global.movement_vspeed)*0.35;
 				}
 			}
+			
+			
+			//마법 영창 이펙트
+			if (global.attack_type == 5)
+			{
+				if (spell_effect_timer%25 == 0)
+				{
+					var tmp_ins = display_texts(x+lengthdir_x(48,my_n_dir*90)+irandom_range(-8,8),y+lengthdir_y(48,my_n_dir*90)-16-z+irandom_range(-8,8),c_white,id,"@rune!",irandom_range(50,30)/100);
+					tmp_ins.image_alpha = 0.75;
+					tmp_ins.animation = 50;
+				}
+				spell_effect_timer ++;
+			}
 		}
 	}
 }
 else
 {
+	spell_effect_timer = 0;
 	gage_bar_charged = 0;
 }

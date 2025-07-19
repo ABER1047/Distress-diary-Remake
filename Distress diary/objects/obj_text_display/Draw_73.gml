@@ -14,5 +14,12 @@ if (animation > 90)
 	}
 }
 
-
-draw_text_kl_scale(x,y-text_yy*64*global.reversed_ratio_by_camera,text,64,-1,image_alpha,image_blend,0,0,font_normal,0.3,0.3,0,true);
+var tmp_yy = y-text_yy*64*global.reversed_ratio_by_camera;
+if (sprite_exists(sprite_index))
+{
+	draw_sprite_ext(sprite_index,image_index,x,tmp_yy,image_xscale,image_yscale,image_angle,image_blend,image_alpha);
+}
+else
+{
+	draw_text_kl_scale(x,tmp_yy,text,64,-1,image_alpha,image_blend,0,0,font_normal,0.3,0.3,0,true);
+}
