@@ -16,11 +16,7 @@ if (effect_applied)
 			var tmp_xx = tmp_ef_ins.x;
 			var tmp_yy = tmp_ef_ins.y;
 			var tmp_scale = irandom_range(10,20)*0.03;
-			var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,0,#DD4C4C,#FFAC4B,0.1,-irandom_range(8,16),-(tmp_ef_ins.hspeed),0.03,0,true,tmp_ef_ins.depth+1);
-			tmp_ins.image_xscale = tmp_scale;
-			tmp_ins.image_yscale = tmp_scale;
-			
-			show_debug_message("ef_cr"+string(rd_ind));
+			create_bubble_effect(tmp_xx,tmp_yy,0,#DD4C4C,#FFAC4B,0.1,-irandom_range(8,16),-(tmp_ef_ins.hspeed),0.03,0,true,tmp_ef_ins.depth+1,,tmp_scale);
 		}
 	}
 	

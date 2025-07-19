@@ -9,9 +9,7 @@ if (!stop_cal_by_pos_statement)
 		{
 			var tmp_hspeed = lengthdir_x(16,i);
 			var tmp_vspeed = lengthdir_y(16,i);
-			var tmp_ins = create_bubble_effect(x,y,-z,c_white,c_black,0.1,tmp_vspeed*0.48,tmp_hspeed,0.1,0,false);
-			tmp_ins.image_xscale = 1.6;
-			tmp_ins.image_yscale = 1.6;
+			create_bubble_effect(x,y,-z,c_white,c_black,0.1,tmp_vspeed*0.48,tmp_hspeed,0.1,0,false,,,1.6);
 		}
 		
 		create_bounce_object(x,y,z+64,_speed,direction,0,spr_deadmob_debris,0,image_yscale,irandom_range(240,360));

@@ -56,9 +56,7 @@ if (type == 1 || type == 2)
 		var tmp_col = [ #DD4C4C, #FFAC4B, #0BE5C4, #D9FFDE ];
 		if (percentage_k(5))
 		{
-			var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z-32,tmp_col[(type-1)*2],tmp_col[(type-1)*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true);
-			tmp_ins.image_xscale = 1.3;
-			tmp_ins.image_yscale = 1.3;
+			create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z-32,tmp_col[(type-1)*2],tmp_col[(type-1)*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,,,1.3);
 		}
 		
 		//라이트 효과

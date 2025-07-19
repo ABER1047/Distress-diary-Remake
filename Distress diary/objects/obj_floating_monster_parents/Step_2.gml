@@ -142,9 +142,7 @@ if (buff_left_time[19] > 0)
 			{
 				if (percentage_k(50))
 				{
-					var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
-					tmp_ins.image_xscale = 0.5;
-					tmp_ins.image_yscale = 0.5;
+					create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1,,0.5);
 				}
 			}
 		}

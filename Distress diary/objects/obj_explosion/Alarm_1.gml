@@ -42,9 +42,12 @@ if (global.graphics_quality > 1)
 		var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42;
 		var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
 		var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,-1,c_white,c_white,0,irandom_range(-2,2)*0.42,irandom_range(-2,2),0,0.8,true,-9999);
-		tmp_ins.sprite_index = spr_explosion;
-		tmp_ins.image_xscale = image_xscale*2.5/((1+tmp_dis/128));
-		tmp_ins.image_yscale = tmp_ins.image_xscale;
+		if (instance_exists(tmp_ins))
+		{
+			tmp_ins.sprite_index = spr_explosion;
+			tmp_ins.image_xscale = image_xscale*2.5/((1+tmp_dis/128));
+			tmp_ins.image_yscale = tmp_ins.image_xscale;
+		}
 	}
 }
 
@@ -77,8 +80,11 @@ if (global.graphics_quality > 0)
 			var tmp_yy = y+irandom_range(-tmp_effect_dis,tmp_effect_dis)*0.42*0.3;
 			var tmp_dis = point_distance(x,y,tmp_xx,tmp_yy);
 			var tmp_ins = create_bubble_effect(tmp_xx,tmp_yy,-1,c_white,#FFAC4B,0.3,irandom_range(-2,2)*0.42,irandom_range(-2,2),0.02,0,false,-tmp_yy);
-			tmp_ins.image_xscale = image_xscale*4.25/((1+tmp_dis/96));
-			tmp_ins.image_yscale = tmp_ins.image_xscale;
+			if (instance_exists(tmp_ins))
+			{
+				tmp_ins.image_xscale = image_xscale*4.25/((1+tmp_dis/96));
+				tmp_ins.image_yscale = tmp_ins.image_xscale;
+			}
 		}
 	
 		//폭발 잔해 이펙트 

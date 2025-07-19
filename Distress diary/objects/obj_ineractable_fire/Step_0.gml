@@ -64,9 +64,7 @@ if (!stop_cal_by_pos_statement)
 			var tmp_color = [ #DD4C4C,#FFAC4B, #0BE5C4,#D9FFDE, #E395F8,#F2DFF8 ];
 			if (global.graphics_quality >= 2 && percentage_k(5))
 			{
-				var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-fire_yy[image_index]-32,1,tmp_color[fire_type*2],tmp_color[fire_type*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
-				tmp_ins.image_xscale = 0.5*fire_scale[image_index];
-				tmp_ins.image_yscale = 0.5*fire_scale[image_index];
+				create_bubble_effect(x+irandom_range(-16,16),y-fire_yy[image_index]-32,1,tmp_color[fire_type*2],tmp_color[fire_type*2+1],0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1,,0.5*fire_scale[image_index]);
 			}
 			
 			if (percentage_k(1))

@@ -11,9 +11,7 @@ if (!stop_cal_by_pos_statement)
 		{
 			var tmp_hspeed = lengthdir_x(16,i);
 			var tmp_vspeed = lengthdir_y(16,i);
-			var tmp_ins = create_bubble_effect(x,y,-z,c_white,c_black,0.1,tmp_vspeed*0.48,tmp_hspeed,0.1,0,false);
-			tmp_ins.image_xscale = 1.6;
-			tmp_ins.image_yscale = 1.6;
+			create_bubble_effect(x,y,-z,c_white,c_black,0.1,tmp_vspeed*0.48,tmp_hspeed,0.1,0,false,,,1.6);
 		}
 		
 		create_bounce_object(x,y,z+irandom_range(0,64),_speed,direction,0,spr_deadmob_debris,1,image_yscale,irandom_range(240,360));
@@ -80,9 +78,7 @@ if (!stop_cal_by_pos_statement)
 	//불 이펙트
 	if (global.graphics_quality > 1 && percentage_k(15))
 	{
-		var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z-32,#0BE5C4,#D9FFDE,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true);
-		tmp_ins.image_xscale = 1.3;
-		tmp_ins.image_yscale = 1.3;
+		create_bubble_effect(x+irandom_range(-16,16),y+(percentage_k(10) ? 10 : -10),-z-32,#0BE5C4,#D9FFDE,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,,,1.3);
 	}
 }
 

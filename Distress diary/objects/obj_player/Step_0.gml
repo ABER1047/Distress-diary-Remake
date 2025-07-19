@@ -73,9 +73,7 @@ if (buff_left_time[19] > 0 && global.graphics_quality >= 2)
 	{
 		if (percentage_k(7))
 		{
-			var tmp_ins = create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1);
-			tmp_ins.image_xscale = 0.5;
-			tmp_ins.image_yscale = 0.5;
+			create_bubble_effect(x+irandom_range(-16,16),y-z-32,1,#DD4C4C,#FFAC4B,0.08,-irandom_range(6,12),irandom_range(-2,2),0.03,0,true,-y-1,,0.5);
 		}
 	}
 }
@@ -128,9 +126,7 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 		
 		if (global.graphics_quality >= 2 && percentage_k(5))
 		{
-			var tmp_ins = create_bubble_effect(tmp_cal_xx,tmp_cal_yy,1,merge_color(light_col[holding_item_img_ind],c_black,0.1),light_col[holding_item_img_ind],0.08,-irandom_range(6,12)-global.movement_vspeed,irandom_range(-2,2)-global.movement_hspeed,0.03,0,true,-y-1);
-			tmp_ins.image_xscale = 0.5;
-			tmp_ins.image_yscale = 0.5;
+			create_bubble_effect(tmp_cal_xx,tmp_cal_yy,1,merge_color(light_col[holding_item_img_ind],c_black,0.1),light_col[holding_item_img_ind],0.08,-irandom_range(6,12)-global.movement_vspeed,irandom_range(-2,2)-global.movement_hspeed,0.03,0,true,-y-1,,0.5);
 		}
 	}
 }
