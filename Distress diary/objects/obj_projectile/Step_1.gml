@@ -23,9 +23,12 @@ if (type == 0 && global.graphics_quality > 0)
 	{
 		if (instance_exists(is_on_mob))
 		{
-			var tmp_comp_yy = is_on_mob.y - is_on_mob.z;
+			is_on_mob_xx = is_on_mob.x;
+			is_on_mob_yy = is_on_mob.y;
+			is_on_mob_zz = is_on_mob.z;
+			var tmp_comp_yy = is_on_mob_yy - is_on_mob_zz;
 			var tmp_scale = sign(is_on_mob.image_xscale);
-			x = is_on_mob.x;
+			x = is_on_mob_xx;
 			y = tmp_comp_yy;
 			z = 0.5*(is_on_mob.bbox_bottom - is_on_mob.bbox_top);
 			

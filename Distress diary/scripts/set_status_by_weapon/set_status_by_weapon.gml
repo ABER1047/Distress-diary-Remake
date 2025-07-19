@@ -200,7 +200,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 				dmg = 48;
 				atk_sp = 144;
 				knockback = 2;
-				tmp_accurate = 80;
+				tmp_accurate = 90;
 				tmp_attack_type = 5;
 				tmp_mana = 10;
 				tmp_charging_split = 3;

@@ -21,6 +21,9 @@ alarm[1] = 1;
 
 //화살 꽂힘 효과
 is_on_mob = -4;
+is_on_mob_xx = -4;
+is_on_mob_yy = -4;
+is_on_mob_zz = -4;
 saved_xscale = -4;
 angle_comp = 0;
 stop_flying = -4;

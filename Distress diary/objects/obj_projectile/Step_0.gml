@@ -77,70 +77,68 @@ for(var i = 0; i < _speed; i++)
 
 
 //특수 효과 적용된 투사체 (애니메이션, 폭발 ...)
-var tmp_chk_nomore_reflection = (reflection_num == max_reflection_num);
-if (type > 0)
+if (global.is_server)
 {
-	//애니메이션 재생
-	image_index += 0.175;
-	if (tmp_chk_nomore_reflection || instance_exists(is_on_mob))
+	var tmp_chk_nomore_reflection = (reflection_num == max_reflection_num);
+	if (type > 0)
 	{
-		if (variable_instance_exists(id,"explosion_rad") && explosion_rad > 0)
+		//애니메이션 재생
+		image_index += 0.175;
+		if ((_speed == 0 && tmp_chk_nomore_reflection) || instance_exists(is_on_mob))
 		{
-			//화면 흔들림 
-			view_shake(0.1,4,0.1,0);
+			if (variable_instance_exists(id,"explosion_rad") && explosion_rad > 0)
+			{
+				//화면 흔들림 
+				view_shake(0.1,4,0.1,0);
 			
-			//폭발 공격
-			create_explosion_effect(x+(is_on_mob.x-x)*0.5,y+(is_on_mob.y-y)*0.5,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,true);
-		}
+				//폭발 공격
+				create_explosion_effect(x,y,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,false);
+			}
 
-		instance_destroy_multiplayer(id);
-	}
-	
-	
-	//쇼크볼
-	if (type == 2)
-	{
-		var tmp_max_dis = 420;
-		//연결 가능한 쇼크볼이 있는 경우
-		if (instance_exists(nearest_shockball_ins))
-		{
-			//기존에 연결된 쇼크볼의 거리가 멀어져 끊어졌는지 체크
-			var tmp_dis = point_distance(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
-			if (tmp_dis >= tmp_max_dis)
-			{
-				nearest_shockball_ins = -4;
-			}
-			else
-			{
-				if (percentage_k(5))
-				{
-					//쇼크볼에서 생성된 쇼크 볼트는 데미지&넉백 0.2배
-					var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
-					var dmg_info_arr = [ attack_dmg*0.2, knockback*0.2, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
-					create_shockbolt(x,y,z,0,4,0,0,0,#3898FF,attacker_id,0,dmg_info_arr,my_pos_xx,my_pos_yy,0,nearest_shockball_ins,true);
-				}
-			}
+			instance_destroy_multiplayer(id);
 		}
-		else
+	
+	
+		//쇼크볼
+		if (type == 2)
 		{
-			//주변에 있는 쇼크볼 1개 감지
-			var tmp_nearest_dis = tmp_max_dis;
-			with(obj_projectile)
+			var tmp_max_dis = 640;
+			//연결 가능한 쇼크볼이 있는 경우
+			if (instance_exists(nearest_shockball_ins))
 			{
-				if (my_pos_xx == other.my_pos_xx && my_pos_yy == other.my_pos_yy && type == 2 && id != other.id)
+				//기존에 연결된 쇼크볼의 거리가 멀어져 끊어졌는지 체크
+				var tmp_dis = point_distance(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+				if (tmp_dis >= tmp_max_dis)
 				{
-					var tmp_dis = point_distance(x,y,other.x,other.y);
-					if (!instance_exists(nearest_shockball_ins) && tmp_nearest_dis > tmp_dis)
+					nearest_shockball_ins = -4;
+				}
+				else
+				{
+					if (percentage_k(5))
 					{
-						nearest_shockball_ins = other.id;
-						tmp_nearest_dis = tmp_dis;
+						//쇼크볼에서 생성된 쇼크 볼트는 데미지&넉백 0.2배
+						var tmp_dir = point_direction(x,y,nearest_shockball_ins.x,nearest_shockball_ins.y);
+						var dmg_info_arr = [ attack_dmg*0.2, knockback*0.2, critical_chance, magnification, bleeding_chance, poisoning_chance, burning_chance ];
+						create_shockbolt(x,y,z,0,4,0,0,0,#3898FF,attacker_id,0,dmg_info_arr,my_pos_xx,my_pos_yy,0,nearest_shockball_ins,true);
 					}
 				}
 			}
-				
-			if (instance_exists(nearest_shockball_ins))
+			else
 			{
-				chat_up_multiplayer("connected! - shockball",false,true);
+				//주변에 있는 쇼크볼 1개 감지
+				var tmp_nearest_dis = tmp_max_dis;
+				with(obj_projectile)
+				{
+					if (my_pos_xx == other.my_pos_xx && my_pos_yy == other.my_pos_yy && type == 2 && id != other.id)
+					{
+						var tmp_dis = point_distance(x,y,other.x,other.y);
+						if (!instance_exists(nearest_shockball_ins) && tmp_nearest_dis > tmp_dis)
+						{
+							nearest_shockball_ins = other.id;
+							tmp_nearest_dis = tmp_dis;
+						}
+					}
+				}
 			}
 		}
 	}
@@ -220,12 +218,15 @@ if (stop_animation && instance_number(object_index) > global.graphics_quality*16
 
 
 //라이트 값이 정의된 경우, 투사체에 빛나는 효과 적용
-if (variable_instance_exists(id,"light_col"))
+if (!stop_cal_by_pos_statement)
 {
-	light_animation_timer ++;
-	var tmp_value = sin((light_animation_timer/180)*pi);
-	var tmp_light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
-	c_light(tmp_light_col[light_col],(0.3+abs(tmp_value))*0.75,0.4*image_xscale+tmp_value*0.1,x,y-z);
+	if (variable_instance_exists(id,"light_col"))
+	{
+		light_animation_timer ++;
+		var tmp_value = sin((light_animation_timer/180)*pi);
+		var tmp_light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
+		c_light(tmp_light_col[light_col],(0.3+abs(tmp_value))*0.75,0.4*image_xscale+tmp_value*0.1,x,y-z);
+	}
 }
 
 

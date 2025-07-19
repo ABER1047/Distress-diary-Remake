@@ -288,7 +288,7 @@ if (global.buff_left_time[19] > 0)
 //공격 속도 적용
 if (global.attack_cooldown_timer > 0)
 {
-	global.attack_cooldown_timer += (global.attack_type == 2 || global.attack_type == 5) ? 1 : speed_by_weight;
+	global.attack_cooldown_timer += ((global.attack_type == 2 || global.attack_type == 5) ? 1 : speed_by_weight)*global.charging_split;
 	if (global.attack_cooldown_timer > global.attack_speed)
 	{
 		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제

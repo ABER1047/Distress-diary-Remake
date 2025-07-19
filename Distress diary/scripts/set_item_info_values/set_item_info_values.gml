@@ -715,6 +715,34 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			
 			case 11:
 				tmp_short_name = "Sword";
+				tmp_name = "Golden Sword";
+				item_weight = 2.3;
+				item_height = 3;
+				item_name_translated = "황금 검";
+				item_value = 8;
+			break;
+			
+			case 12:
+				tmp_short_name = "Dagger";
+				tmp_name = "Golden Dagger";
+				item_weight = 1.2;
+				item_height = 2;
+				item_name_translated = "황금 단검";
+				item_value = 8;
+			break;
+			
+			case 13:
+				tmp_short_name = "Hammer";
+				tmp_name = "Golden Hammer";
+				item_weight = 4;
+				item_width = 2;
+				item_height = 3;
+				item_name_translated = "황금 망치";
+				item_value = 8;
+			break;
+			
+			case 14:
+				tmp_short_name = "Sword";
 				tmp_name = "Slime Sword";
 				item_weight = 1.3;
 				item_height = 3;
@@ -722,7 +750,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 12:
+			case 15:
 				tmp_short_name = "Dagger";
 				tmp_name = "Slime Dagger";
 				item_weight = 0.2;
@@ -731,7 +759,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 13:
+			case 16:
 				tmp_short_name = "Hammer";
 				tmp_name = "Slime Hammer";
 				item_weight = 2;
@@ -741,7 +769,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 14:
+			case 17:
 				tmp_short_name = "Sword";
 				tmp_name = "Bone Sword";
 				item_weight = 1.3;
@@ -750,7 +778,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 15:
+			case 18:
 				tmp_short_name = "Dagger";
 				tmp_name = "Bone Dagger";
 				item_weight = 0.2;
@@ -759,7 +787,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 16:
+			case 19:
 				tmp_short_name = "Spell";
 				tmp_name = "Shockbolt";
 				item_weight = 0.3;
@@ -768,7 +796,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 2;
 			break;
 			
-			case 17:
+			case 20:
 				tmp_short_name = "Spell";
 				tmp_name = "Lightning bolt";
 				item_weight = 0.3;
@@ -777,7 +805,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 3;
 			break;
 			
-			case 18:
+			case 21:
 				tmp_short_name = "Spell";
 				tmp_name = "The holy lightning";
 				item_weight = 0.3;
@@ -786,7 +814,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 19:
+			case 22:
 				tmp_short_name = "Spell";
 				tmp_name = "Shockball";
 				item_weight = 0.3;
@@ -795,7 +823,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 2;
 			break;
 			
-			case 20:
+			case 23:
 				tmp_short_name = "Spell";
 				tmp_name = "Reflect Shockball";
 				item_weight = 0.3;
@@ -804,7 +832,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 4;
 			break;
 			
-			case 21:
+			case 24:
 				tmp_short_name = "Spell";
 				tmp_name = "Reflect ball";
 				item_weight = 0.3;
@@ -813,7 +841,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 2;
 			break;
 			
-			case 22:
+			case 25:
 				tmp_short_name = "Spell";
 				tmp_name = "Fire ball";
 				item_weight = 0.3;
@@ -822,7 +850,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 3;
 			break;
 			
-			case 23:
+			case 26:
 				tmp_short_name = "Spell";
 				tmp_name = "Poison ball";
 				item_weight = 0.3;
@@ -831,7 +859,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 3;
 			break;
 			
-			case 24:
+			case 27:
 				tmp_short_name = "Spell";
 				tmp_name = "Water ball";
 				item_weight = 0.3;
@@ -840,7 +868,7 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 				item_value = 3;
 			break;
 			
-			case 25:
+			case 28:
 				tmp_short_name = "Spell";
 				tmp_name = "Ghost ball";
 				item_weight = 0.3;

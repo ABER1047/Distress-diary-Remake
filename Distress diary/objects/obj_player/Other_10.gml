@@ -94,11 +94,11 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				break;
 				
 				case 22:
-					create_projectile(tmp_xx,tmp_yy,0,4,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1);
+					create_projectile(tmp_xx,tmp_yy,0,2,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1);
 				break;
 				
 				case 23:
-					create_projectile(tmp_xx,tmp_yy,0,4,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1,tmp_charging_num);
+					create_projectile(tmp_xx,tmp_yy,0,2,2,global.attack_damage,z+16,0,tmp_m_dir,2,spr_projectile_shockball,,,1,tmp_charging_num);
 				break;
 				
 				case 24:
