@@ -449,6 +449,7 @@
     {"id":{"name":"spr_rare_tag","path":"sprites/spr_rare_tag/spr_rare_tag.yy",},},
     {"id":{"name":"spr_reloadable_weapon","path":"sprites/spr_reloadable_weapon/spr_reloadable_weapon.yy",},},
     {"id":{"name":"spr_room_design","path":"sprites/spr_room_design/spr_room_design.yy",},},
+    {"id":{"name":"spr_rune_letter_outlined","path":"sprites/spr_rune_letter_outlined/spr_rune_letter_outlined.yy",},},
     {"id":{"name":"spr_rune_letter","path":"sprites/spr_rune_letter/spr_rune_letter.yy",},},
     {"id":{"name":"spr_shadow","path":"sprites/spr_shadow/spr_shadow.yy",},},
     {"id":{"name":"spr_skeleton_poisoning","path":"sprites/spr_skeleton_poisoning/spr_skeleton_poisoning.yy",},},
