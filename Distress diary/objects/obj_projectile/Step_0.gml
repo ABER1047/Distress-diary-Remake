@@ -77,9 +77,9 @@ for(var i = 0; i < _speed; i++)
 
 
 //특수 효과 적용된 투사체 (애니메이션, 폭발 ...)
+var tmp_chk_nomore_reflection = (reflection_num == max_reflection_num);
 if (global.is_server)
 {
-	var tmp_chk_nomore_reflection = (reflection_num == max_reflection_num);
 	if (type > 0)
 	{
 		//애니메이션 재생
@@ -92,6 +92,7 @@ if (global.is_server)
 				view_shake(0.1,4,0.1,0);
 			
 				//폭발 공격
+				chat_up_multiplayer("expl",false,true);
 				create_explosion_effect(x,y,real(explosion_dmg),real(explosion_rad),my_pos_xx,my_pos_yy,false);
 			}
 
@@ -187,7 +188,8 @@ if (stop_flying > 0)
 //몹한테 박힌 것도 아닌 상태 + 벽에도 안 박힘 => 삭제
 if (stop_animation && is_on_mob == -4 && !place_meeting(x,y,obj_wall_parents))
 {
-	instance_destroy();
+	_speed = 0;
+	stop_animation = true;
 }
 
 
@@ -195,13 +197,13 @@ if (stop_animation && is_on_mob == -4 && !place_meeting(x,y,obj_wall_parents))
 
 
 //화살 갯수가 일정량을 초과한 경우, 먼저 생성된 화살부터 순차적으로 제거
-if (stop_animation && instance_number(object_index) > global.graphics_quality*16)
+if (type == 0 && stop_animation && _speed == 0 && instance_number(object_index) > global.graphics_quality*16)
 {
 	var min_obj_id_owner = id;
 	var min_obj_id = obj_id;
 	with(object_index)
 	{
-		if (obj_id < min_obj_id)
+		if (type == 0 && stop_animation && _speed == 0 && obj_id < min_obj_id)
 		{
 			min_obj_id = obj_id;
 			min_obj_id_owner = id;

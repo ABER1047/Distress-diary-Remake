@@ -78,7 +78,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		
 		if (tmp_charging_num != 0)
 		{
-			var tmp_xx = x+lengthdir_x(16,tmp_m_dir), tmp_yy = y+8+lengthdir_y(16,tmp_m_dir);
+			var tmp_xx = x+lengthdir_x(32,tmp_m_dir), tmp_yy = y+8+lengthdir_y(32,tmp_m_dir);
 			switch(tmp_spell_type)
 			{
 				case 19:
