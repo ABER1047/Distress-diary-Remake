@@ -210,7 +210,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//홀리 라이트닝
 			case 21:
 				dmg = 28;
-				atk_sp = 770;
+				atk_sp = 700;
 				knockback = 3;
 				tmp_accurate = 100;
 				tmp_attack_type = 5;
