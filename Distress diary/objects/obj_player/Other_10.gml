@@ -90,7 +90,8 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				break;
 				
 				case 21:
-					create_shockbolt(tmp_xx,tmp_yy,z+32,0,4,tmp_m_dir,0,tmp_charging_num,#3898FF,global.my_player_id,tmp_cal_accurate,dmg_info_arr);
+					dmg_info_arr[0] = global.attack_damage*power(2,tmp_charging_num-1);
+					create_shockbolt(tmp_xx,tmp_yy,z+32,0,8+tmp_charging_num*2,tmp_m_dir,0,0,#FFF275,global.my_player_id,-4,dmg_info_arr);
 				break;
 				
 				case 22:
@@ -102,11 +103,11 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				break;
 				
 				case 24:
-					create_projectile(tmp_xx,tmp_yy,0,12,2,global.attack_damage,z+16,0,tmp_m_dir,3,spr_projectile_mirrorball,,,2,tmp_charging_num);
+					create_projectile(tmp_xx,tmp_yy,0,12+3*tmp_charging_num,2,global.attack_damage,z+16,0,tmp_m_dir,3,spr_projectile_mirrorball,,,2,tmp_charging_num);
 				break;
 				
 				case 25:
-					create_projectile(tmp_xx,tmp_yy,0,17,2,global.attack_damage,z+16,0,tmp_m_dir,1,spr_projectile_fireball,25,2.25,0);
+					create_projectile(tmp_xx,tmp_yy,0,14+2*tmp_charging_num,2+0.2*tmp_charging_num,global.attack_damage,z+16,0,tmp_m_dir,1,spr_projectile_fireball,25,1+0.6*tmp_charging_num,0);
 				break;
 			}
 		}

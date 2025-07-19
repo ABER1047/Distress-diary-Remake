@@ -97,7 +97,7 @@ set_quickslot_variable(2,spr_weapon,2,-4,0,2);
 set_quickslot_variable(3,spr_weapon,23,-4,0,3);
 set_quickslot_variable(4,spr_weapon,20,-4,0,4);
 set_quickslot_variable(5,spr_weapon,6,64,0,4);
-set_quickslot_variable(6,spr_weapon,7,32,0,4);
+set_quickslot_variable(6,spr_weapon,21,-4,0,4);
 set_quickslot_variable(7,spr_weapon,25,-4,0,4);
 set_quickslot_variable(8,spr_weapon,24,-4,0,4);
 

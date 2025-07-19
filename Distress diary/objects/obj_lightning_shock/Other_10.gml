@@ -19,7 +19,7 @@ if (!variable_instance_exists(id,"target"))
 	//번개가 향하는 곳 (x -> tx, y -> ty) [자동 설정]
 	if (count_connection == 0)
 	{
-		image_xscale = length;
+		image_xscale = (rd_snap_rad != -4) ? length : 3200;
 	}
 
 	var tmp_dis = 0;
