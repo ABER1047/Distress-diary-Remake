@@ -74,7 +74,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		}
 		
 		chat_up_multiplayer("tmp_charging_num : "+string(tmp_charging_num)+" / "+string(tmp_spell_type),false,true);
-		tmp_dmg_cal = (tmp_charging_num == 0) ? 1 : global.attack_damage;
+		tmp_dmg_cal = 1;
 		
 		if (tmp_charging_num != 0)
 		{
