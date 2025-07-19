@@ -1,9 +1,9 @@
 {
   "$GMScript":"v1",
-  "%Name":"damage_display",
+  "%Name":"display_texts",
   "isCompatibility":false,
   "isDnD":false,
-  "name":"damage_display",
+  "name":"display_texts",
   "parent":{
     "name":"UI&Camera",
     "path":"folders/스크립트/UI&Camera.yy",

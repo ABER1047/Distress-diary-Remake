@@ -32,7 +32,7 @@ function load_room(argument0,argument1)
 	instance_destroy(obj_mucus_effect);
 	
 	//데미지 로그 ui지우기
-	instance_destroy(obj_damage_display);
+	instance_destroy(obj_text_display);
 	
 	//모든 이펙트 삭제
 	instance_destroy(obj_effect_parents);

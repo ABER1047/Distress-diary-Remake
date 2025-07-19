@@ -7,7 +7,7 @@
 ///@param col
 ///@param id
 ///@param text
-function damage_display(argument0,argument1,argument2,argument3,argument4)
+function display_texts(argument0,argument1,argument2,argument3,argument4)
 {
 	var tmp_depth = -(argument1+16);
 	var tmp_ins_for_depth = argument3;
@@ -16,7 +16,7 @@ function damage_display(argument0,argument1,argument2,argument3,argument4)
 		tmp_depth = argument3.depth-32;
 	}
 	
-	var tmp_ins = instance_create_depth(argument0,argument1,tmp_depth,obj_damage_display);
+	var tmp_ins = instance_create_depth(argument0,argument1,tmp_depth,obj_text_display);
 	tmp_ins.image_blend = argument2;
 	tmp_ins.text = argument4;
 	
