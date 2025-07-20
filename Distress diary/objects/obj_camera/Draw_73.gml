@@ -59,15 +59,15 @@ var tmp_values = [ valToStrWithPoint(global.attack_damage_origin,false,true), va
 //공속
 valToStrWithPoint(60/global.attack_speed,true,true,true), string(speed_by_weight-1)+"%", 
 //크리티컬 확률
-valToStrWithPoint(global.critical_chance), "0",
+string(valToStrWithPoint(global.critical_chance))+"%", "0",
 //이속
 "7.00", valToStrWithPoint((global.max_movement_speed-7),false,false,false,true),
 //방어력
-"0.00", valToStrWithPoint(global.defence_power,true,true,false,true), 
+"0.00%", string(valToStrWithPoint(global.defence_power,true,true,false,true))+"%", 
 //행운
 "0.00", valToStrWithPoint(global.luck,true,true,false,true), 
 //정확도
-valToStrWithPoint(global.accurate), "0" ];
+string(valToStrWithPoint(global.accurate))+"%", "0%" ];
 
 var tmp_to_draw_str = "";
 for(var i = 0; i < 7; i++)
