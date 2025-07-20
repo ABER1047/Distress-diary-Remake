@@ -276,6 +276,7 @@ global.searching_speed = 100; //아이템 서칭 속도 (몇 프레임 후 아�
 global.accurate = 0; //투척류/발사류 무기 정확도
 global.hp_recovery_time = 0; //hp 재생 타이머
 global.hp_recovery_degree = 1; //hp 재생 정도
+global.attack_speed_increasement = 0; //공격속도 증가 (%단위)
 
 
 //퀵슬롯

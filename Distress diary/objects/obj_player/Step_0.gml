@@ -82,11 +82,22 @@ if (buff_left_time[19] > 0 && global.graphics_quality >= 2)
 
 
 //라이트 효과
-if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch || holding_item_spr_ind == spr_animated_soul_torch || holding_item_spr_ind == spr_animated_demon_torch))
+var is_holding_torch = (holding_item_spr_ind == spr_animated_torch || holding_item_spr_ind == spr_animated_soul_torch || holding_item_spr_ind == spr_animated_demon_torch);
+if (!stop_cal_by_pos_statement && (global.buff_left_time[20] > 0 || is_holding_torch))
 {
 	var tmp_yy = y-32-z*0.8;
 	var light_col = [ #FFAC4B, #0BE5C4, #E395F8 ];
-	c_light(light_col[holding_item_img_ind],light_scale*0.7,light_alpha,x,tmp_yy);
+	if (global.buff_left_time[20] > 0)
+	{
+		c_light(light_col[0],light_scale*0.7,light_alpha,x,tmp_yy);
+	}
+	
+	if (is_holding_torch)
+	{
+		c_light(light_col[holding_item_img_ind],light_scale*0.7,light_alpha,x,tmp_yy);
+	}
+	
+	
 	light_timer ++;
 	if (light_timer < 90)
 	{
@@ -105,7 +116,7 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 	
 	
 	//불 이펙트 생성
-	if (global.graphics_quality >= 1)
+	if (is_holding_torch && global.graphics_quality >= 1)
 	{
 		var tmp_signed_xscale = -sign(image_xscale);
 		var tmp_xpos = [ 48, 56, 48, 40 ];
@@ -130,6 +141,7 @@ if (!stop_cal_by_pos_statement && (holding_item_spr_ind == spr_animated_torch ||
 		}
 	}
 }
+
 
 
 //현재 들고 있는 아이템 휘두르기 애니메이션

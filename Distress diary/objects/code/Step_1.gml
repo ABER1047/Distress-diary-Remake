@@ -75,7 +75,7 @@ if (global.time_increment < global.time_increment_timer)
 
 
 //스테이터스 시스템
-global.defence_power = (sign(global.buff_left_time[9]) - sign(global.buff_left_time[10]))*2.5 + power(1/speed_by_weight,3); //방어력
+global.defence_power = (sign(global.buff_left_time[9]) - sign(global.buff_left_time[10]))*1.5 + power(1/speed_by_weight,3); //방어력
 global.over_weight = 10 + (sign(global.buff_left_time[11])*10); //최대 중량
 
 //체력 및 스테미나가 최대치를 넘지 않도록 조정
@@ -173,7 +173,8 @@ if (global.my_weight > global.over_weight)
 	global.buff_left_time[4] = 10;
 }
 
-if (global.buff_left_time[5] > 0) //골절
+//골절
+if (global.buff_left_time[5] > 0) 
 {
 	if ((tmp_my_p.zspeed > 0 && tmp_my_p.z == 0) || (global.n_running && abs(global.movement_vspeed)+abs(global.movement_hspeed) >= global.max_movement_speed*0.91))
 	{
@@ -282,11 +283,16 @@ if (global.buff_left_time[19] > 0)
 }
 
 
+//공속 증가 (%단위)
+global.attack_speed_increasement =  (global.buff_left_time[23] > 0) ? 15 : 0;
+
+
+
 
 //공격 속도 적용
 if (global.attack_cooldown_timer > 0)
 {
-	global.attack_cooldown_timer += ((global.attack_type == 2 || global.attack_type == 5) ? 1 : speed_by_weight)*global.charging_split;
+	global.attack_cooldown_timer += ((global.attack_type == 2 || global.attack_type == 5) ? 1 : speed_by_weight)*global.charging_split*(1+global.attack_speed_increasement*0.01);
 	if (global.attack_cooldown_timer > global.attack_speed)
 	{
 		global.fixed_dir = global.b_fixed_dir; //플레이어 바라보는 방향 고정이던거 해제

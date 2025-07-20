@@ -38,7 +38,8 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 		var tmp_buff_data_var = "";
 		if (is_hp_exists && (argument2 || is_dmg_cooltime_exists))
 		{
-			var tmp_dmg = (tmp_ins != global.my_player_ins_id[global.my_player_id]) ? argument1 : argument1*(1-global.defence_power*0.01);
+			var tmp_my_p = global.my_player_ins_id[global.my_player_id];
+			var tmp_dmg = (tmp_ins != tmp_my_p) ? argument1 : argument1*(1-global.defence_power*0.01);
 			if (tmp_dmg > 0)
 			{
 				//크리티컬 확률이랑 크리티컬 데미지 배율이 정의된 경우
@@ -51,6 +52,10 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 				if (argument9 != undefined && percentage_k(argument9))
 				{
 					apply_buff(tmp_ins,6,360,true);
+					if (tmp_my_p.x == argument4 && tmp_my_p.y == argument5 && global.buff_left_time[24] > 0) //블러디 웨폰 버프 효과
+					{
+						tmp_my_p.hp += tmp_dmg*0.1;
+					}
 				}
 				
 				//독 디버프 적용
