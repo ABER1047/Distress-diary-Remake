@@ -76,7 +76,9 @@
   "name":"Distress diary",
   "resources":[
     {"id":{"name":"ExecuteShell","path":"extensions/ExecuteShell/ExecuteShell.yy",},},
+    {"id":{"name":"font_light_outline","path":"fonts/font_light_outline/font_light_outline.yy",},},
     {"id":{"name":"font_light","path":"fonts/font_light/font_light.yy",},},
+    {"id":{"name":"font_normal_outline","path":"fonts/font_normal_outline/font_normal_outline.yy",},},
     {"id":{"name":"font_normal","path":"fonts/font_normal/font_normal.yy",},},
     {"id":{"name":"inventory_system_note","path":"notes/inventory_system_note/inventory_system_note.yy",},},
     {"id":{"name":"code_m","path":"objects/code_m/code_m.yy",},},
@@ -502,5 +504,6 @@
     {"$GMTextureGroup":"","%Name":"textrue_spr_UI","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_UI","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"textrue_spr_effect","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_effect","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
     {"$GMTextureGroup":"","%Name":"textrue_spr_monsters","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"textrue_spr_monsters","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
+    {"$GMTextureGroup":"","%Name":"texture_texts","autocrop":true,"border":2,"compressFormat":"bz2","customOptions":"","directory":"","groupParent":null,"isScaled":true,"loadType":"default","mipsToGenerate":0,"name":"texture_texts","resourceType":"GMTextureGroup","resourceVersion":"2.0","targets":-1,},
   ],
 }

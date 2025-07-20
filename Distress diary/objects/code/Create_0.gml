@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 //폰트 설정
-initialize_outlined_fonts();
+initialize_outlined_fonts(true);
 
 //커서 설정
 instance_create_depth(x,y,depth,obj_cursor);

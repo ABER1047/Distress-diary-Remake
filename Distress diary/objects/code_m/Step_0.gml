@@ -239,6 +239,7 @@ if (global.chat_activated)
 							show_message_log("- 그래픽 퀄리티 변경 : "+string(tmp_parameter)+" [기존 : "+string(global.graphics_quality)+"]");
 							global.graphics_quality = tmp_parameter;
 							
+							initialize_outlined_fonts(global.graphics_quality != 0);
 							if (global.graphics_quality == 0)
 							{
 								instance_destroy(tmp_bubble_outline_effect);
@@ -421,15 +422,8 @@ if (global.chat_activated)
 						}
 						else if (i == 39)
 						{
-							 var settings = 
-							{
-						        outlineEnable:    true,
-						        outlineDistance:  tmp_parameter,
-						        outlineColour:    #222034,
-						        outlineAlpha:     1.0
-						    };
-						    font_enable_effects(font_normal, true, settings);
-						    font_enable_effects(font_light,  true, settings);
+							initialize_outlined_fonts(true,tmp_parameter);
+							chat_up_multiplayer("- 텍스트 외곽선 활성화 됨! ["+string(tmp_parameter)+"px]",false);
 						}
 						
 						

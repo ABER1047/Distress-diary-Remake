@@ -1,6 +1,6 @@
 {
   "$GMFont":"",
-  "%Name":"font_light",
+  "%Name":"font_light_outline",
   "AntiAlias":1,
   "applyKerning":0,
   "ascender":33,
@@ -2008,7 +2008,7 @@
   "last":0,
   "lineHeight":44,
   "maintainGms1Font":false,
-  "name":"font_light",
+  "name":"font_light_outline",
   "parent":{
     "name":"글꼴",
     "path":"folders/글꼴.yy",
@@ -3235,8 +3235,8 @@
   "size":32.0,
   "styleName":"Regular",
   "textureGroupId":{
-    "name":"textrue_spr_UI",
-    "path":"texturegroups/textrue_spr_UI",
+    "name":"texture_texts",
+    "path":"texturegroups/texture_texts",
   },
   "TTFName":"",
   "usesSDF":true,

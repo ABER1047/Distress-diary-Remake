@@ -50,8 +50,9 @@
     {"name":"확장","order":17,"path":"folders/확장.yy",},
   ],
   "ResourceOrderSettings":[
-    {"name":"font_light","order":5,"path":"fonts/font_light/font_light.yy",},
-    {"name":"font_normal","order":4,"path":"fonts/font_normal/font_normal.yy",},
+    {"name":"font_light_outline","order":3,"path":"fonts/font_light_outline/font_light_outline.yy",},
+    {"name":"font_light","order":2,"path":"fonts/font_light/font_light.yy",},
+    {"name":"font_normal_outline","order":1,"path":"fonts/font_normal_outline/font_normal_outline.yy",},
     {"name":"obj_arcade_pc","order":12,"path":"objects/obj_arcade_pc/obj_arcade_pc.yy",},
     {"name":"obj_attack_effect","order":11,"path":"objects/obj_attack_effect/obj_attack_effect.yy",},
     {"name":"obj_blood_effect","order":4,"path":"objects/obj_blood_effect/obj_blood_effect.yy",},

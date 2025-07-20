@@ -29,8 +29,18 @@ function draw_text_kl_scale(xPos, yPos, textString, sep, width, alpha, color, va
 
     // 3) 외곽선용 SDF 폰트 선택
     var sdfFont = fontId;
+	if (fontId == font_normal)
+	{
+		sdfFont = font_normal_outline;
+	}
+	else if (fontId == font_light)
+	{
+		sdfFont = font_light_outline;
+	}
 
-    // 4) 내장 정렬 설정
+
+
+	draw_set_font(sdfFont);
     draw_set_alpha(alpha);
     draw_set_color(color);
 
