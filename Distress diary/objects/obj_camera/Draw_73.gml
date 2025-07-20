@@ -34,14 +34,24 @@ draw_sprite_ext(spr_hp_bar_remake,0,hp_bar_ui_xx,hp_bar_ui_yy,scale*1.15,scale,0
 draw_sprite_part_ext(spr_hp_bar_remake,1,0,0,(hp_for_draw/global.max_hp)*288,33,hp_bar_ui_xx,hp_bar_ui_yy,scale*1.15,scale,c_white,1);
 
 
+//마나 바 UI
+var stamina_bar_ui_end_xx = hp_bar_ui_xx+(288*scale);
+var mana_bar_ui_start_yy = hp_bar_ui_yy+(36*scale);
+var mana_bar_ui_end_yy = mana_bar_ui_start_yy+(8*scale);
+draw_set_alpha(1);
+draw_set_color(#17111A);
+draw_rectangle(hp_bar_ui_xx,mana_bar_ui_start_yy,stamina_bar_ui_end_xx,mana_bar_ui_end_yy,false);
+draw_set_color(#3898FF);
+draw_rectangle(hp_bar_ui_xx,mana_bar_ui_start_yy,hp_bar_ui_xx+(288*(mana_for_draw/global.max_mana)*scale),mana_bar_ui_end_yy,false);
+
 //스테미나 바 UI
 var stamina_bar_ui_end_xx = hp_bar_ui_xx+(288*scale);
-var stamina_bar_ui_start_yy = hp_bar_ui_yy+(36*scale);
-var stamina_bar_ui_end_yy = stamina_bar_ui_start_yy+(8*scale);
+var stamina_bar_ui_start_yy = mana_bar_ui_start_yy+(9*scale);
+var stamina_bar_ui_end_yy = stamina_bar_ui_start_yy+(4*scale);
 draw_set_alpha(1);
 draw_set_color(#17111A);
 draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,stamina_bar_ui_end_xx,stamina_bar_ui_end_yy,false);
-draw_set_color(#494E92);
+draw_set_color(#FFAC4B);
 draw_rectangle(hp_bar_ui_xx,stamina_bar_ui_start_yy,hp_bar_ui_xx+(288*(stamina_for_draw/global.max_stamina)*scale),stamina_bar_ui_end_yy,false);
 
 
@@ -140,12 +150,12 @@ for(var i = 0; i < 3; i++)
 
 
 //HP-Stamina정보창 띄우기
-var tmp_win_height = 40*text_ratio;
+var tmp_win_height = 56*text_ratio;
 var tmp_txt_size = 0.25;
 if (mouse_y > hp_bar_ui_yy && mouse_y < stamina_bar_ui_start_yy+scale*28 && mouse_x < hp_bar_ui_xx+scale*1.15*288)
 {
 	//뒷 배경 그리기
-	var tmp_str = "HP : "+string(floor(tmp_my_p.hp))+"/"+string(global.max_hp)+"\nStamina : "+string(floor(tmp_my_p.stamina))+"/"+string(global.max_stamina);
+	var tmp_str = "HP : "+string(floor(tmp_my_p.hp))+"/"+string(global.max_hp)+"\nMana : "+string(floor(tmp_my_p.mana))+"/"+string(global.max_mana)+"\nStamina : "+string(floor(tmp_my_p.stamina))+"/"+string(global.max_stamina);
 	var tmp_name_to_draw = string(tmp_str); //아이템명
 	var tmp_txt_width = string_width(tmp_str)+2;
 	var tmp_win_width = (tmp_txt_width*0.3+2)*text_ratio;

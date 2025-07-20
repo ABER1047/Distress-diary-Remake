@@ -52,6 +52,7 @@ enemy_hp_bar_for_draw = 0;
 //체력바 및 스테미나 UI 드로우 관련 변수
 hp_for_draw = 0;
 stamina_for_draw = 0;
+mana_for_draw = 0;
 
 //버프-디버프 UI 드로우 관련 변수
 weight_for_draw = 0;

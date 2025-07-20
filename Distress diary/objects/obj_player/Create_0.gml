@@ -114,6 +114,12 @@ b_hp = -4;
 stamina = 100;
 stamina_cooltime = 0;
 
+//마나
+mana = 100;
+b_mana = 100;
+mana_cooltime = 0;
+max_mana = 100;
+
 //무게
 speed_by_weight = 0;
 

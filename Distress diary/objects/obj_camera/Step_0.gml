@@ -143,6 +143,7 @@ if (array_length(global.my_player_ins_id) > global.my_player_id)
 	{
 		hp_for_draw += (my_p.hp - hp_for_draw)*0.2;
 		stamina_for_draw += (my_p.stamina - stamina_for_draw)*0.1;
+		mana_for_draw += (my_p.mana - mana_for_draw)*0.1;
 	}
 }
 

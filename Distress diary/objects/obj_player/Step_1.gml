@@ -114,6 +114,28 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		}
 	}
 	
+	//마나 자동 재생
+	if (mana < global.max_mana)
+	{
+		mana_cooltime ++;
+		if (global.mana_recovery_speed < mana_cooltime)
+		{
+			mana += 0.8;
+		}
+	}
+	else
+	{
+		mana = global.max_mana;
+	}
+	
+	
+	//마나 사용 체크
+	if (b_mana > mana)
+	{
+		b_mana = mana;
+		mana_cooltime = 0;
+	}
+	
 	
 	//내 플레이어 각도 설정
 	my_n_dir = global.n_dir;
