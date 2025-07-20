@@ -3235,8 +3235,8 @@
   "size":32.0,
   "styleName":"Regular",
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"textrue_spr_UI",
+    "path":"texturegroups/textrue_spr_UI",
   },
   "TTFName":"",
   "usesSDF":true,

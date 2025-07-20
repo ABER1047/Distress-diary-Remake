@@ -5,12 +5,13 @@ function initialize_outlined_fonts() {
     global.outlined_font_light  = font_light;
 
     // 외곽선 효과 설정
-    var settings = {
+    var settings = 
+	{
         outlineEnable:    true,
         outlineDistance:  4,
         outlineColour:    #222034,
         outlineAlpha:     1.0
     };
-    font_enable_effects(global.outlined_font_normal, true, settings);
-    font_enable_effects(global.outlined_font_light,  true, settings);
+    font_enable_effects(font_normal, true, settings);
+    font_enable_effects(font_light,  true, settings);
 }

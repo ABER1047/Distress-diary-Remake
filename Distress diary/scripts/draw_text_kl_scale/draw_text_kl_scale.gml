@@ -28,10 +28,9 @@ function draw_text_kl_scale(xPos, yPos, textString, sep, width, alpha, color, va
     var ys    = yscale * ratio;
 
     // 3) 외곽선용 SDF 폰트 선택
-    var sdfFont = (fontId == font_light) ? global.outlined_font_light : global.outlined_font_normal;
+    var sdfFont = fontId;
 
     // 4) 내장 정렬 설정
-    draw_set_font(sdfFont);
     draw_set_alpha(alpha);
     draw_set_color(color);
 
@@ -54,14 +53,10 @@ function draw_text_kl_scale(xPos, yPos, textString, sep, width, alpha, color, va
 	{
 		if (width < 0)
 		{
-			//컬러설정
-			draw_set_color(color);
 			draw_text_ext_transformed(xPos,yPos+ys*96,textString,sep,99999,xs,ys,angle);
 		}
 		else if (width > 0)
 		{
-			//컬러설정
-			draw_set_color(color);
 			draw_text_ext_transformed(xPos,yPos+ys*96,textString,sep,width,xs,ys,angle);
 		}
 	}
