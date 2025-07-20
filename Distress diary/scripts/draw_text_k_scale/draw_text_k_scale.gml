@@ -72,16 +72,4 @@ function draw_text_k_scale(argument0, argument1, argument2, argument3, argument4
 			draw_text_ext_transformed(args[0],args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
 		}
 	}
-
-
-
-
-
-
-
-
-
-	////////////////MADE BY KUNMAGUN///////////////////////
-
-
 }

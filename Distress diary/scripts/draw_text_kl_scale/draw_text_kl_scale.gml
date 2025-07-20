@@ -65,8 +65,4 @@ function draw_text_kl_scale(xPos, yPos, textString, sep, width, alpha, color, va
 			draw_text_ext_transformed(xPos,yPos+ys*96,textString,sep,width,xs,ys,angle);
 		}
 	}
-
-    // 6) 상태 복원
-    draw_set_alpha(1);
-    gpu_set_blendmode(bm_normal);
 }
