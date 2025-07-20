@@ -57,6 +57,12 @@ if (draw_alpha > 0)
 		
 			//테두리 그리기
 			draw_sprite_ext(charging_gage_bar,1,tmp_ui_xx,tmp_ui_yy,tmp_ui_scale,tmp_ui_scale,0,#332439,1);
+			
+			//차징 횟수 그리기
+			if (global.charging_split > 1 && n_charging_num > 0)
+			{
+				draw_text_kl_scale(tmp_ui_xx,tmp_ui_yy-82/global.h_ratio_by_window,n_charging_num,64,-1,1,merge_color(#CB2E3A,#3898FF,n_charging_num/global.charging_split),0,0,font_normal_outline,0.25,0.25,0);
+			}
 		}
 		
 		if (global.gage_bar_shine_animation > 0)
