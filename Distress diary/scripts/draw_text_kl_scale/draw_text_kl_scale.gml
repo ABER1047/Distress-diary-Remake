@@ -1,119 +1,36 @@
-///@description draw_text_kl_scale(x, y, string, sep, w, alpha, color, valign, halign, font, xscale, yscale, angle)
-function draw_text_kl_scale(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10, argument11, argument12, argument13) 
-{
-	//draw_text_kl_scale(x, y, string, sep, w, alpha, color, valign, halign, font, xscale, yscale, angle)
-	///@param x
-	///@param y
-	///@param string
-	///@param sep
-	///@param w
-	///@param alpha
-	///@param color
-	///@param valign
-	///@param halign
-	///@param font
-	///@param xscale
-	///@param yscale
-	///@param angle
-	///@param [reversed_ratio]
-	
-	if (global.graphics_quality > 0)
-	{
-		//is reversed ratio true
-		var tmp_scale = global.ratio_by_camera;
-		if (argument13 != undefined)
-		{
-			tmp_scale = global.reversed_ratio_by_camera;
-		}
+/// draw_text_kl_scale 함수에서 전역 폰트 선택 로직
+function draw_text_kl_scale(argument0, argument1, string, sep, w, alpha, color, valign, halign, font, xscale, yscale, angle, reversed_ratio) {
+    // 그래픽 품질이 0 이하일 때는 기존 draw_text_k_scale 사용
+    if (global.graphics_quality <= 0) {
+        draw_text_k_scale(argument0, argument1, string, sep, w, alpha, color, valign, halign, font, xscale, yscale, angle, reversed_ratio);
+        return;
+    }
 
-	
-		var text_scale_real = tmp_scale;
-		var txt_xscale = argument10*tmp_scale;
-		var txt_yscale = argument11*tmp_scale;
-		//show_debug_message("txt scale : "+string(txt_xscale));
-		var args = [ argument0, argument1+txt_yscale*64, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, txt_xscale, txt_yscale, argument12 ];
-	
-		////////////////////////////////////////////////////////////////
+    // ratio 선택
+    var tmp_scale = (reversed_ratio != undefined) ? global.reversed_ratio_by_camera : global.ratio_by_camera;
+    var txt_xscale = xscale * tmp_scale;
+    var txt_yscale = yscale * tmp_scale;
 
-		//폰트설정
-		draw_set_font(args[9]);
-		//알파설정
-		draw_set_alpha(args[5]);
+    // 폰트 리소스가 font_normal인지 font_light인지를 체크해 전역 외곽선 폰트를 설정
+    var sdf_font = (font == font_light) ? global.outlined_font_light : global.outlined_font_normal;
+    draw_set_font(sdf_font);
+    draw_set_alpha(alpha);
 
-		////////////////////////////////////////////////////////////////
+    // 정렬 설정
+    if (halign == -1)      draw_set_halign(fa_left);
+    else if (halign == 0)  draw_set_halign(fa_middle);
+    else                   draw_set_halign(fa_right);
 
-		//draw_set_valign(fa_middle);
-		//위치지정
-		if (args[8] == -1)
-		{
-			draw_set_halign(fa_left);
-		}
-		else if (args[8] == 0)
-		{
-			draw_set_halign(fa_middle);
-		}
-		else
-		{
-			draw_set_halign(fa_right);
-		}
+    // 컬러 설정
+    draw_set_color(color);
 
-
-		////////////////////////////////////////////////////////////////////////////
-
-		//글씨 드로우
-		if (args[3] > 0)
-		{
-			if (args[4] < 0)
-			{
-				if (global.graphics_quality > 0)
-				{
-					//컬러설정
-					draw_set_color($FF191919&$ffffff);
-					for(var i = 1; i <= 3; i += 1.5)
-					{
-						//i = args[10]
-						draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-						draw_text_ext_transformed(args[0],args[1]+i+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-						draw_text_ext_transformed(args[0]-i,args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-						draw_text_ext_transformed(args[0],args[1]-i+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-					}
-				}
-	
-	
-	
-
-
-				//컬러설정
-				draw_set_color(args[6]);
-				draw_text_ext_transformed(args[0],args[1]+args[11]*32,args[2],args[3],99999,args[10],args[11],args[12]);
-			}
-			else if (args[4] > 0)
-			{
-				if (global.graphics_quality > 0)
-				{
-					draw_set_color($FF191919&$ffffff);
-					for(var i = 1; i <= 3; i += 1)
-					{
-						//i = args[10]
-						draw_text_ext_transformed(args[0]+i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-						draw_text_ext_transformed(args[0],args[1]+i+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-						draw_text_ext_transformed(args[0]-i,args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-						draw_text_ext_transformed(args[0],args[1]-i+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-					}
-				}
-
-
-
-				//컬러설정
-				draw_set_color(args[6]);
-				draw_text_ext_transformed(args[0],args[1]+args[11]*32,args[2],args[3],args[4],args[10],args[11],args[12]);
-			}
-		}
-	}
-	else
-	{
-		draw_text_k_scale(argument0, argument1, argument2, argument3, argument4, argument5, argument6, argument7, argument8, argument9, argument10, argument11, argument12, argument13);
-	}
-
-	////////////////MADE BY KUNMAGUN///////////////////////
+    // 텍스트 렌더링
+    var draw_y = argument1 + txt_yscale * 32;
+    if (string != "") {
+        if (sep > 0) {
+            draw_text_ext_transformed(argument0, draw_y, string, sep, w < 0 ? 99999 : w, txt_xscale, txt_yscale, angle);
+        } else {
+            draw_text_transformed(argument0, draw_y, string, txt_xscale, txt_yscale, angle);
+        }
+    }
 }

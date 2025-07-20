@@ -217,6 +217,7 @@
     {"id":{"name":"http_ip_get","path":"scripts/http_ip_get/http_ip_get.yy",},},
     {"id":{"name":"ini_close_protect","path":"scripts/ini_close_protect/ini_close_protect.yy",},},
     {"id":{"name":"ini_open_protect","path":"scripts/ini_open_protect/ini_open_protect.yy",},},
+    {"id":{"name":"initialize_outlined_fonts","path":"scripts/initialize_outlined_fonts/initialize_outlined_fonts.yy",},},
     {"id":{"name":"instance_create_multiplayer_ext","path":"scripts/instance_create_multiplayer_ext/instance_create_multiplayer_ext.yy",},},
     {"id":{"name":"instance_create_multiplayer","path":"scripts/instance_create_multiplayer/instance_create_multiplayer.yy",},},
     {"id":{"name":"instance_create_or_delete","path":"scripts/instance_create_or_delete/instance_create_or_delete.yy",},},

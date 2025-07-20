@@ -1,5 +1,9 @@
 /// @description Insert description here
 // You can write your code in this editor
+
+//폰트 설정
+initialize_outlined_fonts();
+
 //커서 설정
 instance_create_depth(x,y,depth,obj_cursor);
 
@@ -218,6 +222,8 @@ global.fire_line_surf = surface_create(3840,2160);
 
 //그래픽 퀄리티
 global.graphics_quality = 0; // 2 == 최고품질 / 1 == 보통 / 0 == 최고 성능
+global.max_prior_effect_num = global.graphics_quality*32;
+global.max_post_effect_num = global.graphics_quality*16;
 
 
 //몹 시점 표시

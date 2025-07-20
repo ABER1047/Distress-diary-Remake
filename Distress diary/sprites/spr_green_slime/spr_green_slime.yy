@@ -99,8 +99,8 @@
   "swatchColours":null,
   "swfPrecision":0.5,
   "textureGroupId":{
-    "name":"Default",
-    "path":"texturegroups/Default",
+    "name":"textrue_spr_monsters",
+    "path":"texturegroups/textrue_spr_monsters",
   },
   "type":0,
   "VTile":false,

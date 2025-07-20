@@ -1,0 +1,13 @@
+{
+  "$GMScript":"v1",
+  "%Name":"initialize_outlined_fonts",
+  "isCompatibility":false,
+  "isDnD":false,
+  "name":"initialize_outlined_fonts",
+  "parent":{
+    "name":"UI&Camera",
+    "path":"folders/스크립트/UI&Camera.yy",
+  },
+  "resourceType":"GMScript",
+  "resourceVersion":"2.0",
+}
