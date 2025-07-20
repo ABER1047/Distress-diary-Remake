@@ -54,7 +54,7 @@ function give_damage(argument0,argument1,argument2,argument3,argument4,argument5
 					apply_buff(tmp_ins,6,360,true);
 					if (tmp_my_p.x == argument4 && tmp_my_p.y == argument5 && global.buff_left_time[24] > 0) //블러디 웨폰 버프 효과
 					{
-						tmp_my_p.hp += tmp_dmg*0.1;
+						tmp_my_p.hp += tmp_dmg*0.2;
 					}
 				}
 				

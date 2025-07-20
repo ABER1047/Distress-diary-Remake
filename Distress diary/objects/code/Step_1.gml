@@ -76,7 +76,7 @@ if (global.time_increment < global.time_increment_timer)
 
 //스테이터스 시스템
 global.defence_power = (sign(global.buff_left_time[9]) - sign(global.buff_left_time[10]))*1.5 + power(1/speed_by_weight,3); //방어력
-global.over_weight = 10 + (sign(global.buff_left_time[11])*10); //최대 중량
+global.over_weight = 10 + (sign(global.buff_left_time[11])*15); //최대 중량
 
 //체력 및 스테미나가 최대치를 넘지 않도록 조정
 with(tmp_my_p)
