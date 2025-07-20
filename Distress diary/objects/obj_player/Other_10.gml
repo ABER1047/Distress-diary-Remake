@@ -1,12 +1,6 @@
 /// @description 공격 모션 재생
 if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp > 0 && !instance_exists(obj_ui_parents))
 {
-	global.b_fixed_dir = global.fixed_dir;
-	global.fixed_dir = true;
-	global.attack_cooldown_timer = 1;
-	alarm[2] = 1;
-	
-	
 	if (global.attack_type != 5)
 	{
 		var tmp_charging_dmg_bonus = floor(gage_bar_charged*10)/10; //차징 데미지 보너스
@@ -60,17 +54,13 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 		var tmp_cal_accurate = (2-gage_bar_charged)*(100-global.accurate);
 		var dmg_info_arr = [ global.attack_damage, global.knockback_power, global.critical_chance, global.critical_dmg_magnification, global.bleeding_chance, global.poisoning_chance, global.burning_chance ];
 		var tmp_m_dir = point_direction(x,y,mouse_x,mouse_y);
-		var tmp_charging_num = 0;
-		for(var i = 1; i <= global.charging_split; i++)
+		var tmp_charging_num = n_charging_num;
+		
+		//잉여 마나 반환
+		if (gage_bar_charged < 1)
 		{
-			if (gage_bar_charged >= i/global.charging_split)
-			{
-				tmp_charging_num = i;
-			}
-			else
-			{
-				break;
-			}
+			mana += gage_bar_charged*global.mana_decreasement;
+			b_mana = mana;
 		}
 		
 		chat_up_multiplayer("tmp_charging_num : "+string(tmp_charging_num)+" / "+string(tmp_spell_type),false,true);
@@ -114,6 +104,11 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 	}
 	
 	
+	global.b_fixed_dir = global.fixed_dir;
+	global.fixed_dir = true;
+	global.attack_cooldown_timer = 1;
+	n_charging_num = 0; //차징 횟수 초기화
+	alarm[2] = 1;
 	
 	if (global.attack_type == 2) //단검 공격
 	{

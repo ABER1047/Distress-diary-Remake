@@ -123,6 +123,9 @@ max_mana = 100;
 //무게
 speed_by_weight = 0;
 
+//현재 차징 횟수
+n_charging_num = 0;
+
 
 //버프/디버프 효과 적용 (효과 순서는 이미지 순서대로)
 for(var i = 0; i < sprite_get_number(spr_buff_ui); i++)

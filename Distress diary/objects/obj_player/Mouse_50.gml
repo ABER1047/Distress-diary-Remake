@@ -14,7 +14,7 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 			//차징 공격
 			if (global.attack_cooldown_timer <= 0)
 			{
-				if (gage_bar_charged < 1)
+				if (gage_bar_charged < 1 && n_charging_num < global.charging_split)
 				{
 					var tmp_gage_increasement = (1/global.attack_speed)*global.charging_split;
 					//일반 무기 게이지 차는거
@@ -24,21 +24,26 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 					}
 					else
 					{
-						var tmp_mana_decreasement = tmp_gage_increasement*global.mana_decreasement;
+						var tmp_mana_decreasement = global.mana_decreasement*tmp_gage_increasement;
 						if (mana >= global.mana_decreasement)
 						{
 							mana -= tmp_mana_decreasement;
 							gage_bar_charged += tmp_gage_increasement;
 						}
+						else
+						{
+							if (global.gage_bar_shine_animation <= 0)
+							{
+								global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
+							}
+						}
 					}
 					
-					for(var i = 0; i < global.charging_split; i++)
+					if (global.charging_split > 0 && gage_bar_charged >= 1)
 					{
-						if (global.gage_bar_shine_animation <= 0.5 && floor(100*gage_bar_charged/i) == floor(100/global.charging_split))
-						{
-							global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
-							break;
-						}
+						global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
+						gage_bar_charged = 0;
+						n_charging_num ++;
 					}
 				}
 				else
@@ -49,7 +54,9 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 						global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
 					}
 				}
+				
 	
+				mana_cooltime = 0;
 				var tmp_cal = global.max_movement_speed*0.7;
 				if (tmp_cal < abs(global.movement_hspeed)+abs(global.movement_vspeed))
 				{
