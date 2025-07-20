@@ -18,7 +18,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		{
 			case 0:
 				dmg = 3.8;
-				atk_sp = 40;
+				atk_sp = 60;
 				crit_chance = 10;
 				knockback = 16;
 				tmp_bleeding = 10;
@@ -26,7 +26,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		
 			case 1:
 				dmg = 2;
-				atk_sp = 35;
+				atk_sp = 40;
 				crit_chance = 16;
 				knockback = 1;
 				tmp_range = 78;
@@ -35,7 +35,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		
 			case 2:
 				dmg = 5;
-				atk_sp = 70;
+				atk_sp = 200;
 				crit_chance = 30;
 				knockback = 24;
 				tmp_attack_type = 3;
@@ -43,7 +43,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		
 			case 3:
 				dmg = 5.8;
-				atk_sp = 40;
+				atk_sp = 60;
 				crit_chance = 10;
 				knockback = 16;
 				tmp_bleeding = 15;
@@ -51,7 +51,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 4:
 				dmg = 4;
-				atk_sp = 35;
+				atk_sp = 40;
 				crit_chance = 16;
 				knockback = 3;
 				tmp_range = 78;
@@ -60,7 +60,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 5:
 				dmg = 8;
-				atk_sp = 70;
+				atk_sp = 200;
 				crit_chance = 30;
 				knockback = 24;
 				tmp_attack_type = 3;
@@ -68,7 +68,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 6:
 				dmg = 8;
-				atk_sp = 25;
+				atk_sp = 30;
 				crit_chance = 10;
 				knockback = 1;
 				tmp_range = 64;
@@ -79,7 +79,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 7:
 				dmg = 6;
-				atk_sp = 25;
+				atk_sp = 30;
 				crit_chance = 5;
 				knockback = 1;
 				tmp_range = 64;
@@ -90,7 +90,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 8:
 				dmg = 9;
-				atk_sp = 40;
+				atk_sp = 50;
 				crit_chance = 15;
 				knockback = 16;
 				tmp_bleeding = 18;
@@ -98,7 +98,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 9:
 				dmg = 7;
-				atk_sp = 35;
+				atk_sp = 30;
 				crit_chance = 20;
 				knockback = 4;
 				tmp_range = 78;
@@ -107,7 +107,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 10:
 				dmg = 12;
-				atk_sp = 60;
+				atk_sp = 190;
 				crit_chance = 30;
 				knockback = 24;
 				tmp_attack_type = 3;
@@ -115,7 +115,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 11:
 				dmg = 6;
-				atk_sp = 35;
+				atk_sp = 50;
 				crit_chance = 10;
 				knockback = 16;
 				tmp_bleeding = 15;
@@ -132,7 +132,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 13:
 				dmg = 8;
-				atk_sp = 65;
+				atk_sp = 190;
 				crit_chance = 30;
 				knockback = 24;
 				tmp_attack_type = 3;
@@ -140,7 +140,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 14:
 				dmg = 9;
-				atk_sp = 40;
+				atk_sp = 45;
 				crit_chance = 15;
 				knockback = 10;
 				tmp_bleeding = 10;
@@ -149,7 +149,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 15:
 				dmg = 7;
-				atk_sp = 35;
+				atk_sp = 25;
 				crit_chance = 20;
 				knockback = 1;
 				tmp_range = 78;
@@ -159,7 +159,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 16:
 				dmg = 12;
-				atk_sp = 60;
+				atk_sp = 185;
 				crit_chance = 30;
 				knockback = 12;
 				tmp_attack_type = 3;
@@ -168,7 +168,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 17:
 				dmg = 5;
-				atk_sp = 30;
+				atk_sp = 40;
 				crit_chance = 35;
 				knockback = 16;
 				tmp_bleeding = 16;
@@ -176,7 +176,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			
 			case 18:
 				dmg = 3;
-				atk_sp = 25;
+				atk_sp = 20;
 				crit_chance = 40;
 				knockback = 4;
 				tmp_range = 78;

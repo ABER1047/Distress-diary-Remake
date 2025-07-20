@@ -111,6 +111,10 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				break;
 			}
 		}
+		
+		//잉여 마나 회복
+		var tmp_mana_decreasement = global.mana_decreasement/global.charging_split;
+		mana += (gage_bar_charged-tmp_charging_num/global.charging_split)*tmp_mana_decreasement
 	}
 	
 	

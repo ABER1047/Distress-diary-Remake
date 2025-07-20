@@ -16,7 +16,21 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 			{
 				if (gage_bar_charged < 1)
 				{
-					gage_bar_charged += 60/power(global.attack_speed/global.charging_split,2);
+					var tmp_gage_increasement = (1/global.attack_speed)*global.charging_split;
+					//일반 무기 게이지 차는거
+					if (global.attack_type != 5)
+					{
+						gage_bar_charged += tmp_gage_increasement;
+					}
+					else
+					{
+						var tmp_mana_decreasement = global.mana_decreasement/global.charging_split;
+						if (mana >= tmp_mana_decreasement)
+						{
+							mana -= tmp_mana_decreasement;
+							gage_bar_charged += tmp_gage_increasement;
+						}
+					}
 					
 					for(var i = 0; i < global.charging_split; i++)
 					{

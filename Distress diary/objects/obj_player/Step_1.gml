@@ -121,6 +121,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 		if (global.mana_recovery_speed < mana_cooltime)
 		{
 			mana += 0.8;
+			b_mana = mana;
 		}
 	}
 	else
@@ -130,7 +131,7 @@ if ((instance_exists(code_m) && code_m.server == -4) || global.my_player_id == o
 	
 	
 	//마나 사용 체크
-	if (b_mana > mana)
+	if (b_mana != mana)
 	{
 		b_mana = mana;
 		mana_cooltime = 0;
