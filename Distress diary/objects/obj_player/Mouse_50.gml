@@ -47,11 +47,24 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 				//마법 영창 이펙트
 				if (global.attack_type == 5)
 				{
+					var tmp_cal_xx = x+irandom_range(-8,8), tmp_cal_yy = y-16-z+irandom_range(-8,8)
 					if (spell_effect_timer%25 == 0)
 					{
-						var tmp_ins = display_texts(x+lengthdir_x(48,my_n_dir*90)+irandom_range(-8,8),y+lengthdir_y(48,my_n_dir*90)-16-z+irandom_range(-8,8),c_white,id,"@rune!",irandom_range(50,30)/100);
+						var tmp_ins = display_texts(tmp_cal_xx+lengthdir_x(48,my_n_dir*90),tmp_cal_yy+lengthdir_y(48,my_n_dir*90),c_white,id,"@rune!",irandom_range(50,30)/100);
 						tmp_ins.image_alpha = 0.75;
 						tmp_ins.animation = 50;
+					}
+					
+					if (global.graphics_quality > 0 && percentage_k(3))
+					{
+						var tmp_signed_xscale = -sign(image_xscale);
+						var tmp_ins = instance_create_depth(tmp_cal_xx,tmp_cal_yy-16,-1,obj_bright_line_effect);
+						tmp_ins.image_blend = c_white;
+						tmp_ins.direction = 90+irandom_range(-10,10);
+						tmp_ins.rd_dir_increasement = 90+tmp_signed_xscale*30+global.movement_hspeed*20;
+						tmp_ins.start_dir = 90;
+						tmp_ins.speed = irandom_range(20,30)/15+abs(global.movement_hspeed*0.1);
+						tmp_ins.rd_dir_timer_increasement = 1;
 					}
 					spell_effect_timer ++;
 				}

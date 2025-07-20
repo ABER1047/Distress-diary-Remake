@@ -11,7 +11,7 @@ function initialize_outlined_fonts(argument0,argument1)
 	{
         outlineEnable : true,
         outlineDistance : (argument1 != undefined) ? argument1 : 4,
-        outlineColour : #222034,
+        outlineColour : #000000,
         outlineAlpha : 1
     };
     font_enable_effects(font_normal_outline,argument0,settings);

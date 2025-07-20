@@ -7,7 +7,7 @@ fire_ef_timer ++;
 if (effect_applied)
 {
 	//불꽃 이펙트 
-	if (global.graphics_quality > 1 && fire_ef_timer < 60)
+	if (is_array(effect_ins_arr) && fire_ef_timer < 60)
 	{
 		var rd_ind = irandom_range(0,effect_ins_arr_ind-1);
 		var tmp_ef_ins = effect_ins_arr[rd_ind];
