@@ -24,8 +24,8 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 					}
 					else
 					{
-						var tmp_mana_decreasement = global.mana_decreasement/global.charging_split;
-						if (mana >= tmp_mana_decreasement)
+						var tmp_mana_decreasement = tmp_gage_increasement*global.mana_decreasement;
+						if (mana >= global.mana_decreasement)
 						{
 							mana -= tmp_mana_decreasement;
 							gage_bar_charged += tmp_gage_increasement;

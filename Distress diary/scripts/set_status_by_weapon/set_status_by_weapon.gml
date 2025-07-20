@@ -198,11 +198,11 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//라이트닝 볼트
 			case 20:
 				dmg = 48;
-				atk_sp = 144;
+				atk_sp = 170;
 				knockback = 2;
 				tmp_accurate = 90;
 				tmp_attack_type = 5;
-				tmp_mana = 10;
+				tmp_mana = 20;
 				tmp_charging_split = 3;
 				tmp_burn = 15;
 			break;
@@ -210,7 +210,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//홀리 라이트닝
 			case 21:
 				dmg = 28;
-				atk_sp = 700;
+				atk_sp = 300;
 				knockback = 3;
 				tmp_accurate = 100;
 				tmp_attack_type = 5;
@@ -222,7 +222,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//쇼크볼
 			case 22:
 				dmg = 35;
-				atk_sp = 90;
+				atk_sp = 150;
 				knockback = 9;
 				tmp_accurate = 100;
 				tmp_attack_type = 5;
@@ -234,7 +234,7 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//리플렉트 쇼크볼
 			case 23:
 				dmg = 30;
-				atk_sp = 255;
+				atk_sp = 180;
 				knockback = 7;
 				tmp_accurate = 100;
 				tmp_attack_type = 5;
@@ -246,12 +246,12 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 			//리플렉트 볼
 			case 24:
 				dmg = 10;
-				atk_sp = 400;
+				atk_sp = 180;
 				knockback = 7;
 				tmp_accurate = 100;
 				tmp_attack_type = 5;
 				tmp_mana = 10;
-				tmp_charging_split = 5;
+				tmp_charging_split = 2;
 				tmp_burn = 15;
 			break;
 			

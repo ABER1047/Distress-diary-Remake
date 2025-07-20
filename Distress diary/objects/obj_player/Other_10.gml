@@ -103,7 +103,7 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				break;
 				
 				case 24:
-					create_projectile(tmp_xx,tmp_yy,0,12+3*tmp_charging_num,2,global.attack_damage,z+16,0,tmp_m_dir,3,spr_projectile_mirrorball,,,2,tmp_charging_num);
+					create_projectile(tmp_xx,tmp_yy,0,12+2*tmp_charging_num,2,global.attack_damage,z+16,0,tmp_m_dir,3,spr_projectile_mirrorball,,,2,1+tmp_charging_num*2);
 				break;
 				
 				case 25:
@@ -111,10 +111,6 @@ if (global.attack_cooldown_timer == 0 && !global.prohibit_movement_input && hp >
 				break;
 			}
 		}
-		
-		//잉여 마나 회복
-		var tmp_mana_decreasement = global.mana_decreasement/global.charging_split;
-		mana += (gage_bar_charged-tmp_charging_num/global.charging_split)*tmp_mana_decreasement
 	}
 	
 	
