@@ -32,7 +32,7 @@ if (!instance_exists(obj_ui_parents) && global.attack_speed > 0 && !global.is_mo
 						}
 						else
 						{
-							if (global.gage_bar_shine_animation <= 0)
+							if (gage_bar_charged > 0 && global.gage_bar_shine_animation <= 0)
 							{
 								global.gage_bar_shine_animation = 1; //게이지 바 번쩍거림 이펙트
 							}
