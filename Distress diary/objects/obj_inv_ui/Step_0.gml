@@ -49,3 +49,10 @@ if (max_distance != -4 && instance_exists(tmp_my_p) && point_distance(tmp_owner.
 }
 
 
+
+
+///esc로 창 닫기
+if (keyboard_check_pressed(vk_escape))
+{
+	instance_destroy();
+}

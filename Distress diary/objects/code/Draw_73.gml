@@ -149,7 +149,7 @@ if (global.dev_mode == 1)
 			draw_set_font(font_normal);
 			draw_set_alpha(1);
 	
-			draw_text_k_scale(xx+8,yy+32,"전체화면 [ESC] 지도 보기 [`]\n채팅창 [U/Enter] 명령어 가이드 [/help]\n닉네임 변경 [Q] 스킨 변경 [Y] 가방 변경 [T]\n인벤토리 열기/닫기 [Tab] 아이템 회전 [R] 아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,1,-1,font_normal,0.3,0.3,0,true);
+			draw_text_k_scale(xx+8,yy+32,"전체화면 [F4] 지도 보기 [`]\n채팅창 [U/Enter] 명령어 가이드 [/help]\n닉네임 변경 [Q] 스킨 변경 [Y] 가방 변경 [T]\n인벤토리 열기/닫기 [Tab] 아이템 회전 [R] 아이템 반절 나누기 [Shift]\n랜덤 상자 생성 [P]\n플래시 라이트 [E]",64,-1,1,c_white,1,-1,font_normal,0.3,0.3,0,true);
 	
 			var tmp_my_player_id = 0;
 			if (global.my_player_id >= 0 && global.my_player_id < array_length(global.my_player_ins_id))
@@ -397,7 +397,7 @@ if (global.dev_mode == 1)
 	
 	
 	//전체화면
-	if (!instance_exists(obj_ui_parents) && keyboard_check_pressed(vk_escape))
+	if (!instance_exists(obj_ui_parents) && keyboard_check_pressed(vk_f4))
 	{
 		event_user(1);
 	}
