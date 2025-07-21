@@ -406,5 +406,5 @@ function set_status_by_weapon(argument0,argument1,argument2,argument3)
 		global.charging_split = tmp_charging_split; //차징 단계 분리 정도
 	}
 	
-	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate)+","+string(tmp_bleeding)+","+string(tmp_poisoning)+","+string(tmp_burn);
+	return string(dmg)+","+string(atk_sp)+","+string(crit_chance)+","+string(knockback)+","+string(tmp_range)+","+string(tmp_attack_type)+","+string(tmp_accurate)+","+string(tmp_bleeding)+","+string(tmp_poisoning)+","+string(tmp_burn)+","+string(tmp_mana);
 }

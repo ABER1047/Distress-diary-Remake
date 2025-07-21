@@ -1119,6 +1119,13 @@ function set_item_info_values(argument0,argument1,argument2,argument3)
 			}
 		}
 		
+		
+		if (tmp_str[10] > 0)
+		{
+			item_effect_desc = string(item_effect_desc)+string(tmp_str[10])+" 마나 소비\n";
+		}
+		
+		
 		if (tmp_str[2] != 0)
 		{
 			if (argument3 == undefined || argument3 == 0)
