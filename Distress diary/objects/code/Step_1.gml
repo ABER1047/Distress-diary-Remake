@@ -282,6 +282,11 @@ if (global.buff_left_time[19] > 0)
 	}
 }
 
+//마나 회복 속도
+var tmp_activated1 = (global.buff_left_time[21] > 0) ? 1 : 0;
+var tmp_activated2 = (global.buff_left_time[22] > 0) ? 1 : 0;
+global.mana_recovery = 0.08*(1 + (tmp_activated1-tmp_activated2)*9);
+
 
 //공속 증가 (%단위)
 global.attack_speed_increasement =  (global.buff_left_time[23] > 0) ? 15 : 0;

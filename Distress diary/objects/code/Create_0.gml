@@ -260,6 +260,7 @@ global.over_weight = 10; //과적 판정 kg수
 global.max_hp = 100; //최대 체력
 global.max_mana = 100; //최대 마나
 global.mana_recovery_speed = 300; //마나 회복속도 (60 = 1sec)
+global.mana_recovery = 0.08;
 global.max_stamina = 100; //최대 스태미나
 global.my_gold = 0; //내 보유 골드
 global.hunger = 100; //배고픔
